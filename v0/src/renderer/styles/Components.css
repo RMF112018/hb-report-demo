@@ -1,0 +1,1432 @@
+/* src/renderer/styles/Components.css */
+/* Component-specific styles for HB Report application */
+/* Import this file in specific components to apply styles */
+
+/* Portfolio-specific styles */
+.portfolio-container {
+    height: calc(100vh - 52px);
+}
+
+.portfolio-table.ag-theme-alpine {
+    margin-top: 0 !important;
+    width: 100%;
+}
+
+.portfolio-table .ag-header-cell {
+    font-weight: bold;
+    font-size: 12px;
+    padding: 0 6px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.portfolio-table .ag-header-cell-sortable:hover {
+    background-color: #e8e8e8;
+    /* Light grey on hover, aligning with new header color */
+}
+
+.portfolio-table .ag-cell {
+    font-size: 11px;
+    padding: 0 6px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.portfolio-table .ag-row-odd {
+    background-color: #f9f9f9;
+}
+
+.portfolio-table .ag-row-even {
+    background-color: #ffffff;
+}
+
+.portfolio-table .ag-row:hover {
+    background-color: #e6f4ff;
+    cursor: pointer;
+}
+
+.portfolio-table .ag-row[data-active="1"] {
+    background-color: #e6f7e9;
+}
+
+.portfolio-table .ag-row[data-active="0"] {
+    background-color: #fffbe6;
+}
+
+/* Dashboard-specific styles */
+.project-dashboard-v2-container {
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f0 100%);
+}
+
+.project-dashboard-v2-container .dashboard-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project-dashboard-v2-container .dashboard-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.project-dashboard-v2-container .dashboard-card .ant-card-head {
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.project-dashboard-v2-container .dashboard-card .ant-card-head-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    display: flex;
+    align-items: center;
+}
+
+.project-dashboard-v2-container .dashboard-card .ant-card-body {
+    background: #fff;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+/* Ensure Spin tip is visible */
+.project-dashboard-v2-container .ant-spin-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+/* Buyout-specific styles */
+.buyout-container {
+    height: calc(100vh - 52px);
+}
+
+.buyout-table.ag-theme-alpine {
+    margin-top: 0 !important;
+    width: 100%;
+}
+
+.buyout-table .ag-header-cell {
+    font-weight: bold;
+    font-size: 12px;
+    padding: 0 6px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.buyout-table .ag-header-cell-sortable:hover {
+    background-color: #e8e8e8;
+}
+
+.buyout-table .ag-cell {
+    font-size: 11px;
+    padding: 0 6px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.buyout-table .ag-row-odd {
+    background-color: #f9f9f9;
+}
+
+.buyout-table .ag-row-even {
+    background-color: #ffffff;
+}
+
+.buyout-table .ag-row:hover {
+    background-color: #e6f4ff;
+    cursor: pointer;
+}
+
+.buyout-table .ag-row[data-status="Approved"] {
+    background-color: #e6f7e9;
+}
+
+.buyout-table .ag-row[data-status^="Draft"] {
+    background-color: #fffbe6;
+}
+
+.buyout-table .grand-total-row {
+    font-weight: bold;
+    background-color: #f5f5f5;
+}
+
+.buyout-form-steps {
+    width: 100%;
+}
+
+.buyout-form-steps .ant-steps-item-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: #595959;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.buyout-form-steps .ant-steps-item-active .ant-steps-item-title,
+.buyout-form-steps .ant-steps-item:hover .ant-steps-item-title {
+    color: var(--hb-blue);
+    font-weight: 600;
+}
+
+.buyout-form-steps .ant-steps-item-icon {
+    display: none;
+    /* Hide the default step icons */
+}
+
+.buyout-form-steps .ant-steps-item {
+    margin-bottom: 8px;
+}
+
+/* Ensure the form container is scrollable */
+.buyout-form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-top: 52px;
+}
+
+/* Fix the tabs container at the top */
+.fixed-tabs-container {
+    position: relative;
+    /* top: 52px; Height of the header from App.js */
+    /* left: 250px; Match Sider width */
+    right: 0;
+    z-index: 9;
+    background-color: #fff;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+/* Style the tabs to fit within the fixed container */
+.fixed-tabs .ant-tabs-nav {
+    padding: 0 12px;
+    margin-bottom: 0;
+}
+
+/* Ensure tab content is scrollable and positioned below the fixed tabs */
+.tab-content-scrollable {
+    padding: 0;
+    overflow-y: auto;
+    height: calc(100vh - 168px);
+    /* 52px (header) + 48px (tabs) */
+    margin: 6px;
+    /* Height of the tabs */
+}
+
+/* Adjust the buyout form container to work within the scrollable area */
+.buyout-form-container {
+    display: flex;
+    height: calc(100vh - 52px);
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+}
+
+/* Styles for the General Information section to match the image */
+#general-information .ant-form-item,
+#owner-approval .ant-form-item,
+#allowances .ant-form-item,
+#value-engineering .ant-form-item,
+#long-lead-items .ant-form-item,
+#financials .ant-form-item,
+#contract-workflow .ant-form-item,
+#subcontract-checklist .ant-form-item,
+#compliance-waiver .ant-form-item {
+    margin-bottom: 8px;
+    /* Reduce vertical spacing between fields */
+}
+
+#general-information .ant-form-item-label,
+#owner-approval .ant-form-item-label,
+#allowances .ant-form-item-label,
+#value-engineering .ant-form-item-label,
+#long-lead-items .ant-form-item-label,
+#financials .ant-form-item-label,
+#contract-workflow .ant-form-item-label,
+#subcontract-checklist .ant-form-item-label,
+#compliance-waiver {
+    padding: 0;
+    /* Remove default padding */
+    line-height: 1.2;
+    /* Tighten line height for labels */
+    font-size: 14px;
+    /* Match font size from the image */
+    color: #333;
+    /* Match label color */
+}
+
+#general-information .ant-form-item-label>label,
+#owner-approval .ant-form-item-label>label,
+#allowances .ant-form-item-label>label,
+#value-engineering .ant-form-item-label>label,
+#long-lead-items .ant-form-item-label>label,
+#financials .ant-form-item-label>label,
+#contract-workflow .ant-form-item-label>label,
+#subcontract-checklist .ant-form-item-label>label,
+#compliance-waiver .ant-form-item-label>label {
+    height: auto;
+    /* Remove fixed height */
+    font-weight: 500;
+    /* Match label weight */
+}
+
+#general-information .ant-form-item-label>label::after,
+#owner-approval .ant-form-item-label>label::after,
+#allowances .ant-form-item-label>label::after,
+#value-engineering .ant-form-item-label>label::after,
+#long-lead-items .ant-form-item-label>label::after,
+#financials .ant-form-item-label>label::after,
+#contract-workflow .ant-form-item-label>label::after,
+#subcontract-checklist .ant-form-item-label>label::after,
+#compliance-waiver .ant-form-item-label>label::after {
+    content: none;
+    /* Remove the colon after labels */
+}
+
+#general-information .ant-form-item-control,
+#owner-approval .ant-form-item-control,
+#allowances .ant-form-item-control,
+#value-engineering .ant-form-item-control,
+#long-lead-items .ant-form-item-control,
+#financials .ant-form-item-control,
+#contract-workflow .ant-form-item-control,
+#subcontract-checklist .ant-form-item-control,
+#compliance-waiver .ant-form-item-control {
+    line-height: 1;
+    /* Tighten input alignment */
+}
+
+#general-information .ant-input,
+#general-information .ant-select,
+#general-information .ant-input-number,
+#owner-approval .ant-input,
+#owner-approval .ant-select,
+#owner-approval .ant-input-number,
+#allowances .ant-input,
+#allowances .ant-select,
+#allowances .ant-input-number,
+#value-engineering .ant-input,
+#value-engineering .ant-select,
+#value-engineering .ant-input-number,
+#long-lead-items .ant-input,
+#long-lead-items .ant-select,
+#long-lead-items .ant-input-number,
+#financials .ant-input,
+#financials .ant-select,
+#financials .ant-input-number,
+#contract-workflow .ant-input,
+#contract-workflow .ant-select,
+#contract-workflow .ant-input-number,
+#subcontract-checklist .ant-input,
+#subcontract-checklist .ant-select,
+#subcontract-checklist .ant-input-number,
+#compliance-waiver .ant-input,
+#compliance-waiver .ant-select,
+#compliance-waiver .ant-input-number {
+    height: 32px;
+    /* Match field height from the image */
+    font-size: 14px;
+    /* Match font size */
+}
+
+#general-information .ant-select-single .ant-select-selector #owner-approval .ant-checkbox-wrapper,
+#allowances .ant-checkbox-wrapper,
+#value-engineering .ant-checkbox-wrapper,
+#long-lead-items .ant-checkbox-wrapper,
+#financials .ant-checkbox-wrapper,
+#contract-workflow .ant-checkbox-wrapper,
+#subcontract-checklist .ant-checkbox-wrapper,
+#compliance-waiver .ant-checkbox-wrapper {
+    height: 32px;
+    /* Ensure select fields match input height */
+    padding: 0 11px;
+    /* Match padding */
+    display: flex;
+    align-items: center;
+}
+
+#general-information .ant-checkbox-wrapper,
+#owner-approval .ant-checkbox-wrapper,
+#allowances .ant-checkbox-wrapper,
+#value-engineering .ant-checkbox-wrapper,
+#long-lead-items .ant-checkbox-wrapper,
+#financials .ant-checkbox-wrapper,
+#contract-workflow .ant-checkbox-wrapper,
+#subcontract-checklist .ant-checkbox-wrapper,
+#compliance-waiver .ant-checkbox-wrapper {
+    margin-top: 4px;
+    /* Align checkbox with other fields */
+}
+
+#general-information .ant-row,
+#owner-approval .ant-row,
+#allowances .ant-row,
+#value-engineering .ant-row,
+#long-lead-items .ant-row,
+#financials .ant-row,
+#contract-workflow .ant-row,
+#subcontract-checklist .ant-row,
+#compliance-waiver .ant-row {
+    margin-bottom: 0;
+    /* Remove extra margin from Row */
+}
+
+#general-information .ant-col,
+#owner-approval .ant-input-group-addon,
+#allowances .ant-input-group-addon,
+#value-engineering .ant-input-group-addon,
+#long-lead-items .ant-input-group-addon,
+#financials .ant-input-group-addon,
+#contract-workflow .ant-input-group-addon,
+#subcontract-checklist .ant-input-group-addon,
+#compliance-waiver .ant-input-group-addon {
+    padding-bottom: 0;
+    /* Remove extra padding from Col */
+}
+
+/* Style for the retainage percent addon */
+#general-information .ant-input-group-addon,
+#owner-approval .ant-input-group-addon,
+#allowances .ant-input-group-addon,
+#value-engineering .ant-input-group-addon,
+#long-lead-items .ant-input-group-addon,
+#financials .ant-input-group-addon,
+#contract-workflow .ant-input-group-addon,
+#subcontract-checklist .ant-input-group-addon,
+#compliance-waiver .ant-input-group-addon {
+    padding: 0 8px;
+    font-size: 14px;
+}
+
+/* Enhance the Timeline component */
+#contract-workflow .ant-timeline-item {
+    padding-bottom: 40px;
+    /* Increase spacing between timeline items for more separation */
+}
+
+#contract-workflow .ant-timeline-item-tail {
+    border-left: 2px solid #e8e8e8;
+    /* Match the timeline line color */
+}
+
+#contract-workflow .ant-timeline-item-head {
+    background-color: #fff;
+    /* Ensure the dot background matches the container */
+    border: 2px solid var(--hb-blue);
+    /* Match the dot color to the header */
+}
+
+/* Card-like styling for each section */
+#contract-workflow .section-card {
+    background-color: #f9f9f9;
+    /* Light gray background to match the attached image */
+    padding: 16px;
+    /* Internal padding for the card */
+    border-radius: 4px;
+    /* Subtle border radius */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow for depth */
+    border: 1px solid #e8e8e8;
+    /* Light border to define the card */
+}
+
+#contract-workflow .ant-form-item {
+    margin-bottom: 8px;
+    /* Tighter spacing between form items within a section */
+}
+
+#contract-workflow .ant-input,
+#contract-workflow .ant-select,
+#contract-workflow .ant-picker {
+    height: 32px;
+    font-size: 14px;
+}
+
+#contract-workflow .ant-select-single .ant-select-selector {
+    height: 32px;
+    padding: 0 11px;
+    display: flex;
+    align-items: center;
+}
+
+#contract-workflow .ant-row {
+    margin-bottom: 0;
+}
+
+#contract-workflow .ant-col {
+    padding-bottom: 0;
+}
+
+/* Ensure nested rows have no extra margin */
+#contract-workflow .ant-row.nested-row {
+    margin-bottom: 0;
+}
+
+/* Card-like styling for the subcontract checklist section */
+#subcontract-checklist .section-card {
+    background-color: #f9f9f9;
+    /* Light gray background to match the image */
+    padding: 16px;
+    /* Internal padding for the card */
+    border-radius: 4px;
+    /* Subtle border radius */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow for depth */
+    border: 1px solid #e8e8e8;
+    /* Light border to define the card */
+}
+
+/* Ensure form items have consistent spacing */
+#subcontract-checklist .ant-form-item {
+    margin-bottom: 8px;
+    /* Tighter spacing between form items */
+}
+
+/* Style inputs, selects, and textareas */
+#subcontract-checklist .ant-input,
+#subcontract-checklist .ant-select,
+#subcontract-checklist .ant-picker {
+    height: 32px;
+    font-size: 14px;
+}
+
+/* Ensure select fields align properly */
+#subcontract-checklist .ant-select-single .ant-select-selector {
+    height: 32px;
+    padding: 0 11px;
+    display: flex;
+    align-items: center;
+}
+
+/* Remove extra margins from rows */
+#subcontract-checklist .ant-row {
+    margin-bottom: 0;
+}
+
+/* Remove extra padding from columns */
+#subcontract-checklist .ant-col {
+    padding-bottom: 0;
+}
+
+/* Ensure nested rows have no extra margin */
+#subcontract-checklist .ant-row.nested-row {
+    margin-bottom: 0;
+}
+
+/* Style the textarea to match other inputs */
+#subcontract-checklist .ant-input-textarea {
+    font-size: 14px;
+}
+
+/* Card-like styling for the compliance waiver section */
+#compliance-waiver .section-card {
+    background-color: #f9f9f9;
+    /* Light gray background to match the image */
+    padding: 16px;
+    /* Internal padding for the card */
+    border-radius: 4px;
+    /* Subtle border radius */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow for depth */
+    border: 1px solid #e8e8e8;
+    /* Light border to define the card */
+}
+
+/* Ensure form items have consistent spacing */
+#compliance-waiver .ant-form-item {
+    margin-bottom: 8px;
+    /* Tighter spacing between form items */
+}
+
+/* Style inputs, selects, date pickers, and textareas */
+#compliance-waiver .ant-input,
+#compliance-waiver .ant-select,
+#compliance-waiver .ant-picker {
+    height: 32px;
+    font-size: 14px;
+}
+
+/* Ensure select fields align properly */
+#compliance-waiver .ant-select-single .ant-select-selector {
+    height: 32px;
+    padding: 0 11px;
+    display: flex;
+    align-items: center;
+}
+
+/* Style checkboxes to align with other fields */
+#compliance-waiver .ant-checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Remove extra margins from rows */
+#compliance-waiver .ant-row {
+    margin-bottom: 0;
+}
+
+/* Remove extra padding from columns */
+#compliance-waiver .ant-col {
+    padding-bottom: 0;
+}
+
+/* Ensure nested rows have no extra margin */
+#compliance-waiver .ant-row.nested-row {
+    margin-bottom: 0;
+}
+
+/* Style the textarea to match other inputs */
+#compliance-waiver .ant-input-textarea {
+    font-size: 14px;
+}
+
+.status-legend {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* Forecasting-specific styles */
+.forecasting-container {
+    height: calc(100vh - 52px);
+}
+
+/* Constraints-specific styles */
+.constraints-tabs .ant-tabs-nav {
+    margin-bottom: 16px;
+}
+
+.constraints-category-section {
+    margin-bottom: 24px;
+}
+
+.constraints-category-header {
+    background-color: #e6f4ff;
+    padding: 8px 16px;
+    font-weight: bold;
+    font-size: 14px;
+    border-bottom: 1px solid #d9d9d9;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0;
+}
+
+.constraints-category-edit-button {
+    color: #8c8c8c;
+    font-size: 12px;
+}
+
+.constraints-category-edit-button:hover {
+    color: var(--hb-blue);
+}
+
+.constraints-table.ag-theme-alpine {
+    margin-top: 0;
+}
+
+.constraints-collapse-icon {
+    transition: transform 0.3s ease;
+}
+
+.constraints-collapse-icon.collapsed {
+    transform: rotate(-90deg);
+}
+
+.constraints-resolved-section {
+    margin-bottom: 24px;
+}
+
+.constraints-resolved-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+/* Constraints Modal Styles */
+.constraints-modal .ant-modal-body {
+    padding: 16px;
+}
+
+.constraints-modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.constraints-modal-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: flex-start;
+}
+
+.constraints-modal-field {
+    margin-bottom: 0 !important;
+}
+
+.constraints-modal-field-category {
+    flex: 1;
+    min-width: 200px;
+}
+
+.constraints-modal-field-description {
+    flex: 2;
+    min-width: 300px;
+}
+
+.constraints-modal-field-date {
+    flex: 1;
+    min-width: 150px;
+}
+
+.constraints-modal-field-completion {
+    flex: 1;
+    min-width: 150px;
+}
+
+.constraints-modal-field-assigned {
+    flex: 1;
+    min-width: 150px;
+}
+
+.constraints-modal-field-bic {
+    flex: 1;
+    min-width: 150px;
+}
+
+.constraints-modal-field-reference {
+    flex: 1;
+    min-width: 200px;
+}
+
+.constraints-modal-field-closure {
+    flex: 1;
+    min-width: 200px;
+}
+
+.constraints-modal-field-comments {
+    flex: 1;
+    width: 100%;
+}
+
+.constraints-modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 8px;
+}
+
+/* Responsibility-specific styles */
+.responsibility-container .ant-list-item {
+    border-bottom: 1px solid #e8e8e8;
+    padding: 8px 0;
+}
+
+.responsibility-container .ant-list-item:last-child {
+    border-bottom: none;
+}
+
+.responsibility-container .ant-radio-group {
+    margin-right: 16px;
+}
+
+.responsibility-table.ag-theme-alpine {
+    margin-top: 0 !important;
+    width: 100%;
+}
+
+.responsibility-table .ag-header-cell {
+    font-weight: bold;
+    font-size: 12px;
+    padding: 0 6px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.responsibility-table .ag-header-cell-sortable:hover {
+    background-color: #e8e8e8;
+}
+
+.ag-theme-alpine .prime-contract-responsible-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.responsibility-table .ant-popover-inner-content {
+    padding: 0;
+}
+
+.responsibility-table .ant-btn-text {
+    padding: 4px 8px;
+    width: 100%;
+    text-align: left;
+}
+
+.responsibility-table .ant-btn-text:hover {
+    background-color: #f0f0f0;
+}
+
+.responsibility-container .ant-tabs {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.responsibility-container .ant-tabs-content {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.responsibility-summary-matrix .ag-header-cell {
+    background-color: #e6f4ff;
+    font-weight: bold;
+}
+
+.responsibility-summary-matrix .ag-row-odd {
+    background-color: #f9f9f9;
+}
+
+.responsibility-summary-matrix .ag-row-even {
+    background-color: #ffffff;
+}
+
+.responsibility-role-filters {
+    margin-left: 16px;
+}
+
+.responsibility-role-filters .ant-flex {
+    align-items: center;
+}
+
+.responsibility-role-filters .ant-tag-checkable {
+    margin-right: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 60px;
+    text-align: center;
+}
+
+.responsibility-role-filters .ant-tag-checkable-checked {
+    font-weight: 500;
+}
+
+.responsibility-container .ant-tabs-nav {
+    margin-bottom: 16px;
+}
+
+.responsibility-container .ant-tabs-tab {
+    padding: 8px 16px;
+}
+
+.responsibility-container .ant-tabs-tab[data-node-key="PX"] .ant-tabs-tab-btn {
+    color: #1890ff;
+}
+
+.responsibility-container .ant-tabs-tab[data-node-key="PX"].ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: #1890ff;
+    font-weight: 600;
+}
+
+.responsibility-container .ant-tabs-tab[data-node-key="PM1"] .ant-tabs-tab-btn {
+    color: #52c41a;
+}
+
+.responsibility-container .ant-tabs-tab[data-node-key="PM1"].ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: #52c41a;
+    font-weight: 600;
+}
+
+.responsibility-container .ant-tabs-tab[data-node-key="PM2"] .ant-tabs-tab-btn {
+    color: #13c2c2;
+}
+
+.responsibility-container .ant-tabs-tab[data-node-key="PM2"].ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: #13c2c2;
+    font-weight: 600;
+}
+
+.responsibility-container .ant-tabs-tab[data-node-key="PM3"] .ant-tabs-tab-btn {
+    color: #722ed1;
+}
+
+.responsibility-container .ant-tabs-tab[data-node-key="PM3"].ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: #722ed1;
+    font-weight: 600;
+}
+
+.responsibility-container .ant-tabs-tab[data-node-key="PA"] .ant-tabs-tab-btn {
+    color: #fa8c16;
+}
+
+.responsibility-container .ant-tabs-tab[data-node-key="PA"].ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: #fa8c16;
+    font-weight: 600;
+}
+
+.responsibility-container .ant-tabs-tab[data-node-key="QAC"] .ant-tabs-tab-btn {
+    color: #f5222d;
+}
+
+.responsibility-container .ant-tabs-tab[data-node-key="QAC"].ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: #f5222d;
+    font-weight: 600;
+}
+
+.responsibility-container .ant-tabs-tab[data-node-key="ProjAcct"] .ant-tabs-tab-btn {
+    color: #eb2f96;
+}
+
+.responsibility-container .ant-tabs-tab[data-node-key="ProjAcct"].ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: #eb2f96;
+    font-weight: 600;
+}
+
+.responsibility-container .ant-tabs-tab[data-node-key="SPM"] .ant-tabs-tab-btn {
+    color: #595959;
+}
+
+.responsibility-container .ant-tabs-tab[data-node-key="SPM"].ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: #595959;
+    font-weight: 600;
+}
+
+/* src/renderer/styles/Components.css */
+/* Component-specific styles for HB Report application */
+/* Import this file in specific components to apply styles */
+
+/* Schedule-specific styles */
+.schedule-container {
+    height: calc(100vh - 52px);
+}
+
+.schedule-chart-section {
+    margin-bottom: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.schedule-chart-container {
+    border: 1px solid #e8e8e8;
+    border-radius: 8px;
+    padding: 16px;
+    background: linear-gradient(135deg, #f8f9fb 0%, #ffffff 100%);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    position: relative;
+    flex: 1;
+}
+
+.schedule-chart-container canvas {
+    max-width: 100%;
+    margin: 0 auto;
+    display: block;
+}
+
+.schedule-date-picker {
+    border-radius: 4px;
+    border: 1px solid #d9d9d9;
+}
+
+.schedule-control-button {
+    border-radius: 4px;
+    background-color: var(--hb-blue) !important;
+    border-color: var(--hb-blue) !important;
+    color: #fff !important;
+}
+
+.schedule-control-button:hover {
+    background-color: #0050a9 !important;
+    border-color: #0050a9 !important;
+}
+
+.schedule-chart-section .ant-slider {
+    margin: 0 8px;
+}
+
+.schedule-chart-section .ant-slider .ant-slider-rail {
+    background-color: #e8e8e8;
+}
+
+.schedule-chart-section .ant-slider .ant-slider-track {
+    background-color: var(--hb-blue);
+}
+
+.schedule-chart-section .ant-slider .ant-slider-handle {
+    border-color: var(--hb-blue);
+}
+
+.schedule-chart-section .ant-switch-checked {
+    background-color: var(--hb-blue);
+}
+
+.schedule-table-section {
+    margin-bottom: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.schedule-table.ag-theme-alpine {
+    margin-top: 0 !important;
+    flex: 1;
+}
+
+.schedule-table .ag-header-cell {
+    background-color: #e6f4ff;
+    font-weight: bold;
+    text-align: center;
+    font-size: 12px;
+    padding: 0 6px;
+    display: flex;
+    align-items: center;
+}
+
+.schedule-table .ag-cell {
+    text-align: center;
+    font-size: 12px;
+}
+
+.schedule-table .actual-completion-row {
+    background-color: #e6f7e9;
+}
+
+.schedule-table .ag-row-odd {
+    background-color: #f9f9f9;
+}
+
+.schedule-table .ag-row-even {
+    background-color: #ffffff;
+}
+
+/* Custom splitter styles */
+.splitter {
+    background: #e8e8e8;
+    z-index: 1;
+    height: 4px;
+    cursor: row-resize;
+}
+
+.splitter:hover {
+    background: var(--hb-blue);
+}
+
+/* Split pane styles */
+.Resizer {
+    background: #e8e8e8;
+    z-index: 1;
+    box-sizing: border-box;
+    height: 4px;
+    cursor: row-resize;
+}
+
+.Resizer:hover {
+    background: var(--hb-blue);
+}
+
+/* Permits-specific styles */
+.permits-container {
+    height: calc(100vh - 52px);
+}
+
+.permits-table.ag-theme-alpine {
+    margin-top: 0 !important;
+    width: 100%;
+}
+
+.permits-table .ag-header-cell {
+    font-weight: bold;
+    font-size: 12px;
+    padding: 0 6px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.permits-table .ag-header-cell-sortable:hover {
+    background-color: #e8e8e8;
+}
+
+.permits-table .ag-cell {
+    font-size: 11px;
+    padding: 0 6px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.permits-table .ag-row-odd {
+    background-color: #f9f9f9;
+}
+
+.permits-table .ag-row-even {
+    background-color: #ffffff;
+}
+
+.permits-table .ag-row:hover {
+    background-color: #e6f4ff;
+    cursor: pointer;
+}
+
+.permits-table .ag-row[data-status="Closed"] {
+    background-color: #e6f7e9;
+}
+
+.permits-table .ag-row[data-status="Pending"] {
+    background-color: #fffbe6;
+}
+
+.permits-modal .ant-modal-body {
+    padding: 16px;
+}
+
+.permits-modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.permits-modal-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: flex-start;
+}
+
+.permits-modal-field {
+    margin-bottom: 0 !important;
+}
+
+.permits-modal-field-location,
+.permits-modal-field-type,
+.permits-modal-field-permitNumber,
+.permits-modal-field-responsibleContractor,
+.permits-modal-field-permitStatus,
+.permits-modal-field-status,
+.permits-modal-field-agency {
+    flex: 1;
+    min-width: 150px;
+}
+
+.permits-modal-field-description,
+.permits-modal-field-comments {
+    flex: 1;
+    width: 100%;
+}
+
+.permits-modal-field-dateReceived,
+.permits-modal-field-dateRequired,
+.permits-modal-field-dateIssued {
+    flex: 1;
+    min-width: 150px;
+}
+
+.permits-modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 8px;
+}
+
+/* SubGrades-specific styles */
+.subgrades-container {
+    height: calc(100vh - 52px);
+}
+
+.subgrades-table.ag-theme-alpine {
+    margin-top: 0 !important;
+    width: 100%;
+}
+
+.subgrades-table .ag-header-cell {
+    font-weight: bold;
+    font-size: 12px;
+    padding: 0 6px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.subgrades-table .ag-header-cell-sortable:hover {
+    background-color: #e8e8e8;
+}
+
+.subgrades-table .ag-cell {
+    font-size: 11px;
+    padding: 0 6px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.subgrades-table .ag-row-odd {
+    background-color: #f9f9f9;
+}
+
+.subgrades-table .ag-row-even {
+    background-color: #ffffff;
+}
+
+.subgrades-table .ag-row:hover {
+    background-color: #e6f4ff;
+    cursor: pointer;
+}
+
+.subgrades-modal .ant-modal-body {
+    padding: 16px;
+}
+
+.subgrades-modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.subgrades-modal-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: flex-start;
+}
+
+.subgrades-modal-field {
+    margin-bottom: 0 !important;
+    flex: 1;
+    min-width: 150px;
+}
+
+.subgrades-modal-field-comments {
+    flex: 1;
+    width: 100%;
+}
+
+.subgrades-modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 8px;
+}
+
+/* Staffing-specific styles */
+.staffing-container {
+    height: calc(100vh - 52px);
+}
+
+.staffing-role-filters {
+    margin-bottom: 8px !important;
+}
+
+.staffing-role-filters .ant-flex {
+    align-items: center;
+}
+
+.staffing-role-filters .ant-tag-checkable {
+    margin-right: 4px;
+    margin-bottom: 4px;
+    padding: 2px 8px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: auto;
+    text-align: center;
+    border-radius: 12px;
+}
+
+.activity-table.ag-theme-alpine,
+.staffing-table.ag-theme-alpine {
+    margin-top: 0 !important;
+    width: 100%;
+    border: 1px solid #e8e8e8;
+    border-radius: 4px;
+}
+
+.activity-table .ag-header,
+.staffing-table .ag-header {
+    background-color: var(--hb-blue);
+    color: #fff;
+    font-weight: bold;
+}
+
+.activity-table .ag-header-cell,
+.staffing-table .ag-header-cell {
+    font-weight: bold;
+    font-size: 12px;
+    padding: 0 6px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.activity-table .ag-header-cell-sortable:hover,
+.staffing-table .ag-header-cell-sortable:hover {
+    background-color: #003a66;
+}
+
+.activity-table .ag-cell,
+.staffing-table .ag-cell {
+    font-size: 11px;
+    padding: 0 6px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.activity-table .ag-row-odd,
+.staffing-table .ag-row-odd {
+    background-color: #f5f5f9;
+}
+
+.activity-table .ag-row-even,
+.staffing-table .ag-row-even {
+    background-color: #ffffff;
+}
+
+.activity-table .ag-row:hover,
+.staffing-table .ag-row:hover {
+    background-color: #e6f4ff;
+    cursor: pointer;
+}
+
+.activity-table .category-row .ag-cell,
+.staffing-table .role-row .ag-cell {
+    background-color: #e6f4ff;
+    font-weight: bold;
+}
+
+.google-gantt-chart {
+    border: 1px solid #e8e8e8;
+    border-radius: 4px;
+    background-color: #fff;
+    padding: 8px;
+}
+
+.staffing-modal .ant-modal-body {
+    padding: 16px;
+}
+
+.staffing-modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.staffing-modal-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: flex-start;
+}
+
+.staffing-modal-field {
+    margin-bottom: 0 !important;
+}
+
+.staffing-modal-field-category,
+.staffing-modal-field-name,
+.staffing-modal-field-startMonth,
+.staffing-modal-field-endMonth {
+    flex: 1;
+    min-width: 200px;
+}
+
+.staffing-modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 8px;
+}
+
+/* Splitter styles */
+.splitter-horizontal {
+    width: 4px;
+    background: #e8e8e8;
+    cursor: col-resize;
+    transition: background 0.3s;
+}
+
+.splitter-horizontal:hover {
+    background: #d3d3d3;
+}
+
+.splitter-vertical {
+    height: 4px;
+    background: #e8e8e8;
+    cursor: row-resize;
+    transition: background 0.3s;
+}
+
+.splitter-vertical:hover {
+    background: #d3d3d3;
+}
+
+/* Manpower-specific styles */
+.manpower-container {
+    height: calc(100vh - 52px);
+}
+
+.manpower-table.ag-theme-alpine {
+    margin-top: 0 !important;
+    width: 100%;
+}
+
+.manpower-table .ag-header-cell {
+    font-weight: bold;
+    font-size: 12px;
+    padding: 0 6px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.manpower-table .ag-header-cell-sortable:hover {
+    background-color: #e8e8e8;
+}
+
+.manpower-table .ag-cell {
+    font-size: 11px;
+    padding: 0 6px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.manpower-table .ag-row-odd {
+    background-color: #f9f9f9;
+}
+
+.manpower-table .ag-row-even {
+    background-color: #ffffff;
+}
+
+.manpower-table .ag-row:hover {
+    background-color: #e6f4ff;
+    cursor: pointer;
+}
+
+.manpower-modal .ant-modal-body {
+    padding: 16px;
+}
+
+.manpower-modal-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: flex-start;
+}
+
+.manpower-modal-field {
+    margin-bottom: 0 !important;
+    flex: 1;
+    min-width: 150px;
+}
+
+.manpower-modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 8px;
+}

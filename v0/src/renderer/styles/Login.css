@@ -1,0 +1,148 @@
+/* src/renderer/styles/Login.css */
+/* Styles for the Login component, creating a split-pane layout with branded styling */
+/* Import this file in Login.jsx */
+/* Reference: https://ant.design/components/button#api */
+/* *Additional Reference*: https://developer.mozilla.org/en-US/docs/Web/CSS */
+
+/* Define HB Report brand colors */
+:root {
+  --hb-blue: #1a3c5e; /* Dark blue for headings and primary elements */
+  --hb-orange: #ff6900; /* Orange for buttons and accents */
+  --hb-orange-hover: #e69520; /* Darker orange for hover/focus states */
+  --dev-button-bg: #f0f0f0; /* Light gray for DEV button */
+  --dev-button-border: #ff4d4f; /* Red dashed border to indicate non-production */
+  --left-panel-bg: #fafafa; /* Slightly darker background for left panel */
+}
+
+.login-container {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.left-pane {
+  flex: 1; /* Takes 1 part of the available space */
+  max-width: 400px; /* Limits the width to keep it 1/3 to 1/4 of the right pane */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center content vertically */
+  align-items: center;
+  padding: 40px;
+  background-color: var(--left-panel-bg);
+}
+
+.right-pane {
+  flex: 3; /* Takes 3 parts, making it 3x wider than the left pane */
+  display: flex;
+  position: relative; /* For absolute positioning of content */
+  background-image: url('../assets/images/splash.jpg'); /* Set background image */
+  background-size: cover; /* Ensure the image covers the entire pane */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Prevent tiling */
+}
+
+/* Add a semi-transparent overlay to improve text readability */
+.right-pane::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent black overlay */
+}
+
+.right-pane-content {
+  position: absolute;
+  bottom: 40px; /* Spacing from the bottom edge */
+  right: 40px; /* Spacing from the right edge */
+  max-width: 400px;
+  text-align: left;
+  color: #ffffff; /* White text for better contrast */
+  background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background for readability */
+  padding: 20px;
+  border-radius: 8px; /* Optional: add rounded corners */
+}
+
+.right-pane-content h2,
+.right-pane-content p {
+  color: #ffffff; /* Ensure text is white */
+}
+
+.logo {
+  width: 90%; /* Constrain to 90% of the left panel's width */
+  max-width: 300px; /* Optional: set a max-width to prevent it from getting too large */
+  margin-bottom: 20px; /* Equal spacing below the logo */
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.login-button {
+  width: 200px;
+  margin-bottom: 20px; /* Equal spacing between buttons */
+  background-color: var(--hb-orange);
+  border-color: var(--hb-orange);
+  color: #ffffff;
+}
+
+.login-button:hover,
+.login-button:focus {
+  background-color: var(--hb-orange-hover);
+  border-color: var(--hb-orange-hover);
+  color: #ffffff;
+}
+
+.dev-login-button {
+  width: 200px;
+  background-color: var(--dev-button-bg);
+  border: 2px dashed var(--dev-button-border);
+  color: #333;
+}
+
+.dev-login-button:hover,
+.dev-login-button:focus {
+  background-color: #e6e6e6;
+  border-color: #ff7875;
+  color: #333;
+}
+
+.hb-orange-btn {
+  background-color: var(--hb-orange);
+  border-color: var(--hb-orange);
+  color: #ffffff;
+}
+
+.hb-orange-btn:hover,
+.hb-orange-btn:focus {
+  background-color: var(--hb-orange-hover);
+  border-color: var(--hb-orange-hover);
+  color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .login-container {
+    flex-direction: column;
+  }
+
+  .left-pane,
+  .right-pane {
+    flex: none;
+    max-width: 100%;
+    width: 100%;
+    min-height: 50vh;
+  }
+
+  .logo {
+    margin-bottom: 20px;
+  }
+
+  .right-pane-content {
+    position: static; /* Remove absolute positioning on smaller screens */
+    margin: 20px; /* Add margin for spacing */
+  }
+}

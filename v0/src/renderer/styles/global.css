@@ -1,0 +1,383 @@
+/* src/renderer/styles/global.css */
+/* Global styles for HB Report application, including fonts, colors, and common component styles */
+/* Import this file in src/renderer/main.js to apply styles across the app */
+/* Reference: https://ant.design/components/layout#api */
+/* *Additional Reference*: https://fonts.google.com/specimen/Montserrat */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
+
+/* Root variables for colors and fonts */
+:root {
+    --hb-blue: #004f8c;
+    --hb-orange: #f57734;
+    --content-color: #525252;
+    --font-family: 'Montserrat', sans-serif;
+}
+
+/* Reset default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+}
+
+html,
+body {
+    height: 100vh;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+h1,
+h2 {
+    color: #4a4a4a;
+}
+
+h1 {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+p {
+    line-height: 1.6;
+}
+
+/* Common button styles */
+.ant-btn {
+    font-family: var(--font-family);
+    font-weight: 500;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.ant-btn-primary {
+    background-color: var(--hb-blue);
+    border-color: var(--hb-blue);
+    color: #fff !important;
+}
+
+.ant-btn-primary:hover,
+.ant-btn-primary:focus {
+    background-color: #003a66;
+    border-color: #003a66;
+    color: #fff !important;
+}
+
+.ant-btn.create-button {
+    background-color: var(--hb-orange) !important;
+    border-color: var(--hb-orange) !important;
+    color: #fff !important;
+}
+
+.ant-btn.create-button:hover,
+.ant-btn.create-button:focus {
+    background-color: var(--hb-orange) !important;
+    border-color: var(--hb-orange) !important;
+    color: #fff !important;
+}
+
+.ant-btn.create-button[disabled],
+.ant-btn.create-button[disabled]:hover,
+.ant-btn.create-button[disabled]:focus {
+    background-color: var(--hb-orange) !important;
+    border-color: var(--hb-orange) !important;
+    color: #fff !important;
+    opacity: 0.5;
+}
+
+/* Custom styles for the Export button */
+.ant-btn.export-button {
+    font-family: var(--font-family) !important;
+    font-size: 14px !important;
+    padding: 4px 12px !important;
+    border-radius: 4px !important;
+}
+
+/* Common layout styles */
+.ant-layout {
+    min-height: 100vh;
+}
+
+.ant-layout-content {
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    /* Remove overflow: hidden !important */
+}
+
+/* Common layout styles */
+.ant-row {
+    overflow-x: hidden;
+}
+
+.ant-float-btn:focus {
+    outline: 2px solid var(--hb-blue);
+    outline-offset: 2px;
+}
+
+/* Ensure ant-tabs-content grows to fit its content */
+.ant-tabs-content {
+    height: auto !important;
+    /* Override default height to allow growth */
+    min-height: 100%;
+    /* Ensure it takes at least the full height of the parent */
+}
+
+/* Ensure the tab pane also grows to fit content */
+.ant-tabs-tabpane {
+    height: auto !important;
+    /* Allow the tab pane to grow */
+    min-height: 100%;
+    /* Ensure it takes at least the full height */
+}
+
+.react-resizable-handle {
+    background-color: #1890ff;
+    opacity: 0.5;
+    border-radius: 4px;
+}
+
+.react-resizable-handle:hover {
+    opacity: 1;
+}
+
+/* src/renderer/styles/global.css (or create src/renderer/styles/Dashboard.css) */
+/* Styles for the ProjectDashboardV2 component to enhance interactivity */
+/* Reference: https://ant.design/components/splitter#style */
+
+.splitter-panel {
+    transition: all 0.3s ease;
+}
+
+.splitter-panel:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.ant-splitter-bar {
+    background-color: #e8e8e8;
+}
+
+.ant-splitter-bar:hover {
+    background-color: #d9d9d9;
+}
+
+/* Drag-and-drop styles */
+.draggable-panel {
+    cursor: move;
+}
+
+.draggable-panel:hover {
+    background-color: #f5f5f5;
+}
+
+/* Headings */
+h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--hb-blue);
+    margin-bottom: 20px;
+}
+
+/* Project Tools Dropdown Menu Styling */
+.project-tools-dropdown {
+    position: fixed !important;
+    left: 0 !important;
+    right: 0 !important;
+    top: 52px !important;
+    width: 100vw !important;
+    height: 30vh !important;
+    padding: 0;
+    z-index: 1000;
+    overflow: auto;
+}
+
+.project-tools-dropdown .ant-dropdown-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 100%;
+    padding: 1rem 24px;
+    box-sizing: border-box;
+    border: none;
+    background-color: #fff;
+}
+
+.project-tools-dropdown .ant-dropdown-menu-item {
+    padding: 6px 16px;
+    color: var(--hb-blue);
+    font-family: var(--font-family);
+}
+
+.project-tools-dropdown .ant-dropdown-menu-item:hover {
+    background-color: #f5f5f5;
+    color: var(--hb-orange);
+}
+
+/* Style for the Grand Totals row */
+.grand-totals-row {
+    font-weight: 700;
+    background-color: #f5f5f5;
+    position: sticky;
+    bottom: 0;
+    z-index: 1;
+}
+
+.ag-theme-alpine .group-shaded {
+    background-color: #f5f7fa;
+}
+
+.ag-theme-alpine .grand-totals {
+    background-color: #e8ecef;
+    font-weight: bold;
+}
+
+.table-container {
+    overflow-x: auto !important;
+}
+
+.ag-theme-alpine .ag-row-hover.group-shaded {
+    background-color: #e8ecef;
+}
+
+/* Style for the generalized component header */
+div.component-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: #fff;
+    padding: 16px 0;
+}
+
+div.component-header div.component-header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+div.component-header div.component-header-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: nowrap;
+}
+
+div.component-header div.component-header-left .ant-btn {
+    padding: 0 !important;
+    width: 24px !important;
+    height: 24px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: var(--hb-blue) !important;
+}
+
+div.component-header div.component-header-left .ant-btn .anticon {
+    font-size: 16px !important;
+}
+
+div.component-header div.component-header-left h1 {
+    font-size: 24px !important;
+    color: #333 !important;
+    margin: 0 !important;
+    line-height: 1;
+}
+
+div.component-header div.component-header-tabs {
+    display: flex;
+    align-items: center;
+    margin-left: 8px;
+}
+
+div.component-header div.component-header-tabs .ant-tabs {
+    margin-bottom: 0 !important;
+}
+
+div.component-header div.component-header-tabs .ant-tabs-nav {
+    margin-bottom: 0 !important;
+}
+
+div.component-header div.component-header-tabs .ant-tabs-tab {
+    padding: 4px 12px !important;
+    font-family: var(--font-family) !important;
+    font-weight: 500 !important;
+    color: #4a4a4a !important;
+    border: none !important;
+    margin-right: 8px !important;
+}
+
+div.component-header div.component-header-tabs .ant-tabs-tab:hover {
+    color: var(--hb-blue) !important;
+}
+
+div.component-header div.component-header-tabs .ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: var(--hb-blue) !important;
+    font-weight: 700 !important;
+    border-bottom: 2px solid var(--hb-blue) !important;
+}
+
+div.component-header div.component-header-tabs .ant-tabs-ink-bar {
+    display: none !important;
+}
+
+div.component-header div.component-header-tabs .ant-btn {
+    padding: 4px 8px !important;
+    font-size: 14px !important;
+    color: #4a4a4a !important;
+}
+
+div.component-header div.component-header-tabs .ant-btn:hover {
+    color: var(--hb-blue) !important;
+}
+
+div.component-header div.component-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+div.component-header div.component-header-actions .ant-btn:not(.create-button):not(.export-button) {
+    font-family: var(--font-family) !important;
+    font-size: 14px !important;
+    padding: 4px 12px !important;
+    border: 1px solid #d9d9d9 !important;
+    border-radius: 4px !important;
+    color: #4a4a4a !important;
+}
+
+div.component-header div.component-header-actions .ant-btn:not(.create-button):not(.export-button):hover {
+    color: var(--hb-blue) !important;
+    border-color: var(--hb-blue) !important;
+}
+
+.buyout-container {
+    padding-bottom: 24px;
+}
+
+/* Ant Design Styling */
+.ant-message-notice-content {
+    border-radius: 4px;
+}
+
+.ant-message-success .ant-message-notice-content {
+    background-color: var(--hb-blue);
+    color: #fff;
+}
+
+.ant-message-error .ant-message-notice-content {
+    background-color: #ff4d4f;
+    color: #fff;
+}
