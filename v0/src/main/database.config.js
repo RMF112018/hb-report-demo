@@ -1,26 +1,43 @@
 // src/main/database.config.js
-import { app } from 'electron'; // Import app from Electron
-import { join } from 'path';
-import logger from './logger.js';
+import { resolve, dirname } from 'path';
+import { fileURLToPath } from 'url';
+import fs from 'fs/promises';
 
-// Ensure this runs in the main process after app is ready
-const getConfig = () => ({
-  development: {
-    dialect: 'sqlite',
-    storage: join(app.getPath('userData'), 'hb-report.db'), // Dynamic path
-    logging: msg => logger.debug(msg),
-  },
-  production: {
-    dialect: 'postgres',
-    host: process.env.DB_HOST,
-    database: process.env.DB_NAME,
-    username: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    port: process.env.DB_PORT || 5432,
-    pool: { max: 5, min: 0, acquire: 30000, idle: 10000 },
-    dialectOptions: { ssl: { require: true, rejectUnauthorized: false } },
-    logging: msg => logger.debug(msg),
-  },
+const __dirname = resolve(fileURLToPath(import.meta.url), '..');
+const defaultStorage = '/Library/Application Support/HB-Report/hb-report.db';
+
+async function ensureDirectory() {
+  const dir = dirname(defaultStorage); // /Library/Application Support/HB-Report
+  try {
+    await fs.mkdir(dir, { recursive: true });
+    await fs.chmod(dir, 0o777); // Ensure writable (adjust as needed)
+  } catch (e) {
+    console.error(`Failed to create or set permissions for ${dir}: ${e.message}`);
+    throw e;
+  }
+}
+
+ensureDirectory().catch(err => {
+  console.error('Directory setup failed:', err);
+  process.exit(1);
 });
 
-export default getConfig;
+export default function getConfig() {
+  return {
+    development: {
+      dialect: 'sqlite',
+      storage: defaultStorage,
+      logging: false,
+    },
+    test: {
+      dialect: 'sqlite',
+      storage: ':memory:',
+      logging: false,
+    },
+    production: {
+      dialect: 'sqlite',
+      storage: defaultStorage,
+      logging: false,
+    },
+  };
+}

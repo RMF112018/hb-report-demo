@@ -1,6 +1,6 @@
 // src/main/db.js
 // Manages database initialization, migrations, and data operations for HB Report using Sequelize
-// Import this module in main.js to set up the database; call exported functions for CRUD operations
+// Import this module in main.js for app startup or sync.js for initialization
 // Reference: https://sequelize.org/docs/v6/
 
 import { Sequelize, DataTypes, QueryTypes } from 'sequelize';
@@ -15,31 +15,6 @@ const env = process.env.NODE_ENV || 'development';
 
 let sequelize;
 let SchemaVersion, User, Token, CSICode, ProjectType, ContractType, HBPosition, Project, Owner, HBTeam, CostCode, Task, ScheduleExtension, Commitment, Buyout, Allowance, ValueEngineering, LongLeadItem, ForecastPeriod, ForecastValue, Budget, History, ProjectUser, BudgetDetail, BudgetAmount, ChangeEvent, ChangeEventLineItem;
-
-// Function to initialize Sequelize and define models
-async function initializeDb() {
-  const config = getConfig()[env];
-  logger.info(`Initializing Sequelize for ${env} environment with storage: ${config.storage || 'remote'}`);
-
-  sequelize = new Sequelize({
-    ...config,
-    storage: config.storage || resolve(__dirname, 'hb-report.db'),
-  });
-
-  defineModels();
-
-  try {
-    await sequelize.authenticate();
-    logger.info('Database connection established successfully');
-    await sequelize.sync({ force: false });
-    logger.info('Database schema synchronized', { models: Object.keys(sequelize.models) }); // Log registered models
-  } catch (error) {
-    logger.error('Failed to initialize database:', error);
-    throw new Error('Database initialization failed');
-  }
-
-  return sequelize;
-}
 
 // Define all models and register them explicitly
 function defineModels() {
@@ -73,7 +48,7 @@ function defineModels() {
 
   Token = sequelize.define('Token', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    user_id: { type: DataTypes.STRING, allowNull: false },
+    user_id: { type: DataTypes.STRING(255), allowNull: false },
     access_token: { type: DataTypes.STRING, allowNull: false },
     refresh_token: { type: DataTypes.STRING, allowNull: true },
     expires_at: { type: DataTypes.INTEGER, allowNull: false },
@@ -455,13 +430,100 @@ const migrations = [
   },
 ];
 
+// Initializes database with schema sync and lookup tables (for sync.js)
+async function initDatabase(forceReset = false) {
+  const config = getConfig()[env];
+  sequelize = new Sequelize({
+    ...config,
+    storage: config.storage,
+  });
+  defineModels();
+  try {
+    await sequelize.authenticate();
+    logger.info('Database connection established', { path: config.storage });
+
+    logger.info('Models before sync', { models: Object.keys(sequelize.models) });
+    await sequelize.sync({ force: forceReset });
+    logger.info('Database schema synchronized', { force: forceReset });
+
+    // Re-register models post-sync to ensure they’re in sequelize.models
+    defineModels(); // Re-run to bind models
+    logger.info('Models after sync', { models: Object.keys(sequelize.models) });
+
+    const tokenAttributes = Token.rawAttributes;
+    if (!tokenAttributes.user_id) {
+      logger.error('Token model missing user_id attribute', { attributes: Object.keys(tokenAttributes) });
+      throw new Error('Schema mismatch: user_id not defined in Token model');
+    }
+    logger.info('Token table schema validated', { user_id: tokenAttributes.user_id.type.toString() });
+
+    if (!User || !sequelize.models.User) {
+      logger.error('User model not defined or registered', { User: !!User, models: Object.keys(sequelize.models) });
+      throw new Error('User model not found after sync');
+    }
+    logger.info('User model verified', { fields: Object.keys(User.rawAttributes) });
+
+    await applyMigrations();
+    const projectTypes = [
+      { type: 'New Construction', code: 'NEW' }, { type: 'Renovation', code: 'REN' },
+      { type: 'Restoration', code: 'REST' }, { type: 'Retrofit', code: 'RETRO' },
+      { type: 'Demolition', code: 'DEMO' }, { type: 'Maintenance', code: 'MAINT' },
+      { type: 'Expansion', code: 'EXP' }, { type: 'Reconstruction', code: 'RECON' },
+      { type: 'Tenant Improvement', code: 'TI' }, { type: 'Fit-Out', code: 'FO' },
+      { type: 'Adaptive Reuse', code: 'ADRE' }, { type: 'Remodel', code: 'REMO' },
+    ];
+    const contractTypes = [
+      { type: 'Construction Management', code: 'CM' }, { type: 'Cost-Plus', code: 'CP' },
+      { type: 'Design - Bid - Build', code: 'DBB' }, { type: 'Design - Build', code: 'DB' },
+      { type: 'Guaranteed Maximum', code: 'GMP' }, { type: 'Incentive', code: 'INC' },
+      { type: 'Integrated Project Delivery', code: 'IPD' }, { type: 'Joint Venture', code: 'JV' },
+      { type: 'Lump Sum', code: 'LS' }, { type: 'Percentage of Construction Cost', code: 'PCC' },
+      { type: 'Progressive Design - Build', code: 'PDB' }, { type: 'Subcontract', code: 'SUB' },
+      { type: 'Target Cost', code: 'TC' }, { type: 'Time and Materials', code: 'TM' },
+      { type: 'Unit Price', code: 'UP' },
+    ];
+    await ProjectType.bulkCreate(projectTypes, {
+      updateOnDuplicate: ['code', 'updated_at'],
+      fields: ['type', 'code', 'version', 'created_at', 'updated_at'],
+    });
+    logger.info(`Populated ${projectTypes.length} project types`);
+    await ContractType.bulkCreate(contractTypes, {
+      updateOnDuplicate: ['code', 'updated_at'],
+      fields: ['type', 'code', 'version', 'created_at', 'updated_at'],
+    });
+    logger.info(`Populated ${contractTypes.length} contract types`);
+    logger.info('Database initialized with lookup tables');
+  } catch (error) {
+    logger.error(`Init failed: ${error.message}`, { stack: error.stack });
+    throw error;
+  }
+}
+
+// Lightweight connection for app runtime (for main.js)
+async function connectDatabase() {
+  if (!sequelize) {
+    const config = getConfig()[env];
+    sequelize = new Sequelize({
+      ...config,
+      storage: config.storage,
+    });
+    defineModels();
+  }
+  try {
+    await sequelize.authenticate();
+    logger.info('Database connection authenticated', { path: config.storage });
+  } catch (error) {
+    logger.error(`Connection failed: ${error.message}`, { stack: error.stack });
+    throw error;
+  }
+}
+
 async function applyMigrations() {
   if (!sequelize) throw new Error('Database not initialized');
   const [current] = await SchemaVersion.findAll({ order: [['version', 'DESC']], limit: 1 });
   const currentVersion = current ? current.version : 0;
   logger.info(`Current schema version: ${currentVersion}`);
   const pendingMigrations = migrations.filter(m => m.version > currentVersion);
-
   for (const migration of pendingMigrations) {
     await migration.up();
     await SchemaVersion.upsert({ version: migration.version });
@@ -572,24 +634,48 @@ async function upsertEntity(table, entity, options = {}) {
  * @param {Array<Object>} entities - Array of entity objects to upsert
  * @returns {Promise<void>}
  */
-async function batchUpsert(tableName, entities) {
+async function batchUpsert(tableName, entities, options = {}) {
   if (!sequelize) throw new Error('Database not initialized');
-
   const normalizedTableName = tableName.toLowerCase();
-  const model = sequelize.models[normalizedTableName];
-  if (!model) throw new Error(`Model for table ${normalizedTableName} not found`);
+  const model = {
+    users: User,
+    tokens: Token,
+    csi_codes: CSICode,
+    project_types: ProjectType,
+    contract_types: ContractType,
+    hb_positions: HBPosition,
+    projects: Project,
+    owners: Owner,
+    hb_team: HBTeam,
+    cost_codes: CostCode,
+    tasks: Task,
+    schedule_extensions: ScheduleExtension,
+    commitments: Commitment,
+    buyout: Buyout,
+    allowances: Allowance,
+    value_engineering: ValueEngineering,
+    long_lead_items: LongLeadItem,
+    forecast_periods: ForecastPeriod,
+    forecast_values: ForecastValue,
+    budget: Budget,
+    history: History,
+    project_users: ProjectUser,
+    budget_details: BudgetDetail,
+    budget_amounts: BudgetAmount,
+    change_events: ChangeEvent,
+    change_event_line_items: ChangeEventLineItem,
+  }[normalizedTableName];
 
+  if (!model) throw new Error(`Model for table ${normalizedTableName} not found`);
   try {
-    await sequelize.transaction(async (transaction) => {
-      const upsertOptions = {
-        updateOnDuplicate: Object.keys(model.rawAttributes).filter(key => key !== 'id' && key !== 'created_at'), // Exclude id and created_at from updates
-        transaction,
-      };
-      await model.bulkCreate(entities, upsertOptions);
-      logger.debug(`Batch upserted ${entities.length} entities into ${normalizedTableName}`);
-    });
+    const upsertOptions = {
+      updateOnDuplicate: Object.keys(model.rawAttributes).filter(key => key !== 'id' && key !== 'created_at'),
+    };
+    if (options.transaction) upsertOptions.transaction = options.transaction; // Safely add transaction if provided
+    await model.bulkCreate(entities, upsertOptions);
+    logger.debug(`Batch upserted ${entities.length} entities into ${normalizedTableName}`);
   } catch (error) {
-    logger.error(`Batch upsert failed for table ${normalizedTableName}`, { message: error.message, stack: error.stack });
+    logger.error(`Batch upsert failed for ${normalizedTableName}`, { message: error.message, stack: error.stack });
     throw error;
   }
 }
@@ -857,47 +943,6 @@ async function login(email, password) {
 }
 
 /**
- * Initializes database and populates lookup tables
- * @returns {Promise<void>}
- */
-async function initDatabase() {
-  if (!sequelize) await initializeDb(); // Ensure DB is initialized
-  await applyMigrations();
-  const projectTypes = [
-    { type: 'New Construction', code: 'NEW' }, { type: 'Renovation', code: 'REN' },
-    { type: 'Restoration', code: 'REST' }, { type: 'Retrofit', code: 'RETRO' },
-    { type: 'Demolition', code: 'DEMO' }, { type: 'Maintenance', code: 'MAINT' },
-    { type: 'Expansion', code: 'EXP' }, { type: 'Reconstruction', code: 'RECON' },
-    { type: 'Tenant Improvement', code: 'TI' }, { type: 'Fit-Out', code: 'FO' },
-    { type: 'Adaptive Reuse', code: 'ADRE' }, { type: 'Remodel', code: 'REMO' },
-  ];
-  const contractTypes = [
-    { type: 'Construction Management', code: 'CM' }, { type: 'Cost-Plus', code: 'CP' },
-    { type: 'Design - Bid - Build', code: 'DBB' }, { type: 'Design - Build', code: 'DB' },
-    { type: 'Guaranteed Maximum', code: 'GMP' }, { type: 'Incentive', code: 'INC' },
-    { type: 'Integrated Project Delivery', code: 'IPD' }, { type: 'Joint Venture', code: 'JV' },
-    { type: 'Lump Sum', code: 'LS' }, { type: 'Percentage of Construction Cost', code: 'PCC' },
-    { type: 'Progressive Design - Build', code: 'PDB' }, { type: 'Subcontract', code: 'SUB' },
-    { type: 'Target Cost', code: 'TC' }, { type: 'Time and Materials', code: 'TM' },
-    { type: 'Unit Price', code: 'UP' },
-  ];
-  // Populate lookup tables using bulkCreate with upsert
-  await ProjectType.bulkCreate(projectTypes, {
-    updateOnDuplicate: ['code', 'updated_at'], // Update code if type already exists
-    fields: ['type', 'code', 'version', 'created_at', 'updated_at'], // Explicit fields
-  });
-  logger.info(`Populated ${projectTypes.length} project types`);
-
-  await ContractType.bulkCreate(contractTypes, {
-    updateOnDuplicate: ['code', 'updated_at'], // Update code if type already exists
-    fields: ['type', 'code', 'version', 'created_at', 'updated_at'], // Explicit fields
-  });
-  logger.info(`Populated ${contractTypes.length} contract types`);
-
-  logger.info('Database initialized with lookup tables');
-}
-
-/**
  * Removes stale tokens from the tokens table where expires_at is in the past
  * @returns {Promise<void>}
  */
@@ -956,8 +1001,9 @@ export {
   runInTransaction,
   batchUpsert,
   sequelize as db,
-  closeDatabase,
   initDatabase,
+  connectDatabase,
+  closeDatabase,
   clearStaleTokens,
   getSetting,
   setSetting,

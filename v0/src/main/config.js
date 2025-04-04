@@ -17,7 +17,7 @@ const config = {
         height: 800,
     },
     db: {
-        path: resolve(__dirname, '..', 'hb-report.db'),
+        path: join('/Library/Application Support/HB-Report', 'hb-report.db'),
     },
     logger: {
         level: process.env.NODE_ENV === 'production' ? 'info' : 'debug',
