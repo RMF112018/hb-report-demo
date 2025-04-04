@@ -1,12 +1,19 @@
+<!-- src/renderer/index.html -->
+<!-- HTML entry point for the HB Report renderer process with a secure CSP -->
+<!-- This file is loaded by main.js in the BrowserWindow -->
+<!-- Reference: https://www.electronjs.org/docs/latest/tutorial/security#2-do-not-disable-websecurity -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HB Report</title>
-</head>
-<body>
-  <div id="root"></div>
-  <!-- HtmlWebpackPlugin will inject the script here -->
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://api-sandbox.procore.com https://login-sandbox.procore.com;"
+    />
+    <title>HB Report</title>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
 </html>

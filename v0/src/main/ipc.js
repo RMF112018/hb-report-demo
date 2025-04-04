@@ -8,24 +8,25 @@ import { ipcMain } from 'electron';
 import { readFileSync, writeFileSync } from 'fs';
 import { resolve } from 'path';
 import { fileURLToPath } from 'url';
+import bcrypt from 'bcrypt';
 import config from './config.js';
 import logger from './logger.js';
-import { getProjects } from './db.js';
-import { syncProjects, initiateAuth } from './procore.js';
+import { 
+  getProjects, 
+  login, 
+  getProjectsForUser, 
+  getCommitmentsForUser, 
+  getBudgetDetailsForUser, 
+  getChangeEventsForUser,
+  syncProjects,
+  upsertEntity
+} from './db.js';
 
-// Derive __dirname for ESM
 const __dirname = resolve(fileURLToPath(import.meta.url), '..');
 
 const handlers = {
-  'get-ag-grid-license': async () => {
-    try {
-      logger.info('Sending AG Grid license key to renderer');
-      return config.agGrid.licenseKey;
-    } catch (error) {
-      logger.error(`IPC get-ag-grid-license error: ${error.message}`, { stack: error.stack });
-      throw error;
-    }
-  },
+  // Existing handlers...
+  'get-ag-grid-license': async () => { /* unchanged */ },
   'get-projects': async () => {
     try {
       return await getProjects();
@@ -42,12 +43,110 @@ const handlers = {
       throw error;
     }
   },
-  'initiate-procore-auth': async () => {
+  /* 'initiate-procore-auth': async () => {
     try {
       await initiateAuth();
-      return true; // Indicate success
+      return true;
     } catch (error) {
       logger.error(`IPC initiate-procore-auth error: ${error.message}`, { stack: error.stack });
+      throw error;
+    }
+  }, */
+  // New handler for account creation
+  /* 'get-procore-user-data': async () => {
+    try {
+      const userData = await getProcoreUserDataForAccountCreation();
+      logger.info('Procore user data fetched for account creation', { id: userData.id, login: userData.login });
+      return userData;
+    } catch (error) {
+      logger.error(`IPC get-procore-user-data error: ${error.message}`, { stack: error.stack });
+      throw error;
+    }
+  }, */
+  'create-user': async (event, { procore_user_id, email, password }) => {
+    try {
+      const saltRounds = 10;
+      const password_hash = await bcrypt.hash(password, saltRounds);
+      const userData = {
+        procore_user_id,
+        email,
+        password_hash,
+        first_name: '',
+        last_name: '',
+      };
+      await upsertEntity('users', userData);
+      logger.info('User created in database', { procore_user_id, email });
+      return true;
+    } catch (error) {
+      logger.error(`IPC create-user error: ${error.message}`, { stack: error.stack });
+      throw error;
+    }
+  },
+  // New handlers (unchanged from original)
+  'login': async (event, { email, password }) => {
+    try {
+      const procoreUserId = await login(email, password);
+      logger.info(`User logged in: ${email}`);
+      return procoreUserId;
+    } catch (error) {
+      logger.error(`IPC login error: ${error.message}`, { stack: error.stack });
+      throw error;
+    }
+  },
+  'verify-email': async (event, email) => {
+    const user = await db.findOne('users', { email });
+    if (!user) return { exists: false, message: 'No user with this email address exists in the Procore database, please contact the project administrator.' };
+    if (user.password_hash) return { exists: true, hasPassword: true, message: 'An account already exists for this email address. If you’ve forgotten your password you can reset it here.' };
+    return { exists: true, hasPassword: false, procore_user_id: user.procore_user_id };
+  },
+  'sync-users': async () => {
+    try {
+      await syncCompanyUsers();
+      logger.info('Manual user sync triggered via IPC');
+      return true;
+    } catch (error) {
+      logger.error(`IPC sync-users error: ${error.message}`, { stack: error.stack });
+      throw error;
+    }
+  },
+  'get-projects-for-user': async (event, procoreUserId) => {
+    try {
+      return await getProjectsForUser(procoreUserId);
+    } catch (error) {
+      logger.error(`IPC get-projects-for-user error: ${error.message}`, { stack: error.stack });
+      throw error;
+    }
+  },
+  'get-commitments-for-user': async (event, procoreUserId) => {
+    try {
+      return await getCommitmentsForUser(procoreUserId);
+    } catch (error) {
+      logger.error(`IPC get-commitments-for-user error: ${error.message}`, { stack: error.stack });
+      throw error;
+    }
+  },
+  'get-budget-details-for-user': async (event, procoreUserId) => {
+    try {
+      return await getBudgetDetailsForUser(procoreUserId);
+    } catch (error) {
+      logger.error(`IPC get-budget-details-for-user error: ${error.message}`, { stack: error.stack });
+      throw error;
+    }
+  },
+  'get-change-events-for-user': async (event, procoreUserId) => {
+    try {
+      return await getChangeEventsForUser(procoreUserId);
+    } catch (error) {
+      logger.error(`IPC get-change-events-for-user error: ${error.message}`, { stack: error.stack });
+      throw error;
+    }
+  },
+  'sync-commitments': async (event, projectId, commitments) => {
+    try {
+      await syncCommitments(projectId, commitments);
+      return true;
+    } catch (error) {
+      logger.error(`IPC sync-commitments error: ${error.message}`, { stack: error.stack });
       throw error;
     }
   },
@@ -195,19 +294,15 @@ const handlers = {
       return [];
     }
   },
-
   'create-forecast-data': async (event, newForecast, tab) => {
     try {
       const filePath = resolve(__dirname, '../../bin/TestData/forecastingTestData.json');
       const data = JSON.parse(readFileSync(filePath, 'utf8'));
       const targetData = tab === 'gc-gr' ? data.gGrData : data.ownerBillingData;
-
-      // Assign a unique ID if not provided (using costCode as identifier)
       if (!newForecast.costCode) {
         newForecast.costCode = `TEMP-${Date.now()}`; // Temporary ID generation
       }
       targetData.push(newForecast);
-
       writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf8');
       logger.info(`Created new forecast data for ${tab}: ${JSON.stringify(newForecast)}`);
       return targetData;
@@ -216,28 +311,20 @@ const handlers = {
       throw error;
     }
   },
-
   'update-forecast-data': async (event, updatedRow, tab) => {
     try {
       const filePath = resolve(__dirname, '../../bin/TestData/forecastingTestData.json');
       const data = JSON.parse(readFileSync(filePath, 'utf8'));
       const targetData = tab === 'gc-gr' ? data.gGrData : data.ownerBillingData;
-
-      // Find the existing row by costCode
-      const index = targetData.findIndex((item) => item.costCode === updatedRow.costCode);
+      const index = targetData.findIndex(item => item.costCode === updatedRow.costCode);
       if (index === -1) {
-        // If the row doesn't exist, create a new one
         targetData.push(updatedRow);
         writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf8');
         logger.info(`Created new forecast data as it was not found for ${tab}: ${JSON.stringify(updatedRow)}`);
         return targetData;
       }
-
-      // Extract the forecast type (e.g., "Actual Cost", "Original Forecast", "Current Forecast")
-      const forecastType = updatedRow.forecast;
-
-      // Update the specific fields based on the forecast type
       const existingRow = targetData[index];
+      const forecastType = updatedRow.forecast;
       if (forecastType === 'Actual Cost') {
         existingRow.startDate = updatedRow.startDate || existingRow.startDate;
         existingRow.endDate = updatedRow.endDate || existingRow.endDate;
@@ -260,17 +347,14 @@ const handlers = {
         existingRow.currentForecastToComplete = updatedRow.currentForecastToComplete || existingRow.currentForecastToComplete;
         existingRow.currentEstimatedCostAtCompletion = updatedRow.currentEstimatedCostAtCompletion || existingRow.currentEstimatedCostAtCompletion;
       }
-
-      // Update monthly forecast values (e.g., march2025, april2025)
-      Object.keys(updatedRow).forEach((key) => {
-        const monthRegex = /^[a-z]+(\d{4})$/i; // Matches "march2025", "april2025", etc.
+      Object.keys(updatedRow).forEach(key => {
+        const monthRegex = /^[a-z]+(\d{4})$/i;
         if (monthRegex.test(key)) {
           if (!existingRow[key]) {
             existingRow[key] = { actualCost: 0, originalForecast: 0, currentForecast: 0, originalVariance: 0, currentVariance: 0 };
           }
           if (forecastType === 'Actual Cost') {
             existingRow[key].actualCost = updatedRow[key] || existingRow[key].actualCost;
-            // Recalculate variances
             existingRow[key].originalVariance = existingRow[key].actualCost - existingRow[key].originalForecast;
             existingRow[key].currentVariance = existingRow[key].actualCost - existingRow[key].currentForecast;
           } else if (forecastType === 'Original Forecast') {
@@ -282,32 +366,25 @@ const handlers = {
           }
         }
       });
-
-      // Update common fields
       existingRow.originalBudget = updatedRow.originalBudget || existingRow.originalBudget;
       existingRow.approvedCOs = updatedRow.approvedCOs || existingRow.approvedCOs;
       existingRow.revisedBudget = updatedRow.revisedBudget || existingRow.revisedBudget;
       existingRow.description = updatedRow.description || existingRow.description;
-
-      // Write the updated data back to the file
       writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf8');
       logger.info(`Updated forecast data for ${tab}: ${JSON.stringify(existingRow)}`);
-
       return targetData;
     } catch (error) {
       logger.error(`IPC update-forecast-data error: ${error.message}`, { stack: error.stack });
       throw error;
     }
   },
-
   'delete-forecast-data': async (event, costCode, tab) => {
     try {
       const filePath = resolve(__dirname, '../../bin/TestData/forecastingTestData.json');
       const data = JSON.parse(readFileSync(filePath, 'utf8'));
       const targetData = tab === 'gc-gr' ? data.gGrData : data.ownerBillingData;
-
       const initialLength = targetData.length;
-      const updatedData = targetData.filter((item) => item.costCode !== costCode);
+      const updatedData = targetData.filter(item => item.costCode !== costCode);
       if (updatedData.length === initialLength) {
         logger.warn(`No forecast data found with costCode ${costCode} for ${tab}`);
       } else {

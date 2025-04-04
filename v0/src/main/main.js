@@ -13,6 +13,7 @@ import { registerIpcHandlers } from './ipc.js';
 import { db, initDatabase, closeDatabase, clearStaleTokens } from './db.js';
 import { insertTestData } from './testData.js';
 import eventBus from './eventBus.js';
+import { getValidToken, scheduleNextRefresh, scheduleUserSync, syncCompanyUsers, initializeAdminToken } from './procore.js';
 
 const __dirname = resolve(fileURLToPath(import.meta.url), '..');
 const indexPath = resolve(__dirname, '../../dist/index.html');
@@ -102,39 +103,46 @@ function createWindow() {
     }
 }
 
+// src/main/main.js (modified)
 app.on('ready', async () => {
     try {
-        console.log('App is ready');
-        logger.info(`Starting HB Report v${packageJson.version}`);
-        await initDatabase();
-        registerIpcHandlers();
+      console.log('App is ready');
+      logger.info(`Starting HB Report v${packageJson.version}`);
+      await initDatabase();
+      registerIpcHandlers();
+      await initializeAdminToken();
+      await getValidToken();
+      scheduleNextRefresh();
+      const winPromise = createWindow();
+      await winPromise;
+      scheduleUserSync();
+      await syncCompanyUsers(); // Already added, just confirming
+      await eventBus.emit('app:ready');
+    } catch (err) {
+      logger.error('Critical failure during startup', { message: err.message, stack: err.stack });
+      if (err.message === 'Token initialization timed out after 30 seconds') {
+        logger.warn('Proceeding without initial token; sync may fail until token is refreshed');
+        scheduleNextRefresh();
         const winPromise = createWindow();
-        eventBus.emit('app:ready');
-        app.on('activate', () => {
-            console.log('App activated');
-            if (BrowserWindow.getAllWindows().length === 0) createWindow();
-        });
-
-        if (process.argv.includes('--insert-test-data')) {
-            await insertTestData();
-            logger.info('Test data inserted via CLI flag');
-        }
-
         await winPromise;
-    } catch (err) {
+        scheduleUserSync();
+        await syncCompanyUsers();
+        await eventBus.emit('app:ready');
+      } else {
         handleCriticalFailure(err);
+      }
     }
-});
-
-eventBus.on('app:ready', async () => {
+  });
+  
+  eventBus.on('app:ready', async () => {
     try {
-        console.log('Inserting test data');
-        await insertTestData();
+      console.log('Inserting test data');
+      await insertTestData(); // Await test data insertion
     } catch (err) {
-        logger.error(`Test data insertion failed: ${err.message}`, { stack: err.stack });
-        console.error('Test data error:', err);
+      // Log specific errors already thrown in insertTestData
+      console.error('Test data error:', err);
     }
-});
+  });
 
 app.on('window-all-closed', () => {
     logger.info('All windows closed');

@@ -1,430 +1,607 @@
 // src/main/db.js
-// Manages SQLite3 database initialization, migrations, and data operations for HB Report
+// Manages database initialization, migrations, and data operations for HB Report using Sequelize
 // Import this module in main.js to set up the database; call exported functions for CRUD operations
-// Reference: https://github.com/TryGhost/node-sqlite3/wiki/API
+// Reference: https://sequelize.org/docs/v6/
 
-import sqlite3 from 'sqlite3';
-import { join, resolve } from 'path';
+import { Sequelize, DataTypes, QueryTypes } from 'sequelize';
+import { resolve } from 'path';
 import { fileURLToPath } from 'url';
 import logger from './logger.js';
-import config from './config.js';
+import getConfig from './database.config.js';
+import bcrypt from 'bcrypt';
 
 const __dirname = resolve(fileURLToPath(import.meta.url), '..');
-const dbPath = join(__dirname, '..', '..', 'hb-report.db');
-logger.info(`Attempting to open database at: ${dbPath}`);
+const env = process.env.NODE_ENV || 'development';
 
-const db = new sqlite3.Database(dbPath, (err) => {
-  if (err) logger.error(`SQLite connection error: ${err.message}`, { stack: err.stack });
-  else {
-    logger.info('Connected to SQLite database');
-    db.run('PRAGMA journal_mode = WAL');
-    db.run('PRAGMA synchronous = NORMAL');
-    db.run('PRAGMA cache_size = -20000');
-    db.run('PRAGMA foreign_keys = ON');
-    db.run('PRAGMA temp_store = MEMORY');
-    db.run('PRAGMA mmap_size = 268435456');
+let sequelize;
+let SchemaVersion, User, Token, CSICode, ProjectType, ContractType, HBPosition, Project, Owner, HBTeam, CostCode, Task, ScheduleExtension, Commitment, Buyout, Allowance, ValueEngineering, LongLeadItem, ForecastPeriod, ForecastValue, Budget, History, ProjectUser, BudgetDetail, BudgetAmount, ChangeEvent, ChangeEventLineItem;
+
+// Function to initialize Sequelize and define models
+async function initializeDb() {
+  const config = getConfig()[env];
+  logger.info(`Initializing Sequelize for ${env} environment with storage: ${config.storage || 'remote'}`);
+
+  sequelize = new Sequelize({
+    ...config,
+    storage: config.storage || resolve(__dirname, 'hb-report.db'),
+  });
+
+  defineModels();
+
+  try {
+    await sequelize.authenticate();
+    logger.info('Database connection established successfully');
+    await sequelize.sync({ force: false });
+    logger.info('Database schema synchronized', { models: Object.keys(sequelize.models) }); // Log registered models
+  } catch (error) {
+    logger.error('Failed to initialize database:', error);
+    throw new Error('Database initialization failed');
   }
-});
 
-// Migration definitions (version 1 includes full schema)
+  return sequelize;
+}
+
+// Define all models and register them explicitly
+function defineModels() {
+  SchemaVersion = sequelize.define('SchemaVersion', {
+    version: { type: DataTypes.INTEGER, primaryKey: true },
+    applied_at: { type: DataTypes.DATE, defaultValue: Sequelize.NOW },
+  }, { tableName: 'schema_version', timestamps: false });
+
+  User = sequelize.define('User', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    procore_user_id: { type: DataTypes.INTEGER, allowNull: false, unique: true },
+    company_id: DataTypes.STRING,
+    first_name: DataTypes.STRING,
+    last_name: DataTypes.STRING,
+    email: DataTypes.STRING,
+    password_hash: DataTypes.STRING,
+    business_id: DataTypes.STRING,
+    role: DataTypes.STRING,
+    address: DataTypes.STRING,
+    city: DataTypes.STRING,
+    country_code: DataTypes.STRING,
+    state_code: DataTypes.STRING,
+    zip: DataTypes.STRING,
+    avatar: DataTypes.STRING,
+    business_phone: DataTypes.STRING,
+    is_employee: { type: DataTypes.BOOLEAN, defaultValue: false },
+    version: { type: DataTypes.INTEGER, defaultValue: 1 },
+    created_at: { type: DataTypes.DATE, defaultValue: Sequelize.NOW },
+    updated_at: { type: DataTypes.DATE, defaultValue: Sequelize.NOW },
+  }, { tableName: 'users', timestamps: false });
+
+  Token = sequelize.define('Token', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    user_id: { type: DataTypes.STRING, allowNull: false },
+    access_token: { type: DataTypes.STRING, allowNull: false },
+    refresh_token: { type: DataTypes.STRING, allowNull: true },
+    expires_at: { type: DataTypes.INTEGER, allowNull: false },
+    version: { type: DataTypes.INTEGER, defaultValue: 1 },
+    updated_at: { type: DataTypes.DATE, defaultValue: Sequelize.NOW },
+  }, { tableName: 'tokens', timestamps: false });
+
+  CSICode = sequelize.define('CSICode', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    tier: { type: DataTypes.INTEGER, allowNull: false },
+    code: { type: DataTypes.STRING, allowNull: false },
+    description: { type: DataTypes.STRING, allowNull: false },
+    version: { type: DataTypes.INTEGER, defaultValue: 1 },
+    created_at: { type: DataTypes.DATE, defaultValue: Sequelize.NOW },
+    updated_at: { type: DataTypes.DATE, defaultValue: Sequelize.NOW },
+  }, { tableName: 'csi_codes', timestamps: false, indexes: [{ unique: true, fields: ['code', 'tier'] }] });
+
+  ProjectType = sequelize.define('ProjectType', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    type: { type: DataTypes.STRING, allowNull: false, unique: true },
+    code: { type: DataTypes.STRING, allowNull: false },
+    version: { type: DataTypes.INTEGER, defaultValue: 1 },
+    created_at: { type: DataTypes.DATE, defaultValue: Sequelize.NOW },
+    updated_at: { type: DataTypes.DATE, defaultValue: Sequelize.NOW },
+  }, { tableName: 'project_types', timestamps: false });
+
+  ContractType = sequelize.define('ContractType', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    type: { type: DataTypes.STRING, allowNull: false, unique: true },
+    code: { type: DataTypes.STRING, allowNull: false },
+    version: { type: DataTypes.INTEGER, defaultValue: 1 },
+    created_at: { type: DataTypes.DATE, defaultValue: Sequelize.NOW },
+    updated_at: { type: DataTypes.DATE, defaultValue: Sequelize.NOW },
+  }, { tableName: 'contract_types', timestamps: false });
+
+  HBPosition = sequelize.define('HBPosition', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    position: { type: DataTypes.STRING, allowNull: false },
+    division: { type: DataTypes.STRING, allowNull: false },
+    code: { type: DataTypes.STRING, allowNull: false },
+    hierarchy: { type: DataTypes.INTEGER, allowNull: false },
+    version: { type: DataTypes.INTEGER, defaultValue: 1 },
+    created_at: { type: DataTypes.DATE, defaultValue: Sequelize.NOW },
+    updated_at: { type: DataTypes.DATE, defaultValue: Sequelize.NOW },
+  }, { tableName: 'hb_positions', timestamps: false, indexes: [{ unique: true, fields: ['position', 'division'] }] });
+
+  Project = sequelize.define('Project', {
+    project_id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    procore_id: { type: DataTypes.INTEGER, unique: true },
+    name: { type: DataTypes.STRING, allowNull: false },
+    number: { type: DataTypes.STRING, unique: true },
+    company_id: { type: DataTypes.INTEGER, defaultValue: 5280 },
+    type_id: DataTypes.INTEGER,
+    contract_type_id: DataTypes.INTEGER,
+    street_address: DataTypes.STRING,
+    city: DataTypes.STRING,
+    state: DataTypes.STRING,
+    zip: DataTypes.STRING,
+    active: { type: DataTypes.BOOLEAN, defaultValue: true },
+    start_date: DataTypes.DATEONLY,
+    original_completion_date: DataTypes.DATEONLY,
+    approved_completion_date: DataTypes.DATEONLY,
+    duration: DataTypes.INTEGER,
+    approved_extensions: { type: DataTypes.INTEGER, defaultValue: 0 },
+    contract_value: DataTypes.FLOAT,
+    approved_changes: { type: DataTypes.FLOAT, defaultValue: 0 },
+    approved_value: {
+      type: DataTypes.VIRTUAL,
+      get() { return this.contract_value + this.approved_changes; },
+    },
+    contingency_original: DataTypes.FLOAT,
+    contingency_approved: DataTypes.FLOAT,
+    version: { type: DataTypes.INTEGER, defaultValue: 1 },
+    created_at: { type: DataTypes.DATE, defaultValue: Sequelize.NOW },
+    updated_at: { type: DataTypes.DATE, defaultValue: Sequelize.NOW },
+  }, { tableName: 'projects', timestamps: false });
+
+  Owner = sequelize.define('Owner', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    project_id: { type: DataTypes.INTEGER, allowNull: false },
+    name: { type: DataTypes.STRING, allowNull: false },
+    contact: DataTypes.STRING,
+    lending_partner: DataTypes.STRING,
+    contract_executed: DataTypes.DATEONLY,
+    version: { type: DataTypes.INTEGER, defaultValue: 1 },
+    created_at: { type: DataTypes.DATE, defaultValue: Sequelize.NOW },
+    updated_at: { type: DataTypes.DATE, defaultValue: Sequelize.NOW },
+  }, { tableName: 'owners', timestamps: false });
+
+  HBTeam = sequelize.define('HBTeam', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    project_id: { type: DataTypes.INTEGER, allowNull: false },
+    position_id: { type: DataTypes.INTEGER, allowNull: false },
+    member_name: { type: DataTypes.STRING, allowNull: false },
+    version: { type: DataTypes.INTEGER, defaultValue: 1 },
+    created_at: { type: DataTypes.DATE, defaultValue: Sequelize.NOW },
+    updated_at: { type: DataTypes.DATE, defaultValue: Sequelize.NOW },
+  }, { tableName: 'hb_team', timestamps: false });
+
+  CostCode = sequelize.define('CostCode', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    project_id: DataTypes.INTEGER,
+    procore_id: { type: DataTypes.INTEGER, unique: true },
+    code: { type: DataTypes.STRING, allowNull: false },
+    full_code: { type: DataTypes.STRING, allowNull: false },
+    name: { type: DataTypes.STRING, allowNull: false },
+    budgeted: { type: DataTypes.BOOLEAN, defaultValue: false },
+    version: { type: DataTypes.INTEGER, defaultValue: 1 },
+    created_at: { type: DataTypes.DATE, defaultValue: Sequelize.NOW },
+    updated_at: { type: DataTypes.DATE, defaultValue: Sequelize.NOW },
+  }, { tableName: 'cost_codes', timestamps: false, indexes: [{ unique: true, fields: ['project_id', 'full_code'] }] });
+
+  Task = sequelize.define('Task', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    project_id: { type: DataTypes.INTEGER, allowNull: false },
+    procore_id: { type: DataTypes.INTEGER, unique: true },
+    name: { type: DataTypes.STRING, allowNull: false },
+    start_date: { type: DataTypes.DATEONLY, allowNull: false },
+    finish_date: DataTypes.DATEONLY,
+    duration: DataTypes.INTEGER,
+    percent_complete: { type: DataTypes.FLOAT, defaultValue: 0.0 },
+    is_critical: { type: DataTypes.BOOLEAN, defaultValue: false },
+    is_milestone: { type: DataTypes.BOOLEAN, defaultValue: false },
+    version: { type: DataTypes.INTEGER, defaultValue: 1 },
+    created_at: { type: DataTypes.DATE, defaultValue: Sequelize.NOW },
+    updated_at: { type: DataTypes.DATE, defaultValue: Sequelize.NOW },
+  }, { tableName: 'tasks', timestamps: false });
+
+  ScheduleExtension = sequelize.define('ScheduleExtension', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    project_id: { type: DataTypes.INTEGER, allowNull: false },
+    task_id: { type: DataTypes.INTEGER, allowNull: false },
+    milestone: { type: DataTypes.STRING, allowNull: false },
+    approved_time_extensions: { type: DataTypes.INTEGER, defaultValue: 0 },
+    pending_extension_req: { type: DataTypes.INTEGER, defaultValue: 0 },
+    extensions_requested: { type: DataTypes.INTEGER, defaultValue: 0 },
+    adverse_weather_days: { type: DataTypes.INTEGER, defaultValue: 0 },
+    start_date: DataTypes.DATEONLY,
+    end_date: DataTypes.DATEONLY,
+    details: DataTypes.TEXT,
+    version: { type: DataTypes.INTEGER, defaultValue: 1 },
+    created_at: { type: DataTypes.DATE, defaultValue: Sequelize.NOW },
+    updated_at: { type: DataTypes.DATE, defaultValue: Sequelize.NOW },
+  }, { tableName: 'schedule_extensions', timestamps: false });
+
+  Commitment = sequelize.define('Commitment', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    project_id: { type: DataTypes.INTEGER, allowNull: false },
+    number: { type: DataTypes.STRING, allowNull: false },
+    title: { type: DataTypes.STRING, defaultValue: 'placeholder' },
+    vendor: DataTypes.STRING,
+    status: { type: DataTypes.STRING, defaultValue: 'Draft' },
+    original_contract_amount: DataTypes.FLOAT,
+    approved_change_orders: DataTypes.FLOAT,
+    revised_contract_amount: {
+      type: DataTypes.VIRTUAL,
+      get() { return this.original_contract_amount + this.approved_change_orders; },
+    },
+    version: { type: DataTypes.INTEGER, defaultValue: 1 },
+    created_at: { type: DataTypes.DATE, defaultValue: Sequelize.NOW },
+    updated_at: { type: DataTypes.DATE, defaultValue: Sequelize.NOW },
+  }, { tableName: 'commitments', timestamps: false });
+
+  Buyout = sequelize.define('Buyout', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    project_id: { type: DataTypes.INTEGER, allowNull: false },
+    cost_code_id: DataTypes.INTEGER,
+    subcontractor: DataTypes.STRING,
+    status: { type: DataTypes.STRING, defaultValue: 'Pending' },
+    commitment_id: DataTypes.INTEGER,
+    variance: DataTypes.FLOAT,
+    contract_executed: DataTypes.DATEONLY,
+    version: { type: DataTypes.INTEGER, defaultValue: 1 },
+    created_at: { type: DataTypes.DATE, defaultValue: Sequelize.NOW },
+    updated_at: { type: DataTypes.DATE, defaultValue: Sequelize.NOW },
+  }, { tableName: 'buyout', timestamps: false });
+
+  Allowance = sequelize.define('Allowance', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    buyout_id: { type: DataTypes.INTEGER, allowNull: false },
+    item: { type: DataTypes.STRING, allowNull: false },
+    value: { type: DataTypes.FLOAT, allowNull: false },
+    reconciled: { type: DataTypes.BOOLEAN, defaultValue: false },
+    reconciliation_value: DataTypes.FLOAT,
+    variance: { type: DataTypes.FLOAT, defaultValue: 0 },
+    version: { type: DataTypes.INTEGER, defaultValue: 1 },
+    created_at: { type: DataTypes.DATE, defaultValue: Sequelize.NOW },
+    updated_at: { type: DataTypes.DATE, defaultValue: Sequelize.NOW },
+  }, { tableName: 'allowances', timestamps: false });
+
+  ValueEngineering = sequelize.define('ValueEngineering', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    buyout_id: { type: DataTypes.INTEGER, allowNull: false },
+    item: { type: DataTypes.STRING, allowNull: false },
+    original_value: { type: DataTypes.FLOAT, defaultValue: 0 },
+    ve_value: { type: DataTypes.FLOAT, defaultValue: 0 },
+    savings: { type: DataTypes.FLOAT, defaultValue: 0 },
+    status: { type: DataTypes.STRING, defaultValue: 'Pending' },
+    version: { type: DataTypes.INTEGER, defaultValue: 1 },
+    created_at: { type: DataTypes.DATE, defaultValue: Sequelize.NOW },
+    updated_at: { type: DataTypes.DATE, defaultValue: Sequelize.NOW },
+  }, { tableName: 'value_engineering', timestamps: false });
+
+  LongLeadItem = sequelize.define('LongLeadItem', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    buyout_id: { type: DataTypes.INTEGER, allowNull: false },
+    item: { type: DataTypes.STRING, allowNull: false },
+    lead_time: DataTypes.INTEGER,
+    status: { type: DataTypes.STRING, defaultValue: 'Pending' },
+    version: { type: DataTypes.INTEGER, defaultValue: 1 },
+    created_at: { type: DataTypes.DATE, defaultValue: Sequelize.NOW },
+    updated_at: { type: DataTypes.DATE, defaultValue: Sequelize.NOW },
+  }, { tableName: 'long_lead_items', timestamps: false });
+
+  ForecastPeriod = sequelize.define('ForecastPeriod', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    project_id: { type: DataTypes.INTEGER, allowNull: false },
+    start_date: { type: DataTypes.DATEONLY, allowNull: false },
+    end_date: { type: DataTypes.DATEONLY, allowNull: false },
+    label: { type: DataTypes.STRING, allowNull: false },
+    sort_order: DataTypes.INTEGER,
+    version: { type: DataTypes.INTEGER, defaultValue: 1 },
+    created_at: { type: DataTypes.DATE, defaultValue: Sequelize.NOW },
+    updated_at: { type: DataTypes.DATE, defaultValue: Sequelize.NOW },
+  }, { tableName: 'forecast_periods', timestamps: false, indexes: [{ unique: true, fields: ['project_id', 'label'] }] });
+
+  ForecastValue = sequelize.define('ForecastValue', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    project_id: { type: DataTypes.INTEGER, allowNull: false },
+    cost_code_id: { type: DataTypes.INTEGER, allowNull: false },
+    period_id: { type: DataTypes.INTEGER, allowNull: false },
+    original_value: { type: DataTypes.FLOAT, defaultValue: 0 },
+    projected_value: { type: DataTypes.FLOAT, defaultValue: 0 },
+    actual_value: { type: DataTypes.FLOAT, defaultValue: 0 },
+    version: { type: DataTypes.INTEGER, defaultValue: 1 },
+    created_at: { type: DataTypes.DATE, defaultValue: Sequelize.NOW },
+    updated_at: { type: DataTypes.DATE, defaultValue: Sequelize.NOW },
+  }, { tableName: 'forecast_values', timestamps: false, indexes: [{ unique: true, fields: ['project_id', 'cost_code_id', 'period_id'] }] });
+
+  Budget = sequelize.define('Budget', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    project_id: { type: DataTypes.INTEGER, allowNull: false },
+    period_id: { type: DataTypes.INTEGER, allowNull: false },
+    cost_code_id: { type: DataTypes.INTEGER, allowNull: false },
+    original_budget_amount: { type: DataTypes.FLOAT, defaultValue: 0 },
+    revised_budget_amount: DataTypes.FLOAT,
+    committed_costs: { type: DataTypes.FLOAT, defaultValue: 0 },
+    projected_costs: { type: DataTypes.FLOAT, defaultValue: 0 },
+    version: { type: DataTypes.INTEGER, defaultValue: 1 },
+    created_at: { type: DataTypes.DATE, defaultValue: Sequelize.NOW },
+    updated_at: { type: DataTypes.DATE, defaultValue: Sequelize.NOW },
+  }, { tableName: 'budget', timestamps: false });
+
+  History = sequelize.define('History', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    entity_type: { type: DataTypes.STRING, allowNull: false },
+    entity_id: { type: DataTypes.INTEGER, allowNull: false },
+    data: { type: DataTypes.JSON, allowNull: false },
+    version: { type: DataTypes.INTEGER, allowNull: false },
+    superseded_at: { type: DataTypes.DATE, defaultValue: Sequelize.NOW },
+  }, { tableName: 'history', timestamps: false });
+
+  ProjectUser = sequelize.define('ProjectUser', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    project_id: { type: DataTypes.INTEGER, allowNull: false },
+    user_id: { type: DataTypes.INTEGER, allowNull: false },
+    role: DataTypes.STRING,
+  }, { tableName: 'project_users', timestamps: false });
+
+  BudgetDetail = sequelize.define('BudgetDetail', {
+    id: { type: DataTypes.STRING, primaryKey: true },
+    project_id: { type: DataTypes.INTEGER, allowNull: false },
+    item: DataTypes.STRING,
+    wbs_code_id: DataTypes.INTEGER,
+    detail_type_id: DataTypes.STRING,
+    cost_code_id: DataTypes.INTEGER,
+  }, { tableName: 'budget_details', timestamps: false });
+
+  BudgetAmount = sequelize.define('BudgetAmount', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    budget_detail_id: { type: DataTypes.STRING, allowNull: false },
+    category_key: { type: DataTypes.STRING, allowNull: false },
+    amount: { type: DataTypes.FLOAT, allowNull: false },
+  }, { tableName: 'budget_amounts', timestamps: false });
+
+  ChangeEvent = sequelize.define('ChangeEvent', {
+    id: { type: DataTypes.INTEGER, primaryKey: true },
+    project_id: { type: DataTypes.INTEGER, allowNull: false },
+    title: DataTypes.STRING,
+    number: DataTypes.INTEGER,
+    status: DataTypes.STRING,
+    description: DataTypes.TEXT,
+  }, { tableName: 'change_events', timestamps: false });
+
+  ChangeEventLineItem = sequelize.define('ChangeEventLineItem', {
+    id: { type: DataTypes.INTEGER, primaryKey: true },
+    change_event_id: { type: DataTypes.INTEGER, allowNull: false },
+    description: DataTypes.TEXT,
+    estimated_cost_amount: DataTypes.FLOAT,
+    cost_code_id: DataTypes.INTEGER,
+  }, { tableName: 'change_event_line_items', timestamps: false });
+
+  // Define relationships
+  Project.belongsTo(ProjectType, { foreignKey: 'type_id' });
+  ProjectType.hasMany(Project, { foreignKey: 'type_id' });
+  Project.belongsTo(ContractType, { foreignKey: 'contract_type_id' });
+  ContractType.hasMany(Project, { foreignKey: 'contract_type_id' });
+  Project.hasMany(Owner, { foreignKey: 'project_id', onDelete: 'CASCADE' });
+  Owner.belongsTo(Project, { foreignKey: 'project_id' });
+  Project.hasMany(HBTeam, { foreignKey: 'project_id', onDelete: 'CASCADE' });
+  HBTeam.belongsTo(Project, { foreignKey: 'project_id' });
+  HBTeam.belongsTo(HBPosition, { foreignKey: 'position_id' });
+  HBPosition.hasMany(HBTeam, { foreignKey: 'position_id' });
+  Project.hasMany(CostCode, { foreignKey: 'project_id', onDelete: 'CASCADE' });
+  CostCode.belongsTo(Project, { foreignKey: 'project_id' });
+  Project.hasMany(Task, { foreignKey: 'project_id', onDelete: 'CASCADE' });
+  Task.belongsTo(Project, { foreignKey: 'project_id' });
+  Task.hasMany(ScheduleExtension, { foreignKey: 'task_id', onDelete: 'CASCADE' });
+  ScheduleExtension.belongsTo(Task, { foreignKey: 'task_id' });
+  Project.hasMany(ScheduleExtension, { foreignKey: 'project_id', onDelete: 'CASCADE' });
+  ScheduleExtension.belongsTo(Project, { foreignKey: 'project_id' });
+  Project.hasMany(Commitment, { foreignKey: 'project_id', onDelete: 'CASCADE' });
+  Commitment.belongsTo(Project, { foreignKey: 'project_id' });
+  Project.hasMany(Buyout, { foreignKey: 'project_id', onDelete: 'CASCADE' });
+  Buyout.belongsTo(Project, { foreignKey: 'project_id' });
+  Buyout.belongsTo(CostCode, { foreignKey: 'cost_code_id' });
+  CostCode.hasMany(Buyout, { foreignKey: 'cost_code_id' });
+  Buyout.belongsTo(Commitment, { foreignKey: 'commitment_id' });
+  Commitment.hasMany(Buyout, { foreignKey: 'commitment_id' });
+  Buyout.hasMany(Allowance, { foreignKey: 'buyout_id', onDelete: 'CASCADE' });
+  Allowance.belongsTo(Buyout, { foreignKey: 'buyout_id' });
+  Buyout.hasMany(ValueEngineering, { foreignKey: 'buyout_id', onDelete: 'CASCADE' });
+  ValueEngineering.belongsTo(Buyout, { foreignKey: 'buyout_id' });
+  Buyout.hasMany(LongLeadItem, { foreignKey: 'buyout_id', onDelete: 'CASCADE' });
+  LongLeadItem.belongsTo(Buyout, { foreignKey: 'buyout_id' });
+  Project.hasMany(ForecastPeriod, { foreignKey: 'project_id', onDelete: 'CASCADE' });
+  ForecastPeriod.belongsTo(Project, { foreignKey: 'project_id' });
+  Project.hasMany(ForecastValue, { foreignKey: 'project_id', onDelete: 'CASCADE' });
+  ForecastValue.belongsTo(Project, { foreignKey: 'project_id' });
+  CostCode.hasMany(ForecastValue, { foreignKey: 'cost_code_id', onDelete: 'CASCADE' });
+  ForecastValue.belongsTo(CostCode, { foreignKey: 'cost_code_id' });
+  ForecastPeriod.hasMany(ForecastValue, { foreignKey: 'period_id', onDelete: 'CASCADE' });
+  ForecastValue.belongsTo(ForecastPeriod, { foreignKey: 'period_id' });
+  Project.hasMany(Budget, { foreignKey: 'project_id', onDelete: 'CASCADE' });
+  Budget.belongsTo(Project, { foreignKey: 'project_id' });
+  ForecastPeriod.hasMany(Budget, { foreignKey: 'period_id', onDelete: 'CASCADE' });
+  Budget.belongsTo(ForecastPeriod, { foreignKey: 'period_id' });
+  CostCode.hasMany(Budget, { foreignKey: 'cost_code_id', onDelete: 'CASCADE' });
+  Budget.belongsTo(CostCode, { foreignKey: 'cost_code_id' });
+  Project.hasMany(ProjectUser, { foreignKey: 'project_id' });
+  ProjectUser.belongsTo(Project, { foreignKey: 'project_id' });
+  User.hasMany(ProjectUser, { foreignKey: 'user_id' });
+  ProjectUser.belongsTo(User, { foreignKey: 'user_id' });
+  Project.hasMany(BudgetDetail, { foreignKey: 'project_id' });
+  BudgetDetail.belongsTo(Project, { foreignKey: 'project_id' });
+  BudgetDetail.hasMany(BudgetAmount, { foreignKey: 'budget_detail_id' });
+  BudgetAmount.belongsTo(BudgetDetail, { foreignKey: 'budget_detail_id' });
+  Project.hasMany(ChangeEvent, { foreignKey: 'project_id' });
+  ChangeEvent.belongsTo(Project, { foreignKey: 'project_id' });
+  ChangeEvent.hasMany(ChangeEventLineItem, { foreignKey: 'change_event_id' });
+  ChangeEventLineItem.belongsTo(ChangeEvent, { foreignKey: 'change_event_id' });
+}
+
+// Migration definitions
 const migrations = [
   {
     version: 1,
-    queries: [
-      `CREATE TABLE IF NOT EXISTS schema_version (
-                version INTEGER PRIMARY KEY,
-                applied_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-            )`,
-      `CREATE TABLE IF NOT EXISTS users (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                company_id INTEGER,
-                first_name TEXT NOT NULL,
-                last_name TEXT NOT NULL,
-                email TEXT UNIQUE NOT NULL,
-                phone TEXT,
-                role TEXT,
-                version INTEGER DEFAULT 1,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-            )`,
-      `CREATE TABLE IF NOT EXISTS tokens (
-                id INTEGER PRIMARY KEY DEFAULT 1,
-                access_token TEXT NOT NULL,
-                refresh_token TEXT NOT NULL,
-                expires_at INTEGER NOT NULL,
-                version INTEGER DEFAULT 1,
-                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-            )`,
-      `CREATE TABLE IF NOT EXISTS csi_codes (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                tier INTEGER NOT NULL,
-                code TEXT NOT NULL,
-                description TEXT NOT NULL,
-                version INTEGER DEFAULT 1,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                UNIQUE (code, tier)
-            )`,
-      `CREATE TABLE IF NOT EXISTS project_types (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                type TEXT NOT NULL,
-                code TEXT NOT NULL,
-                version INTEGER DEFAULT 1,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                UNIQUE (type)
-            )`,
-      `CREATE TABLE IF NOT EXISTS contract_types (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                type TEXT NOT NULL,
-                code TEXT NOT NULL,
-                version INTEGER DEFAULT 1,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                UNIQUE (type)
-            )`,
-      `CREATE TABLE IF NOT EXISTS hb_positions (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                position TEXT NOT NULL,
-                division TEXT NOT NULL,
-                code TEXT NOT NULL,
-                hierarchy INTEGER NOT NULL,
-                version INTEGER DEFAULT 1,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                UNIQUE (position, division)
-            )`,
-      `CREATE TABLE IF NOT EXISTS projects (
-                project_id INTEGER PRIMARY KEY AUTOINCREMENT,
-                procore_id INTEGER UNIQUE,
-                name TEXT NOT NULL,
-                number TEXT UNIQUE,
-                company_id INTEGER DEFAULT 5280,
-                type_id INTEGER,
-                contract_type_id INTEGER,
-                street_address TEXT,
-                city TEXT,
-                state TEXT,
-                zip TEXT,
-                active BOOLEAN DEFAULT TRUE,
-                start_date DATE,
-                original_completion_date DATE,
-                approved_completion_date DATE,
-                duration INTEGER,
-                approved_extensions INTEGER DEFAULT 0,
-                contract_value REAL,
-                approved_changes REAL DEFAULT 0,
-                approved_value REAL GENERATED ALWAYS AS (contract_value + approved_changes) STORED,
-                contingency_original REAL,
-                contingency_approved REAL,
-                version INTEGER DEFAULT 1,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                FOREIGN KEY (type_id) REFERENCES project_types(id),
-                FOREIGN KEY (contract_type_id) REFERENCES contract_types(id)
-            )`,
-      `CREATE TABLE IF NOT EXISTS owners (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                project_id INTEGER NOT NULL,
-                name TEXT NOT NULL,
-                contact TEXT,
-                lending_partner TEXT,
-                contract_executed DATE,
-                version INTEGER DEFAULT 1,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                FOREIGN KEY (project_id) REFERENCES projects(project_id) ON DELETE CASCADE
-            )`,
-      `CREATE TABLE IF NOT EXISTS hb_team (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                project_id INTEGER NOT NULL,
-                position_id INTEGER NOT NULL,
-                member_name TEXT NOT NULL,
-                version INTEGER DEFAULT 1,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                FOREIGN KEY (project_id) REFERENCES projects(project_id) ON DELETE CASCADE,
-                FOREIGN KEY (position_id) REFERENCES hb_positions(id)
-            )`,
-      `CREATE TABLE IF NOT EXISTS cost_codes (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                project_id INTEGER,
-                procore_id INTEGER UNIQUE,
-                code TEXT NOT NULL,
-                full_code TEXT NOT NULL,
-                name TEXT NOT NULL,
-                budgeted BOOLEAN DEFAULT FALSE,
-                version INTEGER DEFAULT 1,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                FOREIGN KEY (project_id) REFERENCES projects(project_id) ON DELETE CASCADE,
-                UNIQUE (project_id, full_code)
-            )`,
-      `CREATE TABLE IF NOT EXISTS tasks (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                project_id INTEGER NOT NULL,
-                procore_id INTEGER UNIQUE,
-                name TEXT NOT NULL,
-                start_date DATE NOT NULL,
-                finish_date DATE,
-                duration INTEGER,
-                percent_complete REAL DEFAULT 0.0,
-                is_critical BOOLEAN DEFAULT FALSE,
-                is_milestone BOOLEAN DEFAULT FALSE,
-                version INTEGER DEFAULT 1,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                FOREIGN KEY (project_id) REFERENCES projects(project_id) ON DELETE CASCADE
-            )`,
-      `CREATE TABLE IF NOT EXISTS schedule_extensions (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                project_id INTEGER NOT NULL,
-                task_id INTEGER NOT NULL,
-                milestone TEXT NOT NULL,
-                approved_time_extensions INTEGER DEFAULT 0,
-                pending_extension_req INTEGER DEFAULT 0,
-                extensions_requested INTEGER DEFAULT 0,
-                adverse_weather_days INTEGER DEFAULT 0,
-                start_date DATE,
-                end_date DATE,
-                details TEXT,
-                version INTEGER DEFAULT 1,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                FOREIGN KEY (project_id) REFERENCES projects(project_id) ON DELETE CASCADE,
-                FOREIGN KEY (task_id) REFERENCES tasks(id) ON DELETE CASCADE
-            )`,
-      `CREATE TABLE IF NOT EXISTS commitments (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                project_id INTEGER NOT NULL,
-                number TEXT NOT NULL,
-                title TEXT DEFAULT 'placeholder',
-                vendor TEXT,
-                status TEXT DEFAULT 'Draft',
-                original_contract_amount REAL,
-                approved_change_orders REAL,
-                revised_contract_amount REAL GENERATED ALWAYS AS (original_contract_amount + approved_change_orders) STORED,
-                version INTEGER DEFAULT 1,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                FOREIGN KEY (project_id) REFERENCES projects(project_id) ON DELETE CASCADE
-            )`,
-      `CREATE TABLE IF NOT EXISTS buyout (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                project_id INTEGER NOT NULL,
-                cost_code_id INTEGER,
-                subcontractor TEXT,
-                status TEXT DEFAULT 'Pending',
-                commitment_id INTEGER,
-                variance REAL,
-                contract_executed DATE,
-                version INTEGER DEFAULT 1,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                FOREIGN KEY (project_id) REFERENCES projects(project_id) ON DELETE CASCADE,
-                FOREIGN KEY (cost_code_id) REFERENCES cost_codes(id),
-                FOREIGN KEY (commitment_id) REFERENCES commitments(id)
-            )`,
-      `CREATE TABLE IF NOT EXISTS allowances (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                buyout_id INTEGER NOT NULL,
-                item TEXT NOT NULL,
-                value REAL NOT NULL,
-                reconciled BOOLEAN DEFAULT FALSE,
-                reconciliation_value REAL,
-                variance REAL DEFAULT 0,
-                version INTEGER DEFAULT 1,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                FOREIGN KEY (buyout_id) REFERENCES buyout(id) ON DELETE CASCADE
-            )`,
-      `CREATE TABLE IF NOT EXISTS value_engineering (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                buyout_id INTEGER NOT NULL,
-                item TEXT NOT NULL,
-                original_value REAL DEFAULT 0,
-                ve_value REAL DEFAULT 0,
-                savings REAL DEFAULT 0,
-                status TEXT DEFAULT 'Pending',
-                version INTEGER DEFAULT 1,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                FOREIGN KEY (buyout_id) REFERENCES buyout(id) ON DELETE CASCADE
-            )`,
-      `CREATE TABLE IF NOT EXISTS long_lead_items (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                buyout_id INTEGER NOT NULL,
-                item TEXT NOT NULL,
-                lead_time INTEGER,
-                status TEXT DEFAULT 'Pending',
-                version INTEGER DEFAULT 1,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                FOREIGN KEY (buyout_id) REFERENCES buyout(id) ON DELETE CASCADE
-            )`,
-      `CREATE TABLE IF NOT EXISTS forecast_periods (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                project_id INTEGER NOT NULL,
-                start_date DATE NOT NULL,
-                end_date DATE NOT NULL,
-                label TEXT NOT NULL,
-                sort_order INTEGER,
-                version INTEGER DEFAULT 1,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                FOREIGN KEY (project_id) REFERENCES projects(project_id) ON DELETE CASCADE,
-                UNIQUE (project_id, label)
-            )`,
-      `CREATE TABLE IF NOT EXISTS forecast_values (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                project_id INTEGER NOT NULL,
-                cost_code_id INTEGER NOT NULL,
-                period_id INTEGER NOT NULL,
-                original_value REAL DEFAULT 0,
-                projected_value REAL DEFAULT 0,
-                actual_value REAL DEFAULT 0,
-                version INTEGER DEFAULT 1,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                FOREIGN KEY (project_id) REFERENCES projects(project_id) ON DELETE CASCADE,
-                FOREIGN KEY (cost_code_id) REFERENCES cost_codes(id) ON DELETE CASCADE,
-                FOREIGN KEY (period_id) REFERENCES forecast_periods(id) ON DELETE CASCADE,
-                UNIQUE (project_id, cost_code_id, period_id)
-            )`,
-      `CREATE TABLE IF NOT EXISTS budget (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                project_id INTEGER NOT NULL,
-                period_id INTEGER NOT NULL,
-                cost_code_id INTEGER NOT NULL,
-                original_budget_amount REAL DEFAULT 0,
-                revised_budget_amount REAL,
-                committed_costs REAL DEFAULT 0,
-                projected_costs REAL DEFAULT 0,
-                version INTEGER DEFAULT 1,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                FOREIGN KEY (project_id) REFERENCES projects(project_id) ON DELETE CASCADE,
-                FOREIGN KEY (period_id) REFERENCES forecast_periods(id) ON DELETE CASCADE,
-                FOREIGN KEY (cost_code_id) REFERENCES cost_codes(id) ON DELETE CASCADE
-            )`,
-      `CREATE TABLE IF NOT EXISTS history (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                entity_type TEXT NOT NULL,
-                entity_id INTEGER NOT NULL,
-                data JSON NOT NULL,
-                version INTEGER NOT NULL,
-                superseded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-            )`,
-      `CREATE INDEX idx_projects_procore_id ON projects(procore_id)`,
-      `CREATE INDEX idx_projects_number ON projects(number)`,
-      `CREATE INDEX idx_history_entity ON history(entity_type, entity_id)`,
-      `CREATE INDEX idx_tasks_project_id ON tasks(project_id)`,
-      `CREATE INDEX idx_cost_codes_project_id ON cost_codes(project_id)`,
-      `CREATE INDEX idx_forecast_values_project_cost_period ON forecast_values(project_id, cost_code_id, period_id)`
-    ],
+    up: async () => {
+      await sequelize.sync({ force: true });
+      logger.info('Applied initial schema creation (version 1)');
+    }
+  },
+  {
+    version: 2,
+    up: async () => {
+      await sequelize.sync();
+      logger.info('Applied schema update (version 2)');
+    }
   },
 ];
 
-// Apply migrations
 async function applyMigrations() {
-  return new Promise((resolve, reject) => {
-    db.get('SELECT version FROM schema_version ORDER BY version DESC LIMIT 1', (err, row) => {
-      if (err && err.code !== 'SQLITE_ERROR') return reject(err);
-      const currentVersion = row ? row.version : 0;
-      logger.info(`Current schema version: ${currentVersion}`);
-      const pendingMigrations = migrations.filter(m => m.version > currentVersion);
+  if (!sequelize) throw new Error('Database not initialized');
+  const [current] = await SchemaVersion.findAll({ order: [['version', 'DESC']], limit: 1 });
+  const currentVersion = current ? current.version : 0;
+  logger.info(`Current schema version: ${currentVersion}`);
+  const pendingMigrations = migrations.filter(m => m.version > currentVersion);
 
-      if (!pendingMigrations.length) {
-        logger.info('Database schema up to date');
-        return resolve();
-      }
-
-      db.serialize(() => {
-        pendingMigrations.forEach(migration => {
-          migration.queries.forEach(query => db.run(query));
-          db.run('INSERT OR REPLACE INTO schema_version (version) VALUES (?)', migration.version);
-          logger.info(`Applied migration version ${migration.version}`);
-        });
-        resolve();
-      });
-    });
-  });
+  for (const migration of pendingMigrations) {
+    await migration.up();
+    await SchemaVersion.upsert({ version: migration.version });
+    logger.info(`Applied migration version ${migration.version}`);
+  }
+  if (!pendingMigrations.length) logger.info('Database schema up to date');
 }
 
 /**
  * Upserts an entity into the specified table with versioning and history tracking
  * @param {string} table - The table name to upsert into
  * @param {Object} entity - The entity data to upsert
+ * @param {Object} [options] - Optional transaction options
  * @returns {Promise<void>}
  */
-/**
- * Upserts an entity into the specified table with versioning and history tracking
- * @param {string} table - The table name to upsert into
- * @param {Object} entity - The entity data to upsert
- * @returns {Promise<void>}
- */
-async function upsertEntity(table, entity) {
-  return new Promise((resolve, reject) => {
-    if (!table || typeof entity !== 'object') {
-      return reject(new Error('Invalid table or entity data'));
-    }
-    const idField = table === 'projects' ? 'project_id' : 'id';
-    db.get(`SELECT version FROM ${table} WHERE ${idField} = ?`, [entity[idField]], (err, row) => {
-      if (err) return reject(err);
-      const currentVersion = row ? row.version : 0;
-      const newVersion = currentVersion + 1;
+async function upsertEntity(table, entity, options = {}) {
+  if (!sequelize) throw new Error('Database not initialized');
+  const Model = {
+    users: User,
+    tokens: Token,
+    csi_codes: CSICode,
+    project_types: ProjectType,
+    contract_types: ContractType,
+    hb_positions: HBPosition,
+    projects: Project,
+    owners: Owner,
+    hb_team: HBTeam,
+    cost_codes: CostCode,
+    tasks: Task,
+    schedule_extensions: ScheduleExtension,
+    commitments: Commitment,
+    buyout: Buyout,
+    allowances: Allowance,
+    value_engineering: ValueEngineering,
+    long_lead_items: LongLeadItem,
+    forecast_periods: ForecastPeriod,
+    forecast_values: ForecastValue,
+    budget: Budget,
+    history: History,
+    project_users: ProjectUser,
+    budget_details: BudgetDetail,
+    budget_amounts: BudgetAmount,
+    change_events: ChangeEvent,
+    change_event_line_items: ChangeEventLineItem,
+  }[table];
 
-      if (row) {
-        db.get(`SELECT * FROM ${table} WHERE ${idField} = ?`, [entity[idField]], (err, oldData) => {
-          if (err) return reject(err);
-          db.run(
-            'INSERT INTO history (entity_type, entity_id, data, version) VALUES (?, ?, ?, ?)',
-            [table, entity[idField], JSON.stringify(oldData), currentVersion],
-            err => { if (err) reject(err); }
-          );
-        });
+  if (!Model || !entity) throw new Error('Invalid table or entity data');
+
+  const idField = table === 'projects' ? 'project_id' : 'id';
+  let whereClause;
+
+  if (table === 'tokens') {
+    if (!entity.user_id) throw new Error('user_id is required for tokens');
+    whereClause = { user_id: entity.user_id };
+  } else if (table === 'project_types' || table === 'contract_types') {
+    whereClause = { type: entity.type };
+  } else if (table === 'hb_positions') {
+    if (!entity.position || !entity.division) throw new Error('position and division are required for hb_positions');
+    whereClause = { position: entity.position, division: entity.division };
+  } else if (table === 'tasks') {
+    if (!entity.project_id || !entity.name) throw new Error('project_id and name are required for tasks');
+    whereClause = { project_id: entity.project_id, name: entity.name };
+  } else if (table === 'users') {
+    if (!entity.procore_user_id) throw new Error('procore_user_id is required for users');
+    whereClause = { procore_user_id: entity.procore_user_id };
+  } else {
+    whereClause = { [idField]: entity[idField] };
+  }
+
+  if (whereClause[idField] === undefined && !['tokens', 'project_types', 'contract_types', 'hb_positions', 'tasks', 'users'].includes(table)) {
+    logger.warn(`Entity missing ${idField} for table ${table}`, { entity });
+    throw new Error(`Entity missing required ${idField} for table ${table}`);
+  }
+
+  logger.debug(`Upserting ${table} entity`, { whereClause, entity });
+
+  const existing = await Model.findOne({ where: whereClause, transaction: options.transaction });
+  const version = existing ? existing.version + 1 : 1;
+
+  if (existing) {
+    await sequelize.query(
+      'INSERT INTO history (entity_type, entity_id, data, version) VALUES (:type, :id, :data, :version)',
+      {
+        replacements: {
+          type: table,
+          id: existing[idField] || existing.procore_user_id || existing.user_id || 0,
+          data: JSON.stringify(existing.toJSON()),
+          version: existing.version,
+        },
+        type: QueryTypes.INSERT,
+        transaction: options.transaction,
       }
+    );
+  }
 
-      const fields = Object.keys(entity).filter(k => k !== idField);
-      const placeholders = fields.map(() => '?').join(', ');
-      const updateSet = fields.map(f => `${f} = excluded.${f}`).join(', ');
-      const sql = `
-                INSERT OR REPLACE INTO ${table} (${idField}, ${fields.join(', ')}, version, updated_at)
-                VALUES (?, ${placeholders}, ?, CURRENT_TIMESTAMP)
-            `;
-      const values = [entity[idField] || null, ...fields.map(f => entity[f]), newVersion];
+  if (entity[idField] === undefined) delete entity[idField];
 
-      logger.debug(`Executing upsert SQL: ${sql}`, { values });
-      const stmt = db.prepare(sql);
-      stmt.run(values, function(err) {
-        if (err) {
-          logger.error(`Upsert failed: ${err.message}`, { stack: err.stack, sql, values });
-          if (err.code === 'SQLITE_CONSTRAINT') {
-            logger.warn(`Constraint violation during upsert into ${table}: ${err.message}`);
-            resolve(); // Treat as non-fatal for duplicates
-          } else {
-            reject(err);
-          }
-        } else {
-          logger.debug(`Upsert into ${table} succeeded`, { changes: this.changes, lastID: this.lastID });
-          resolve();
-        }
-      });
-      stmt.finalize();
-    });
-  });
+  await Model.upsert(
+    { ...entity, version, updated_at: new Date() },
+    { transaction: options.transaction }
+  );
+  logger.debug(`Upserted entity into ${table}`, { id: entity[idField] || entity.procore_user_id || entity.user_id || entity.type || `${entity.position}-${entity.division}` || `${entity.project_id}-${entity.name}` });
 }
 
 /**
- * Batch upserts multiple entities into the specified table within a transaction
- * @param {string} table - The table name to upsert into
- * @param {Object[]} entities - Array of entity data to upsert
+ * Performs a batch upsert operation on a specified table
+ * @param {string} tableName - The name of the table
+ * @param {Array<Object>} entities - Array of entity objects to upsert
  * @returns {Promise<void>}
  */
-async function batchUpsert(table, entities) {
-  const operations = entities.map(entity => () => upsertEntity(table, entity));
-  await runInTransaction(operations);
-  logger.info(`Batch upserted ${entities.length} records into ${table}`);
+async function batchUpsert(tableName, entities) {
+  if (!sequelize) throw new Error('Database not initialized');
+
+  const normalizedTableName = tableName.toLowerCase();
+  const model = sequelize.models[normalizedTableName];
+  if (!model) throw new Error(`Model for table ${normalizedTableName} not found`);
+
+  try {
+    await sequelize.transaction(async (transaction) => {
+      const upsertOptions = {
+        updateOnDuplicate: Object.keys(model.rawAttributes).filter(key => key !== 'id' && key !== 'created_at'), // Exclude id and created_at from updates
+        transaction,
+      };
+      await model.bulkCreate(entities, upsertOptions);
+      logger.debug(`Batch upserted ${entities.length} entities into ${normalizedTableName}`);
+    });
+  } catch (error) {
+    logger.error(`Batch upsert failed for table ${normalizedTableName}`, { message: error.message, stack: error.stack });
+    throw error;
+  }
+}
+
+/**
+ * Retrieves a token from the tokens table by user_id
+ * @param {string} userId - The user_id to lookup
+ * @returns {Promise<Object|null>} Token object or null if not found
+ */
+async function getTokenByUserId(userId) {
+  if (!sequelize) throw new Error('Database not initialized');
+  return await Token.findOne({ where: { user_id: userId }, raw: true });
 }
 
 /**
@@ -432,12 +609,8 @@ async function batchUpsert(table, entities) {
  * @returns {Promise<Object[]>} Array of project objects
  */
 async function getProjects() {
-  return new Promise((resolve, reject) => {
-    db.all('SELECT * FROM projects WHERE active = TRUE', (err, rows) => {
-      if (err) reject(err);
-      else resolve(rows);
-    });
-  });
+  if (!sequelize) throw new Error('Database not initialized');
+  return await Project.findAll({ where: { active: true }, raw: true });
 }
 
 /**
@@ -446,34 +619,257 @@ async function getProjects() {
  * @returns {Promise<void>}
  */
 async function runInTransaction(operations) {
-  return new Promise((resolve, reject) => {
-    db.serialize(() => {
-      db.run('BEGIN TRANSACTION', (err) => {
-        if (err) return reject(err);
-        Promise.all(operations.map(op => op()))
-          .then(() => {
-            db.run('COMMIT', err => {
-              if (err) reject(err);
-              else resolve();
-            });
-          })
-          .catch(err => {
-            db.run('ROLLBACK', () => reject(err));
-          });
-      });
-    });
+  if (!sequelize) throw new Error('Database not initialized');
+  await sequelize.transaction(async (t) => {
+    await Promise.all(operations.map(op => op({ transaction: t })));
   });
 }
 
-// Initialize database and populate lookup tables
-async function initializeLookups() {
+/**
+ * Syncs current user data from Procore /me endpoint
+ * @param {Object} userData - User data from Procore /me
+ * @returns {Promise<void>}
+ */
+async function syncCurrentUser(userData) {
+  if (!sequelize) throw new Error('Database not initialized');
+  await upsertEntity('users', {
+    procore_user_id: userData.id,
+    email: userData.login,
+    first_name: userData.name.split(' ')[0],
+    last_name: userData.name.split(' ').slice(1).join(' ') || '',
+  });
+}
+
+/**
+ * Syncs company users from Procore Company Users endpoint
+ * @param {Object[]} users - Array of user data from Procore
+ * @returns {Promise<void>}
+ */
+async function syncCompanyUsers(users) {
+  if (!sequelize) throw new Error('Database not initialized');
+  const entities = users.map(user => ({
+    procore_user_id: user.id,
+    email: user.email_address,
+    first_name: user.name.split(' ')[0],
+    last_name: user.name.split(' ').slice(1).join(' ') || '',
+    business_id: user.business_id,
+    address: user.address,
+    avatar: user.avatar,
+    business_phone: user.business_phone,
+    city: user.city,
+    country_code: user.country_code,
+    state_code: user.state_code,
+    zip: user.zip,
+    is_employee: user.is_employee,
+  }));
+  await batchUpsert('users', entities);
+}
+
+/**
+ * Syncs projects from Procore Company Projects endpoint
+ * @param {Object[]} projects - Array of project data from Procore
+ * @returns {Promise<void>}
+ */
+async function syncProjects(projects) {
+  if (!sequelize) throw new Error('Database not initialized');
+  const entities = projects.map(project => ({
+    procore_id: project.id,
+    name: project.name,
+    street_address: project.address?.street,
+    city: project.address?.city,
+    state: project.address?.state_code,
+    zip: project.address?.zip,
+    active: project.status_name === 'Active',
+  }));
+  await batchUpsert('projects', entities);
+}
+
+/**
+ * Syncs project users and their roles from Procore Project Users and Project User Roles endpoints
+ * @param {number} projectId - Procore project ID
+ * @param {Object[]} projectUsers - Array of project user data
+ * @param {Object[]} userRoles - Array of user role data
+ * @returns {Promise<void>}
+ */
+async function syncProjectUsers(projectId, projectUsers, userRoles) {
+  if (!sequelize) throw new Error('Database not initialized');
+  const entities = projectUsers.map(pu => ({
+    project_id: projectId,
+    user_id: pu.id,
+    role: userRoles.find(r => r.user_id === pu.id)?.role || null,
+  }));
+  await batchUpsert('project_users', entities);
+}
+
+/**
+ * Syncs commitments from Procore List of Commitments endpoint
+ * @param {number} projectId - Procore project ID
+ * @param {Object[]} commitments - Array of commitment data
+ * @returns {Promise<void>}
+ */
+async function syncCommitments(projectId, commitments) {
+  if (!sequelize) throw new Error('Database not initialized');
+  const entities = commitments.map(commitment => ({
+    id: commitment.id,
+    project_id: projectId,
+    number: commitment.number,
+    title: commitment.title,
+    vendor: commitment.vendor?.name,
+    status: commitment.status,
+    original_contract_amount: commitment.original_contract_amount,
+    approved_change_orders: commitment.approved_change_orders,
+  }));
+  await batchUpsert('commitments', entities);
+}
+
+/**
+ * Syncs budget details from Procore Budget Detail Items endpoint
+ * @param {number} projectId - Procore project ID
+ * @param {Object[]} budgetDetails - Array of budget detail data
+ * @returns {Promise<void>}
+ */
+async function syncBudgetDetails(projectId, budgetDetails) {
+  if (!sequelize) throw new Error('Database not initialized');
+  for (const detail of budgetDetails) {
+    await upsertEntity('budget_details', {
+      id: detail.id,
+      project_id: projectId,
+      item: detail.item,
+      wbs_code_id: detail.wbs_code?.id,
+      detail_type_id: detail.detail_type?.id,
+      cost_code_id: detail.cost_code?.id,
+    });
+    for (const [key, amount] of Object.entries(detail)) {
+      if (/^\d+$/.test(key)) {
+        await upsertEntity('budget_amounts', {
+          budget_detail_id: detail.id,
+          category_key: key,
+          amount: parseFloat(amount),
+        });
+      }
+    }
+  }
+}
+
+/**
+ * Syncs change events from Procore List Change Events endpoint
+ * @param {number} projectId - Procore project ID
+ * @param {Object[]} changeEvents - Array of change event data
+ * @returns {Promise<void>}
+ */
+async function syncChangeEvents(projectId, changeEvents) {
+  if (!sequelize) throw new Error('Database not initialized');
+  for (const event of changeEvents) {
+    await upsertEntity('change_events', {
+      id: event.id,
+      project_id: projectId,
+      title: event.title,
+      number: event.number,
+      status: event.status,
+      description: event.description,
+    });
+    for (const lineItem of event.change_event_line_items || []) {
+      await upsertEntity('change_event_line_items', {
+        id: lineItem.id,
+        change_event_id: event.id,
+        description: lineItem.description,
+        estimated_cost_amount: parseFloat(lineItem.estimated_cost_amount),
+        cost_code_id: lineItem.cost_code?.id,
+      });
+    }
+  }
+}
+
+/**
+ * Retrieves all active projects for a specific user based on their Procore user ID
+ * @param {number} procoreUserId - Procore user ID
+ * @returns {Promise<Object[]>} Array of project objects
+ */
+async function getProjectsForUser(procoreUserId) {
+  if (!sequelize) throw new Error('Database not initialized');
+  return await Project.findAll({
+    where: { active: true },
+    include: [{ model: ProjectUser, where: { user_id: procoreUserId } }],
+    raw: true,
+  });
+}
+
+/**
+ * Retrieves commitments for a specific user based on their Procore user ID
+ * @param {number} procoreUserId - Procore user ID
+ * @returns {Promise<Object[]>} Array of commitment objects
+ */
+async function getCommitmentsForUser(procoreUserId) {
+  if (!sequelize) throw new Error('Database not initialized');
+  return await Commitment.findAll({
+    include: [{ model: Project, include: [{ model: ProjectUser, where: { user_id: procoreUserId } }] }],
+    raw: true,
+  });
+}
+
+/**
+ * Retrieves budget details for a specific user based on their Procore user ID
+ * @param {number} procoreUserId - Procore user ID
+ * @returns {Promise<Object[]>} Array of budget detail objects with amounts
+ */
+async function getBudgetDetailsForUser(procoreUserId) {
+  if (!sequelize) throw new Error('Database not initialized');
+  return await BudgetDetail.findAll({
+    include: [
+      { model: BudgetAmount },
+      { model: Project, include: [{ model: ProjectUser, where: { user_id: procoreUserId } }] },
+    ],
+    raw: true,
+    nest: true,
+  });
+}
+
+/**
+ * Retrieves change events for a specific user based on their Procore user ID
+ * @param {number} procoreUserId - Procore user ID
+ * @returns {Promise<Object[]>} Array of change event objects with line items
+ */
+async function getChangeEventsForUser(procoreUserId) {
+  if (!sequelize) throw new Error('Database not initialized');
+  return await ChangeEvent.findAll({
+    include: [
+      { model: ChangeEventLineItem },
+      { model: Project, include: [{ model: ProjectUser, where: { user_id: procoreUserId } }] },
+    ],
+    raw: true,
+    nest: true,
+  });
+}
+
+/**
+ * Authenticates a user with email and password, returning the procore_user_id if successful
+ * @param {string} email - User's email
+ * @param {string} password - User's password
+ * @returns {Promise<number>} Procore user ID
+ */
+async function login(email, password) {
+  if (!sequelize) throw new Error('Database not initialized');
+  const user = await User.findOne({ where: { email }, raw: true });
+  if (!user || !(await bcrypt.compare(password, user.password_hash))) {
+    throw new Error('Invalid credentials');
+  }
+  return user.procore_user_id;
+}
+
+/**
+ * Initializes database and populates lookup tables
+ * @returns {Promise<void>}
+ */
+async function initDatabase() {
+  if (!sequelize) await initializeDb(); // Ensure DB is initialized
+  await applyMigrations();
   const projectTypes = [
     { type: 'New Construction', code: 'NEW' }, { type: 'Renovation', code: 'REN' },
     { type: 'Restoration', code: 'REST' }, { type: 'Retrofit', code: 'RETRO' },
     { type: 'Demolition', code: 'DEMO' }, { type: 'Maintenance', code: 'MAINT' },
     { type: 'Expansion', code: 'EXP' }, { type: 'Reconstruction', code: 'RECON' },
     { type: 'Tenant Improvement', code: 'TI' }, { type: 'Fit-Out', code: 'FO' },
-    { type: 'Adaptive Reuse', code: 'ADRE' }, { type: 'Remodel', code: 'REMO' }
+    { type: 'Adaptive Reuse', code: 'ADRE' }, { type: 'Remodel', code: 'REMO' },
   ];
   const contractTypes = [
     { type: 'Construction Management', code: 'CM' }, { type: 'Cost-Plus', code: 'CP' },
@@ -483,26 +879,22 @@ async function initializeLookups() {
     { type: 'Lump Sum', code: 'LS' }, { type: 'Percentage of Construction Cost', code: 'PCC' },
     { type: 'Progressive Design - Build', code: 'PDB' }, { type: 'Subcontract', code: 'SUB' },
     { type: 'Target Cost', code: 'TC' }, { type: 'Time and Materials', code: 'TM' },
-    { type: 'Unit Price', code: 'UP' }
+    { type: 'Unit Price', code: 'UP' },
   ];
+  // Populate lookup tables using bulkCreate with upsert
+  await ProjectType.bulkCreate(projectTypes, {
+    updateOnDuplicate: ['code', 'updated_at'], // Update code if type already exists
+    fields: ['type', 'code', 'version', 'created_at', 'updated_at'], // Explicit fields
+  });
+  logger.info(`Populated ${projectTypes.length} project types`);
 
-  try {
-    await batchUpsert('project_types', projectTypes);
-    await batchUpsert('contract_types', contractTypes);
-    logger.info('Lookup tables initialized');
-  } catch (err) {
-    logger.error(`Failed to initialize lookups: ${err.message}`, { stack: err.stack });
-    throw err;
-  }
-}
+  await ContractType.bulkCreate(contractTypes, {
+    updateOnDuplicate: ['code', 'updated_at'], // Update code if type already exists
+    fields: ['type', 'code', 'version', 'created_at', 'updated_at'], // Explicit fields
+  });
+  logger.info(`Populated ${contractTypes.length} contract types`);
 
-/**
- * Initializes the database by applying migrations and populating lookup tables
- * @returns {Promise<void>}
- */
-async function initDatabase() {
-  await applyMigrations();
-  await initializeLookups();
+  logger.info('Database initialized with lookup tables');
 }
 
 /**
@@ -510,41 +902,76 @@ async function initDatabase() {
  * @returns {Promise<void>}
  */
 async function clearStaleTokens() {
-  return new Promise((resolve, reject) => {
-      const currentTime = Math.floor(Date.now() / 1000); // Current time in seconds
-      const query = 'DELETE FROM tokens WHERE expires_at < ?';
-      db.run(query, [currentTime], function(err) {
-          if (err) {
-              logger.error(`Failed to clear stale tokens: ${err.message}`, { stack: err.stack });
-              return reject(err);
-          }
-          logger.info(`Cleared ${this.changes} stale tokens from database`);
-          resolve();
-      });
-  });
+  if (!sequelize) throw new Error('Database not initialized');
+  const currentTime = Math.floor(Date.now() / 1000);
+  const deleted = await Token.destroy({ where: { expires_at: { [Sequelize.Op.lt]: currentTime } } });
+  logger.info(`Cleared ${deleted} stale tokens from database`);
 }
 
 /**
  * Closes the database connection gracefully
  * @returns {Promise<void>}
  */
-function closeDatabase() {
-  return new Promise((resolve, reject) => {
-    if (!db) {
-      logger.info('No database connection to close');
-      return resolve();
-    }
-    db.close((err) => {
-      if (err) {
-        logger.error(`Failed to close database: ${err.message}`, { stack: err.stack });
-        reject(err);
-      } else {
-        logger.info('Database connection closed');
-        resolve();
-      }
-    });
-  });
+async function closeDatabase() {
+  if (sequelize) {
+    await sequelize.close();
+    logger.info('Database connection closed');
+    sequelize = null;
+  } else {
+    logger.info('No database connection to close');
+  }
 }
 
-// No initialization on import; defer to explicit call
-export { upsertEntity, getProjects, runInTransaction, batchUpsert, db, closeDatabase, initDatabase, clearStaleTokens };
+/**
+ * Gets a setting from the settings table (assuming it exists)
+ * @param {string} key - Setting key
+ * @returns {Promise<string|null>}
+ */
+async function getSetting(key) {
+  if (!sequelize) throw new Error('Database not initialized');
+  const [result] = await sequelize.query(
+    'SELECT value FROM settings WHERE key = :key',
+    { replacements: { key }, type: QueryTypes.SELECT }
+  );
+  return result ? result.value : null;
+}
+
+/**
+ * Sets a setting in the settings table (assuming it exists)
+ * @param {string} key - Setting key
+ * @param {string} value - Setting value
+ * @returns {Promise<void>}
+ */
+async function setSetting(key, value) {
+  if (!sequelize) throw new Error('Database not initialized');
+  await sequelize.query(
+    'INSERT OR REPLACE INTO settings (key, value) VALUES (:key, :value)',
+    { replacements: { key, value }, type: QueryTypes.INSERT }
+  );
+}
+
+export {
+  upsertEntity,
+  getProjects,
+  runInTransaction,
+  batchUpsert,
+  sequelize as db,
+  closeDatabase,
+  initDatabase,
+  clearStaleTokens,
+  getSetting,
+  setSetting,
+  syncCurrentUser,
+  syncCompanyUsers,
+  syncProjects,
+  syncProjectUsers,
+  syncCommitments,
+  syncBudgetDetails,
+  syncChangeEvents,
+  getProjectsForUser,
+  getCommitmentsForUser,
+  getBudgetDetailsForUser,
+  getChangeEventsForUser,
+  login,
+  getTokenByUserId,
+};

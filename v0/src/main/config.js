@@ -30,6 +30,9 @@ const config = {
         oauthUrl: process.env.OAUTH_URL || 'https://login-sandbox.procore.com',
         redirectUri: process.env.REDIRECT_URI,
         companyId: process.env.COMPANY_ID,
+        vendorId: process.env.VENDOR_ID,
+        initToken: process.env.INIT_TOKEN,
+        initRefToken: process.env.INIT_REF_TOKEN,
     },
     agGrid: {
         licenseKey: process.env.AG_LICENSE_KEY,
