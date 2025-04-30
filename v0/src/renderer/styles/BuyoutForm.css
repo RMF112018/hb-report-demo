@@ -1,0 +1,82 @@
+/* src/renderer/styles/BuyoutForm.module.css */
+.historyContainer {
+  height: 100%;
+  width: 100%;
+}
+
+.sectionCard {
+  padding: 24px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sectionTitle {
+  color: var(--hb-blue);
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+.fieldLabel {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+.input {
+  width: 300px;
+  /*border: 1px solid #d9d9d9;*/
+  border-radius: 4px;
+}
+
+.checkboxGroup {
+  margin-bottom: 8px;
+}
+
+.checkbox {
+  margin: 0;
+}
+
+.divider {
+  margin: 24px 0;
+}
+
+.statusCell {
+  font-weight: 500;
+}
+
+.commentsContainer {
+  padding: 16px;
+  background-color: #fff;
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+
+.commentsTitle {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.tabContent {
+  padding: 16px;
+  overflow-y: auto;
+  height: calc(100vh - 48px);
+}
+
+.fixedTabsContainer {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.fixedTabs {
+  background: #f9f9f9;
+  padding: 0 16px;
+}
+
+.buyoutFormSteps {
+  margin-bottom: 16px;
+}

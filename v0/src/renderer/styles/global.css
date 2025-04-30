@@ -8,8 +8,8 @@
 
 /* Root variables for colors and fonts */
 :root {
-    --hb-blue: #004f8c;
-    --hb-orange: #f57734;
+    --hb-blue: rgb(0, 33, 165);
+    --hb-orange: rgb(250, 70, 22);
     --content-color: #525252;
     --font-family: 'Montserrat', sans-serif;
 }
@@ -380,4 +380,96 @@ div.component-header div.component-header-actions .ant-btn:not(.create-button):n
 .ant-message-error .ant-message-notice-content {
     background-color: #ff4d4f;
     color: #fff;
+}
+
+/* Logout Modal Styling */
+.logout-modal .ant-modal-content {
+    border-radius: 8px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.logout-modal .ant-modal-body {
+    padding: 0;
+}
+
+.logout-modal-content {
+    text-align: center;
+}
+
+.logout-modal-icon {
+    font-size: 24px;
+    color: var(--hb-orange);
+    margin-bottom: 16px;
+}
+
+.logout-modal-content h2 {
+    font-family: var(--font-family);
+    font-size: 18px;
+    font-weight: 600;
+    color: #4a4a4a;
+    margin-bottom: 8px;
+}
+
+.logout-modal-content p {
+    font-family: var(--font-family);
+    font-size: 14px;
+    color: #525252;
+    margin-bottom: 24px;
+}
+
+.logout-modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+}
+
+.logout-modal-cancel {
+    font-family: var(--font-family);
+    font-size: 14px;
+    padding: 4px 16px;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    color: #4a4a4a;
+}
+
+.logout-modal-cancel:hover {
+    border-color: var(--hb-blue);
+    color: var(--hb-blue);
+}
+
+.logout-modal-confirm {
+    font-family: var(--font-family);
+    font-size: 14px;
+    padding: 4px 16px;
+    background-color: var(--hb-blue);
+    border-color: var(--hb-blue);
+    color: #fff;
+}
+
+.logout-modal-confirm:hover {
+    background-color: #003a66;
+    border-color: #003a66;
+}
+
+/* Animation for logout modal hide */
+.logout-modal .ant-modal {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.logout-modal .ant-modal-mask {
+    transition: opacity 0.3s ease;
+}
+
+.logout-modal .ant-modal-wrap {
+    transition: opacity 0.3s ease;
+}
+
+.logout-modal .ant-modal-wrap[style*="display: none"] .ant-modal {
+    opacity: 0;
+    transform: scale(0.95);
+}
+
+.logout-modal .ant-modal-wrap[style*="display: none"] .ant-modal-mask {
+    opacity: 0;
 }

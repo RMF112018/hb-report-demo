@@ -9,92 +9,120 @@ const { contextBridge, ipcRenderer } = require('electron');
 // Custom event emitter for renderer
 const listeners = new Map();
 const on = (eventName, callback) => {
-    listeners.set(eventName, callback);
-    ipcRenderer.on(eventName, (event, ...args) => callback(...args));
+  listeners.set(eventName, callback);
+  ipcRenderer.on(eventName, (event, ...args) => callback(...args));
 };
 
 // Forward backend events to renderer
 ipcRenderer.on('projects:synced', () => {
-    const callback = listeners.get('projects:synced');
-    if (callback) callback();
+  const callback = listeners.get('projects:synced');
+  if (callback) callback();
 });
 
 contextBridge.exposeInMainWorld('electronAPI', {
-    getAgGridLicense: () => ipcRenderer.invoke('get-ag-grid-license'),
-    getProjects: () => ipcRenderer.invoke('get-projects'),
-    syncProcoreProjects: () => ipcRenderer.invoke('sync-procore-projects'),
-    initiateProcoreAuth: (options) => ipcRenderer.invoke('initiate-procore-auth', options),
-    getProcoreUserData: () => ipcRenderer.invoke('get-procore-user-data'),
-    createUser: (userData) => ipcRenderer.invoke('create-user', userData),
-    completeAccountCreation: (data) => ipcRenderer.send('complete-account-creation', data),
-    cancelAccountCreation: () => ipcRenderer.send('cancel-account-creation'),
-    onProcoreUserData: (callback) => ipcRenderer.on('procore-user-data', (event, data) => callback(data)),
-    login: (email, password) => ipcRenderer.invoke('login', { email, password }),
-    getProjectsForUser: (procoreUserId) => ipcRenderer.invoke('get-projects-for-user', procoreUserId),
-    getCommitmentsForUser: (procoreUserId) => ipcRenderer.invoke('get-commitments-for-user', procoreUserId),
-    getBudgetDetailsForUser: (procoreUserId) => ipcRenderer.invoke('get-budget-details-for-user', procoreUserId),
-    getChangeEventsForUser: (procoreUserId) => ipcRenderer.invoke('get-change-events-for-user', procoreUserId),
-    tryAutoLogin: () => ipcRenderer.invoke('try-auto-login'),
-    generatePDF: (reportType, data, outputPath) => ipcRenderer.invoke('generate-pdf', { reportType, data, outputPath }),
-    getForecastingTestData: (tab) => ipcRenderer.invoke('get-forecasting-test-data', tab),
-    createForecastData: (newForecast, tab) => ipcRenderer.invoke('create-forecast-data', newForecast, tab),
-    updateForecastData: (updatedRow, tab) => ipcRenderer.invoke('update-forecast-data', updatedRow, tab),
-    deleteForecastData: (costCode, tab) => ipcRenderer.invoke('delete-forecast-data', costCode, tab),
-    getConstraintsTestData: () => ipcRenderer.invoke('get-constraints-test-data'),
-    addConstraint: (newConstraint) => ipcRenderer.invoke('add-constraint', newConstraint),
-    updateConstraint: (updatedConstraint) => ipcRenderer.invoke('update-constraint', updatedConstraint),
-    deleteConstraint: (constraintId) => ipcRenderer.invoke('delete-constraint', constraintId),
-    getResponsibilityTestData: () => ipcRenderer.invoke('get-responsibility-test-data'),
-    addResponsibility: (responsibility) => ipcRenderer.invoke('add-responsibility', responsibility),
-    updateResponsibility: (responsibility) => ipcRenderer.invoke('update-responsibility', responsibility),
-    deleteResponsibility: (responsibilityId) => ipcRenderer.invoke('delete-responsibility', responsibilityId),
-    getScheduleTestData: () => ipcRenderer.invoke('get-schedule-test-data'),
-    getPermitTestData: () => ipcRenderer.invoke('get-permit-test-data'),
-    addPermit: (permit) => ipcRenderer.invoke('add-permit', permit),
-    updatePermit: (permit) => ipcRenderer.invoke('update-permit', permit),
-    deletePermit: (permitId) => ipcRenderer.invoke('delete-permit', permitId),
-    getSubgradeData: () => ipcRenderer.invoke('get-subgrade-data'),
-    addSubgrade: (subgrade) => ipcRenderer.invoke('add-subgrade', subgrade),
-    updateSubgrade: (subgrade) => ipcRenderer.invoke('update-subgrade', subgrade),
-    deleteSubgrade: (subgradeId) => ipcRenderer.invoke('delete-subgrade', subgradeId),
-    getStaffingTestData: () => ipcRenderer.invoke('get-staffing-test-data'),
-    addStaffingActivity: (newActivity) => ipcRenderer.invoke('add-staffing-activity', newActivity),
-    updateStaffingActivity: (updatedActivity) => ipcRenderer.invoke('update-staffing-activity', updatedActivity),
-    deleteStaffingActivity: (activityId) => ipcRenderer.invoke('delete-staffing-activity', activityId),
-    updateStaffingNeeds: (staffingNeed) => ipcRenderer.invoke('update-staffing-needs', staffingNeed),
-    getManpowerTestData: () => ipcRenderer.invoke('get-manpower-test-data'),
-    addManpower: (newEntry) => ipcRenderer.invoke('add-manpower', newEntry),
-    updateManpower: (updatedEntry) => ipcRenderer.invoke('update-manpower', updatedEntry),
-    deleteManpower: (entryId) => ipcRenderer.invoke('delete-manpower', entryId),
-    // Buyout IPC handlers (already present)
-    getBuyoutTestData: () => ipcRenderer.invoke('get-buyout-test-data'),
-    addBuyout: (newBuyout) => ipcRenderer.invoke('add-buyout', newBuyout),
-    updateBuyout: (updatedBuyout) => ipcRenderer.invoke('update-buyout', updatedBuyout),
-    deleteBuyout: (buyoutNumber) => ipcRenderer.invoke('delete-buyout', buyoutNumber),
-    // Portfolio IPC handlers (newly added)
-    getPortfolioTestData: () => ipcRenderer.invoke('get-portfolio-test-data'),
-    addPortfolio: (newPortfolio) => ipcRenderer.invoke('add-portfolio', newPortfolio),
-    updatePortfolio: (updatedPortfolio) => ipcRenderer.invoke('update-portfolio', updatedPortfolio),
-    deletePortfolio: (portfolioId) => ipcRenderer.invoke('delete-portfolio', portfolioId),
-    // Dashboard handlers
-    getHealthTestData: () => ipcRenderer.invoke('get-health-test-data'),
-    // Existing utility methods
-    log: (level, message, stack) => {
-        ipcRenderer.send('log', { level, message, stack, process: 'renderer' });
-    },
-    minimize: () => ipcRenderer.send('window-minimize'),
-    maximize: () => ipcRenderer.send('window-maximize'),
-    close: () => ipcRenderer.send('window-close'),
-    on, // Expose event listener
+  // Login-related handlers (added for Create HB Report Account flow)
+  login: (credentials) => ipcRenderer.invoke('login', credentials),
+  hashPassword: (password) => ipcRenderer.invoke('hash-password', password),
+  getRememberMeData: () => ipcRenderer.invoke('get-remember-me-data'),
+  storeRememberMeData: (data) => ipcRenderer.invoke('store-remember-me-data', data),
+  clearRememberMeData: () => ipcRenderer.invoke('clear-remember-me-data'),
+  encryptPassword: (password) => ipcRenderer.invoke('encrypt-password', password),
+  decryptPassword: (encrypted) => ipcRenderer.invoke('decrypt-password', encrypted),
+  verifyEmail: (email) => ipcRenderer.invoke('verify-email', email),
+  getAuthToken: () => ipcRenderer.invoke('get-auth-token'),
+  createUser: (userData) => ipcRenderer.invoke('create-user', userData),
+  syncUsers: () => ipcRenderer.invoke('sync-users'),
+  getUserProfile: (procoreUserId, token) => {
+    // Pass the token to the main process
+    return ipcRenderer.invoke('get-user-profile', procoreUserId, token);
+  },
+  verifyEmailToken: (token) => ipcRenderer.invoke('verify-email-token', token),
+  onVerifyEmailFromLink: (callback) => ipcRenderer.on('verify-email-from-link', (event, token) => callback(token)),
+  clearToken: () => ipcRenderer.invoke('clear-token'),
+
+  // AG Grid License Registration
+  getAgGridLicense: () => ipcRenderer.invoke('get-ag-grid-license'),
+
+  // Portfolio and Projects
+  getProjects: async (procore_user_id) => {
+    const token = await ipcRenderer.invoke('get-auth-token');
+    return ipcRenderer.invoke('get-projects', { procore_user_id, token });
+  },
+  syncProcoreProjects: () => ipcRenderer.invoke('sync-procore-projects'),
+  getPortfolioTestData: () => ipcRenderer.invoke('get-portfolio-test-data'),
+  addPortfolio: (newPortfolio) => ipcRenderer.invoke('add-portfolio', newPortfolio),
+  updatePortfolio: (updatedPortfolio) => ipcRenderer.invoke('update-portfolio', updatedPortfolio),
+  deletePortfolio: (portfolioId) => ipcRenderer.invoke('delete-portfolio', portfolioId),
+
+  getHealthTestData: () => ipcRenderer.invoke('get-health-test-data'),
+
+  // Buyout and Commitments
+  getCommitments: (projectId) => ipcRenderer.invoke('get-commitments', projectId),
+  syncProjectCommitments: (projectId) => ipcRenderer.invoke('sync-project-commitments', projectId),
+  getBuyoutTestData: () => ipcRenderer.invoke('get-buyout-test-data'),
+  addBuyout: (newBuyout) => ipcRenderer.invoke('add-buyout', newBuyout),
+  updateBuyout: (updatedBuyout) => ipcRenderer.invoke('update-buyout', updatedBuyout),
+  deleteBuyout: (buyoutNumber) => ipcRenderer.invoke('delete-buyout', buyoutNumber),
+
+  // Budget and Forecasting
+  getForecastingTestData: (tab) => ipcRenderer.invoke('get-forecasting-test-data', tab),
+  createForecastData: (newForecast, tab) => ipcRenderer.invoke('create-forecast-data', newForecast, tab),
+  updateForecastData: (updatedRow, tab) => ipcRenderer.invoke('update-forecast-data', updatedRow, tab),
+  deleteForecastData: (costCode, tab) => ipcRenderer.invoke('delete-forecast-data', costCode, tab),
+  getBudgetDetails: (projectId, tab) => ipcRenderer.invoke('get-budget-details', { projectId, tab }),
+  syncProjectBudget: (projectId) => ipcRenderer.invoke('sync-project-budget', projectId),
+
+  getConstraintsTestData: () => ipcRenderer.invoke('get-constraints-test-data'),
+  addConstraint: (newConstraint) => ipcRenderer.invoke('add-constraint', newConstraint),
+  updateConstraint: (updatedConstraint) => ipcRenderer.invoke('update-constraint', updatedConstraint),
+  deleteConstraint: (constraintId) => ipcRenderer.invoke('delete-constraint', constraintId),
+
+  getResponsibilityTestData: () => ipcRenderer.invoke('get-responsibility-test-data'),
+  addResponsibility: (responsibility) => ipcRenderer.invoke('add-responsibility', responsibility),
+  updateResponsibility: (responsibility) => ipcRenderer.invoke('update-responsibility', responsibility),
+  deleteResponsibility: (responsibilityId) => ipcRenderer.invoke('delete-responsibility', responsibilityId),
+
+  getScheduleTestData: () => ipcRenderer.invoke('get-schedule-test-data'),
+
+  getPermitTestData: () => ipcRenderer.invoke('get-permit-test-data'),
+  addPermit: (permit) => ipcRenderer.invoke('add-permit', permit),
+  updatePermit: (permit) => ipcRenderer.invoke('update-permit', permit),
+  deletePermit: (permitId) => ipcRenderer.invoke('delete-permit', permitId),
+
+  getSubgradeData: () => ipcRenderer.invoke('get-subgrade-data'),
+  addSubgrade: (subgrade) => ipcRenderer.invoke('add-subgrade', subgrade),
+  updateSubgrade: (subgrade) => ipcRenderer.invoke('update-subgrade', subgrade),
+  deleteSubgrade: (subgradeId) => ipcRenderer.invoke('delete-subgrade', subgradeId),
+
+  getStaffingTestData: () => ipcRenderer.invoke('get-staffing-test-data'),
+  addStaffingActivity: (newActivity) => ipcRenderer.invoke('add-staffing-activity', newActivity),
+  updateStaffingActivity: (updatedActivity) => ipcRenderer.invoke('update-staffing-activity', updatedActivity),
+  deleteStaffingActivity: (activityId) => ipcRenderer.invoke('delete-staffing-activity', activityId),
+  updateStaffingNeeds: (staffingNeed) => ipcRenderer.invoke('update-staffing-needs', staffingNeed),
+
+  getManpowerTestData: () => ipcRenderer.invoke('get-manpower-test-data'),
+  addManpower: (newEntry) => ipcRenderer.invoke('add-manpower', newEntry),
+  updateManpower: (updatedEntry) => ipcRenderer.invoke('update-manpower', updatedEntry),
+  deleteManpower: (entryId) => ipcRenderer.invoke('delete-manpower', entryId),
+
+  // Utility methods
+  log: (level, message, stack) => {
+    ipcRenderer.send('log', { level, message, stack, process: 'renderer' });
+  },
+  minimize: () => ipcRenderer.send('window-minimize'),
+  maximize: () => ipcRenderer.send('window-maximize'),
+  close: () => ipcRenderer.send('window-close'),
+  on,
 });
+
+// Log preload initialization via IPC
+ipcRenderer.send('log', { level: 'info', message: 'Preload script loaded', process: 'preload' });
 
 process.on('uncaughtException', (err) => {
-    ipcRenderer.send('log', {
-        level: 'error',
-        message: `Preload uncaught exception: ${err.message}`,
-        stack: err.stack,
-        process: 'preload',
-    });
+  ipcRenderer.send('log', {
+    level: 'error',
+    message: 'Preload uncaught exception',
+    stack: err.stack,
+    process: 'preload',
+  });
 });
-
-console.log('Preload script loaded');

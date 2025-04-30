@@ -572,12 +572,13 @@ async function upsertEntity(table, entity, options = {}) {
 
   if (!Model || !entity) throw new Error('Invalid table or entity data');
 
-  const idField = table === 'projects' ? 'project_id' : 'id';
   let whereClause;
+  const idField = table === 'projects' ? 'project_id' : 'id';
 
   if (table === 'tokens') {
     if (!entity.user_id) throw new Error('user_id is required for tokens');
     whereClause = { user_id: entity.user_id };
+    delete entity.id; // Remove id to enforce user_id uniqueness
   } else if (table === 'project_types' || table === 'contract_types') {
     whereClause = { type: entity.type };
   } else if (table === 'hb_positions') {
@@ -618,8 +619,6 @@ async function upsertEntity(table, entity, options = {}) {
       }
     );
   }
-
-  if (entity[idField] === undefined) delete entity[idField];
 
   await Model.upsert(
     { ...entity, version, updated_at: new Date() },
@@ -1018,6 +1017,7 @@ export {
   getCommitmentsForUser,
   getBudgetDetailsForUser,
   getChangeEventsForUser,
+  User,
   login,
   getTokenByUserId,
 };

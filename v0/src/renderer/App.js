@@ -7,10 +7,10 @@
 // *Additional Reference*: https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent
 
 import React, { useState, useEffect } from 'react';
-import { LicenseManager, AllEnterpriseModule, ModuleRegistry } from 'ag-grid-enterprise';
+import { LicenseManager } from 'ag-grid-enterprise';
 import '@ant-design/v5-patch-for-react-19';
-import { Layout, Menu, Button, theme, Dropdown, Space, Badge, Avatar, Switch, Typography } from 'antd';
-import { MenuOutlined, CaretRightOutlined, CaretLeftOutlined, BellOutlined, QuestionCircleOutlined, DownOutlined, HomeOutlined, StarOutlined, PlusOutlined } from '@ant-design/icons';
+import { Layout, Menu, Button, theme, Dropdown, Space, Badge, Avatar, Switch, Typography, Modal, message } from 'antd';
+import { MenuOutlined, CaretRightOutlined, CaretLeftOutlined, BellOutlined, ExclamationCircleOutlined, QuestionCircleOutlined, DownOutlined, HomeOutlined, StarOutlined, PlusOutlined, UserOutlined, LogoutOutlined } from '@ant-design/icons';
 import HBLogo from './assets/images/HB_Logo_Large.png';
 import Login from './components/Login.js';
 import ErrorBoundary from './components/ErrorBoundary.js';
@@ -33,6 +33,7 @@ import PermitsV2 from './components/PermitsV2.js';
 import SubGrades from './components/SubGrades.js';
 import Staffing from './components/Staffing.js';
 import Manpower from './components/Manpower.js';
+import UserProfile from './components/UserProfile.js';
 import navigationManager from './utils/NavigationManager.js';
 import './styles/Components.css';
 import './styles/global.css';
@@ -43,6 +44,11 @@ const { Text } = Typography;
 
 const App = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [isLoadingProjects, setIsLoadingProjects] = useState(false);
+    const [procoreUserId, setProcoreUserId] = useState(null);
+    const [userEmail, setUserEmail] = useState(null);
+    const [userData, setUserData] = useState(null);
+    const [authView, setAuthView] = useState('login');
     const [collapsed, setCollapsed] = useState(false);
     const [activeView, setActiveView] = useState('portfolio');
     const [selectedProject, setSelectedProject] = useState(null);
@@ -52,6 +58,11 @@ const App = () => {
     const [useBeta, setUseBeta] = useState(false);
     const [navigationHistory, setNavigationHistory] = useState(['portfolio']);
     const [historyIndex, setHistoryIndex] = useState(0);
+    const [logoutModalVisible, setLogoutModalVisible] = useState(false);
+    const [projectOptions, setProjectOptions] = useState([]);
+    const [projectsData, setProjectsData] = useState([]);
+    const [appKey, setAppKey] = useState(0);
+    const [authToken, setAuthToken] = useState(null);
     const {
         token: { colorBgContainer },
     } = theme.useToken();
@@ -59,22 +70,24 @@ const App = () => {
     // Fetch and set AG Grid Enterprise license key on mount
     useEffect(() => {
         const setLicenseKey = async () => {
-            try {
-                const licenseKey = await window.electronAPI.getAgGridLicense();
-                LicenseManager.setLicenseKey(licenseKey);
-                console.log('AG Grid Enterprise license set in renderer');
-            } catch (error) {
-                console.error('Failed to set AG Grid license:', error);
+          try {
+            const licenseKey = await window.electronAPI.getAgGridLicense();
+            if (licenseKey) {
+              LicenseManager.setLicenseKey(licenseKey);
+              logger.info('AG Grid Enterprise license set successfully');
+            } else {
+              logger.warn('No AG Grid license key provided; running in Community mode');
             }
+          } catch (error) {
+            logger.error('Failed to set AG Grid license', { message: error.message, stack: error.stack });
+          }
         };
         setLicenseKey();
-    }, []);
+      }, []);
 
     // Update window width on resize
     useEffect(() => {
-        const handleResize = () => {
-            setWindowWidth(window.innerWidth);
-        };
+        const handleResize = () => setWindowWidth(window.innerWidth);
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []);
@@ -84,18 +97,15 @@ const App = () => {
         window.dispatchEvent(new Event('resize'));
     }, [activeView]);
 
-    // Register global navigation handlers
+    // Register global navigation handlers (unchanged)
     useEffect(() => {
-        // Keyboard shortcuts (inspired by Microsoft Edge)
         const keyboardShortcuts = {
             'Ctrl+1': () => handleViewChange('portfolio'),
             'Ctrl+2': () => selectedProject && handleViewChange('health-dashboard'),
             'Ctrl+3': () => selectedProject && handleViewChange('buyout'),
             'Ctrl+4': () => selectedProject && handleViewChange('forecasting'),
             'Ctrl+T': () => setProjectToolsVisible(true),
-            'Ctrl+P': () => {
-                document.querySelector('.ant-dropdown-trigger')?.focus();
-            },
+            'Ctrl+P': () => document.querySelector('.ant-dropdown-trigger')?.focus(),
             'Ctrl+S': () => console.log('Export/Save action triggered'),
             'Ctrl+Shift+C': () => setCollapsed(!collapsed),
             'Tab': () => {
@@ -106,8 +116,7 @@ const App = () => {
                 nextElement?.focus();
             },
         };
-
-        // Mouse handlers (inspired by Logitech MX Ergo and beyond)
+    
         const mouseHandlers = {
             back: () => {
                 if (historyIndex > 0) {
@@ -123,30 +132,151 @@ const App = () => {
             },
             middleClick: () => setProjectToolsVisible(!projectToolsVisible),
             gesture: (direction) => {
-                if (direction === 'right') {
-                    setCollapsed(false);
-                } else {
-                    setCollapsed(true);
-                }
+                if (direction === 'right') setCollapsed(false);
+                else setCollapsed(true);
             },
         };
-
+    
         const unregisterKeyboardShortcuts = Object.entries(keyboardShortcuts).map(([shortcut, handler]) =>
             navigationManager.registerKeyboardShortcut(shortcut, handler)
         );
-
         const unregisterMouseHandlers = Object.entries(mouseHandlers).map(([eventType, handler]) =>
             navigationManager.registerMouseHandler(eventType, handler)
         );
-
+    
         return () => {
             unregisterKeyboardShortcuts.forEach(unregister => unregister());
             unregisterMouseHandlers.forEach(unregister => unregister());
         };
     }, [historyIndex, navigationHistory, selectedProject, projectToolsVisible, collapsed]);
 
-    const handleLoginSuccess = () => {
+    useEffect(() => {
+        if (!isAuthenticated || !procoreUserId) {
+            console.log('Not fetching projects: isAuthenticated or procoreUserId missing', { isAuthenticated, procoreUserId });
+            return;
+        }
+    
+        const fetchProjects = async () => {
+            setIsLoadingProjects(true); // Assuming loading state from previous fix
+            try {
+                console.log('Fetching projects with procoreUserId:', procoreUserId);
+                const token = await window.electronAPI.getAuthToken();
+                console.log('Auth token available:', !!token);
+                if (!token) {
+                    console.error('No auth token available for fetching projects');
+                    message.error('Authentication token missing. Please log in again.');
+                    handleLogout();
+                    return;
+                }
+    
+                const projects = await window.electronAPI.getProjects(procoreUserId);
+                console.log('Fetched Projects:', projects);
+    
+                setProjectsData(projects);
+    
+                const mappedOptions = projects.map(project => {
+                    if (!project.procore_id) {
+                        console.error('Project missing procore_id:', project);
+                        return null;
+                    }
+                    if (!project.project_number || !project.name) {
+                        console.error('Project missing required fields:', project);
+                        return null;
+                    }
+                    const option = {
+                        key: project.procore_id.toString(),
+                        label: `${project.project_number} - ${project.name}`, // Updated to use project_number and name
+                        procore_id: project.procore_id,
+                        name: project.name,
+                        projectNumber: project.project_number // Updated field name
+                    };
+                    console.log('Mapped Project Option:', option);
+                    return option;
+                }).filter(Boolean);
+    
+                console.log('Final Project Options:', mappedOptions);
+                setProjectOptions(mappedOptions);
+            } catch (error) {
+                console.error('Failed to fetch projects:', error);
+                message.error('Failed to load projects. Please try again.');
+            } finally {
+                setIsLoadingProjects(false);
+            }
+        };
+    
+        fetchProjects();
+    }, [isAuthenticated, procoreUserId]);
+
+    const handleLoginSuccess = async (userId, email, token) => {
         setIsAuthenticated(true);
+        setProcoreUserId(userId);
+        setUserEmail(email);
+        setAuthToken(token); // Store token in state for debugging
+        await fetchUserData(userId);
+        setActiveView('portfolio');
+        setNavigationHistory(['portfolio']);
+        setHistoryIndex(0);
+        console.log(`Logged in with procore_user_id: ${userId}, email: ${email}, token: ${token ? 'present' : 'missing'}`);
+    };
+
+    const handleRegisterSuccess = (userId, email, nextView) => {
+        if (userId && email) {
+            setIsAuthenticated(true);
+            setProcoreUserId(userId);
+            setUserEmail(email);
+            fetchUserData(userId);
+            setActiveView('portfolio');
+            setNavigationHistory(['portfolio']);
+            setHistoryIndex(0);
+        } else if (nextView === 'login') {
+            setAuthView('login');
+        }
+    };
+
+    const fetchUserData = async (userId) => {
+        try {
+            const data = await window.electronAPI.getUserProfile(userId);
+            setUserData(data);
+        } catch (error) {
+            console.error('Failed to fetch user data:', error);
+            message.error('Failed to load user profile. Please try again later.');
+        }
+    };
+
+    const handleTokenExpired = () => {
+        setLogoutModalVisible(true); // Show the logout modal
+    };
+
+    const handleLogout = () => {
+        setLogoutModalVisible(true); // Show custom modal
+    };
+
+    const confirmLogout = () => {
+        setLogoutModalVisible(false);
+        setTimeout(() => {
+            setIsAuthenticated(false);
+            setProcoreUserId(null);
+            setUserEmail(null);
+            setUserData(null);
+            setAuthToken(null);
+            window.electronAPI.clearToken();
+            setActiveView('portfolio');
+            setSelectedProject(null);
+            setNavigationHistory(['portfolio']);
+            setHistoryIndex(0);
+            setForecastingTab('gc-gr');
+            setProjectToolsVisible(false);
+            setUseBeta(false);
+            setCollapsed(false);
+            setAuthView('login');
+            setAppKey((prev) => prev + 1);
+            console.log('User logged out due to token expiration');
+        }, 300);
+    };
+
+    const cancelLogout = () => {
+        setLogoutModalVisible(false); // Trigger animated hide
+        console.log('Logout canceled');
     };
 
     const handleViewChange = (view) => {
@@ -164,27 +294,27 @@ const App = () => {
         console.log(`New activeView: ${key}`);
     };
 
-    const handleProjectSelect = (project) => {
-        console.log(`Project selected: ${project.projectNumber} - ${project.name}`);
-        setSelectedProject(project);
+    const handleProjectSelect = (arg) => {
+        let key;
+        if (typeof arg === 'string') {
+            key = arg;
+        } else if (arg && typeof arg === 'object') {
+            key = arg.key || arg.procore_id?.toString();
+        }
+    
+        console.log('Selected key:', key);
+        const selected = projectOptions.find(p => p.key === key);
+        console.log('Selected project option:', selected);
+        if (!selected) {
+            console.error('No project found for key:', key);
+            return;
+        }
+        setSelectedProject({
+            projectNumber: selected.projectNumber, // This is now project_number from the database
+            name: selected.name,
+            procore_id: selected.procore_id
+        });
         handleViewChange('health-dashboard');
-    };
-
-    const projectPickerMenu = {
-        items: [
-            { key: 'project1', label: '21-801-01 - NORA' },
-            { key: 'project2', label: '16-999-01 - Procore Test Project' },
-            { key: 'project3', label: '23-435-01 - Tropical World Nursery Senior Living Facility' },
-        ],
-        onClick: ({ key }) => {
-            const projectMap = {
-                project1: { projectNumber: '21-801-01', name: 'NORA' },
-                project2: { projectNumber: '16-999-01', name: 'Procore Test Project' },
-                project3: { projectNumber: '23-435-01', name: 'Tropical World Nursery Senior Living Facility' },
-            };
-            const selected = projectMap[key];
-            handleProjectSelect(selected);
-        },
     };
 
     const projectToolsData = [
@@ -193,59 +323,49 @@ const App = () => {
             items: [
                 { key: 'portfolio', label: 'Portfolio' },
                 { key: 'open-items', label: 'My Open Items' },
-                ...(selectedProject
-                    ? [
-                        { key: 'health-dashboard', label: 'Project Dashboard' },
-                        { key: 'staffing', label: 'Staffing Schedule' },
-                        { key: 'subgrades', label: 'Subcontractor Score Card' },
-                    ]
-                    : []),
+                ...(selectedProject ? [
+                    { key: 'health-dashboard', label: 'Project Dashboard' },
+                    { key: 'staffing', label: 'Staffing Schedule' },
+                    { key: 'subgrades', label: 'Subcontractor Score Card' },
+                ] : []),
             ],
         },
         {
             category: 'Financial Reporting',
             items: [
                 { key: 'health-dashboard', label: 'Project Dashboard' },
-                ...(selectedProject
-                    ? [
-                        { key: 'buyout', label: 'Buyout Schedule', quickCreate: true },
-                        { key: 'forecasting', label: 'Budget Forecasting' },
-                    ]
-                    : []),
+                ...(selectedProject ? [
+                    { key: 'buyout', label: 'Buyout Schedule', quickCreate: true },
+                    { key: 'forecasting', label: 'Budget Forecasting' },
+                ] : []),
             ],
         },
         {
             category: 'Project Management',
             items: [
-                ...(selectedProject
-                    ? [
-                        { key: 'constraints', label: 'Constraints Log' },
-                        { key: 'responsibility', label: 'Responsibility Matrix' },
-                        { key: 'schedule', label: 'Schedule' },
-                        { key: 'permits', label: 'Permit Log' },
-                    ]
-                    : []),
+                ...(selectedProject ? [
+                    { key: 'constraints', label: 'Constraints Log' },
+                    { key: 'responsibility', label: 'Responsibility Matrix' },
+                    { key: 'schedule', label: 'Schedule' },
+                    { key: 'permits', label: 'Permit Log' },
+                ] : []),
             ],
         },
         {
             category: 'Field Productivity',
             items: [
-                ...(selectedProject
-                    ? [
-                        { key: 'schedule', label: 'Schedule Monitor' },
-                        { key: 'manpower', label: 'Manpower Log' },
-                    ]
-                    : []),
+                ...(selectedProject ? [
+                    { key: 'schedule', label: 'Schedule Monitor' },
+                    { key: 'manpower', label: 'Manpower Log' },
+                ] : []),
             ],
         },
         {
             category: 'Reports',
             items: [
-                ...(selectedProject
-                    ? [
-                        { key: 'reports', label: 'Monthly Reports' },
-                    ]
-                    : []),
+                ...(selectedProject ? [
+                    { key: 'reports', label: 'Monthly Reports' },
+                ] : []),
             ],
         },
     ];
@@ -281,46 +401,102 @@ const App = () => {
         </div>
     );
 
-    const projectPickerText = () => {
-        if (activeView === 'portfolio' || !selectedProject) {
-            return 'Select a Project';
-        }
-        return `${selectedProject.projectNumber} - ${selectedProject.name}`;
-    };
+    const projectPickerMenu = (
+        <Menu>
+            {/* Bold "Projects" heading */}
+            <Menu.Item
+                key="header"
+                disabled
+                style={{
+                    fontWeight: 'bold',
+                    fontSize: '16px',
+                    color: '#000',
+                    cursor: 'default',
+                    padding: '8px 16px',
+                    borderBottom: '1px solid #e8e8e8',
+                    marginBottom: '4px'
+                }}
+            >
+                Projects
+            </Menu.Item>
+            {/* Loading state */}
+            {isLoadingProjects ? (
+                <Menu.Item key="loading" disabled>
+                    Loading projects...
+                </Menu.Item>
+            ) : projectOptions.length > 0 ? (
+                projectOptions.map(option => (
+                    <Menu.Item
+                        key={option.key}
+                        onClick={() => handleProjectSelect(option)}
+                    >
+                        {option.label}
+                    </Menu.Item>
+                ))
+            ) : (
+                <Menu.Item key="no-projects" disabled>
+                    No projects available
+                </Menu.Item>
+            )}
+        </Menu>
+    );
 
     const projectToolsText = () => {
         switch (activeView) {
-            case 'portfolio':
-                return 'Portfolio';
-            case 'health-dashboard':
-                return 'Project Dashboard';
-            case 'buyout':
-                return 'Buyout Schedule';
-            case 'forecasting':
-                return 'Budget Forecasting';
-            case 'constraints':
-                return 'Constraints Log';
-            case 'open-items':
-                return 'My Open Items';
-            case 'schedule':
-                return 'Schedule Monitor';
-            case 'responsibility':
-                return 'Responsibility Matrix';
-            case 'permits':
-                return 'Permit Log';
-            case 'subgrades':
-                return 'Subcontractor Score Card';
-            case 'staffing':
-                return 'Staffing Schedule';
-            case 'manpower':
-                return 'Manpower Log';
-            default:
-                return 'Portfolio';
+            case 'portfolio': return 'Portfolio';
+            case 'health-dashboard': return 'Project Dashboard';
+            case 'buyout': return 'Buyout Schedule';
+            case 'forecasting': return 'Budget Forecasting';
+            case 'constraints': return 'Constraints Log';
+            case 'open-items': return 'My Open Items';
+            case 'schedule': return 'Schedule Monitor';
+            case 'responsibility': return 'Responsibility Matrix';
+            case 'permits': return 'Permit Log';
+            case 'subgrades': return 'Subcontractor Score Card';
+            case 'staffing': return 'Staffing Schedule';
+            case 'manpower': return 'Manpower Log';
+            default: return 'Portfolio';
         }
     };
 
+    const getAvatarInitials = () => {
+        if (userData && userData.first_name && userData.last_name) {
+            return `${userData.first_name.charAt(0)}${userData.last_name.charAt(0)}`.toUpperCase();
+        }
+        return 'HB'; // Default fallback until userData is loaded
+    };
+
+    const userMenu = {
+        items: [
+            { key: 'profile', label: 'Profile', icon: <UserOutlined /> },
+            { key: 'sign-out', label: 'Sign Out', icon: <LogoutOutlined /> },
+        ],
+        onClick: ({ key }) => {
+            if (key === 'profile') {
+                if (!userData && procoreUserId) {
+                    fetchUserData(procoreUserId);
+                }
+                handleViewChange('user-profile');
+            } else if (key === 'sign-out') {
+                handleLogout();
+            }
+        },
+    };
+
+    if (!isAuthenticated) {
+        return authView === 'login' ? (
+            <Login onLoginSuccess={handleLoginSuccess} onSwitchToRegister={() => setAuthView('register')} />
+        ) : (
+            <Register onRegisterSuccess={handleRegisterSuccess} />
+        );
+    }
+
+    const projectPickerText = () =>
+        activeView === 'portfolio' || !selectedProject
+            ? 'Select a Project'
+            : `${selectedProject.projectNumber} - ${selectedProject.name}`;
+
     const renderContent = () => {
-        console.log(`Rendering content for activeView: ${activeView}`);
         switch (activeView) {
             case 'portfolio':
                 return (
@@ -336,6 +512,9 @@ const App = () => {
                                     ),
                                     actions: null,
                                 }}
+                                procoreUserId={procoreUserId}
+                                onTokenExpired={handleTokenExpired}
+                                projectsData={projectsData} // Pass full projects data
                             />
                         ) : (
                             <Portfolio
@@ -352,11 +531,20 @@ const App = () => {
                         )}
                     </ErrorBoundary>
                 );
+            case 'user-profile':
+                return (
+                    <ErrorBoundary>
+                        <UserProfile
+                            userData={userData}
+                            onClose={() => handleViewChange(navigationHistory[historyIndex - 1] || 'portfolio')}
+                        />
+                    </ErrorBoundary>
+                );
             case 'health-dashboard':
                 return (
                     <ErrorBoundary>
                         {useBeta ? (
-                            <ProjectDashboardV2
+                            <ProjectDashboard
                                 selectedProject={selectedProject}
                                 headerContent={{
                                     title: (
@@ -379,9 +567,7 @@ const App = () => {
                                             <li>
                                                 <Dropdown
                                                     menu={{
-                                                        items: [
-                                                            { key: 'additional-tab', label: 'Additional Tab' },
-                                                        ],
+                                                        items: [{ key: 'additional-tab', label: 'Additional Tab' }],
                                                         onClick: ({ key }) => console.log(`Navigate to ${key}`),
                                                     }}
                                                     trigger={['click']}
@@ -419,9 +605,7 @@ const App = () => {
                                             <li>
                                                 <Dropdown
                                                     menu={{
-                                                        items: [
-                                                            { key: 'additional-tab', label: 'Additional Tab' },
-                                                        ],
+                                                        items: [{ key: 'additional-tab', label: 'Additional Tab' }],
                                                         onClick: ({ key }) => console.log(`Navigate to ${key}`),
                                                     }}
                                                     trigger={['click']}
@@ -433,25 +617,10 @@ const App = () => {
                                             </li>
                                         </ul>
                                     ),
-                                    createOptions: [
-                                        { key: 'buyout', label: 'New Buyout' },
-                                    ],
-                                    onCreateClick: (option) => {
-                                        console.log(`Create ${option.label}`);
-                                    },
-                                    onExport: (type) => {
-                                        if (type === 'all') {
-                                            console.log('Export to PDF');
-                                        } else if (type === 'csv') {
-                                            console.log('Export to CSV');
-                                        } else {
-                                            console.log(`Export by role: ${type}`);
-                                        }
-                                    },
-                                    exportRoleOptions: [
-                                        { key: 'csv', label: 'CSV' },
-                                        { key: 'pdf', label: 'PDF' },
-                                    ],
+                                    createOptions: [{ key: 'buyout', label: 'New Buyout' }],
+                                    onCreateClick: (option) => console.log(`Create ${option.label}`),
+                                    onExport: (type) => console.log(`Export ${type}`),
+                                    exportRoleOptions: [{ key: 'csv', label: 'CSV' }, { key: 'pdf', label: 'PDF' }],
                                     buttonSize: 'default',
                                 }}
                             />
@@ -463,7 +632,7 @@ const App = () => {
                     <ErrorBoundary>
                         {useBeta ? (
                             <BuyoutV2
-                                selectedProject={selectedProject}
+                                selectedProject={selectedProject} // Pass full selectedProject with procore_id
                                 headerContent={{
                                     title: (
                                         <h1 style={{ fontSize: '28px', fontWeight: 700, color: 'var(--hb-blue)', marginBottom: 0 }}>
@@ -485,9 +654,7 @@ const App = () => {
                                             <li>
                                                 <Dropdown
                                                     menu={{
-                                                        items: [
-                                                            { key: 'additional-tab', label: 'Additional Tab' },
-                                                        ],
+                                                        items: [{ key: 'additional-tab', label: 'Additional Tab' }],
                                                         onClick: ({ key }) => console.log(`Navigate to ${key}`),
                                                     }}
                                                     trigger={['click']}
@@ -525,9 +692,7 @@ const App = () => {
                                             <li>
                                                 <Dropdown
                                                     menu={{
-                                                        items: [
-                                                            { key: 'additional-tab', label: 'Additional Tab' },
-                                                        ],
+                                                        items: [{ key: 'additional-tab', label: 'Additional Tab' }],
                                                         onClick: ({ key }) => console.log(`Navigate to ${key}`),
                                                     }}
                                                     trigger={['click']}
@@ -539,25 +704,10 @@ const App = () => {
                                             </li>
                                         </ul>
                                     ),
-                                    createOptions: [
-                                        { key: 'buyout', label: 'New Buyout' },
-                                    ],
-                                    onCreateClick: (option) => {
-                                        console.log(`Create ${option.label}`);
-                                    },
-                                    onExport: (type) => {
-                                        if (type === 'all') {
-                                            console.log('Export to PDF');
-                                        } else if (type === 'csv') {
-                                            console.log('Export to CSV');
-                                        } else {
-                                            console.log(`Export by role: ${type}`);
-                                        }
-                                    },
-                                    exportRoleOptions: [
-                                        { key: 'csv', label: 'CSV' },
-                                        { key: 'pdf', label: 'PDF' },
-                                    ],
+                                    createOptions: [{ key: 'buyout', label: 'New Buyout' }],
+                                    onCreateClick: (option) => console.log(`Create ${option.label}`),
+                                    onExport: (type) => console.log(`Export ${type}`),
+                                    exportRoleOptions: [{ key: 'csv', label: 'CSV' }, { key: 'pdf', label: 'PDF' }],
                                     buttonSize: 'default',
                                 }}
                             />
@@ -572,11 +722,9 @@ const App = () => {
                                 selectedProject={selectedProject}
                                 headerContent={{
                                     title: (
-                                        <>
-                                            <h1 style={{ fontSize: '28px', fontWeight: 700, color: 'var(--hb-blue)', marginBottom: 0 }}>
-                                                Budget Forecasting (Beta)
-                                            </h1>
-                                        </>
+                                        <h1 style={{ fontSize: '28px', fontWeight: 700, color: 'var(--hb-blue)', marginBottom: 0 }}>
+                                            Budget Forecasting (Beta)
+                                        </h1>
                                     ),
                                     tabs: [
                                         { key: 'gc-gr', label: 'GC & GR' },
@@ -593,7 +741,7 @@ const App = () => {
                                                 }}
                                                 trigger={['click']}
                                             >
-                                                <Button aria-label="Export" aria-expanded="false" aria-haspopup="menu">
+                                                <Button aria-label="Export">
                                                     Export <DownOutlined />
                                                 </Button>
                                             </Dropdown>
@@ -608,11 +756,9 @@ const App = () => {
                                 selectedProject={selectedProject}
                                 headerContent={{
                                     title: (
-                                        <>
-                                            <h1 style={{ fontSize: '28px', fontWeight: 700, color: 'var(--hb-blue)', marginBottom: 0 }}>
-                                                Budget Forecasting
-                                            </h1>
-                                        </>
+                                        <h1 style={{ fontSize: '28px', fontWeight: 700, color: 'var(--hb-blue)', marginBottom: 0 }}>
+                                            Budget Forecasting
+                                        </h1>
                                     ),
                                     tabs: [
                                         { key: 'gc-gr', label: 'GC & GR' },
@@ -629,7 +775,7 @@ const App = () => {
                                                 }}
                                                 trigger={['click']}
                                             >
-                                                <Button aria-label="Export" aria-expanded="false" aria-haspopup="menu">
+                                                <Button aria-label="Export">
                                                     Export <DownOutlined />
                                                 </Button>
                                             </Dropdown>
@@ -650,11 +796,9 @@ const App = () => {
                                 selectedProject={selectedProject}
                                 headerContent={{
                                     title: (
-                                        <>
-                                            <h1 style={{ fontSize: '28px', fontWeight: 700, color: 'var(--hb-blue)', marginBottom: 0 }}>
-                                                Constraints (Beta)
-                                            </h1>
-                                        </>
+                                        <h1 style={{ fontSize: '28px', fontWeight: 700, color: 'var(--hb-blue)', marginBottom: 0 }}>
+                                            Constraints (Beta)
+                                        </h1>
                                     ),
                                     actions: (
                                         <Space>
@@ -667,7 +811,7 @@ const App = () => {
                                                 }}
                                                 trigger={['click']}
                                             >
-                                                <Button aria-label="Export" aria-expanded="false" aria-haspopup="menu">
+                                                <Button aria-label="Export">
                                                     Export <DownOutlined />
                                                 </Button>
                                             </Dropdown>
@@ -680,11 +824,9 @@ const App = () => {
                                 selectedProject={selectedProject}
                                 headerContent={{
                                     title: (
-                                        <>
-                                            <h1 style={{ fontSize: '28px', fontWeight: 700, color: 'var(--hb-blue)', marginBottom: 0 }}>
-                                                Constraints
-                                            </h1>
-                                        </>
+                                        <h1 style={{ fontSize: '28px', fontWeight: 700, color: 'var(--hb-blue)', marginBottom: 0 }}>
+                                            Constraints
+                                        </h1>
                                     ),
                                     actions: (
                                         <Space>
@@ -697,7 +839,7 @@ const App = () => {
                                                 }}
                                                 trigger={['click']}
                                             >
-                                                <Button aria-label="Export" aria-expanded="false" aria-haspopup="menu">
+                                                <Button aria-label="Export">
                                                     Export <DownOutlined />
                                                 </Button>
                                             </Dropdown>
@@ -716,16 +858,10 @@ const App = () => {
                                 selectedProject={selectedProject}
                                 headerContent={{
                                     title: (
-                                        <>
-                                            <h1 style={{ fontSize: '28px', fontWeight: 700, color: 'var(--hb-blue)', marginBottom: 0 }}>
-                                                Budget Forecasting (Beta)
-                                            </h1>
-                                        </>
+                                        <h1 style={{ fontSize: '28px', fontWeight: 700, color: 'var(--hb-blue)', marginBottom: 0 }}>
+                                            Responsibility Matrix (Beta)
+                                        </h1>
                                     ),
-                                    tabs: [
-                                        { key: 'gc-gr', label: 'GC & GR' },
-                                        { key: 'owner-billing', label: 'Owner Billing' },
-                                    ],
                                     actions: (
                                         <Space>
                                             <Dropdown
@@ -737,31 +873,23 @@ const App = () => {
                                                 }}
                                                 trigger={['click']}
                                             >
-                                                <Button aria-label="Export" aria-expanded="false" aria-haspopup="menu">
+                                                <Button aria-label="Export">
                                                     Export <DownOutlined />
                                                 </Button>
                                             </Dropdown>
                                         </Space>
                                     ),
                                 }}
-                                activeTab={forecastingTab}
-                                onTabChange={(key) => setForecastingTab(key)}
                             />
                         ) : (
                             <Responsibility
                                 selectedProject={selectedProject}
                                 headerContent={{
                                     title: (
-                                        <>
-                                            <h1 style={{ fontSize: '28px', fontWeight: 700, color: 'var(--hb-blue)', marginBottom: 0 }}>
-                                                Budget Forecasting
-                                            </h1>
-                                        </>
+                                        <h1 style={{ fontSize: '28px', fontWeight: 700, color: 'var(--hb-blue)', marginBottom: 0 }}>
+                                            Responsibility Matrix
+                                        </h1>
                                     ),
-                                    tabs: [
-                                        { key: 'gc-gr', label: 'GC & GR' },
-                                        { key: 'owner-billing', label: 'Owner Billing' },
-                                    ],
                                     actions: (
                                         <Space>
                                             <Dropdown
@@ -773,15 +901,13 @@ const App = () => {
                                                 }}
                                                 trigger={['click']}
                                             >
-                                                <Button aria-label="Export" aria-expanded="false" aria-haspopup="menu">
+                                                <Button aria-label="Export">
                                                     Export <DownOutlined />
                                                 </Button>
                                             </Dropdown>
                                         </Space>
                                     ),
                                 }}
-                                activeTab={forecastingTab}
-                                onTabChange={(key) => setForecastingTab(key)}
                             />
                         )}
                     </ErrorBoundary>
@@ -794,11 +920,9 @@ const App = () => {
                                 selectedProject={selectedProject}
                                 headerContent={{
                                     title: (
-                                        <>
-                                            <h1 style={{ fontSize: '28px', fontWeight: 700, color: 'var(--hb-blue)', marginBottom: 0 }}>
-                                                Permit Log (Beta)
-                                            </h1>
-                                        </>
+                                        <h1 style={{ fontSize: '28px', fontWeight: 700, color: 'var(--hb-blue)', marginBottom: 0 }}>
+                                            Schedule Monitor (Beta)
+                                        </h1>
                                     ),
                                     actions: (
                                         <Space>
@@ -811,7 +935,7 @@ const App = () => {
                                                 }}
                                                 trigger={['click']}
                                             >
-                                                <Button aria-label="Export" aria-expanded="false" aria-haspopup="menu">
+                                                <Button aria-label="Export">
                                                     Export <DownOutlined />
                                                 </Button>
                                             </Dropdown>
@@ -824,11 +948,9 @@ const App = () => {
                                 selectedProject={selectedProject}
                                 headerContent={{
                                     title: (
-                                        <>
-                                            <h1 style={{ fontSize: '28px', fontWeight: 700, color: 'var(--hb-blue)', marginBottom: 0 }}>
-                                                Permit Log
-                                            </h1>
-                                        </>
+                                        <h1 style={{ fontSize: '28px', fontWeight: 700, color: 'var(--hb-blue)', marginBottom: 0 }}>
+                                            Schedule Monitor
+                                        </h1>
                                     ),
                                     actions: (
                                         <Space>
@@ -841,7 +963,7 @@ const App = () => {
                                                 }}
                                                 trigger={['click']}
                                             >
-                                                <Button aria-label="Export" aria-expanded="false" aria-haspopup="menu">
+                                                <Button aria-label="Export">
                                                     Export <DownOutlined />
                                                 </Button>
                                             </Dropdown>
@@ -860,11 +982,9 @@ const App = () => {
                                 selectedProject={selectedProject}
                                 headerContent={{
                                     title: (
-                                        <>
-                                            <h1 style={{ fontSize: '28px', fontWeight: 700, color: 'var(--hb-blue)', marginBottom: 0 }}>
-                                                Permit Log (Beta)
-                                            </h1>
-                                        </>
+                                        <h1 style={{ fontSize: '28px', fontWeight: 700, color: 'var(--hb-blue)', marginBottom: 0 }}>
+                                            Permit Log (Beta)
+                                        </h1>
                                     ),
                                     actions: (
                                         <Space>
@@ -877,7 +997,7 @@ const App = () => {
                                                 }}
                                                 trigger={['click']}
                                             >
-                                                <Button aria-label="Export" aria-expanded="false" aria-haspopup="menu">
+                                                <Button aria-label="Export">
                                                     Export <DownOutlined />
                                                 </Button>
                                             </Dropdown>
@@ -890,11 +1010,9 @@ const App = () => {
                                 selectedProject={selectedProject}
                                 headerContent={{
                                     title: (
-                                        <>
-                                            <h1 style={{ fontSize: '28px', fontWeight: 700, color: 'var(--hb-blue)', marginBottom: 0 }}>
-                                                Permit Log
-                                            </h1>
-                                        </>
+                                        <h1 style={{ fontSize: '28px', fontWeight: 700, color: 'var(--hb-blue)', marginBottom: 0 }}>
+                                            Permit Log
+                                        </h1>
                                     ),
                                     actions: (
                                         <Space>
@@ -907,7 +1025,7 @@ const App = () => {
                                                 }}
                                                 trigger={['click']}
                                             >
-                                                <Button aria-label="Export" aria-expanded="false" aria-haspopup="menu">
+                                                <Button aria-label="Export">
                                                     Export <DownOutlined />
                                                 </Button>
                                             </Dropdown>
@@ -925,11 +1043,9 @@ const App = () => {
                             selectedProject={selectedProject}
                             headerContent={{
                                 title: (
-                                    <>
-                                        <h1 style={{ fontSize: '28px', fontWeight: 700, color: 'var(--hb-blue)', marginBottom: 0 }}>
-                                            Subcontractor Score Card
-                                        </h1>
-                                    </>
+                                    <h1 style={{ fontSize: '28px', fontWeight: 700, color: 'var(--hb-blue)', marginBottom: 0 }}>
+                                        Subcontractor Score Card
+                                    </h1>
                                 ),
                                 actions: (
                                     <Space>
@@ -942,7 +1058,7 @@ const App = () => {
                                             }}
                                             trigger={['click']}
                                         >
-                                            <Button aria-label="Export" aria-expanded="false" aria-haspopup="menu">
+                                            <Button aria-label="Export">
                                                 Export <DownOutlined />
                                             </Button>
                                         </Dropdown>
@@ -959,11 +1075,9 @@ const App = () => {
                             selectedProject={selectedProject}
                             headerContent={{
                                 title: (
-                                    <>
-                                        <h1 style={{ fontSize: '28px', fontWeight: 700, color: 'var(--hb-blue)', marginBottom: 0 }}>
-                                            Staffing Schedule
-                                        </h1>
-                                    </>
+                                    <h1 style={{ fontSize: '28px', fontWeight: 700, color: 'var(--hb-blue)', marginBottom: 0 }}>
+                                        Staffing Schedule
+                                    </h1>
                                 ),
                                 actions: (
                                     <Space>
@@ -976,7 +1090,7 @@ const App = () => {
                                             }}
                                             trigger={['click']}
                                         >
-                                            <Button aria-label="Export" aria-expanded="false" aria-haspopup="menu">
+                                            <Button aria-label="Export">
                                                 Export <DownOutlined />
                                             </Button>
                                         </Dropdown>
@@ -993,11 +1107,9 @@ const App = () => {
                             selectedProject={selectedProject}
                             headerContent={{
                                 title: (
-                                    <>
-                                        <h1 style={{ fontSize: '28px', fontWeight: 700, color: 'var(--hb-blue)', marginBottom: 0 }}>
-                                            Manpower Log
-                                        </h1>
-                                    </>
+                                    <h1 style={{ fontSize: '28px', fontWeight: 700, color: 'var(--hb-blue)', marginBottom: 0 }}>
+                                        Manpower Log
+                                    </h1>
                                 ),
                             }}
                         />
@@ -1019,11 +1131,9 @@ const App = () => {
                             onProjectSelect={handleProjectSelect}
                             headerContent={{
                                 title: (
-                                    <>
-                                        <h1 style={{ fontSize: '28px', fontWeight: 700, color: 'var(--hb-blue)', marginBottom: 0 }}>
-                                            Portfolio
-                                        </h1>
-                                    </>
+                                    <h1 style={{ fontSize: '28px', fontWeight: 700, color: 'var(--hb-blue)', marginBottom: 0 }}>
+                                        Portfolio
+                                    </h1>
                                 ),
                                 actions: null,
                             }}
@@ -1036,7 +1146,7 @@ const App = () => {
     const hideSidebar = ['buyout', 'forecasting', 'constraints', 'responsibility', 'schedule', 'permits', 'staffing'].includes(activeView);
 
     if (!isAuthenticated) {
-        return <Login onLoginSuccess={handleLoginSuccess} />;
+        return <Login onLoginSuccess={(userId, email) => handleLoginSuccess(userId, email)} />;
     }
 
     return (
@@ -1063,22 +1173,13 @@ const App = () => {
                             setSelectedProject(null);
                             handleViewChange('portfolio');
                         }}
-                        style={{
-                            padding: '0 8px',
-                            height: 40,
-                            lineHeight: '46.8px',
-                        }}
+                        style={{ padding: '0 8px', height: 40, lineHeight: '46.8px' }}
                     />
-                    <img
-                        src={HBLogo}
-                        alt="HB Report Logo"
-                        style={{
-                            height: 32,
-                            marginRight: 8,
-                            verticalAlign: 'middle',
-                        }}
-                    />
-                    <Dropdown menu={projectPickerMenu} trigger={['click']}>
+                    <img src={HBLogo} alt="HB Report Logo" style={{ height: 32, marginRight: 8, verticalAlign: 'middle' }} />
+                    <Dropdown
+                        overlay={projectPickerMenu}
+                        trigger={['click']}
+                    >
                         <div
                             style={{
                                 color: '#fff',
@@ -1094,30 +1195,10 @@ const App = () => {
                                 width: 240,
                             }}
                         >
-                            <div
-                                style={{
-                                    fontSize: '9px',
-                                    lineHeight: '1.1',
-                                    opacity: 0.8,
-                                    whiteSpace: 'nowrap',
-                                    overflow: 'hidden',
-                                    textOverflow: 'ellipsis',
-                                }}
-                            >
+                            <div style={{ fontSize: '9px', lineHeight: '1.1', opacity: 0.8, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                                 HB Report
                             </div>
-                            <div
-                                style={{
-                                    fontSize: '12px',
-                                    fontWeight: 500,
-                                    lineHeight: '1.1',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    whiteSpace: 'nowrap',
-                                    overflow: 'hidden',
-                                    textOverflow: 'ellipsis',
-                                }}
-                            >
+                            <div style={{ fontSize: '12px', fontWeight: 500, lineHeight: '1.1', display: 'flex', alignItems: 'center', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                                 {projectPickerText()}
                                 <DownOutlined style={{ marginLeft: 4, fontSize: 10 }} />
                             </div>
@@ -1146,30 +1227,10 @@ const App = () => {
                                 minWidth: 260,
                             }}
                         >
-                            <div
-                                style={{
-                                    fontSize: '9px',
-                                    lineHeight: '1.1',
-                                    opacity: 0.8,
-                                    whiteSpace: 'nowrap',
-                                    overflow: 'hidden',
-                                    textOverflow: 'ellipsis',
-                                }}
-                            >
+                            <div style={{ fontSize: '9px', lineHeight: '1.1', opacity: 0.8, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                                 Project Tools
                             </div>
-                            <div
-                                style={{
-                                    fontSize: '12px',
-                                    fontWeight: 500,
-                                    lineHeight: '1.1',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    whiteSpace: 'nowrap',
-                                    overflow: 'hidden',
-                                    textOverflow: 'ellipsis',
-                                }}
-                            >
+                            <div style={{ fontSize: '12px', fontWeight: 500, lineHeight: '1.1', display: 'flex', alignItems: 'center', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                                 {projectToolsText()}
                                 <DownOutlined style={{ marginLeft: 4, fontSize: 10 }} />
                             </div>
@@ -1189,38 +1250,17 @@ const App = () => {
                             />
                         </Space>
                     )}
-                    <QuestionCircleOutlined
-                        style={{
-                            color: '#fff',
-                            fontSize: 18,
-                            verticalAlign: 'middle',
-                        }}
-                        onClick={() => console.log('Help clicked')}
-                    />
+                    <QuestionCircleOutlined style={{ color: '#fff', fontSize: 18, verticalAlign: 'middle' }} onClick={() => console.log('Help clicked')} />
                     <Badge count={3} offset={[0, 0]} size="small">
-                        <BellOutlined
-                            style={{
-                                color: '#fff',
-                                fontSize: 18,
-                                verticalAlign: 'middle',
-                            }}
-                            onClick={() => console.log('Notifications clicked')}
-                        />
+                        <BellOutlined style={{ color: '#fff', fontSize: 18, verticalAlign: 'middle' }} onClick={() => console.log('Notifications clicked')} />
                     </Badge>
-                    <Avatar
-                        style={{
-                            backgroundColor: '#fff',
-                            color: '#000',
-                            fontSize: 12,
-                            width: 24,
-                            height: 24,
-                            lineHeight: '24px',
-                            verticalAlign: 'middle',
-                        }}
-                        onClick={() => console.log('User profile clicked')}
-                    >
-                        BF
-                    </Avatar>
+                    <Dropdown menu={userMenu} trigger={['click']}>
+                        <Avatar
+                            style={{ backgroundColor: '#fff', color: '#000', fontSize: 12, width: 24, height: 24, lineHeight: '24px', verticalAlign: 'middle', cursor: 'pointer' }}
+                        >
+                            {getAvatarInitials()}
+                        </Avatar>
+                    </Dropdown>
                 </Space>
             </Header>
 
@@ -1255,12 +1295,7 @@ const App = () => {
                             transition: 'width 0.2s',
                         }}
                     >
-                        <div
-                            style={{
-                                height: 'calc(100% - 40px)',
-                                overflowY: 'auto',
-                            }}
-                        >
+                        <div style={{ height: 'calc(100% - 40px)', overflowY: 'auto' }}>
                             <Menu
                                 mode="inline"
                                 defaultSelectedKeys={['active']}
@@ -1289,11 +1324,7 @@ const App = () => {
                                 background: colorBgContainer,
                             }}
                         >
-                            <Button
-                                type="text"
-                                onClick={() => setCollapsed(!collapsed)}
-                                style={{ width: '100%' }}
-                            >
+                            <Button type="text" onClick={() => setCollapsed(!collapsed)} style={{ width: '100%' }}>
                                 {collapsed ? (
                                     <>
                                         <CaretLeftOutlined /> Expand Sidebar
@@ -1321,6 +1352,28 @@ const App = () => {
             >
                 <span>Powered by HB Report ©{new Date().getFullYear()}</span>
             </Footer>
+            <Modal
+                visible={logoutModalVisible}
+                onCancel={cancelLogout}
+                footer={null}
+                className="logout-modal"
+                closable={false}
+                centered
+            >
+                <div className="logout-modal-content">
+                    <ExclamationCircleOutlined className="logout-modal-icon" />
+                    <h2>Confirm Logout</h2>
+                    <p>Are you sure you want to sign out of HB Report?</p>
+                    <div className="logout-modal-buttons">
+                        <Button onClick={cancelLogout} className="logout-modal-cancel">
+                            No, Stay Logged In
+                        </Button>
+                        <Button type="primary" onClick={confirmLogout} className="logout-modal-confirm">
+                            Yes, Sign Out
+                        </Button>
+                    </div>
+                </div>
+            </Modal>
         </Layout>
     );
 };

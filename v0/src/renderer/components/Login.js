@@ -1,18 +1,19 @@
 // src/renderer/components/Login.js
-// Login component for HB Report with email verification, password setup, and dev-only user sync
-// Import this component in App.jsx to render the login screen
+// Login component with fixed state management for create-user workflow, including email verification and "Remember Me" functionality
+// Import in App.jsx to render the login screen
 // Reference: https://ant.design/components/input#api
+// Reference: https://ant.design/components/switch#api
 
-import React, { useState } from 'react';
-import { Button, Input, message, Space, Typography, Radio } from 'antd';
+import React, { useState, useEffect } from 'react';
+import { Button, Input, message, Space, Typography, Switch } from 'antd';
 import logger from '../utils/logger.js';
 import HBLogo from '../assets/images/HB_Logo_Large.png';
 import '../styles/Login.css';
 
 const { Text, Link } = Typography;
-const isDev = process.env.NODE_ENV === 'development'; // Check for dev environment
+const isDev = process.env.NODE_ENV === 'development';
 
-const Login = ({ onLoginSuccess }) => {
+const Login = ({ onLoginSuccess, onSwitchToRegister }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
@@ -24,13 +25,37 @@ const Login = ({ onLoginSuccess }) => {
   const [emailVerified, setEmailVerified] = useState(null);
   const [procoreUserId, setProcoreUserId] = useState(null);
   const [emailMessage, setEmailMessage] = useState('');
+  const [verificationStep, setVerificationStep] = useState('input');
 
   const handleLogin = async () => {
     setLoading(true);
     try {
-      const procoreUserId = await window.electronAPI.login({ email: username, password });
-      logger.info('Login successful', { procoreUserId });
-      onLoginSuccess(procoreUserId);
+      const result = await window.electronAPI.login({ email: username, password });
+      logger.info('Login successful', { procoreUserId: result.procore_user_id });
+      onLoginSuccess(result.procore_user_id, username, result.token);
+
+      if (rememberMe) {
+        try {
+          const encryptedPassword = await window.electronAPI.encryptPassword(password);
+          const timestamp = Date.now();
+          await window.electronAPI.storeRememberMeData({
+            email: username,
+            password: encryptedPassword,
+            timestamp,
+          });
+          logger.info('Stored Remember Me data', { email: username });
+        } catch (storageError) {
+          logger.error('Failed to store Remember Me data', { message: storageError.message });
+          message.warning('Login succeeded, but "Remember Me" data could not be saved.');
+        }
+      } else {
+        try {
+          await window.electronAPI.clearRememberMeData();
+          logger.info('Cleared Remember Me data');
+        } catch (clearError) {
+          logger.error('Failed to clear Remember Me data', { message: clearError.message });
+        }
+      }
     } catch (error) {
       logger.error('Login failed', { message: error.message });
       message.error('Login failed');
@@ -39,13 +64,83 @@ const Login = ({ onLoginSuccess }) => {
     }
   };
 
+  useEffect(() => {
+    const loadRememberMeData = async () => {
+      try {
+        const data = await window.electronAPI.getRememberMeData();
+        if (!data) {
+          logger.debug('No Remember Me data found');
+          return;
+        }
+        const { email, password, timestamp } = data;
+        if (!email || !password || !timestamp) {
+          logger.warn('Invalid Remember Me data format', { data });
+          await window.electronAPI.clearRememberMeData();
+          return;
+        }
+
+        const now = Date.now();
+        const thirtyDaysInMs = 30 * 24 * 60 * 60 * 1000;
+        if (now - timestamp < thirtyDaysInMs) {
+          setUsername(email);
+          try {
+            const decryptedPassword = await window.electronAPI.decryptPassword(password);
+            setPassword(decryptedPassword);
+            setRememberMe(true);
+            logger.info('Loaded Remember Me data successfully', { email });
+
+            try {
+              const result = await window.electronAPI.login({ email, password: decryptedPassword });
+              logger.debug('Remember Me credentials validated', { procoreUserId: result.procore_user_id });
+            } catch (loginError) {
+              logger.error('Remember Me credentials invalid, clearing data', { message: loginError.message });
+              await window.electronAPI.clearRememberMeData();
+              setUsername('');
+              setPassword('');
+              setRememberMe(false);
+              message.warning('Stored credentials are invalid and have been cleared. Please log in again.');
+            }
+          } catch (decryptError) {
+            logger.error('Failed to decrypt Remember Me password', { message: decryptError.message });
+            await window.electronAPI.clearRememberMeData();
+            setUsername('');
+            setPassword('');
+            setRememberMe(false);
+            message.warning('Failed to decrypt stored password. Please log in again.');
+          }
+        } else {
+          logger.info('Remember Me data expired', { timestamp });
+          await window.electronAPI.clearRememberMeData();
+        }
+      } catch (error) {
+        logger.error('Failed to load Remember Me data', { message: error.message });
+      }
+    };
+    loadRememberMeData();
+
+    window.electronAPI.onVerifyEmailFromLink((token) => {
+      handleVerifyToken(token);
+    });
+
+    return () => {};
+  }, []);
+
   const handleCreateAccount = () => {
     setCreateMode(true);
+    setVerificationStep('input');
     setEmailVerified(null);
+    setProcoreUserId(null);
     setEmailMessage('');
+    setEmail('');
+    setNewPassword('');
+    setConfirmPassword('');
   };
 
   const handleVerifyEmail = async () => {
+    if (!email) {
+      message.error('Please enter an email address');
+      return;
+    }
     setLoading(true);
     try {
       const result = await window.electronAPI.verifyEmail(email);
@@ -61,36 +156,67 @@ const Login = ({ onLoginSuccess }) => {
         setEmailVerified(true);
         setProcoreUserId(result.procore_user_id);
         setEmailMessage('');
-        message.success('Email verified, please set your password');
+        message.success('Email found! Please proceed to create your account.');
+        setVerificationStep('setup');
       }
     } catch (error) {
       logger.error('Email verification failed', { message: error.message });
-      message.error('Email verification failed');
+      message.error(error.message || 'Failed to verify email address');
     } finally {
       setLoading(false);
     }
   };
 
-  const handleCompleteSetup = async () => {
+  const handleSendVerificationEmail = async () => {
     if (newPassword !== confirmPassword) {
       message.error('Passwords do not match');
       return;
     }
+    if (!procoreUserId || !email) {
+      message.error('Missing email or user ID from verification');
+      logger.error('Incomplete data for account creation', { procoreUserId, email });
+      return;
+    }
     setLoading(true);
     try {
-      await window.electronAPI.createUser({ procore_user_id: procoreUserId, email, password: newPassword });
-      logger.info('Account created successfully', { procore_user_id: procoreUserId, email });
-      message.success('Account created successfully');
-      onLoginSuccess(procoreUserId);
+      const payload = { procore_user_id: procoreUserId, email, password: newPassword };
+      logger.debug('Sending verification email with payload', payload);
+      const result = await window.electronAPI.createUser(payload);
+      logger.info('Verification email sent', { procore_user_id: procoreUserId, email });
+      message.success(result.message);
+      setVerificationStep('verify');
     } catch (error) {
-      logger.error('Account creation failed', { message: error.message });
-      message.error('Account creation failed');
+      logger.error('Failed to send verification email', { message: error.message });
+      message.error(error.message || 'Failed to send verification email');
     } finally {
       setLoading(false);
     }
   };
 
-  const handleSyncUsers = async () => { // New handler
+  const handleVerifyToken = async (token) => {
+    setLoading(true);
+    try {
+      const result = await window.electronAPI.verifyEmailToken(token);
+      logger.info('Email verified successfully', { procore_user_id: result.procore_user_id });
+      message.success('Email verified! You can now log in.');
+      setCreateMode(false);
+      setVerificationStep('input');
+      setEmailVerified(null);
+      setProcoreUserId(null);
+      setEmailMessage('');
+      setEmail('');
+      setNewPassword('');
+      setConfirmPassword('');
+      onLoginSuccess(result.procore_user_id, email, null);
+    } catch (error) {
+      logger.error('Token verification failed', { message: error.message });
+      message.error(error.message || 'Verification failed');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleSyncUsers = async () => {
     setLoading(true);
     try {
       await window.electronAPI.syncUsers();
@@ -109,6 +235,17 @@ const Login = ({ onLoginSuccess }) => {
     onLoginSuccess();
   };
 
+  const handleBackToLogin = () => {
+    setCreateMode(false);
+    setVerificationStep('input');
+    setEmailVerified(null);
+    setProcoreUserId(null);
+    setEmailMessage('');
+    setEmail('');
+    setNewPassword('');
+    setConfirmPassword('');
+  };
+
   return (
     <div className="login-container">
       <div className="left-pane">
@@ -124,12 +261,22 @@ const Login = ({ onLoginSuccess }) => {
                 placeholder="Username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    handleLogin();
+                  }
+                }}
                 disabled={loading}
               />
               <Input.Password
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    handleLogin();
+                  }
+                }}
                 disabled={loading}
               />
               <Button
@@ -143,22 +290,24 @@ const Login = ({ onLoginSuccess }) => {
             </>
           ) : (
             <>
-              <Input
-                placeholder="Email Address"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                disabled={loading || emailVerified}
-              />
-              {!emailVerified && (
-                <Button
-                  onClick={handleVerifyEmail}
-                  loading={loading}
-                  style={{ width: '100%' }}
-                >
-                  Verify Email Address
-                </Button>
+              {verificationStep === 'input' && (
+                <>
+                  <Input
+                    placeholder="Email Address"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    disabled={loading}
+                  />
+                  <Button
+                    onClick={handleVerifyEmail}
+                    loading={loading}
+                    style={{ width: '100%' }}
+                  >
+                    Verify Email Address
+                  </Button>
+                </>
               )}
-              {emailVerified && (
+              {verificationStep === 'setup' && (
                 <>
                   <Input.Password
                     placeholder="Set Password"
@@ -174,28 +323,43 @@ const Login = ({ onLoginSuccess }) => {
                   />
                   <Button
                     type="primary"
-                    onClick={handleCompleteSetup}
+                    onClick={handleSendVerificationEmail}
                     loading={loading}
                     style={{ width: '100%' }}
                   >
-                    Complete Setup
+                    Send Verification Email
                   </Button>
                 </>
               )}
-              {emailMessage && <Text type="danger">{emailMessage}</Text>}
+              {verificationStep === 'verify' && (
+                <>
+                  <Text>
+                    We’ve sent a verification link to {email}. Please check your inbox and click the link to complete registration.
+                  </Text>
+                  <Button
+                    onClick={handleBackToLogin}
+                    disabled={loading}
+                    style={{ width: '100%' }}
+                  >
+                    Back to Login
+                  </Button>
+                </>
+              )}
+              {emailMessage && (
+                <Text type={emailVerified === false ? 'danger' : 'success'}>{emailMessage}</Text>
+              )}
             </>
           )}
         </Space>
 
         {!createMode && (
           <div style={{ marginBottom: '16px', textAlign: 'left' }}>
-            <Radio
+            <Switch
               checked={rememberMe}
-              onChange={(e) => setRememberMe(e.target.checked)}
+              onChange={(checked) => setRememberMe(checked)}
               disabled={loading}
-            >
-              Remember Me
-            </Radio>
+            />
+            <span style={{ marginLeft: 8 }}>Remember Me</span>
           </div>
         )}
 
@@ -213,7 +377,7 @@ const Login = ({ onLoginSuccess }) => {
 
         <div style={{ marginTop: 'auto' }}>
           <Space direction="vertical" style={{ width: '100%' }}>
-            {isDev && !createMode && ( // Show only in dev and not in create mode
+            {isDev && !createMode && (
               <Button
                 onClick={handleSyncUsers}
                 disabled={loading}
