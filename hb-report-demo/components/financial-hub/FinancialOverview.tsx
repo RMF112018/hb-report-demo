@@ -1,434 +1,360 @@
 "use client";
 
-import React from "react";
-import { 
-  TrendingUp, 
-  TrendingDown, 
-  DollarSign, 
-  PieChart, 
-  BarChart3, 
-  AlertTriangle, 
+import { useState } from "react";
+import {
+  DollarSign,
+  TrendingUp,
+  TrendingDown,
+  AlertTriangle,
+  FileText,
   CheckCircle,
-  Clock,
+  BarChart3,
+  PieChart,
   Target,
-  Percent
+  Activity,
+  Clock,
+  Calendar,
+  CheckCircle2,
 } from "lucide-react";
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
-import { CustomLineChart } from "@/components/charts/LineChart";
-import { CustomBarChart } from "@/components/charts/BarChart";
-import { PieChartCard } from "@/components/charts/PieChart";
+import { Progress } from "@/components/ui/progress";
+import {
+  AreaChart,
+  Area,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  BarChart,
+  Bar,
+  PieChart as RechartsPieChart,
+  Pie,
+  Cell,
+} from "recharts";
 
 interface FinancialOverviewProps {
   userRole: string;
   projectData: any;
 }
 
+// Mock data for financial overview
+const cashFlowData = [
+  { month: "Jan", inflow: 450000, outflow: 380000, net: 70000 },
+  { month: "Feb", inflow: 520000, outflow: 420000, net: 100000 },
+  { month: "Mar", inflow: 480000, outflow: 450000, net: 30000 },
+  { month: "Apr", inflow: 600000, outflow: 480000, net: 120000 },
+  { month: "May", inflow: 580000, outflow: 520000, net: 60000 },
+  { month: "Jun", inflow: 650000, outflow: 580000, net: 70000 },
+];
+
+const budgetData = [
+  { category: "Labor", budgeted: 2500000, actual: 2350000, variance: -150000 },
+  { category: "Materials", budgeted: 1800000, actual: 1950000, variance: 150000 },
+  { category: "Equipment", budgeted: 800000, actual: 750000, variance: -50000 },
+  { category: "Subcontractors", budgeted: 1200000, actual: 1180000, variance: -20000 },
+];
+
+const expenseBreakdown = [
+  { name: "Labor", value: 2350000, color: "#3b82f6" },
+  { name: "Materials", value: 1950000, color: "#10b981" },
+  { name: "Equipment", value: 750000, color: "#f59e0b" },
+  { name: "Subcontractors", value: 1180000, color: "#ef4444" },
+];
+
+// Cost Control Data
+const costControlCategories = [
+  { id: 1, name: "Labor", budgeted: 2500000, actual: 2350000, progress: 94 },
+  { id: 2, name: "Materials", budgeted: 1800000, actual: 1950000, progress: 108 },
+  { id: 3, name: "Equipment", budgeted: 800000, actual: 750000, progress: 94 },
+  { id: 4, name: "Subcontractors", budgeted: 1200000, actual: 1180000, progress: 98 },
+];
+
+// Payment Performance Analytics Data
+const paymentPerformanceData = {
+  onTimeApplications: {
+    total: 24,
+    onTime: 22,
+    late: 2,
+    percentage: 91.7,
+  },
+  approvalTimes: {
+    averageDays: 3.2,
+    pmApprovalAvg: 1.8,
+    pxApprovalAvg: 1.4,
+    trend: "improving",
+  },
+  paymentTimes: {
+    approvalToPaymentAvg: 12.5,
+    contractualDays: 15,
+    variance: -2.5,
+    trend: "ahead",
+  },
+  paymentCompliance: {
+    totalPayments: 18,
+    onTimePayments: 16,
+    latePayments: 2,
+    averageVariance: -1.2, // negative means early
+    complianceRate: 88.9,
+  },
+  monthlyTrends: [
+    { month: "Jan", onTimeApps: 95, avgApproval: 3.5, avgPayment: 13.2, compliance: 85 },
+    { month: "Feb", onTimeApps: 88, avgApproval: 4.1, avgPayment: 14.8, compliance: 82 },
+    { month: "Mar", onTimeApps: 92, avgApproval: 3.8, avgPayment: 11.5, compliance: 90 },
+    { month: "Apr", onTimeApps: 96, avgApproval: 2.9, avgPayment: 10.8, compliance: 94 },
+    { month: "May", onTimeApps: 89, avgApproval: 3.2, avgPayment: 12.1, compliance: 87 },
+    { month: "Jun", onTimeApps: 94, avgApproval: 2.8, avgPayment: 11.9, compliance: 91 },
+  ],
+};
+
+const recentPaymentActivity = [
+  {
+    type: "application_submitted",
+    description: "Pay Application #024 submitted",
+    amount: 285000,
+    date: "2 hours ago",
+    status: "on_time",
+    daysFromDue: -2,
+  },
+  {
+    type: "payment_received",
+    description: "Payment for Application #022 received",
+    amount: 195000,
+    date: "1 day ago",
+    status: "early",
+    daysFromDue: -3,
+  },
+  {
+    type: "approval_completed",
+    description: "Application #023 approved by PX",
+    amount: 167000,
+    date: "2 days ago",
+    status: "on_time",
+    daysFromDue: 0,
+  },
+  {
+    type: "payment_overdue",
+    description: "Payment for Application #020 overdue",
+    amount: 142000,
+    date: "5 days ago",
+    status: "late",
+    daysFromDue: 5,
+  },
+];
+
+/**
+ * Financial Hub Overview Component
+ *
+ * Provides a comprehensive financial overview of the project including:
+ * - Key financial metrics and KPIs
+ * - Cash flow visualization
+ * - Budget vs actual analysis
+ * - Expense breakdown
+ * - Cost control analysis
+ * - Recent financial activities
+ *
+ * @param userRole - Current user role
+ * @param projectData - Current project scope data
+ */
 export default function FinancialOverview({ userRole, projectData }: FinancialOverviewProps) {
-  
-  // Role-based data filtering
-  const getFinancialData = () => {
-    switch (userRole) {
-      case 'project-manager':
-        return {
-          totalContractValue: 57235491,
-          currentApprovedValue: 58100000,
-          netCashFlow: 8215006.64,
-          totalCosts: 45261264.55,
-          profitMargin: 6.8,
-          profitValue: 3950000,
-          workingCapital: 9732503.32,
-          retention: 2861632.74,
-          changeOrders: {
-            approved: 5,
-            pending: 2,
-            totalValue: 864509
-          },
-          healthMetrics: {
-            budgetHealth: 88,
-            cashFlowHealth: 92,
-            scheduleHealth: 85,
-            overallHealth: 88
-          },
-          riskFactors: [
-            { category: "Material Costs", risk: "Low", impact: 15000 },
-            { category: "Weather Delays", risk: "Medium", impact: 45000 }
-          ],
-          monthlyTrend: [
-            { month: "Oct", revenue: 4500000, costs: 3800000, profit: 700000 },
-            { month: "Nov", revenue: 5200000, costs: 4300000, profit: 900000 },
-            { month: "Dec", revenue: 4800000, costs: 4100000, profit: 700000 },
-            { month: "Jan", revenue: 5500000, costs: 4600000, profit: 900000 }
-          ],
-          costBreakdown: [
-            { category: "Labor", amount: 18500000, percentage: 32.3 },
-            { category: "Materials", amount: 22800000, percentage: 39.8 },
-            { category: "Equipment", amount: 8200000, percentage: 14.3 },
-            { category: "Overhead", amount: 7761264.55, percentage: 13.6 }
-          ]
-        };
-      case 'project-executive':
-        return {
-          totalContractValue: 285480000,
-          currentApprovedValue: 289920000,
-          netCashFlow: 42630000,
-          totalCosts: 242850000,
-          profitMargin: 6.8,
-          profitValue: 19750000,
-          workingCapital: 48200000,
-          retention: 14476000,
-          changeOrders: {
-            approved: 15,
-            pending: 7,
-            totalValue: 4440000
-          },
-          healthMetrics: {
-            budgetHealth: 86,
-            cashFlowHealth: 88,
-            scheduleHealth: 82,
-            overallHealth: 85
-          },
-          riskFactors: [
-            { category: "Material Costs", risk: "Medium", impact: 850000 },
-            { category: "Weather Delays", risk: "Medium", impact: 650000 },
-            { category: "Schedule Overrun", risk: "High", impact: 1200000 }
-          ],
-          monthlyTrend: [
-            { month: "Oct", revenue: 22500000, costs: 18800000, profit: 3700000 },
-            { month: "Nov", revenue: 26200000, costs: 21300000, profit: 4900000 },
-            { month: "Dec", revenue: 24800000, costs: 20100000, profit: 4700000 },
-            { month: "Jan", revenue: 28500000, costs: 22600000, profit: 5900000 }
-          ],
-          costBreakdown: [
-            { category: "Labor", amount: 92500000, percentage: 32.3 },
-            { category: "Materials", amount: 114000000, percentage: 39.8 },
-            { category: "Equipment", amount: 41000000, percentage: 14.3 },
-            { category: "Overhead", amount: 38850000, percentage: 13.6 }
-          ]
-        };
-      default:
-        return {
-          totalContractValue: 485280000,
-          currentApprovedValue: 492150000,
-          netCashFlow: 72830000,
-          totalCosts: 412450000,
-          profitMargin: 6.4,
-          profitValue: 31250000,
-          workingCapital: 82500000,
-          retention: 24264000,
-          changeOrders: {
-            approved: 28,
-            pending: 12,
-            totalValue: 6870000
-          },
-          healthMetrics: {
-            budgetHealth: 85,
-            cashFlowHealth: 89,
-            scheduleHealth: 78,
-            overallHealth: 84
-          },
-          riskFactors: [
-            { category: "Material Costs", risk: "High", impact: 2800000 },
-            { category: "Weather Delays", risk: "Medium", impact: 1200000 },
-            { category: "Schedule Overrun", risk: "High", impact: 3400000 },
-            { category: "Labor Shortage", risk: "Medium", impact: 1800000 }
-          ],
-          monthlyTrend: [
-            { month: "Oct", revenue: 38500000, costs: 32800000, profit: 5700000 },
-            { month: "Nov", revenue: 44200000, costs: 36300000, profit: 7900000 },
-            { month: "Dec", revenue: 41800000, costs: 34100000, profit: 7700000 },
-            { month: "Jan", revenue: 48500000, costs: 39600000, profit: 8900000 }
-          ],
-          costBreakdown: [
-            { category: "Labor", amount: 156800000, percentage: 32.3 },
-            { category: "Materials", amount: 193200000, percentage: 39.8 },
-            { category: "Equipment", amount: 69400000, percentage: 14.3 },
-            { category: "Overhead", amount: 66050000, percentage: 13.6 }
-          ]
-        };
-    }
-  };
+  const [selectedPeriod, setSelectedPeriod] = useState("6months");
 
-  const data = getFinancialData();
+  // Calculate key metrics
+  const totalBudget = budgetData.reduce((sum, item) => sum + item.budgeted, 0);
+  const totalActual = budgetData.reduce((sum, item) => sum + item.actual, 0);
+  const totalVariance = totalBudget - totalActual;
+  const variancePercentage = ((totalVariance / totalBudget) * 100).toFixed(1);
 
-  const formatCurrency = (value: number) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
-    }).format(value);
-  };
+  const currentCashFlow = cashFlowData[cashFlowData.length - 1]?.net || 0;
+  const avgCashFlow = cashFlowData.reduce((sum, item) => sum + item.net, 0) / cashFlowData.length;
 
-  const getRiskColor = (risk: string) => {
-    switch (risk) {
-      case "High": return "text-red-600 bg-red-50 border-red-200";
-      case "Medium": return "text-yellow-600 bg-yellow-50 border-yellow-200";
-      case "Low": return "text-green-600 bg-green-50 border-green-200";
-      default: return "text-gray-600 bg-gray-50 border-gray-200";
-    }
-  };
-
-  const getHealthColor = (score: number) => {
-    if (score >= 90) return "text-green-600";
-    if (score >= 75) return "text-yellow-600";
-    return "text-red-600";
-  };
+  // Cost Control Metrics
+  const totalCostControlBudget = costControlCategories.reduce((sum, cat) => sum + cat.budgeted, 0);
+  const totalCostControlActual = costControlCategories.reduce((sum, cat) => sum + cat.actual, 0);
+  const costControlVariance = totalCostControlBudget - totalCostControlActual;
+  const avgProgress = costControlCategories.reduce((sum, cat) => sum + cat.progress, 0) / costControlCategories.length;
 
   return (
     <div className="space-y-6">
-      {/* Key Performance Indicators */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <Card>
+      {/* Key Metrics Cards */}
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <Card className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950 dark:to-blue-900 border-blue-200 dark:border-blue-800">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Contract Value</CardTitle>
-            <DollarSign className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium text-blue-700 dark:text-blue-300">Total Budget</CardTitle>
+            <DollarSign className="h-4 w-4 text-blue-600 dark:text-blue-400" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{formatCurrency(data.currentApprovedValue)}</div>
-            <div className="flex items-center space-x-2 text-xs text-muted-foreground">
-              <TrendingUp className="h-3 w-3 text-green-500" />
-              <span>+{formatCurrency(data.currentApprovedValue - data.totalContractValue)} from original</span>
+            <div className="text-2xl font-bold text-blue-900 dark:text-blue-100">
+              ${(totalBudget / 1000000).toFixed(1)}M
             </div>
+            <p className="text-xs text-blue-600 dark:text-blue-400">Project budget allocation</p>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-950 dark:to-green-900 border-green-200 dark:border-green-800">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Net Cash Flow</CardTitle>
-            <TrendingUp className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium text-green-700 dark:text-green-300">Actual Spend</CardTitle>
+            <TrendingUp className="h-4 w-4 text-green-600 dark:text-green-400" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-green-600">{formatCurrency(data.netCashFlow)}</div>
-            <div className="flex items-center space-x-2 text-xs text-muted-foreground">
-              <CheckCircle className="h-3 w-3 text-green-500" />
-              <span>Positive flow</span>
+            <div className="text-2xl font-bold text-green-900 dark:text-green-100">
+              ${(totalActual / 1000000).toFixed(1)}M
             </div>
+            <p className="text-xs text-green-600 dark:text-green-400">Current expenditure</p>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card
+          className={`bg-gradient-to-br ${totalVariance >= 0 ? "from-emerald-50 to-emerald-100 dark:from-emerald-950 dark:to-emerald-900 border-emerald-200 dark:border-emerald-800" : "from-red-50 to-red-100 dark:from-red-950 dark:to-red-900 border-red-200 dark:border-red-800"}`}
+        >
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Profit Margin</CardTitle>
-            <Percent className="h-4 w-4 text-muted-foreground" />
+            <CardTitle
+              className={`text-sm font-medium ${totalVariance >= 0 ? "text-emerald-700 dark:text-emerald-300" : "text-red-700 dark:text-red-300"}`}
+            >
+              Budget Variance
+            </CardTitle>
+            {totalVariance >= 0 ? (
+              <TrendingUp className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+            ) : (
+              <TrendingDown className="h-4 w-4 text-red-600 dark:text-red-400" />
+            )}
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-purple-600">{data.profitMargin}%</div>
-            <div className="text-xs text-muted-foreground">
-              {formatCurrency(data.profitValue)} profit
+            <div
+              className={`text-2xl font-bold ${totalVariance >= 0 ? "text-emerald-900 dark:text-emerald-100" : "text-red-900 dark:text-red-100"}`}
+            >
+              {totalVariance >= 0 ? "+" : ""}${(totalVariance / 1000).toFixed(0)}K
             </div>
+            <p
+              className={`text-xs ${totalVariance >= 0 ? "text-emerald-600 dark:text-emerald-400" : "text-red-600 dark:text-red-400"}`}
+            >
+              {variancePercentage}% vs budget
+            </p>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-950 dark:to-purple-900 border-purple-200 dark:border-purple-800">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Working Capital</CardTitle>
-            <Target className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium text-purple-700 dark:text-purple-300">Avg. Complete</CardTitle>
+            <Target className="h-4 w-4 text-purple-600 dark:text-purple-400" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-blue-600">{formatCurrency(data.workingCapital)}</div>
-            <div className="text-xs text-muted-foreground">
-              Available liquidity
-            </div>
+            <div className="text-2xl font-bold text-purple-900 dark:text-purple-100">{avgProgress.toFixed(1)}%</div>
+            <p className="text-xs text-purple-600 dark:text-purple-400">Average completion rate</p>
           </CardContent>
         </Card>
       </div>
 
-      {/* Health Metrics */}
-      <Card>
+      {/* Cost Control AI Insights */}
+      <Card className="bg-gradient-to-br from-amber-50 to-amber-100 dark:from-amber-950 dark:to-amber-900 border-amber-200 dark:border-amber-800">
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <BarChart3 className="h-5 w-5" />
-            Financial Health Metrics
+          <CardTitle className="flex items-center gap-2 text-amber-800 dark:text-amber-200">
+            <Activity className="h-5 w-5" />
+            HBI Cost Control Insights
           </CardTitle>
-          <CardDescription>
-            Real-time health indicators across key financial areas
-          </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div>
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-medium">Budget Health</span>
-                <span className={`text-sm font-bold ${getHealthColor(data.healthMetrics.budgetHealth)}`}>
-                  {data.healthMetrics.budgetHealth}
-                </span>
+          <div className="space-y-3">
+            <div className="flex items-start gap-3">
+              <AlertTriangle className="h-5 w-5 text-amber-600 mt-0.5" />
+              <div>
+                <p className="text-sm font-medium text-amber-800 dark:text-amber-200">Materials Over Budget</p>
+                <p className="text-xs text-amber-700 dark:text-amber-300">
+                  Materials category is 8.3% over budget. Consider renegotiating supplier contracts or sourcing
+                  alternatives.
+                </p>
               </div>
-              <Progress value={data.healthMetrics.budgetHealth} className="h-2" />
             </div>
-            <div>
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-medium">Cash Flow Health</span>
-                <span className={`text-sm font-bold ${getHealthColor(data.healthMetrics.cashFlowHealth)}`}>
-                  {data.healthMetrics.cashFlowHealth}
-                </span>
+            <div className="flex items-start gap-3">
+              <CheckCircle className="h-5 w-5 text-green-600 mt-0.5" />
+              <div>
+                <p className="text-sm font-medium text-amber-800 dark:text-amber-200">Labor Efficiency</p>
+                <p className="text-xs text-amber-700 dark:text-amber-300">
+                  Labor costs are 6% under budget with strong productivity metrics. Current trajectory is optimal.
+                </p>
               </div>
-              <Progress value={data.healthMetrics.cashFlowHealth} className="h-2" />
-            </div>
-            <div>
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-medium">Schedule Health</span>
-                <span className={`text-sm font-bold ${getHealthColor(data.healthMetrics.scheduleHealth)}`}>
-                  {data.healthMetrics.scheduleHealth}
-                </span>
-              </div>
-              <Progress value={data.healthMetrics.scheduleHealth} className="h-2" />
-            </div>
-            <div>
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-medium">Overall Health</span>
-                <span className={`text-sm font-bold ${getHealthColor(data.healthMetrics.overallHealth)}`}>
-                  {data.healthMetrics.overallHealth}
-                </span>
-              </div>
-              <Progress value={data.healthMetrics.overallHealth} className="h-2" />
             </div>
           </div>
         </CardContent>
       </Card>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Financial Trend Chart */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Financial Trend Analysis</CardTitle>
-            <CardDescription>Monthly revenue, costs, and profit tracking</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <CustomLineChart 
-              data={data.monthlyTrend.map(item => ({
-                name: item.month,
-                value: item.profit
-              }))}
-              title="Monthly Profit Trend"
-              color="#10B981"
-            />
-          </CardContent>
-        </Card>
-
-        {/* Cost Breakdown */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Cost Distribution</CardTitle>
-            <CardDescription>Current cost allocation across categories</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <PieChartCard 
-              data={data.costBreakdown.map(item => ({
-                name: item.category,
-                value: item.amount
-              }))}
-              title="Cost Distribution"
-            />
-          </CardContent>
-        </Card>
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Change Orders Summary */}
-        <Card>
+      {/* Charts Section */}
+      <div className="grid gap-6 lg:grid-cols-2">
+        {/* Cash Flow Chart */}
+        <Card className="col-span-1">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <CheckCircle className="h-5 w-5" />
-              Change Orders
+              <TrendingUp className="h-5 w-5 text-blue-600" />
+              Cash Flow Trend
             </CardTitle>
-            <CardDescription>
-              Change order status and financial impact
-            </CardDescription>
+            <CardDescription>Monthly cash inflow, outflow, and net position</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <span className="text-sm font-medium">Total Value</span>
-                <span className="text-lg font-bold text-green-600">
-                  {formatCurrency(data.changeOrders.totalValue)}
-                </span>
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="text-center p-3 bg-green-50 rounded-lg border border-green-200">
-                  <div className="text-2xl font-bold text-green-700">{data.changeOrders.approved}</div>
-                  <div className="text-xs text-green-600">Approved</div>
-                </div>
-                <div className="text-center p-3 bg-yellow-50 rounded-lg border border-yellow-200">
-                  <div className="text-2xl font-bold text-yellow-700">{data.changeOrders.pending}</div>
-                  <div className="text-xs text-yellow-600">Pending</div>
-                </div>
-              </div>
-            </div>
+            <ResponsiveContainer width="100%" height={300}>
+              <AreaChart data={cashFlowData}>
+                <CartesianGrid strokeDasharray="3 3" className="opacity-30" />
+                <XAxis dataKey="month" />
+                <YAxis tickFormatter={(value) => `$${(value / 1000).toFixed(0)}K`} />
+                <Tooltip
+                  formatter={(value: number) => [`$${(value / 1000).toFixed(0)}K`, ""]}
+                  labelFormatter={(label) => `Month: ${label}`}
+                />
+                <Area
+                  type="monotone"
+                  dataKey="inflow"
+                  stackId="1"
+                  stroke="#10b981"
+                  fill="#10b981"
+                  fillOpacity={0.6}
+                  name="Inflow"
+                />
+                <Area
+                  type="monotone"
+                  dataKey="outflow"
+                  stackId="2"
+                  stroke="#ef4444"
+                  fill="#ef4444"
+                  fillOpacity={0.6}
+                  name="Outflow"
+                />
+                <Area
+                  type="monotone"
+                  dataKey="net"
+                  stackId="3"
+                  stroke="#3b82f6"
+                  fill="#3b82f6"
+                  fillOpacity={0.8}
+                  name="Net Flow"
+                />
+              </AreaChart>
+            </ResponsiveContainer>
           </CardContent>
         </Card>
 
-        {/* Risk Factors */}
-        <Card>
+        {/* Budget vs Actual */}
+        <Card className="col-span-1">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <AlertTriangle className="h-5 w-5" />
-              Risk Assessment
+              <BarChart3 className="h-5 w-5 text-green-600" />
+              Budget vs Actual
             </CardTitle>
-            <CardDescription>
-              Financial risk factors and potential impact
-            </CardDescription>
+            <CardDescription>Comparison by cost category</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="space-y-3">
-              {data.riskFactors.map((risk, index) => (
-                <div key={index} className={`p-3 rounded-lg border ${getRiskColor(risk.risk)}`}>
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="font-medium text-sm">{risk.category}</span>
-                    <Badge variant="outline" className={`text-xs ${risk.risk === 'High' ? 'border-red-300' : risk.risk === 'Medium' ? 'border-yellow-300' : 'border-green-300'}`}>
-                      {risk.risk}
-                    </Badge>
-                  </div>
-                  <div className="text-xs opacity-80">
-                    Potential Impact: {formatCurrency(risk.impact)}
-                  </div>
-                </div>
-              ))}
-            </div>
+            <ResponsiveContainer width="100%" height={300}>
+              <BarChart data={budgetData}>
+                <CartesianGrid strokeDasharray="3 3" className="opacity-30" />
+                <XAxis dataKey="category" />
+                <YAxis tickFormatter={(value) => `$${(value / 1000).toFixed(0)}K`} />
+                <Tooltip formatter={(value: number) => [`$${(value / 1000).toFixed(0)}K`, ""]} />
+                <Bar dataKey="budgeted" fill="#94a3b8" name="Budgeted" />
+                <Bar dataKey="actual" fill="#3b82f6" name="Actual" />
+              </BarChart>
+            </ResponsiveContainer>
           </CardContent>
-        </Card>
-      </div>
-
-      {/* Additional Metrics */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm">Retention Held</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-xl font-bold">{formatCurrency(data.retention)}</div>
-            <div className="text-xs text-muted-foreground">
-              {((data.retention / data.currentApprovedValue) * 100).toFixed(1)}% of contract
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm">Project Scope</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-xl font-bold">{projectData.projectCount}</div>
-            <div className="text-xs text-muted-foreground">
-              {projectData.scope === 'single' ? 'Project' : 'Projects'} in view
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm">Cost Efficiency</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-xl font-bold text-green-600">
-              {(((data.currentApprovedValue - data.totalCosts) / data.currentApprovedValue) * 100).toFixed(1)}%
-            </div>
-            <div className="text-xs text-muted-foreground">
-              Cost under budget
-            </div>
-          </CardContent>
-        </Card>
+                </Card>
       </div>
     </div>
   );
