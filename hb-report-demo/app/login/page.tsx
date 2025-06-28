@@ -12,6 +12,7 @@ import { Separator } from "@/components/ui/separator"
 import { Badge } from "@/components/ui/badge"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { useAuth } from "@/context/auth-context"
+import { useTour } from "@/context/tour-context"
 import { useToast } from "@/hooks/use-toast"
 import {
   Building2,
@@ -46,6 +47,7 @@ export default function LoginPage() {
   const { login } = useAuth()
   const router = useRouter()
   const { toast } = useToast()
+  const { startTour, isTourAvailable, resetTourState } = useTour()
 
   const features = [
     {
@@ -148,6 +150,50 @@ export default function LoginPage() {
     return () => clearInterval(interval)
   }, [features.length])
 
+  // Auto-start tour and welcome message for new visitors
+  useEffect(() => {
+    if (typeof window !== 'undefined' && isTourAvailable) {
+      // Check if user has disabled tours permanently
+      const hasDisabledTours = localStorage.getItem('hb-tour-available') === 'false'
+      
+      if (hasDisabledTours) {
+        console.log('Tours disabled by user preference')
+        return
+      }
+
+      // Session-based tracking to ensure one-time display
+      const hasShownWelcome = sessionStorage.getItem('hb-welcome-shown')
+      const hasShownTour = sessionStorage.getItem('hb-tour-shown-login-demo-accounts')
+      
+      console.log('Tour auto-start check:', {
+        isTourAvailable,
+        hasShownWelcome,
+        hasShownTour,
+        hasDisabledTours
+      })
+      
+      // Show welcome toast once per session
+      if (!hasShownWelcome) {
+        setTimeout(() => {
+          toast({
+            title: "Welcome to HB Report Demo! 👋",
+            description: "Interactive tours are available to help you explore the platform.",
+            duration: 6000,
+          })
+          sessionStorage.setItem('hb-welcome-shown', 'true')
+        }, 1000)
+      }
+      
+      // Auto-start login tour once per session
+      if (!hasShownTour) {
+        setTimeout(() => {
+          console.log('Auto-starting login tour...')
+          startTour('login-demo-accounts', true) // true indicates auto-start
+        }, 3000)
+      }
+    }
+  }, [isTourAvailable, startTour, toast])
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsLoading(true)
@@ -215,7 +261,8 @@ export default function LoginPage() {
 
   return (
     // Force light mode for the entire login page, regardless of global theme
-    <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} forcedTheme="light">
+    <div className="light">
+      <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} forcedTheme="light">
       <div
         className="h-screen w-screen overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 relative"
         role="main"
@@ -423,7 +470,7 @@ export default function LoginPage() {
                     </div>
                   )}
 
-                  <Card className="border-0 shadow-2xl bg-white/95 backdrop-blur-sm">
+                  <Card className="border-0 shadow-2xl bg-white/95 backdrop-blur-sm login-card">
                     <CardHeader className="text-center pb-4 lg:pb-6">
                       <CardTitle
                         className={`font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent mb-2 ${
@@ -440,7 +487,7 @@ export default function LoginPage() {
                     </CardHeader>
 
                     <CardContent className="space-y-4 lg:space-y-6">
-                      <form onSubmit={handleSubmit} className="space-y-4 lg:space-y-5" aria-label="User Login Form">
+                      <form onSubmit={handleSubmit} className="space-y-4 lg:space-y-5 login-form" aria-label="User Login Form">
                         <div className="space-y-2">
                           <Label htmlFor="email" className="text-sm font-semibold text-gray-700 flex items-center">
                             <Mail className="h-4 w-4 mr-2" aria-hidden="true" />
@@ -452,7 +499,7 @@ export default function LoginPage() {
                             placeholder="Enter your work email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            className="h-11 lg:h-12 border-2 border-gray-200 focus:border-[#003087] focus:ring-[#003087] transition-all duration-200"
+                            className="h-11 lg:h-12 border-2 border-gray-200 focus:border-[#003087] focus:ring-[#003087] transition-all duration-200 bg-white text-gray-900"
                             required
                             aria-required="true"
                           />
@@ -470,7 +517,7 @@ export default function LoginPage() {
                               placeholder="Enter your password"
                               value={password}
                               onChange={(e) => setPassword(e.target.value)}
-                              className="h-11 lg:h-12 pr-12 border-2 border-gray-200 focus:border-[#003087] focus:ring-[#003087] transition-all duration-200"
+                              className="h-11 lg:h-12 pr-12 border-2 border-gray-200 focus:border-[#003087] focus:ring-[#003087] transition-all duration-200 bg-white text-gray-900"
                               required
                               aria-required="true"
                             />
@@ -478,15 +525,15 @@ export default function LoginPage() {
                               type="button"
                               variant="ghost"
                               size="sm"
-                              className="absolute right-0 top-0 h-11 lg:h-12 px-3 hover:bg-transparent"
+                              className="absolute right-0 top-0 h-11 lg:h-12 px-3 hover:bg-gray-100 text-gray-500 hover:text-gray-700"
                               onClick={() => setShowPassword(!showPassword)}
                               aria-label={showPassword ? "Hide password" : "Show password"}
                               aria-pressed={showPassword}
                             >
                               {showPassword ? (
-                                <EyeOff className="h-4 w-4 text-gray-400" aria-hidden="true" />
+                                <EyeOff className="h-4 w-4" aria-hidden="true" />
                               ) : (
-                                <Eye className="h-4 w-4 text-gray-400" aria-hidden="true" />
+                                <Eye className="h-4 w-4" aria-hidden="true" />
                               )}
                             </Button>
                           </div>
@@ -522,7 +569,7 @@ export default function LoginPage() {
                             <Separator className="w-full" />
                           </div>
                           <div className="relative flex justify-center text-xs uppercase">
-                            <span className="bg-white px-3 text-gray-500 font-semibold">Or continue with</span>
+                            <span className="bg-white px-3 text-gray-600 font-semibold">Or continue with</span>
                           </div>
                         </div>
 
@@ -531,13 +578,13 @@ export default function LoginPage() {
                             variant="outline"
                             onClick={() => handleSSOLogin("Okta")}
                             disabled={isLoading}
-                            className="h-10 lg:h-11 border-2 border-gray-200 hover:bg-gray-50 hover:border-gray-300 transition-all duration-200 font-medium text-sm"
+                            className="h-10 lg:h-11 border-2 border-gray-200 hover:bg-gray-50 hover:border-gray-300 transition-all duration-200 font-medium text-sm bg-white text-gray-900"
                             aria-label="Login with Okta"
                           >
                             {isLoading ? (
-                              <Loader2 className="h-4 w-4 mr-2 animate-spin" aria-hidden="true" />
+                              <Loader2 className="h-4 w-4 mr-2 animate-spin text-gray-600" aria-hidden="true" />
                             ) : (
-                              <Shield className="h-4 w-4 mr-2" aria-hidden="true" />
+                              <Shield className="h-4 w-4 mr-2 text-gray-600" aria-hidden="true" />
                             )}
                             Okta
                           </Button>
@@ -545,13 +592,13 @@ export default function LoginPage() {
                             variant="outline"
                             onClick={() => handleSSOLogin("Azure AD")}
                             disabled={isLoading}
-                            className="h-10 lg:h-11 border-2 border-gray-200 hover:bg-gray-50 hover:border-gray-300 transition-all duration-200 font-medium text-sm"
+                            className="h-10 lg:h-11 border-2 border-gray-200 hover:bg-gray-50 hover:border-gray-300 transition-all duration-200 font-medium text-sm bg-white text-gray-900"
                             aria-label="Login with Azure AD"
                           >
                             {isLoading ? (
-                              <Loader2 className="h-4 w-4 mr-2 animate-spin" aria-hidden="true" />
+                              <Loader2 className="h-4 w-4 mr-2 animate-spin text-gray-600" aria-hidden="true" />
                             ) : (
-                              <Shield className="h-4 w-4 mr-2" aria-hidden="true" />
+                              <Shield className="h-4 w-4 mr-2 text-gray-600" aria-hidden="true" />
                             )}
                             Azure AD
                           </Button>
@@ -565,28 +612,29 @@ export default function LoginPage() {
                             <Separator className="w-full" />
                           </div>
                           <div className="relative flex justify-center text-xs uppercase">
-                            <span className="bg-white px-3 text-gray-500 font-semibold">Demo Accounts</span>
+                            <span className="bg-white px-3 text-gray-600 font-semibold">Demo Accounts</span>
                           </div>
                         </div>
 
                         <Button
                           variant="outline"
                           onClick={() => setShowDemoAccounts(!showDemoAccounts)}
-                          className="w-full h-10 lg:h-11 border-2 border-blue-200 text-blue-700 hover:bg-blue-50 hover:border-blue-300 transition-all duration-200 font-medium"
+                          className="w-full h-10 lg:h-11 border-2 border-blue-200 text-blue-700 hover:bg-blue-50 hover:border-blue-300 transition-all duration-200 font-medium bg-white"
                           aria-expanded={showDemoAccounts}
                           aria-controls="demo-accounts-list"
                           aria-label="Toggle demo accounts list"
+                          data-tour="demo-accounts-toggle"
                         >
-                          <Users className="h-4 w-4 mr-2" aria-hidden="true" />
+                          <Users className="h-4 w-4 mr-2 text-blue-600" aria-hidden="true" />
                           Try Demo Accounts
                           <ChevronDown
-                            className={`h-4 w-4 ml-2 transition-transform duration-200 ${showDemoAccounts ? "rotate-180" : ""}`}
+                            className={`h-4 w-4 ml-2 transition-transform duration-200 text-blue-600 ${showDemoAccounts ? "rotate-180" : ""}`}
                             aria-hidden="true"
                           />
                         </Button>
 
                         {showDemoAccounts && (
-                          <div id="demo-accounts-list" className="space-y-2 animate-in slide-in-from-top-2 duration-200">
+                          <div id="demo-accounts-list" className="space-y-2 animate-in slide-in-from-top-2 duration-200" data-tour="demo-accounts-list">
                             {demoAccounts.map((account) => {
                               const IconComponent = account.icon
                               return (
@@ -596,12 +644,12 @@ export default function LoginPage() {
                                   size="sm"
                                   onClick={() => handleDemoLogin(account)}
                                   disabled={isLoading}
-                                  className="w-full h-auto p-3 text-left border border-blue-100 text-blue-700 hover:bg-blue-50 hover:border-blue-200 transition-all duration-200 flex items-center justify-start"
+                                  className="w-full h-auto p-3 text-left border border-blue-100 text-blue-700 hover:bg-blue-50 hover:border-blue-200 transition-all duration-200 flex items-center justify-start bg-white"
                                   aria-label={`Login as ${account.label} demo account`}
                                 >
-                                  <IconComponent className="h-4 w-4 mr-3 flex-shrink-0" aria-hidden="true" />
+                                  <IconComponent className="h-4 w-4 mr-3 flex-shrink-0 text-blue-600" aria-hidden="true" />
                                   <div className="flex-1 min-w-0">
-                                    <div className="font-semibold text-sm truncate">{account.label}</div>
+                                    <div className="font-semibold text-sm truncate text-blue-700">{account.label}</div>
                                     <div className="text-xs text-blue-600 opacity-75 truncate">{account.email}</div>
                                   </div>
                                 </Button>
@@ -628,6 +676,14 @@ export default function LoginPage() {
                             Request Access
                           </Link>
                         </div>
+                        {/* Debug button - remove in production */}
+                        <button
+                          onClick={resetTourState}
+                          className="text-xs text-gray-500 hover:text-gray-700 transition-colors bg-transparent"
+                          title="Reset tour state for testing"
+                        >
+                          Reset Tours
+                        </button>
                       </div>
                     </CardContent>
                   </Card>
@@ -654,6 +710,7 @@ export default function LoginPage() {
           </div>
         </div>
       </div>
-    </ThemeProvider>
+      </ThemeProvider>
+    </div>
   )
 }

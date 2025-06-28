@@ -3,11 +3,12 @@
     "project_id": 2525840,
     "project_name": "Palm Beach Luxury Estate",
     "date": "2024-06-05",
+    "created_by": "System",
     "weather_report": {
       "temperature": {
-        "low": "75\u00b0F",
-        "high": "85\u00b0F",
-        "avg": "80\u00b0F"
+        "low": "75°F",
+        "high": "85°F",
+        "avg": "80°F"
       },
       "precipitation_since": {
         "midnight": "0.23 in.",
@@ -20,7 +21,7 @@
         "high": "80%"
       },
       "windspeed": {
-        "dew": "64\u00b0F",
+        "dew": "64°F",
         "avg": "10.4 mph",
         "gust": "20.0 mph"
       }
@@ -29,32 +30,32 @@
       {
         "time": "06:00 AM",
         "condition": "Partly Cloudy",
-        "temperature": "79\u00b0F"
+        "temperature": "79°F"
       },
       {
         "time": "09:00 AM",
         "condition": "Clear",
-        "temperature": "80\u00b0F"
+        "temperature": "80°F"
       },
       {
         "time": "12:00 PM",
         "condition": "Partly Cloudy",
-        "temperature": "78\u00b0F"
+        "temperature": "78°F"
       },
       {
         "time": "03:00 PM",
         "condition": "Partly Cloudy",
-        "temperature": "85\u00b0F"
+        "temperature": "85°F"
       },
       {
         "time": "06:00 PM",
         "condition": "Partly Cloudy",
-        "temperature": "79\u00b0F"
+        "temperature": "79°F"
       },
       {
         "time": "09:00 PM",
         "condition": "Partly Cloudy",
-        "temperature": "76\u00b0F"
+        "temperature": "76°F"
       }
     ],
     "observed_weather_conditions": [
@@ -63,7 +64,7 @@
         "time_observed": "06:10 AM",
         "weather_delay": "No",
         "sky": "Heavy Rain",
-        "temp": "85\u00b0F",
+        "temp": "85°F",
         "average": "",
         "precipitation": "0.07 in.",
         "wind": "10.8 mph",
@@ -98,3 +99,248 @@
         },
         {
           "no": 3,
+          "contact_company": "ABC CONCRETE PUMPING",
+          "cost_code": "",
+          "workers": 8,
+          "hours": 8,
+          "total_hours": 64,
+          "location": "Building A",
+          "comments": "Concrete pumping operations"
+        },
+        {
+          "no": 4,
+          "contact_company": "ELITE ELECTRICAL SERVICES",
+          "cost_code": "",
+          "workers": 6,
+          "hours": 8,
+          "total_hours": 48,
+          "location": "Main Building",
+          "comments": "Electrical installation work"
+        },
+        {
+          "no": 5,
+          "contact_company": "PREMIER PLUMBING",
+          "cost_code": "",
+          "workers": 10,
+          "hours": 8,
+          "total_hours": 80,
+          "location": "Multiple Areas",
+          "comments": "Plumbing rough-in work"
+        }
+      ]
+    },
+    "activities": [
+      {
+        "id": "act-1",
+        "type": "task",
+        "description": "Foundation concrete pour",
+        "status": "completed",
+        "responsible_party": "ABC Concrete"
+      },
+      {
+        "id": "act-2",
+        "type": "inspection",
+        "description": "Electrical rough-in inspection",
+        "status": "completed",
+        "responsible_party": "City Inspector"
+      },
+      {
+        "id": "act-3",
+        "type": "delivery",
+        "description": "Steel beam delivery",
+        "status": "completed",
+        "responsible_party": "Steel Supplier"
+      }
+    ],
+    "comments": "Good weather conditions today. All scheduled activities completed on time. Minor electrical issue resolved."
+  },
+  {
+    "project_id": 2525840,
+    "project_name": "Palm Beach Luxury Estate",
+    "date": "2024-06-04",
+    "created_by": "John Smith",
+    "weather_report": {
+      "temperature": {
+        "low": "72°F",
+        "high": "88°F",
+        "avg": "80°F"
+      },
+      "precipitation_since": {
+        "midnight": "0.00 in.",
+        "2_days_ago": "0.12 in.",
+        "3_days_ago": "0.05 in."
+      },
+      "humidity": {
+        "low": "55%",
+        "avg": "65%",
+        "high": "75%"
+      },
+      "windspeed": {
+        "dew": "62°F",
+        "avg": "8.2 mph",
+        "gust": "15.0 mph"
+      }
+    },
+    "manpower_log": {
+      "total_workers": 38,
+      "total_hours": 304,
+      "entries": [
+        {
+          "no": 1,
+          "contact_company": "SUPERIOR STEEL WORKS",
+          "cost_code": "",
+          "workers": 12,
+          "hours": 8,
+          "total_hours": 96,
+          "location": "Structure Area",
+          "comments": "Steel framing installation"
+        },
+        {
+          "no": 2,
+          "contact_company": "PROFESSIONAL HVAC",
+          "cost_code": "",
+          "workers": 8,
+          "hours": 8,
+          "total_hours": 64,
+          "location": "Mechanical Room",
+          "comments": "HVAC ductwork installation"
+        },
+        {
+          "no": 3,
+          "contact_company": "ROOFING SPECIALISTS",
+          "cost_code": "",
+          "workers": 10,
+          "hours": 7,
+          "total_hours": 70,
+          "location": "Roof Level",
+          "comments": "Roofing membrane installation"
+        },
+        {
+          "no": 4,
+          "contact_company": "MASON CONTRACTORS",
+          "cost_code": "",
+          "workers": 8,
+          "hours": 9,
+          "total_hours": 72,
+          "location": "Exterior Walls",
+          "comments": "Masonry work and stone installation"
+        }
+      ]
+    },
+    "activities": [
+      {
+        "id": "act-4",
+        "type": "task",
+        "description": "Structural steel erection",
+        "status": "in-progress",
+        "responsible_party": "Superior Steel"
+      },
+      {
+        "id": "act-5",
+        "type": "task",
+        "description": "HVAC ductwork rough-in",
+        "status": "completed",
+        "responsible_party": "Professional HVAC"
+      }
+    ],
+    "comments": "Clear weather allowed for good progress on exterior work. Steel erection proceeding ahead of schedule."
+  },
+  {
+    "project_id": 2525841,
+    "project_name": "Miami Commercial Tower",
+    "date": "2024-06-05",
+    "created_by": "Maria Rodriguez",
+    "weather_report": {
+      "temperature": {
+        "low": "78°F",
+        "high": "92°F",
+        "avg": "85°F"
+      },
+      "precipitation_since": {
+        "midnight": "0.15 in.",
+        "2_days_ago": "0.32 in.",
+        "3_days_ago": "0.18 in."
+      },
+      "humidity": {
+        "low": "65%",
+        "avg": "78%",
+        "high": "85%"
+      },
+      "windspeed": {
+        "dew": "68°F",
+        "avg": "12.5 mph",
+        "gust": "22.0 mph"
+      }
+    },
+    "manpower_log": {
+      "total_workers": 52,
+      "total_hours": 416,
+      "entries": [
+        {
+          "no": 1,
+          "contact_company": "TOWER CONCRETE SPECIALISTS",
+          "cost_code": "",
+          "workers": 16,
+          "hours": 8,
+          "total_hours": 128,
+          "location": "Floor 12",
+          "comments": "Concrete slab pour for 12th floor"
+        },
+        {
+          "no": 2,
+          "contact_company": "HIGH-RISE ELECTRICAL",
+          "cost_code": "",
+          "workers": 14,
+          "hours": 8,
+          "total_hours": 112,
+          "location": "Floors 8-11",
+          "comments": "Electrical systems installation"
+        },
+        {
+          "no": 3,
+          "contact_company": "CURTAIN WALL EXPERTS",
+          "cost_code": "",
+          "workers": 12,
+          "hours": 8,
+          "total_hours": 96,
+          "location": "East Facade",
+          "comments": "Curtain wall installation"
+        },
+        {
+          "no": 4,
+          "contact_company": "COMMERCIAL PLUMBING PRO",
+          "cost_code": "",
+          "workers": 10,
+          "hours": 8,
+          "total_hours": 80,
+          "location": "Core Areas",
+          "comments": "Plumbing risers and distribution"
+        }
+      ]
+    },
+    "activities": [
+      {
+        "id": "act-6",
+        "type": "task",
+        "description": "12th floor concrete pour",
+        "status": "completed",
+        "responsible_party": "Tower Concrete"
+      },
+      {
+        "id": "act-7",
+        "type": "inspection",
+        "description": "Electrical panel inspection floors 8-9",
+        "status": "completed",
+        "responsible_party": "City Inspector"
+      },
+      {
+        "id": "act-8",
+        "type": "task",
+        "description": "Curtain wall panel installation",
+        "status": "in-progress",
+        "responsible_party": "Curtain Wall Experts"
+      }
+    ],
+    "comments": "High humidity affected outdoor work timing. Concrete pour completed successfully. Curtain wall installation proceeding as planned."
+  }
+]

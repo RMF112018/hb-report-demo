@@ -4,8 +4,10 @@ import { Inter } from "next/font/google"
 import "@/styles/globals.css"
 import { AuthProvider } from "@/context/auth-context"
 import { ProjectProvider } from "@/context/project-context"
+import { TourProvider } from "@/context/tour-context"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toaster"
+import { Tour } from "@/components/ui/tour"
 import { AppHeader } from '@/components/layout/app-header'
 import { AppLayoutShell } from '@/components/layout/AppLayoutShell'
 
@@ -54,14 +56,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" suppressHydrationWarning>
       <body className="bg-background text-foreground">
         <AuthProvider>
-          <ProjectProvider>
-            <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-              <AppLayoutShell showHeader={false}>
-                {children}
-              </AppLayoutShell>
-              <Toaster />
-            </ThemeProvider>
-          </ProjectProvider>
+          <TourProvider>
+            <ProjectProvider>
+              <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+                <AppLayoutShell showHeader={false}>
+                  {children}
+                </AppLayoutShell>
+                <Tour />
+                <Toaster />
+              </ThemeProvider>
+            </ProjectProvider>
+          </TourProvider>
         </AuthProvider>
       </body>
     </html>

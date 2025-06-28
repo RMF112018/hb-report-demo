@@ -13,7 +13,10 @@ import { useTheme } from "next-themes"
 import { useProjectContext } from "@/context/project-context"
 import { useToast } from "@/components/ui/use-toast"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import { TourControls } from "@/components/ui/tour"
 import projectsData from "@/data/mock/projects.json"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator } from "@/components/ui/dropdown-menu"
+import { Calendar, Users } from "lucide-react"
 
 /**
  * Enhanced AppHeader Component with Mega-Menu Navigation
@@ -166,9 +169,9 @@ export const AppHeader = () => {
       },
       {
         name: "Procurement",
-        href: "/dashboard/buyout-schedule",
+        href: "/dashboard/procurement",
         category: "Financial Management",
-        description: "Subcontract buyout and material procurement management",
+        description: "Subcontractor buyout and material procurement management",
       },
       // Removed: Change Management
 
@@ -476,6 +479,7 @@ export const AppHeader = () => {
       <header
         ref={headerRef}
         className="sticky top-0 z-[100] flex h-20 items-center justify-between border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-[#1e3a8a] to-[#2a5298] px-8 shadow-lg backdrop-blur-sm"
+        data-tour="app-header"
       >
         {/* Left Section - Logo and Navigation */}
         <div className="flex items-center space-x-8">
@@ -507,6 +511,7 @@ export const AppHeader = () => {
               }}
               aria-label="Select department"
               aria-expanded={showDepartmentMenu}
+              data-tour="environment-menu"
             >
               <Briefcase className="h-4 w-4" />
               <span className="capitalize">
@@ -535,6 +540,7 @@ export const AppHeader = () => {
               }}
               aria-label="Select project"
               aria-expanded={showProjectMenu}
+              data-tour="projects-menu"
             >
               <Building className="h-4 w-4" />
               <span className="truncate">
@@ -572,6 +578,7 @@ export const AppHeader = () => {
               }}
               aria-label="Select tool"
               aria-expanded={showToolMenu}
+              data-tour="tools-menu"
             >
               <Wrench className="h-4 w-4" />
               <span>Tools</span>
@@ -603,7 +610,7 @@ export const AppHeader = () => {
           </Badge>
 
           {/* Desktop Search */}
-          <div className="relative hidden xl:block">
+          <div className="relative hidden xl:block" data-tour="search-bar">
             <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 transform text-white/60" />
             <Input
               placeholder="Search projects, tools, reports..."
@@ -642,6 +649,9 @@ export const AppHeader = () => {
                 {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
               </Button>
             )}
+
+            {/* Tour Controls */}
+            <TourControls className="text-white [&_button]:text-white [&_button]:hover:bg-white/20" />
 
             {/* Notifications */}
             <Button

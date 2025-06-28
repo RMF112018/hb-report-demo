@@ -25,6 +25,61 @@
       "Fire sprinkler system required",
       "Stormwater management approval",
       "ADA compliance verification needed"
+    ],
+    "tags": ["high-priority", "residential", "luxury"],
+    "inspections": [
+      {
+        "id": "insp-001-1",
+        "permitId": "perm-001",
+        "type": "Foundation",
+        "scheduledDate": "2024-07-15T09:00:00Z",
+        "completedDate": "2024-07-15T11:30:00Z",
+        "inspector": "John Smith",
+        "inspectorContact": {
+          "phone": "(555) 123-9876",
+          "email": "j.smith@cityinspections.gov",
+          "badge": "INS-001"
+        },
+        "result": "passed",
+        "complianceScore": 95,
+        "issues": [],
+        "comments": "Foundation meets all code requirements. Minor grading adjustment needed.",
+        "resolutionNotes": "Grading completed and approved.",
+        "followUpRequired": false,
+        "duration": 150,
+        "createdAt": "2024-07-15T09:00:00Z",
+        "updatedAt": "2024-07-15T11:30:00Z"
+      },
+      {
+        "id": "insp-001-2",
+        "permitId": "perm-001",
+        "type": "Framing",
+        "scheduledDate": "2024-08-02T08:00:00Z",
+        "completedDate": "2024-08-02T10:15:00Z",
+        "inspector": "Sarah Wilson",
+        "inspectorContact": {
+          "phone": "(555) 234-5678",
+          "email": "s.wilson@cityinspections.gov",
+          "badge": "INS-002"
+        },
+        "result": "conditional",
+        "complianceScore": 82,
+        "issues": [
+          {
+            "id": "issue-001",
+            "description": "Missing fire blocking in stairwell",
+            "severity": "medium",
+            "resolved": true,
+            "resolutionNotes": "Fire blocking installed per code requirements"
+          }
+        ],
+        "comments": "Overall framing is good. One fire blocking issue needs to be addressed.",
+        "resolutionNotes": "Fire blocking installed and re-inspected. Approved.",
+        "followUpRequired": false,
+        "duration": 135,
+        "createdAt": "2024-08-02T08:00:00Z",
+        "updatedAt": "2024-08-02T10:15:00Z"
+      }
     ]
   },
   {
@@ -52,7 +107,9 @@
     "conditions": [
       "Fire sprinkler system required",
       "Noise ordinance compliance"
-    ]
+    ],
+    "tags": ["demolition", "safety"],
+    "inspections": []
   },
   {
     "id": "perm-003",
@@ -80,7 +137,9 @@
       "Environmental impact assessment completed",
       "Stormwater management approval",
       "Asbestos abatement documentation submitted"
-    ]
+    ],
+    "tags": ["site-work", "environmental"],
+    "inspections": []
   },
   {
     "id": "perm-004",
@@ -106,6 +165,67 @@
     "comments": "Auto-generated mock permit record for electrical.",
     "conditions": [
       "Environmental impact assessment completed"
+    ],
+    "tags": ["electrical", "safety-critical"],
+    "inspections": [
+      {
+        "id": "insp-004-1",
+        "permitId": "perm-004",
+        "type": "Rough-in Electrical",
+        "scheduledDate": "2024-07-20T10:00:00Z",
+        "completedDate": "2024-07-20T12:45:00Z",
+        "inspector": "Mike Johnson",
+        "inspectorContact": {
+          "phone": "(555) 345-6789",
+          "email": "m.johnson@electricalcode.gov",
+          "badge": "ELEC-003"
+        },
+        "result": "failed",
+        "complianceScore": 65,
+        "issues": [
+          {
+            "id": "issue-004-1",
+            "description": "GFCI outlets missing in bathroom areas",
+            "severity": "high",
+            "resolved": false,
+            "resolutionNotes": ""
+          },
+          {
+            "id": "issue-004-2",
+            "description": "Service panel labeling incomplete",
+            "severity": "medium",
+            "resolved": false,
+            "resolutionNotes": ""
+          }
+        ],
+        "comments": "Major electrical code violations found. Re-inspection required after corrections.",
+        "resolutionNotes": "",
+        "followUpRequired": true,
+        "duration": 165,
+        "createdAt": "2024-07-20T10:00:00Z",
+        "updatedAt": "2024-07-20T12:45:00Z"
+      },
+      {
+        "id": "insp-004-2",
+        "permitId": "perm-004",
+        "type": "Electrical Final",
+        "scheduledDate": "2024-12-15T09:00:00Z",
+        "inspector": "Mike Johnson",
+        "inspectorContact": {
+          "phone": "(555) 345-6789",
+          "email": "m.johnson@electricalcode.gov",
+          "badge": "ELEC-003"
+        },
+        "result": "pending",
+        "complianceScore": null,
+        "issues": [],
+        "comments": "Scheduled for final electrical inspection.",
+        "resolutionNotes": "",
+        "followUpRequired": false,
+        "duration": null,
+        "createdAt": "2024-12-01T08:00:00Z",
+        "updatedAt": "2024-12-01T08:00:00Z"
+      }
     ]
   },
   {
@@ -132,7 +252,9 @@
     "comments": "Auto-generated mock permit record for roofing.",
     "conditions": [
       "Environmental impact assessment completed"
-    ]
+    ],
+    "tags": ["roofing", "weatherproofing"],
+    "inspections": []
   },
   {
     "id": "perm-006",

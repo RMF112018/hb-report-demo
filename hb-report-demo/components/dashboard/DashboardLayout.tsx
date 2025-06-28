@@ -54,7 +54,9 @@ export function DashboardLayout({
       isEditing ? 'bg-primary/5' : ''
     }`}>
       {/* KPI Row */}
-      <KPIRow userRole={userRole} />
+      <div data-tour="kpi-widgets">
+        <KPIRow userRole={userRole} />
+      </div>
       
       {/* Dashboard Content - Responsive Container */}
       <div className="w-full px-2 sm:px-3 lg:px-4 xl:px-6 2xl:px-8 pt-2 sm:pt-3 lg:pt-4">

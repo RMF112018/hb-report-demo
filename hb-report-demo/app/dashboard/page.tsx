@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useAuth } from "@/context/auth-context";
+import { useTour } from "@/context/tour-context";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { DashboardLayout as DashboardLayoutComponent } from "@/components/dashboard/DashboardLayout";
@@ -35,6 +36,7 @@ function DashboardContent({ user }: { user: any }) {
     updateDashboard,
     loading,
   } = useDashboardContext();
+  const { startTour, isTourAvailable } = useTour();
   const [isEditing, setIsEditing] = useState(false);
   const [dashboardPopoverOpen, setDashboardPopoverOpen] = useState(false);
   const [layoutPopoverOpen, setLayoutPopoverOpen] = useState(false);
@@ -42,6 +44,37 @@ function DashboardContent({ user }: { user: any }) {
   const [isFullscreen, setIsFullscreen] = useState(false);
 
   const currentDashboard = dashboards.find(d => d.id === currentDashboardId);
+
+  // Auto-start dashboard tour for new visitors
+  useEffect(() => {
+    if (typeof window !== 'undefined' && user && isTourAvailable) {
+      // Check if user has disabled tours permanently
+      const hasDisabledTours = localStorage.getItem('hb-tour-available') === 'false'
+      
+      if (hasDisabledTours) {
+        console.log('Tours disabled by user preference')
+        return
+      }
+
+      // Session-based tracking for dashboard tour
+      const hasShownDashboardTour = sessionStorage.getItem('hb-tour-shown-dashboard-overview')
+      
+      console.log('Dashboard tour auto-start check:', {
+        isTourAvailable,
+        hasShownDashboardTour,
+        hasDisabledTours,
+        userRole: user?.role
+      })
+      
+      // Auto-start dashboard tour once per session
+      if (!hasShownDashboardTour) {
+        setTimeout(() => {
+          console.log('Auto-starting dashboard tour...')
+          startTour('dashboard-overview', true) // true indicates auto-start
+        }, 3000)
+      }
+    }
+  }, [isTourAvailable, startTour, user])
 
   // Simplified data preparation
   const stage4Projects = projectsData.filter(p => p.project_stage_id === 4);
@@ -239,7 +272,7 @@ function DashboardContent({ user }: { user: any }) {
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-0">
               <div className="flex items-center gap-3">
                 {/* Dashboard Selector Popover */}
-                <Popover open={dashboardPopoverOpen} onOpenChange={setDashboardPopoverOpen}>
+                <Popover open={dashboardPopoverOpen} onOpenChange={setDashboardPopoverOpen} data-tour="dashboard-selector">
                   <PopoverTrigger asChild>
                     <Button variant="outline" className="flex items-center gap-2">
                       <LayoutDashboard className="h-4 w-4" />
@@ -282,7 +315,7 @@ function DashboardContent({ user }: { user: any }) {
                 </Popover>
               </div>
 
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3" data-tour="dashboard-controls">
                 <Button
                   variant={isEditing ? "default" : "outline"}
                   onClick={() => setIsEditing(!isEditing)}
@@ -369,7 +402,8 @@ function DashboardContent({ user }: { user: any }) {
         </div>
         
         {currentDashboard && (
-          <DashboardLayoutComponent 
+          <div data-tour="dashboard-content">
+            <DashboardLayoutComponent 
             cards={currentDashboard.cards}
             onLayoutChange={handleLayoutChange}
             onCardRemove={handleCardRemove}
@@ -382,6 +416,7 @@ function DashboardContent({ user }: { user: any }) {
             layoutDensity={layoutDensity}
             userRole={user.role}
           />
+          </div>
         )}
       </div>
     </div>
