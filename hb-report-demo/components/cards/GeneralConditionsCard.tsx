@@ -127,23 +127,23 @@ export default function GeneralConditionsCard({ config, span, isCompact, userRol
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Header Stats */}
-      <div className="flex-shrink-0 p-4 bg-white/80 dark:bg-black/80 backdrop-blur-sm border-b border-blue-200 dark:border-blue-800">
-        <div className="grid grid-cols-2 gap-4">
+      <div className="flex-shrink-0 p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 bg-white/80 dark:bg-black/80 backdrop-blur-sm border-b border-blue-200 dark:border-blue-800">
+        <div className="grid grid-cols-2 gap-1.5 sm:gap-2 lg:gap-1 sm:gap-1.5 lg:gap-2">
           <div className="text-center">
-            <div className="text-lg font-bold text-green-700">{formatPercentage(data.avgSavingsPercent)}</div>
+            <div className="text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium text-green-700">{formatPercentage(data.avgSavingsPercent)}</div>
             <div className="text-xs text-green-600 dark:text-green-400">Avg Savings</div>
           </div>
           <div className="text-center">
-            <div className="text-lg font-bold text-blue-700">{data.gcUtilizationRate}%</div>
+            <div className="text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium text-blue-700">{data.gcUtilizationRate}%</div>
             <div className="text-xs text-blue-600 dark:text-blue-400">Utilization</div>
           </div>
         </div>
       </div>
 
       {/* Content */}
-      <div className="flex-1 p-4 space-y-4 overflow-y-auto">
+      <div className="flex-1 p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 space-y-4 overflow-y-auto">
         {/* GC Estimate Comparison */}
-        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-3 border border-blue-200 dark:border-blue-800">
+        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-1.5 sm:p-2 lg:p-2.5 border border-blue-200 dark:border-blue-800">
           <div className="flex items-center gap-2 mb-2">
             <Calculator className="h-4 w-4 text-blue-600 dark:text-blue-400" />
             <span className="text-sm font-medium text-foreground">GC Estimates</span>
@@ -161,7 +161,7 @@ export default function GeneralConditionsCard({ config, span, isCompact, userRol
         </div>
 
         {/* Variance Analysis */}
-        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-3 border border-blue-200 dark:border-blue-800">
+        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-1.5 sm:p-2 lg:p-2.5 border border-blue-200 dark:border-blue-800">
           <div className="flex items-center gap-2 mb-2">
             <Target className="h-4 w-4 text-blue-600 dark:text-blue-400" />
             <span className="text-sm font-medium text-foreground">Variance Analysis</span>
@@ -169,7 +169,7 @@ export default function GeneralConditionsCard({ config, span, isCompact, userRol
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-1">
               {getVarianceIcon(data.gcVariance)}
-              <span className={`text-lg font-bold ${getVarianceColor(data.gcVariance)}`}>
+              <span className={`text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium ${getVarianceColor(data.gcVariance)}`}>
                 {formatCurrency(Math.abs(data.gcVariance))}
               </span>
             </div>
@@ -183,7 +183,7 @@ export default function GeneralConditionsCard({ config, span, isCompact, userRol
         </div>
 
         {/* Project Performance */}
-        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-3 border border-blue-200 dark:border-blue-800">
+        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-1.5 sm:p-2 lg:p-2.5 border border-blue-200 dark:border-blue-800">
           <div className="flex items-center gap-2 mb-2">
             <Wrench className="h-4 w-4 text-blue-600 dark:text-blue-400" />
             <span className="text-sm font-medium text-foreground">Project Performance</span>
@@ -201,13 +201,13 @@ export default function GeneralConditionsCard({ config, span, isCompact, userRol
         </div>
 
         {/* Total Impact */}
-        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-3 border border-blue-200 dark:border-blue-800">
+        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-1.5 sm:p-2 lg:p-2.5 border border-blue-200 dark:border-blue-800">
           <div className="flex items-center gap-2 mb-2">
             <TrendingDown className="h-4 w-4 text-blue-600 dark:text-blue-400" />
             <span className="text-sm font-medium text-foreground">Total Impact</span>
           </div>
           <div className="text-center">
-            <div className="text-lg font-bold text-green-700">
+            <div className="text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium text-green-700">
               {formatCurrency(data.totalSavings)}
             </div>
             <div className="text-xs text-muted-foreground">Total Portfolio Savings</div>
@@ -220,9 +220,9 @@ export default function GeneralConditionsCard({ config, span, isCompact, userRol
 
       {/* Hover Drill-Down Overlay */}
       {isHovered && (
-        <div className="absolute inset-0 bg-blue-900/95 backdrop-blur-sm p-4 flex flex-col justify-center text-white animate-in fade-in duration-200">
+        <div className="absolute inset-0 bg-blue-900/95 backdrop-blur-sm p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 flex flex-col justify-center text-white animate-in fade-in duration-200">
           <div className="space-y-3">
-            <div className="flex items-center gap-2 mb-4">
+            <div className="flex items-center gap-2 mb-1.5 sm:mb-2 lg:mb-1 sm:mb-1.5 lg:mb-2">
               <ChevronRight className="h-4 w-4" />
               <span className="font-semibold text-sm">GC Cost Breakdown</span>
             </div>
@@ -246,7 +246,7 @@ export default function GeneralConditionsCard({ config, span, isCompact, userRol
               </div>
             </div>
 
-            <div className="mt-4 pt-3 border-t border-blue-700">
+            <div className="mt-1.5 sm:mt-2 lg:mt-1 sm:mt-1.5 lg:mt-2 pt-3 border-t border-blue-700">
               <div className="flex items-center gap-1 mb-2">
                 <Settings className="h-3 w-3" />
                 <span className="text-xs font-medium text-blue-200">Category Analysis</span>
@@ -267,7 +267,7 @@ export default function GeneralConditionsCard({ config, span, isCompact, userRol
               </div>
             </div>
 
-            <div className="mt-4 pt-3 border-t border-blue-700">
+            <div className="mt-1.5 sm:mt-2 lg:mt-1 sm:mt-1.5 lg:mt-2 pt-3 border-t border-blue-700">
               <div className="text-xs font-medium text-blue-200 mb-2">Key Efficiency Gains</div>
               <div className="space-y-1">
                 {data.drillDown.efficiencyGains.map((gain, index) => (

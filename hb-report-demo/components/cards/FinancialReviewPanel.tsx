@@ -48,54 +48,54 @@ export function FinancialReviewPanel({
   return (
     <div className="h-full w-full flex flex-col bg-card overflow-hidden">
       {/* Key Metrics Row */}
-      <div className="p-4">
-        <div className="grid grid-cols-4 gap-3">
+      <div className="p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5">
+        <div className="grid grid-cols-4 gap-1 sm:gap-1.5 lg:gap-2">
           {/* Forecast Index */}
-          <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950/40 dark:to-blue-900/40 rounded-lg p-3 text-center">
+          <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950/40 dark:to-blue-900/40 rounded-lg p-1.5 sm:p-2 lg:p-2.5 text-center">
             <div className="flex items-center justify-center gap-1 mb-1">
               <TrendingUp className="h-4 w-4 text-blue-600 dark:text-blue-400" />
               <span className="text-xs font-medium text-blue-700">Forecast</span>
             </div>
             <div className="flex items-center justify-center gap-1">
-              <span className="text-lg font-bold text-blue-900">{forecastIndex.toFixed(1)}</span>
+              <span className="text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium text-blue-900">{forecastIndex.toFixed(1)}</span>
               <trends.forecast className={`h-3 w-3 ${trendColors.forecast}`} />
             </div>
             <span className="text-xs text-blue-600 dark:text-blue-400">Index</span>
           </div>
 
           {/* Budget Health */}
-          <div className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-950/40 dark:to-green-900/40 rounded-lg p-3 text-center">
+          <div className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-950/40 dark:to-green-900/40 rounded-lg p-1.5 sm:p-2 lg:p-2.5 text-center">
             <div className="flex items-center justify-center gap-1 mb-1">
               <DollarSign className="h-4 w-4 text-green-600 dark:text-green-400" />
               <span className="text-xs font-medium text-green-700">Budget</span>
             </div>
             <div className="flex items-center justify-center gap-1">
-              <span className="text-lg font-bold text-green-900">{budgetHealth.toFixed(1)}</span>
+              <span className="text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium text-green-900">{budgetHealth.toFixed(1)}</span>
               <trends.budget className={`h-3 w-3 ${trendColors.budget}`} />
             </div>
             <span className="text-xs text-green-600 dark:text-green-400">Health</span>
           </div>
 
           {/* Schedule Health */}
-          <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 dark:from-indigo-950/40 dark:to-indigo-900/40 rounded-lg p-3 text-center">
+          <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 dark:from-indigo-950/40 dark:to-indigo-900/40 rounded-lg p-1.5 sm:p-2 lg:p-2.5 text-center">
             <div className="flex items-center justify-center gap-1 mb-1">
               <CalendarCheck className="h-4 w-4 text-indigo-600 dark:text-indigo-400" />
               <span className="text-xs font-medium text-indigo-700">Schedule</span>
             </div>
             <div className="flex items-center justify-center gap-1">
-              <span className="text-lg font-bold text-indigo-900">{scheduleHealth.toFixed(1)}</span>
+              <span className="text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium text-indigo-900">{scheduleHealth.toFixed(1)}</span>
               <trends.schedule className={`h-3 w-3 ${trendColors.schedule}`} />
             </div>
             <span className="text-xs text-indigo-600 dark:text-indigo-400">Score</span>
           </div>
 
           {/* Net Cash Flow */}
-          <div className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-950/40 dark:to-purple-900/40 rounded-lg p-3 text-center">
+          <div className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-950/40 dark:to-purple-900/40 rounded-lg p-1.5 sm:p-2 lg:p-2.5 text-center">
             <div className="flex items-center justify-center gap-1 mb-1">
               <BarChart3 className="h-4 w-4 text-purple-600" />
               <span className="text-xs font-medium text-purple-700">Cash Flow</span>
             </div>
-            <div className="text-lg font-bold text-purple-900">
+            <div className="text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium text-purple-900">
               {cashflowMetrics[0]?.value || '$0'}
             </div>
             <span className="text-xs text-purple-600">Net</span>
@@ -104,10 +104,10 @@ export function FinancialReviewPanel({
       </div>
 
       {/* Charts Section */}
-      <div className="flex-1 px-4 pb-4 min-h-0">
-        <div className="grid grid-cols-2 gap-4 h-full">
+      <div className="flex-1 px-2 sm:px-2.5 lg:px-1.5 sm:px-2 lg:px-2.5 pb-4 min-h-0">
+        <div className="grid grid-cols-2 gap-1.5 sm:gap-2 lg:gap-1 sm:gap-1.5 lg:gap-2 h-full">
           {/* Cashflow Trend */}
-          <div className="bg-muted/50 rounded-lg p-3 flex flex-col">
+          <div className="bg-muted/50 rounded-lg p-1.5 sm:p-2 lg:p-2.5 flex flex-col">
             <div className="flex items-center gap-2 mb-2">
               <TrendingUp className="h-4 w-4 text-blue-600 dark:text-blue-400" />
               <span className="font-medium text-sm text-foreground">Cash Flow Trend</span>
@@ -125,7 +125,7 @@ export function FinancialReviewPanel({
           </div>
 
           {/* Schedule Performance */}
-          <div className="bg-muted/50 rounded-lg p-3 flex flex-col">
+          <div className="bg-muted/50 rounded-lg p-1.5 sm:p-2 lg:p-2.5 flex flex-col">
             <div className="flex items-center gap-2 mb-2">
               <CalendarCheck className="h-4 w-4 text-indigo-600 dark:text-indigo-400" />
               <span className="font-medium text-sm text-foreground">Schedule Performance</span>

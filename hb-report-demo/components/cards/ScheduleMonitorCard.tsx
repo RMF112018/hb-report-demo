@@ -245,7 +245,7 @@ export function ScheduleMonitorCard({ card, config, span, isCompact, userRole }:
             <div className="relative inline-block">
               <div className="w-20 h-20 rounded-full bg-gradient-to-r from-blue-100 to-indigo-100 dark:from-blue-950/40 dark:to-indigo-950/40 flex items-center justify-center border-4 border-blue-200 dark:border-blue-800">
                 <div className="text-center">
-                  <div className={`text-xl font-bold ${getHealthColor(data.scheduleHealth)}`}>
+                  <div className={`text-base sm:text-lg lg:text-base sm:text-lg lg:text-xl font-medium ${getHealthColor(data.scheduleHealth)}`}>
                     {data.scheduleHealth.toFixed(0)}
                   </div>
                   <div className="text-xs text-muted-foreground">Health</div>
@@ -258,7 +258,7 @@ export function ScheduleMonitorCard({ card, config, span, isCompact, userRole }:
           </div>
 
           {/* Key Metrics */}
-          <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-blue-100 dark:border-blue-800 p-3">
+          <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-blue-100 dark:border-blue-800 p-1.5 sm:p-2 lg:p-2.5">
             <h4 className="font-semibold mb-2 text-foreground text-sm">Key Metrics</h4>
             <div className="space-y-2">
               <div className="flex justify-between items-center">
@@ -325,7 +325,7 @@ export function ScheduleMonitorCard({ card, config, span, isCompact, userRole }:
       {/* Hover Drill-down */}
       {isHovered && (
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/30 dark:to-indigo-950/30 border border-blue-200 dark:border-blue-800 rounded-lg shadow-2xl z-10 overflow-auto">
-          <div className="p-4 space-y-4">
+          <div className="p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 space-y-4">
             <div className="flex items-center justify-between border-b border-blue-200 dark:border-blue-800 pb-2">
               <h3 className="font-semibold text-foreground flex items-center gap-2">
                 <Calendar className="h-4 w-4 text-blue-600 dark:text-blue-400" />
@@ -340,7 +340,7 @@ export function ScheduleMonitorCard({ card, config, span, isCompact, userRole }:
             </div>
 
             {/* Schedule Health Radar */}
-            <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-blue-100 dark:border-blue-800 p-3">
+            <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-blue-100 dark:border-blue-800 p-1.5 sm:p-2 lg:p-2.5">
               <h4 className="font-semibold mb-2 text-foreground">Schedule Health Dimensions</h4>
               <div className="h-40">
                 <ResponsiveContainer width="100%" height="100%">
@@ -370,7 +370,7 @@ export function ScheduleMonitorCard({ card, config, span, isCompact, userRole }:
             </div>
 
             {/* Performance Trends */}
-            <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-blue-100 dark:border-blue-800 p-3">
+            <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-blue-100 dark:border-blue-800 p-1.5 sm:p-2 lg:p-2.5">
               <h4 className="font-semibold mb-2 text-foreground">Performance Trends</h4>
               <div className="h-32">
                 <ResponsiveContainer width="100%" height="100%">
@@ -410,7 +410,7 @@ export function ScheduleMonitorCard({ card, config, span, isCompact, userRole }:
 
             {/* Role-specific details */}
             {role === 'project-manager' && 'milestones' in data && (
-              <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-blue-100 dark:border-blue-800 p-3">
+              <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-blue-100 dark:border-blue-800 p-1.5 sm:p-2 lg:p-2.5">
                 <h4 className="font-semibold mb-2 text-foreground">Key Milestones</h4>
                 <div className="space-y-2 max-h-32 overflow-y-auto">
                   {data.milestones.map((milestone: any, index: number) => (
@@ -437,7 +437,7 @@ export function ScheduleMonitorCard({ card, config, span, isCompact, userRole }:
             )}
 
             {role === 'project-executive' && 'projectBreakdown' in data && (
-              <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-blue-100 dark:border-blue-800 p-3">
+              <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-blue-100 dark:border-blue-800 p-1.5 sm:p-2 lg:p-2.5">
                 <h4 className="font-semibold mb-2 text-foreground">Project Portfolio</h4>
                 <div className="space-y-2 max-h-36 overflow-y-auto">
                   {data.projectBreakdown.map((project: any, index: number) => (
@@ -461,7 +461,7 @@ export function ScheduleMonitorCard({ card, config, span, isCompact, userRole }:
             )}
 
             {role === 'project-manager' && 'alerts' in data && (
-              <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-blue-100 dark:border-blue-800 p-3">
+              <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-blue-100 dark:border-blue-800 p-1.5 sm:p-2 lg:p-2.5">
                 <h4 className="font-semibold mb-2 text-foreground">Schedule Alerts</h4>
                 <div className="space-y-2 max-h-24 overflow-y-auto">
                   {data.alerts.map((alert: any, index: number) => (
@@ -484,7 +484,7 @@ export function ScheduleMonitorCard({ card, config, span, isCompact, userRole }:
             {/* Summary Stats */}
             <div className="grid grid-cols-3 gap-2">
               <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-blue-100 dark:border-blue-800 p-2 text-center">
-                <div className="text-lg font-bold text-blue-600 dark:text-blue-400">
+                <div className="text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium text-blue-600 dark:text-blue-400">
                   {role === 'executive' ? data.companyMetrics?.onSchedule : 
                    role === 'project-executive' ? data.portfolioMetrics?.onSchedule : 
                    data.criticalPath?.duration}
@@ -495,7 +495,7 @@ export function ScheduleMonitorCard({ card, config, span, isCompact, userRole }:
                 </div>
               </div>
               <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-blue-100 dark:border-blue-800 p-2 text-center">
-                <div className="text-lg font-bold text-blue-600 dark:text-blue-400">
+                <div className="text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium text-blue-600 dark:text-blue-400">
                   {role === 'executive' ? data.companyMetrics?.criticallyBehind : 
                    role === 'project-executive' ? data.portfolioMetrics?.criticallyBehind : 
                    data.logicHealth?.issues}
@@ -506,7 +506,7 @@ export function ScheduleMonitorCard({ card, config, span, isCompact, userRole }:
                 </div>
               </div>
               <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-blue-100 dark:border-blue-800 p-2 text-center">
-                <div className="text-lg font-bold text-blue-600 dark:text-blue-400">
+                <div className="text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium text-blue-600 dark:text-blue-400">
                   {role === 'project-manager' ? data.updateMetrics?.frequency : 
                    role === 'project-executive' ? data.logicHealth?.projectsWithIssues : 
                    data.logicHealth?.projectsWithIssues}

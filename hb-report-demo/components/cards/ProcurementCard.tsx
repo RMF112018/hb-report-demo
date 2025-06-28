@@ -120,23 +120,23 @@ export default function ProcurementCard({ config, span, isCompact, userRole }: P
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Header Stats */}
-      <div className="flex-shrink-0 p-4 bg-white/80 dark:bg-black/80 backdrop-blur-sm border-b border-amber-200 dark:border-amber-800">
-        <div className="grid grid-cols-2 gap-4">
+      <div className="flex-shrink-0 p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 bg-white/80 dark:bg-black/80 backdrop-blur-sm border-b border-amber-200 dark:border-amber-800">
+        <div className="grid grid-cols-2 gap-1.5 sm:gap-2 lg:gap-1 sm:gap-1.5 lg:gap-2">
           <div className="text-center">
-            <div className="text-lg font-bold text-amber-700">{data.contractsExecuted}/{data.totalContracts}</div>
+            <div className="text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium text-amber-700">{data.contractsExecuted}/{data.totalContracts}</div>
             <div className="text-xs text-amber-600 dark:text-amber-400">Executed</div>
           </div>
           <div className="text-center">
-            <div className="text-lg font-bold text-orange-700">{formatPercentage(data.executionRate)}</div>
+            <div className="text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium text-orange-700">{formatPercentage(data.executionRate)}</div>
             <div className="text-xs text-orange-600">Rate</div>
           </div>
         </div>
       </div>
 
       {/* Content */}
-      <div className="flex-1 p-4 space-y-4 overflow-y-auto">
+      <div className="flex-1 p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 space-y-4 overflow-y-auto">
         {/* Contract Value */}
-        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-3 border border-amber-200 dark:border-amber-800">
+        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-1.5 sm:p-2 lg:p-2.5 border border-amber-200 dark:border-amber-800">
           <div className="flex items-center gap-2 mb-2">
             <Package className="h-4 w-4 text-amber-600 dark:text-amber-400" />
             <span className="text-sm font-medium text-foreground">Contract Value</span>
@@ -154,13 +154,13 @@ export default function ProcurementCard({ config, span, isCompact, userRole }: P
         </div>
 
         {/* Value Engineering */}
-        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-3 border border-amber-200 dark:border-amber-800">
+        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-1.5 sm:p-2 lg:p-2.5 border border-amber-200 dark:border-amber-800">
           <div className="flex items-center gap-2 mb-2">
             <TrendingDown className="h-4 w-4 text-amber-600 dark:text-amber-400" />
             <span className="text-sm font-medium text-foreground">Value Engineering</span>
           </div>
           <div className="flex items-center justify-between">
-            <div className="text-lg font-bold text-green-700">
+            <div className="text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium text-green-700">
               {formatCurrency(data.veSavings)}
             </div>
             <Badge className="bg-green-100 text-green-700 text-xs">
@@ -173,13 +173,13 @@ export default function ProcurementCard({ config, span, isCompact, userRole }: P
         </div>
 
         {/* Allowance Management */}
-        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-3 border border-amber-200 dark:border-amber-800">
+        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-1.5 sm:p-2 lg:p-2.5 border border-amber-200 dark:border-amber-800">
           <div className="flex items-center gap-2 mb-2">
             <DollarSign className="h-4 w-4 text-amber-600 dark:text-amber-400" />
             <span className="text-sm font-medium text-foreground">Allowances</span>
           </div>
           <div className="flex items-center justify-between">
-            <div className={`text-lg font-bold ${getVarianceColor(data.allowanceVariance)}`}>
+            <div className={`text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium ${getVarianceColor(data.allowanceVariance)}`}>
               {formatCurrency(Math.abs(data.allowanceVariance))}
             </div>
             <Badge className={data.allowanceVariance < 0 ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"}>
@@ -192,7 +192,7 @@ export default function ProcurementCard({ config, span, isCompact, userRole }: P
         </div>
 
         {/* Long Lead Items */}
-        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-3 border border-amber-200 dark:border-amber-800">
+        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-1.5 sm:p-2 lg:p-2.5 border border-amber-200 dark:border-amber-800">
           <div className="flex items-center gap-2 mb-2">
             <Clock className="h-4 w-4 text-amber-600 dark:text-amber-400" />
             <span className="text-sm font-medium text-foreground">Long Lead Items</span>
@@ -213,7 +213,7 @@ export default function ProcurementCard({ config, span, isCompact, userRole }: P
         </div>
 
         {/* Execution Progress */}
-        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-3 border border-amber-200 dark:border-amber-800">
+        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-1.5 sm:p-2 lg:p-2.5 border border-amber-200 dark:border-amber-800">
           <div className="flex items-center gap-2 mb-2">
             <CheckCircle className="h-4 w-4 text-amber-600 dark:text-amber-400" />
             <span className="text-sm font-medium text-foreground">Execution Progress</span>
@@ -230,9 +230,9 @@ export default function ProcurementCard({ config, span, isCompact, userRole }: P
 
       {/* Hover Drill-Down Overlay */}
       {isHovered && (
-        <div className="absolute inset-0 bg-amber-900/95 backdrop-blur-sm p-4 flex flex-col justify-center text-white animate-in fade-in duration-200">
+        <div className="absolute inset-0 bg-amber-900/95 backdrop-blur-sm p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 flex flex-col justify-center text-white animate-in fade-in duration-200">
           <div className="space-y-3">
-            <div className="flex items-center gap-2 mb-4">
+            <div className="flex items-center gap-2 mb-1.5 sm:mb-2 lg:mb-1 sm:mb-1.5 lg:mb-2">
               <ChevronRight className="h-4 w-4" />
               <span className="font-semibold text-sm">Procurement Analysis</span>
             </div>
@@ -256,7 +256,7 @@ export default function ProcurementCard({ config, span, isCompact, userRole }: P
               </div>
             </div>
 
-            <div className="mt-4 pt-3 border-t border-amber-700">
+            <div className="mt-1.5 sm:mt-2 lg:mt-1 sm:mt-1.5 lg:mt-2 pt-3 border-t border-amber-700">
               <div className="flex items-center gap-1 mb-2">
                 <AlertTriangle className="h-3 w-3" />
                 <span className="text-xs font-medium text-amber-200">Critical Items</span>

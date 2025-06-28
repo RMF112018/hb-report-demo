@@ -369,21 +369,19 @@ function DashboardContent({ user }: { user: any }) {
         </div>
         
         {currentDashboard && (
-          <div className="px-2 sm:px-4 py-3">
-            <DashboardLayoutComponent 
-              cards={currentDashboard.cards}
-              onLayoutChange={handleLayoutChange}
-              onCardRemove={handleCardRemove}
-              onCardConfigure={handleCardConfigure}
-              onCardAdd={handleCardAdd}
-              onSave={handleSave}
-              onReset={handleReset}
-              isEditing={isEditing}
-              onToggleEdit={() => setIsEditing(!isEditing)}
-              layoutDensity={layoutDensity}
-              userRole={user.role}
-            />
-          </div>
+          <DashboardLayoutComponent 
+            cards={currentDashboard.cards}
+            onLayoutChange={handleLayoutChange}
+            onCardRemove={handleCardRemove}
+            onCardConfigure={handleCardConfigure}
+            onCardAdd={handleCardAdd}
+            onSave={handleSave}
+            onReset={handleReset}
+            isEditing={isEditing}
+            onToggleEdit={() => setIsEditing(!isEditing)}
+            layoutDensity={layoutDensity}
+            userRole={user.role}
+          />
         )}
       </div>
     </div>

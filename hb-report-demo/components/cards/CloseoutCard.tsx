@@ -204,30 +204,30 @@ export default function CloseoutCard({ config, span, isCompact, userRole }: Clos
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Header Stats */}
-      <div className="flex-shrink-0 p-4 bg-white/80 dark:bg-black/80 backdrop-blur-sm border-b border-indigo-200 dark:border-indigo-800">
-        <div className="grid grid-cols-2 gap-4">
+      <div className="flex-shrink-0 p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 bg-white/80 dark:bg-black/80 backdrop-blur-sm border-b border-indigo-200 dark:border-indigo-800">
+        <div className="grid grid-cols-2 gap-1.5 sm:gap-2 lg:gap-1 sm:gap-1.5 lg:gap-2">
           <div className="text-center">
-            <div className={`text-lg font-bold ${getStatusColor(data.overallCompletion)}`}>
+            <div className={`text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium ${getStatusColor(data.overallCompletion)}`}>
               {formatPercentage(data.overallCompletion)}
             </div>
             <div className="text-xs text-indigo-600 dark:text-indigo-400">Complete</div>
           </div>
           <div className="text-center">
-            <div className={`text-lg font-bold ${getRiskColor(data.riskLevel)}`}>{data.criticalItems}</div>
+            <div className={`text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium ${getRiskColor(data.riskLevel)}`}>{data.criticalItems}</div>
             <div className="text-xs text-muted-foreground">Critical</div>
           </div>
         </div>
       </div>
 
       {/* Content */}
-      <div className="flex-1 p-4 space-y-4 overflow-y-auto">
+      <div className="flex-1 p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 space-y-4 overflow-y-auto">
         {/* Status Overview */}
-        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-3 border border-indigo-200 dark:border-indigo-800">
-          <div className="flex items-center gap-2 mb-3">
+        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-1.5 sm:p-2 lg:p-2.5 border border-indigo-200 dark:border-indigo-800">
+          <div className="flex items-center gap-2 mb-1 sm:mb-1.5 lg:mb-2">
             <ClipboardCheck className="h-4 w-4 text-indigo-600 dark:text-indigo-400" />
             <span className="text-sm font-medium text-foreground">Closeout Status</span>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-1.5 sm:gap-2 lg:gap-1 sm:gap-1.5 lg:gap-2">
             <div className="w-20 h-20">
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
@@ -264,7 +264,7 @@ export default function CloseoutCard({ config, span, isCompact, userRole }: Clos
         </div>
 
         {/* Progress by Category */}
-        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-3 border border-indigo-200 dark:border-indigo-800">
+        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-1.5 sm:p-2 lg:p-2.5 border border-indigo-200 dark:border-indigo-800">
           <div className="flex items-center gap-2 mb-2">
             <Target className="h-4 w-4 text-indigo-600 dark:text-indigo-400" />
             <span className="text-sm font-medium text-foreground">Category Progress</span>
@@ -283,7 +283,7 @@ export default function CloseoutCard({ config, span, isCompact, userRole }: Clos
         </div>
 
         {/* Key Metrics */}
-        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-3 border border-indigo-200 dark:border-indigo-800">
+        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-1.5 sm:p-2 lg:p-2.5 border border-indigo-200 dark:border-indigo-800">
           <div className="flex items-center gap-2 mb-2">
             <CalendarCheck className="h-4 w-4 text-indigo-600 dark:text-indigo-400" />
             <span className="text-sm font-medium text-foreground">Timeline</span>
@@ -309,15 +309,15 @@ export default function CloseoutCard({ config, span, isCompact, userRole }: Clos
 
       {/* Hover Drill-Down Overlay */}
       {isHovered && (
-        <div className="absolute inset-0 bg-indigo-900/95 backdrop-blur-sm p-4 flex flex-col text-white animate-in fade-in duration-200 overflow-y-auto">
+        <div className="absolute inset-0 bg-indigo-900/95 backdrop-blur-sm p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 flex flex-col text-white animate-in fade-in duration-200 overflow-y-auto">
           <div className="space-y-4">
-            <div className="flex items-center gap-2 mb-4">
+            <div className="flex items-center gap-2 mb-1.5 sm:mb-2 lg:mb-1 sm:mb-1.5 lg:mb-2">
               <ChevronRight className="h-4 w-4" />
               <span className="font-semibold text-lg">Closeout Deep Dive</span>
             </div>
             
             {/* Categories Breakdown */}
-            <div className="bg-white/10 dark:bg-black/10 rounded-lg p-3">
+            <div className="bg-white/10 dark:bg-black/10 rounded-lg p-1.5 sm:p-2 lg:p-2.5">
               <h4 className="font-semibold mb-2 flex items-center text-sm">
                 <FileCheck className="w-4 h-4 mr-2" />
                 Category Details
@@ -338,7 +338,7 @@ export default function CloseoutCard({ config, span, isCompact, userRole }: Clos
             </div>
 
             {/* Visual Progress Chart */}
-            <div className="bg-white/10 dark:bg-black/10 rounded-lg p-3">
+            <div className="bg-white/10 dark:bg-black/10 rounded-lg p-1.5 sm:p-2 lg:p-2.5">
               <h4 className="font-semibold mb-2 flex items-center text-sm">
                 <TrendingUp className="w-4 h-4 mr-2" />
                 Category Completion
@@ -364,7 +364,7 @@ export default function CloseoutCard({ config, span, isCompact, userRole }: Clos
 
             {/* Project Details or Portfolio View */}
             {userRole === 'project-manager' ? (
-              <div className="bg-white/10 dark:bg-black/10 rounded-lg p-3">
+              <div className="bg-white/10 dark:bg-black/10 rounded-lg p-1.5 sm:p-2 lg:p-2.5">
                 <h4 className="font-semibold mb-2 flex items-center text-sm">
                   <Building2 className="w-4 h-4 mr-2" />
                   Project: {data.drillDown.projectDetails?.name}
@@ -389,7 +389,7 @@ export default function CloseoutCard({ config, span, isCompact, userRole }: Clos
                 </div>
               </div>
             ) : userRole === 'project-executive' ? (
-              <div className="bg-white/10 dark:bg-black/10 rounded-lg p-3">
+              <div className="bg-white/10 dark:bg-black/10 rounded-lg p-1.5 sm:p-2 lg:p-2.5">
                 <h4 className="font-semibold mb-2 flex items-center text-sm">
                   <Building2 className="w-4 h-4 mr-2" />
                   Project Status (6 Projects)
@@ -417,7 +417,7 @@ export default function CloseoutCard({ config, span, isCompact, userRole }: Clos
                 </div>
               </div>
             ) : (
-              <div className="bg-white/10 dark:bg-black/10 rounded-lg p-3">
+              <div className="bg-white/10 dark:bg-black/10 rounded-lg p-1.5 sm:p-2 lg:p-2.5">
                 <h4 className="font-semibold mb-2 flex items-center text-sm">
                   <AlertCircle className="w-4 h-4 mr-2" />
                   Portfolio Risks
@@ -432,7 +432,7 @@ export default function CloseoutCard({ config, span, isCompact, userRole }: Clos
 
             {/* Additional Project Executive Section */}
             {userRole === 'project-executive' && (
-              <div className="bg-white/10 dark:bg-black/10 rounded-lg p-3">
+              <div className="bg-white/10 dark:bg-black/10 rounded-lg p-1.5 sm:p-2 lg:p-2.5">
                 <h4 className="font-semibold mb-2 flex items-center text-sm">
                   <CalendarCheck className="w-4 h-4 mr-2" />
                   Upcoming Deadlines
@@ -452,7 +452,7 @@ export default function CloseoutCard({ config, span, isCompact, userRole }: Clos
             )}
 
             {/* Key Insights */}
-            <div className="bg-white/10 dark:bg-black/10 rounded-lg p-3">
+            <div className="bg-white/10 dark:bg-black/10 rounded-lg p-1.5 sm:p-2 lg:p-2.5">
               <h4 className="font-semibold mb-2 flex items-center text-sm">
                 <Award className="w-4 h-4 mr-2" />
                 Key Insights

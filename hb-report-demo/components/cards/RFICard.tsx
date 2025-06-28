@@ -187,21 +187,21 @@ export function RFICard({ card, config, span, isCompact, userRole }: RFICardProp
         
         <CardContent className="space-y-4">
           {/* Key Metrics */}
-          <div className="grid grid-cols-2 gap-3">
-            <div className="text-center p-3 bg-white/60 dark:bg-black/60 rounded-lg border border-orange-100">
-              <div className="text-2xl font-bold text-orange-600">{data.totalRFIs}</div>
+          <div className="grid grid-cols-2 gap-1 sm:gap-1.5 lg:gap-2">
+            <div className="text-center p-1.5 sm:p-2 lg:p-2.5 bg-white/60 dark:bg-black/60 rounded-lg border border-orange-100">
+              <div className="text-lg sm:text-xl lg:text-lg sm:text-xl lg:text-2xl font-medium text-orange-600">{data.totalRFIs}</div>
               <div className="text-xs text-muted-foreground">Total RFIs</div>
               <div className="text-xs text-orange-600">{data.pendingRFIs} pending</div>
             </div>
-            <div className="text-center p-3 bg-white/60 dark:bg-black/60 rounded-lg border border-orange-100">
-              <div className="text-2xl font-bold text-orange-600">{data.avgResolutionDays}</div>
+            <div className="text-center p-1.5 sm:p-2 lg:p-2.5 bg-white/60 dark:bg-black/60 rounded-lg border border-orange-100">
+              <div className="text-lg sm:text-xl lg:text-lg sm:text-xl lg:text-2xl font-medium text-orange-600">{data.avgResolutionDays}</div>
               <div className="text-xs text-muted-foreground">Avg Resolution</div>
               <div className="text-xs text-orange-600">Target: {data.targetResolutionDays} days</div>
             </div>
           </div>
 
           {/* Status Chart */}
-          <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-orange-100 p-3">
+          <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-orange-100 p-1.5 sm:p-2 lg:p-2.5">
             <h4 className="font-semibold mb-2 text-foreground">Status Overview</h4>
             <div className="h-32">
               <ResponsiveContainer width="100%" height="100%">
@@ -226,11 +226,11 @@ export function RFICard({ card, config, span, isCompact, userRole }: RFICardProp
           </div>
 
           {/* Performance Score */}
-          <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-orange-100 p-3">
+          <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-orange-100 p-1.5 sm:p-2 lg:p-2.5">
             <div className="flex justify-between items-center">
               <span className="text-sm font-medium text-foreground">Performance Score</span>
               <div className="text-right">
-                <div className={`text-lg font-bold ${gradeColor}`}>{data.performanceScore.toFixed(1)}%</div>
+                <div className={`text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium ${gradeColor}`}>{data.performanceScore.toFixed(1)}%</div>
                 <div className="text-xs text-muted-foreground">{closureRate.toFixed(1)}% closure rate</div>
               </div>
             </div>
@@ -259,7 +259,7 @@ export function RFICard({ card, config, span, isCompact, userRole }: RFICardProp
       {/* Hover Drill-down */}
       {isHovered && (
         <div className="absolute inset-0 bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-950/30 dark:to-amber-950/30 border border-orange-200 rounded-lg shadow-2xl z-10 overflow-auto">
-          <div className="p-4 space-y-4">
+          <div className="p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 space-y-4">
             <div className="flex items-center justify-between border-b border-orange-200 pb-2">
               <h3 className="font-semibold text-foreground flex items-center gap-2">
                 <MessageSquare className="h-4 w-4 text-orange-600" />
@@ -271,7 +271,7 @@ export function RFICard({ card, config, span, isCompact, userRole }: RFICardProp
             </div>
 
             {/* Resolution Trend */}
-            <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-orange-100 p-3">
+            <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-orange-100 p-1.5 sm:p-2 lg:p-2.5">
               <h4 className="font-semibold mb-2 text-foreground">Resolution Trend</h4>
               <div className="h-32">
                 <ResponsiveContainer width="100%" height="100%">
@@ -295,7 +295,7 @@ export function RFICard({ card, config, span, isCompact, userRole }: RFICardProp
             </div>
 
             {/* Category Breakdown */}
-            <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-orange-100 p-3">
+            <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-orange-100 p-1.5 sm:p-2 lg:p-2.5">
               <h4 className="font-semibold mb-2 text-foreground">Category Performance</h4>
               <div className="h-36">
                 <ResponsiveContainer width="100%" height="100%">
@@ -319,7 +319,7 @@ export function RFICard({ card, config, span, isCompact, userRole }: RFICardProp
 
             {/* Role-specific details */}
             {role === 'project-executive' && 'projectBreakdown' in data && (
-              <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-orange-100 p-3">
+              <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-orange-100 p-1.5 sm:p-2 lg:p-2.5">
                 <h4 className="font-semibold mb-2 text-foreground">Project Performance</h4>
                 <div className="space-y-2 max-h-32 overflow-y-auto">
                   {data.projectBreakdown.map((project: any, index: number) => (
@@ -339,7 +339,7 @@ export function RFICard({ card, config, span, isCompact, userRole }: RFICardProp
             )}
 
             {role === 'project-manager' && (
-              <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-orange-100 p-3">
+              <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-orange-100 p-1.5 sm:p-2 lg:p-2.5">
                 <h4 className="font-semibold mb-2 text-foreground">Pending RFIs</h4>
                 <div className="space-y-2 max-h-36 overflow-y-auto">
                   {data.pendingDetails.map((rfi: any, index: number) => (
@@ -361,15 +361,15 @@ export function RFICard({ card, config, span, isCompact, userRole }: RFICardProp
             {/* Summary Stats */}
             <div className="grid grid-cols-3 gap-2">
               <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-orange-100 p-2 text-center">
-                <div className="text-lg font-bold text-orange-600">{data.overdue}</div>
+                <div className="text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium text-orange-600">{data.overdue}</div>
                 <div className="text-xs text-muted-foreground">Overdue</div>
               </div>
               <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-orange-100 p-2 text-center">
-                <div className="text-lg font-bold text-orange-600">{closureRate.toFixed(0)}%</div>
+                <div className="text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium text-orange-600">{closureRate.toFixed(0)}%</div>
                 <div className="text-xs text-muted-foreground">Closure Rate</div>
               </div>
               <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-orange-100 p-2 text-center">
-                <div className="text-lg font-bold text-orange-600">{data.categoryBreakdown.length}</div>
+                <div className="text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium text-orange-600">{data.categoryBreakdown.length}</div>
                 <div className="text-xs text-muted-foreground">Categories</div>
               </div>
             </div>

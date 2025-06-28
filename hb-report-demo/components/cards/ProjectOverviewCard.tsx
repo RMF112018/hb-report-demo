@@ -104,28 +104,28 @@ export default function ProjectOverviewCard({ config, span, isCompact, userRole 
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Header Stats */}
-      <div className="flex-shrink-0 p-2 sm:p-3 lg:p-4 bg-white/80 dark:bg-black/80 backdrop-blur-sm border-b border-blue-200 dark:border-blue-800">
-        <div className="grid grid-cols-2 gap-2 sm:gap-4">
+      <div className="flex-shrink-0 p-2 sm:p-1.5 sm:p-2 lg:p-2.5 lg:p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 bg-white/80 dark:bg-black/80 backdrop-blur-sm border-b border-blue-200 dark:border-blue-800">
+        <div className="grid grid-cols-2 gap-2 sm:gap-1.5 sm:gap-2 lg:gap-1 sm:gap-1.5 lg:gap-2">
           <div className="text-center">
-            <div className="text-lg sm:text-xl lg:text-2xl font-bold text-blue-700">{data.totalProjects}</div>
+            <div className="text-lg sm:text-xl lg:text-lg sm:text-xl lg:text-lg sm:text-xl lg:text-2xl font-medium text-blue-700">{data.totalProjects}</div>
             <div className="text-[10px] sm:text-xs text-blue-600 dark:text-blue-400">Total Projects</div>
           </div>
           <div className="text-center">
-            <div className="text-lg sm:text-xl lg:text-2xl font-bold text-green-700">{data.activeProjects}</div>
+            <div className="text-lg sm:text-xl lg:text-lg sm:text-xl lg:text-lg sm:text-xl lg:text-2xl font-medium text-green-700">{data.activeProjects}</div>
             <div className="text-[10px] sm:text-xs text-green-600 dark:text-green-400">Active</div>
           </div>
         </div>
       </div>
 
       {/* Content */}
-      <div className="flex-1 p-2 sm:p-3 lg:p-4 space-y-2 sm:space-y-3 lg:space-y-4 overflow-y-auto">
+      <div className="flex-1 p-2 sm:p-1.5 sm:p-2 lg:p-2.5 lg:p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 space-y-2 sm:space-y-3 lg:space-y-4 overflow-y-auto">
         {/* Contract Value Summary */}
-        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-3 border border-blue-200 dark:border-blue-800">
+        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-1.5 sm:p-2 lg:p-2.5 border border-blue-200 dark:border-blue-800">
           <div className="flex items-center gap-2 mb-2">
             <DollarSign className="h-4 w-4 text-blue-600 dark:text-blue-400" />
             <span className="text-sm font-medium text-foreground">Portfolio Value</span>
           </div>
-          <div className="text-lg font-bold text-foreground">
+          <div className="text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium text-foreground">
             {formatCurrency(data.totalContractValue)}
           </div>
           <div className="text-xs text-muted-foreground">
@@ -134,7 +134,7 @@ export default function ProjectOverviewCard({ config, span, isCompact, userRole 
         </div>
 
         {/* Project Types */}
-        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-3 border border-blue-200 dark:border-blue-800">
+        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-1.5 sm:p-2 lg:p-2.5 border border-blue-200 dark:border-blue-800">
           <div className="flex items-center gap-2 mb-2">
             <Building2 className="h-4 w-4 text-blue-600 dark:text-blue-400" />
             <span className="text-sm font-medium text-foreground">Project Types</span>
@@ -156,7 +156,7 @@ export default function ProjectOverviewCard({ config, span, isCompact, userRole 
         </div>
 
         {/* Recent Activity */}
-        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-3 border border-blue-200 dark:border-blue-800">
+        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-1.5 sm:p-2 lg:p-2.5 border border-blue-200 dark:border-blue-800">
           <div className="flex items-center gap-2 mb-2">
             <Calendar className="h-4 w-4 text-blue-600 dark:text-blue-400" />
             <span className="text-sm font-medium text-foreground">This Month</span>
@@ -170,9 +170,9 @@ export default function ProjectOverviewCard({ config, span, isCompact, userRole 
 
       {/* Hover Drill-Down Overlay */}
       {isHovered && (
-        <div className="absolute inset-0 bg-blue-900/95 backdrop-blur-sm p-4 flex flex-col justify-center text-white animate-in fade-in duration-200">
+        <div className="absolute inset-0 bg-blue-900/95 backdrop-blur-sm p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 flex flex-col justify-center text-white animate-in fade-in duration-200">
           <div className="space-y-3">
-            <div className="flex items-center gap-2 mb-4">
+            <div className="flex items-center gap-2 mb-1.5 sm:mb-2 lg:mb-1 sm:mb-1.5 lg:mb-2">
               <ChevronRight className="h-4 w-4" />
               <span className="font-semibold text-sm">Portfolio Deep Dive</span>
             </div>
@@ -204,7 +204,7 @@ export default function ProjectOverviewCard({ config, span, isCompact, userRole 
               </div>
             </div>
 
-            <div className="mt-4 pt-3 border-t border-blue-700">
+            <div className="mt-1.5 sm:mt-2 lg:mt-1 sm:mt-1.5 lg:mt-2 pt-3 border-t border-blue-700">
               <div className="flex items-center gap-1 mb-2">
                 <MapPin className="h-3 w-3" />
                 <span className="text-xs font-medium text-blue-200">Regional Distribution</span>

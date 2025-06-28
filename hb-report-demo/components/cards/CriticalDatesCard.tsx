@@ -351,30 +351,30 @@ export default function CriticalDatesCard({ config, span, isCompact, userRole }:
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Header Stats */}
-      <div className="flex-shrink-0 p-4 bg-white/80 dark:bg-black/80 backdrop-blur-sm border-b border-blue-200 dark:border-blue-800">
-        <div className="grid grid-cols-2 gap-4">
+      <div className="flex-shrink-0 p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 bg-white/80 dark:bg-black/80 backdrop-blur-sm border-b border-blue-200 dark:border-blue-800">
+        <div className="grid grid-cols-2 gap-1.5 sm:gap-2 lg:gap-1 sm:gap-1.5 lg:gap-2">
           <div className="text-center">
-            <div className={`text-lg font-bold ${getPriorityColor('critical')}`}>
+            <div className={`text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium ${getPriorityColor('critical')}`}>
               {data.nextCriticalDays}
             </div>
             <div className="text-xs text-blue-600 dark:text-blue-400">Days to Next Critical</div>
           </div>
           <div className="text-center">
-            <div className="text-lg font-bold text-blue-700">{data.criticalEvents}</div>
+            <div className="text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium text-blue-700">{data.criticalEvents}</div>
             <div className="text-xs text-muted-foreground">Critical Events</div>
           </div>
         </div>
       </div>
 
       {/* Content */}
-      <div className="flex-1 p-4 space-y-4 overflow-y-auto">
+      <div className="flex-1 p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 space-y-4 overflow-y-auto">
         {/* Status Overview */}
-        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-3 border border-blue-200 dark:border-blue-800">
-          <div className="flex items-center gap-2 mb-3">
+        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-1.5 sm:p-2 lg:p-2.5 border border-blue-200 dark:border-blue-800">
+          <div className="flex items-center gap-2 mb-1 sm:mb-1.5 lg:mb-2">
             <CalendarDays className="h-4 w-4 text-blue-600 dark:text-blue-400" />
             <span className="text-sm font-medium text-foreground">Event Status</span>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-1.5 sm:gap-2 lg:gap-1 sm:gap-1.5 lg:gap-2">
             <div className="w-20 h-20">
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
@@ -411,7 +411,7 @@ export default function CriticalDatesCard({ config, span, isCompact, userRole }:
         </div>
 
         {/* Upcoming Critical Events */}
-        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-3 border border-blue-200 dark:border-blue-800">
+        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-1.5 sm:p-2 lg:p-2.5 border border-blue-200 dark:border-blue-800">
           <div className="flex items-center gap-2 mb-2">
             <AlertTriangle className="h-4 w-4 text-red-600 dark:text-red-400" />
             <span className="text-sm font-medium text-foreground">Next Critical Events</span>
@@ -432,7 +432,7 @@ export default function CriticalDatesCard({ config, span, isCompact, userRole }:
                       </Badge>
                     </div>
                   </TooltipTrigger>
-                  <TooltipContent className="bg-card text-foreground p-3 rounded-md shadow-lg border">
+                  <TooltipContent className="bg-card text-foreground p-1.5 sm:p-2 lg:p-2.5 rounded-md shadow-lg border">
                     <div className="space-y-1">
                       <p className="font-semibold">{event.event}</p>
                       <p className="text-sm">Project: {event.project}</p>
@@ -448,7 +448,7 @@ export default function CriticalDatesCard({ config, span, isCompact, userRole }:
         </div>
 
         {/* Performance Metrics */}
-        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-3 border border-blue-200 dark:border-blue-800">
+        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-1.5 sm:p-2 lg:p-2.5 border border-blue-200 dark:border-blue-800">
           <div className="flex items-center gap-2 mb-2">
             <TrendingUp className="h-4 w-4 text-blue-600 dark:text-blue-400" />
             <span className="text-sm font-medium text-foreground">Performance</span>
@@ -471,15 +471,15 @@ export default function CriticalDatesCard({ config, span, isCompact, userRole }:
 
       {/* Hover Drill-Down Overlay */}
       {isHovered && (
-        <div className="absolute inset-0 bg-blue-900/95 backdrop-blur-sm p-4 flex flex-col text-white animate-in fade-in duration-200 overflow-y-auto">
+        <div className="absolute inset-0 bg-blue-900/95 backdrop-blur-sm p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 flex flex-col text-white animate-in fade-in duration-200 overflow-y-auto">
           <div className="space-y-4">
-            <div className="flex items-center gap-2 mb-4">
+            <div className="flex items-center gap-2 mb-1.5 sm:mb-2 lg:mb-1 sm:mb-1.5 lg:mb-2">
               <ChevronRight className="h-4 w-4" />
               <span className="font-semibold text-lg">Critical Dates Analysis</span>
             </div>
             
             {/* Categories Breakdown */}
-            <div className="bg-white/10 dark:bg-black/10 rounded-lg p-3">
+            <div className="bg-white/10 dark:bg-black/10 rounded-lg p-1.5 sm:p-2 lg:p-2.5">
               <h4 className="font-semibold mb-2 flex items-center text-sm">
                 <Calendar className="w-4 h-4 mr-2" />
                 Event Categories
@@ -498,7 +498,7 @@ export default function CriticalDatesCard({ config, span, isCompact, userRole }:
             </div>
 
             {/* Visual Category Chart */}
-            <div className="bg-white/10 dark:bg-black/10 rounded-lg p-3">
+            <div className="bg-white/10 dark:bg-black/10 rounded-lg p-1.5 sm:p-2 lg:p-2.5">
               <h4 className="font-semibold mb-2 flex items-center text-sm">
                 <TrendingUp className="w-4 h-4 mr-2" />
                 Category Distribution
@@ -517,7 +517,7 @@ export default function CriticalDatesCard({ config, span, isCompact, userRole }:
 
             {/* Project-Specific or Portfolio View */}
             {userRole === 'project-manager' ? (
-              <div className="bg-white/10 dark:bg-black/10 rounded-lg p-3">
+              <div className="bg-white/10 dark:bg-black/10 rounded-lg p-1.5 sm:p-2 lg:p-2.5">
                 <h4 className="font-semibold mb-2 flex items-center text-sm">
                   <Building2 className="w-4 h-4 mr-2" />
                   Project: {data.projectName}
@@ -542,7 +542,7 @@ export default function CriticalDatesCard({ config, span, isCompact, userRole }:
                 </div>
               </div>
             ) : userRole === 'project-executive' ? (
-              <div className="bg-white/10 dark:bg-black/10 rounded-lg p-3">
+              <div className="bg-white/10 dark:bg-black/10 rounded-lg p-1.5 sm:p-2 lg:p-2.5">
                 <h4 className="font-semibold mb-2 flex items-center text-sm">
                   <Building2 className="w-4 h-4 mr-2" />
                   Project Portfolio (6 Projects)
@@ -570,7 +570,7 @@ export default function CriticalDatesCard({ config, span, isCompact, userRole }:
                 </div>
               </div>
             ) : (
-              <div className="bg-white/10 dark:bg-black/10 rounded-lg p-3">
+              <div className="bg-white/10 dark:bg-black/10 rounded-lg p-1.5 sm:p-2 lg:p-2.5">
                 <h4 className="font-semibold mb-2 flex items-center text-sm">
                   <AlertCircleIcon className="w-4 h-4 mr-2" />
                   Portfolio Metrics
@@ -597,7 +597,7 @@ export default function CriticalDatesCard({ config, span, isCompact, userRole }:
             )}
 
             {/* Key Insights */}
-            <div className="bg-white/10 dark:bg-black/10 rounded-lg p-3">
+            <div className="bg-white/10 dark:bg-black/10 rounded-lg p-1.5 sm:p-2 lg:p-2.5">
               <h4 className="font-semibold mb-2 flex items-center text-sm">
                 <Award className="w-4 h-4 mr-2" />
                 Key Insights

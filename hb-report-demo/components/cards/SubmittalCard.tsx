@@ -180,21 +180,21 @@ export function SubmittalCard({ card, config, span, isCompact, userRole }: Submi
         
         <CardContent className="space-y-4">
           {/* Key Metrics */}
-          <div className="grid grid-cols-2 gap-3">
-            <div className="text-center p-3 bg-white/60 dark:bg-black/60 rounded-lg border border-emerald-100">
-              <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">{data.totalSubmittals}</div>
+          <div className="grid grid-cols-2 gap-1 sm:gap-1.5 lg:gap-2">
+            <div className="text-center p-1.5 sm:p-2 lg:p-2.5 bg-white/60 dark:bg-black/60 rounded-lg border border-emerald-100">
+              <div className="text-lg sm:text-xl lg:text-lg sm:text-xl lg:text-2xl font-medium text-emerald-600 dark:text-emerald-400">{data.totalSubmittals}</div>
               <div className="text-xs text-muted-foreground">Total Submittals</div>
               <div className="text-xs text-emerald-600 dark:text-emerald-400">{data.pendingSubmittals} pending</div>
             </div>
-            <div className="text-center p-3 bg-white/60 dark:bg-black/60 rounded-lg border border-emerald-100">
-              <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">{data.avgReviewDays}</div>
+            <div className="text-center p-1.5 sm:p-2 lg:p-2.5 bg-white/60 dark:bg-black/60 rounded-lg border border-emerald-100">
+              <div className="text-lg sm:text-xl lg:text-lg sm:text-xl lg:text-2xl font-medium text-emerald-600 dark:text-emerald-400">{data.avgReviewDays}</div>
               <div className="text-xs text-muted-foreground">Avg Review Time</div>
               <div className="text-xs text-emerald-600 dark:text-emerald-400">Target: {data.targetReviewDays} days</div>
             </div>
           </div>
 
           {/* Status Chart */}
-          <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-emerald-100 p-3">
+          <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-emerald-100 p-1.5 sm:p-2 lg:p-2.5">
             <h4 className="font-semibold mb-2 text-foreground">Status Overview</h4>
             <div className="h-32">
               <ResponsiveContainer width="100%" height="100%">
@@ -219,11 +219,11 @@ export function SubmittalCard({ card, config, span, isCompact, userRole }: Submi
           </div>
 
           {/* Performance Score */}
-          <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-emerald-100 p-3">
+          <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-emerald-100 p-1.5 sm:p-2 lg:p-2.5">
             <div className="flex justify-between items-center mb-2">
               <span className="text-sm font-medium text-foreground">Schedule Compliance</span>
               <div className="text-right">
-                <div className={`text-lg font-bold ${gradeColor}`}>{data.scheduleCompliance.toFixed(1)}%</div>
+                <div className={`text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium ${gradeColor}`}>{data.scheduleCompliance.toFixed(1)}%</div>
                 <div className="text-xs text-muted-foreground">{approvalRate.toFixed(1)}% approval rate</div>
               </div>
             </div>
@@ -253,7 +253,7 @@ export function SubmittalCard({ card, config, span, isCompact, userRole }: Submi
       {/* Hover Drill-down */}
       {isHovered && (
         <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 to-green-50 dark:from-emerald-950/30 dark:to-green-950/30 border border-emerald-200 dark:border-emerald-800 rounded-lg shadow-2xl z-10 overflow-auto">
-          <div className="p-4 space-y-4">
+          <div className="p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 space-y-4">
             <div className="flex items-center justify-between border-b border-emerald-200 dark:border-emerald-800 pb-2">
               <h3 className="font-semibold text-foreground flex items-center gap-2">
                 <FileText className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
@@ -265,7 +265,7 @@ export function SubmittalCard({ card, config, span, isCompact, userRole }: Submi
             </div>
 
             {/* Review Trend */}
-            <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-emerald-100 p-3">
+            <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-emerald-100 p-1.5 sm:p-2 lg:p-2.5">
               <h4 className="font-semibold mb-2 text-foreground">Review Trend</h4>
               <div className="h-32">
                 <ResponsiveContainer width="100%" height="100%">
@@ -289,7 +289,7 @@ export function SubmittalCard({ card, config, span, isCompact, userRole }: Submi
             </div>
 
             {/* Category Breakdown */}
-            <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-emerald-100 p-3">
+            <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-emerald-100 p-1.5 sm:p-2 lg:p-2.5">
               <h4 className="font-semibold mb-2 text-foreground">Category Performance</h4>
               <div className="h-36">
                 <ResponsiveContainer width="100%" height="100%">
@@ -313,7 +313,7 @@ export function SubmittalCard({ card, config, span, isCompact, userRole }: Submi
 
             {/* Role-specific details */}
             {role === 'project-executive' && 'projectBreakdown' in data && (
-              <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-emerald-100 p-3">
+              <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-emerald-100 p-1.5 sm:p-2 lg:p-2.5">
                 <h4 className="font-semibold mb-2 text-foreground">Project Performance</h4>
                 <div className="space-y-2 max-h-32 overflow-y-auto">
                   {data.projectBreakdown.map((project: any, index: number) => (
@@ -333,7 +333,7 @@ export function SubmittalCard({ card, config, span, isCompact, userRole }: Submi
             )}
 
             {role === 'project-manager' && (
-              <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-emerald-100 p-3">
+              <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-emerald-100 p-1.5 sm:p-2 lg:p-2.5">
                 <h4 className="font-semibold mb-2 text-foreground">Pending Submittals</h4>
                 <div className="space-y-2 max-h-36 overflow-y-auto">
                   {data.pendingDetails.map((submittal: any, index: number) => (
@@ -357,15 +357,15 @@ export function SubmittalCard({ card, config, span, isCompact, userRole }: Submi
             {/* Summary Stats */}
             <div className="grid grid-cols-3 gap-2">
               <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-emerald-100 p-2 text-center">
-                <div className="text-lg font-bold text-emerald-600 dark:text-emerald-400">{data.rejectedSubmittals}</div>
+                <div className="text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium text-emerald-600 dark:text-emerald-400">{data.rejectedSubmittals}</div>
                 <div className="text-xs text-muted-foreground">Rejected</div>
               </div>
               <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-emerald-100 p-2 text-center">
-                <div className="text-lg font-bold text-emerald-600 dark:text-emerald-400">{approvalRate.toFixed(0)}%</div>
+                <div className="text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium text-emerald-600 dark:text-emerald-400">{approvalRate.toFixed(0)}%</div>
                 <div className="text-xs text-muted-foreground">Approval Rate</div>
               </div>
               <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-emerald-100 p-2 text-center">
-                <div className="text-lg font-bold text-emerald-600 dark:text-emerald-400">{data.categoryBreakdown.length}</div>
+                <div className="text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium text-emerald-600 dark:text-emerald-400">{data.categoryBreakdown.length}</div>
                 <div className="text-xs text-muted-foreground">Categories</div>
               </div>
             </div>

@@ -125,23 +125,23 @@ export default function QualityControlCard({ config, span, isCompact, userRole }
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Header Stats */}
-      <div className="flex-shrink-0 p-4 bg-white/80 dark:bg-black/80 backdrop-blur-sm border-b border-emerald-200 dark:border-emerald-800">
-        <div className="grid grid-cols-2 gap-4">
+      <div className="flex-shrink-0 p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 bg-white/80 dark:bg-black/80 backdrop-blur-sm border-b border-emerald-200 dark:border-emerald-800">
+        <div className="grid grid-cols-2 gap-1.5 sm:gap-2 lg:gap-1 sm:gap-1.5 lg:gap-2">
           <div className="text-center">
-            <div className={`text-lg font-bold ${getPassRateColor(data.passRate)}`}>{formatPercentage(data.passRate)}</div>
+            <div className={`text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium ${getPassRateColor(data.passRate)}`}>{formatPercentage(data.passRate)}</div>
             <div className="text-xs text-emerald-600 dark:text-emerald-400">Pass Rate</div>
           </div>
           <div className="text-center">
-            <div className={`text-lg font-bold ${getStatusColor(data.openInspections, data.totalInspections)}`}>{data.openInspections}</div>
+            <div className={`text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium ${getStatusColor(data.openInspections, data.totalInspections)}`}>{data.openInspections}</div>
             <div className="text-xs text-green-600 dark:text-green-400">Open</div>
           </div>
         </div>
       </div>
 
       {/* Content */}
-      <div className="flex-1 p-4 space-y-4 overflow-y-auto">
+      <div className="flex-1 p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 space-y-4 overflow-y-auto">
         {/* Inspection Status */}
-        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-3 border border-emerald-200 dark:border-emerald-800">
+        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-1.5 sm:p-2 lg:p-2.5 border border-emerald-200 dark:border-emerald-800">
           <div className="flex items-center gap-2 mb-2">
             <Eye className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
             <span className="text-sm font-medium text-foreground">Inspection Status</span>
@@ -159,7 +159,7 @@ export default function QualityControlCard({ config, span, isCompact, userRole }
         </div>
 
         {/* Quality Performance */}
-        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-3 border border-emerald-200 dark:border-emerald-800">
+        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-1.5 sm:p-2 lg:p-2.5 border border-emerald-200 dark:border-emerald-800">
           <div className="flex items-center gap-2 mb-2">
             <CheckCircle className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
             <span className="text-sm font-medium text-foreground">Quality Performance</span>
@@ -182,13 +182,13 @@ export default function QualityControlCard({ config, span, isCompact, userRole }
 
         {/* Critical Issues */}
         {data.criticalIssues > 0 && (
-          <div className="bg-white/60 dark:bg-black/60 rounded-lg p-3 border border-emerald-200 dark:border-emerald-800">
+          <div className="bg-white/60 dark:bg-black/60 rounded-lg p-1.5 sm:p-2 lg:p-2.5 border border-emerald-200 dark:border-emerald-800">
             <div className="flex items-center gap-2 mb-2">
               <AlertTriangle className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
               <span className="text-sm font-medium text-foreground">Critical Issues</span>
             </div>
             <div className="flex items-center justify-between">
-              <div className="text-lg font-bold text-red-700">
+              <div className="text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium text-red-700">
                 {data.criticalIssues}
               </div>
               <Badge variant="destructive" className="text-xs">
@@ -199,7 +199,7 @@ export default function QualityControlCard({ config, span, isCompact, userRole }
         )}
 
         {/* Trade Performance */}
-        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-3 border border-emerald-200 dark:border-emerald-800">
+        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-1.5 sm:p-2 lg:p-2.5 border border-emerald-200 dark:border-emerald-800">
           <div className="flex items-center gap-2 mb-2">
             <FileText className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
             <span className="text-sm font-medium text-foreground">By Trade</span>
@@ -215,7 +215,7 @@ export default function QualityControlCard({ config, span, isCompact, userRole }
         </div>
 
         {/* Resolution Performance */}
-        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-3 border border-emerald-200 dark:border-emerald-800">
+        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-1.5 sm:p-2 lg:p-2.5 border border-emerald-200 dark:border-emerald-800">
           <div className="flex items-center gap-2 mb-2">
             <MapPin className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
             <span className="text-sm font-medium text-foreground">Resolution Metrics</span>
@@ -237,9 +237,9 @@ export default function QualityControlCard({ config, span, isCompact, userRole }
 
       {/* Hover Drill-Down Overlay */}
       {isHovered && (
-        <div className="absolute inset-0 bg-emerald-900/95 backdrop-blur-sm p-4 flex flex-col justify-center text-white animate-in fade-in duration-200">
+        <div className="absolute inset-0 bg-emerald-900/95 backdrop-blur-sm p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 flex flex-col justify-center text-white animate-in fade-in duration-200">
           <div className="space-y-3">
-            <div className="flex items-center gap-2 mb-4">
+            <div className="flex items-center gap-2 mb-1.5 sm:mb-2 lg:mb-1 sm:mb-1.5 lg:mb-2">
               <ChevronRight className="h-4 w-4" />
               <span className="font-semibold text-sm">Quality Control Analysis</span>
             </div>
@@ -263,7 +263,7 @@ export default function QualityControlCard({ config, span, isCompact, userRole }
               </div>
             </div>
 
-            <div className="mt-4 pt-3 border-t border-emerald-700">
+            <div className="mt-1.5 sm:mt-2 lg:mt-1 sm:mt-1.5 lg:mt-2 pt-3 border-t border-emerald-700">
               <div className="text-xs font-medium text-emerald-200 mb-2">Performance Insights</div>
               <div className="space-y-1 text-xs">
                 <div className="flex justify-between">

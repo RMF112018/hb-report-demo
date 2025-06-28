@@ -207,8 +207,8 @@ export function EnhancedHBIInsights({ config, cardId }: EnhancedHBIInsightsProps
     >
       <div className="h-full flex flex-col bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-purple-950/30 dark:to-indigo-950/30 overflow-hidden">
       {/* AI Stats Header */}
-      <div className="flex-shrink-0 p-4 bg-white/80 dark:bg-black/80 backdrop-blur-sm border-b border-purple-200">
-        <div className="flex items-center justify-between mb-3">
+      <div className="flex-shrink-0 p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 bg-white/80 dark:bg-black/80 backdrop-blur-sm border-b border-purple-200">
+        <div className="flex items-center justify-between mb-1 sm:mb-1.5 lg:mb-2">
           <div className="flex items-center gap-2">
             <Badge className="bg-purple-600 text-white border-purple-600 text-xs">
               <Activity className="h-3 w-3 mr-1" />
@@ -221,18 +221,18 @@ export function EnhancedHBIInsights({ config, cardId }: EnhancedHBIInsightsProps
         </div>
         
         {/* Compact Stats */}
-        <div className="grid grid-cols-3 gap-3">
-          <div className="text-center p-3 bg-red-50 dark:bg-red-950/30 rounded-lg border border-red-200 dark:border-red-800">
+        <div className="grid grid-cols-3 gap-1 sm:gap-1.5 lg:gap-2">
+          <div className="text-center p-1.5 sm:p-2 lg:p-2.5 bg-red-50 dark:bg-red-950/30 rounded-lg border border-red-200 dark:border-red-800">
             <div className="font-bold text-lg text-red-700">{highSeverityCount}</div>
             <div className="text-xs text-red-600 dark:text-red-400">Critical</div>
           </div>
-          <div className="text-center p-3 bg-green-50 dark:bg-green-950/30 rounded-lg border border-green-200 dark:border-green-800">
+          <div className="text-center p-1.5 sm:p-2 lg:p-2.5 bg-green-50 dark:bg-green-950/30 rounded-lg border border-green-200 dark:border-green-800">
             <div className="font-bold text-lg text-green-700">
               {displayInsights.filter((i) => i.type === "opportunity").length}
             </div>
             <div className="text-xs text-green-600 dark:text-green-400">Opportunities</div>
           </div>
-          <div className="text-center p-3 bg-blue-50 dark:bg-blue-950/30 rounded-lg border border-blue-200 dark:border-blue-800">
+          <div className="text-center p-1.5 sm:p-2 lg:p-2.5 bg-blue-50 dark:bg-blue-950/30 rounded-lg border border-blue-200 dark:border-blue-800">
             <div className="font-bold text-lg text-blue-700">
               {displayInsights.filter((i) => i.type === "forecast").length}
             </div>
@@ -242,7 +242,7 @@ export function EnhancedHBIInsights({ config, cardId }: EnhancedHBIInsightsProps
       </div>
 
       {/* Insights List */}
-      <div className="flex-1 p-4 overflow-y-auto">
+      <div className="flex-1 p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 overflow-y-auto">
         <div className="space-y-2">
           {visibleInsights.map((insight) => (
             <div
@@ -291,7 +291,7 @@ export function EnhancedHBIInsights({ config, cardId }: EnhancedHBIInsightsProps
 
       {/* Show More/Less Button */}
       {displayInsights.length > 4 && (
-        <div className="flex-shrink-0 p-3 border-t border-purple-200 bg-white/60 dark:bg-black/60">
+        <div className="flex-shrink-0 p-1.5 sm:p-2 lg:p-2.5 border-t border-purple-200 bg-white/60 dark:bg-black/60">
           <button
             onClick={() => setShowAll(!showAll)}
             className="w-full text-sm text-purple-600 hover:text-purple-800 flex items-center justify-center gap-2 font-medium py-1"
@@ -305,15 +305,15 @@ export function EnhancedHBIInsights({ config, cardId }: EnhancedHBIInsightsProps
 
       {/* Hover Drill-Down Overlay */}
       {isHovered && (
-        <div className="absolute inset-0 bg-purple-900/95 backdrop-blur-sm rounded-lg p-6 text-white transition-all duration-300 ease-in-out overflow-y-auto">
+        <div className="absolute inset-0 bg-purple-900/95 backdrop-blur-sm rounded-lg p-2 sm:p-1.5 sm:p-2 lg:p-2.5 lg:p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 text-white transition-all duration-300 ease-in-out overflow-y-auto">
           <div className="h-full">
-            <h3 className="text-xl font-bold mb-4 text-center">AI Intelligence Deep Analysis</h3>
+            <h3 className="text-base sm:text-lg lg:text-base sm:text-lg lg:text-xl font-medium mb-1.5 sm:mb-2 lg:mb-1 sm:mb-1.5 lg:mb-2 text-center">AI Intelligence Deep Analysis</h3>
             
-            <div className="grid grid-cols-2 gap-6 h-[calc(100%-60px)]">
+            <div className="grid grid-cols-2 gap-2 sm:gap-1 sm:gap-1.5 lg:gap-2 lg:gap-1.5 sm:gap-2 lg:gap-1 sm:gap-1.5 lg:gap-2 h-[calc(100%-60px)]">
               {/* AI Performance Metrics */}
               <div className="space-y-4">
-                <div className="bg-white/10 dark:bg-black/10 rounded-lg p-4">
-                  <h4 className="font-semibold mb-3 flex items-center">
+                <div className="bg-white/10 dark:bg-black/10 rounded-lg p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5">
+                  <h4 className="font-semibold mb-1 sm:mb-1.5 lg:mb-2 flex items-center">
                     <Brain className="w-4 h-4 mr-2" />
                     AI Performance Analytics
                   </h4>
@@ -337,8 +337,8 @@ export function EnhancedHBIInsights({ config, cardId }: EnhancedHBIInsightsProps
                   </div>
                 </div>
 
-                <div className="bg-white/10 dark:bg-black/10 rounded-lg p-4">
-                  <h4 className="font-semibold mb-3 flex items-center">
+                <div className="bg-white/10 dark:bg-black/10 rounded-lg p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5">
+                  <h4 className="font-semibold mb-1 sm:mb-1.5 lg:mb-2 flex items-center">
                     <Zap className="w-4 h-4 mr-2" />
                     Real-Time Insights
                   </h4>
@@ -369,8 +369,8 @@ export function EnhancedHBIInsights({ config, cardId }: EnhancedHBIInsightsProps
 
               {/* Insight Categories Analysis */}
               <div className="space-y-4">
-                <div className="bg-white/10 dark:bg-black/10 rounded-lg p-4">
-                  <h4 className="font-semibold mb-3 flex items-center">
+                <div className="bg-white/10 dark:bg-black/10 rounded-lg p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5">
+                  <h4 className="font-semibold mb-1 sm:mb-1.5 lg:mb-2 flex items-center">
                     <Target className="w-4 h-4 mr-2" />
                     Insight Categories Breakdown
                   </h4>
@@ -407,8 +407,8 @@ export function EnhancedHBIInsights({ config, cardId }: EnhancedHBIInsightsProps
                   </div>
                 </div>
 
-                <div className="bg-white/10 dark:bg-black/10 rounded-lg p-4">
-                  <h4 className="font-semibold mb-3 flex items-center">
+                <div className="bg-white/10 dark:bg-black/10 rounded-lg p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5">
+                  <h4 className="font-semibold mb-1 sm:mb-1.5 lg:mb-2 flex items-center">
                     <Activity className="w-4 h-4 mr-2" />
                     Strategic Recommendations
                   </h4>

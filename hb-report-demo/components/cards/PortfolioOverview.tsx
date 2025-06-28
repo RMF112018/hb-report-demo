@@ -127,14 +127,14 @@ export default function PortfolioOverview({ config, span, isCompact = false }: P
     >
       <div className="h-full flex flex-col bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/30 dark:to-indigo-950/30 overflow-hidden">
       {/* Key Metrics Header */}
-      <div className="flex-shrink-0 p-4 bg-white/80 dark:bg-black/80 backdrop-blur-sm border-b border-blue-200 dark:border-blue-800">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="flex-shrink-0 p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 bg-white/80 dark:bg-black/80 backdrop-blur-sm border-b border-blue-200 dark:border-blue-800">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-1.5 sm:gap-2 lg:gap-1 sm:gap-1.5 lg:gap-2">
           <div className="text-center">
             <div className="flex items-center justify-center mb-1">
               <Building2 className="h-4 w-4 text-blue-600 dark:text-blue-400 mr-1" />
               <span className="text-xs font-medium text-muted-foreground">Total Projects</span>
             </div>
-            <div className="text-xl font-bold text-foreground">{totalProjects}</div>
+            <div className="text-base sm:text-lg lg:text-base sm:text-lg lg:text-xl font-medium text-foreground">{totalProjects}</div>
             <div className="text-xs text-green-600 dark:text-green-400">{activeProjects} active</div>
           </div>
           
@@ -143,7 +143,7 @@ export default function PortfolioOverview({ config, span, isCompact = false }: P
               <DollarSign className="h-4 w-4 text-green-600 dark:text-green-400 mr-1" />
               <span className="text-xs font-medium text-muted-foreground">Portfolio Value</span>
             </div>
-            <div className="text-xl font-bold text-foreground">{formatCurrency(totalValue)}</div>
+            <div className="text-base sm:text-lg lg:text-base sm:text-lg lg:text-xl font-medium text-foreground">{formatCurrency(totalValue)}</div>
             <div className="text-xs text-muted-foreground">total value</div>
           </div>
           
@@ -152,7 +152,7 @@ export default function PortfolioOverview({ config, span, isCompact = false }: P
               <TrendingUp className="h-4 w-4 text-indigo-600 dark:text-indigo-400 mr-1" />
               <span className="text-xs font-medium text-muted-foreground">Net Cash Flow</span>
             </div>
-            <div className="text-xl font-bold text-foreground">{formatCurrency(netCashFlow)}</div>
+            <div className="text-base sm:text-lg lg:text-base sm:text-lg lg:text-xl font-medium text-foreground">{formatCurrency(netCashFlow)}</div>
             <div className="text-xs text-muted-foreground">this month</div>
           </div>
           
@@ -161,19 +161,19 @@ export default function PortfolioOverview({ config, span, isCompact = false }: P
               <Layers3 className="h-4 w-4 text-purple-600 mr-1" />
               <span className="text-xs font-medium text-muted-foreground">Total Sq Ft</span>
             </div>
-            <div className="text-xl font-bold text-foreground">{formatNumber(totalSqFt)}</div>
+            <div className="text-base sm:text-lg lg:text-base sm:text-lg lg:text-xl font-medium text-foreground">{formatNumber(totalSqFt)}</div>
             <div className="text-xs text-muted-foreground">square feet</div>
           </div>
         </div>
       </div>
 
       {/* Charts Section */}
-      <div className="flex-1 p-4 overflow-hidden">
+      <div className="flex-1 p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 overflow-hidden">
         {isWide ? (
           // Wide layout: side-by-side charts
-          <div className="grid grid-cols-2 gap-4 h-full min-h-48">
-            <div className="bg-card rounded-lg p-4 shadow-sm">
-              <h4 className="text-sm font-semibold text-foreground mb-3 flex items-center">
+          <div className="grid grid-cols-2 gap-1.5 sm:gap-2 lg:gap-1 sm:gap-1.5 lg:gap-2 h-full min-h-48">
+            <div className="bg-card rounded-lg p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 shadow-sm">
+              <h4 className="text-sm font-semibold text-foreground mb-1 sm:mb-1.5 lg:mb-2 flex items-center">
                 <TrendingUp className="h-4 w-4 mr-1 text-blue-600 dark:text-blue-400" />
                 Project Growth
               </h4>
@@ -182,8 +182,8 @@ export default function PortfolioOverview({ config, span, isCompact = false }: P
               </div>
             </div>
             
-            <div className="bg-card rounded-lg p-4 shadow-sm">
-              <h4 className="text-sm font-semibold text-foreground mb-3 flex items-center">
+            <div className="bg-card rounded-lg p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 shadow-sm">
+              <h4 className="text-sm font-semibold text-foreground mb-1 sm:mb-1.5 lg:mb-2 flex items-center">
                 <Building2 className="h-4 w-4 mr-1 text-indigo-600 dark:text-indigo-400" />
                 Project Status
               </h4>
@@ -210,8 +210,8 @@ export default function PortfolioOverview({ config, span, isCompact = false }: P
         ) : (
           // Narrow layout: stacked charts
           <div className="space-y-4">
-            <div className="bg-card rounded-lg p-4 shadow-sm">
-              <h4 className="text-sm font-semibold text-foreground mb-3 flex items-center">
+            <div className="bg-card rounded-lg p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 shadow-sm">
+              <h4 className="text-sm font-semibold text-foreground mb-1 sm:mb-1.5 lg:mb-2 flex items-center">
                 <TrendingUp className="h-4 w-4 mr-1 text-blue-600 dark:text-blue-400" />
                 Growth Trend
               </h4>
@@ -220,12 +220,12 @@ export default function PortfolioOverview({ config, span, isCompact = false }: P
               </div>
             </div>
             
-            <div className="bg-card rounded-lg p-4 shadow-sm">
-              <h4 className="text-sm font-semibold text-foreground mb-3 flex items-center">
+            <div className="bg-card rounded-lg p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 shadow-sm">
+              <h4 className="text-sm font-semibold text-foreground mb-1 sm:mb-1.5 lg:mb-2 flex items-center">
                 <Building2 className="h-4 w-4 mr-1 text-indigo-600 dark:text-indigo-400" />
                 Status Distribution
               </h4>
-              <div className="grid grid-cols-2 gap-3 text-sm">
+              <div className="grid grid-cols-2 gap-1 sm:gap-1.5 lg:gap-2 text-sm">
                 {projectStatusData.map(item => (
                   <div key={item.name} className="flex items-center">
                     <div 
@@ -242,8 +242,8 @@ export default function PortfolioOverview({ config, span, isCompact = false }: P
       </div>
 
       {/* Footer with additional metrics */}
-      <div className="flex-shrink-0 p-4 bg-white/60 dark:bg-black/60 backdrop-blur-sm border-t border-blue-200 dark:border-blue-800">
-        <div className="grid grid-cols-2 gap-4 text-sm">
+      <div className="flex-shrink-0 p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 bg-white/60 dark:bg-black/60 backdrop-blur-sm border-t border-blue-200 dark:border-blue-800">
+        <div className="grid grid-cols-2 gap-1.5 sm:gap-2 lg:gap-1 sm:gap-1.5 lg:gap-2 text-sm">
           <div className="flex items-center">
             <Calendar className="h-4 w-4 text-muted-foreground mr-2" />
             <span className="text-muted-foreground">Avg Duration: </span>
@@ -260,15 +260,15 @@ export default function PortfolioOverview({ config, span, isCompact = false }: P
 
       {/* Hover Drill-Down Overlay */}
       {isHovered && (
-        <div className="absolute inset-0 bg-blue-900/95 backdrop-blur-sm rounded-lg p-6 text-white transition-all duration-300 ease-in-out overflow-y-auto">
+        <div className="absolute inset-0 bg-blue-900/95 backdrop-blur-sm rounded-lg p-2 sm:p-1.5 sm:p-2 lg:p-2.5 lg:p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 text-white transition-all duration-300 ease-in-out overflow-y-auto">
           <div className="h-full">
-            <h3 className="text-xl font-bold mb-4 text-center">Portfolio Deep Dive</h3>
+            <h3 className="text-base sm:text-lg lg:text-base sm:text-lg lg:text-xl font-medium mb-1.5 sm:mb-2 lg:mb-1 sm:mb-1.5 lg:mb-2 text-center">Portfolio Deep Dive</h3>
             
-            <div className="grid grid-cols-2 gap-6 h-[calc(100%-60px)]">
+            <div className="grid grid-cols-2 gap-2 sm:gap-1 sm:gap-1.5 lg:gap-2 lg:gap-1.5 sm:gap-2 lg:gap-1 sm:gap-1.5 lg:gap-2 h-[calc(100%-60px)]">
               {/* Regional Distribution */}
               <div className="space-y-4">
-                <div className="bg-white/10 dark:bg-black/10 rounded-lg p-4">
-                  <h4 className="font-semibold mb-3 flex items-center">
+                <div className="bg-white/10 dark:bg-black/10 rounded-lg p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5">
+                  <h4 className="font-semibold mb-1 sm:mb-1.5 lg:mb-2 flex items-center">
                     <MapPin className="w-4 h-4 mr-2" />
                     Florida Regional Distribution
                   </h4>
@@ -285,8 +285,8 @@ export default function PortfolioOverview({ config, span, isCompact = false }: P
                   </div>
                 </div>
 
-                <div className="bg-white/10 dark:bg-black/10 rounded-lg p-4">
-                  <h4 className="font-semibold mb-3 flex items-center">
+                <div className="bg-white/10 dark:bg-black/10 rounded-lg p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5">
+                  <h4 className="font-semibold mb-1 sm:mb-1.5 lg:mb-2 flex items-center">
                     <Target className="w-4 h-4 mr-2" />
                     Performance Metrics
                   </h4>
@@ -313,8 +313,8 @@ export default function PortfolioOverview({ config, span, isCompact = false }: P
 
               {/* Project Details */}
               <div className="space-y-4">
-                <div className="bg-white/10 dark:bg-black/10 rounded-lg p-4">
-                  <h4 className="font-semibold mb-3 flex items-center">
+                <div className="bg-white/10 dark:bg-black/10 rounded-lg p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5">
+                  <h4 className="font-semibold mb-1 sm:mb-1.5 lg:mb-2 flex items-center">
                     <Award className="w-4 h-4 mr-2" />
                     Largest Projects
                   </h4>
@@ -337,8 +337,8 @@ export default function PortfolioOverview({ config, span, isCompact = false }: P
                   </div>
                 </div>
 
-                <div className="bg-white/10 dark:bg-black/10 rounded-lg p-4">
-                  <h4 className="font-semibold mb-3 flex items-center">
+                <div className="bg-white/10 dark:bg-black/10 rounded-lg p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5">
+                  <h4 className="font-semibold mb-1 sm:mb-1.5 lg:mb-2 flex items-center">
                     <Building2 className="w-4 h-4 mr-2" />
                     Portfolio Composition
                   </h4>

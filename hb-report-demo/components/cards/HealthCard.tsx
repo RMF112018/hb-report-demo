@@ -205,7 +205,7 @@ export function HealthCard({ card, config, span, isCompact, userRole }: HealthCa
             <div className="relative inline-block">
               <div className="w-20 h-20 rounded-full bg-gradient-to-r from-cyan-100 to-blue-100 dark:from-cyan-900 dark:to-blue-900 flex items-center justify-center border-4 border-cyan-200 dark:border-cyan-800 dark:border-cyan-700">
                 <div className="text-center">
-                  <div className={`text-xl font-bold ${healthGradeColor}`}>{data.overallHealth.toFixed(0)}</div>
+                  <div className={`text-base sm:text-lg lg:text-base sm:text-lg lg:text-xl font-medium ${healthGradeColor}`}>{data.overallHealth.toFixed(0)}</div>
                   <div className="text-xs text-muted-foreground">Health</div>
                 </div>
               </div>
@@ -219,7 +219,7 @@ export function HealthCard({ card, config, span, isCompact, userRole }: HealthCa
           </div>
 
           {/* Health Dimensions */}
-          <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-cyan-100 p-3">
+          <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-cyan-100 p-1.5 sm:p-2 lg:p-2.5">
             <h4 className="font-semibold mb-2 text-foreground text-sm">Health Dimensions</h4>
             <div className="space-y-2">
               {Object.entries(data.healthDimensions).slice(0, 4).map(([key, value]) => (
@@ -269,7 +269,7 @@ export function HealthCard({ card, config, span, isCompact, userRole }: HealthCa
       {/* Hover Drill-down */}
       {isHovered && (
         <div className="absolute inset-0 bg-gradient-to-br from-cyan-50 to-blue-50 dark:from-cyan-950/30 dark:to-blue-950/30 border border-cyan-200 dark:border-cyan-800 rounded-lg shadow-2xl z-10 overflow-auto">
-          <div className="p-4 space-y-4">
+          <div className="p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 space-y-4">
             <div className="flex items-center justify-between border-b border-cyan-200 dark:border-cyan-800 pb-2">
               <h3 className="font-semibold text-foreground flex items-center gap-2">
                 <Heart className="h-4 w-4 text-cyan-600 dark:text-cyan-400" />
@@ -284,7 +284,7 @@ export function HealthCard({ card, config, span, isCompact, userRole }: HealthCa
             </div>
 
             {/* Health Radar */}
-            <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-cyan-100 p-3">
+            <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-cyan-100 p-1.5 sm:p-2 lg:p-2.5">
               <h4 className="font-semibold mb-2 text-foreground">Health Dimensions</h4>
               <div className="h-40">
                 <ResponsiveContainer width="100%" height="100%">
@@ -314,7 +314,7 @@ export function HealthCard({ card, config, span, isCompact, userRole }: HealthCa
             </div>
 
             {/* Health Trend */}
-            <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-cyan-100 p-3">
+            <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-cyan-100 p-1.5 sm:p-2 lg:p-2.5">
               <h4 className="font-semibold mb-2 text-foreground">Health Trend</h4>
               <div className="h-32">
                 <ResponsiveContainer width="100%" height="100%">
@@ -340,7 +340,7 @@ export function HealthCard({ card, config, span, isCompact, userRole }: HealthCa
 
             {/* Role-specific details */}
             {role === 'project-executive' && 'portfolioBreakdown' in data && (
-              <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-cyan-100 p-3">
+              <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-cyan-100 p-1.5 sm:p-2 lg:p-2.5">
                 <h4 className="font-semibold mb-2 text-foreground">Portfolio Health</h4>
                 <div className="space-y-2 max-h-32 overflow-y-auto">
                   {data.portfolioBreakdown.map((project: any, index: number) => (
@@ -364,7 +364,7 @@ export function HealthCard({ card, config, span, isCompact, userRole }: HealthCa
             )}
 
             {role === 'project-manager' && 'alerts' in data && (
-              <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-cyan-100 p-3">
+              <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-cyan-100 p-1.5 sm:p-2 lg:p-2.5">
                 <h4 className="font-semibold mb-2 text-foreground">Health Alerts</h4>
                 <div className="space-y-2 max-h-36 overflow-y-auto">
                   {data.alerts.map((alert: any, index: number) => (
@@ -387,7 +387,7 @@ export function HealthCard({ card, config, span, isCompact, userRole }: HealthCa
             {/* Summary Stats */}
             <div className="grid grid-cols-3 gap-2">
               <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-cyan-100 p-2 text-center">
-                <div className="text-lg font-bold text-cyan-600 dark:text-cyan-400">
+                <div className="text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium text-cyan-600 dark:text-cyan-400">
                   {role === 'executive' ? data.companyMetrics?.healthyProjects : 
                    role === 'project-executive' ? data.keyMetrics?.onTrackProjects : 
                    data.keyMetrics?.qualityScore.toFixed(0)}
@@ -398,7 +398,7 @@ export function HealthCard({ card, config, span, isCompact, userRole }: HealthCa
                 </div>
               </div>
               <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-cyan-100 p-2 text-center">
-                <div className="text-lg font-bold text-cyan-600 dark:text-cyan-400">
+                <div className="text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium text-cyan-600 dark:text-cyan-400">
                   {role === 'executive' ? data.companyMetrics?.atRiskProjects : 
                    role === 'project-executive' ? data.keyMetrics?.criticalProjects : 
                    data.keyMetrics?.safetyDays}
@@ -409,7 +409,7 @@ export function HealthCard({ card, config, span, isCompact, userRole }: HealthCa
                 </div>
               </div>
               <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-cyan-100 p-2 text-center">
-                <div className="text-lg font-bold text-cyan-600 dark:text-cyan-400">
+                <div className="text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium text-cyan-600 dark:text-cyan-400">
                   {role === 'executive' ? data.companyMetrics?.avgStakeholderSatisfaction.toFixed(0) : 
                    role === 'project-executive' ? data.keyMetrics?.stakeholderSatisfaction.toFixed(0) : 
                    data.keyMetrics?.stakeholderSatisfaction.toFixed(0)}

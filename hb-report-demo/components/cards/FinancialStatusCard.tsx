@@ -117,23 +117,23 @@ export default function FinancialStatusCard({ config, span, isCompact, userRole 
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Header Stats */}
-      <div className="flex-shrink-0 p-4 bg-white/80 dark:bg-black/80 backdrop-blur-sm border-b border-green-200 dark:border-green-800">
-        <div className="grid grid-cols-2 gap-4">
+      <div className="flex-shrink-0 p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 bg-white/80 dark:bg-black/80 backdrop-blur-sm border-b border-green-200 dark:border-green-800">
+        <div className="grid grid-cols-2 gap-1.5 sm:gap-2 lg:gap-1 sm:gap-1.5 lg:gap-2">
           <div className="text-center">
-            <div className="text-lg font-bold text-green-700">{formatPercentage(data.profitMargin)}</div>
+            <div className="text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium text-green-700">{formatPercentage(data.profitMargin)}</div>
             <div className="text-xs text-green-600 dark:text-green-400">Profit Margin</div>
           </div>
           <div className="text-center">
-            <div className="text-lg font-bold text-blue-700">{data.profitHealthScore}</div>
+            <div className="text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium text-blue-700">{data.profitHealthScore}</div>
             <div className="text-xs text-blue-600 dark:text-blue-400">Health Score</div>
           </div>
         </div>
       </div>
 
       {/* Content */}
-      <div className="flex-1 p-4 space-y-4 overflow-y-auto">
+      <div className="flex-1 p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 space-y-4 overflow-y-auto">
         {/* Contract Value */}
-        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-3 border border-green-200 dark:border-green-800">
+        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-1.5 sm:p-2 lg:p-2.5 border border-green-200 dark:border-green-800">
           <div className="flex items-center gap-2 mb-2">
             <DollarSign className="h-4 w-4 text-green-600 dark:text-green-400" />
             <span className="text-sm font-medium text-foreground">Contract Value</span>
@@ -157,7 +157,7 @@ export default function FinancialStatusCard({ config, span, isCompact, userRole 
         </div>
 
         {/* Profit Analysis */}
-        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-3 border border-green-200 dark:border-green-800">
+        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-1.5 sm:p-2 lg:p-2.5 border border-green-200 dark:border-green-800">
           <div className="flex items-center gap-2 mb-2">
             <BarChart3 className="h-4 w-4 text-green-600 dark:text-green-400" />
             <span className="text-sm font-medium text-foreground">Profit Analysis</span>
@@ -179,7 +179,7 @@ export default function FinancialStatusCard({ config, span, isCompact, userRole 
         </div>
 
         {/* Profit Variance */}
-        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-3 border border-green-200 dark:border-green-800">
+        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-1.5 sm:p-2 lg:p-2.5 border border-green-200 dark:border-green-800">
           <div className="flex items-center gap-2 mb-2">
             <Percent className="h-4 w-4 text-green-600 dark:text-green-400" />
             <span className="text-sm font-medium text-foreground">Profit Change</span>
@@ -187,7 +187,7 @@ export default function FinancialStatusCard({ config, span, isCompact, userRole 
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-1">
               {getProfitChangeIcon(data.profitVariance)}
-              <span className={`text-lg font-bold ${getProfitChangeColor(data.profitVariance)}`}>
+              <span className={`text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium ${getProfitChangeColor(data.profitVariance)}`}>
                 {formatCurrency(data.profitVariance)}
               </span>
             </div>
@@ -198,7 +198,7 @@ export default function FinancialStatusCard({ config, span, isCompact, userRole 
         </div>
 
         {/* Financial Health */}
-        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-3 border border-green-200 dark:border-green-800">
+        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-1.5 sm:p-2 lg:p-2.5 border border-green-200 dark:border-green-800">
           <div className="flex items-center gap-2 mb-2">
             <TrendingUp className="h-4 w-4 text-green-600 dark:text-green-400" />
             <span className="text-sm font-medium text-foreground">Financial Health</span>
@@ -215,9 +215,9 @@ export default function FinancialStatusCard({ config, span, isCompact, userRole 
 
       {/* Hover Drill-Down Overlay */}
       {isHovered && (
-        <div className="absolute inset-0 bg-green-900/95 backdrop-blur-sm p-4 flex flex-col justify-center text-white animate-in fade-in duration-200">
+        <div className="absolute inset-0 bg-green-900/95 backdrop-blur-sm p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 flex flex-col justify-center text-white animate-in fade-in duration-200">
           <div className="space-y-3">
-            <div className="flex items-center gap-2 mb-4">
+            <div className="flex items-center gap-2 mb-1.5 sm:mb-2 lg:mb-1 sm:mb-1.5 lg:mb-2">
               <ChevronRight className="h-4 w-4" />
               <span className="font-semibold text-sm">Financial Deep Dive</span>
             </div>
@@ -241,7 +241,7 @@ export default function FinancialStatusCard({ config, span, isCompact, userRole 
               </div>
             </div>
 
-            <div className="mt-4 pt-3 border-t border-green-700">
+            <div className="mt-1.5 sm:mt-2 lg:mt-1 sm:mt-1.5 lg:mt-2 pt-3 border-t border-green-700">
               <div className="flex items-center gap-1 mb-2">
                 <CreditCard className="h-3 w-3" />
                 <span className="text-xs font-medium text-green-200">Cash Flow Status</span>
@@ -262,7 +262,7 @@ export default function FinancialStatusCard({ config, span, isCompact, userRole 
               </div>
             </div>
 
-            <div className="mt-4 pt-3 border-t border-green-700">
+            <div className="mt-1.5 sm:mt-2 lg:mt-1 sm:mt-1.5 lg:mt-2 pt-3 border-t border-green-700">
               <div className="text-xs font-medium text-green-200 mb-2">Billing Analysis</div>
               <div className="space-y-1 text-xs">
                 <div className="flex justify-between">

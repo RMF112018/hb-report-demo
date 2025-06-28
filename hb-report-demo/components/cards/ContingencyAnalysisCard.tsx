@@ -136,23 +136,23 @@ export default function ContingencyAnalysisCard({ config, span, isCompact, userR
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Header Stats */}
-      <div className="flex-shrink-0 p-4 bg-white/80 dark:bg-black/80 backdrop-blur-sm border-b border-purple-200">
-        <div className="grid grid-cols-2 gap-4">
+      <div className="flex-shrink-0 p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 bg-white/80 dark:bg-black/80 backdrop-blur-sm border-b border-purple-200">
+        <div className="grid grid-cols-2 gap-1.5 sm:gap-2 lg:gap-1 sm:gap-1.5 lg:gap-2">
           <div className="text-center">
-            <div className="text-lg font-bold text-purple-700">{formatPercentage(data.contingencyUtilization)}</div>
+            <div className="text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium text-purple-700">{formatPercentage(data.contingencyUtilization)}</div>
             <div className="text-xs text-purple-600">Utilized</div>
           </div>
           <div className="text-center">
-            <div className={`text-lg font-bold ${getRiskColor(data.contingencyRisk)}`}>{data.contingencyRisk}</div>
+            <div className={`text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium ${getRiskColor(data.contingencyRisk)}`}>{data.contingencyRisk}</div>
             <div className="text-xs text-muted-foreground">Risk Level</div>
           </div>
         </div>
       </div>
 
       {/* Content */}
-      <div className="flex-1 p-4 space-y-4 overflow-y-auto">
+      <div className="flex-1 p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 space-y-4 overflow-y-auto">
         {/* Contingency Status */}
-        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-3 border border-purple-200">
+        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-1.5 sm:p-2 lg:p-2.5 border border-purple-200">
           <div className="flex items-center gap-2 mb-2">
             <Shield className="h-4 w-4 text-purple-600" />
             <span className="text-sm font-medium text-foreground">Contingency Status</span>
@@ -171,7 +171,7 @@ export default function ContingencyAnalysisCard({ config, span, isCompact, userR
         </div>
 
         {/* Buyout Savings */}
-        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-3 border border-purple-200">
+        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-1.5 sm:p-2 lg:p-2.5 border border-purple-200">
           <div className="flex items-center gap-2 mb-2">
             <PiggyBank className="h-4 w-4 text-purple-600" />
             <span className="text-sm font-medium text-foreground">Buyout Savings</span>
@@ -193,7 +193,7 @@ export default function ContingencyAnalysisCard({ config, span, isCompact, userR
         </div>
 
         {/* Utilization Analysis */}
-        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-3 border border-purple-200">
+        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-1.5 sm:p-2 lg:p-2.5 border border-purple-200">
           <div className="flex items-center gap-2 mb-2">
             <Percent className="h-4 w-4 text-purple-600" />
             <span className="text-sm font-medium text-foreground">Utilization Analysis</span>
@@ -215,13 +215,13 @@ export default function ContingencyAnalysisCard({ config, span, isCompact, userR
         </div>
 
         {/* Risk Assessment */}
-        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-3 border border-purple-200">
+        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-1.5 sm:p-2 lg:p-2.5 border border-purple-200">
           <div className="flex items-center gap-2 mb-2">
             <AlertCircle className="h-4 w-4 text-purple-600" />
             <span className="text-sm font-medium text-foreground">Risk Assessment</span>
           </div>
           <div className="text-center">
-            <Badge className={`${getRiskBadge(data.contingencyRisk)} text-sm px-3 py-1`}>
+            <Badge className={`${getRiskBadge(data.contingencyRisk)} text-sm px-1.5 sm:px-2 lg:px-2.5 py-1`}>
               {data.contingencyRisk} Risk
             </Badge>
             <div className="text-xs text-muted-foreground mt-2">
@@ -231,7 +231,7 @@ export default function ContingencyAnalysisCard({ config, span, isCompact, userR
         </div>
 
         {/* Performance Summary */}
-        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-3 border border-purple-200">
+        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-1.5 sm:p-2 lg:p-2.5 border border-purple-200">
           <div className="flex items-center gap-2 mb-2">
             <TrendingDown className="h-4 w-4 text-purple-600" />
             <span className="text-sm font-medium text-foreground">Performance</span>
@@ -255,9 +255,9 @@ export default function ContingencyAnalysisCard({ config, span, isCompact, userR
 
       {/* Hover Drill-Down Overlay */}
       {isHovered && (
-        <div className="absolute inset-0 bg-purple-900/95 backdrop-blur-sm p-4 flex flex-col justify-center text-white animate-in fade-in duration-200">
+        <div className="absolute inset-0 bg-purple-900/95 backdrop-blur-sm p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 flex flex-col justify-center text-white animate-in fade-in duration-200">
           <div className="space-y-3">
-            <div className="flex items-center gap-2 mb-4">
+            <div className="flex items-center gap-2 mb-1.5 sm:mb-2 lg:mb-1 sm:mb-1.5 lg:mb-2">
               <ChevronRight className="h-4 w-4" />
               <span className="font-semibold text-sm">Risk & Savings Analysis</span>
             </div>
@@ -281,7 +281,7 @@ export default function ContingencyAnalysisCard({ config, span, isCompact, userR
               </div>
             </div>
 
-            <div className="mt-4 pt-3 border-t border-purple-700">
+            <div className="mt-1.5 sm:mt-2 lg:mt-1 sm:mt-1.5 lg:mt-2 pt-3 border-t border-purple-700">
               <div className="flex items-center gap-1 mb-2">
                 <Target className="h-3 w-3" />
                 <span className="text-xs font-medium text-purple-200">Risk Categories</span>
@@ -302,7 +302,7 @@ export default function ContingencyAnalysisCard({ config, span, isCompact, userR
               </div>
             </div>
 
-            <div className="mt-4 pt-3 border-t border-purple-700">
+            <div className="mt-1.5 sm:mt-2 lg:mt-1 sm:mt-1.5 lg:mt-2 pt-3 border-t border-purple-700">
               <div className="text-xs font-medium text-purple-200 mb-2">Top Buyout Categories</div>
               <div className="space-y-1">
                 {data.drillDown.buyoutCategories.map((category, index) => (

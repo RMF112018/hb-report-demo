@@ -136,23 +136,23 @@ export default function SafetyCard({ config, span, isCompact, userRole }: Safety
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Header Stats */}
-      <div className="flex-shrink-0 p-4 bg-white/80 dark:bg-black/80 backdrop-blur-sm border-b border-red-200 dark:border-red-800">
-        <div className="grid grid-cols-2 gap-4">
+      <div className="flex-shrink-0 p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 bg-white/80 dark:bg-black/80 backdrop-blur-sm border-b border-red-200 dark:border-red-800">
+        <div className="grid grid-cols-2 gap-1.5 sm:gap-2 lg:gap-1 sm:gap-1.5 lg:gap-2">
           <div className="text-center">
-            <div className={`text-lg font-bold ${getSafetyScoreColor(data.safetyScore)}`}>{formatPercentage(data.safetyScore)}</div>
+            <div className={`text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium ${getSafetyScoreColor(data.safetyScore)}`}>{formatPercentage(data.safetyScore)}</div>
             <div className="text-xs text-red-600 dark:text-red-400">Safety Score</div>
           </div>
           <div className="text-center">
-            <div className={`text-lg font-bold ${getIncidentRateColor(data.incidentRate)}`}>{data.incidentRate}</div>
+            <div className={`text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium ${getIncidentRateColor(data.incidentRate)}`}>{data.incidentRate}</div>
             <div className="text-xs text-orange-600">Incident Rate</div>
           </div>
         </div>
       </div>
 
       {/* Content */}
-      <div className="flex-1 p-4 space-y-4 overflow-y-auto">
+      <div className="flex-1 p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 space-y-4 overflow-y-auto">
         {/* Incident Tracking */}
-        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-3 border border-red-200 dark:border-red-800">
+        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-1.5 sm:p-2 lg:p-2.5 border border-red-200 dark:border-red-800">
           <div className="flex items-center gap-2 mb-2">
             <Shield className="h-4 w-4 text-red-600 dark:text-red-400" />
             <span className="text-sm font-medium text-foreground">Incident Tracking</span>
@@ -175,7 +175,7 @@ export default function SafetyCard({ config, span, isCompact, userRole }: Safety
         </div>
 
         {/* Safety Score */}
-        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-3 border border-red-200 dark:border-red-800">
+        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-1.5 sm:p-2 lg:p-2.5 border border-red-200 dark:border-red-800">
           <div className="flex items-center gap-2 mb-2">
             <Users className="h-4 w-4 text-red-600 dark:text-red-400" />
             <span className="text-sm font-medium text-foreground">Safety Performance</span>
@@ -193,13 +193,13 @@ export default function SafetyCard({ config, span, isCompact, userRole }: Safety
         </div>
 
         {/* At Risk Items */}
-        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-3 border border-red-200 dark:border-red-800">
+        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-1.5 sm:p-2 lg:p-2.5 border border-red-200 dark:border-red-800">
           <div className="flex items-center gap-2 mb-2">
             <AlertTriangle className="h-4 w-4 text-red-600 dark:text-red-400" />
             <span className="text-sm font-medium text-foreground">At Risk Items</span>
           </div>
           <div className="flex items-center justify-between">
-            <div className={`text-lg font-bold ${getRiskLevelColor(data.atRiskItems)}`}>
+            <div className={`text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium ${getRiskLevelColor(data.atRiskItems)}`}>
               {data.atRiskItems}
             </div>
             <Badge className={`${getRiskLevelColor(data.atRiskItems) === 'text-green-600 dark:text-green-400' ? 'bg-green-100 text-green-700' : 
@@ -210,7 +210,7 @@ export default function SafetyCard({ config, span, isCompact, userRole }: Safety
         </div>
 
         {/* Inspection Status */}
-        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-3 border border-red-200 dark:border-red-800">
+        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-1.5 sm:p-2 lg:p-2.5 border border-red-200 dark:border-red-800">
           <div className="flex items-center gap-2 mb-2">
             <Clock className="h-4 w-4 text-red-600 dark:text-red-400" />
             <span className="text-sm font-medium text-foreground">Inspections</span>
@@ -228,7 +228,7 @@ export default function SafetyCard({ config, span, isCompact, userRole }: Safety
         </div>
 
         {/* Trade Safety Performance */}
-        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-3 border border-red-200 dark:border-red-800">
+        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-1.5 sm:p-2 lg:p-2.5 border border-red-200 dark:border-red-800">
           <div className="flex items-center gap-2 mb-2">
             <TrendingDown className="h-4 w-4 text-red-600 dark:text-red-400" />
             <span className="text-sm font-medium text-foreground">By Trade</span>
@@ -246,9 +246,9 @@ export default function SafetyCard({ config, span, isCompact, userRole }: Safety
 
       {/* Hover Drill-Down Overlay */}
       {isHovered && (
-        <div className="absolute inset-0 bg-red-900/95 backdrop-blur-sm p-4 flex flex-col justify-center text-white animate-in fade-in duration-200">
+        <div className="absolute inset-0 bg-red-900/95 backdrop-blur-sm p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 flex flex-col justify-center text-white animate-in fade-in duration-200">
           <div className="space-y-3">
-            <div className="flex items-center gap-2 mb-4">
+            <div className="flex items-center gap-2 mb-1.5 sm:mb-2 lg:mb-1 sm:mb-1.5 lg:mb-2">
               <ChevronRight className="h-4 w-4" />
               <span className="font-semibold text-sm">Safety Analysis</span>
             </div>
@@ -272,7 +272,7 @@ export default function SafetyCard({ config, span, isCompact, userRole }: Safety
               </div>
             </div>
 
-            <div className="mt-4 pt-3 border-t border-red-700">
+            <div className="mt-1.5 sm:mt-2 lg:mt-1 sm:mt-1.5 lg:mt-2 pt-3 border-t border-red-700">
               <div className="text-xs font-medium text-red-200 mb-2">Safety Status</div>
               <div className="space-y-1 text-xs">
                 <div className="flex justify-between">

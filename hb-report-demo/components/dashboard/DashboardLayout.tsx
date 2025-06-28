@@ -41,9 +41,9 @@ export function DashboardLayout({
   // Determine spacing based on layout density
   const getSpacingClass = () => {
     switch (layoutDensity) {
-      case 'compact': return 'gap-3';
-      case 'spacious': return 'gap-8';
-      default: return 'gap-6';
+      case 'compact': return 'gap-2 sm:gap-2.5 lg:gap-3';
+      case 'spacious': return 'gap-4 sm:gap-6 lg:gap-8';
+      default: return 'gap-2.5 sm:gap-3 lg:gap-4';
     }
   };
 
@@ -57,7 +57,7 @@ export function DashboardLayout({
       <KPIRow userRole={userRole} />
       
       {/* Dashboard Content - Responsive Container */}
-      <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
+      <div className="w-full px-2 sm:px-3 lg:px-4 xl:px-6 2xl:px-8 pt-2 sm:pt-3 lg:pt-4">
         <div className="mx-auto max-w-[1920px]"> {/* Max width for ultra-wide screens */}
           <DashboardGrid 
           cards={cards}
@@ -77,11 +77,12 @@ export function DashboardLayout({
 
       {/* Edit Mode Indicator */}
       {isEditing && (
-        <div className="fixed bottom-6 right-6 z-40">
-          <div className="bg-primary text-primary-foreground px-4 py-2 rounded-lg shadow-lg text-sm font-medium">
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-primary-foreground/70 rounded-full animate-pulse"></div>
-              Edit Mode Active
+        <div className="fixed bottom-3 right-3 z-40">
+          <div className="bg-primary text-primary-foreground px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg shadow-lg text-xs sm:text-sm font-medium">
+            <div className="flex items-center gap-1 sm:gap-2">
+              <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-primary-foreground/70 rounded-full animate-pulse"></div>
+              <span className="hidden sm:inline">Edit Mode Active</span>
+              <span className="sm:hidden">Edit</span>
             </div>
           </div>
         </div>

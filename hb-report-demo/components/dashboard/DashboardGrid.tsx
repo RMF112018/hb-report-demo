@@ -22,10 +22,9 @@ import {
 import { CSS } from "@dnd-kit/utilities";
 import type { DashboardCard } from "@/types/dashboard";
 import { cn } from "@/lib/utils";
-import { GripVertical, X, Settings2, Briefcase, Brain, BarChart3, Target, TrendingUp, Building2, Calendar, DollarSign, Wrench, Shield, Droplets, Package, Eye, AlertTriangle as AlertTriangleIcon, Users, FileText, ClipboardCheck, Play, CalendarDays, MessageSquare, Heart, PieChart, Activity, Coins, Zap } from "lucide-react";
+import { GripVertical, X, Settings2, Briefcase, Brain, BarChart3, Target, TrendingUp, Building2, Calendar, DollarSign, Wrench, Shield, Droplets, Package, Eye, AlertTriangle as AlertTriangleIcon, Users, FileText, ClipboardCheck, Play, CalendarDays, MessageSquare, Heart, PieChart, Activity, Coins, Zap, Maximize2, Minimize2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Maximize2, Minimize2 } from "lucide-react";
 
 // Modern card components
 import PortfolioOverview from "@/components/cards/PortfolioOverview";
@@ -367,79 +366,79 @@ function SortableCard({
           <div
             {...attributes}
             {...listeners}
-            className="absolute top-2 left-2 p-1 bg-muted rounded cursor-move opacity-0 group-hover:opacity-100 transition-opacity z-10"
+            className="absolute top-1 left-1 p-0.5 bg-muted rounded cursor-move opacity-0 group-hover:opacity-100 transition-opacity z-10"
           >
-            <GripVertical className="h-4 w-4 text-muted-foreground" />
+            <GripVertical className="h-3 w-3 text-muted-foreground" />
           </div>
-          <div className="absolute top-2 right-2 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity z-10">
+          <div className="absolute top-1 right-1 flex gap-0.5 opacity-0 group-hover:opacity-100 transition-opacity z-10">
             <Button
               variant="ghost"
               size="sm"
               onClick={() => onCardConfigure?.(card.id)}
-              className="h-7 w-7 p-0 bg-white/80 hover:bg-card"
+              className="h-5 w-5 p-0 bg-white/80 dark:bg-black/80 hover:bg-card"
             >
-              <Settings2 className="h-3 w-3" />
+              <Settings2 className="h-2.5 w-2.5" />
             </Button>
             <Button
               variant="ghost"
               size="sm"
               onClick={() => onCardRemove?.(card.id)}
-              className="h-7 w-7 p-0 bg-white/80 hover:bg-red-50 dark:bg-red-950/30 hover:text-red-600 dark:text-red-400"
+              className="h-5 w-5 p-0 bg-white/80 dark:bg-black/80 hover:bg-red-50 dark:hover:bg-red-950/30 hover:text-red-600 dark:text-red-400"
             >
-              <X className="h-3 w-3" />
+              <X className="h-2.5 w-2.5" />
             </Button>
           </div>
         </>
       )}
 
       {/* Card Header */}
-      <div className="px-3 sm:px-4 py-2 sm:py-3 border-b border-gray-100 dark:border-gray-700 flex-shrink-0">
+      <div className="px-2 sm:px-3 py-1.5 sm:py-2 border-b border-gray-100 dark:border-gray-700 flex-shrink-0">
         <div className="flex items-center justify-between">
-          <h3 className="font-semibold text-foreground text-sm sm:text-base truncate pr-2">{card.title}</h3>
+          <h3 className="font-medium text-foreground text-xs sm:text-sm lg:text-base truncate pr-1">{card.title}</h3>
           <div className="flex items-center gap-2">
             {/* Focus/Expand Button */}
             <Button
               variant="ghost"
               size="sm"
               onClick={() => onCardFocus?.(card)}
-              className="h-6 w-6 p-0 opacity-0 group-hover:opacity-100 transition-opacity hover:bg-blue-50 dark:hover:bg-blue-950/50"
+              className="h-5 w-5 p-0 opacity-0 group-hover:opacity-100 transition-opacity hover:bg-blue-50 dark:hover:bg-blue-950/50"
               title="Focus card"
             >
-              <Maximize2 className="h-3 w-3 text-blue-600 dark:text-blue-400" />
+              <Maximize2 className="h-2.5 w-2.5 text-blue-600 dark:text-blue-400" />
             </Button>
-            {card.type === "portfolio-overview" && <Briefcase className="h-5 w-5 text-blue-600 dark:text-blue-400" />}
-            {card.type === "enhanced-hbi-insights" && <Brain className="h-5 w-5 text-purple-600" />}
-            {card.type === "financial-review-panel" && <BarChart3 className="h-5 w-5 text-blue-600 dark:text-blue-400" />}
-            {card.type === "pipeline-analytics" && <Target className="h-5 w-5 text-orange-600" />}
-            {card.type === "market-intelligence" && <TrendingUp className="h-5 w-5 text-green-600 dark:text-green-400" />}
-            {card.type === "project-overview" && <Building2 className="h-5 w-5 text-blue-600 dark:text-blue-400" />}
-            {card.type === "schedule-performance" && <Calendar className="h-5 w-5 text-orange-600" />}
-            {card.type === "financial-status" && <DollarSign className="h-5 w-5 text-green-600 dark:text-green-400" />}
-            {card.type === "general-conditions" && <Wrench className="h-5 w-5 text-blue-600 dark:text-blue-400" />}
-            {card.type === "contingency-analysis" && <Shield className="h-5 w-5 text-purple-600" />}
-            {card.type === "cash-flow" && <Droplets className="h-5 w-5 text-cyan-600 dark:text-cyan-400" />}
-            {card.type === "procurement" && <Package className="h-5 w-5 text-amber-600 dark:text-amber-400" />}
-            {card.type === "draw-forecast" && <BarChart3 className="h-5 w-5 text-indigo-600 dark:text-indigo-400" />}
-            {card.type === "quality-control" && <Eye className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />}
-            {card.type === "safety" && <AlertTriangleIcon className="h-5 w-5 text-red-600 dark:text-red-400" />}
-            {card.type === "staffing-distribution" && <Users className="h-5 w-5 text-orange-600" />}
-            {card.type === "change-order-analysis" && <FileText className="h-5 w-5 text-orange-600" />}
-            {card.type === "closeout" && <ClipboardCheck className="h-5 w-5 text-indigo-600 dark:text-indigo-400" />}
-            {card.type === "startup" && <Play className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />}
-            {card.type === "critical-dates" && <CalendarDays className="h-5 w-5 text-blue-600 dark:text-blue-400" />}
-            {card.type === "field-reports" && <FileText className="h-5 w-5 text-green-600 dark:text-green-400" />}
-            {card.type === "rfi" && <MessageSquare className="h-5 w-5 text-orange-600" />}
-            {card.type === "submittal" && <FileText className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />}
-            {card.type === "health" && <Heart className="h-5 w-5 text-cyan-600 dark:text-cyan-400" />}
-            {card.type === "schedule-monitor" && <Calendar className="h-5 w-5 text-blue-600 dark:text-blue-400" />}
-            {card.type === "bd-opportunities" && <Building2 className="h-5 w-5 text-blue-600 dark:text-blue-400" />}
+            {card.type === "portfolio-overview" && <Briefcase className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-blue-600 dark:text-blue-400" />}
+            {card.type === "enhanced-hbi-insights" && <Brain className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-purple-600" />}
+            {card.type === "financial-review-panel" && <BarChart3 className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-blue-600 dark:text-blue-400" />}
+            {card.type === "pipeline-analytics" && <Target className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-orange-600" />}
+            {card.type === "market-intelligence" && <TrendingUp className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-green-600 dark:text-green-400" />}
+            {card.type === "project-overview" && <Building2 className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-blue-600 dark:text-blue-400" />}
+            {card.type === "schedule-performance" && <Calendar className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-orange-600" />}
+            {card.type === "financial-status" && <DollarSign className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-green-600 dark:text-green-400" />}
+            {card.type === "general-conditions" && <Wrench className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-blue-600 dark:text-blue-400" />}
+            {card.type === "contingency-analysis" && <Shield className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-purple-600" />}
+            {card.type === "cash-flow" && <Droplets className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-cyan-600 dark:text-cyan-400" />}
+            {card.type === "procurement" && <Package className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-amber-600 dark:text-amber-400" />}
+            {card.type === "draw-forecast" && <BarChart3 className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-indigo-600 dark:text-indigo-400" />}
+            {card.type === "quality-control" && <Eye className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-emerald-600 dark:text-emerald-400" />}
+            {card.type === "safety" && <AlertTriangleIcon className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-red-600 dark:text-red-400" />}
+            {card.type === "staffing-distribution" && <Users className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-orange-600" />}
+            {card.type === "change-order-analysis" && <FileText className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-orange-600" />}
+            {card.type === "closeout" && <ClipboardCheck className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-indigo-600 dark:text-indigo-400" />}
+            {card.type === "startup" && <Play className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-emerald-600 dark:text-emerald-400" />}
+            {card.type === "critical-dates" && <CalendarDays className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-blue-600 dark:text-blue-400" />}
+            {card.type === "field-reports" && <FileText className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-green-600 dark:text-green-400" />}
+            {card.type === "rfi" && <MessageSquare className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-orange-600" />}
+            {card.type === "submittal" && <FileText className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-emerald-600 dark:text-emerald-400" />}
+            {card.type === "health" && <Heart className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-cyan-600 dark:text-cyan-400" />}
+            {card.type === "schedule-monitor" && <Calendar className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-blue-600 dark:text-blue-400" />}
+            {card.type === "bd-opportunities" && <Building2 className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-blue-600 dark:text-blue-400" />}
           </div>
         </div>
       </div>
 
       {/* Card Content */}
       <div className="flex-1 min-h-0 overflow-y-auto">
-        <div className="p-2 sm:p-3 lg:p-4 h-full">
+        <div className="p-1 sm:p-2 lg:p-3 h-full">
           <CardContent card={card} isCompact={isCompact} userRole={userRole} />
         </div>
       </div>

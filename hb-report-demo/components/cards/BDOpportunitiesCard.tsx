@@ -186,21 +186,21 @@ export function BDOpportunitiesCard({ card, config, span, isCompact, userRole }:
         
         <CardContent className="space-y-4">
           {/* Key Metrics */}
-          <div className="grid grid-cols-2 gap-3">
-            <div className="text-center p-3 bg-white/60 dark:bg-black/60 rounded-lg border border-blue-100">
-              <div className="text-2xl font-bold text-blue-600 dark:text-blue-400 dark:text-blue-400">{events.length}</div>
+          <div className="grid grid-cols-2 gap-1 sm:gap-1.5 lg:gap-2">
+            <div className="text-center p-1.5 sm:p-2 lg:p-2.5 bg-white/60 dark:bg-black/60 rounded-lg border border-blue-100">
+              <div className="text-lg sm:text-xl lg:text-lg sm:text-xl lg:text-2xl font-medium text-blue-600 dark:text-blue-400 dark:text-blue-400">{events.length}</div>
               <div className="text-xs text-muted-foreground">Upcoming Events</div>
               <div className="text-xs text-blue-600 dark:text-blue-400 dark:text-blue-400">{highPriorityEvents.length} high priority</div>
             </div>
-            <div className="text-center p-3 bg-white/60 dark:bg-black/60 rounded-lg border border-blue-100">
-              <div className="text-2xl font-bold text-blue-600 dark:text-blue-400 dark:text-blue-400">{utilizationRate.toFixed(0)}%</div>
+            <div className="text-center p-1.5 sm:p-2 lg:p-2.5 bg-white/60 dark:bg-black/60 rounded-lg border border-blue-100">
+              <div className="text-lg sm:text-xl lg:text-lg sm:text-xl lg:text-2xl font-medium text-blue-600 dark:text-blue-400 dark:text-blue-400">{utilizationRate.toFixed(0)}%</div>
               <div className="text-xs text-muted-foreground">Seat Utilization</div>
               <div className="text-xs text-blue-600 dark:text-blue-400 dark:text-blue-400">{totalAvailable} of {totalSeats} available</div>
             </div>
           </div>
 
           {/* Upcoming Events */}
-          <div className="bg-card/60 dark:bg-card/40 rounded-lg border border-blue-100 dark:border-blue-800 p-3">
+          <div className="bg-card/60 dark:bg-card/40 rounded-lg border border-blue-100 dark:border-blue-800 p-1.5 sm:p-2 lg:p-2.5">
             <h4 className="font-semibold mb-2 text-foreground">Next 3 Events</h4>
             <div className="space-y-2 max-h-32 overflow-y-auto">
               {events.slice(0, 3).map((event) => (
@@ -226,11 +226,11 @@ export function BDOpportunitiesCard({ card, config, span, isCompact, userRole }:
           </div>
 
           {/* Pipeline Value */}
-          <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-blue-100 p-3">
+          <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-blue-100 p-1.5 sm:p-2 lg:p-2.5">
             <div className="flex justify-between items-center">
               <span className="text-sm font-medium text-foreground">Pipeline Value</span>
               <div className="text-right">
-                <div className="text-lg font-bold text-blue-600 dark:text-blue-400">{formatCurrency(totalPotentialValue)}</div>
+                <div className="text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium text-blue-600 dark:text-blue-400">{formatCurrency(totalPotentialValue)}</div>
                 <div className="text-xs text-muted-foreground">Total opportunity</div>
               </div>
             </div>
@@ -240,7 +240,7 @@ export function BDOpportunitiesCard({ card, config, span, isCompact, userRole }:
 
       {isHovered && (
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/30 dark:to-indigo-950/30 border border-blue-200 dark:border-blue-800 rounded-lg shadow-2xl z-10 overflow-auto">
-          <div className="p-4 space-y-4">
+          <div className="p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 space-y-4">
             <div className="flex items-center justify-between border-b border-blue-200 dark:border-blue-800 pb-2">
               <h3 className="font-semibold text-foreground flex items-center gap-2">
                 <Building2 className="h-4 w-4 text-blue-600 dark:text-blue-400" />
@@ -252,11 +252,11 @@ export function BDOpportunitiesCard({ card, config, span, isCompact, userRole }:
             </div>
 
             {/* All Events */}
-            <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-blue-100 p-3">
+            <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-blue-100 p-1.5 sm:p-2 lg:p-2.5">
               <h4 className="font-semibold mb-2 text-foreground">All Upcoming Events</h4>
               <div className="space-y-2 max-h-48 overflow-y-auto">
                 {events.map((event) => (
-                  <div key={event.id} className="p-3 rounded bg-white/40 dark:bg-black/40 border border-blue-100">
+                  <div key={event.id} className="p-1.5 sm:p-2 lg:p-2.5 rounded bg-white/40 dark:bg-black/40 border border-blue-100">
                     <div className="flex justify-between items-start mb-2">
                       <div className="flex items-center gap-2">
                         <span className="text-lg">{getEventIcon(event.type)}</span>
@@ -308,15 +308,15 @@ export function BDOpportunitiesCard({ card, config, span, isCompact, userRole }:
             {/* Summary Stats */}
             <div className="grid grid-cols-3 gap-2">
               <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-blue-100 p-2 text-center">
-                <div className="text-lg font-bold text-blue-600 dark:text-blue-400">{highPriorityEvents.length}</div>
+                <div className="text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium text-blue-600 dark:text-blue-400">{highPriorityEvents.length}</div>
                 <div className="text-xs text-muted-foreground">High Priority</div>
               </div>
               <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-blue-100 p-2 text-center">
-                <div className="text-lg font-bold text-blue-600 dark:text-blue-400">{utilizationRate.toFixed(0)}%</div>
+                <div className="text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium text-blue-600 dark:text-blue-400">{utilizationRate.toFixed(0)}%</div>
                 <div className="text-xs text-muted-foreground">Utilization</div>
               </div>
               <div className="bg-white/60 dark:bg-black/60 rounded-lg border border-blue-100 p-2 text-center">
-                <div className="text-lg font-bold text-blue-600 dark:text-blue-400">{events.filter(e => new Date(e.date) <= new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)).length}</div>
+                <div className="text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium text-blue-600 dark:text-blue-400">{events.filter(e => new Date(e.date) <= new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)).length}</div>
                 <div className="text-xs text-muted-foreground">This Week</div>
               </div>
             </div>

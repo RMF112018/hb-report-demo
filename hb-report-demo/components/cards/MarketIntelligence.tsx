@@ -199,56 +199,56 @@ export function MarketIntelligence({ config = {}, span, isCompact = false }: Mar
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="h-full overflow-y-auto">
-        <div className="p-6 space-y-6">
+        <div className="p-2 sm:p-1.5 sm:p-2 lg:p-2.5 lg:p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 space-y-6">
           {/* Key Metrics Row */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950/40 dark:to-blue-900/40 rounded-lg p-4">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-1.5 sm:gap-2 lg:gap-1 sm:gap-1.5 lg:gap-2">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950/40 dark:to-blue-900/40 rounded-lg p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-blue-700">Avg Market Growth</p>
-                  <p className="text-2xl font-bold text-blue-900">{analytics.avgMarketGrowth.toFixed(1)}%</p>
+                  <p className="text-lg sm:text-xl lg:text-lg sm:text-xl lg:text-2xl font-medium text-blue-900">{analytics.avgMarketGrowth.toFixed(1)}%</p>
                 </div>
-                <TrendingUp className="h-8 w-8 text-blue-600 dark:text-blue-400" />
+                <TrendingUp className="h-5 w-5 sm:h-6 sm:w-6 lg:h-8 lg:w-8 text-blue-600 dark:text-blue-400" />
               </div>
             </div>
             
-            <div className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-950/40 dark:to-purple-900/40 rounded-lg p-4">
+            <div className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-950/40 dark:to-purple-900/40 rounded-lg p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-purple-700">Market Share</p>
-                  <p className="text-2xl font-bold text-purple-900">{analytics.avgMarketShare.toFixed(1)}%</p>
+                  <p className="text-lg sm:text-xl lg:text-lg sm:text-xl lg:text-2xl font-medium text-purple-900">{analytics.avgMarketShare.toFixed(1)}%</p>
                 </div>
-                <Target className="h-8 w-8 text-purple-600" />
+                <Target className="h-5 w-5 sm:h-6 sm:w-6 lg:h-8 lg:w-8 text-purple-600" />
               </div>
             </div>
             
-            <div className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-950/40 dark:to-green-900/40 rounded-lg p-4">
+            <div className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-950/40 dark:to-green-900/40 rounded-lg p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-green-700">Bid Success Rate</p>
-                  <p className="text-2xl font-bold text-green-900">{analytics.avgBidSuccess.toFixed(0)}%</p>
+                  <p className="text-lg sm:text-xl lg:text-lg sm:text-xl lg:text-2xl font-medium text-green-900">{analytics.avgBidSuccess.toFixed(0)}%</p>
                 </div>
-                <Award className="h-8 w-8 text-green-600 dark:text-green-400" />
+                <Award className="h-5 w-5 sm:h-6 sm:w-6 lg:h-8 lg:w-8 text-green-600 dark:text-green-400" />
               </div>
             </div>
             
-            <div className="bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-950/40 dark:to-orange-900/40 rounded-lg p-4">
+            <div className="bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-950/40 dark:to-orange-900/40 rounded-lg p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-orange-700">Active Markets</p>
-                  <p className="text-2xl font-bold text-orange-900">{analytics.totalMarkets}</p>
+                  <p className="text-lg sm:text-xl lg:text-lg sm:text-xl lg:text-2xl font-medium text-orange-900">{analytics.totalMarkets}</p>
                 </div>
-                <BarChart3 className="h-8 w-8 text-orange-600" />
+                <BarChart3 className="h-5 w-5 sm:h-6 sm:w-6 lg:h-8 lg:w-8 text-orange-600" />
               </div>
             </div>
           </div>
 
           {/* Charts Row */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 sm:gap-1 sm:gap-1.5 lg:gap-2 lg:gap-1.5 sm:gap-2 lg:gap-1 sm:gap-1.5 lg:gap-2">
             {/* Market Type Performance */}
             <Card>
-              <CardContent className="p-4">
-                <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+              <CardContent className="p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5">
+                <h3 className="text-sm sm:text-base lg:text-lg font-medium mb-1.5 sm:mb-2 lg:mb-1 sm:mb-1.5 lg:mb-2 flex items-center gap-2">
                   <BarChart3 className="h-5 w-5 text-blue-600 dark:text-blue-400" />
                   Market Performance by Type
                 </h3>
@@ -269,8 +269,8 @@ export function MarketIntelligence({ config = {}, span, isCompact = false }: Mar
 
             {/* Growth vs Market Share Scatter */}
             <Card>
-              <CardContent className="p-4">
-                <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+              <CardContent className="p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5">
+                <h3 className="text-sm sm:text-base lg:text-lg font-medium mb-1.5 sm:mb-2 lg:mb-1 sm:mb-1.5 lg:mb-2 flex items-center gap-2">
                   <Target className="h-5 w-5 text-purple-600" />
                   Growth vs Market Position
                 </h3>
@@ -291,15 +291,15 @@ export function MarketIntelligence({ config = {}, span, isCompact = false }: Mar
 
           {/* Trends Analysis */}
           <Card>
-            <CardContent className="p-4">
-              <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+            <CardContent className="p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5">
+              <h3 className="text-sm sm:text-base lg:text-lg font-medium mb-1.5 sm:mb-2 lg:mb-1 sm:mb-1.5 lg:mb-2 flex items-center gap-2">
                 <Zap className="h-5 w-5 text-yellow-600 dark:text-yellow-400" />
                 Market Trends Analysis
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1.5 sm:gap-2 lg:gap-1 sm:gap-1.5 lg:gap-2">
                 {analytics.topTrends.map((trend, index) => (
-                  <div key={index} className="bg-muted/50 rounded-lg p-4">
-                    <div className="flex items-center justify-between mb-3">
+                  <div key={index} className="bg-muted/50 rounded-lg p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5">
+                    <div className="flex items-center justify-between mb-1 sm:mb-1.5 lg:mb-2">
                       <h4 className="font-medium text-foreground">{trend.category}</h4>
                       {getTrendIcon(trend.sentiment)}
                     </div>
@@ -337,14 +337,14 @@ export function MarketIntelligence({ config = {}, span, isCompact = false }: Mar
 
           {/* Hot Markets */}
           <Card>
-            <CardContent className="p-4">
-              <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+            <CardContent className="p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5">
+              <h3 className="text-sm sm:text-base lg:text-lg font-medium mb-1.5 sm:mb-2 lg:mb-1 sm:mb-1.5 lg:mb-2 flex items-center gap-2">
                 <MapPin className="h-5 w-5 text-red-600 dark:text-red-400" />
                 High-Growth Markets
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1.5 sm:gap-2 lg:gap-1 sm:gap-1.5 lg:gap-2">
                 {analytics.topLocations.map((location, index) => (
-                  <div key={index} className="bg-gradient-to-br from-red-50 to-orange-50 dark:from-red-950/30 dark:to-orange-950/30 rounded-lg p-4 border">
+                  <div key={index} className="bg-gradient-to-br from-red-50 to-orange-50 dark:from-red-950/30 dark:to-orange-950/30 rounded-lg p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 border">
                     <div className="flex items-center justify-between mb-2">
                       <h4 className="font-semibold text-foreground">{location.city}</h4>
                       <Badge variant="outline" className="text-xs">
@@ -372,9 +372,9 @@ export function MarketIntelligence({ config = {}, span, isCompact = false }: Mar
 
           {/* Market Intelligence Summary */}
           <Card>
-            <CardContent className="p-4">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-semibold flex items-center gap-2">
+            <CardContent className="p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5">
+              <div className="flex items-center justify-between mb-1.5 sm:mb-2 lg:mb-1 sm:mb-1.5 lg:mb-2">
+                <h3 className="text-sm sm:text-base lg:text-lg font-medium flex items-center gap-2">
                   <Users className="h-5 w-5 text-indigo-600 dark:text-indigo-400" />
                   Competitive Landscape
                 </h3>
@@ -382,17 +382,17 @@ export function MarketIntelligence({ config = {}, span, isCompact = false }: Mar
                   {analytics.totalCompetitors} Total Competitors
                 </Badge>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="text-center p-4 bg-blue-50 dark:bg-blue-950/30 rounded-lg">
-                  <p className="text-2xl font-bold text-blue-900">{analytics.avgMarketGrowth.toFixed(1)}%</p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-1.5 sm:gap-2 lg:gap-1 sm:gap-1.5 lg:gap-2">
+                <div className="text-center p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 bg-blue-50 dark:bg-blue-950/30 rounded-lg">
+                  <p className="text-lg sm:text-xl lg:text-lg sm:text-xl lg:text-2xl font-medium text-blue-900">{analytics.avgMarketGrowth.toFixed(1)}%</p>
                   <p className="text-sm text-blue-700">Average Market Growth</p>
                 </div>
-                <div className="text-center p-4 bg-purple-50 dark:bg-purple-950/30 rounded-lg">
-                  <p className="text-2xl font-bold text-purple-900">{analytics.avgMarketShare.toFixed(1)}%</p>
+                <div className="text-center p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 bg-purple-50 dark:bg-purple-950/30 rounded-lg">
+                  <p className="text-lg sm:text-xl lg:text-lg sm:text-xl lg:text-2xl font-medium text-purple-900">{analytics.avgMarketShare.toFixed(1)}%</p>
                   <p className="text-sm text-purple-700">Average Market Share</p>
                 </div>
-                <div className="text-center p-4 bg-green-50 dark:bg-green-950/30 rounded-lg">
-                  <p className="text-2xl font-bold text-green-900">{analytics.avgBidSuccess.toFixed(0)}%</p>
+                <div className="text-center p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 bg-green-50 dark:bg-green-950/30 rounded-lg">
+                  <p className="text-lg sm:text-xl lg:text-lg sm:text-xl lg:text-2xl font-medium text-green-900">{analytics.avgBidSuccess.toFixed(0)}%</p>
                   <p className="text-sm text-green-700">Average Bid Success</p>
                 </div>
               </div>
@@ -403,15 +403,15 @@ export function MarketIntelligence({ config = {}, span, isCompact = false }: Mar
 
       {/* Hover Drill-Down Overlay */}
       {isHovered && (
-        <div className="absolute inset-0 bg-green-900/95 backdrop-blur-sm rounded-lg p-6 text-white transition-all duration-300 ease-in-out overflow-y-auto">
+        <div className="absolute inset-0 bg-green-900/95 backdrop-blur-sm rounded-lg p-2 sm:p-1.5 sm:p-2 lg:p-2.5 lg:p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 text-white transition-all duration-300 ease-in-out overflow-y-auto">
           <div className="h-full">
-            <h3 className="text-xl font-bold mb-4 text-center">Market Intelligence Deep Dive</h3>
+            <h3 className="text-base sm:text-lg lg:text-base sm:text-lg lg:text-xl font-medium mb-1.5 sm:mb-2 lg:mb-1 sm:mb-1.5 lg:mb-2 text-center">Market Intelligence Deep Dive</h3>
             
-            <div className="grid grid-cols-2 gap-6 h-[calc(100%-60px)]">
+            <div className="grid grid-cols-2 gap-2 sm:gap-1 sm:gap-1.5 lg:gap-2 lg:gap-1.5 sm:gap-2 lg:gap-1 sm:gap-1.5 lg:gap-2 h-[calc(100%-60px)]">
               {/* Market Insights */}
               <div className="space-y-4">
-                <div className="bg-white/10 dark:bg-black/10 rounded-lg p-4">
-                  <h4 className="font-semibold mb-3 flex items-center">
+                <div className="bg-white/10 dark:bg-black/10 rounded-lg p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5">
+                  <h4 className="font-semibold mb-1 sm:mb-1.5 lg:mb-2 flex items-center">
                     <Target className="w-4 h-4 mr-2" />
                     Strategic Market Position
                   </h4>
@@ -435,8 +435,8 @@ export function MarketIntelligence({ config = {}, span, isCompact = false }: Mar
                   </div>
                 </div>
 
-                <div className="bg-white/10 dark:bg-black/10 rounded-lg p-4">
-                  <h4 className="font-semibold mb-3 flex items-center">
+                <div className="bg-white/10 dark:bg-black/10 rounded-lg p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5">
+                  <h4 className="font-semibold mb-1 sm:mb-1.5 lg:mb-2 flex items-center">
                     <BarChart3 className="w-4 h-4 mr-2" />
                     Growth Opportunities
                   </h4>
@@ -458,8 +458,8 @@ export function MarketIntelligence({ config = {}, span, isCompact = false }: Mar
 
               {/* Competitive Analysis */}
               <div className="space-y-4">
-                <div className="bg-white/10 dark:bg-black/10 rounded-lg p-4">
-                  <h4 className="font-semibold mb-3 flex items-center">
+                <div className="bg-white/10 dark:bg-black/10 rounded-lg p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5">
+                  <h4 className="font-semibold mb-1 sm:mb-1.5 lg:mb-2 flex items-center">
                     <Users className="w-4 h-4 mr-2" />
                     Competitive Intelligence
                   </h4>
@@ -483,8 +483,8 @@ export function MarketIntelligence({ config = {}, span, isCompact = false }: Mar
                   </div>
                 </div>
 
-                <div className="bg-white/10 dark:bg-black/10 rounded-lg p-4">
-                  <h4 className="font-semibold mb-3 flex items-center">
+                <div className="bg-white/10 dark:bg-black/10 rounded-lg p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5">
+                  <h4 className="font-semibold mb-1 sm:mb-1.5 lg:mb-2 flex items-center">
                     <TrendingUp className="w-4 h-4 mr-2" />
                     Market Trend Summary
                   </h4>

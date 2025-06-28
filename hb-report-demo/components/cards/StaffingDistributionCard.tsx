@@ -74,30 +74,30 @@ const StaffingDistributionCard: React.FC<StaffingDistributionCardProps> = ({
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="h-full bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-950/30 dark:to-amber-950/30 p-4 rounded-lg">
+      <div className="h-full bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-950/30 dark:to-amber-950/30 p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 rounded-lg">
         {/* Header Metrics */}
-        <div className="grid grid-cols-4 gap-3 mb-4">
+        <div className="grid grid-cols-4 gap-1 sm:gap-1.5 lg:gap-2 mb-1.5 sm:mb-2 lg:mb-1 sm:mb-1.5 lg:mb-2">
           <div className="text-center">
-            <div className="text-2xl font-bold text-orange-900">{staffingData.length}</div>
+            <div className="text-lg sm:text-xl lg:text-lg sm:text-xl lg:text-2xl font-medium text-orange-900">{staffingData.length}</div>
             <div className="text-xs text-orange-600">Total Staff</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl font-bold text-orange-900">{utilizationRate}%</div>
+            <div className="text-lg sm:text-xl lg:text-lg sm:text-xl lg:text-2xl font-medium text-orange-900">{utilizationRate}%</div>
             <div className="text-xs text-orange-600">Utilization</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl font-bold text-orange-900">{spcrStats.total}</div>
+            <div className="text-lg sm:text-xl lg:text-lg sm:text-xl lg:text-2xl font-medium text-orange-900">{spcrStats.total}</div>
             <div className="text-xs text-orange-600">SPCRs Total</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl font-bold text-green-700">{spcrStats.approved || 0}</div>
+            <div className="text-lg sm:text-xl lg:text-lg sm:text-xl lg:text-2xl font-medium text-green-700">{spcrStats.approved || 0}</div>
             <div className="text-xs text-orange-600">SPCR Approved</div>
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-4 h-[calc(100%-120px)]">
+        <div className="grid grid-cols-2 gap-1.5 sm:gap-2 lg:gap-1 sm:gap-1.5 lg:gap-2 h-[calc(100%-120px)]">
           {/* Role Distribution Chart */}
-          <div className="bg-white/70 dark:bg-black/70 rounded-lg p-3">
+          <div className="bg-white/70 dark:bg-black/70 rounded-lg p-1.5 sm:p-2 lg:p-2.5">
             <h4 className="text-sm font-semibold text-orange-900 mb-2">Staff by Role</h4>
             <ResponsiveContainer width="100%" height="85%">
               <BarChart data={roleChartData} layout="horizontal">
@@ -112,7 +112,7 @@ const StaffingDistributionCard: React.FC<StaffingDistributionCardProps> = ({
           {/* Experience & SPCR Status */}
           <div className="space-y-2">
             {/* Experience Distribution */}
-            <div className="bg-white/70 dark:bg-black/70 rounded-lg p-3 h-1/2">
+            <div className="bg-white/70 dark:bg-black/70 rounded-lg p-1.5 sm:p-2 lg:p-2.5 h-1/2">
               <h4 className="text-sm font-semibold text-orange-900 mb-2">Experience Levels</h4>
               <div className="space-y-2">
                 <div className="flex justify-between items-center">
@@ -136,7 +136,7 @@ const StaffingDistributionCard: React.FC<StaffingDistributionCardProps> = ({
             </div>
 
             {/* SPCR Status */}
-            <div className="bg-white/70 dark:bg-black/70 rounded-lg p-3 h-1/2">
+            <div className="bg-white/70 dark:bg-black/70 rounded-lg p-1.5 sm:p-2 lg:p-2.5 h-1/2">
               <h4 className="text-sm font-semibold text-orange-900 mb-2">SPCR Status</h4>
               <div className="h-full">
                 <ResponsiveContainer width="100%" height="80%">
@@ -171,15 +171,15 @@ const StaffingDistributionCard: React.FC<StaffingDistributionCardProps> = ({
 
       {/* Hover Drill-Down Overlay */}
       {isHovered && (
-        <div className="absolute inset-0 bg-orange-900/95 backdrop-blur-sm rounded-lg p-6 text-white transition-all duration-300 ease-in-out overflow-y-auto">
+        <div className="absolute inset-0 bg-orange-900/95 backdrop-blur-sm rounded-lg p-2 sm:p-1.5 sm:p-2 lg:p-2.5 lg:p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 text-white transition-all duration-300 ease-in-out overflow-y-auto">
           <div className="h-full">
-            <h3 className="text-xl font-bold mb-4 text-center">Staffing Deep Dive Analysis</h3>
+            <h3 className="text-base sm:text-lg lg:text-base sm:text-lg lg:text-xl font-medium mb-1.5 sm:mb-2 lg:mb-1 sm:mb-1.5 lg:mb-2 text-center">Staffing Deep Dive Analysis</h3>
             
-            <div className="grid grid-cols-2 gap-6 h-[calc(100%-60px)]">
+            <div className="grid grid-cols-2 gap-2 sm:gap-1 sm:gap-1.5 lg:gap-2 lg:gap-1.5 sm:gap-2 lg:gap-1 sm:gap-1.5 lg:gap-2 h-[calc(100%-60px)]">
               {/* Staffing Metrics */}
               <div className="space-y-4">
-                <div className="bg-white/10 dark:bg-black/10 rounded-lg p-4">
-                  <h4 className="font-semibold mb-3 flex items-center">
+                <div className="bg-white/10 dark:bg-black/10 rounded-lg p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5">
+                  <h4 className="font-semibold mb-1 sm:mb-1.5 lg:mb-2 flex items-center">
                     <Users className="w-4 h-4 mr-2" />
                     Workforce Composition
                   </h4>
@@ -217,8 +217,8 @@ const StaffingDistributionCard: React.FC<StaffingDistributionCardProps> = ({
                   </div>
                 </div>
 
-                <div className="bg-white/10 dark:bg-black/10 rounded-lg p-4">
-                  <h4 className="font-semibold mb-3 flex items-center">
+                <div className="bg-white/10 dark:bg-black/10 rounded-lg p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5">
+                  <h4 className="font-semibold mb-1 sm:mb-1.5 lg:mb-2 flex items-center">
                     <TrendingUp className="w-4 h-4 mr-2" />
                     Performance Indicators
                   </h4>
@@ -254,8 +254,8 @@ const StaffingDistributionCard: React.FC<StaffingDistributionCardProps> = ({
 
               {/* SPCR Analysis */}
               <div className="space-y-4">
-                <div className="bg-white/10 dark:bg-black/10 rounded-lg p-4">
-                  <h4 className="font-semibold mb-3 flex items-center">
+                <div className="bg-white/10 dark:bg-black/10 rounded-lg p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5">
+                  <h4 className="font-semibold mb-1 sm:mb-1.5 lg:mb-2 flex items-center">
                     <AlertCircle className="w-4 h-4 mr-2" />
                     SPCR Request Analysis
                   </h4>
@@ -281,8 +281,8 @@ const StaffingDistributionCard: React.FC<StaffingDistributionCardProps> = ({
                   </div>
                 </div>
 
-                <div className="bg-white/10 dark:bg-black/10 rounded-lg p-4">
-                  <h4 className="font-semibold mb-3 flex items-center">
+                <div className="bg-white/10 dark:bg-black/10 rounded-lg p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5">
+                  <h4 className="font-semibold mb-1 sm:mb-1.5 lg:mb-2 flex items-center">
                     <CheckCircle className="w-4 h-4 mr-2" />
                     Staffing Health
                   </h4>

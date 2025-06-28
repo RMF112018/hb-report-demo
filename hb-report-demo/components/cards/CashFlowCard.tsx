@@ -110,29 +110,29 @@ export default function CashFlowCard({ config, span, isCompact, userRole }: Cash
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Header Stats */}
-      <div className="flex-shrink-0 p-4 bg-white/80 dark:bg-black/80 backdrop-blur-sm border-b border-cyan-200 dark:border-cyan-800">
-        <div className="grid grid-cols-2 gap-4">
+      <div className="flex-shrink-0 p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 bg-white/80 dark:bg-black/80 backdrop-blur-sm border-b border-cyan-200 dark:border-cyan-800">
+        <div className="grid grid-cols-2 gap-1.5 sm:gap-2 lg:gap-1 sm:gap-1.5 lg:gap-2">
           <div className="text-center">
-            <div className="text-lg font-bold text-cyan-700">{formatCurrency(data.netCashFlow)}</div>
+            <div className="text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium text-cyan-700">{formatCurrency(data.netCashFlow)}</div>
             <div className="text-xs text-cyan-600 dark:text-cyan-400">Net Cash Flow</div>
           </div>
           <div className="text-center">
-            <div className="text-lg font-bold text-blue-700">{data.forecastAccuracy}%</div>
+            <div className="text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium text-blue-700">{data.forecastAccuracy}%</div>
             <div className="text-xs text-blue-600 dark:text-blue-400">Accuracy</div>
           </div>
         </div>
       </div>
 
       {/* Content */}
-      <div className="flex-1 p-4 space-y-4 overflow-y-auto">
+      <div className="flex-1 p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 space-y-4 overflow-y-auto">
         {/* Current Month Flow */}
-        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-3 border border-cyan-200 dark:border-cyan-800">
+        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-1.5 sm:p-2 lg:p-2.5 border border-cyan-200 dark:border-cyan-800">
           <div className="flex items-center gap-2 mb-2">
             <Droplets className="h-4 w-4 text-cyan-600 dark:text-cyan-400" />
             <span className="text-sm font-medium text-foreground">Current Month</span>
           </div>
           <div className="flex items-center justify-between">
-            <div className={`text-lg font-bold ${getFlowColor(data.currentMonthFlow)}`}>
+            <div className={`text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium ${getFlowColor(data.currentMonthFlow)}`}>
               {formatCurrency(data.currentMonthFlow)}
             </div>
             <div className="flex items-center gap-1">
@@ -142,12 +142,12 @@ export default function CashFlowCard({ config, span, isCompact, userRole }: Cash
         </div>
 
         {/* Working Capital */}
-        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-3 border border-cyan-200 dark:border-cyan-800">
+        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-1.5 sm:p-2 lg:p-2.5 border border-cyan-200 dark:border-cyan-800">
           <div className="flex items-center gap-2 mb-2">
             <DollarSign className="h-4 w-4 text-cyan-600 dark:text-cyan-400" />
             <span className="text-sm font-medium text-foreground">Working Capital</span>
           </div>
-          <div className="text-lg font-bold text-green-700">
+          <div className="text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium text-green-700">
             {formatCurrency(data.workingCapital)}
           </div>
           <div className="text-xs text-muted-foreground mt-1">
@@ -156,7 +156,7 @@ export default function CashFlowCard({ config, span, isCompact, userRole }: Cash
         </div>
 
         {/* Project Cash Flow Status */}
-        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-3 border border-cyan-200 dark:border-cyan-800">
+        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-1.5 sm:p-2 lg:p-2.5 border border-cyan-200 dark:border-cyan-800">
           <div className="flex items-center gap-2 mb-2">
             <Calendar className="h-4 w-4 text-cyan-600 dark:text-cyan-400" />
             <span className="text-sm font-medium text-foreground">Project Status</span>
@@ -175,12 +175,12 @@ export default function CashFlowCard({ config, span, isCompact, userRole }: Cash
 
         {/* Cash Flow at Risk */}
         {data.cashFlowAtRisk > 0 && (
-          <div className="bg-white/60 dark:bg-black/60 rounded-lg p-3 border border-cyan-200 dark:border-cyan-800">
+          <div className="bg-white/60 dark:bg-black/60 rounded-lg p-1.5 sm:p-2 lg:p-2.5 border border-cyan-200 dark:border-cyan-800">
             <div className="flex items-center gap-2 mb-2">
               <AlertCircle className="h-4 w-4 text-cyan-600 dark:text-cyan-400" />
               <span className="text-sm font-medium text-foreground">At Risk</span>
             </div>
-            <div className="text-lg font-bold text-red-700">
+            <div className="text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium text-red-700">
               {formatCurrency(data.cashFlowAtRisk)}
             </div>
             <Badge variant="destructive" className="text-xs mt-1">
@@ -190,7 +190,7 @@ export default function CashFlowCard({ config, span, isCompact, userRole }: Cash
         )}
 
         {/* Forecast Accuracy */}
-        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-3 border border-cyan-200 dark:border-cyan-800">
+        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-1.5 sm:p-2 lg:p-2.5 border border-cyan-200 dark:border-cyan-800">
           <div className="flex items-center gap-2 mb-2">
             <TrendingUp className="h-4 w-4 text-cyan-600 dark:text-cyan-400" />
             <span className="text-sm font-medium text-foreground">Forecast Performance</span>
@@ -207,9 +207,9 @@ export default function CashFlowCard({ config, span, isCompact, userRole }: Cash
 
       {/* Hover Drill-Down Overlay */}
       {isHovered && (
-        <div className="absolute inset-0 bg-cyan-900/95 backdrop-blur-sm p-4 flex flex-col justify-center text-white animate-in fade-in duration-200">
+        <div className="absolute inset-0 bg-cyan-900/95 backdrop-blur-sm p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 flex flex-col justify-center text-white animate-in fade-in duration-200">
           <div className="space-y-3">
-            <div className="flex items-center gap-2 mb-4">
+            <div className="flex items-center gap-2 mb-1.5 sm:mb-2 lg:mb-1 sm:mb-1.5 lg:mb-2">
               <ChevronRight className="h-4 w-4" />
               <span className="font-semibold text-sm">Cash Flow Analysis</span>
             </div>
@@ -233,7 +233,7 @@ export default function CashFlowCard({ config, span, isCompact, userRole }: Cash
               </div>
             </div>
 
-            <div className="mt-4 pt-3 border-t border-cyan-700">
+            <div className="mt-1.5 sm:mt-2 lg:mt-1 sm:mt-1.5 lg:mt-2 pt-3 border-t border-cyan-700">
               <div className="text-xs font-medium text-cyan-200 mb-2">Flow Performance</div>
               <div className="space-y-1 text-xs">
                 <div className="flex justify-between">

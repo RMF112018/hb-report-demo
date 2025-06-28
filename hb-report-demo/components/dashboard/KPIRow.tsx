@@ -1,7 +1,9 @@
 "use client"
 
-import { DollarSign, TrendingUp, Target, Activity, PieChart, BarChart3, Users, Calendar, Heart, Shield, Zap, Coins } from "lucide-react"
+import { useState } from "react"
+import { DollarSign, TrendingUp, Target, Activity, PieChart, BarChart3, Users, Calendar, Heart, Shield, Zap, Coins, ChevronDown, ChevronUp } from "lucide-react"
 import { KPIWidget } from "@/components/charts/KPIWidget"
+import { Button } from "@/components/ui/button"
 
 interface KPIRowProps {
   userRole?: string
@@ -58,20 +60,10 @@ const getPerformanceLevel = (value: string | number, type: string, trend?: strin
 }
 
 export function KPIRow({ userRole }: KPIRowProps) {
-  // Get responsive KPI count based on screen size
-  const getResponsiveKPICount = (kpis: any[]) => {
-    // For mobile: show top 2-3 most important KPIs
-    // For tablet: show 4-5 KPIs
-    // For desktop: show all KPIs
-    return {
-      mobile: kpis.slice(0, 2),      // Show 2 on mobile
-      tablet: kpis.slice(0, 4),      // Show 4 on tablet
-      desktop: kpis                  // Show all on desktop
-    }
-  }
+  const [isCollapsed, setIsCollapsed] = useState(false)
 
   // KPI configurations by role
-  const getKPIsForRole = () => {
+  function getKPIsForRole() {
     switch (userRole) {
       case 'executive':
         return [
@@ -296,61 +288,123 @@ export function KPIRow({ userRole }: KPIRowProps) {
     }
   }
 
-  const allKpis = getKPIsForRole()
-  const responsiveKpis = getResponsiveKPICount(allKpis)
+  // Get responsive KPI count based on screen size and collapse state
+  const getResponsiveKPICount = (kpis: any[]) => {
+    if (isCollapsed) {
+      return {
+        mobile: [],                   // Hide all when collapsed
+        tablet: [],                   // Hide all when collapsed
+        desktop: []                   // Hide all when collapsed
+      }
+    }
+    
+    return {
+      mobile: kpis.slice(0, 3),      // Show 3 on mobile (full width)
+      tablet: kpis.slice(0, 4),      // Show 4 on tablet
+      desktop: kpis                  // Show all on desktop
+    }
+  }
+
+  // Get KPIs for the current user role
+  const kpis = getKPIsForRole()
+  
+  // Get responsive KPI distribution
+  const responsiveKpis = getResponsiveKPICount(kpis)
 
   return (
-    <div className="bg-card border-b border-border px-4 sm:px-6 py-3 mb-4">
-      {/* Mobile Layout - 2 KPIs per row */}
-      <div className="grid grid-cols-2 gap-2 sm:hidden">
-        {responsiveKpis.mobile.map((kpi, index) => (
-          <KPIWidget
-            key={index}
-            icon={kpi.icon}
-            label={kpi.label}
-            value={kpi.value}
-            unit={kpi.unit}
-            trend={kpi.trend}
-            caption={kpi.caption}
-            compact={true}
-            performance={kpi.performance}
-          />
-        ))}
+    <div className="bg-card border-b border-border">
+      {/* Header with collapse toggle - always visible */}
+      <div className="flex items-center justify-between px-2 sm:px-3 lg:px-4 py-1.5 sm:py-2">
+        <div className="flex items-center gap-2">
+          <h2 className="text-xs sm:text-sm font-medium text-muted-foreground">Key Metrics</h2>
+          <span className="text-xs text-muted-foreground/60">
+            ({kpis.length} indicators)
+          </span>
+        </div>
+        
+        {/* Collapse toggle - visible on tablet and mobile */}
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => setIsCollapsed(!isCollapsed)}
+          className="h-6 w-6 p-0 lg:hidden hover:bg-muted/50"
+          title={isCollapsed ? "Show metrics" : "Hide metrics"}
+        >
+          {isCollapsed ? (
+            <ChevronDown className="h-3 w-3" />
+          ) : (
+            <ChevronUp className="h-3 w-3" />
+          )}
+        </Button>
       </div>
 
-      {/* Tablet Layout - 4 KPIs in a row */}
-      <div className="hidden sm:grid lg:hidden grid-cols-4 gap-3">
-        {responsiveKpis.tablet.map((kpi, index) => (
-          <KPIWidget
-            key={index}
-            icon={kpi.icon}
-            label={kpi.label}
-            value={kpi.value}
-            unit={kpi.unit}
-            trend={kpi.trend}
-            caption={kpi.caption}
-            compact={true}
-            performance={kpi.performance}
-          />
-        ))}
-      </div>
+      {/* KPI Content - collapsible on smaller screens */}
+      <div className={`transition-all duration-300 ease-in-out ${
+        isCollapsed ? 'max-h-0 overflow-hidden opacity-0' : 'max-h-[200px] opacity-100'
+      } lg:max-h-none lg:opacity-100`}>
+        <div className="px-2 sm:px-3 lg:px-4 pb-2 sm:pb-3 lg:pb-4">
+          {/* Mobile Layout - 3 KPIs filling full width */}
+          {responsiveKpis.mobile.length > 0 && (
+            <div className="grid grid-cols-3 gap-1.5 sm:hidden">
+              {responsiveKpis.mobile.map((kpi, index) => (
+                <div key={index} className="min-w-0">
+                  <KPIWidget
+                    icon={kpi.icon}
+                    label={kpi.label}
+                    value={kpi.value}
+                    unit={kpi.unit}
+                    trend={kpi.trend}
+                    caption={kpi.caption}
+                    compact={true}
+                    performance={kpi.performance}
+                  />
+                </div>
+              ))}
+            </div>
+          )}
 
-      {/* Desktop Layout - All KPIs with scrollable overflow */}
-      <div className="hidden lg:flex items-center gap-4 xl:gap-6 overflow-x-auto pb-2">
-        {responsiveKpis.desktop.map((kpi, index) => (
-          <div key={index} className="flex-shrink-0 min-w-[140px] xl:min-w-[160px]">
-            <KPIWidget
-              icon={kpi.icon}
-              label={kpi.label}
-              value={kpi.value}
-              unit={kpi.unit}
-              trend={kpi.trend}
-              caption={kpi.caption}
-              compact={true}
-              performance={kpi.performance}
-            />
-          </div>
-        ))}
+          {/* Tablet Layout - 4 KPIs filling full width */}
+          {responsiveKpis.tablet.length > 0 && (
+            <div className="hidden sm:grid lg:hidden grid-cols-4 gap-2">
+              {responsiveKpis.tablet.map((kpi, index) => (
+                <div key={index} className="min-w-0">
+                  <KPIWidget
+                    icon={kpi.icon}
+                    label={kpi.label}
+                    value={kpi.value}
+                    unit={kpi.unit}
+                    trend={kpi.trend}
+                    caption={kpi.caption}
+                    compact={true}
+                    performance={kpi.performance}
+                  />
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Desktop Layout - All KPIs in responsive grid */}
+          {responsiveKpis.desktop.length > 0 && (
+            <div className="hidden lg:grid gap-2 xl:gap-3" style={{
+              gridTemplateColumns: `repeat(${Math.min(responsiveKpis.desktop.length, 6)}, 1fr)`
+            }}>
+              {responsiveKpis.desktop.map((kpi, index) => (
+                <div key={index} className="min-w-0">
+                  <KPIWidget
+                    icon={kpi.icon}
+                    label={kpi.label}
+                    value={kpi.value}
+                    unit={kpi.unit}
+                    trend={kpi.trend}
+                    caption={kpi.caption}
+                    compact={true}
+                    performance={kpi.performance}
+                  />
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   )

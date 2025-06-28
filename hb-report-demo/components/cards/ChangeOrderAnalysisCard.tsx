@@ -240,28 +240,28 @@ export default function ChangeOrderAnalysisCard({ config, span, isCompact, userR
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Header Stats */}
-      <div className="flex-shrink-0 p-4 bg-white/80 dark:bg-black/80 backdrop-blur-sm border-b border-orange-200">
-        <div className="grid grid-cols-2 gap-4">
+      <div className="flex-shrink-0 p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 bg-white/80 dark:bg-black/80 backdrop-blur-sm border-b border-orange-200">
+        <div className="grid grid-cols-2 gap-1.5 sm:gap-2 lg:gap-1 sm:gap-1.5 lg:gap-2">
           <div className="text-center">
-            <div className="text-lg font-bold text-orange-700">{formatPercentage(data.changeOrderRatio)}</div>
+            <div className="text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium text-orange-700">{formatPercentage(data.changeOrderRatio)}</div>
             <div className="text-xs text-orange-600">CO Ratio</div>
           </div>
           <div className="text-center">
-            <div className={`text-lg font-bold ${getRiskColor(data.riskLevel)}`}>{data.impactScore}</div>
+            <div className={`text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium ${getRiskColor(data.riskLevel)}`}>{data.impactScore}</div>
             <div className="text-xs text-muted-foreground">Impact Score</div>
           </div>
         </div>
       </div>
 
       {/* Content */}
-      <div className="flex-1 p-4 space-y-4 overflow-y-auto">
+      <div className="flex-1 p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 space-y-4 overflow-y-auto">
         {/* CO Status Overview */}
-        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-3 border border-orange-200">
-          <div className="flex items-center gap-2 mb-3">
+        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-1.5 sm:p-2 lg:p-2.5 border border-orange-200">
+          <div className="flex items-center gap-2 mb-1 sm:mb-1.5 lg:mb-2">
             <FileText className="h-4 w-4 text-orange-600" />
             <span className="text-sm font-medium text-foreground">Change Order Status</span>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-1.5 sm:gap-2 lg:gap-1 sm:gap-1.5 lg:gap-2">
             <div className="w-20 h-20">
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
@@ -298,7 +298,7 @@ export default function ChangeOrderAnalysisCard({ config, span, isCompact, userR
         </div>
 
         {/* Financial Impact */}
-        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-3 border border-orange-200">
+        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-1.5 sm:p-2 lg:p-2.5 border border-orange-200">
           <div className="flex items-center gap-2 mb-2">
             <DollarSign className="h-4 w-4 text-orange-600" />
             <span className="text-sm font-medium text-foreground">Financial Impact</span>
@@ -317,8 +317,8 @@ export default function ChangeOrderAnalysisCard({ config, span, isCompact, userR
               <span className="font-medium text-yellow-600 dark:text-yellow-400">{formatCurrency(data.pendingValue)}</span>
             </div>
             <div className="text-center mt-2">
-              <div className={`inline-block px-3 py-1 rounded-lg ${getGradeColor(data.changeOrderRatio)}`}>
-                <div className="text-lg font-bold">{getGrade(data.changeOrderRatio)}</div>
+              <div className={`inline-block px-1.5 sm:px-2 lg:px-2.5 py-1 rounded-lg ${getGradeColor(data.changeOrderRatio)}`}>
+                <div className="text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium">{getGrade(data.changeOrderRatio)}</div>
                 <div className="text-xs">Performance Grade</div>
               </div>
             </div>
@@ -326,7 +326,7 @@ export default function ChangeOrderAnalysisCard({ config, span, isCompact, userR
         </div>
 
         {/* Performance Metrics */}
-        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-3 border border-orange-200">
+        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-1.5 sm:p-2 lg:p-2.5 border border-orange-200">
           <div className="flex items-center gap-2 mb-2">
             <Target className="h-4 w-4 text-orange-600" />
             <span className="text-sm font-medium text-foreground">Performance</span>
@@ -347,15 +347,15 @@ export default function ChangeOrderAnalysisCard({ config, span, isCompact, userR
 
       {/* Hover Drill-Down Overlay */}
       {isHovered && (
-        <div className="absolute inset-0 bg-orange-900/95 backdrop-blur-sm p-4 flex flex-col text-white animate-in fade-in duration-200 overflow-y-auto">
+        <div className="absolute inset-0 bg-orange-900/95 backdrop-blur-sm p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 flex flex-col text-white animate-in fade-in duration-200 overflow-y-auto">
           <div className="space-y-4">
-            <div className="flex items-center gap-2 mb-4">
+            <div className="flex items-center gap-2 mb-1.5 sm:mb-2 lg:mb-1 sm:mb-1.5 lg:mb-2">
               <ChevronRight className="h-4 w-4" />
               <span className="font-semibold text-lg">Change Order Deep Dive</span>
             </div>
             
             {/* Categories Breakdown */}
-            <div className="bg-white/10 dark:bg-black/10 rounded-lg p-3">
+            <div className="bg-white/10 dark:bg-black/10 rounded-lg p-1.5 sm:p-2 lg:p-2.5">
               <h4 className="font-semibold mb-2 flex items-center text-sm">
                 <Calculator className="w-4 h-4 mr-2" />
                 By Category
@@ -374,7 +374,7 @@ export default function ChangeOrderAnalysisCard({ config, span, isCompact, userR
             </div>
 
             {/* Recent Trends */}
-            <div className="bg-white/10 dark:bg-black/10 rounded-lg p-3">
+            <div className="bg-white/10 dark:bg-black/10 rounded-lg p-1.5 sm:p-2 lg:p-2.5">
               <h4 className="font-semibold mb-2 flex items-center text-sm">
                 <TrendingUp className="w-4 h-4 mr-2" />
                 6-Month Trend
@@ -400,7 +400,7 @@ export default function ChangeOrderAnalysisCard({ config, span, isCompact, userR
 
             {/* Project Performance or Portfolio Risks */}
             {userRole === 'project-manager' ? (
-              <div className="bg-white/10 dark:bg-black/10 rounded-lg p-3">
+              <div className="bg-white/10 dark:bg-black/10 rounded-lg p-1.5 sm:p-2 lg:p-2.5">
                 <h4 className="font-semibold mb-2 flex items-center text-sm">
                   <Building2 className="w-4 h-4 mr-2" />
                   Project: {data.drillDown.projectDetails?.name}
@@ -423,7 +423,7 @@ export default function ChangeOrderAnalysisCard({ config, span, isCompact, userR
                 </div>
               </div>
             ) : userRole === 'project-executive' ? (
-              <div className="bg-white/10 dark:bg-black/10 rounded-lg p-3">
+              <div className="bg-white/10 dark:bg-black/10 rounded-lg p-1.5 sm:p-2 lg:p-2.5">
                 <h4 className="font-semibold mb-2 flex items-center text-sm">
                   <Building2 className="w-4 h-4 mr-2" />
                   Project Performance (6 Projects)
@@ -447,7 +447,7 @@ export default function ChangeOrderAnalysisCard({ config, span, isCompact, userR
                 </div>
               </div>
             ) : (
-              <div className="bg-white/10 dark:bg-black/10 rounded-lg p-3">
+              <div className="bg-white/10 dark:bg-black/10 rounded-lg p-1.5 sm:p-2 lg:p-2.5">
                 <h4 className="font-semibold mb-2 flex items-center text-sm">
                   <AlertTriangle className="w-4 h-4 mr-2" />
                   Portfolio Risks
@@ -464,7 +464,7 @@ export default function ChangeOrderAnalysisCard({ config, span, isCompact, userR
 
             {/* Additional Project Executive Section */}
             {userRole === 'project-executive' && (
-              <div className="bg-white/10 dark:bg-black/10 rounded-lg p-3">
+              <div className="bg-white/10 dark:bg-black/10 rounded-lg p-1.5 sm:p-2 lg:p-2.5">
                 <h4 className="font-semibold mb-2 flex items-center text-sm">
                   <Clock className="w-4 h-4 mr-2" />
                   Critical CO Status
@@ -488,7 +488,7 @@ export default function ChangeOrderAnalysisCard({ config, span, isCompact, userR
             )}
 
             {/* Key Insights */}
-            <div className="bg-white/10 dark:bg-black/10 rounded-lg p-3">
+            <div className="bg-white/10 dark:bg-black/10 rounded-lg p-1.5 sm:p-2 lg:p-2.5">
               <h4 className="font-semibold mb-2 flex items-center text-sm">
                 <CheckCircle className="w-4 h-4 mr-2" />
                 Key Insights

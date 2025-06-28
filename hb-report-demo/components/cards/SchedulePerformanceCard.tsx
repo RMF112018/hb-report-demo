@@ -108,27 +108,27 @@ export default function SchedulePerformanceCard({ config, span, isCompact, userR
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Header Stats */}
-      <div className="flex-shrink-0 p-4 bg-white/80 dark:bg-black/80 backdrop-blur-sm border-b border-orange-200">
+      <div className="flex-shrink-0 p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 bg-white/80 dark:bg-black/80 backdrop-blur-sm border-b border-orange-200">
         <div className="grid grid-cols-3 gap-2">
           <div className="text-center">
-            <div className="text-lg font-bold text-green-700">{data.projectsAhead}</div>
+            <div className="text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium text-green-700">{data.projectsAhead}</div>
             <div className="text-xs text-green-600 dark:text-green-400">Ahead</div>
           </div>
           <div className="text-center">
-            <div className="text-lg font-bold text-yellow-700">{data.projectsOnTime}</div>
+            <div className="text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium text-yellow-700">{data.projectsOnTime}</div>
             <div className="text-xs text-yellow-600 dark:text-yellow-400">On Time</div>
           </div>
           <div className="text-center">
-            <div className="text-lg font-bold text-red-700">{data.projectsBehind}</div>
+            <div className="text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium text-red-700">{data.projectsBehind}</div>
             <div className="text-xs text-red-600 dark:text-red-400">Behind</div>
           </div>
         </div>
       </div>
 
       {/* Content */}
-      <div className="flex-1 p-4 space-y-4 overflow-y-auto">
+      <div className="flex-1 p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 space-y-4 overflow-y-auto">
         {/* Schedule Health Score */}
-        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-3 border border-orange-200">
+        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-1.5 sm:p-2 lg:p-2.5 border border-orange-200">
           <div className="flex items-center gap-2 mb-2">
             <Clock className="h-4 w-4 text-orange-600" />
             <span className="text-sm font-medium text-foreground">Schedule Health</span>
@@ -143,13 +143,13 @@ export default function SchedulePerformanceCard({ config, span, isCompact, userR
         </div>
 
         {/* Average Variance */}
-        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-3 border border-orange-200">
+        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-1.5 sm:p-2 lg:p-2.5 border border-orange-200">
           <div className="flex items-center gap-2 mb-2">
             <Calendar className="h-4 w-4 text-orange-600" />
             <span className="text-sm font-medium text-foreground">Avg Variance</span>
           </div>
           <div className="flex items-center justify-between">
-            <div className={`text-lg font-bold ${getVarianceColor(data.avgVarianceDays)}`}>
+            <div className={`text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium ${getVarianceColor(data.avgVarianceDays)}`}>
               {Math.abs(data.avgVarianceDays)} Days
             </div>
             <Badge className={getVarianceBadge(data.avgVarianceDays)}>
@@ -159,7 +159,7 @@ export default function SchedulePerformanceCard({ config, span, isCompact, userR
         </div>
 
         {/* Damages */}
-        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-3 border border-orange-200">
+        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-1.5 sm:p-2 lg:p-2.5 border border-orange-200">
           <div className="flex items-center gap-2 mb-2">
             <AlertTriangle className="h-4 w-4 text-orange-600" />
             <span className="text-sm font-medium text-foreground">Damages</span>
@@ -177,13 +177,13 @@ export default function SchedulePerformanceCard({ config, span, isCompact, userR
         </div>
 
         {/* Critical Projects */}
-        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-3 border border-orange-200">
+        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-1.5 sm:p-2 lg:p-2.5 border border-orange-200">
           <div className="flex items-center gap-2 mb-2">
             <TrendingDown className="h-4 w-4 text-orange-600" />
             <span className="text-sm font-medium text-foreground">Critical Projects</span>
           </div>
           <div className="flex items-center justify-between">
-            <span className="text-lg font-bold text-red-700">{data.criticalProjects}</span>
+            <span className="text-sm sm:text-base lg:text-sm sm:text-base lg:text-lg font-medium text-red-700">{data.criticalProjects}</span>
             <Badge variant="destructive" className="text-xs">Needs Attention</Badge>
           </div>
         </div>
@@ -191,9 +191,9 @@ export default function SchedulePerformanceCard({ config, span, isCompact, userR
 
       {/* Hover Drill-Down Overlay */}
       {isHovered && (
-        <div className="absolute inset-0 bg-orange-900/95 backdrop-blur-sm p-4 flex flex-col justify-center text-white animate-in fade-in duration-200">
+        <div className="absolute inset-0 bg-orange-900/95 backdrop-blur-sm p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 flex flex-col justify-center text-white animate-in fade-in duration-200">
           <div className="space-y-3">
-            <div className="flex items-center gap-2 mb-4">
+            <div className="flex items-center gap-2 mb-1.5 sm:mb-2 lg:mb-1 sm:mb-1.5 lg:mb-2">
               <ChevronRight className="h-4 w-4" />
               <span className="font-semibold text-sm">Schedule Deep Analysis</span>
             </div>
@@ -217,7 +217,7 @@ export default function SchedulePerformanceCard({ config, span, isCompact, userR
               </div>
             </div>
 
-            <div className="mt-4 pt-3 border-t border-orange-700">
+            <div className="mt-1.5 sm:mt-2 lg:mt-1 sm:mt-1.5 lg:mt-2 pt-3 border-t border-orange-700">
               <div className="flex items-center gap-1 mb-2">
                 <Activity className="h-3 w-3" />
                 <span className="text-xs font-medium text-orange-200">Delay Analysis</span>
@@ -238,7 +238,7 @@ export default function SchedulePerformanceCard({ config, span, isCompact, userR
               </div>
             </div>
 
-            <div className="mt-4 pt-3 border-t border-orange-700">
+            <div className="mt-1.5 sm:mt-2 lg:mt-1 sm:mt-1.5 lg:mt-2 pt-3 border-t border-orange-700">
               <div className="text-xs font-medium text-orange-200 mb-2">Critical Path Activities</div>
               <div className="space-y-1">
                 {data.drillDown.criticalPath.map((activity, index) => (
