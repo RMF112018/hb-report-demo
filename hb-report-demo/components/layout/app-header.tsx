@@ -3,7 +3,7 @@
 import { Input } from "@/components/ui/input"
 import { useState, useEffect, useRef, useMemo, useCallback } from "react"
 import { Bell } from "lucide-react"
-import { Search, Moon, Sun, ChevronDown, Building, Wrench, Briefcase } from "lucide-react"
+import { Search, Moon, Sun, ChevronDown, Building, Wrench, Briefcase, Archive } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -84,16 +84,19 @@ export const AppHeader = () => {
     [],
   )
 
-  // Extract unique project stages from the data
+  // Filtered project stages based on selected department
   const projectStages = useMemo(() => {
-    const stages = new Set<string>();
-    projectsData.forEach((project: any) => {
-      if (project.project_stage_name) {
-        stages.add(project.project_stage_name);
-      }
-    });
-    return Array.from(stages).sort();
-  }, [])
+    switch (selectedDepartment) {
+      case "operations":
+        return ["Construction", "Closeout", "Warranty"];
+      case "pre-construction":
+        return ["Bidding", "Pre-Construction"];
+      case "archive":
+        return ["Closed"];
+      default:
+        return ["Construction", "Closeout", "Warranty"];
+    }
+  }, [selectedDepartment])
 
   // Before the `tools` useMemo, add a helper function to determine the dashboard path:
   const getDashboardPath = useCallback(() => {
@@ -476,7 +479,12 @@ export const AppHeader = () => {
             >
               <Briefcase className="h-4 w-4" />
               <span className="capitalize">
-                {selectedDepartment === "operations" ? "Operations" : "Pre-Construction"}
+                {selectedDepartment === "operations" 
+                  ? "Operations" 
+                  : selectedDepartment === "pre-construction" 
+                    ? "Pre-Construction" 
+                    : "Archive"
+                }
               </span>
               <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${showDepartmentMenu ? "rotate-180" : ""}`} />
             </Button>
@@ -499,13 +507,19 @@ export const AppHeader = () => {
             >
               <Building className="h-4 w-4" />
               <span className="truncate">
-                {projects.find((p) => p.id === selectedProject)?.name || "All Projects"}
+                {(() => {
+                  if (selectedProject.startsWith('all-')) {
+                    const stageName = selectedProject.replace('all-', '').replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                    return `All ${stageName} Projects`;
+                  }
+                  return projects.find((p) => p.id === selectedProject)?.name || "All Projects";
+                })()}
               </span>
-              {selectedProject !== "all" && (
-                <Badge variant="secondary" className="ml-1 border-white/30 bg-white/20 text-xs text-white shadow-sm">
-                  Filtered
-                </Badge>
-              )}
+                              {selectedProject !== "all" && (
+                  <Badge variant="secondary" className="ml-1 border-white/30 bg-white/20 text-xs text-white shadow-sm">
+                    {selectedProject.startsWith('all-') ? 'Stage Filter' : 'Filtered'}
+                  </Badge>
+                )}
               <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${showProjectMenu ? "rotate-180" : ""}`} />
             </Button>
 
@@ -719,7 +733,7 @@ export const AppHeader = () => {
           className="fixed left-0 right-0 top-20 z-[105] border-b border-gray-200 dark:border-gray-700 bg-white/95 dark:bg-gray-900/95 shadow-xl backdrop-blur-lg animate-in slide-in-from-top-2 duration-300"
         >
           <div className="mx-auto max-w-7xl px-8 py-10">
-            <div className="grid grid-cols-2 gap-12">
+            <div className="grid grid-cols-3 gap-8">
               <div className="space-y-4">
                 <h3 className="border-b border-gray-200 dark:border-gray-700 pb-2 text-lg font-semibold text-gray-900 dark:text-gray-100">Operations</h3>
                 <button
@@ -746,33 +760,57 @@ export const AppHeader = () => {
                 </button>
               </div>
 
-              {hasPreConAccess() && (
-                <div className="space-y-4">
-                  <h3 className="border-b border-gray-200 dark:border-gray-700 pb-2 text-lg font-semibold text-gray-900 dark:text-gray-100">Pre-Construction</h3>
-                  <button
-                    onClick={() => handleDepartmentChange("pre-construction")}
-                    className={`group w-full text-left rounded-xl border p-6 transition-all duration-200 ${
-                      selectedDepartment === "pre-construction"
-                        ? "border-blue-200 dark:border-blue-700 bg-blue-50 dark:bg-blue-950/30 text-blue-700 dark:text-blue-300 shadow-md"
-                        : "border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 hover:shadow-md hover:border-gray-300 dark:hover:border-gray-600"
-                    }`}
-                  >
-                    <div className="flex items-center gap-4">
-                      <div className={`p-3 rounded-lg ${
-                        selectedDepartment === "pre-construction" 
-                          ? "bg-blue-100 dark:bg-blue-900/30" 
-                          : "bg-gray-100 dark:bg-gray-800 group-hover:bg-gray-200 dark:group-hover:bg-gray-700"
-                      }`}>
-                        <Briefcase className="h-6 w-6" />
-                      </div>
-                      <div>
-                        <div className="font-semibold text-gray-900 dark:text-gray-100 text-lg">Pre-Construction Suite</div>
-                        <div className="text-sm text-gray-600 dark:text-gray-400 mt-1">Estimating, VDC, and business development</div>
-                      </div>
+              <div className="space-y-4">
+                <h3 className="border-b border-gray-200 dark:border-gray-700 pb-2 text-lg font-semibold text-gray-900 dark:text-gray-100">Pre-Construction</h3>
+                <button
+                  onClick={() => handleDepartmentChange("pre-construction")}
+                  className={`group w-full text-left rounded-xl border p-6 transition-all duration-200 ${
+                    selectedDepartment === "pre-construction"
+                      ? "border-blue-200 dark:border-blue-700 bg-blue-50 dark:bg-blue-950/30 text-blue-700 dark:text-blue-300 shadow-md"
+                      : "border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 hover:shadow-md hover:border-gray-300 dark:hover:border-gray-600"
+                  }`}
+                >
+                  <div className="flex items-center gap-4">
+                    <div className={`p-3 rounded-lg ${
+                      selectedDepartment === "pre-construction" 
+                        ? "bg-blue-100 dark:bg-blue-900/30" 
+                        : "bg-gray-100 dark:bg-gray-800 group-hover:bg-gray-200 dark:group-hover:bg-gray-700"
+                    }`}>
+                      <Briefcase className="h-6 w-6" />
                     </div>
-                  </button>
-                </div>
-              )}
+                    <div>
+                      <div className="font-semibold text-gray-900 dark:text-gray-100 text-lg">Pre-Construction Suite</div>
+                      <div className="text-sm text-gray-600 dark:text-gray-400 mt-1">Estimating, VDC, and business development</div>
+                    </div>
+                  </div>
+                </button>
+              </div>
+
+              <div className="space-y-4">
+                <h3 className="border-b border-gray-200 dark:border-gray-700 pb-2 text-lg font-semibold text-gray-900 dark:text-gray-100">Archive</h3>
+                <button
+                  onClick={() => handleDepartmentChange("archive")}
+                  className={`group w-full text-left rounded-xl border p-6 transition-all duration-200 ${
+                    selectedDepartment === "archive"
+                      ? "border-blue-200 dark:border-blue-700 bg-blue-50 dark:bg-blue-950/30 text-blue-700 dark:text-blue-300 shadow-md"
+                      : "border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 hover:shadow-md hover:border-gray-300 dark:hover:border-gray-600"
+                  }`}
+                >
+                  <div className="flex items-center gap-4">
+                    <div className={`p-3 rounded-lg ${
+                      selectedDepartment === "archive" 
+                        ? "bg-blue-100 dark:bg-blue-900/30" 
+                        : "bg-gray-100 dark:bg-gray-800 group-hover:bg-gray-200 dark:group-hover:bg-gray-700"
+                    }`}>
+                      <Archive className="h-6 w-6" />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-gray-900 dark:text-gray-100 text-lg">Project Archive</div>
+                      <div className="text-sm text-gray-600 dark:text-gray-400 mt-1">Completed and closed projects</div>
+                    </div>
+                  </div>
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -786,17 +824,56 @@ export const AppHeader = () => {
         >
           <div className="mx-auto max-w-7xl px-8 py-10">
             <div className="mb-6">
-              <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">Select Project by Stage</h2>
-              <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">Choose from active projects organized by construction phase</p>
+              <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
+                {selectedDepartment === "archive" ? "Project Archive" : "Select Project by Stage"}
+              </h2>
+              <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                {selectedDepartment === "archive" 
+                  ? "View completed and closed projects" 
+                  : selectedDepartment === "pre-construction"
+                    ? "Choose from projects in pre-construction phases"
+                    : "Choose from active projects organized by construction phase"
+                }
+              </p>
             </div>
 
-            <div className="grid grid-cols-4 gap-8">
+            <div className={`grid gap-8 ${
+              selectedDepartment === "archive" ? "grid-cols-1 max-w-md" :
+              selectedDepartment === "pre-construction" ? "grid-cols-2 max-w-2xl" :
+              "grid-cols-3"
+            }`}>
               {projectStages.map((stage) => (
                 <div key={stage} className="space-y-4">
-                  <h3 className="border-b border-gray-200 dark:border-gray-700 pb-2 text-sm font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">{stage}</h3>
+                  <div className="border-b border-gray-200 dark:border-gray-700 pb-2">
+                    <h3 className="text-sm font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">{stage}</h3>
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault()
+                        e.stopPropagation()
+                        console.log("All projects button clicked for stage:", stage)
+                        handleProjectChange(`all-${stage.toLowerCase().replace(/\s+/g, '-')}`)
+                      }}
+                      className={`mt-1 text-xs transition-colors underline-offset-2 hover:underline ${
+                        selectedProject === `all-${stage.toLowerCase().replace(/\s+/g, '-')}`
+                          ? "text-blue-800 dark:text-blue-200 font-medium underline"
+                          : "text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
+                      }`}
+                    >
+                      All {stage} Projects
+                    </button>
+                  </div>
                   <div className="space-y-2">
                     {projects
-                      .filter((p) => p.id === "all" || p.project_stage_name === stage)
+                      .filter((p) => {
+                        if (p.id === "all") return false; // Don't show "All Projects" in stage columns
+                        
+                        // Special handling for Pre-Construction stage to include BIM Coordination
+                        if (stage === "Pre-Construction") {
+                          return p.project_stage_name === "Pre-Construction" || p.project_stage_name === "BIM Coordination";
+                        }
+                        
+                        return p.project_stage_name === stage;
+                      })
                       .map((project) => (
                         <button
                           key={project.id}
@@ -861,6 +938,11 @@ export const AppHeader = () => {
                   Pre-Construction Suite
                 </Badge>
               )}
+              {selectedDepartment === "archive" && (
+                <Badge variant="secondary" className="text-xs text-gray-800 dark:text-gray-200 bg-gray-100 dark:bg-gray-950/30 px-2 py-1">
+                  Archive View
+                </Badge>
+              )}
             </div>
 
             {selectedDepartment === "pre-construction" ? (
@@ -893,6 +975,41 @@ export const AppHeader = () => {
                           </div>
                         </button>
                       ))}
+                  </div>
+                </div>
+              </div>
+            ) : selectedDepartment === "archive" ? (
+              // Archive Tools - Limited Options
+              <div className="max-w-lg">
+                <div className="space-y-3">
+                  <div className="flex items-center gap-2 border-b border-gray-200 dark:border-gray-700 pb-2">
+                    <div className="w-2 h-2 bg-gray-500 rounded-full"></div>
+                    <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-600 dark:text-gray-400">Archive Tools</h3>
+                  </div>
+                  <div className="space-y-1">
+                    {[
+                      { name: "Reports", href: "/dashboard/reports", description: "View historical project reports and documentation" },
+                      { name: "Financial Reports", href: "/dashboard/financial-hub", description: "Access closed project financial data" },
+                      { name: "Document Archive", href: "/tools/coming-soon", description: "Browse project documentation library" }
+                    ].map((tool) => (
+                      <button
+                        key={tool.href}
+                        onClick={(e) => {
+                          e.preventDefault()
+                          e.stopPropagation()
+                          console.log("Navigating to tool:", tool.name, "at", tool.href)
+                          handleToolNavigation(tool.href)
+                        }}
+                        className="w-full text-left rounded-md border border-transparent p-2.5 transition-all duration-200 hover:border-gray-200 dark:hover:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 hover:shadow-sm group"
+                      >
+                        <div className="space-y-1">
+                          <div className="font-medium text-gray-900 dark:text-gray-100 text-sm group-hover:text-hb-blue transition-colors">
+                            {tool.name}
+                          </div>
+                          <div className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">{tool.description}</div>
+                        </div>
+                      </button>
+                    ))}
                   </div>
                 </div>
               </div>
