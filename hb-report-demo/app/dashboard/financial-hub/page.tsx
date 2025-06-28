@@ -20,6 +20,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { AppHeader } from "@/components/layout/app-header";
 
 // Financial Module Components
 import FinancialOverview from "@/components/financial-hub/FinancialOverview";
@@ -27,7 +28,7 @@ import BudgetAnalysis from "@/components/financial-hub/BudgetAnalysis";
 import CashFlowAnalysis from "@/components/financial-hub/CashFlowAnalysis";
 import Forecasting from "@/components/financial-hub/Forecasting";
 import Invoicing from "@/components/financial-hub/Invoicing";
-import PayAuthorizations from "@/components/financial-hub/PayAuthorizations";
+
 import ChangeManagement from "@/components/financial-hub/ChangeManagement";
 import CostTracking from "@/components/financial-hub/CostTracking";
 import ContractManagement from "@/components/financial-hub/ContractManagement";
@@ -128,19 +129,13 @@ export default function FinancialHubPage() {
       component: Forecasting,
     },
     {
-      id: "invoicing",
-      label: "Invoicing",
-      icon: FileText,
-      description: "Invoice management and billing oversight",
+      id: "pay-authorization",
+      label: "Pay Authorization",
+      icon: Receipt,
+      description: "Payment authorization and approval workflows with compliance tracking",
       component: Invoicing,
     },
-    {
-      id: "pay-authorizations",
-      label: "Pay Applications",
-      icon: CheckCircle,
-      description: "Payment authorization and approval workflows",
-      component: PayAuthorizations,
-    },
+
     {
       id: "change-management",
       label: "Change Orders",
@@ -219,8 +214,10 @@ export default function FinancialHubPage() {
   };
 
   return (
-    <div className="space-y-6">
-      {/* Page Header */}
+    <>
+      <AppHeader />
+      <div className="space-y-6">
+        {/* Page Header */}
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-foreground">Financial Hub</h1>
@@ -329,5 +326,6 @@ export default function FinancialHubPage() {
         })}
       </Tabs>
     </div>
+    </>
   );
 } 
