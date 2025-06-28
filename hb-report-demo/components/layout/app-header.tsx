@@ -15,6 +15,8 @@ import { useToast } from "@/components/ui/use-toast"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { TourControls } from "@/components/ui/tour"
 import projectsData from "@/data/mock/projects.json"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator } from "@/components/ui/dropdown-menu"
+import { Calendar, Users } from "lucide-react"
 
 /**
  * Enhanced AppHeader Component with Mega-Menu Navigation
