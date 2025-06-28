@@ -47,14 +47,31 @@ function DashboardContent({ user }: { user: any }) {
 
   // Auto-start dashboard tour for new visitors
   useEffect(() => {
-    if (typeof window !== 'undefined' && isTourAvailable && user) {
-      const hasSeenDashboardTour = localStorage.getItem('hb-tour-dashboard-seen')
-      if (!hasSeenDashboardTour) {
-        // Delay to ensure dashboard is fully loaded
+    if (typeof window !== 'undefined' && user && isTourAvailable) {
+      // Check if user has disabled tours permanently
+      const hasDisabledTours = localStorage.getItem('hb-tour-available') === 'false'
+      
+      if (hasDisabledTours) {
+        console.log('Tours disabled by user preference')
+        return
+      }
+
+      // Session-based tracking for dashboard tour
+      const hasShownDashboardTour = sessionStorage.getItem('hb-tour-shown-dashboard-overview')
+      
+      console.log('Dashboard tour auto-start check:', {
+        isTourAvailable,
+        hasShownDashboardTour,
+        hasDisabledTours,
+        userRole: user?.role
+      })
+      
+      // Auto-start dashboard tour once per session
+      if (!hasShownDashboardTour) {
         setTimeout(() => {
-          startTour('dashboard-overview')
-          localStorage.setItem('hb-tour-dashboard-seen', 'true')
-        }, 2000)
+          console.log('Auto-starting dashboard tour...')
+          startTour('dashboard-overview', true) // true indicates auto-start
+        }, 3000)
       }
     }
   }, [isTourAvailable, startTour, user])

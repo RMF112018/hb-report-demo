@@ -31,7 +31,7 @@ interface TourContextType {
   currentTour: string | null
   currentStep: number
   availableTours: TourDefinition[]
-  startTour: (tourId: string) => void
+  startTour: (tourId: string, isAutoStart?: boolean) => void
   stopTour: () => void
   nextStep: () => void
   prevStep: () => void
@@ -41,6 +41,7 @@ interface TourContextType {
   isTourAvailable: boolean
   getCurrentTourDefinition: () => TourDefinition | null
   getCurrentStep: () => TourStep | null
+  resetTourState: () => void
 }
 
 const TourContext = createContext<TourContextType | undefined>(undefined)
@@ -65,31 +66,51 @@ const TOUR_DEFINITIONS: TourDefinition[] = [
       {
         id: 'demo-accounts-button',
         title: 'Demo Account Access',
-        content: 'Click this button to see available demo accounts. Each account represents a different user role with specific permissions and dashboard configurations.',
+        content: 'Click this button to see available demo accounts. Each account represents a different user role with specific permissions and dashboard configurations.<br/><br/><strong>Go ahead and click it now!</strong>',
         target: '[data-tour="demo-accounts-toggle"]',
-        placement: 'top',
-        nextButton: 'Show Me',
+        placement: 'left',
+        nextButton: 'Continue',
         onNext: () => {
-          // Trigger demo accounts dropdown
+          // Ensure demo accounts dropdown is open for next step
           const button = document.querySelector('[data-tour="demo-accounts-toggle"]') as HTMLButtonElement
-          if (button) button.click()
+          const dropdown = document.querySelector('[data-tour="demo-accounts-list"]')
+          
+          if (button && !dropdown) {
+            button.click()
+          }
+          
+          // Small delay to allow DOM to update
+          setTimeout(() => {
+            const newDropdown = document.querySelector('[data-tour="demo-accounts-list"]')
+            if (newDropdown) {
+              newDropdown.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+            }
+          }, 300)
         }
       },
       {
         id: 'role-selection',
         title: 'Choose Your Role',
-        content: 'Select from different user roles to experience the application from various perspectives. Each role has access to different tools and dashboard layouts:<br/><br/><strong>Executive:</strong> High-level portfolio overview<br/><strong>Project Executive:</strong> Multi-project management<br/><strong>Project Manager:</strong> Detailed project controls<br/><strong>Estimator:</strong> Pre-construction focus<br/><strong>Admin:</strong> System administration',
+        content: 'Select from different user roles to experience the application from various perspectives. You can click directly on any demo account to login:<br/><br/><strong>Executive:</strong> High-level portfolio overview<br/><strong>Project Executive:</strong> Multi-project management<br/><strong>Project Manager:</strong> Detailed project controls<br/><strong>Estimator:</strong> Pre-construction focus<br/><strong>Admin:</strong> System administration<br/><br/><em>Click any account to try it out!</em>',
         target: '[data-tour="demo-accounts-list"]',
         placement: 'right',
-        nextButton: 'Understood'
+        nextButton: 'Got it!'
       },
       {
         id: 'login-process',
         title: 'Automatic Login',
         content: 'Once you select a demo account, you\'ll be automatically logged in and redirected to the appropriate dashboard for that role. The dashboard content and available tools will vary based on your selected role.',
         target: '.login-form',
-        placement: 'left',
-        nextButton: 'Start Exploring'
+        placement: 'right',
+        nextButton: 'Start Exploring',
+        onNext: () => {
+          // Close demo accounts dropdown if open
+          const button = document.querySelector('[data-tour="demo-accounts-toggle"]') as HTMLButtonElement
+          const dropdown = document.querySelector('[data-tour="demo-accounts-list"]')
+          if (button && dropdown) {
+            button.click()
+          }
+        }
       }
     ]
   },
@@ -146,9 +167,26 @@ export const TourProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     const tourPref = localStorage.getItem('hb-tour-available')
     if (tourPref !== null) {
-      setIsTourAvailable(JSON.parse(tourPref))
+      const available = JSON.parse(tourPref)
+      console.log('Tour availability from localStorage:', available)
+      setIsTourAvailable(available)
+    } else {
+      console.log('No tour preference found, defaulting to true')
+      setIsTourAvailable(true)
     }
   }, [])
+
+  // Clean up completed tours
+  useEffect(() => {
+    if (!isActive && currentTour) {
+      const timer = setTimeout(() => {
+        setCurrentTour(null)
+        setCurrentStep(0)
+      }, 500)
+      
+      return () => clearTimeout(timer)
+    }
+  }, [isActive, currentTour])
 
   // Get available tours based on user role and current page
   const availableTours = TOUR_DEFINITIONS.filter(tour => {
@@ -157,6 +195,13 @@ export const TourProvider = ({ children }: { children: ReactNode }) => {
     }
     return true
   })
+
+  // Debug available tours
+  useEffect(() => {
+    console.log('Available tours:', availableTours.map(t => t.id))
+    console.log('Tour availability state:', isTourAvailable)
+    console.log('Current user:', user?.role || 'no user')
+  }, [availableTours, isTourAvailable, user])
 
   const getCurrentTourDefinition = (): TourDefinition | null => {
     if (!currentTour) return null
@@ -169,19 +214,47 @@ export const TourProvider = ({ children }: { children: ReactNode }) => {
     return tour.steps[currentStep]
   }
 
-  const startTour = (tourId: string) => {
+  const startTour = (tourId: string, isAutoStart: boolean = false) => {
+    console.log('Starting tour:', tourId, 'Auto-start:', isAutoStart)
+    
+    // If this is an auto-start, check if we've already shown this tour in this session
+    if (isAutoStart) {
+      const sessionKey = `hb-tour-shown-${tourId}`
+      const hasShownInSession = sessionStorage.getItem(sessionKey)
+      
+      if (hasShownInSession) {
+        console.log(`Tour ${tourId} already shown in this session, skipping auto-start`)
+        return
+      }
+      
+      // Mark as shown in this session
+      sessionStorage.setItem(sessionKey, 'true')
+    }
+    
     const tour = TOUR_DEFINITIONS.find(t => t.id === tourId)
+    console.log('Found tour:', tour)
     if (tour) {
+      console.log('Setting tour active:', tourId)
       setCurrentTour(tourId)
       setCurrentStep(0)
       setIsActive(true)
+    } else {
+      console.error('Tour not found:', tourId)
     }
   }
 
   const stopTour = () => {
+    console.log('Stopping tour')
     setIsActive(false)
     setCurrentTour(null)
     setCurrentStep(0)
+    
+    // Close any open dropdowns that might have been triggered by tour
+    const demoAccountsButton = document.querySelector('[data-tour="demo-accounts-toggle"]') as HTMLButtonElement
+    const dropdown = document.querySelector('[data-tour="demo-accounts-list"]')
+    if (demoAccountsButton && dropdown) {
+      demoAccountsButton.click()
+    }
   }
 
   const nextStep = () => {
@@ -212,6 +285,7 @@ export const TourProvider = ({ children }: { children: ReactNode }) => {
   }
 
   const skipTour = () => {
+    console.log('Skipping tour')
     const step = getCurrentStep()
     if (step?.onSkip) {
       step.onSkip()
@@ -236,6 +310,30 @@ export const TourProvider = ({ children }: { children: ReactNode }) => {
     }
   }
 
+  // Add resetTourState function to context
+  const resetTourState = () => {
+    console.log('Resetting all tour state')
+    setIsActive(false)
+    setCurrentTour(null)
+    setCurrentStep(0)
+    
+    // Clear all session-based tour tracking
+    const keysToRemove = []
+    for (let i = 0; i < sessionStorage.length; i++) {
+      const key = sessionStorage.key(i)
+      if (key && (key.startsWith('hb-tour-') || key.startsWith('hb-welcome-'))) {
+        keysToRemove.push(key)
+      }
+    }
+    keysToRemove.forEach(key => sessionStorage.removeItem(key))
+    
+    // Reset tour availability preference
+    localStorage.removeItem('hb-tour-available')
+    setIsTourAvailable(true)
+    
+    console.log('Tour state completely reset')
+  }
+
   return (
     <TourContext.Provider
       value={{
@@ -253,6 +351,7 @@ export const TourProvider = ({ children }: { children: ReactNode }) => {
         isTourAvailable,
         getCurrentTourDefinition,
         getCurrentStep,
+        resetTourState,
       }}
     >
       {children}

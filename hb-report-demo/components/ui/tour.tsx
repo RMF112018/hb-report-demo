@@ -61,8 +61,33 @@ const TourOverlay: React.FC<TourOverlayProps> = ({ target, placement, onClose })
       }
     }
 
+    // Reduced MutationObserver frequency to prevent glitchy behavior
+    let resizeTimeout: NodeJS.Timeout
+    const observer = new MutationObserver(() => {
+      if (targetElement && document.contains(targetElement)) {
+        // Debounce position calculations
+        clearTimeout(resizeTimeout)
+        resizeTimeout = setTimeout(() => {
+          calculatePositions(targetElement)
+        }, 150)
+      }
+    })
+
+    if (targetElement) {
+      observer.observe(document.body, {
+        childList: true,
+        subtree: false, // Reduce scope to prevent excessive triggers
+        attributes: true,
+        attributeFilter: ['class', 'style']
+      })
+    }
+
     window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
+    return () => {
+      window.removeEventListener('resize', handleResize)
+      observer.disconnect()
+      clearTimeout(resizeTimeout)
+    }
   }, [target, mounted, targetElement])
 
   const calculatePositions = (element: HTMLElement) => {
@@ -70,36 +95,65 @@ const TourOverlay: React.FC<TourOverlayProps> = ({ target, placement, onClose })
     const viewportWidth = window.innerWidth
     const viewportHeight = window.innerHeight
 
-    // Create overlay with cutout for the target element
-    const padding = 8
-    const overlayStyle: React.CSSProperties = {
+    // Special handling for demo accounts dropdown
+    let expandedArea = rect
+    let skipOverlay = false
+
+    // Check for open dropdowns that might interfere
+    const openDropdowns = document.querySelectorAll('[data-tour="demo-accounts-list"]:not([style*="display: none"])')
+    
+    if (openDropdowns.length > 0 && target === '[data-tour="demo-accounts-list"]') {
+      const dropdown = openDropdowns[0] as HTMLElement
+      const dropdownRect = dropdown.getBoundingClientRect()
+      
+      // For dropdown, don't create overlay to allow interaction
+      skipOverlay = true
+      
+      // Use the dropdown bounds for positioning
+      expandedArea = dropdownRect
+    } else if (target === '[data-tour="demo-accounts-toggle"]') {
+      // For the toggle button, use normal behavior but lighter overlay
+      expandedArea = rect
+    }
+
+    // Create overlay with cutout for the target element (skip for dropdown)
+    const padding = skipOverlay ? 0 : 8
+    let overlayStyle: React.CSSProperties = {
       position: 'fixed',
       top: 0,
       left: 0,
       width: '100vw',
       height: '100vh',
-      backgroundColor: 'rgba(0, 0, 0, 0.5)',
-      zIndex: 9998,
-      clipPath: `polygon(
-        0% 0%, 
-        0% 100%, 
-        ${rect.left - padding}px 100%, 
-        ${rect.left - padding}px ${rect.top - padding}px, 
-        ${rect.right + padding}px ${rect.top - padding}px, 
-        ${rect.right + padding}px ${rect.bottom + padding}px, 
-        ${rect.left - padding}px ${rect.bottom + padding}px, 
-        ${rect.left - padding}px 100%, 
-        100% 100%, 
-        100% 0%
-      )`,
+      backgroundColor: skipOverlay ? 'rgba(0, 0, 0, 0.2)' : 'rgba(0, 0, 0, 0.5)',
+      zIndex: skipOverlay ? 9990 : 9998, // Lower z-index for dropdown interaction
+      pointerEvents: skipOverlay ? 'none' : 'auto', // Allow clicks through for dropdown
     }
 
-    // Calculate tooltip position
+    if (!skipOverlay) {
+      overlayStyle.clipPath = `polygon(
+        0% 0%, 
+        0% 100%, 
+        ${expandedArea.left - padding}px 100%, 
+        ${expandedArea.left - padding}px ${expandedArea.top - padding}px, 
+        ${expandedArea.right + padding}px ${expandedArea.top - padding}px, 
+        ${expandedArea.right + padding}px ${expandedArea.bottom + padding}px, 
+        ${expandedArea.left - padding}px ${expandedArea.bottom + padding}px, 
+        ${expandedArea.left - padding}px 100%, 
+        100% 100%, 
+        100% 0%
+      )`
+    }
+
+    // Calculate tooltip position with better collision detection
+    const tooltipWidth = Math.min(400, viewportWidth - 40) // Responsive width
+    const tooltipHeight = 250 // Estimated height with content
+    const margin = 20
+
     let tooltipStyle: React.CSSProperties = {
       position: 'fixed',
-      zIndex: 9999,
-      maxWidth: '400px',
-      minWidth: '300px',
+      zIndex: skipOverlay ? 10000 : 9999, // Higher z-index when dropdown is involved
+      maxWidth: `${tooltipWidth}px`,
+      minWidth: Math.min(300, viewportWidth - 40) + 'px',
     }
 
     if (placement === 'center') {
@@ -110,50 +164,102 @@ const TourOverlay: React.FC<TourOverlayProps> = ({ target, placement, onClose })
         transform: 'translate(-50%, -50%)',
       }
     } else {
-      const tooltipWidth = 350
-      const tooltipHeight = 200
+      // Smart positioning with fallback options
+      let finalPlacement = placement
+      let top = 0
+      let left = 0
 
-      switch (placement) {
-        case 'top':
-          tooltipStyle = {
-            ...tooltipStyle,
-            top: Math.max(20, rect.top - tooltipHeight - 20),
-            left: Math.min(
-              Math.max(20, rect.left + rect.width / 2 - tooltipWidth / 2),
-              viewportWidth - tooltipWidth - 20
-            ),
+      // Use expanded area for positioning if dropdown is involved
+      const positionRect = expandedArea
+
+      // Special positioning for demo accounts dropdown to avoid overlap
+      if (target === '[data-tour="demo-accounts-list"]') {
+        // Position to the side of the dropdown, not over it
+        if (viewportWidth > 768) {
+          // Desktop: position to the right of dropdown
+          left = positionRect.right + margin
+          top = positionRect.top
+          
+          // If not enough space on right, try left
+          if (left + tooltipWidth > viewportWidth - margin) {
+            left = positionRect.left - tooltipWidth - margin
           }
-          break
-        case 'bottom':
-          tooltipStyle = {
-            ...tooltipStyle,
-            top: Math.min(viewportHeight - tooltipHeight - 20, rect.bottom + 20),
-            left: Math.min(
-              Math.max(20, rect.left + rect.width / 2 - tooltipWidth / 2),
-              viewportWidth - tooltipWidth - 20
-            ),
+          
+          // If still not enough space, position above or below
+          if (left < margin) {
+            left = margin
+            top = positionRect.bottom + margin
+            if (top + tooltipHeight > viewportHeight - margin) {
+              top = positionRect.top - tooltipHeight - margin
+            }
           }
-          break
-        case 'left':
-          tooltipStyle = {
-            ...tooltipStyle,
-            top: Math.min(
-              Math.max(20, rect.top + rect.height / 2 - tooltipHeight / 2),
-              viewportHeight - tooltipHeight - 20
-            ),
-            left: Math.max(20, rect.left - tooltipWidth - 20),
+        } else {
+          // Mobile: position at top or bottom of screen
+          left = margin
+          top = margin + 60
+          tooltipStyle.maxWidth = `${viewportWidth - 2 * margin}px`
+        }
+      } else {
+        // Normal positioning logic for other elements
+        switch (placement) {
+          case 'top':
+            top = positionRect.top - tooltipHeight - margin
+            left = positionRect.left + positionRect.width / 2 - tooltipWidth / 2
+            if (top < margin) {
+              finalPlacement = 'bottom'
+              top = positionRect.bottom + margin
+            }
+            break
+          case 'bottom':
+            top = positionRect.bottom + margin
+            left = positionRect.left + positionRect.width / 2 - tooltipWidth / 2
+            if (top + tooltipHeight > viewportHeight - margin) {
+              finalPlacement = 'top'
+              top = positionRect.top - tooltipHeight - margin
+            }
+            break
+          case 'left':
+            top = positionRect.top + positionRect.height / 2 - tooltipHeight / 2
+            left = positionRect.left - tooltipWidth - margin
+            if (left < margin) {
+              finalPlacement = 'right'
+              left = positionRect.right + margin
+            }
+            break
+          case 'right':
+            top = positionRect.top + positionRect.height / 2 - tooltipHeight / 2
+            left = positionRect.right + margin
+            if (left + tooltipWidth > viewportWidth - margin) {
+              finalPlacement = 'left'
+              left = positionRect.left - tooltipWidth - margin
+            }
+            break
+        }
+
+        // Ensure tooltip stays within viewport bounds
+        left = Math.max(margin, Math.min(left, viewportWidth - tooltipWidth - margin))
+        top = Math.max(margin, Math.min(top, viewportHeight - tooltipHeight - margin))
+
+        // For mobile devices, position at bottom of screen if element is in upper half
+        if (viewportWidth <= 768) {
+          if (positionRect.top < viewportHeight / 2) {
+            // Element in upper half - position tooltip at bottom
+            top = viewportHeight - tooltipHeight - margin - 80 // Account for mobile chrome bars
+            left = margin
+            tooltipStyle.maxWidth = `${viewportWidth - 2 * margin}px`
+          } else {
+            // Element in lower half - position tooltip at top
+            top = margin + 60 // Account for mobile status bar
+            left = margin
+            tooltipStyle.maxWidth = `${viewportWidth - 2 * margin}px`
           }
-          break
-        case 'right':
-          tooltipStyle = {
-            ...tooltipStyle,
-            top: Math.min(
-              Math.max(20, rect.top + rect.height / 2 - tooltipHeight / 2),
-              viewportHeight - tooltipHeight - 20
-            ),
-            left: Math.min(rect.right + 20, viewportWidth - tooltipWidth - 20),
-          }
-          break
+        }
+      }
+
+      tooltipStyle = {
+        ...tooltipStyle,
+        top: `${top}px`,
+        left: `${left}px`,
       }
     }
 
@@ -171,11 +277,14 @@ const TourOverlay: React.FC<TourOverlayProps> = ({ target, placement, onClose })
       <div 
         style={overlayStyle} 
         className="tour-overlay"
-        onClick={onClose}
+        onClick={(e) => {
+          e.stopPropagation()
+          stopTour()
+        }}
       />
       
       {/* Tooltip */}
-      <Card style={tooltipStyle} className="tour-tooltip shadow-2xl border-2">
+      <Card style={tooltipStyle} className="tour-tooltip shadow-2xl border-2 bg-background text-foreground">
         <CardHeader className="pb-3">
           <div className="flex items-center justify-between mb-2">
             <Badge variant="secondary" className="text-xs">
@@ -250,15 +359,30 @@ const TourOverlay: React.FC<TourOverlayProps> = ({ target, placement, onClose })
 export const Tour: React.FC = () => {
   const { isActive, getCurrentStep } = useTour()
   const step = getCurrentStep()
+  const [isLoginPage, setIsLoginPage] = useState(false)
+
+  // Detect if we're on the login page to force light theme
+  useEffect(() => {
+    const checkPage = () => {
+      setIsLoginPage(window.location.pathname === '/login')
+    }
+    
+    checkPage()
+    window.addEventListener('popstate', checkPage)
+    
+    return () => window.removeEventListener('popstate', checkPage)
+  }, [])
 
   if (!isActive || !step) return null
 
   return (
-    <TourOverlay
-      target={step.target}
-      placement={step.placement}
-      onClose={() => {}}
-    />
+    <div className={isLoginPage ? 'light' : ''}>
+      <TourOverlay
+        target={step.target}
+        placement={step.placement}
+        onClose={() => {}} // Not used - handled in overlay click
+      />
+    </div>
   )
 }
 
@@ -306,7 +430,7 @@ export const TourControls: React.FC<TourControlsProps> = ({ className }) => {
       </Button>
 
       {showMenu && (
-        <Card className="absolute right-0 top-full mt-2 w-64 shadow-lg z-50">
+        <Card className="absolute right-0 top-full mt-2 w-64 shadow-lg z-50 bg-background text-foreground border">
           <CardHeader className="pb-3">
             <CardTitle className="text-sm">Guided Tours</CardTitle>
             <CardDescription className="text-xs">
