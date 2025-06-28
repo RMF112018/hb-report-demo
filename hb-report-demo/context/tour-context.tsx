@@ -91,9 +91,9 @@ const TOUR_DEFINITIONS: TourDefinition[] = [
       {
         id: 'role-selection',
         title: 'Choose Your Role',
-        content: 'Select from different user roles to experience the application from various perspectives. You can click directly on any demo account to login:<br/><br/><strong>Executive:</strong> High-level portfolio overview<br/><strong>Project Executive:</strong> Multi-project management<br/><strong>Project Manager:</strong> Detailed project controls<br/><strong>Estimator:</strong> Pre-construction focus<br/><strong>Admin:</strong> System administration<br/><br/><em>Click any account to try it out!</em>',
+        content: 'Each demo account represents a different user role with unique dashboard layouts and features.<br/><br/><strong>💼 Executive</strong> - Portfolio overview<br/><strong>👥 Project Executive</strong> - Multi-project management<br/><strong>📊 Project Manager</strong> - Detailed controls<br/><strong>🏗️ Estimator</strong> - Pre-construction focus<br/><strong>⚙️ Admin</strong> - System administration<br/><br/><em>Click any account to log in and explore!</em>',
         target: '[data-tour="demo-accounts-list"]',
-        placement: 'right',
+        placement: 'left',
         nextButton: 'Got it!'
       },
       {
@@ -116,40 +116,88 @@ const TOUR_DEFINITIONS: TourDefinition[] = [
   },
   {
     id: 'dashboard-overview',
-    name: 'Dashboard Overview',
-    description: 'Explore the main dashboard features and navigation',
+    name: 'Complete Dashboard Tour',
+    description: 'Comprehensive guide to all dashboard features and navigation elements',
     page: 'dashboard',
     steps: [
       {
         id: 'dashboard-welcome',
         title: 'Welcome to Your Dashboard!',
-        content: 'This dashboard is customized for your role and provides the most relevant information and tools for your daily work.',
+        content: 'This dashboard is customized for your role and provides the most relevant information and tools for your daily work. Let\'s explore all the features available to you.',
         target: '[data-tour="dashboard-content"]',
         placement: 'center',
-        nextButton: 'Explore Features'
+        nextButton: 'Start Tour'
       },
       {
-        id: 'navigation-header',
-        title: 'Main Navigation',
-        content: 'The header provides access to all major sections of the application. You can switch between different project views, access tools, and manage your account settings.',
-        target: '[data-tour="app-header"]',
+        id: 'environment-menu',
+        title: 'Environment Navigation',
+        content: 'Switch between different work environments:<br/><br/><strong>📊 Operations</strong> - Active project management<br/><strong>🏗️ Pre-Construction</strong> - Planning and estimation<br/><strong>📁 Archive</strong> - Completed projects<br/><br/>Each environment provides specialized tools and views for different phases of work.',
+        target: '[data-tour="environment-menu"]',
+        placement: 'bottom',
+        nextButton: 'Continue'
+      },
+      {
+        id: 'projects-menu',
+        title: 'Project Selection',
+        content: 'Access and switch between your active projects. This dropdown shows all projects you have permissions to view and manage. Click to change your current project context.',
+        target: '[data-tour="projects-menu"]',
+        placement: 'bottom',
+        nextButton: 'Next'
+      },
+      {
+        id: 'tools-menu',
+        title: 'Tools & Utilities',
+        content: 'Access powerful tools and utilities for project management:<br/><br/>• Document management<br/>• Reporting tools<br/>• Import/export functions<br/>• Integration settings<br/>• Custom workflows',
+        target: '[data-tour="tools-menu"]',
+        placement: 'bottom',
+        nextButton: 'Continue'
+      },
+      {
+        id: 'search-bar',
+        title: 'Global Search',
+        content: 'Quickly find projects, documents, contacts, or any information across the platform. Use keywords, project names, or specific data to locate what you need instantly.',
+        target: '[data-tour="search-bar"]',
+        placement: 'bottom',
+        nextButton: 'Next'
+      },
+      {
+        id: 'tours-menu',
+        title: 'Guided Tours',
+        content: 'Access interactive tours and help resources. Tours are contextual - different tours are available based on your current page and role permissions.',
+        target: '[data-tour="tour-controls"]',
         placement: 'bottom',
         nextButton: 'Continue'
       },
       {
         id: 'dashboard-selector',
-        title: 'Dashboard Layouts',
-        content: 'Different dashboard layouts are available based on your role. You can customize the layout and add/remove cards to match your workflow.',
+        title: 'Dashboard Views',
+        content: 'Switch between different dashboard layouts optimized for your role:<br/><br/>• Executive summary view<br/>• Detailed project controls<br/>• Financial overview<br/>• Custom layouts<br/><br/>Each view presents the most relevant information for your workflow.',
         target: '[data-tour="dashboard-selector"]',
+        placement: 'left',
+        nextButton: 'Next'
+      },
+      {
+        id: 'dashboard-controls',
+        title: 'Dashboard Controls',
+        content: 'Customize your dashboard experience:<br/><br/><strong>✏️ Edit</strong> - Modify card layouts and content<br/><strong>📐 Layout</strong> - Adjust spacing and arrangement<br/><strong>⛶ Fullscreen</strong> - Maximize dashboard view<br/><br/>Make your dashboard work exactly how you need it.',
+        target: '[data-tour="dashboard-controls"]',
+        placement: 'right',
+        nextButton: 'Continue'
+      },
+      {
+        id: 'kpi-widgets',
+        title: 'Key Performance Indicators',
+        content: 'Monitor critical project metrics at a glance. These KPI widgets show real-time data for budget health, schedule performance, safety metrics, and other key indicators relevant to your role.',
+        target: '[data-tour="kpi-widgets"]',
         placement: 'bottom',
         nextButton: 'Next'
       },
       {
-        id: 'tour-controls',
-        title: 'Tour Controls',
-        content: 'You can restart this tour or explore other guided tours anytime using the tour controls in the header. Tours are contextual based on the page you\'re viewing.',
-        target: '[data-tour="tour-controls"]',
-        placement: 'bottom',
+        id: 'hbi-insights',
+        title: 'HB Intelligence Insights',
+        content: 'AI-powered insights and recommendations based on your project data. Get predictive analytics, risk assessments, and actionable recommendations to improve project outcomes.',
+        target: '[data-tour="hbi-insights"]',
+        placement: 'left',
         nextButton: 'Finish Tour'
       }
     ]

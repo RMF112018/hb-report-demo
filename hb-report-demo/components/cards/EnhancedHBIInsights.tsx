@@ -204,6 +204,7 @@ export function EnhancedHBIInsights({ config, cardId }: EnhancedHBIInsightsProps
       className="relative h-full"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      data-tour="hbi-insights"
     >
       <div className="h-full flex flex-col bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-purple-950/30 dark:to-indigo-950/30 overflow-hidden">
       {/* AI Stats Header */}

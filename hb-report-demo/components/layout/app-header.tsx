@@ -509,6 +509,7 @@ export const AppHeader = () => {
               }}
               aria-label="Select department"
               aria-expanded={showDepartmentMenu}
+              data-tour="environment-menu"
             >
               <Briefcase className="h-4 w-4" />
               <span className="capitalize">
@@ -537,6 +538,7 @@ export const AppHeader = () => {
               }}
               aria-label="Select project"
               aria-expanded={showProjectMenu}
+              data-tour="projects-menu"
             >
               <Building className="h-4 w-4" />
               <span className="truncate">
@@ -574,6 +576,7 @@ export const AppHeader = () => {
               }}
               aria-label="Select tool"
               aria-expanded={showToolMenu}
+              data-tour="tools-menu"
             >
               <Wrench className="h-4 w-4" />
               <span>Tools</span>
@@ -605,7 +608,7 @@ export const AppHeader = () => {
           </Badge>
 
           {/* Desktop Search */}
-          <div className="relative hidden xl:block">
+          <div className="relative hidden xl:block" data-tour="search-bar">
             <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 transform text-white/60" />
             <Input
               placeholder="Search projects, tools, reports..."

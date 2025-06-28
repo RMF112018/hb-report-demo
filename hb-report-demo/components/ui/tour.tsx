@@ -20,6 +20,7 @@ const TourOverlay: React.FC<TourOverlayProps> = ({ target, placement, onClose })
   const [targetElement, setTargetElement] = useState<HTMLElement | null>(null)
   const [overlayStyle, setOverlayStyle] = useState<React.CSSProperties>({})
   const [tooltipStyle, setTooltipStyle] = useState<React.CSSProperties>({})
+  const [contentAreaHeight, setContentAreaHeight] = useState(120)
   const [mounted, setMounted] = useState(false)
 
   const {
@@ -118,13 +119,20 @@ const TourOverlay: React.FC<TourOverlayProps> = ({ target, placement, onClose })
 
     // Create overlay with cutout for the target element (skip for dropdown)
     const padding = skipOverlay ? 0 : 8
+    
+    // Theme-aware overlay colors
+    const isDarkMode = document.documentElement.classList.contains('dark')
+    const overlayColor = skipOverlay 
+      ? (isDarkMode ? 'rgba(0, 0, 0, 0.3)' : 'rgba(0, 0, 0, 0.2)')
+      : (isDarkMode ? 'rgba(0, 0, 0, 0.7)' : 'rgba(0, 0, 0, 0.5)')
+    
     let overlayStyle: React.CSSProperties = {
       position: 'fixed',
       top: 0,
       left: 0,
       width: '100vw',
       height: '100vh',
-      backgroundColor: skipOverlay ? 'rgba(0, 0, 0, 0.2)' : 'rgba(0, 0, 0, 0.5)',
+      backgroundColor: overlayColor,
       zIndex: skipOverlay ? 9990 : 9998, // Lower z-index for dropdown interaction
       pointerEvents: skipOverlay ? 'none' : 'auto', // Allow clicks through for dropdown
     }
@@ -146,14 +154,32 @@ const TourOverlay: React.FC<TourOverlayProps> = ({ target, placement, onClose })
 
     // Calculate tooltip position with better collision detection
     const tooltipWidth = Math.min(400, viewportWidth - 40) // Responsive width
-    const tooltipHeight = 250 // Estimated height with content
+    
+    // Calculate tooltip height with proper space for buttons
+    const contentLength = step?.content?.length || 0
+    const headerHeight = 120 // Space for progress bar, title, badge
+    const buttonHeight = 80  // Space for navigation buttons and padding
+    const contentBaseHeight = 150 // Minimum content area
+    const extraContentHeight = Math.min(contentLength / 6, 100) // Additional space for longer content
+    
+    const calculatedHeight = headerHeight + contentBaseHeight + extraContentHeight + buttonHeight
+    const maxTooltipHeight = Math.min(calculatedHeight, viewportHeight - 80) // Leave margin for viewport
+    const tooltipHeight = Math.max(300, maxTooltipHeight) // Minimum 300px to ensure buttons are visible
     const margin = 20
+
+    // Calculate and set dynamic content area height
+    const dynamicContentAreaHeight = Math.max(120, tooltipHeight - 200)
+    setContentAreaHeight(dynamicContentAreaHeight)
 
     let tooltipStyle: React.CSSProperties = {
       position: 'fixed',
       zIndex: skipOverlay ? 10000 : 9999, // Higher z-index when dropdown is involved
       maxWidth: `${tooltipWidth}px`,
       minWidth: Math.min(300, viewportWidth - 40) + 'px',
+      height: `${tooltipHeight}px`, // Fixed height to ensure buttons are visible
+      overflow: 'hidden', // Container should not scroll, content area will
+      display: 'flex',
+      flexDirection: 'column'
     }
 
     if (placement === 'center') {
@@ -174,29 +200,50 @@ const TourOverlay: React.FC<TourOverlayProps> = ({ target, placement, onClose })
 
       // Special positioning for demo accounts dropdown to avoid overlap
       if (target === '[data-tour="demo-accounts-list"]') {
-        // Position to the side of the dropdown, not over it
+        // Always try to position intelligently to avoid covering the dropdown
         if (viewportWidth > 768) {
-          // Desktop: position to the right of dropdown
-          left = positionRect.right + margin
+          // Desktop: try positioning to the left of the dropdown first
+          left = positionRect.left - tooltipWidth - margin
           top = positionRect.top
           
-          // If not enough space on right, try left
-          if (left + tooltipWidth > viewportWidth - margin) {
-            left = positionRect.left - tooltipWidth - margin
-          }
-          
-          // If still not enough space, position above or below
+          // If not enough space on left, try right
           if (left < margin) {
-            left = margin
-            top = positionRect.bottom + margin
-            if (top + tooltipHeight > viewportHeight - margin) {
+            left = positionRect.right + margin
+            
+            // If still not enough space on right, position above/below
+            if (left + tooltipWidth > viewportWidth - margin) {
+              left = Math.max(margin, viewportWidth - tooltipWidth - margin)
+              
+              // Try positioning above first
               top = positionRect.top - tooltipHeight - margin
+              
+              // If not enough space above, position below
+              if (top < margin) {
+                top = positionRect.bottom + margin
+                
+                // If tooltip would overflow bottom, constrain it
+                if (top + tooltipHeight > viewportHeight - margin) {
+                  top = viewportHeight - tooltipHeight - margin
+                  // Make sure it doesn't go above the top
+                  top = Math.max(margin, top)
+                }
+              }
             }
           }
+          
+          // Final viewport boundary check for top position
+          if (top + tooltipHeight > viewportHeight - margin) {
+            top = viewportHeight - tooltipHeight - margin
+          }
+          top = Math.max(margin, top)
+          
         } else {
-          // Mobile: position at top or bottom of screen
+          // Mobile: position at top of screen with better constraints
           left = margin
           top = margin + 60
+          // Ensure tooltip doesn't exceed mobile viewport
+          const mobileMaxHeight = viewportHeight - 160 // Account for mobile UI elements
+          tooltipStyle.maxHeight = `${Math.min(maxTooltipHeight, mobileMaxHeight)}px`
           tooltipStyle.maxWidth = `${viewportWidth - 2 * margin}px`
         }
       } else {
@@ -284,39 +331,46 @@ const TourOverlay: React.FC<TourOverlayProps> = ({ target, placement, onClose })
       />
       
       {/* Tooltip */}
-      <Card style={tooltipStyle} className="tour-tooltip shadow-2xl border-2 bg-background text-foreground">
-        <CardHeader className="pb-3">
+      <Card style={tooltipStyle} className="tour-tooltip shadow-2xl border-2 bg-background text-foreground flex flex-col dark:shadow-black/50">
+        <CardHeader className="pb-3 flex-shrink-0">
           <div className="flex items-center justify-between mb-2">
-            <Badge variant="secondary" className="text-xs">
+            <Badge variant="secondary" className="text-xs bg-secondary text-secondary-foreground border-secondary-foreground/20">
               Step {currentStep + 1} of {tour.steps.length}
             </Badge>
             <Button
               variant="ghost"
               size="sm"
               onClick={stopTour}
-              className="h-8 w-8 p-0"
+              className="h-8 w-8 p-0 hover:bg-accent hover:text-accent-foreground"
             >
               <X className="h-4 w-4" />
             </Button>
           </div>
-          <Progress value={progress} className="h-2" />
-          <CardTitle className="text-lg mt-3">{step.title}</CardTitle>
+          <Progress value={progress} className="h-2 bg-secondary" />
+          <CardTitle className="text-lg mt-3 text-foreground">{step.title}</CardTitle>
         </CardHeader>
         
-        <CardContent className="pt-0">
-          <CardDescription 
-            className="text-sm mb-6 leading-relaxed"
-            dangerouslySetInnerHTML={{ __html: step.content }}
-          />
+        <CardContent className="pt-0 flex-1 flex flex-col">
+          <div 
+            className="overflow-y-auto pr-2 mb-4 flex-1"
+            style={{ 
+              maxHeight: `${contentAreaHeight}px` // Dynamic max height based on available space
+            }}
+          >
+            <CardDescription 
+              className="text-sm leading-relaxed text-muted-foreground [&_strong]:text-foreground [&_em]:text-foreground"
+              dangerouslySetInnerHTML={{ __html: step.content }}
+            />
+          </div>
           
-          <div className="flex items-center justify-between gap-3">
+          <div className="flex items-center justify-between gap-3 pt-3 border-t border-border bg-background flex-shrink-0">
             <div className="flex gap-2">
               {currentStep > 0 && (
                 <Button
                   variant="outline"
                   size="sm"
                   onClick={prevStep}
-                  className="flex items-center gap-2"
+                  className="flex items-center gap-2 border-border hover:bg-accent hover:text-accent-foreground"
                 >
                   <ArrowLeft className="h-4 w-4" />
                   {step.prevButton || 'Previous'}
@@ -330,7 +384,7 @@ const TourOverlay: React.FC<TourOverlayProps> = ({ target, placement, onClose })
                   variant="ghost"
                   size="sm"
                   onClick={skipTour}
-                  className="flex items-center gap-2 text-muted-foreground hover:text-foreground"
+                  className="flex items-center gap-2 text-muted-foreground hover:text-foreground hover:bg-accent"
                 >
                   <SkipForward className="h-4 w-4" />
                   Skip Tour
@@ -340,7 +394,7 @@ const TourOverlay: React.FC<TourOverlayProps> = ({ target, placement, onClose })
               <Button
                 onClick={nextStep}
                 size="sm"
-                className="flex items-center gap-2"
+                className="flex items-center gap-2 bg-primary text-primary-foreground hover:bg-primary/90"
               >
                 {step.nextButton || 'Next'}
                 {currentStep < tour.steps.length - 1 && (
@@ -360,9 +414,11 @@ export const Tour: React.FC = () => {
   const { isActive, getCurrentStep } = useTour()
   const step = getCurrentStep()
   const [isLoginPage, setIsLoginPage] = useState(false)
+  const [mounted, setMounted] = useState(false)
 
   // Detect if we're on the login page to force light theme
   useEffect(() => {
+    setMounted(true)
     const checkPage = () => {
       setIsLoginPage(window.location.pathname === '/login')
     }
@@ -373,7 +429,7 @@ export const Tour: React.FC = () => {
     return () => window.removeEventListener('popstate', checkPage)
   }, [])
 
-  if (!isActive || !step) return null
+  if (!mounted || !isActive || !step) return null
 
   return (
     <div className={isLoginPage ? 'light' : ''}>
@@ -423,17 +479,17 @@ export const TourControls: React.FC<TourControlsProps> = ({ className }) => {
         variant="ghost"
         size="sm"
         onClick={() => setShowMenu(!showMenu)}
-        className="flex items-center gap-2"
+        className="flex items-center gap-2 hover:bg-white/20 dark:hover:bg-black/20 transition-colors"
       >
         <Play className="h-4 w-4" />
         Tours
       </Button>
 
       {showMenu && (
-        <Card className="absolute right-0 top-full mt-2 w-64 shadow-lg z-50 bg-background text-foreground border">
-          <CardHeader className="pb-3">
-            <CardTitle className="text-sm">Guided Tours</CardTitle>
-            <CardDescription className="text-xs">
+        <Card className="absolute right-0 top-full mt-2 w-80 shadow-lg z-50 bg-background text-foreground border border-border dark:shadow-black/50 dark:border-border">
+          <CardHeader className="pb-3 border-b border-border">
+            <CardTitle className="text-sm text-foreground">Guided Tours</CardTitle>
+            <CardDescription className="text-xs text-muted-foreground">
               Interactive guides to help you explore the application
             </CardDescription>
           </CardHeader>
@@ -449,12 +505,12 @@ export const TourControls: React.FC<TourControlsProps> = ({ className }) => {
                     startTour(tour.id)
                     setShowMenu(false)
                   }}
-                  className="w-full justify-start text-left"
+                  className="w-full justify-start text-left h-auto p-3 hover:bg-accent hover:text-accent-foreground transition-colors"
                   disabled={isActive && currentTour === tour.id}
                 >
-                  <div>
-                    <div className="font-medium">{tour.name}</div>
-                    <div className="text-xs text-muted-foreground">
+                  <div className="text-left w-full">
+                    <div className="font-medium text-sm text-foreground">{tour.name}</div>
+                    <div className="text-xs text-muted-foreground mt-1 whitespace-normal">
                       {tour.description}
                     </div>
                   </div>
@@ -463,7 +519,7 @@ export const TourControls: React.FC<TourControlsProps> = ({ className }) => {
             </div>
             
             {isActive && (
-              <div className="pt-3 mt-3 border-t">
+              <div className="pt-3 mt-3 border-t border-border">
                 <Button
                   variant="outline"
                   size="sm"
@@ -471,14 +527,14 @@ export const TourControls: React.FC<TourControlsProps> = ({ className }) => {
                     stopTour()
                     setShowMenu(false)
                   }}
-                  className="w-full"
+                  className="w-full border-border hover:bg-accent hover:text-accent-foreground"
                 >
                   Stop Current Tour
                 </Button>
               </div>
             )}
             
-            <div className="pt-3 mt-3 border-t">
+            <div className="pt-3 mt-3 border-t border-border">
               <Button
                 variant="ghost"
                 size="sm"
@@ -486,7 +542,7 @@ export const TourControls: React.FC<TourControlsProps> = ({ className }) => {
                   toggleTourAvailability()
                   setShowMenu(false)
                 }}
-                className="w-full text-xs text-muted-foreground"
+                className="w-full text-xs text-muted-foreground hover:bg-accent hover:text-accent-foreground"
               >
                 Disable Tours
               </Button>

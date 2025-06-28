@@ -315,7 +315,7 @@ function DashboardContent({ user }: { user: any }) {
                 </Popover>
               </div>
 
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3" data-tour="dashboard-controls">
                 <Button
                   variant={isEditing ? "default" : "outline"}
                   onClick={() => setIsEditing(!isEditing)}
