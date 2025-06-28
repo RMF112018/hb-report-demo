@@ -211,6 +211,12 @@ export const AppHeader = () => {
         category: "Compliance",
         description: "Contract document management and compliance tracking",
       },
+      {
+        name: "Trade Partners Database",
+        href: "/dashboard/trade-partners",
+        category: "Compliance",
+        description: "Comprehensive subcontractor and vendor management system",
+      },
 
       // Pre-Construction (filtered by department)
       {
