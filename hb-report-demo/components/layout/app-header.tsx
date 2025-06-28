@@ -13,6 +13,7 @@ import { useTheme } from "next-themes"
 import { useProjectContext } from "@/context/project-context"
 import { useToast } from "@/components/ui/use-toast"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import { TourControls } from "@/components/ui/tour"
 import projectsData from "@/data/mock/projects.json"
 
 /**
@@ -476,6 +477,7 @@ export const AppHeader = () => {
       <header
         ref={headerRef}
         className="sticky top-0 z-[100] flex h-20 items-center justify-between border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-[#1e3a8a] to-[#2a5298] px-8 shadow-lg backdrop-blur-sm"
+        data-tour="app-header"
       >
         {/* Left Section - Logo and Navigation */}
         <div className="flex items-center space-x-8">
@@ -642,6 +644,9 @@ export const AppHeader = () => {
                 {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
               </Button>
             )}
+
+            {/* Tour Controls */}
+            <TourControls className="text-white [&_button]:text-white [&_button]:hover:bg-white/20" />
 
             {/* Notifications */}
             <Button

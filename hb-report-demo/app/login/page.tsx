@@ -12,6 +12,7 @@ import { Separator } from "@/components/ui/separator"
 import { Badge } from "@/components/ui/badge"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { useAuth } from "@/context/auth-context"
+import { useTour } from "@/context/tour-context"
 import { useToast } from "@/hooks/use-toast"
 import {
   Building2,
@@ -46,6 +47,7 @@ export default function LoginPage() {
   const { login } = useAuth()
   const router = useRouter()
   const { toast } = useToast()
+  const { startTour, isTourAvailable } = useTour()
 
   const features = [
     {
@@ -147,6 +149,20 @@ export default function LoginPage() {
     }, 5000)
     return () => clearInterval(interval)
   }, [features.length])
+
+  // Auto-start tour for new visitors
+  useEffect(() => {
+    if (typeof window !== 'undefined' && isTourAvailable) {
+      const hasSeenTour = localStorage.getItem('hb-tour-login-seen')
+      if (!hasSeenTour) {
+        // Delay to ensure page is fully loaded
+        setTimeout(() => {
+          startTour('login-demo-accounts')
+          localStorage.setItem('hb-tour-login-seen', 'true')
+        }, 1000)
+      }
+    }
+  }, [isTourAvailable, startTour])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -423,7 +439,7 @@ export default function LoginPage() {
                     </div>
                   )}
 
-                  <Card className="border-0 shadow-2xl bg-white/95 backdrop-blur-sm">
+                  <Card className="border-0 shadow-2xl bg-white/95 backdrop-blur-sm login-card">
                     <CardHeader className="text-center pb-4 lg:pb-6">
                       <CardTitle
                         className={`font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent mb-2 ${
@@ -440,7 +456,7 @@ export default function LoginPage() {
                     </CardHeader>
 
                     <CardContent className="space-y-4 lg:space-y-6">
-                      <form onSubmit={handleSubmit} className="space-y-4 lg:space-y-5" aria-label="User Login Form">
+                      <form onSubmit={handleSubmit} className="space-y-4 lg:space-y-5 login-form" aria-label="User Login Form">
                         <div className="space-y-2">
                           <Label htmlFor="email" className="text-sm font-semibold text-gray-700 flex items-center">
                             <Mail className="h-4 w-4 mr-2" aria-hidden="true" />
@@ -576,6 +592,7 @@ export default function LoginPage() {
                           aria-expanded={showDemoAccounts}
                           aria-controls="demo-accounts-list"
                           aria-label="Toggle demo accounts list"
+                          data-tour="demo-accounts-toggle"
                         >
                           <Users className="h-4 w-4 mr-2" aria-hidden="true" />
                           Try Demo Accounts
@@ -586,7 +603,7 @@ export default function LoginPage() {
                         </Button>
 
                         {showDemoAccounts && (
-                          <div id="demo-accounts-list" className="space-y-2 animate-in slide-in-from-top-2 duration-200">
+                          <div id="demo-accounts-list" className="space-y-2 animate-in slide-in-from-top-2 duration-200" data-tour="demo-accounts-list">
                             {demoAccounts.map((account) => {
                               const IconComponent = account.icon
                               return (

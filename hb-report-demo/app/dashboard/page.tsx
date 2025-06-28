@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useAuth } from "@/context/auth-context";
+import { useTour } from "@/context/tour-context";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { DashboardLayout as DashboardLayoutComponent } from "@/components/dashboard/DashboardLayout";
@@ -35,6 +36,7 @@ function DashboardContent({ user }: { user: any }) {
     updateDashboard,
     loading,
   } = useDashboardContext();
+  const { startTour, isTourAvailable } = useTour();
   const [isEditing, setIsEditing] = useState(false);
   const [dashboardPopoverOpen, setDashboardPopoverOpen] = useState(false);
   const [layoutPopoverOpen, setLayoutPopoverOpen] = useState(false);
@@ -42,6 +44,20 @@ function DashboardContent({ user }: { user: any }) {
   const [isFullscreen, setIsFullscreen] = useState(false);
 
   const currentDashboard = dashboards.find(d => d.id === currentDashboardId);
+
+  // Auto-start dashboard tour for new visitors
+  useEffect(() => {
+    if (typeof window !== 'undefined' && isTourAvailable && user) {
+      const hasSeenDashboardTour = localStorage.getItem('hb-tour-dashboard-seen')
+      if (!hasSeenDashboardTour) {
+        // Delay to ensure dashboard is fully loaded
+        setTimeout(() => {
+          startTour('dashboard-overview')
+          localStorage.setItem('hb-tour-dashboard-seen', 'true')
+        }, 2000)
+      }
+    }
+  }, [isTourAvailable, startTour, user])
 
   // Simplified data preparation
   const stage4Projects = projectsData.filter(p => p.project_stage_id === 4);
@@ -239,7 +255,7 @@ function DashboardContent({ user }: { user: any }) {
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-0">
               <div className="flex items-center gap-3">
                 {/* Dashboard Selector Popover */}
-                <Popover open={dashboardPopoverOpen} onOpenChange={setDashboardPopoverOpen}>
+                <Popover open={dashboardPopoverOpen} onOpenChange={setDashboardPopoverOpen} data-tour="dashboard-selector">
                   <PopoverTrigger asChild>
                     <Button variant="outline" className="flex items-center gap-2">
                       <LayoutDashboard className="h-4 w-4" />
@@ -369,7 +385,8 @@ function DashboardContent({ user }: { user: any }) {
         </div>
         
         {currentDashboard && (
-          <DashboardLayoutComponent 
+          <div data-tour="dashboard-content">
+            <DashboardLayoutComponent 
             cards={currentDashboard.cards}
             onLayoutChange={handleLayoutChange}
             onCardRemove={handleCardRemove}
@@ -382,6 +399,7 @@ function DashboardContent({ user }: { user: any }) {
             layoutDensity={layoutDensity}
             userRole={user.role}
           />
+          </div>
         )}
       </div>
     </div>
