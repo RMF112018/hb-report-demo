@@ -3,112 +3,188 @@
 // Use within BuyoutForm to render long lead items fields
 // Reference: https://ant.design/components/collapse
 // *Additional Reference*: https://react-hook-form.com/docs
+// *Additional Reference*: https://react.dev/reference/react/memo
 
-import React from 'react';
-import { Collapse, Row, Col, Button, Input } from 'antd';
-import { Controller } from 'react-hook-form';
+import React, { useCallback } from 'react';
+import { Table, Row, Col, Button, Input } from 'antd';
+import { Controller, useWatch } from 'react-hook-form';
 import PropTypes from 'prop-types';
 import { CheckboxField, TextField } from 'hb-report';
 import { PlusOutlined, MinusCircleOutlined } from '@ant-design/icons';
-import '../../styles/BuyoutForm.css';
 
-const LongLeadSection = ({ control, longLeadIncluded, leadFields, appendLead, removeLead }) => (
-  <div id="long-lead-items">
-    <Collapse defaultActiveKey={['1']} className="collapse">
-      <Collapse.Panel header="Long Lead Items" key="1">
-        <div className="sectionCard">
-          <Row gutter={[16, 8]} align="middle">
-            <Col span={12}>
-              <Row gutter={[16, 0]} align="middle">
-                <Col span={10}>
-                  <span className="fieldLabel">Contract Scope Includes Long Lead Items</span>
-                </Col>
-                <Col span={14}>
-                  <Controller
-                    name="long_lead_included"
-                    control={control}
-                    render={({ field }) => (
-                      <CheckboxField checked={field.value} onChange={field.onChange} />
-                    )}
-                  />
-                </Col>
-              </Row>
-            </Col>
-          </Row>
-          {longLeadIncluded && (
-            <div className="listContainer">
-              {leadFields.map((field, index) => (
-                <Row key={field.id} gutter={[16, 8]} align="middle" className="listItem">
-                  <Col span={8}>
-                    <Controller
-                      name={`leadTimes[${index}].item`}
-                      control={control}
-                      render={({ field }) => (
-                        <TextField
-                          id={`leadTimes-${index}-item`}
-                          value={field.value}
-                          onChange={field.onChange}
-                          placeholder="Long Lead Item"
+const LongLeadSection = React.memo(
+  ({ control, longLeadIncluded, leadFields, appendLead, removeLead, isEditing }) => {
+    // Use useWatch to get the current form values
+    const formValues = useWatch({
+      control,
+      name: ['long_lead_included', 'leadTimes'],
+    });
+
+    const [longLeadIncludedValue, leadTimes] = formValues;
+
+    const handleAddLead = useCallback(() => {
+      appendLead({ item: '', time: '', procured: false });
+    }, [appendLead]);
+
+    const handleRemoveLead = useCallback(
+      (index) => {
+        removeLead(index);
+      },
+      [removeLead]
+    );
+
+    const renderField = (label, name, renderEditable, value) => {
+      return (
+        <div className="form-field">
+          <span className="form-label">{label}</span>
+          {isEditing ? (
+            <Controller
+              name={name}
+              control={control}
+              render={({ field }) => (
+                <div className="form-input-wrapper">
+                  {renderEditable(field)}
+                </div>
+              )}
+            />
+          ) : (
+            <span className="form-value">{value || 'Undefined'}</span>
+          )}
+        </div>
+      );
+    };
+
+    return (
+      <div id="long-lead-items">
+        <Row gutter={[16, 8]}>
+          <Col xs={24} sm={12}>
+            {renderField(
+              'Contract Scope Includes Long Lead Items',
+              'long_lead_included',
+              (field) => (
+                <CheckboxField
+                  checked={field.value}
+                  onChange={field.onChange}
+                />
+              ),
+              longLeadIncludedValue ? 'Yes' : 'No'
+            )}
+          </Col>
+        </Row>
+
+        {/* Long Lead Items Table */}
+        {longLeadIncludedValue && (
+          <div>
+            {leadFields.length > 0 && (
+              isEditing ? (
+                <Table
+                  dataSource={leadFields}
+                  pagination={false}
+                  rowKey="id"
+                  columns={[
+                    {
+                      title: 'Long Lead Item',
+                      render: (_, record, index) => (
+                        <Controller
+                          name={`leadTimes[${index}].item`}
+                          control={control}
+                          render={({ field }) => (
+                            <TextField
+                              id={`leadTimes-${index}-item`}
+                              value={field.value}
+                              onChange={field.onChange}
+                              placeholder="Long Lead Item"
+                            />
+                          )}
                         />
-                      )}
-                    />
-                  </Col>
-                  <Col span={5}>
-                    <Controller
-                      name={`leadTimes[${index}].time`}
-                      control={control}
-                      render={({ field }) => (
-                        <Input
-                          id={`leadTimes-${index}-time`}
-                          type="number"
-                          value={field.value}
-                          onChange={field.onChange}
-                          className="input"
+                      ),
+                    },
+                    {
+                      title: 'Time',
+                      render: (_, record, index) => (
+                        <Controller
+                          name={`leadTimes[${index}].time`}
+                          control={control}
+                          render={({ field }) => (
+                            <Input
+                              id={`leadTimes-${index}-time`}
+                              type="number"
+                              value={field.value}
+                              onChange={field.onChange}
+                            />
+                          )}
                         />
-                      )}
-                    />
-                  </Col>
-                  <Col span={8}>
-                    <Row gutter={[16, 0]} align="middle">
-                      <Col span={10}>
-                        <span className="fieldLabel">Procured</span>
-                      </Col>
-                      <Col span={14}>
+                      ),
+                    },
+                    {
+                      title: 'Procured',
+                      render: (_, record, index) => (
                         <Controller
                           name={`leadTimes[${index}].procured`}
                           control={control}
                           render={({ field }) => (
-                            <CheckboxField checked={field.value} onChange={field.onChange} />
+                            <CheckboxField
+                              checked={field.value}
+                              onChange={field.onChange}
+                            />
                           )}
                         />
-                      </Col>
-                    </Row>
-                  </Col>
-                  <Col span={3}>
-                    <Button
-                      type="text"
-                      icon={<MinusCircleOutlined />}
-                      onClick={() => removeLead(index)}
-                      aria-label="Remove long lead item"
-                    />
-                  </Col>
-                </Row>
-              ))}
+                      ),
+                    },
+                    {
+                      title: '',
+                      render: (_, __, index) => (
+                        <Button
+                          type="text"
+                          icon={<MinusCircleOutlined />}
+                          onClick={() => handleRemoveLead(index)}
+                          aria-label="Remove long lead item"
+                        />
+                      ),
+                    },
+                  ]}
+                />
+              ) : (
+                <Table
+                  dataSource={leadTimes}
+                  pagination={false}
+                  rowKey="id"
+                  columns={[
+                    {
+                      title: 'Long Lead Item',
+                      dataIndex: 'item',
+                      render: (value) => <span>{value || 'Undefined'}</span>,
+                    },
+                    {
+                      title: 'Time',
+                      dataIndex: 'time',
+                      render: (value) => <span>{value != null && !isNaN(value) ? value : 'Undefined'}</span>,
+                    },
+                    {
+                      title: 'Procured',
+                      dataIndex: 'procured',
+                      render: (value) => <span>{value ? 'Yes' : 'No'}</span>,
+                    },
+                  ]}
+                />
+              )
+            )}
+            {isEditing && (
               <Button
                 type="dashed"
-                onClick={() => appendLead({ item: '', time: '', procured: false })}
+                onClick={handleAddLead}
                 block
                 icon={<PlusOutlined />}
-                className="addButton"
+                style={{ marginTop: leadFields.length > 0 ? '8px' : '0' }}
               >
                 Add Long Lead Item
               </Button>
-            </div>
-          )}
-        </div>
-      </Collapse.Panel>
-    </Collapse>
-  </div>
+            )}
+          </div>
+        )}
+      </div>
+    );
+  }
 );
 
 LongLeadSection.propTypes = {
@@ -117,6 +193,7 @@ LongLeadSection.propTypes = {
   leadFields: PropTypes.array.isRequired,
   appendLead: PropTypes.func.isRequired,
   removeLead: PropTypes.func.isRequired,
+  isEditing: PropTypes.bool.isRequired,
 };
 
 export default LongLeadSection;

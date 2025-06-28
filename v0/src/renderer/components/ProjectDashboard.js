@@ -60,7 +60,7 @@ const ProjectDashboard = ({ selectedProject, headerContent }) => {
             <ComponentHeader title={headerContent.title} children={headerContent.actions} />
 
             {/* Dashboard Grid */}
-            <div style={{ flex: 1, overflow: 'auto', padding: '0 24px' }}>
+            <div style={{ flex: 1, overflow: 'auto', padding: '0 16px' }}>
                 {selectedProject ? (
                     <Row gutter={[16, 16]} style={{ minHeight: '100%' }}>
                         {/* Project Health */}

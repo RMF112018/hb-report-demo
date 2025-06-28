@@ -15,7 +15,7 @@ import TableModule from './TableModule.js';
 import { NumericCellRenderer, MergedCellRenderer } from '../utils/CustomCellRenderer.js';
 import moment from 'moment';
 import { AgCharts } from 'ag-charts-react';
-import '../styles/global.css';
+// import '../styles/global.css';
 import '../styles/TableModule.css';
 
 const { TabPane } = Tabs;

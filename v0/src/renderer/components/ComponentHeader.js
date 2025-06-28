@@ -7,31 +7,11 @@
 // *Additional Reference*: https://ant.design/components/icon#api
 // *Additional Reference*: https://ant.design/components/button#api
 
-import React from 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Tabs, Dropdown, Space } from 'antd';
 import { SettingFilled, DownOutlined, PlusOutlined, DownloadOutlined } from '@ant-design/icons';
-import '../styles/global.css';
 
-const { TabPane } = Tabs;
-
-/**
- * ComponentHeader renders a header with a settings icon, title, tabs, actions, and optional create dropdown
- * @param {Object} props - Component props
- * @param {JSX.Element|string} props.title - The title to display
- * @param {Object[]} props.tabs - Array of tab objects with key and label
- * @param {string} props.activeTab - The key of the currently active tab
- * @param {Function} props.onTabChange - Callback for tab changes
- * @param {JSX.Element} props.actions - Action buttons or elements to render on the right
- * @param {Object[]} props.createOptions - Array of create options with key and label
- * @param {Function} props.onCreateClick - Callback for create option selection
- * @param {Function} props.onSettingsClick - Callback for settings button click
- * @param {Function} props.onExport - Callback for export action
- * @param {Object[]} props.exportRoleOptions - Array of role options for export
- * @param {Object} props.createButtonStyle - [DEPRECATED] Inline styles for the create button
- * @param {string} props.buttonSize - Size of the action buttons ('large', 'default', 'small')
- * @returns {JSX.Element} The header component
- */
 const ComponentHeader = ({ 
     title, 
     tabs = [], 
@@ -53,8 +33,10 @@ const ComponentHeader = ({
         );
     }
 
-    const visibleTabs = tabs.slice(0, 4);
-    const moreTabs = tabs.slice(4);
+    const tabsContainerRef = useRef(null);
+    const tabWidthsRef = useRef(new Map());
+    const [containerWidth, setContainerWidth] = useState(0);
+    const resizeTimeoutRef = useRef(null);
 
     const exportMenu = {
         items: [
@@ -90,69 +72,151 @@ const ComponentHeader = ({
         </Space>
     );
 
+    // Update container width on resize
+    const updateContainerWidth = useCallback(() => {
+        if (tabsContainerRef.current) {
+            setContainerWidth(tabsContainerRef.current.offsetWidth);
+        }
+    }, []);
+
+    useEffect(() => {
+        // Initial measurement
+        updateContainerWidth();
+
+        // Throttled resize handler
+        const handleResize = () => {
+            if (resizeTimeoutRef.current) {
+                clearTimeout(resizeTimeoutRef.current);
+            }
+            resizeTimeoutRef.current = setTimeout(() => {
+                updateContainerWidth();
+            }, 100); // Throttle delay of 100ms
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+            if (resizeTimeoutRef.current) {
+                clearTimeout(resizeTimeoutRef.current);
+            }
+        };
+    }, [updateContainerWidth]);
+
+    // Compute visible tabs and more tabs based on container width
+    const { visibleTabs, moreTabs } = useMemo(() => {
+        if (!containerWidth || tabs.length === 0) {
+            return { visibleTabs: tabs, moreTabs: [] };
+        }
+
+        const moreButtonWidth = 80; // Approximate width of the "More" button
+        let totalWidth = 0;
+        let visibleCount = 0;
+
+        for (let i = 0; i < tabs.length; i++) {
+            const tabWidth = tabWidthsRef.current.get(tabs[i].key) || 0;
+            totalWidth += tabWidth;
+
+            // Check if adding the current tab plus the "More" button (if needed) fits within the container
+            // If there will be hidden tabs after this one, we need to reserve space for the "More" button
+            const remainingTabs = tabs.length - (i + 1);
+            const needsMoreButton = remainingTabs > 0;
+            const additionalWidth = needsMoreButton ? moreButtonWidth : 0;
+
+            if (totalWidth + additionalWidth <= containerWidth) {
+                visibleCount++;
+            } else {
+                break;
+            }
+        }
+
+        return {
+            visibleTabs: tabs.slice(0, visibleCount),
+            moreTabs: tabs.slice(visibleCount),
+        };
+    }, [tabs, containerWidth]);
+
+    // Map tabs to items for the Tabs component
+    const tabItems = visibleTabs.map(tab => ({
+        key: tab.key,
+        label: (
+            <span
+                ref={el => {
+                    if (el && !tabWidthsRef.current.has(tab.key)) {
+                        tabWidthsRef.current.set(tab.key, el.offsetWidth);
+                    }
+                }}
+            >
+                {tab.label}
+            </span>
+        ),
+    }));
+
     return (
         <div className="component-header">
             <div className="component-header-container">
-                <div className="component-header-left">
-                    <Button
-                        type="text"
-                        icon={<SettingFilled style={{ color: 'var(--hb-orange)' }} />}
-                        aria-label="Configure Settings"
-                        onClick={onSettingsClick || (() => console.log('Navigate to configure tab'))}
-                    />
-                    {typeof title === 'string' ? <h1>{title}</h1> : title}
-                    {tabs.length > 0 && (
-                        <div className="component-header-tabs">
-                            <Tabs activeKey={activeTab} onChange={onTabChange}>
-                                {visibleTabs.map(tab => (
-                                    <TabPane tab={tab.label} key={tab.key} />
-                                ))}
-                            </Tabs>
-                            {moreTabs.length > 0 && (
+                <div className="component-header-top-row">
+                    <div className="component-header-left">
+                        <Button
+                            type="text"
+                            icon={<SettingFilled style={{ color: 'var(--hb-orange)' }} />}
+                            aria-label="Configure Settings"
+                            onClick={onSettingsClick || (() => console.log('Navigate to configure tab'))}
+                        />
+                        {typeof title === 'string' ? <h1>{title}</h1> : title}
+                    </div>
+                    <div className="component-header-actions">
+                        <Space>
+                            {createOptions.length > 0 && (
                                 <Dropdown
                                     menu={{
-                                        items: moreTabs.map(tab => ({
-                                            key: tab.key,
-                                            label: tab.label,
-                                            onClick: () => onTabChange(tab.key),
+                                        items: createOptions.map(option => ({
+                                            key: option.key,
+                                            label: option.label,
+                                            onClick: () => onCreateClick(option),
                                         })),
                                     }}
                                     trigger={['click']}
                                 >
-                                    <Button type="text">
-                                        More <DownOutlined />
+                                    <Button
+                                        className="create-button"
+                                        style={createButtonStyle}
+                                        aria-label="Create new buyout"
+                                        size={buttonSize}
+                                    >
+                                        <PlusOutlined /> Create <DownOutlined />
                                     </Button>
                                 </Dropdown>
                             )}
-                        </div>
-                    )}
+                            {combinedActions}
+                        </Space>
+                    </div>
                 </div>
-                <div className="component-header-actions">
-                    <Space>
-                        {createOptions.length > 0 && (
+                {tabs.length > 0 && (
+                    <div className="component-header-tabs-row" ref={tabsContainerRef}>
+                        <Tabs
+                            activeKey={activeTab}
+                            onChange={onTabChange}
+                            className="component-header-tabs"
+                            items={tabItems}
+                        />
+                        {moreTabs.length > 0 && (
                             <Dropdown
                                 menu={{
-                                    items: createOptions.map(option => ({
-                                        key: option.key,
-                                        label: option.label,
-                                        onClick: () => onCreateClick(option),
+                                    items: moreTabs.map(tab => ({
+                                        key: tab.key,
+                                        label: tab.label,
+                                        onClick: () => onTabChange(tab.key),
                                     })),
                                 }}
                                 trigger={['click']}
                             >
-                                <Button
-                                    className="create-button"
-                                    style={createButtonStyle}
-                                    aria-label="Create new buyout"
-                                    size={buttonSize}
-                                >
-                                    <PlusOutlined /> Create <DownOutlined />
+                                <Button type="text" className="more-tabs-button">
+                                    More <DownOutlined />
                                 </Button>
                             </Dropdown>
                         )}
-                        {combinedActions}
-                    </Space>
-                </div>
+                    </div>
+                )}
             </div>
         </div>
     );

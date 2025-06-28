@@ -1,0 +1,98 @@
+{
+    "id": "executive-layout",
+    "name": "Executive Dashboard",
+    "description": "Overview of portfolio health and finances",
+    "role": "executive",
+    "cards": [
+      {
+        "id": "enhanced-hbi-insights",
+        "type": "enhanced-hbi-insights",
+        "title": "HBI Portfolio Insights",
+        "size": "large",
+        "position": { "x": 0, "y": 0 },
+        "visible": true,
+        "config": {
+          "executiveMode": true,
+          "projectCount": 12,
+          "scope": "company-wide"
+        }
+      },
+      {
+        "id": "portfolio-overview",
+        "type": "portfolio-overview",
+        "title": "Portfolio Overview",
+        "size": "medium",
+        "position": { "x": 6, "y": 0 },
+        "visible": true
+      },
+      {
+        "id": "financial-review-panel",
+        "type": "financial-review-panel",
+        "title": "Financial Review",
+        "size": "medium",
+        "position": { "x": 9, "y": 0 },
+        "visible": true
+      },
+      {
+        "id": "staffing-distribution",
+        "type": "staffing-distribution",
+        "title": "Staffing Distribution",
+        "size": "large",
+        "position": { "x": 0, "y": 1 },
+        "visible": true
+      },
+      {
+        "id": "pipeline-analytics",
+        "type": "pipeline-analytics",
+        "title": "Pipeline Analysis",
+        "size": "medium",
+        "position": { "x": 6, "y": 1 },
+        "visible": true,
+        "config": {
+          "showTrends": true,
+          "showConversionRate": true,
+          "detailLevel": "comprehensive"
+        }
+      },
+      {
+        "id": "market-intelligence",
+        "type": "market-intelligence",
+        "title": "Market Intelligence",
+        "size": "medium",
+        "position": { "x": 9, "y": 1 },
+        "visible": true,
+        "config": {
+          "showTrends": true,
+          "showCompetitiveAnalysis": true,
+          "detailLevel": "comprehensive"
+        }
+      },
+      {
+        "id": "company-quality-control",
+        "type": "quality-control",
+        "title": "Company Quality Control",
+        "size": "medium",
+        "position": { "x": 0, "y": 2 },
+        "visible": true,
+        "config": {
+          "projectFilter": "all",
+          "projectCount": 12,
+          "scope": "company-wide"
+        }
+      },
+      {
+        "id": "company-safety-management",
+        "type": "safety",
+        "title": "Company Safety Management",
+        "size": "medium",
+        "position": { "x": 6, "y": 2 },
+        "visible": true,
+        "config": {
+          "projectFilter": "all",
+          "projectCount": 12,
+          "scope": "company-wide"
+        }
+      }
+    ]
+  }
+  

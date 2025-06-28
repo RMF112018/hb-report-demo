@@ -11,7 +11,6 @@ import '../../styles/FormFields.css';
 const TextField = ({ id, value, onChange, readOnly, onDoubleClick, onBlur, placeholder }) => (
   <Input
     id={id}
-    className="input"
     value={value || ''}
     onChange={onChange}
     readOnly={readOnly}

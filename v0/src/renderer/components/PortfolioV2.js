@@ -176,7 +176,7 @@ const PortfolioV2 = ({ onProjectSelect, headerContent, procoreUserId, onTokenExp
   ];
 
   return (
-    <div className="portfolio-container" style={{ padding: '16px', display: 'flex', flexDirection: 'column', flex: 1 }}>
+    <div className="portfolio-container" style={{ /*padding: '16px',*/ display: 'flex', flexDirection: 'column', flex: 1 }}>
       <ComponentHeader title={headerContent.title} actions={headerActions} />
       <div style={{ display: 'flex', alignItems: 'center', marginBottom: '16px', flexWrap: 'wrap', gap: '10px' }}>
         <Input
@@ -225,7 +225,7 @@ const PortfolioV2 = ({ onProjectSelect, headerContent, procoreUserId, onTokenExp
           Clear All
         </Button>
       </div>
-      <div style={{ flex: 1, overflow: 'auto' }}>
+      <div style={{ flex: 1, padding: '0 16px 16px 16px', overflow: 'auto' }}>
         <Tabs
           defaultActiveKey="table"
           tabPosition="top"

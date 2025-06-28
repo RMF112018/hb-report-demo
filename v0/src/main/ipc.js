@@ -1241,9 +1241,80 @@ const handlers = {
     }
   },
 
-  'log': (event, { level, message, stack, process }) => {
-    if (stack) logger[level](message, { stack, process });
-    else logger[level](message, { process });
+  // Comments handlers
+  'get-comments': async (event, { projectId, itemId, toolName }) => {
+    try {
+      console.log('ipc.js: get-comments handler received:', { projectId, itemId, toolName });
+      const token = store.get('authToken');
+      if (!token) {
+        throw new Error('No authentication token available');
+      }
+      const queryParams = new URLSearchParams({ projectId, itemId, toolName }).toString();
+      const url = `${API_BASE_URL}/comments?${queryParams}`;
+      console.log('ipc.js: Fetching comments from:', url);
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+      console.log('ipc.js: Backend response status:', response.status, 'Status Text:', response.statusText);
+      const comments = await response.json();
+      console.log('ipc.js: Backend response body:', comments);
+      if (!response.ok) {
+        throw new Error(comments.error || 'Failed to fetch comments');
+      }
+      // Transform flat comments into a nested structure
+      const nestedComments = comments.reduce((acc, comment) => {
+        if (!comment.parentId) {
+          acc.push({ ...comment, replies: [] });
+        } else {
+          const parent = acc.find((c) => c.id === comment.parentId) || 
+                        acc.flatMap((c) => c.replies || []).find((c) => c.id === comment.parentId);
+          if (parent) {
+            parent.replies = parent.replies || [];
+            parent.replies.push({ ...comment, replies: [] });
+          }
+        }
+        return acc;
+      }, []);
+      logger.info('ipc.js: Fetched comments:', { projectId, itemId, toolName, count: nestedComments.length });
+      return nestedComments;
+    } catch (error) {
+      logger.error(`IPC get-comments error: ${error.message}`, { stack: error.stack, projectId, itemId, toolName });
+      throw error;
+    }
+  },
+
+  'add-comment': async (event, { projectId, itemId, content, parentId, toolName, author }) => {
+    try {
+      console.log('ipc.js: add-comment handler received:', { projectId, itemId, content, parentId, toolName, author });
+      const token = store.get('authToken');
+      if (!token) {
+        throw new Error('No authentication token available');
+      }
+      const payload = { projectId, itemId, content, parentId, toolName, author };
+      console.log('ipc.js: Sending to backend:', payload);
+      const response = await fetch(`${API_BASE_URL}/comments`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+        body: JSON.stringify(payload),
+      });
+      const result = await response.json();
+      console.log('ipc.js: Backend response:', result);
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to add comment');
+      }
+      logger.info('ipc.js: Comment added:', { projectId, itemId, toolName, commentId: result.comment.id });
+      return result.comment;
+    } catch (error) {
+      logger.error(`IPC add-comment error: ${error.message}`, { stack: error.stack });
+      throw error;
+    }
   },
 };
 

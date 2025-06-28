@@ -8,12 +8,13 @@
 // *Additional Reference*: https://ant.design/components/layout
 // *Additional Reference*: https://ant.design/components/steps
 
-import React, { useEffect, useState, useMemo, useCallback } from 'react';
-import { Layout, Steps, Tabs, Spin, Alert, message } from 'antd';
-import { SaveOutlined, CloseOutlined } from '@ant-design/icons';
+import React, { useEffect, useState, useMemo, useCallback, useRef } from 'react';
+import { Layout, Menu, Spin, Alert, message, Button, Space, Collapse, Grid } from 'antd';
+import { SaveOutlined, CloseOutlined, MenuUnfoldOutlined, MenuFoldOutlined, EditOutlined } from '@ant-design/icons';
 import { useForm, useFieldArray, useWatch } from 'react-hook-form';
 import PropTypes from 'prop-types';
-import { useGetBuyoutDataQuery } from '../apiSlice.js';
+import { useGetBuyoutDataQuery, apiSlice } from '../apiSlice.js';
+import { useDispatch } from 'react-redux';
 import {
   GeneralInformationSection,
   OwnerApprovalSection,
@@ -26,30 +27,71 @@ import {
   SubcontractChecklistSection,
   ComplianceWaiverSection,
   HistorySection,
-  formatDate,
 } from './BuyoutForm/index.js';
 import { LoadingWrapper } from 'hb-report';
 import { FloatButton } from 'antd';
-import '../styles/BuyoutForm.css';
 import dayjs from 'dayjs';
+import '../styles/BuyoutForm.css';
 
 const { Sider, Content } = Layout;
-const { TabPane } = Tabs;
+const { Panel } = Collapse;
+const { useBreakpoint } = Grid; // Correctly import useBreakpoint from Grid
 
-/**
- * Main Buyout Form component for creating or editing buyout records, with a consolidated layout and navigation sidebar using Steps
- * @param {Object} props - Component props
- * @param {string|number} props.projectId - The Procore project ID
- * @param {string|number} [props.commitmentId] - The commitment ID for editing
- * @param {Object} [props.initialData] - Initial data for editing an existing record
- * @param {Array} props.commitments - Array of all commitment records for computing history data
- * @param {Array} props.budgetLineItems - Array of budget line items for the project
- * @param {Function} props.onSubmit - Callback function to handle form submission
- * @param {Function} props.onCancel - Callback function to handle cancellation and return to table view
- * @returns {JSX.Element} Buyout Form component
- */
-const BuyoutForm = ({ projectId, commitmentId, initialData, commitments, budgetLineItems, onSubmit, onCancel }) => {
+// Utility function to compare two objects and return only changed fields
+const getChangedFields = (newData, initialData) => {
+  const changed = {};
+  Object.keys(newData).forEach((key) => {
+    const newValue = newData[key];
+    const initialValue = initialData[key];
+
+    // Handle arrays (e.g., allowances, veItems, leadTimes)
+    if (Array.isArray(newValue) && Array.isArray(initialValue)) {
+      if (JSON.stringify(newValue) !== JSON.stringify(initialValue)) {
+        changed[key] = newValue;
+      }
+      return;
+    }
+
+    // Handle objects (e.g., licensing_requirements_to_waive)
+    if (typeof newValue === 'object' && newValue !== null && typeof initialValue === 'object' && initialValue !== null) {
+      if (JSON.stringify(newValue) !== JSON.stringify(initialValue)) {
+        changed[key] = newValue;
+      }
+      return;
+    }
+
+    // Handle primitive values
+    if (newValue !== initialValue) {
+      changed[key] = newValue;
+    }
+  });
+  return changed;
+};
+
+const BuyoutForm = ({ projectId, commitmentId, initialData, commitments, budgetLineItems, onSubmit, onCancel, activeTab, onTabChange, userData, toolName }) => {
   const [saveButtonDisabled, setSaveButtonDisabled] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
+  const [activeSection, setActiveSection] = useState('general-information');
+  const [userCollapsed, setUserCollapsed] = useState(false);
+  const [isEditing, setIsEditing] = useState({});
+  const prevBreakpointRef = useRef(null);
+  const sectionsContainerRef = useRef(null);
+  const dispatch = useDispatch();
+  const [initialFormValues, setInitialFormValues] = useState({});
+
+  const screens = useBreakpoint(); // Use Grid.useBreakpoint
+  const isSmallScreen = screens.xs;
+
+  useEffect(() => {
+    console.log('BuyoutForm.js: Received props:', { projectId, commitmentId, userData, toolName, commitmentsLength: commitments?.length });
+  }, [projectId, commitmentId, userData, toolName, commitments]);
+
+  useEffect(() => {
+    if (!toolName || typeof toolName !== 'string' || toolName.trim() === '') {
+      console.error('BuyoutForm.js: Invalid toolName prop:', toolName);
+      message.error('Tool name is required for comments section');
+    }
+  }, [toolName]);
 
   const historyData = useMemo(() => {
     if (!initialData || !commitments || !Array.isArray(commitments)) {
@@ -63,19 +105,20 @@ const BuyoutForm = ({ projectId, commitmentId, initialData, commitments, budgetL
     return filteredData;
   }, [initialData, commitments]);
 
-  const { data: buyoutDetails, isLoading, isError } = useGetBuyoutDataQuery(
+  const { data: buyoutDetails, isLoading, isError, isFetching } = useGetBuyoutDataQuery(
     { projectId, commitmentId },
-    { skip: !projectId || !commitmentId }
+    { skip: !projectId || !commitmentId || isSaving }
   );
 
-  const { control, handleSubmit, reset, watch, setValue } = useForm({
+  const { control, handleSubmit, reset, watch, setValue, formState: { errors, isValid } } = useForm({
     defaultValues: {
       number: '',
       vendor: '',
       title: '',
       status: '',
+      bic: 'HB',
       executed: false,
-      retainage_percent: null,
+      retainage_percent: 0,
       contract_start_date: null,
       contract_estimated_completion_date: null,
       actual_completion_date: null,
@@ -88,24 +131,23 @@ const BuyoutForm = ({ projectId, commitmentId, initialData, commitments, budgetL
       owner_meeting_date: null,
       owner_approval_date: null,
       allowance_included: false,
-      total_contract_allowances: null,
-      allowance_reconciliation_total: null,
-      allowance_variance: null,
+      total_contract_allowances: 0,
+      allowance_reconciliation_total: 0,
+      allowance_variance: 0,
       ve_offered: false,
-      total_ve_presented: null,
-      total_ve_accepted: null,
-      total_ve_rejected: null,
-      net_ve_savings: null,
+      total_ve_presented: 0,
+      total_ve_accepted: 0,
+      total_ve_rejected: 0,
+      net_ve_savings: 0,
       long_lead_included: false,
       long_lead_released: false,
       link_to_budget_item: null,
-      budget: null,
-      contract_value: null,
-      savings_overage: null,
+      budget: 0,
+      contract_value: 0,
+      savings_overage: 0,
       allowances: [],
       veItems: [],
       leadTimes: [],
-      additional_notes_comments: '',
       scope_review_meeting_date: null,
       spm_review_date: null,
       spm_approval_status: '',
@@ -157,6 +199,46 @@ const BuyoutForm = ({ projectId, commitmentId, initialData, commitments, budgetL
       project_executive_date: null,
       cfo: '',
       cfo_date: null,
+      procore_id: null,
+    },
+    mode: 'onChange',
+    resolver: async (data) => {
+      console.log('BuyoutForm.js: Running form resolver with data:', data);
+      const errors = {};
+      if (!data.status) errors.status = { type: 'required', message: 'Status is required' };
+      if (!data.bic) errors.bic = { type: 'required', message: 'BIC is required' };
+      if (data.allowances && !Array.isArray(data.allowances)) {
+        errors.allowances = { type: 'typeError', message: 'Allowances must be an array' };
+      } else if (data.allowances) {
+        data.allowances.forEach((item, index) => {
+          if (!item.item) {
+            errors[`allowances[${index}].item`] = { type: 'required', message: `Allowance ${index + 1}: Item is required` };
+          }
+          if (item.value == null) {
+            errors[`allowances[${index}].value`] = { type: 'required', message: `Allowance ${index + 1}: Value is required` };
+          }
+        });
+      }
+      if (data.ve_offered && data.veItems && !Array.isArray(data.veItems)) {
+        errors.veItems = { type: 'typeError', message: 'Value Engineering items must be an array' };
+      } else if (data.ve_offered && data.veItems) {
+        data.veItems.forEach((item, index) => {
+          if (!item.description) {
+            errors[`veItems[${index}].description`] = { type: 'required', message: `VE Item ${index + 1}: Description is required` };
+          }
+        });
+      }
+      if (data.leadTimes && !Array.isArray(data.leadTimes)) {
+        errors.leadTimes = { type: 'typeError', message: 'Lead Times must be an array' };
+      } else if (data.leadTimes) {
+        data.leadTimes.forEach((item, index) => {
+          if (!item.item) {
+            errors[`leadTimes[${index}].item`] = { type: 'required', message: `Lead Time ${index + 1}: Item is required` };
+          }
+        });
+      }
+      console.log('BuyoutForm.js: Resolver errors:', errors);
+      return { values: data, errors };
     },
   });
 
@@ -168,7 +250,6 @@ const BuyoutForm = ({ projectId, commitmentId, initialData, commitments, budgetL
   const { fields: veFields, append: appendVe, remove: removeVe } = useFieldArray({ control, name: 'veItems' });
   const { fields: leadFields, append: appendLead, remove: removeLead } = useFieldArray({ control, name: 'leadTimes' });
 
-  // Utility to sanitize date values
   const sanitizeDate = (date) => {
     if (!date) {
       console.log('sanitizeDate: Null or undefined date, returning null');
@@ -178,25 +259,51 @@ const BuyoutForm = ({ projectId, commitmentId, initialData, commitments, budgetL
     const parsed = dayjs(date);
     if (parsed.isValid()) {
       console.log('sanitizeDate: Valid date, returning Day.js object:', parsed);
-      return parsed; // Return Day.js object
+      return parsed;
     }
     console.warn('sanitizeDate: Invalid date detected:', date);
     return null;
   };
 
   useEffect(() => {
-    if (buyoutDetails && commitmentId) {
+    if (buyoutDetails && commitmentId && !isSaving) {
       console.log('BuyoutForm.js: buyoutDetails received:', buyoutDetails);
-      const formatCurrency = (value) => (value != null ? parseFloat(value) : null);
+      const formatCurrency = (value) => {
+        const num = value != null ? parseFloat(value) : 0;
+        return isNaN(num) ? 0 : num;
+      };
       const formatBoolean = (value) => !!value;
-
+  
+      const sanitizedVeItems = (buyoutDetails.veItems || []).map(item => ({
+        ...item,
+        description: item.description || item.item || 'Unknown',
+        original_value: formatCurrency(item.originalScope),
+        ve_value: formatCurrency(item.value),
+        savings: formatCurrency(item.savings),
+        status: item.status || 'Pending',
+      }));
+  
+      const sanitizedLeadTimes = (buyoutDetails.longLeadItems || []).map(item => ({
+        ...item,
+        time: item.lead_time != null ? parseInt(item.lead_time) : 0,
+        procured: item.status === 'Procured',
+      }));
+  
+      const sanitizedAllowances = (buyoutDetails.allowanceItems || []).map(item => ({
+        ...item,
+        value: formatCurrency(item.value),
+        reconciliation_value: formatCurrency(item.reconciliation_value),
+        variance: formatCurrency(item.variance),
+      }));
+  
       const newData = {
         number: buyoutDetails.commitmentNumber || '',
         vendor: buyoutDetails.vendor || '',
         title: buyoutDetails.title || '',
         status: buyoutDetails.status || '',
+        bic: buyoutDetails.bic || 'HB',
         executed: formatBoolean(buyoutDetails.isExecuted),
-        retainage_percent: buyoutDetails.defRetainage != null ? parseFloat(buyoutDetails.defRetainage) : null,
+        retainage_percent: formatCurrency(buyoutDetails.defRetainage),
         contract_start_date: sanitizeDate(buyoutDetails.contractStartDate),
         contract_estimated_completion_date: sanitizeDate(buyoutDetails.contractEstimatedCompletionDate),
         actual_completion_date: sanitizeDate(buyoutDetails.actualCompletionDate),
@@ -219,14 +326,13 @@ const BuyoutForm = ({ projectId, commitmentId, initialData, commitments, budgetL
         net_ve_savings: formatCurrency(buyoutDetails.veSavings),
         long_lead_included: formatBoolean(buyoutDetails.longLeadIncluded),
         long_lead_released: formatBoolean(buyoutDetails.longLeadReleased),
-        link_to_budget_item: buyoutDetails.budgetItem || null,
+        link_to_budget_item: buyoutDetails.budget_item_id ? String(buyoutDetails.budget_item_id) : null,
         budget: formatCurrency(buyoutDetails.budget),
         contract_value: formatCurrency(buyoutDetails.contractAmount),
-        savings_overage: formatCurrency(buyoutDetails.savingsLoss),
-        allowances: buyoutDetails.allowanceItems || [],
-        veItems: buyoutDetails.veItems || [],
-        leadTimes: buyoutDetails.longLeadItems || [],
-        additional_notes_comments: buyoutDetails.comments || '',
+        savings_overasties: formatCurrency(buyoutDetails.savingsLoss),
+        allowances: sanitizedAllowances,
+        veItems: sanitizedVeItems,
+        leadTimes: sanitizedLeadTimes,
         scope_review_meeting_date: sanitizeDate(buyoutDetails.scopeReviewMeetingDate),
         spm_review_date: sanitizeDate(buyoutDetails.spmReviewDate),
         spm_approval_status: buyoutDetails.spmApprovalStatus || '',
@@ -278,26 +384,54 @@ const BuyoutForm = ({ projectId, commitmentId, initialData, commitments, budgetL
         project_executive_date: sanitizeDate(buyoutDetails.projectExecutiveDate),
         cfo: buyoutDetails.cfo || '',
         cfo_date: sanitizeDate(buyoutDetails.cfoDate),
+        procore_id: commitmentId || null,
       };
-
+  
       console.log('BuyoutForm.js: Sanitized buyoutDetails for reset:', newData);
       reset(newData);
+      setInitialFormValues(newData); // Store initial values for comparison
     }
-  }, [buyoutDetails, commitmentId, reset]);
+  }, [buyoutDetails, commitmentId, reset, commitments, isSaving]);
 
   useEffect(() => {
     if (initialData && !commitmentId) {
       console.log('BuyoutForm.js: initialData received:', initialData);
-      const formatCurrency = (value) => (value != null ? parseFloat(value) : null);
+      const formatCurrency = (value) => {
+        const num = value != null ? parseFloat(value) : 0;
+        return isNaN(num) ? 0 : num;
+      };
       const formatBoolean = (value) => !!value;
+
+      const sanitizedVeItems = (initialData.veItems || []).map(item => ({
+        ...item,
+        description: item.description || item.item || 'Unknown',
+        original_value: formatCurrency(item.originalScope),
+        ve_value: formatCurrency(item.value),
+        savings: formatCurrency(item.savings),
+        status: item.status || 'Pending',
+      }));
+
+      const sanitizedLeadTimes = (initialData.leadTimes || []).map(item => ({
+        ...item,
+        time: item.time != null ? parseInt(item.time) : 0,
+        procured: item.procured || false,
+      }));
+
+      const sanitizedAllowances = (initialData.allowances || []).map(item => ({
+        ...item,
+        value: formatCurrency(item.value),
+        reconciliation_value: formatCurrency(item.reconciliation_value),
+        variance: formatCurrency(item.variance),
+      }));
 
       const newData = {
         number: initialData.number?.toString() || '',
         vendor: initialData.vendor || '',
         title: initialData.title || '',
         status: initialData.status || '',
+        bic: initialData.bic || 'HB',
         executed: formatBoolean(initialData.executed),
-        retainage_percent: initialData.retainage_percent != null ? parseFloat(initialData.retainage_percent) : null,
+        retainage_percent: formatCurrency(initialData.retainage_percent),
         contract_start_date: sanitizeDate(initialData.contract_start_date),
         contract_estimated_completion_date: sanitizeDate(initialData.contract_estimated_completion_date),
         actual_completion_date: sanitizeDate(initialData.actual_completion_date),
@@ -324,10 +458,9 @@ const BuyoutForm = ({ projectId, commitmentId, initialData, commitments, budgetL
         budget: formatCurrency(initialData.budget),
         contract_value: formatCurrency(initialData.contract_value),
         savings_overage: formatCurrency(initialData.savings_overage),
-        allowances: initialData.allowances || [],
-        veItems: initialData.veItems || [],
-        leadTimes: initialData.leadTimes || [],
-        additional_notes_comments: initialData.comments || '',
+        allowances: sanitizedAllowances,
+        veItems: sanitizedVeItems,
+        leadTimes: sanitizedLeadTimes,
         scope_review_meeting_date: sanitizeDate(initialData.scope_review_meeting_date),
         spm_review_date: sanitizeDate(initialData.spm_review_date),
         spm_approval_status: initialData.spm_approval_status || '',
@@ -379,64 +512,162 @@ const BuyoutForm = ({ projectId, commitmentId, initialData, commitments, budgetL
         project_executive_date: sanitizeDate(initialData.project_executive_date),
         cfo: initialData.cfo || '',
         cfo_date: sanitizeDate(initialData.cfo_date),
+        procore_id: initialData.procore_id || null,
       };
 
       console.log('BuyoutForm.js: Sanitized initialData for reset:', newData);
       reset(newData);
+      setInitialFormValues(newData); // Store initial values for comparison
     }
-  }, [initialData, commitmentId, reset]);
+  }, [initialData, commitmentId, reset, commitments]);
 
   const onFormSubmit = async (data) => {
-    console.log('BuyoutForm.js: Form submission data:', data);
+    console.log('BuyoutForm.js: onFormSubmit called with data:', data);
     setSaveButtonDisabled(true);
+    setIsSaving(true);
     message.loading({ content: 'Saving...', key: 'saveBuyout' });
 
     try {
-      // Convert Day.js objects to strings for submission
       const formattedData = {
         ...data,
-        contract_start_date: data.contract_start_date ? dayjs(data.contract_start_date).format('MM/DD/YYYY') : null,
-        contract_estimated_completion_date: data.contract_estimated_completion_date ? dayjs(data.contract_estimated_completion_date).format('MM/DD/YYYY') : null,
-        actual_completion_date: data.actual_completion_date ? dayjs(data.actual_completion_date).format('MM/DD/YYYY') : null,
-        contract_date: data.contract_date ? dayjs(data.contract_date).format('MM/DD/YYYY') : null,
-        signed_contract_received_date: data.signed_contract_received_date ? dayjs(data.signed_contract_received_date).format('MM/DD/YYYY') : null,
-        issued_on_date: data.issued_on_date ? dayjs(data.issued_on_date).format('MM/DD/YYYY') : null,
-        owner_meeting_date: data.owner_meeting_date ? dayjs(data.owner_meeting_date).format('MM/DD/YYYY') : null,
-        owner_approval_date: data.owner_approval_date ? dayjs(data.owner_approval_date).format('MM/DD/YYYY') : null,
-        scope_review_meeting_date: data.scope_review_meeting_date ? dayjs(data.scope_review_meeting_date).format('MM/DD/YYYY') : null,
-        spm_review_date: data.spm_review_date ? dayjs(data.spm_review_date).format('MM/DD/YYYY') : null,
-        px_review_date: data.px_review_date ? dayjs(data.px_review_date).format('MM/DD/YYYY') : null,
-        vp_review_date: data.vp_review_date ? dayjs(data.vp_review_date).format('MM/DD/YYYY') : null,
-        loi_sent_date: data.loi_sent_date ? dayjs(data.loi_sent_date).format('MM/DD/YYYY') : null,
-        loi_returned_date: data.loi_returned_date ? dayjs(data.loi_returned_date).format('MM/DD/YYYY') : null,
-        subcontract_agreement_sent_date: data.subcontract_agreement_sent_date ? dayjs(data.subcontract_agreement_sent_date).format('MM/DD/YYYY') : null,
-        fully_executed_sent_date: data.fully_executed_sent_date ? dayjs(data.fully_executed_sent_date).format('MM/DD/YYYY') : null,
-        project_executive_date: data.project_executive_date ? dayjs(data.project_executive_date).format('MM/DD/YYYY') : null,
-        cfo_date: data.cfo_date ? dayjs(data.cfo_date).format('MM/DD/YYYY') : null,
+        contract_start_date: data.contract_start_date ? dayjs(data.contract_start_date).format('YYYY-MM-DD') : null,
+        contract_estimated_completion_date: data.contract_estimated_completion_date ? dayjs(data.contract_estimated_completion_date).format('YYYY-MM-DD') : null,
+        actual_completion_date: data.actual_completion_date ? dayjs(data.actual_completion_date).format('YYYY-MM-DD') : null,
+        contract_date: data.contract_date ? dayjs(data.contract_date).format('YYYY-MM-DD') : null,
+        signed_contract_received_date: data.signed_contract_received_date ? dayjs(data.signed_contract_received_date).format('YYYY-MM-DD') : null,
+        issued_on_date: data.issued_on_date ? dayjs(data.issued_on_date).format('YYYY-MM-DD') : null,
+        owner_meeting_date: data.owner_meeting_date ? dayjs(data.owner_meeting_date).format('YYYY-MM-DD') : null,
+        owner_approval_date: data.owner_approval_date ? dayjs(data.owner_approval_date).format('YYYY-MM-DD') : null,
+        scope_review_meeting_date: data.scope_review_meeting_date ? dayjs(data.scope_review_meeting_date).format('YYYY-MM-DD') : null,
+        spm_review_date: data.spm_review_date ? dayjs(data.spm_review_date).format('YYYY-MM-DD') : null,
+        px_review_date: data.px_review_date ? dayjs(data.px_review_date).format('YYYY-MM-DD') : null,
+        vp_review_date: data.vp_review_date ? dayjs(data.vp_review_date).format('YYYY-MM-DD') : null,
+        loi_sent_date: data.loi_sent_date ? dayjs(data.loi_sent_date).format('YYYY-MM-DD') : null,
+        loi_returned_date: data.loi_returned_date ? dayjs(data.loi_returned_date).format('YYYY-MM-DD') : null,
+        subcontract_agreement_sent_date: data.subcontract_agreement_sent_date ? dayjs(data.subcontract_agreement_sent_date).format('YYYY-MM-DD') : null,
+        fully_executed_sent_date: data.fully_executed_sent_date ? dayjs(data.fully_executed_sent_date).format('YYYY-MM-DD') : null,
+        project_executive_date: data.project_executive_date ? dayjs(data.project_executive_date).format('YYYY-MM-DD') : null,
+        cfo_date: data.cfo_date ? dayjs(data.cfo_date).format('YYYY-MM-DD') : null,
       };
 
-      console.log('BuyoutForm.js: Formatted submission data:', formattedData);
-      await onSubmit(formattedData);
+      // Compute changed fields only
+      const changedData = getChangedFields(formattedData, initialFormValues);
+      changedData.project_id = projectId;
+      changedData.commitment_id = commitmentId;
+      console.log('BuyoutForm.js: Changed fields for submission:', changedData);
+
+      await onSubmit(changedData);
+
+      // Update the RTK Query cache with the submitted data
+      dispatch(
+        apiSlice.util.updateQueryData('getBuyoutData', { projectId, commitmentId }, (draft) => {
+          Object.keys(changedData).forEach((key) => {
+            if (draft[key] !== undefined) {
+              draft[key] = changedData[key];
+            }
+          });
+        })
+      );
+
       message.success({ content: 'Buyout saved successfully', key: 'saveBuyout', duration: 2 });
+      setIsEditing({});
     } catch (error) {
-      console.error('BuyoutForm.js: Save failed:', { error, message: error.message, data: error.data });
-      message.error({ content: `Failed to save buyout: ${error.data?.details || error.message}`, key: 'saveBuyout', duration: 4 });
+      console.error('BuyoutForm.js: Save failed:', {
+        error,
+        message: error.message,
+        status: error.status,
+        data: error.data,
+      });
+      const errorMessage = error.data?.details || error.data?.error || 'Unknown error';
+      message.error({ content: `Failed to save buyout: ${errorMessage}`, key: 'saveBuyout', duration: 4 });
     } finally {
       setSaveButtonDisabled(false);
+      setIsSaving(false);
     }
   };
 
-  // Define sections for each tab dynamically
-  const getSectionsForTab = (tabKey) => {
+  const onSectionSubmit = (sectionId) => async (data, event) => {
+    console.log(`BuyoutForm.js: onSectionSubmit called for section ${sectionId} with data:`, data);
+    event?.stopPropagation();
+    setSaveButtonDisabled(true);
+    setIsSaving(true);
+    message.loading({ content: `Saving section ${sectionId}...`, key: 'saveBuyout' });
+
+    try {
+      const formattedData = {
+        ...data,
+        contract_start_date: data.contract_start_date ? dayjs(data.contract_start_date).format('YYYY-MM-DD') : null,
+        contract_estimated_completion_date: data.contract_estimated_completion_date ? dayjs(data.contract_estimated_completion_date).format('YYYY-MM-DD') : null,
+        actual_completion_date: data.actual_completion_date ? dayjs(data.actual_completion_date).format('YYYY-MM-DD') : null,
+        contract_date: data.contract_date ? dayjs(data.contract_date).format('YYYY-MM-DD') : null,
+        signed_contract_received_date: data.signed_contract_received_date ? dayjs(data.signed_contract_received_date).format('YYYY-MM-DD') : null,
+        issued_on_date: data.issued_on_date ? dayjs(data.issued_on_date).format('YYYY-MM-DD') : null,
+        owner_meeting_date: data.owner_meeting_date ? dayjs(data.owner_meeting_date).format('YYYY-MM-DD') : null,
+        owner_approval_date: data.owner_approval_date ? dayjs(data.owner_approval_date).format('YYYY-MM-DD') : null,
+        scope_review_meeting_date: data.scope_review_meeting_date ? dayjs(data.scope_review_meeting_date).format('YYYY-MM-DD') : null,
+        spm_review_date: data.spm_review_date ? dayjs(data.spm_review_date).format('YYYY-MM-DD') : null,
+        px_review_date: data.px_review_date ? dayjs(data.px_review_date).format('YYYY-MM-DD') : null,
+        vp_review_date: data.vp_review_date ? dayjs(data.vp_review_date).format('YYYY-MM-DD') : null,
+        loi_sent_date: data.loi_sent_date ? dayjs(data.loi_sent_date).format('YYYY-MM-DD') : null,
+        loi_returned_date: data.loi_returned_date ? dayjs(data.loi_returned_date).format('YYYY-MM-DD') : null,
+        subcontract_agreement_sent_date: data.subcontract_agreement_sent_date ? dayjs(data.subcontract_agreement_sent_date).format('YYYY-MM-DD') : null,
+        fully_executed_sent_date: data.fully_executed_sent_date ? dayjs(data.fully_executed_sent_date).format('YYYY-MM-DD') : null,
+        project_executive_date: data.project_executive_date ? dayjs(data.project_executive_date).format('YYYY-MM-DD') : null,
+        cfo_date: data.cfo_date ? dayjs(data.cfo_date).format('YYYY-MM-DD') : null,
+      };
+
+      // Compute changed fields only
+      const changedData = getChangedFields(formattedData, initialFormValues);
+      changedData.project_id = projectId;
+      changedData.commitment_id = commitmentId;
+      console.log('BuyoutForm.js: Changed fields for submission:', changedData);
+
+      await onSubmit(changedData);
+
+      // Update the RTK Query cache with the submitted data
+      dispatch(
+        apiSlice.util.updateQueryData('getBuyoutData', { projectId, commitmentId }, (draft) => {
+          Object.keys(changedData).forEach((key) => {
+            if (draft[key] !== undefined) {
+              draft[key] = changedData[key];
+            }
+          });
+        })
+      );
+
+      message.success({ content: 'Section saved successfully', key: 'saveBuyout', duration: 2 });
+      setIsEditing((prev) => ({ ...prev, [sectionId]: false }));
+    } catch (error) {
+      console.error(`BuyoutForm.js: Section save failed for ${sectionId}:`, {
+        error,
+        message: error.message,
+        status: error.status,
+        data: error.data,
+      });
+      const errorMessage = error.data?.details || error.data?.error || 'Unknown error';
+      message.error({ content: `Failed to save section: ${errorMessage}`, key: 'saveBuyout', duration: 4 });
+    } finally {
+      setSaveButtonDisabled(false);
+      setIsSaving(false);
+    }
+  };
+
+  const toggleEdit = (sectionId) => {
+    console.log(`BuyoutForm.js: Toggling edit for section ${sectionId}`);
+    setIsEditing((prev) => ({ ...prev, [sectionId]: !prev[sectionId] }));
+  };
+
+  const getSectionsForTab = useCallback((tabKey) => {
+    console.log('BuyoutForm.js: Getting sections for tab:', tabKey);
     switch (tabKey) {
       case 'buyout-details':
         return [
           { title: 'General Information', id: 'general-information' },
+          { title: 'Financials', id: 'financials' },
           { title: 'Owner Approval', id: 'owner-approval' },
           { title: 'Allowances', id: 'allowances' },
           { title: 'Value Engineering', id: 'value-engineering' },
           { title: 'Long Lead Items', id: 'long-lead-items' },
-          { title: 'Financials', id: 'financials' },
         ];
       case 'contract-workflow':
         return [
@@ -463,179 +694,222 @@ const BuyoutForm = ({ projectId, commitmentId, initialData, commitments, budgetL
       default:
         return [];
     }
-  };
+  }, []);
 
-  const [activeSection, setActiveSection] = useState(0);
-  const [activeTab, setActiveTab] = useState('buyout-details');
+  const sections = useMemo(() => getSectionsForTab(activeTab), [activeTab, getSectionsForTab]);
 
-  const sections = getSectionsForTab(activeTab);
-
-  const handleNavClick = (index) => {
-    setActiveSection(index);
-    const sectionId = sections[index].id;
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+  const handleNavClick = useCallback((key) => {
+    console.log('BuyoutForm.js: Navigating to section:', key);
+    setActiveSection(key);
+    const element = document.getElementById(key);
+    const container = sectionsContainerRef.current;
+    if (element && container) {
+      const elementRect = element.getBoundingClientRect();
+      const containerRect = container.getBoundingClientRect();
+      const offsetTop = elementRect.top - containerRect.top + container.scrollTop - 16;
+      container.scrollTo({
+        top: offsetTop,
+        behavior: 'smooth',
+      });
     }
-  };
+  }, []);
 
-  const renderTabPane = (key) => {
-    switch (key) {
+  const renderContent = () => {
+    console.log('BuyoutForm.js: Rendering content for activeTab:', activeTab);
+    switch (activeTab) {
       case 'buyout-details':
         return (
-          <TabPane tab="Buyout Details" key="buyout-details">
-            <div className="tabContent">
-              <LoadingWrapper isLoading={isLoading} isError={isError} errorMessage="Error loading buyout details">
-                <GeneralInformationSection control={control} />
-                <FinancialsSection control={control} setValue={setValue} projectId={projectId} />
-                <OwnerApprovalSection control={control} />
-                <AllowanceSection
-                  control={control}
-                  allowanceIncluded={allowanceIncluded}
-                  allowanceFields={allowanceFields}
-                  appendAllowance={appendAllowance}
-                  removeAllowance={removeAllowance}
-                />
-                <ValueEngineeringSection
-                  control={control}
-                  veOffered={veOffered}
-                  veFields={veFields}
-                  appendVe={appendVe}
-                  removeVe={removeVe}
-                />
-                <LongLeadSection
-                  control={control}
-                  longLeadIncluded={longLeadIncluded}
-                  leadFields={leadFields}
-                  appendLead={appendLead}
-                  removeLead={removeLead}
-                />
-              </LoadingWrapper>
-            </div>
-          </TabPane>
+          <LoadingWrapper isLoading={isLoading || isFetching} isError={isError} errorMessage="Error loading buyout details">
+            <Collapse defaultActiveKey={sections.map((s) => s.id)}>
+              {sections.map((section) => (
+                <Panel
+                  header={section.title}
+                  key={section.id}
+                  className="buyout-form-panel"
+                  extra={
+                    !isEditing[section.id] && (
+                      <Button
+                        className="buyout-form-edit-button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggleEdit(section.id);
+                        }}
+                      >
+                        <EditOutlined /> Edit
+                      </Button>
+                    )
+                  }
+                >
+                  <div id={section.id}>
+                    {section.id === 'general-information' && (
+                      <GeneralInformationSection
+                        control={control}
+                        isEditing={isEditing[section.id] || false}
+                      />
+                    )}
+                    {section.id === 'financials' && (
+                      <FinancialsSection
+                        control={control}
+                        setValue={setValue}
+                        projectId={projectId}
+                        isEditing={isEditing[section.id] || false}
+                      />
+                    )}
+                    {section.id === 'owner-approval' && (
+                      <OwnerApprovalSection
+                        control={control}
+                        isEditing={isEditing[section.id] || false}
+                      />
+                    )}
+                    {section.id === 'allowances' && (
+                      <AllowanceSection
+                        control={control}
+                        allowanceIncluded={allowanceIncluded}
+                        allowanceFields={allowanceFields}
+                        appendAllowance={appendAllowance}
+                        removeAllowance={removeAllowance}
+                        isEditing={isEditing[section.id] || false}
+                      />
+                    )}
+                    {section.id === 'value-engineering' && (
+                      <ValueEngineeringSection
+                        control={control}
+                        veOffered={veOffered}
+                        veFields={veFields}
+                        appendVe={appendVe}
+                        removeVe={removeVe}
+                        isEditing={isEditing[section.id] || false}
+                      />
+                    )}
+                    {section.id === 'long-lead-items' && (
+                      <LongLeadSection
+                        control={control}
+                        longLeadIncluded={longLeadIncluded}
+                        leadFields={leadFields}
+                        appendLead={appendLead}
+                        removeLead={removeLead}
+                        isEditing={isEditing[section.id] || false}
+                      />
+                    )}
+                  </div>
+                  {isEditing[section.id] && (
+                    <div className="buyout-form-panel-footer">
+                      <Space>
+                        <Button
+                          className="buyout-form-cancel-button"
+                          onClick={() => toggleEdit(section.id)}
+                        >
+                          Cancel
+                        </Button>
+                        <Button
+                          className="buyout-form-save-button"
+                          onClick={(e) => {
+                            console.log(`BuyoutForm.js: Save button clicked for section ${section.id}`);
+                            handleSubmit((data) => onSectionSubmit(section.id)(data, e))();
+                          }}
+                          disabled={saveButtonDisabled}
+                        >
+                          Save
+                        </Button>
+                      </Space>
+                    </div>
+                  )}
+                </Panel>
+              ))}
+            </Collapse>
+          </LoadingWrapper>
         );
       case 'contract-workflow':
-        return (
-          <TabPane tab="Contract Workflow" key="contract-workflow">
-            <div className="tabContent">
-              <ContractWorkflowSection control={control} />
-            </div>
-          </TabPane>
-        );
+        return <ContractWorkflowSection control={control} />;
       case 'subcontract-checklist':
-        return (
-          <TabPane tab="Subcontract Checklist" key="subcontract-checklist">
-            <div className="tabContent">
-              <SubcontractChecklistSection control={control} />
-            </div>
-          </TabPane>
-        );
+        return <SubcontractChecklistSection control={control} />;
       case 'compliance-waiver':
-        return (
-          <TabPane tab="Compliance Waiver" key="compliance-waiver">
-            <div className="tabContent">
-              <ComplianceWaiverSection control={control} />
-            </div>
-          </TabPane>
-        );
+        return <ComplianceWaiverSection control={control} />;
       case 'history':
-        return (
-          <TabPane tab="History" key="history">
-            <div className="tabContent">
-              <HistorySection historyData={historyData} />
-            </div>
-          </TabPane>
-        );
+        return <HistorySection historyData={historyData} />;
       default:
         return null;
     }
   };
 
+  const collapsed = isSmallScreen ? userCollapsed : false;
+
   return (
-    <Layout style={{ height: '100vh', backgroundColor: '#f9f9f9', overflow: 'hidden' }}>
-      <Sider
-        width={250}
-        style={{
-          backgroundColor: '#f0f2f5',
-          position: 'fixed',
-          height: '100vh',
-          overflowY: 'auto',
-          padding: '16px',
-          zIndex: 10,
-        }}
-      >
-        {activeTab === 'buyout-details' ? (
-          <>
-            <Steps
-              direction="vertical"
-              size="small"
-              current={activeSection}
-              onChange={handleNavClick}
-              items={sections.map(section => ({ title: section.title }))}
-              className="buyoutFormSteps"
+    <div>
+      {Object.keys(errors).length > 0 && (
+        <Alert
+          message="Form Validation Errors"
+          description={Object.values(errors).map((err) => err.message).join(', ')}
+          type="error"
+          showIcon
+          style={{ marginBottom: '16px' }}
+        />
+      )}
+      <Layout className="buyout-form-layout">
+        <Sider width={250} collapsed={collapsed} collapsedWidth={0} className="buyout-form-sider">
+          <div className="buyout-form-sider-content">
+            <Menu
+              mode="inline"
+              selectedKeys={[activeSection]}
+              items={sections.map((section) => ({
+                key: section.id,
+                label: section.title,
+                onClick: () => handleNavClick(section.id),
+              }))}
+              className="buyout-form-sider-menu"
             />
-            <CommentsSection control={control} />
-          </>
-        ) : (
-          <Steps
-            direction="vertical"
-            size="small"
-            current={activeSection}
-            onChange={handleNavClick}
-            items={sections.map(section => ({ title: section.title }))}
-            className="buyoutFormSteps"
-          />
-        )}
-      </Sider>
-      <Content style={{ marginLeft: 250, height: '100vh', overflow: 'hidden' }}>
-        <div className="fixedTabsContainer">
-          <Tabs
-            activeKey={activeTab}
-            onChange={(key) => {
-              setActiveTab(key);
-              setActiveSection(0);
+            <div className="buyout-form-sider-comments">
+              <CommentsSection
+                projectId={projectId}
+                itemId={commitmentId}
+                userData={userData}
+                toolName={toolName || "BuyoutForm"}
+              />
+            </div>
+          </div>
+        </Sider>
+        <Content className="buyout-form-content">
+          {isSmallScreen && (
+            <Button
+              type="text"
+              icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+              onClick={() => setUserCollapsed(!userCollapsed)}
+              className="buyout-form-toggle-button"
+            />
+          )}
+          <div className="buyout-form-sections-container" ref={sectionsContainerRef}>
+            {renderContent()}
+          </div>
+          <FloatButton
+            shape="circle"
+            icon={<SaveOutlined />}
+            type="primary"
+            onClick={handleSubmit(onFormSubmit)}
+            tooltip="Save"
+            disabled={saveButtonDisabled || !isValid}
+            htmlType="submit"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if ((e.key === 'Enter' || e.key === ' ') && !saveButtonDisabled && isValid) {
+                handleSubmit(onFormSubmit)();
+              }
             }}
-            className="fixedTabs"
-            style={{ background: '#f9f9f9' }}
-          >
-            {renderTabPane('buyout-details')}
-            {renderTabPane('contract-workflow')}
-            {renderTabPane('subcontract-checklist')}
-            {renderTabPane('compliance-waiver')}
-            {renderTabPane('history')}
-          </Tabs>
-        </div>
-        <FloatButton
-          shape="circle"
-          icon={<SaveOutlined />}
-          type="primary"
-          onClick={handleSubmit(onFormSubmit)}
-          tooltip="Save"
-          style={{ position: 'fixed', right: 72, bottom: 72, zIndex: 1000 }}
-          disabled={saveButtonDisabled}
-          htmlType="submit"
-          tabIndex={0}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter' || e.key === ' ' && !saveButtonDisabled) {
-              handleSubmit(onFormSubmit)();
-            }
-          }}
-        />
-        <FloatButton
-          shape="circle"
-          icon={<CloseOutlined />}
-          onClick={onCancel}
-          tooltip="Cancel"
-          style={{ position: 'fixed', right: 72, bottom: 16, zIndex: 1000 }}
-          tabIndex={0}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-              onCancel();
-            }
-          }}
-        />
-      </Content>
-    </Layout>
+          />
+          <FloatButton
+            shape="circle"
+            icon={<CloseOutlined />}
+            onClick={onCancel}
+            tooltip="Cancel"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                onCancel();
+              }
+            }}
+          />
+        </Content>
+      </Layout>
+    </div>
   );
 };
 
@@ -647,6 +921,14 @@ BuyoutForm.propTypes = {
   budgetLineItems: PropTypes.array.isRequired,
   onSubmit: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
+  activeTab: PropTypes.string.isRequired,
+  onTabChange: PropTypes.func.isRequired,
+  userData: PropTypes.object,
+  toolName: PropTypes.string,
+};
+
+BuyoutForm.defaultProps = {
+  toolName: "BuyoutForm",
 };
 
 export default React.memo(BuyoutForm);

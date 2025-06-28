@@ -81,6 +81,7 @@
         "react-hook-form": "^7.54.2",
         "react-number-format": "^5.4.3",
         "react-redux": "^9.2.0",
+        "reselect": "^5.1.1",
         "sequelize": "^6.37.7",
         "slate": "^0.112.0",
         "slate-react": "^0.112.1",

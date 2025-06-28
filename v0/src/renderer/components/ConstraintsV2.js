@@ -14,9 +14,9 @@ import { PlusOutlined } from '@ant-design/icons';
 import ComponentHeader from './ComponentHeader.js';
 import TableModuleV2 from './TableModuleV2.js';
 import moment from 'moment';
-import '../styles/global.css';
+// import '../styles/global.css';
 import '../styles/TableModule.css';
-import '../styles/Components.css';
+// import '../styles/Components.css';
 
 const { Option } = Select;
 const { TabPane } = Tabs;

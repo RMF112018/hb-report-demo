@@ -105,6 +105,20 @@ contextBridge.exposeInMainWorld('electronAPI', {
   updateManpower: (updatedEntry) => ipcRenderer.invoke('update-manpower', updatedEntry),
   deleteManpower: (entryId) => ipcRenderer.invoke('delete-manpower', entryId),
 
+  // Comments methods
+  getComments: (projectId, itemId, toolName) => {
+    console.log('preload.cjs: getComments called with:', { projectId, itemId, toolName });
+    const result = ipcRenderer.invoke('get-comments', { projectId, itemId, toolName });
+    console.log('preload.cjs: getComments result:', result);
+    return result;
+  },
+  addComment: (projectId, itemId, content, parentId, toolName, author) => {
+    console.log('preload.cjs: addComment called with:', { projectId, itemId, content, parentId, toolName, author });
+    const result = ipcRenderer.invoke('add-comment', { projectId, itemId, content, parentId, toolName, author });
+    console.log('preload.cjs: addComment result:', result);
+    return result;
+  },
+
   // Utility methods
   log: (level, message, stack) => {
     ipcRenderer.send('log', { level, message, stack, process: 'renderer' });

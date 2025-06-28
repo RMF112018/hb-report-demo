@@ -8,8 +8,8 @@
 
 /* Root variables for colors and fonts */
 :root {
-    --hb-blue: rgb(0, 33, 165);
-    --hb-orange: rgb(250, 70, 22);
+    --hb-blue: #0021a5;
+    --hb-orange: #fa4616;
     --content-color: #525252;
     --font-family: 'Montserrat', sans-serif;
 }
@@ -257,10 +257,18 @@ div.component-header {
     top: 0;
     z-index: 10;
     background-color: #fff;
-    padding: 16px 0;
+    padding: 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle bottom shadow */
 }
 
 div.component-header div.component-header-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+div.component-header div.component-header-top-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -296,50 +304,64 @@ div.component-header div.component-header-left h1 {
     line-height: 1;
 }
 
-div.component-header div.component-header-tabs {
+div.component-header div.component-header-tabs-row {
     display: flex;
     align-items: center;
-    margin-left: 8px;
+    /* border-top: 1px solid #e8e8e8; */
+    padding-top: 8px;
 }
 
-div.component-header div.component-header-tabs .ant-tabs {
+div.component-header div.component-header-tabs-row .component-header-tabs {
+    flex: 1;
     margin-bottom: 0 !important;
 }
 
-div.component-header div.component-header-tabs .ant-tabs-nav {
+div.component-header div.component-header-tabs-row .ant-tabs-nav {
     margin-bottom: 0 !important;
+    width: 100%;
 }
 
-div.component-header div.component-header-tabs .ant-tabs-tab {
+div.component-header div.component-header-tabs-row .ant-tabs-nav-list {
+    display: flex;
+    justify-content: flex-start;
+    gap: 8px;
+}
+
+div.component-header div.component-header-tabs-row .ant-tabs-tab {
     padding: 4px 12px !important;
     font-family: var(--font-family) !important;
     font-weight: 500 !important;
     color: #4a4a4a !important;
     border: none !important;
-    margin-right: 8px !important;
+    margin-right: 0 !important;
+    flex: 0 0 auto;
+    display: inline-block !important;
 }
 
-div.component-header div.component-header-tabs .ant-tabs-tab:hover {
+div.component-header div.component-header-tabs-row .ant-tabs-tab:hover {
     color: var(--hb-blue) !important;
 }
 
-div.component-header div.component-header-tabs .ant-tabs-tab-active .ant-tabs-tab-btn {
+div.component-header div.component-header-tabs-row .ant-tabs-tab-active .ant-tabs-tab-btn {
     color: var(--hb-blue) !important;
     font-weight: 700 !important;
     border-bottom: 2px solid var(--hb-blue) !important;
 }
 
-div.component-header div.component-header-tabs .ant-tabs-ink-bar {
+div.component-header div.component-header-tabs-row .ant-tabs-ink-bar {
     display: none !important;
 }
 
-div.component-header div.component-header-tabs .ant-btn {
+div.component-header div.component-header-tabs-row .more-tabs-button {
     padding: 4px 8px !important;
     font-size: 14px !important;
     color: #4a4a4a !important;
+    height: 32px !important;
+    display: flex !important;
+    align-items: center !important;
 }
 
-div.component-header div.component-header-tabs .ant-btn:hover {
+div.component-header div.component-header-tabs-row .more-tabs-button:hover {
     color: var(--hb-blue) !important;
 }
 

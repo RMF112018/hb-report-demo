@@ -1,0 +1,656 @@
+{
+  "users": [
+    {
+      "id": "alice-ceo-001",
+      "firstName": "Alice",
+      "lastName": "CEO",
+      "email": "alice.ceo@hb.com",
+      "role": "c-suite",
+      "company": "Hedrick Brothers",
+      "department": "Executive",
+      "phone": "+1 (555) 123-4567",
+      "createdAt": "2024-01-15T08:00:00Z",
+      "lastLogin": "2024-12-16T09:15:00Z",
+      "isActive": true,
+      "permissions": {
+        "canReassignStaff": true,
+        "canViewAllProjects": true,
+        "canApproveBudgets": true,
+        "canAccessForecasting": true
+      }
+    },
+    {
+      "id": "john-doe-px-001",
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "john.doe@hb.com",
+      "role": "project-executive",
+      "company": "Hedrick Brothers",
+      "department": "Operations",
+      "phone": "+1 (555) 234-5678",
+      "createdAt": "2024-02-01T08:00:00Z",
+      "lastLogin": "2024-12-16T08:45:00Z",
+      "isActive": true,
+      "permissions": {
+        "canApproveSPCRs": true,
+        "canViewProjectStaffing": true,
+        "canManageProjects": true
+      }
+    },
+    {
+      "id": "maya-pm-001",
+      "firstName": "Maya",
+      "lastName": "PM",
+      "email": "maya.pm@hb.com",
+      "role": "project-manager",
+      "company": "Hedrick Brothers",
+      "department": "Project Management",
+      "phone": "+1 (555) 345-6789",
+      "createdAt": "2024-03-01T08:00:00Z",
+      "lastLogin": "2024-12-16T07:30:00Z",
+      "isActive": true,
+      "permissions": {
+        "canCreateSPCRs": true,
+        "canViewOwnProjects": true,
+        "canManageTeam": true
+      }
+    }
+  ],
+  "employees": [
+    {
+      "id": "emp-001",
+      "firstName": "John",
+      "lastName": "Smith",
+      "position": "PM1",
+      "positionTitle": "Project Manager I",
+      "email": "john.smith@hb.com",
+      "phone": "+1 (555) 111-2222",
+      "department": "Project Management",
+      "hireDate": "2023-01-15",
+      "currentProjectId": "proj-001",
+      "skillLevel": "Senior",
+      "hourlyRate": 85.0,
+      "availability": "Full-time",
+      "certifications": ["PMP", "OSHA 30"],
+      "isActive": true
+    },
+    {
+      "id": "emp-002",
+      "firstName": "Jane",
+      "lastName": "Doe",
+      "position": "SE",
+      "positionTitle": "Site Engineer",
+      "email": "jane.doe@hb.com",
+      "phone": "+1 (555) 222-3333",
+      "department": "Engineering",
+      "hireDate": "2023-03-20",
+      "currentProjectId": "proj-001",
+      "skillLevel": "Mid-level",
+      "hourlyRate": 65.0,
+      "availability": "Full-time",
+      "certifications": ["EIT", "OSHA 10"],
+      "isActive": true
+    },
+    {
+      "id": "emp-003",
+      "firstName": "Mike",
+      "lastName": "Johnson",
+      "position": "QC",
+      "positionTitle": "Quality Control Inspector",
+      "email": "mike.johnson@hb.com",
+      "phone": "+1 (555) 333-4444",
+      "department": "Quality Assurance",
+      "hireDate": "2022-11-10",
+      "currentProjectId": "proj-002",
+      "skillLevel": "Senior",
+      "hourlyRate": 70.0,
+      "availability": "Full-time",
+      "certifications": ["ACI", "NRMCA"],
+      "isActive": true
+    },
+    {
+      "id": "emp-004",
+      "firstName": "Sarah",
+      "lastName": "Wilson",
+      "position": "SF",
+      "positionTitle": "Safety Officer",
+      "email": "sarah.wilson@hb.com",
+      "phone": "+1 (555) 444-5555",
+      "department": "Safety",
+      "hireDate": "2023-05-01",
+      "currentProjectId": "proj-002",
+      "skillLevel": "Senior",
+      "hourlyRate": 75.0,
+      "availability": "Full-time",
+      "certifications": ["CSP", "OSHA 30", "First Aid"],
+      "isActive": true
+    },
+    {
+      "id": "emp-005",
+      "firstName": "David",
+      "lastName": "Brown",
+      "position": "SU",
+      "positionTitle": "Superintendent",
+      "email": "david.brown@hb.com",
+      "phone": "+1 (555) 555-6666",
+      "department": "Field Operations",
+      "hireDate": "2021-08-15",
+      "currentProjectId": "proj-003",
+      "skillLevel": "Senior",
+      "hourlyRate": 95.0,
+      "availability": "Full-time",
+      "certifications": ["OSHA 30", "Crane Operator"],
+      "isActive": true
+    },
+    {
+      "id": "emp-006",
+      "firstName": "Lisa",
+      "lastName": "Garcia",
+      "position": "FE",
+      "positionTitle": "Field Engineer",
+      "email": "lisa.garcia@hb.com",
+      "phone": "+1 (555) 666-7777",
+      "department": "Engineering",
+      "hireDate": "2023-07-10",
+      "currentProjectId": "proj-003",
+      "skillLevel": "Mid-level",
+      "hourlyRate": 68.0,
+      "availability": "Full-time",
+      "certifications": ["EIT", "AutoCAD"],
+      "isActive": true
+    },
+    {
+      "id": "emp-007",
+      "firstName": "Robert",
+      "lastName": "Taylor",
+      "position": "PM2",
+      "positionTitle": "Project Manager II",
+      "email": "robert.taylor@hb.com",
+      "phone": "+1 (555) 777-8888",
+      "department": "Project Management",
+      "hireDate": "2022-04-01",
+      "currentProjectId": "proj-004",
+      "skillLevel": "Senior",
+      "hourlyRate": 90.0,
+      "availability": "Full-time",
+      "certifications": ["PMP", "LEED AP"],
+      "isActive": true
+    },
+    {
+      "id": "emp-008",
+      "firstName": "Amanda",
+      "lastName": "Martinez",
+      "position": "QC",
+      "positionTitle": "Quality Control Inspector",
+      "email": "amanda.martinez@hb.com",
+      "phone": "+1 (555) 888-9999",
+      "department": "Quality Assurance",
+      "hireDate": "2023-09-15",
+      "currentProjectId": "proj-004",
+      "skillLevel": "Mid-level",
+      "hourlyRate": 62.0,
+      "availability": "Full-time",
+      "certifications": ["ACI Level 1"],
+      "isActive": true
+    },
+    {
+      "id": "emp-009",
+      "firstName": "Chris",
+      "lastName": "Anderson",
+      "position": "SE",
+      "positionTitle": "Site Engineer",
+      "email": "chris.anderson@hb.com",
+      "phone": "+1 (555) 999-0000",
+      "department": "Engineering",
+      "hireDate": "2023-02-28",
+      "currentProjectId": "proj-005",
+      "skillLevel": "Junior",
+      "hourlyRate": 55.0,
+      "availability": "Full-time",
+      "certifications": ["EIT"],
+      "isActive": true
+    },
+    {
+      "id": "emp-010",
+      "firstName": "Jennifer",
+      "lastName": "White",
+      "position": "PA",
+      "positionTitle": "Project Administrator",
+      "email": "jennifer.white@hb.com",
+      "phone": "+1 (555) 000-1111",
+      "department": "Administration",
+      "hireDate": "2022-12-01",
+      "currentProjectId": "proj-005",
+      "skillLevel": "Mid-level",
+      "hourlyRate": 45.0,
+      "availability": "Full-time",
+      "certifications": ["Microsoft Office Specialist"],
+      "isActive": true
+    }
+  ],
+  "projects": [
+    {
+      "id": "proj-001",
+      "name": "Downtown Medical Center",
+      "description": "350,000 sq ft medical facility with parking garage",
+      "status": "active",
+      "startDate": "2024-03-01",
+      "endDate": "2026-08-31",
+      "contractValue": 85000000,
+      "location": "Atlanta, GA",
+      "phase": "Foundation",
+      "progress": 25,
+      "projectExecutive": "john-doe-px-001",
+      "projectManager": "maya-pm-001",
+      "requiredStaffing": {
+        "PM1": 1,
+        "SE": 2,
+        "QC": 1,
+        "SF": 1,
+        "SU": 1
+      },
+      "currentStaffing": {
+        "PM1": 1,
+        "SE": 1,
+        "QC": 0,
+        "SF": 0,
+        "SU": 0
+      }
+    },
+    {
+      "id": "proj-002",
+      "name": "Luxury Residential Tower",
+      "description": "42-story residential tower with retail base",
+      "status": "active",
+      "startDate": "2024-01-15",
+      "endDate": "2026-12-15",
+      "contractValue": 125000000,
+      "location": "Charlotte, NC",
+      "phase": "Structure",
+      "progress": 35,
+      "projectExecutive": "john-doe-px-001",
+      "projectManager": "maya-pm-001",
+      "requiredStaffing": {
+        "PM2": 1,
+        "SE": 1,
+        "QC": 2,
+        "SF": 1,
+        "SU": 1,
+        "FE": 1
+      },
+      "currentStaffing": {
+        "PM2": 0,
+        "SE": 0,
+        "QC": 1,
+        "SF": 1,
+        "SU": 0,
+        "FE": 0
+      }
+    },
+    {
+      "id": "proj-003",
+      "name": "Corporate Headquarters",
+      "description": "15-story office building with conference center",
+      "status": "active",
+      "startDate": "2024-05-01",
+      "endDate": "2026-10-31",
+      "contractValue": 65000000,
+      "location": "Raleigh, NC",
+      "phase": "MEP Rough-in",
+      "progress": 45,
+      "projectExecutive": "john-doe-px-001",
+      "projectManager": "maya-pm-001",
+      "requiredStaffing": {
+        "PM1": 1,
+        "SU": 1,
+        "FE": 1,
+        "QC": 1,
+        "SF": 1
+      },
+      "currentStaffing": {
+        "PM1": 0,
+        "SU": 1,
+        "FE": 1,
+        "QC": 0,
+        "SF": 0
+      }
+    },
+    {
+      "id": "proj-004",
+      "name": "University Science Building",
+      "description": "4-story research facility with specialized labs",
+      "status": "active",
+      "startDate": "2024-02-01",
+      "endDate": "2025-11-30",
+      "contractValue": 45000000,
+      "location": "Durham, NC",
+      "phase": "Interior Finishes",
+      "progress": 65,
+      "projectExecutive": "john-doe-px-001",
+      "projectManager": "maya-pm-001",
+      "requiredStaffing": {
+        "PM2": 1,
+        "QC": 1,
+        "SE": 1,
+        "SF": 1
+      },
+      "currentStaffing": {
+        "PM2": 1,
+        "QC": 1,
+        "SE": 0,
+        "SF": 0
+      }
+    },
+    {
+      "id": "proj-005",
+      "name": "Mixed-Use Development",
+      "description": "Retail, office, and residential complex",
+      "status": "active",
+      "startDate": "2024-06-01",
+      "endDate": "2027-03-31",
+      "contractValue": 95000000,
+      "location": "Greensboro, NC",
+      "phase": "Site Preparation",
+      "progress": 15,
+      "projectExecutive": "john-doe-px-001",
+      "projectManager": "maya-pm-001",
+      "requiredStaffing": {
+        "PM1": 1,
+        "SE": 1,
+        "PA": 1,
+        "SF": 1,
+        "SU": 1
+      },
+      "currentStaffing": {
+        "PM1": 0,
+        "SE": 1,
+        "PA": 1,
+        "SF": 0,
+        "SU": 0
+      }
+    }
+  ],
+  "staffingPlans": [
+    {
+      "id": "plan-001",
+      "projectId": "proj-001",
+      "position": "PM1",
+      "headcount": 2,
+      "startDate": "2024-10-01",
+      "endDate": "2026-07-31",
+      "status": "approved",
+      "approvedBy": "john-doe-px-001",
+      "approvalDate": "2024-09-15T10:30:00Z",
+      "comments": "Additional PM needed for complex medical systems coordination",
+      "createdBy": "maya-pm-001",
+      "createdAt": "2024-09-10T14:20:00Z"
+    },
+    {
+      "id": "plan-002",
+      "projectId": "proj-002",
+      "position": "SE",
+      "headcount": 1,
+      "startDate": "2024-11-01",
+      "endDate": "2026-08-31",
+      "status": "planned",
+      "comments": "Site engineer for structural phase coordination",
+      "createdBy": "maya-pm-001",
+      "createdAt": "2024-10-05T09:15:00Z"
+    },
+    {
+      "id": "plan-003",
+      "projectId": "proj-003",
+      "position": "QC",
+      "headcount": 1,
+      "startDate": "2024-12-01",
+      "endDate": "2026-06-30",
+      "status": "approved",
+      "approvedBy": "john-doe-px-001",
+      "approvalDate": "2024-11-20T16:45:00Z",
+      "comments": "Quality control for MEP systems",
+      "createdBy": "maya-pm-001",
+      "createdAt": "2024-11-15T11:30:00Z"
+    },
+    {
+      "id": "plan-004",
+      "projectId": "proj-004",
+      "position": "SF",
+      "headcount": 1,
+      "startDate": "2024-10-15",
+      "endDate": "2025-10-31",
+      "status": "planned",
+      "comments": "Safety officer for lab construction phase",
+      "createdBy": "maya-pm-001",
+      "createdAt": "2024-10-01T13:45:00Z"
+    },
+    {
+      "id": "plan-005",
+      "projectId": "proj-005",
+      "position": "SU",
+      "headcount": 1,
+      "startDate": "2025-01-01",
+      "endDate": "2027-01-31",
+      "status": "approved",
+      "approvedBy": "john-doe-px-001",
+      "approvalDate": "2024-12-01T08:20:00Z",
+      "comments": "Superintendent for vertical construction phase",
+      "createdBy": "maya-pm-001",
+      "createdAt": "2024-11-25T15:10:00Z"
+    }
+  ],
+  "spcrs": [
+    {
+      "id": "spcr-001",
+      "projectId": "proj-001",
+      "requestType": "add",
+      "position": "SE",
+      "currentHeadcount": 1,
+      "requestedHeadcount": 2,
+      "startDate": "2025-01-01",
+      "endDate": "2026-08-31",
+      "status": "pending",
+      "priority": "high",
+      "justification": "Additional site engineer needed for complex medical equipment coordination and increased scope",
+      "businessImpact": "Critical for maintaining schedule and quality standards",
+      "estimatedCost": 156000,
+      "submittedBy": "maya-pm-001",
+      "submittedAt": "2024-12-10T14:30:00Z",
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "comments": [],
+      "attachments": []
+    },
+    {
+      "id": "spcr-002",
+      "projectId": "proj-002",
+      "requestType": "remove",
+      "position": "QC",
+      "currentHeadcount": 2,
+      "requestedHeadcount": 1,
+      "startDate": "2025-02-01",
+      "endDate": "2026-12-15",
+      "status": "approved",
+      "priority": "medium",
+      "justification": "Structural phase completion reduces QC requirements",
+      "businessImpact": "Cost savings without compromising quality",
+      "estimatedCost": -84000,
+      "submittedBy": "maya-pm-001",
+      "submittedAt": "2024-11-25T10:15:00Z",
+      "reviewedBy": "john-doe-px-001",
+      "reviewedAt": "2024-12-05T09:45:00Z",
+      "approvalComments": "Approved with condition to maintain quality standards",
+      "comments": [
+        {
+          "id": "comment-001",
+          "author": "john-doe-px-001",
+          "content": "Please ensure remaining QC inspector has adequate support",
+          "timestamp": "2024-12-05T09:47:00Z"
+        }
+      ],
+      "attachments": []
+    },
+    {
+      "id": "spcr-003",
+      "projectId": "proj-003",
+      "requestType": "add",
+      "position": "FE",
+      "currentHeadcount": 1,
+      "requestedHeadcount": 2,
+      "startDate": "2025-03-01",
+      "endDate": "2026-10-31",
+      "status": "rejected",
+      "priority": "low",
+      "justification": "Additional field engineer for MEP coordination",
+      "businessImpact": "Improved coordination and reduced rework",
+      "estimatedCost": 122400,
+      "submittedBy": "maya-pm-001",
+      "submittedAt": "2024-12-01T16:20:00Z",
+      "reviewedBy": "john-doe-px-001",
+      "reviewedAt": "2024-12-08T11:30:00Z",
+      "rejectionReason": "Current staffing adequate for project phase",
+      "comments": [
+        {
+          "id": "comment-002",
+          "author": "john-doe-px-001",
+          "content": "Consider cross-training existing staff instead",
+          "timestamp": "2024-12-08T11:32:00Z"
+        },
+        {
+          "id": "comment-003",
+          "author": "maya-pm-001",
+          "content": "Will explore cross-training options as suggested",
+          "timestamp": "2024-12-08T14:15:00Z"
+        }
+      ],
+      "attachments": []
+    }
+  ],
+  "pipelineProjects": [
+    {
+      "id": "pipeline-001",
+      "name": "Regional Hospital Expansion",
+      "description": "200,000 sq ft hospital wing addition",
+      "estimatedValue": 75000000,
+      "probabilityOfWin": 85,
+      "expectedStartDate": "2025-04-01",
+      "expectedDuration": 30,
+      "location": "Winston-Salem, NC",
+      "phase": "Proposal",
+      "estimatedStaffing": {
+        "PM1": 1,
+        "PM2": 1,
+        "SE": 2,
+        "QC": 2,
+        "SF": 1,
+        "SU": 1,
+        "FE": 1
+      }
+    },
+    {
+      "id": "pipeline-002",
+      "name": "Tech Campus Phase II",
+      "description": "Multi-building technology campus expansion",
+      "estimatedValue": 150000000,
+      "probabilityOfWin": 70,
+      "expectedStartDate": "2025-06-01",
+      "expectedDuration": 36,
+      "location": "Research Triangle Park, NC",
+      "phase": "Negotiation",
+      "estimatedStaffing": {
+        "PM1": 2,
+        "PM2": 1,
+        "SE": 3,
+        "QC": 2,
+        "SF": 2,
+        "SU": 2,
+        "FE": 2,
+        "PA": 1
+      }
+    },
+    {
+      "id": "pipeline-003",
+      "name": "Affordable Housing Complex",
+      "description": "300-unit affordable housing development",
+      "estimatedValue": 45000000,
+      "probabilityOfWin": 60,
+      "expectedStartDate": "2025-08-01",
+      "expectedDuration": 24,
+      "location": "Asheville, NC",
+      "phase": "Bidding",
+      "estimatedStaffing": {
+        "PM1": 1,
+        "SE": 1,
+        "QC": 1,
+        "SF": 1,
+        "SU": 1,
+        "PA": 1
+      }
+    }
+  ],
+  "positions": [
+    {
+      "code": "PM1",
+      "title": "Project Manager I",
+      "department": "Project Management",
+      "level": "Senior",
+      "baseRate": 85.0,
+      "description": "Manages single projects up to $50M value"
+    },
+    {
+      "code": "PM2",
+      "title": "Project Manager II",
+      "department": "Project Management",
+      "level": "Senior",
+      "baseRate": 90.0,
+      "description": "Manages complex projects over $50M value"
+    },
+    {
+      "code": "SE",
+      "title": "Site Engineer",
+      "department": "Engineering",
+      "level": "Mid-level",
+      "baseRate": 65.0,
+      "description": "Provides engineering support on construction sites"
+    },
+    {
+      "code": "FE",
+      "title": "Field Engineer",
+      "department": "Engineering",
+      "level": "Mid-level",
+      "baseRate": 68.0,
+      "description": "Coordinates field engineering activities"
+    },
+    {
+      "code": "QC",
+      "title": "Quality Control Inspector",
+      "department": "Quality Assurance",
+      "level": "Mid-level",
+      "baseRate": 70.0,
+      "description": "Ensures quality standards and compliance"
+    },
+    {
+      "code": "SF",
+      "title": "Safety Officer",
+      "department": "Safety",
+      "level": "Senior",
+      "baseRate": 75.0,
+      "description": "Manages safety programs and compliance"
+    },
+    {
+      "code": "SU",
+      "title": "Superintendent",
+      "department": "Field Operations",
+      "level": "Senior",
+      "baseRate": 95.0,
+      "description": "Oversees field operations and subcontractors"
+    },
+    {
+      "code": "PA",
+      "title": "Project Administrator",
+      "department": "Administration",
+      "level": "Mid-level",
+      "baseRate": 45.0,
+      "description": "Provides administrative support to project teams"
+    }
+  ]
+}

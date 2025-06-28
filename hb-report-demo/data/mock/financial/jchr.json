@@ -1,0 +1,4722 @@
+[
+  {
+    "project_id": 2525840,
+    "project_name": "Palm Beach Luxury Estate",
+    "jobCostItems": [
+      {
+        "costCode": "1000.10-01-571.MAT",
+        "description": "1000 - PALM BEACH LUXURY ESTATE-CONSTR.EROSION & SEDIMENT CONTROL.Materials",
+        "budgetAmount": 2683417.02,
+        "actualCost": 2734709.65,
+        "commitments": 2552978.74,
+        "variance": 51292.63,
+        "percentComplete": 53.7,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-18-000.MAT",
+        "description": "1000 - PALM BEACH LUXURY ESTATE-CONSTR.INSURANCE/FEE/BOND BLDR RISK.Materials",
+        "budgetAmount": 2130577.19,
+        "actualCost": 2141836.69,
+        "commitments": 2166332.85,
+        "variance": 11259.5,
+        "percentComplete": 79.5,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-515.MAT",
+        "description": "1000 - PALM BEACH LUXURY ESTATE-CONSTR.TEMPORARY FENCE.Materials",
+        "budgetAmount": 2232517.21,
+        "actualCost": 2331283.7,
+        "commitments": 2168233.7,
+        "variance": 98766.49,
+        "percentComplete": 99.6,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-517.MAT",
+        "description": "1000 - PALM BEACH LUXURY ESTATE-CONSTR.TEMPORARY TELEPHONE.Materials",
+        "budgetAmount": 2507712.44,
+        "actualCost": 2597420.66,
+        "commitments": 2531405.11,
+        "variance": 89708.22,
+        "percentComplete": 63.7,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-744.LBN",
+        "description": "1000 - PALM BEACH LUXURY ESTATE-CONSTR.TRASH REMOVAL.Labor Burden",
+        "budgetAmount": 2146248.32,
+        "actualCost": 2192002.65,
+        "commitments": 2059995.47,
+        "variance": 45754.33,
+        "percentComplete": 74.0,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-555.MAT",
+        "description": "1000 - PALM BEACH LUXURY ESTATE-CONSTR.TRAFFIC CONTROL.Materials",
+        "budgetAmount": 2371113.33,
+        "actualCost": 2516903.31,
+        "commitments": 2273370.05,
+        "variance": 145789.98,
+        "percentComplete": 85.2,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-741.LAB",
+        "description": "1000 - PALM BEACH LUXURY ESTATE-CONSTR.FINAL CLEANING.Labor",
+        "budgetAmount": 2663734.91,
+        "actualCost": 2807243.19,
+        "commitments": 2648224.31,
+        "variance": 143508.28,
+        "percentComplete": 74.7,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-02-227.MAT",
+        "description": "1000 - PALM BEACH LUXURY ESTATE-CONSTR.WASTE MATERIAL DISPOSAL.Materials",
+        "budgetAmount": 4306084.1,
+        "actualCost": 4548218.63,
+        "commitments": 4389325.64,
+        "variance": 242134.53,
+        "percentComplete": 51.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-10-120.MAT",
+        "description": "1000 - PALM BEACH LUXURY ESTATE-CONSTR.TACKBOARDS & VISUAL AID BOARDS.Materials",
+        "budgetAmount": 3782678.4,
+        "actualCost": 3982323.39,
+        "commitments": 3822246.73,
+        "variance": 199644.99,
+        "percentComplete": 73.8,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-16-240.MAT",
+        "description": "1000 - PALM BEACH LUXURY ESTATE-CONSTR.BATTERY EQUIPMENT.Materials",
+        "budgetAmount": 4399599.16,
+        "actualCost": 4343287.98,
+        "commitments": 4477413.83,
+        "variance": -56311.18,
+        "percentComplete": 97.0,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-03-033.OVH",
+        "description": "1000 - PALM BEACH LUXURY ESTATE-CONSTR.SLAB ON GRADE CONCRETE.Overhead",
+        "budgetAmount": 4459157.7,
+        "actualCost": 4444110.56,
+        "commitments": 4295354.84,
+        "variance": -15047.14,
+        "percentComplete": 52.0,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-15-800.MAT",
+        "description": "1000 - PALM BEACH LUXURY ESTATE-CONSTR.AIR DISTRIBUTION.Materials",
+        "budgetAmount": 3777087.07,
+        "actualCost": 3753737.14,
+        "commitments": 3716773.3,
+        "variance": -23349.93,
+        "percentComplete": 73.2,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-06-410.SUB",
+        "description": "1000 - PALM BEACH LUXURY ESTATE-CONSTR.CUSTOM CABINETS.Subcontractor",
+        "budgetAmount": 3933547.39,
+        "actualCost": 3861861.46,
+        "commitments": 3779411.5,
+        "variance": -71685.93,
+        "percentComplete": 92.5,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-02-100.LBN",
+        "description": "1000 - PALM BEACH LUXURY ESTATE-CONSTR.SITE REMEDIATION.Labor Burden",
+        "budgetAmount": 4414545.05,
+        "actualCost": 4418361.02,
+        "commitments": 4311148.26,
+        "variance": 3815.97,
+        "percentComplete": 50.5,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-09-970.MAT",
+        "description": "1000 - PALM BEACH LUXURY ESTATE-CONSTR.COATINGS FOR STEEL.Materials",
+        "budgetAmount": 4156594.8,
+        "actualCost": 3997195.11,
+        "commitments": 4141464.26,
+        "variance": -159399.69,
+        "percentComplete": 58.9,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-03-010.MAT",
+        "description": "1000 - PALM BEACH LUXURY ESTATE-CONSTR.CONCRETE WORK.Materials",
+        "budgetAmount": 4231618.4,
+        "actualCost": 4352880.0,
+        "commitments": 4178620.48,
+        "variance": 121261.6,
+        "percentComplete": 92.4,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-01-748.MAT",
+        "description": "1000 - PALM BEACH LUXURY ESTATE-CONSTR.EXISTING FINISH-PROTECTION.Materials",
+        "budgetAmount": 4151014.66,
+        "actualCost": 4369031.9,
+        "commitments": 4194673.35,
+        "variance": 218017.24,
+        "percentComplete": 61.7,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-08-225.MAT",
+        "description": "1000 - PALM BEACH LUXURY ESTATE-CONSTR.INSTALLATION DOORS & HDWE.Materials",
+        "budgetAmount": 4425993.66,
+        "actualCost": 4380578.94,
+        "commitments": 4529207.48,
+        "variance": -45414.72,
+        "percentComplete": 92.4,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-03-235.LAB",
+        "description": "1000 - PALM BEACH LUXURY ESTATE-CONSTR.ACCESSORIES.Labor",
+        "budgetAmount": 3710608.3,
+        "actualCost": 3862772.2,
+        "commitments": 3818974.69,
+        "variance": 152163.9,
+        "percentComplete": 65.6,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-13-710.MAT",
+        "description": "1000 - PALM BEACH LUXURY ESTATE-CONSTR.SECURITY SYSTEMS.Materials",
+        "budgetAmount": 4133085.16,
+        "actualCost": 4134394.03,
+        "commitments": 4246306.17,
+        "variance": 1308.87,
+        "percentComplete": 51.8,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-107.MAT",
+        "description": "1000 - PALM BEACH LUXURY ESTATE-CONSTR.SUBCONTRACTOR DEFAULT INS.Materials",
+        "budgetAmount": 66661.99,
+        "actualCost": 69209.35,
+        "commitments": 64377.95,
+        "variance": 2547.36,
+        "percentComplete": 76.4,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-110.OVH",
+        "description": "1000 - PALM BEACH LUXURY ESTATE-CONSTR.CONTRACTOR'S FEE.Overhead",
+        "budgetAmount": 3815083.7,
+        "actualCost": 3848407.9,
+        "commitments": 3875307.76,
+        "variance": 33324.2,
+        "percentComplete": 50.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-141.MAT",
+        "description": "1000 - PALM BEACH LUXURY ESTATE-CONSTR.CONTRACTOR'S CONTINGENCY.Materials",
+        "budgetAmount": 1392452.5,
+        "actualCost": 1362247.78,
+        "commitments": 1341396.16,
+        "variance": -30204.72,
+        "percentComplete": 76.7,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      }
+    ]
+  },
+  {
+    "project_id": 2525841,
+    "project_name": "Miami Commercial Tower",
+    "jobCostItems": [
+      {
+        "costCode": "1000.10-01-540.LBN",
+        "description": "1000 - MIAMI COMMERCIAL TOWER-CONSTR.CONSTRUCTION AIDS.Labor Burden",
+        "budgetAmount": 17246854.44,
+        "actualCost": 18051178.42,
+        "commitments": 16973422.15,
+        "variance": 804323.98,
+        "percentComplete": 59.7,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-517.MAT",
+        "description": "1000 - MIAMI COMMERCIAL TOWER-CONSTR.TEMPORARY TELEPHONE.Materials",
+        "budgetAmount": 16651013.6,
+        "actualCost": 17321749.03,
+        "commitments": 16826370.56,
+        "variance": 670735.43,
+        "percentComplete": 65.0,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-308.MAT",
+        "description": "1000 - MIAMI COMMERCIAL TOWER-CONSTR.ASSISTANT PROJECT MANAGER.Materials",
+        "budgetAmount": 16114197.73,
+        "actualCost": 15978068.94,
+        "commitments": 15347646.38,
+        "variance": -136128.79,
+        "percentComplete": 58.0,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-650.LAB",
+        "description": "1000 - MIAMI COMMERCIAL TOWER-CONSTR.PRODUCT DELIVERY REQUIREMENTS.Labor",
+        "budgetAmount": 17215766.86,
+        "actualCost": 17790086.62,
+        "commitments": 17386714.91,
+        "variance": 574319.76,
+        "percentComplete": 52.4,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-100.MAT",
+        "description": "1000 - MIAMI COMMERCIAL TOWER-CONSTR.PERMIT-BOND INSURANCE.Materials",
+        "budgetAmount": 16087081.2,
+        "actualCost": 15727273.22,
+        "commitments": 15378020.95,
+        "variance": -359807.98,
+        "percentComplete": 76.7,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-828.MAT",
+        "description": "1000 - MIAMI COMMERCIAL TOWER-CONSTR.TEMPORARY FENCE.Materials",
+        "budgetAmount": 17403633.57,
+        "actualCost": 18378871.11,
+        "commitments": 17852131.94,
+        "variance": 975237.54,
+        "percentComplete": 78.5,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-430.MAT",
+        "description": "1000 - MIAMI COMMERCIAL TOWER-CONSTR.CIVIL.Materials",
+        "budgetAmount": 17298053.94,
+        "actualCost": 16878475.93,
+        "commitments": 16601108.19,
+        "variance": -419578.01,
+        "percentComplete": 98.6,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-15-705.MAT",
+        "description": "1000 - MIAMI COMMERCIAL TOWER-CONSTR.DUCT CLEANING & STERILIZATION.Materials",
+        "budgetAmount": 8023046.37,
+        "actualCost": 8507907.52,
+        "commitments": 8212945.62,
+        "variance": 484861.15,
+        "percentComplete": 51.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-01-305.SUB",
+        "description": "1000 - MIAMI COMMERCIAL TOWER-CONSTR.SR PROJECT MANAGER.Subcontractor",
+        "budgetAmount": 8347213.06,
+        "actualCost": 8053107.45,
+        "commitments": 8194090.33,
+        "variance": -294105.61,
+        "percentComplete": 51.9,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-11-050.LAB",
+        "description": "1000 - MIAMI COMMERCIAL TOWER-CONSTR.LIBRARY EQUIPMENT.Labor",
+        "budgetAmount": 8017492.04,
+        "actualCost": 8206964.17,
+        "commitments": 7647816.86,
+        "variance": 189472.13,
+        "percentComplete": 98.7,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-03-131.MAT",
+        "description": "1000 - MIAMI COMMERCIAL TOWER-CONSTR.PLANTER & FOUNDATIONS.Materials",
+        "budgetAmount": 8203080.25,
+        "actualCost": 8297122.44,
+        "commitments": 7990036.13,
+        "variance": 94042.19,
+        "percentComplete": 51.9,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-01-115.MAT",
+        "description": "1000 - MIAMI COMMERCIAL TOWER-CONSTR.PERMIT REVISIONS.Materials",
+        "budgetAmount": 8273744.84,
+        "actualCost": 8656225.71,
+        "commitments": 7877946.3,
+        "variance": 382480.87,
+        "percentComplete": 95.2,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-06-445.SUB",
+        "description": "1000 - MIAMI COMMERCIAL TOWER-CONSTR.SIMULATED WOOD ORNAMENTS.Subcontractor",
+        "budgetAmount": 8323072.9,
+        "actualCost": 8318100.83,
+        "commitments": 8343504.47,
+        "variance": -4972.07,
+        "percentComplete": 48.2,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-18-160.MAT",
+        "description": "1000 - MIAMI COMMERCIAL TOWER-CONSTR.GENERAL LIABILITY INSURANCE.Materials",
+        "budgetAmount": 8352831.67,
+        "actualCost": 8425125.43,
+        "commitments": 8577302.59,
+        "variance": 72293.76,
+        "percentComplete": 60.6,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-03-313.MAT",
+        "description": "1000 - MIAMI COMMERCIAL TOWER-CONSTR.PLACING CONCRETE.Materials",
+        "budgetAmount": 8224157.91,
+        "actualCost": 8184234.29,
+        "commitments": 8297757.07,
+        "variance": -39923.62,
+        "percentComplete": 93.1,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-03-032.MAT",
+        "description": "1000 - MIAMI COMMERCIAL TOWER-CONSTR.SLAB ON GRADE/REBAR.Materials",
+        "budgetAmount": 8010703.33,
+        "actualCost": 7718196.38,
+        "commitments": 8242510.57,
+        "variance": -292506.95,
+        "percentComplete": 74.1,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-07-500.MAT",
+        "description": "1000 - MIAMI COMMERCIAL TOWER-CONSTR.MEMBRANE ROOFING.Materials",
+        "budgetAmount": 8031058.16,
+        "actualCost": 7737247.43,
+        "commitments": 8029050.71,
+        "variance": -293810.73,
+        "percentComplete": 87.7,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-03-112.MAT",
+        "description": "1000 - MIAMI COMMERCIAL TOWER-CONSTR.MACHINE EXCAVATION.Materials",
+        "budgetAmount": 8479747.67,
+        "actualCost": 8337143.16,
+        "commitments": 8191007.59,
+        "variance": -142604.51,
+        "percentComplete": 97.4,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-27-050.LAB",
+        "description": "1000 - MIAMI COMMERCIAL TOWER-CONSTR.B-POD: COM-TEC CREDIT.Labor",
+        "budgetAmount": 8025004.65,
+        "actualCost": 8064348.21,
+        "commitments": 8134755.93,
+        "variance": 39343.56,
+        "percentComplete": 76.4,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-16-515.MAT",
+        "description": "1000 - MIAMI COMMERCIAL TOWER-CONSTR.LIGHTING.Materials",
+        "budgetAmount": 8350479.57,
+        "actualCost": 8332300.99,
+        "commitments": 8007690.28,
+        "variance": -18178.58,
+        "percentComplete": 51.4,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-107.MAT",
+        "description": "1000 - MIAMI COMMERCIAL TOWER-CONSTR.SUBCONTRACTOR DEFAULT INS.Materials",
+        "budgetAmount": 229640.32,
+        "actualCost": 234735.45,
+        "commitments": 224937.64,
+        "variance": 5095.13,
+        "percentComplete": 69.5,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-110.OVH",
+        "description": "1000 - MIAMI COMMERCIAL TOWER-CONSTR.CONTRACTOR'S FEE.Overhead",
+        "budgetAmount": 26794786.56,
+        "actualCost": 25857869.18,
+        "commitments": 26669309.5,
+        "variance": -936917.38,
+        "percentComplete": 50.9,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-141.MAT",
+        "description": "1000 - MIAMI COMMERCIAL TOWER-CONSTR.CONTRACTOR'S CONTINGENCY.Materials",
+        "budgetAmount": 3659635.33,
+        "actualCost": 3618098.51,
+        "commitments": 3751856.5,
+        "variance": -41536.82,
+        "percentComplete": 74.1,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      }
+    ]
+  },
+  {
+    "project_id": 2525842,
+    "project_name": "Orlando Retail Complex",
+    "jobCostItems": [
+      {
+        "costCode": "1000.10-01-405.MAT",
+        "description": "1000 - ORLANDO RETAIL COMPLEX-CONSTR.GENERAL ATTORNEY.Materials",
+        "budgetAmount": 1287753.72,
+        "actualCost": 1287127.9,
+        "commitments": 1304574.89,
+        "variance": -625.82,
+        "percentComplete": 91.2,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-523.MAT",
+        "description": "1000 - ORLANDO RETAIL COMPLEX-CONSTR.SANITARY FACILITIES.Materials",
+        "budgetAmount": 1295877.74,
+        "actualCost": 1275699.82,
+        "commitments": 1255128.25,
+        "variance": -20177.92,
+        "percentComplete": 64.7,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-650.LBN",
+        "description": "1000 - ORLANDO RETAIL COMPLEX-CONSTR.PRODUCT DELIVERY REQUIREMENTS.Labor Burden",
+        "budgetAmount": 1278213.42,
+        "actualCost": 1335097.98,
+        "commitments": 1214797.24,
+        "variance": 56884.56,
+        "percentComplete": 88.2,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-340.MAT",
+        "description": "1000 - ORLANDO RETAIL COMPLEX-CONSTR.SCHEDULING.Materials",
+        "budgetAmount": 1321366.44,
+        "actualCost": 1266351.58,
+        "commitments": 1305127.9,
+        "variance": -55014.86,
+        "percentComplete": 62.9,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-000.MAT",
+        "description": "1000 - ORLANDO RETAIL COMPLEX-CONSTR.GENERAL CONDITIONS.Materials",
+        "budgetAmount": 1250544.55,
+        "actualCost": 1199409.96,
+        "commitments": 1284593.83,
+        "variance": -51134.59,
+        "percentComplete": 56.8,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-103.LAB",
+        "description": "1000 - ORLANDO RETAIL COMPLEX-CONSTR.TRASH REMOVAL.Labor",
+        "budgetAmount": 1218879.22,
+        "actualCost": 1164122.12,
+        "commitments": 1177122.5,
+        "variance": -54757.1,
+        "percentComplete": 49.0,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-870.MAT",
+        "description": "1000 - ORLANDO RETAIL COMPLEX-CONSTR.PHOTOGRAPHS.Materials",
+        "budgetAmount": 1304630.43,
+        "actualCost": 1244337.96,
+        "commitments": 1245796.12,
+        "variance": -60292.47,
+        "percentComplete": 89.1,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-18-146.SUB",
+        "description": "1000 - ORLANDO RETAIL COMPLEX-CONSTR.OWNER ITEMS.Subcontractor",
+        "budgetAmount": 2274499.29,
+        "actualCost": 2386920.0,
+        "commitments": 2255423.54,
+        "variance": 112420.71,
+        "percentComplete": 78.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-16-810.MAT",
+        "description": "1000 - ORLANDO RETAIL COMPLEX-CONSTR.SOUND & VIDEO CIRCUITS.Materials",
+        "budgetAmount": 2454652.57,
+        "actualCost": 2448861.08,
+        "commitments": 2344175.03,
+        "variance": -5791.49,
+        "percentComplete": 82.1,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-03-360.LAB",
+        "description": "1000 - ORLANDO RETAIL COMPLEX-CONSTR.SPECIALITY CONCRETE FINISHES.Labor",
+        "budgetAmount": 2468966.35,
+        "actualCost": 2575451.28,
+        "commitments": 2391539.03,
+        "variance": 106484.93,
+        "percentComplete": 80.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-01-740.LAB",
+        "description": "1000 - ORLANDO RETAIL COMPLEX-CONSTR.MOLD REMIDIATION.Labor",
+        "budgetAmount": 2302431.05,
+        "actualCost": 2328161.5,
+        "commitments": 2361533.85,
+        "variance": 25730.45,
+        "percentComplete": 59.8,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-02-520.SUB",
+        "description": "1000 - ORLANDO RETAIL COMPLEX-CONSTR.WELLS.Subcontractor",
+        "budgetAmount": 2679529.29,
+        "actualCost": 2814345.06,
+        "commitments": 2694830.19,
+        "variance": 134815.77,
+        "percentComplete": 91.1,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-02-335.SUB",
+        "description": "1000 - ORLANDO RETAIL COMPLEX-CONSTR.SUBGRADE & ROADBED.Subcontractor",
+        "budgetAmount": 2517775.1,
+        "actualCost": 2473734.68,
+        "commitments": 2545686.95,
+        "variance": -44040.42,
+        "percentComplete": 71.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-09-230.MAT",
+        "description": "1000 - ORLANDO RETAIL COMPLEX-CONSTR.PLASTER FABRICATIONS.Materials",
+        "budgetAmount": 2412524.14,
+        "actualCost": 2498891.99,
+        "commitments": 2454050.63,
+        "variance": 86367.85,
+        "percentComplete": 82.7,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-07-590.MAT",
+        "description": "1000 - ORLANDO RETAIL COMPLEX-CONSTR.ROOF MAINTENANCE & REPAIRS.Materials",
+        "budgetAmount": 2454594.47,
+        "actualCost": 2593226.61,
+        "commitments": 2397988.35,
+        "variance": 138632.14,
+        "percentComplete": 72.9,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-02-120.LAB",
+        "description": "1000 - ORLANDO RETAIL COMPLEX-CONSTR.OFF-SITE TRANSPORTATION & DISP.Labor",
+        "budgetAmount": 2417737.11,
+        "actualCost": 2475160.51,
+        "commitments": 2364484.72,
+        "variance": 57423.4,
+        "percentComplete": 70.8,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-01-315.LAB",
+        "description": "1000 - ORLANDO RETAIL COMPLEX-CONSTR.FOREMAN.Labor",
+        "budgetAmount": 2589727.89,
+        "actualCost": 2742237.6,
+        "commitments": 2543095.97,
+        "variance": 152509.71,
+        "percentComplete": 59.0,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-06-180.SUB",
+        "description": "1000 - ORLANDO RETAIL COMPLEX-CONSTR.Glued Laminated Construction.Subcontractor",
+        "budgetAmount": 2459745.01,
+        "actualCost": 2429842.98,
+        "commitments": 2530350.77,
+        "variance": -29902.03,
+        "percentComplete": 52.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-01-745.LAB",
+        "description": "1000 - ORLANDO RETAIL COMPLEX-CONSTR.DUMPSTERS.Labor",
+        "budgetAmount": 2465148.07,
+        "actualCost": 2483823.72,
+        "commitments": 2346054.82,
+        "variance": 18675.65,
+        "percentComplete": 76.6,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-03-390.MAT",
+        "description": "1000 - ORLANDO RETAIL COMPLEX-CONSTR.CONCRETE CURING.Materials",
+        "budgetAmount": 2433908.13,
+        "actualCost": 2427850.78,
+        "commitments": 2481525.02,
+        "variance": -6057.35,
+        "percentComplete": 70.7,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-107.MAT",
+        "description": "1000 - ORLANDO RETAIL COMPLEX-CONSTR.SUBCONTRACTOR DEFAULT INS.Materials",
+        "budgetAmount": 40188.03,
+        "actualCost": 41142.22,
+        "commitments": 38965.78,
+        "variance": 954.19,
+        "percentComplete": 64.2,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-110.OVH",
+        "description": "1000 - ORLANDO RETAIL COMPLEX-CONSTR.CONTRACTOR'S FEE.Overhead",
+        "budgetAmount": 3770914.47,
+        "actualCost": 3883276.05,
+        "commitments": 3634694.05,
+        "variance": 112361.58,
+        "percentComplete": 46.8,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-141.MAT",
+        "description": "1000 - ORLANDO RETAIL COMPLEX-CONSTR.CONTRACTOR'S CONTINGENCY.Materials",
+        "budgetAmount": 976812.75,
+        "actualCost": 930870.74,
+        "commitments": 952792.83,
+        "variance": -45942.01,
+        "percentComplete": 94.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      }
+    ]
+  },
+  {
+    "project_id": 2525843,
+    "project_name": "Naples Waterfront Condominium",
+    "jobCostItems": [
+      {
+        "costCode": "1000.10-01-105.MAT",
+        "description": "1000 - NAPLES WATERFRONT CONDOMINIUM-CONSTR.PERMITS.Materials",
+        "budgetAmount": 4161223.7,
+        "actualCost": 4363320.64,
+        "commitments": 4058307.96,
+        "variance": 202096.94,
+        "percentComplete": 55.4,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-435.LAB",
+        "description": "1000 - NAPLES WATERFRONT CONDOMINIUM-CONSTR.PROPERTY MANAGEMENT.Labor",
+        "budgetAmount": 3730716.34,
+        "actualCost": 3607883.04,
+        "commitments": 3563253.53,
+        "variance": -122833.3,
+        "percentComplete": 77.7,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-828.MAT",
+        "description": "1000 - NAPLES WATERFRONT CONDOMINIUM-CONSTR.TEMPORARY FENCE.Materials",
+        "budgetAmount": 4138027.29,
+        "actualCost": 4083802.24,
+        "commitments": 4234158.83,
+        "variance": -54225.05,
+        "percentComplete": 57.0,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-415.LAB",
+        "description": "1000 - NAPLES WATERFRONT CONDOMINIUM-CONSTR.LEED CONSULTING.Labor",
+        "budgetAmount": 4049297.85,
+        "actualCost": 4284024.41,
+        "commitments": 3882051.44,
+        "variance": 234726.56,
+        "percentComplete": 93.2,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-308.LAB",
+        "description": "1000 - NAPLES WATERFRONT CONDOMINIUM-CONSTR.ASSISTANT PROJECT MANAGER.Labor",
+        "budgetAmount": 3889589.53,
+        "actualCost": 4077212.28,
+        "commitments": 3826877.56,
+        "variance": 187622.75,
+        "percentComplete": 87.0,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-540.MAT",
+        "description": "1000 - NAPLES WATERFRONT CONDOMINIUM-CONSTR.CONSTRUCTION AIDS.Materials",
+        "budgetAmount": 3880936.18,
+        "actualCost": 3844586.77,
+        "commitments": 3825378.52,
+        "variance": -36349.41,
+        "percentComplete": 59.4,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-00-000.MAT",
+        "description": "1000 - NAPLES WATERFRONT CONDOMINIUM-CONSTR.GENERAL CONDITIONS.Materials",
+        "budgetAmount": 3530957.81,
+        "actualCost": 3707825.3,
+        "commitments": 3485081.16,
+        "variance": 176867.49,
+        "percentComplete": 53.7,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-07-720.MAT",
+        "description": "1000 - NAPLES WATERFRONT CONDOMINIUM-CONSTR.ROOF ACCESSORIES.Materials",
+        "budgetAmount": 5874243.5,
+        "actualCost": 6126034.46,
+        "commitments": 5951785.28,
+        "variance": 251790.96,
+        "percentComplete": 56.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-02-790.MAT",
+        "description": "1000 - NAPLES WATERFRONT CONDOMINIUM-CONSTR.ATHLETIC & RECREATIONAL SURFAC.Materials",
+        "budgetAmount": 6173528.43,
+        "actualCost": 5909331.05,
+        "commitments": 6101038.74,
+        "variance": -264197.38,
+        "percentComplete": 45.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-04-552.SUB",
+        "description": "1000 - NAPLES WATERFRONT CONDOMINIUM-CONSTR.PRECAST COLUMNS.Subcontractor",
+        "budgetAmount": 6403145.14,
+        "actualCost": 6430057.93,
+        "commitments": 6370215.58,
+        "variance": 26912.79,
+        "percentComplete": 90.5,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-02-755.MAT",
+        "description": "1000 - NAPLES WATERFRONT CONDOMINIUM-CONSTR.CEMENT CONCRETE SHOULDERS.Materials",
+        "budgetAmount": 6307569.36,
+        "actualCost": 6173635.46,
+        "commitments": 6376782.28,
+        "variance": -133933.9,
+        "percentComplete": 53.5,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-02-223.MAT",
+        "description": "1000 - NAPLES WATERFRONT CONDOMINIUM-CONSTR.SELECTIVE SITE DEMOLITION.Materials",
+        "budgetAmount": 6558372.35,
+        "actualCost": 6779149.46,
+        "commitments": 6419919.46,
+        "variance": 220777.11,
+        "percentComplete": 54.7,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-01-560.MAT",
+        "description": "1000 - NAPLES WATERFRONT CONDOMINIUM-CONSTR.TEMPORARY BARRIERS & ENCLOSURE.Materials",
+        "budgetAmount": 5374959.18,
+        "actualCost": 5507361.8,
+        "commitments": 5339782.63,
+        "variance": 132402.62,
+        "percentComplete": 76.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-11-070.MAT",
+        "description": "1000 - NAPLES WATERFRONT CONDOMINIUM-CONSTR.INSTRUMENTAL EQUIPMENT.Materials",
+        "budgetAmount": 6668370.58,
+        "actualCost": 6907426.49,
+        "commitments": 6851653.75,
+        "variance": 239055.91,
+        "percentComplete": 82.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-09-740.LAB",
+        "description": "1000 - NAPLES WATERFRONT CONDOMINIUM-CONSTR.FLEXIBLE WOOD SHEETS.Labor",
+        "budgetAmount": 5937920.54,
+        "actualCost": 5663133.21,
+        "commitments": 5748422.1,
+        "variance": -274787.33,
+        "percentComplete": 56.5,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-04-200.LAB",
+        "description": "1000 - NAPLES WATERFRONT CONDOMINIUM-CONSTR.UNIT MASONRY.Labor",
+        "budgetAmount": 5447364.77,
+        "actualCost": 5585974.36,
+        "commitments": 5224236.83,
+        "variance": 138609.59,
+        "percentComplete": 85.0,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-02-840.LBN",
+        "description": "1000 - NAPLES WATERFRONT CONDOMINIUM-CONSTR.WALK ROAD & PARKING APPURTENAN.Labor Burden",
+        "budgetAmount": 5889856.66,
+        "actualCost": 5761469.68,
+        "commitments": 5918328.62,
+        "variance": -128386.98,
+        "percentComplete": 86.2,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-08-205.SUB",
+        "description": "1000 - NAPLES WATERFRONT CONDOMINIUM-CONSTR.WOOD DOORS SUPPLY/INSTALL.Subcontractor",
+        "budgetAmount": 7051489.39,
+        "actualCost": 6945685.66,
+        "commitments": 7057143.31,
+        "variance": -105803.73,
+        "percentComplete": 51.6,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-04-610.MAT",
+        "description": "1000 - NAPLES WATERFRONT CONDOMINIUM-CONSTR.CHEMICAL-RESISTANT BRICK.Materials",
+        "budgetAmount": 5854261.91,
+        "actualCost": 5595481.61,
+        "commitments": 5579100.13,
+        "variance": -258780.3,
+        "percentComplete": 60.2,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-05-210.SUB",
+        "description": "1000 - NAPLES WATERFRONT CONDOMINIUM-CONSTR.STEEL JOISTS.Subcontractor",
+        "budgetAmount": 6510163.45,
+        "actualCost": 6260898.33,
+        "commitments": 6473511.21,
+        "variance": -249265.12,
+        "percentComplete": 57.5,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-107.MAT",
+        "description": "1000 - NAPLES WATERFRONT CONDOMINIUM-CONSTR.SUBCONTRACTOR DEFAULT INS.Materials",
+        "budgetAmount": 101493.54,
+        "actualCost": 102715.44,
+        "commitments": 98790.44,
+        "variance": 1221.9,
+        "percentComplete": 83.4,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-110.OVH",
+        "description": "1000 - NAPLES WATERFRONT CONDOMINIUM-CONSTR.CONTRACTOR'S FEE.Overhead",
+        "budgetAmount": 12731475.73,
+        "actualCost": 13498776.56,
+        "commitments": 12739364.79,
+        "variance": 767300.83,
+        "percentComplete": 64.4,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-141.MAT",
+        "description": "1000 - NAPLES WATERFRONT CONDOMINIUM-CONSTR.CONTRACTOR'S CONTINGENCY.Materials",
+        "budgetAmount": 2220543.12,
+        "actualCost": 2127278.46,
+        "commitments": 2237124.07,
+        "variance": -93264.66,
+        "percentComplete": 89.4,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      }
+    ]
+  },
+  {
+    "project_id": 2525844,
+    "project_name": "Jacksonville Mixed-Use Development",
+    "jobCostItems": [
+      {
+        "costCode": "1000.10-01-536.MAT",
+        "description": "1000 - JACKSONVILLE MIXED-USE DEVELOPMENT-CONSTR.COMPUTER OPERATION & MAINT.Materials",
+        "budgetAmount": 586335.21,
+        "actualCost": 569046.04,
+        "commitments": 602794.83,
+        "variance": -17289.17,
+        "percentComplete": 56.2,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-772.MAT",
+        "description": "1000 - JACKSONVILLE MIXED-USE DEVELOPMENT-CONSTR.PUNCHLIST.Materials",
+        "budgetAmount": 548795.6,
+        "actualCost": 538113.79,
+        "commitments": 539251.08,
+        "variance": -10681.81,
+        "percentComplete": 90.6,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-459.SUB",
+        "description": "1000 - JACKSONVILLE MIXED-USE DEVELOPMENT-CONSTR.UNDERGROUND INVESTIGATION.Subcontractor",
+        "budgetAmount": 586847.32,
+        "actualCost": 600671.5,
+        "commitments": 587837.73,
+        "variance": 13824.18,
+        "percentComplete": 79.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-565.LAB",
+        "description": "1000 - JACKSONVILLE MIXED-USE DEVELOPMENT-CONSTR.ICE, CUPS & WATER COOLER.Labor",
+        "budgetAmount": 606346.61,
+        "actualCost": 641975.11,
+        "commitments": 598922.38,
+        "variance": 35628.5,
+        "percentComplete": 89.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-760.LAB",
+        "description": "1000 - JACKSONVILLE MIXED-USE DEVELOPMENT-CONSTR.PROTECT INSTALLED CONSTRUCTION.Labor",
+        "budgetAmount": 592952.68,
+        "actualCost": 571831.54,
+        "commitments": 573178.32,
+        "variance": -21121.14,
+        "percentComplete": 49.1,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-300.LBN",
+        "description": "1000 - JACKSONVILLE MIXED-USE DEVELOPMENT-CONSTR.ADMINISTRATIVE REQUIREMENTS.Labor Burden",
+        "budgetAmount": 606768.05,
+        "actualCost": 611647.63,
+        "commitments": 583429.83,
+        "variance": 4879.58,
+        "percentComplete": 56.2,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-500.LAB",
+        "description": "1000 - JACKSONVILLE MIXED-USE DEVELOPMENT-CONSTR.TEMPORARY FACILITIES & CONTROL.Labor",
+        "budgetAmount": 591417.73,
+        "actualCost": 564554.56,
+        "commitments": 593331.72,
+        "variance": -26863.17,
+        "percentComplete": 92.9,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-26-272.MAT",
+        "description": "1000 - JACKSONVILLE MIXED-USE DEVELOPMENT-CONSTR.B-POD: DR/INTERCOM WIRING CR.Materials",
+        "budgetAmount": 1170154.04,
+        "actualCost": 1164575.61,
+        "commitments": 1115785.24,
+        "variance": -5578.43,
+        "percentComplete": 63.9,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-09-770.MAT",
+        "description": "1000 - JACKSONVILLE MIXED-USE DEVELOPMENT-CONSTR.SPECIAL WALL SURFACES.Materials",
+        "budgetAmount": 1139191.18,
+        "actualCost": 1121621.69,
+        "commitments": 1139783.78,
+        "variance": -17569.49,
+        "percentComplete": 88.5,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-03-200.LAB",
+        "description": "1000 - JACKSONVILLE MIXED-USE DEVELOPMENT-CONSTR.CONCRETE REINFORCEMENT.Labor",
+        "budgetAmount": 1229270.63,
+        "actualCost": 1250512.67,
+        "commitments": 1187579.46,
+        "variance": 21242.04,
+        "percentComplete": 54.6,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-09-722.LBN",
+        "description": "1000 - JACKSONVILLE MIXED-USE DEVELOPMENT-CONSTR.FRP WALL PANELS.Labor Burden",
+        "budgetAmount": 1155748.86,
+        "actualCost": 1164661.32,
+        "commitments": 1158222.23,
+        "variance": 8912.46,
+        "percentComplete": 59.7,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-19-731.LBN",
+        "description": "1000 - JACKSONVILLE MIXED-USE DEVELOPMENT-CONSTR.ISS EQUIPMENT ENCLOSURE.Labor Burden",
+        "budgetAmount": 1124732.21,
+        "actualCost": 1147026.0,
+        "commitments": 1100780.82,
+        "variance": 22293.79,
+        "percentComplete": 71.2,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-04-820.LAB",
+        "description": "1000 - JACKSONVILLE MIXED-USE DEVELOPMENT-CONSTR.REINFORCED UNIT MASONRY ASSEMB.Labor",
+        "budgetAmount": 1180955.57,
+        "actualCost": 1244717.18,
+        "commitments": 1133869.04,
+        "variance": 63761.61,
+        "percentComplete": 73.1,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-13-710.SUB",
+        "description": "1000 - JACKSONVILLE MIXED-USE DEVELOPMENT-CONSTR.SECURITY SYSTEMS.Subcontractor",
+        "budgetAmount": 1213495.57,
+        "actualCost": 1235014.78,
+        "commitments": 1180014.39,
+        "variance": 21519.21,
+        "percentComplete": 74.4,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-02-750.MAT",
+        "description": "1000 - JACKSONVILLE MIXED-USE DEVELOPMENT-CONSTR.RIGID PAVEMENT.Materials",
+        "budgetAmount": 1105373.75,
+        "actualCost": 1096912.85,
+        "commitments": 1104532.72,
+        "variance": -8460.9,
+        "percentComplete": 53.6,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-12-810.MAT",
+        "description": "1000 - JACKSONVILLE MIXED-USE DEVELOPMENT-CONSTR.INTERIOR LIVE PLANTS.Materials",
+        "budgetAmount": 1121908.85,
+        "actualCost": 1142157.78,
+        "commitments": 1154784.83,
+        "variance": 20248.93,
+        "percentComplete": 53.0,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-02-890.SUB",
+        "description": "1000 - JACKSONVILLE MIXED-USE DEVELOPMENT-CONSTR.TRAFFIC SIGNS & SIGNALS.Subcontractor",
+        "budgetAmount": 1130623.85,
+        "actualCost": 1136201.86,
+        "commitments": 1122293.51,
+        "variance": 5578.01,
+        "percentComplete": 93.9,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-23-000.LBN",
+        "description": "1000 - JACKSONVILLE MIXED-USE DEVELOPMENT-CONSTR.HVAC.Labor Burden",
+        "budgetAmount": 1213874.61,
+        "actualCost": 1246027.96,
+        "commitments": 1219632.58,
+        "variance": 32153.35,
+        "percentComplete": 89.8,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-05-520.MAT",
+        "description": "1000 - JACKSONVILLE MIXED-USE DEVELOPMENT-CONSTR.HANDRAILS AND RAILINGS.Materials",
+        "budgetAmount": 1238616.34,
+        "actualCost": 1275350.53,
+        "commitments": 1215086.51,
+        "variance": 36734.19,
+        "percentComplete": 84.0,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-16-101.LAB",
+        "description": "1000 - JACKSONVILLE MIXED-USE DEVELOPMENT-CONSTR.ELECTRICAL DEMO.Labor",
+        "budgetAmount": 1127942.77,
+        "actualCost": 1162564.64,
+        "commitments": 1122060.98,
+        "variance": 34621.87,
+        "percentComplete": 49.5,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-107.MAT",
+        "description": "1000 - JACKSONVILLE MIXED-USE DEVELOPMENT-CONSTR.SUBCONTRACTOR DEFAULT INS.Materials",
+        "budgetAmount": 19400.07,
+        "actualCost": 20483.78,
+        "commitments": 19311.14,
+        "variance": 1083.71,
+        "percentComplete": 94.1,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-110.OVH",
+        "description": "1000 - JACKSONVILLE MIXED-USE DEVELOPMENT-CONSTR.CONTRACTOR'S FEE.Overhead",
+        "budgetAmount": 956679.56,
+        "actualCost": 969205.05,
+        "commitments": 938215.4,
+        "variance": 12525.49,
+        "percentComplete": 64.1,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-141.MAT",
+        "description": "1000 - JACKSONVILLE MIXED-USE DEVELOPMENT-CONSTR.CONTRACTOR'S CONTINGENCY.Materials",
+        "budgetAmount": 619394.19,
+        "actualCost": 608432.91,
+        "commitments": 610052.52,
+        "variance": -10961.28,
+        "percentComplete": 77.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      }
+    ]
+  },
+  {
+    "project_id": 2525845,
+    "project_name": "Fort Lauderdale Hotel Resort",
+    "jobCostItems": [
+      {
+        "costCode": "1000.10-01-100.MAT",
+        "description": "1000 - FORT LAUDERDALE HOTEL RESORT-CONSTR.PERMIT-BOND INSURANCE.Materials",
+        "budgetAmount": 11330202.32,
+        "actualCost": 11230887.04,
+        "commitments": 11245285.84,
+        "variance": -99315.28,
+        "percentComplete": 46.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-820.LAB",
+        "description": "1000 - FORT LAUDERDALE HOTEL RESORT-CONSTR.CONSTRUCTION DOCUMENTS.Labor",
+        "budgetAmount": 11920068.25,
+        "actualCost": 11951452.47,
+        "commitments": 11518663.64,
+        "variance": 31384.22,
+        "percentComplete": 91.5,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-720.MAT",
+        "description": "1000 - FORT LAUDERDALE HOTEL RESORT-CONSTR.LAYOUT.Materials",
+        "budgetAmount": 11103110.34,
+        "actualCost": 10610435.5,
+        "commitments": 11198742.33,
+        "variance": -492674.84,
+        "percentComplete": 90.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-534.MAT",
+        "description": "1000 - FORT LAUDERDALE HOTEL RESORT-CONSTR.SITE STORAGE.Materials",
+        "budgetAmount": 11989945.59,
+        "actualCost": 12000156.11,
+        "commitments": 11994235.73,
+        "variance": 10210.52,
+        "percentComplete": 83.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-302.LAB",
+        "description": "1000 - FORT LAUDERDALE HOTEL RESORT-CONSTR.VDC DIRECTOR.Labor",
+        "budgetAmount": 11259734.48,
+        "actualCost": 11537965.62,
+        "commitments": 11220325.61,
+        "variance": 278231.14,
+        "percentComplete": 63.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-425.MAT",
+        "description": "1000 - FORT LAUDERDALE HOTEL RESORT-CONSTR.SITE PLAN.Materials",
+        "budgetAmount": 11925110.14,
+        "actualCost": 12502385.28,
+        "commitments": 12057498.53,
+        "variance": 577275.14,
+        "percentComplete": 81.9,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-567.MAT",
+        "description": "1000 - FORT LAUDERDALE HOTEL RESORT-CONSTR.PROTECTIVE WALKWAYS.Materials",
+        "budgetAmount": 11749947.45,
+        "actualCost": 12321179.78,
+        "commitments": 11400121.1,
+        "variance": 571232.33,
+        "percentComplete": 57.4,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-05-400.MAT",
+        "description": "1000 - FORT LAUDERDALE HOTEL RESORT-CONSTR.LIGHT GAUGE MTL FRAMING.Materials",
+        "budgetAmount": 5498976.9,
+        "actualCost": 5779542.12,
+        "commitments": 5346095.81,
+        "variance": 280565.22,
+        "percentComplete": 61.7,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-18-130.MAT",
+        "description": "1000 - FORT LAUDERDALE HOTEL RESORT-CONSTR.PERFORMANCE BOND.Materials",
+        "budgetAmount": 5923535.83,
+        "actualCost": 5861230.01,
+        "commitments": 5780958.45,
+        "variance": -62305.82,
+        "percentComplete": 83.9,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-08-370.MAT",
+        "description": "1000 - FORT LAUDERDALE HOTEL RESORT-CONSTR.VERTICAL LIFT DOORS.Materials",
+        "budgetAmount": 5884403.49,
+        "actualCost": 5824859.05,
+        "commitments": 5911466.98,
+        "variance": -59544.44,
+        "percentComplete": 48.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-05-110.SUB",
+        "description": "1000 - FORT LAUDERDALE HOTEL RESORT-CONSTR.STRUCTURAL METAL FRAMING.Subcontractor",
+        "budgetAmount": 6000774.17,
+        "actualCost": 5718541.85,
+        "commitments": 6125449.03,
+        "variance": -282232.32,
+        "percentComplete": 48.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-26-272.MAT",
+        "description": "1000 - FORT LAUDERDALE HOTEL RESORT-CONSTR.B-POD: DR/INTERCOM WIRING CR.Materials",
+        "budgetAmount": 5673181.06,
+        "actualCost": 5632614.84,
+        "commitments": 5463978.8,
+        "variance": -40566.22,
+        "percentComplete": 45.4,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-06-202.LBN",
+        "description": "1000 - FORT LAUDERDALE HOTEL RESORT-CONSTR.BASE MOLDING.Labor Burden",
+        "budgetAmount": 6123345.48,
+        "actualCost": 6381465.93,
+        "commitments": 6035645.4,
+        "variance": 258120.45,
+        "percentComplete": 62.8,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-09-970.SUB",
+        "description": "1000 - FORT LAUDERDALE HOTEL RESORT-CONSTR.COATINGS FOR STEEL.Subcontractor",
+        "budgetAmount": 5832316.76,
+        "actualCost": 5908806.01,
+        "commitments": 5714457.84,
+        "variance": 76489.25,
+        "percentComplete": 55.6,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-03-032.SUB",
+        "description": "1000 - FORT LAUDERDALE HOTEL RESORT-CONSTR.SLAB ON GRADE/REBAR.Subcontractor",
+        "budgetAmount": 5944422.58,
+        "actualCost": 6104357.76,
+        "commitments": 5715130.24,
+        "variance": 159935.18,
+        "percentComplete": 92.1,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-06-221.LAB",
+        "description": "1000 - FORT LAUDERDALE HOTEL RESORT-CONSTR.ELEVATOR CAB FINISHES.Labor",
+        "budgetAmount": 5724185.54,
+        "actualCost": 5972016.73,
+        "commitments": 5777273.85,
+        "variance": 247831.19,
+        "percentComplete": 85.4,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-09-550.SUB",
+        "description": "1000 - FORT LAUDERDALE HOTEL RESORT-CONSTR.MIRROR PANEL CEILINGS.Subcontractor",
+        "budgetAmount": 5775603.23,
+        "actualCost": 6129822.34,
+        "commitments": 5890280.2,
+        "variance": 354219.11,
+        "percentComplete": 95.8,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-06-206.LBN",
+        "description": "1000 - FORT LAUDERDALE HOTEL RESORT-CONSTR.JAMBS AND CASING.Labor Burden",
+        "budgetAmount": 5699425.23,
+        "actualCost": 5659385.17,
+        "commitments": 5507106.95,
+        "variance": -40040.06,
+        "percentComplete": 90.9,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-09-612.MAT",
+        "description": "1000 - FORT LAUDERDALE HOTEL RESORT-CONSTR.WOOD UNDERLAYMENT.Materials",
+        "budgetAmount": 5947174.72,
+        "actualCost": 5837735.82,
+        "commitments": 5817729.99,
+        "variance": -109438.9,
+        "percentComplete": 88.5,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-05-128.MAT",
+        "description": "1000 - FORT LAUDERDALE HOTEL RESORT-CONSTR.IMPLANTS AND BOLTS.Materials",
+        "budgetAmount": 5757653.11,
+        "actualCost": 5733162.97,
+        "commitments": 5833476.72,
+        "variance": -24490.14,
+        "percentComplete": 81.5,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-107.MAT",
+        "description": "1000 - FORT LAUDERDALE HOTEL RESORT-CONSTR.SUBCONTRACTOR DEFAULT INS.Materials",
+        "budgetAmount": 165007.86,
+        "actualCost": 163902.7,
+        "commitments": 164857.76,
+        "variance": -1105.16,
+        "percentComplete": 56.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-110.OVH",
+        "description": "1000 - FORT LAUDERDALE HOTEL RESORT-CONSTR.CONTRACTOR'S FEE.Overhead",
+        "budgetAmount": 18322819.2,
+        "actualCost": 18411862.5,
+        "commitments": 17617048.47,
+        "variance": 89043.3,
+        "percentComplete": 68.6,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-141.MAT",
+        "description": "1000 - FORT LAUDERDALE HOTEL RESORT-CONSTR.CONTRACTOR'S CONTINGENCY.Materials",
+        "budgetAmount": 5217492.17,
+        "actualCost": 5025573.07,
+        "commitments": 5016401.61,
+        "variance": -191919.1,
+        "percentComplete": 68.1,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      }
+    ]
+  },
+  {
+    "project_id": 2525846,
+    "project_name": "Tampa Medical Center",
+    "jobCostItems": [
+      {
+        "costCode": "1000.10-01-530.LBN",
+        "description": "1000 - TAMPA MEDICAL CENTER-CONSTR.TEMPORARY CONSTRUCTION.Labor Burden",
+        "budgetAmount": 6220952.13,
+        "actualCost": 6553369.4,
+        "commitments": 6279660.89,
+        "variance": 332417.27,
+        "percentComplete": 92.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-840.LAB",
+        "description": "1000 - TAMPA MEDICAL CENTER-CONSTR.PERMITTING & GOVERNMENT APPROV.Labor",
+        "budgetAmount": 6518686.12,
+        "actualCost": 6337382.43,
+        "commitments": 6613254.32,
+        "variance": -181303.69,
+        "percentComplete": 56.0,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-572.MAT",
+        "description": "1000 - TAMPA MEDICAL CENTER-CONSTR.PEST CONTROL.Materials",
+        "budgetAmount": 6462409.09,
+        "actualCost": 6855788.05,
+        "commitments": 6383552.39,
+        "variance": 393378.96,
+        "percentComplete": 98.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-650.MAT",
+        "description": "1000 - TAMPA MEDICAL CENTER-CONSTR.PRODUCT DELIVERY REQUIREMENTS.Materials",
+        "budgetAmount": 6425031.88,
+        "actualCost": 6418850.54,
+        "commitments": 6550156.64,
+        "variance": -6181.34,
+        "percentComplete": 85.2,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-744.LAB",
+        "description": "1000 - TAMPA MEDICAL CENTER-CONSTR.TRASH REMOVAL.Labor",
+        "budgetAmount": 6083229.05,
+        "actualCost": 6440340.76,
+        "commitments": 6052780.75,
+        "variance": 357111.71,
+        "percentComplete": 64.1,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-534.MAT",
+        "description": "1000 - TAMPA MEDICAL CENTER-CONSTR.SITE STORAGE.Materials",
+        "budgetAmount": 6075378.72,
+        "actualCost": 6258219.37,
+        "commitments": 5854193.05,
+        "variance": 182840.65,
+        "percentComplete": 59.4,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-307.MAT",
+        "description": "1000 - TAMPA MEDICAL CENTER-CONSTR.CARPENTER.Materials",
+        "budgetAmount": 6359078.71,
+        "actualCost": 6304263.29,
+        "commitments": 6291369.57,
+        "variance": -54815.42,
+        "percentComplete": 73.2,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-07-310.LAB",
+        "description": "1000 - TAMPA MEDICAL CENTER-CONSTR.SHINGLES.Labor",
+        "budgetAmount": 3027663.18,
+        "actualCost": 3077858.91,
+        "commitments": 3094142.91,
+        "variance": 50195.73,
+        "percentComplete": 83.5,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-09-305.LAB",
+        "description": "1000 - TAMPA MEDICAL CENTER-CONSTR.STONE & TILE.Labor",
+        "budgetAmount": 3089866.16,
+        "actualCost": 3109487.88,
+        "commitments": 3151861.94,
+        "variance": 19621.72,
+        "percentComplete": 66.1,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-01-424.MAT",
+        "description": "1000 - TAMPA MEDICAL CENTER-CONSTR.THRESHOLD INSPECTOR.Materials",
+        "budgetAmount": 3042937.97,
+        "actualCost": 3070132.52,
+        "commitments": 2913149.29,
+        "variance": 27194.55,
+        "percentComplete": 75.4,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-02-217.SUB",
+        "description": "1000 - TAMPA MEDICAL CENTER-CONSTR.TEST PITS.Subcontractor",
+        "budgetAmount": 3200563.63,
+        "actualCost": 3064175.56,
+        "commitments": 3203877.13,
+        "variance": -136388.07,
+        "percentComplete": 84.7,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-08-480.MAT",
+        "description": "1000 - TAMPA MEDICAL CENTER-CONSTR.BALANCED ENTRANCE DOORS.Materials",
+        "budgetAmount": 3238902.36,
+        "actualCost": 3431267.33,
+        "commitments": 3263126.87,
+        "variance": 192364.97,
+        "percentComplete": 77.0,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-09-400.LBN",
+        "description": "1000 - TAMPA MEDICAL CENTER-CONSTR.TERRAZZO.Labor Burden",
+        "budgetAmount": 3275775.96,
+        "actualCost": 3263550.13,
+        "commitments": 3157824.51,
+        "variance": -12225.83,
+        "percentComplete": 63.5,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-03-011.MAT",
+        "description": "1000 - TAMPA MEDICAL CENTER-CONSTR.SHELL - CARPENTER.Materials",
+        "budgetAmount": 3261761.08,
+        "actualCost": 3340865.94,
+        "commitments": 3142323.34,
+        "variance": 79104.86,
+        "percentComplete": 93.0,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-11-080.SUB",
+        "description": "1000 - TAMPA MEDICAL CENTER-CONSTR.REGISTRATION EQUIPMENT.Subcontractor",
+        "budgetAmount": 3000924.43,
+        "actualCost": 3180205.53,
+        "commitments": 2854285.71,
+        "variance": 179281.1,
+        "percentComplete": 97.1,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-09-580.LAB",
+        "description": "1000 - TAMPA MEDICAL CENTER-CONSTR.SUSPENDED DECORATIVE GRIDS.Labor",
+        "budgetAmount": 2988418.0,
+        "actualCost": 3002800.77,
+        "commitments": 3002544.89,
+        "variance": 14382.77,
+        "percentComplete": 88.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-01-422.LAB",
+        "description": "1000 - TAMPA MEDICAL CENTER-CONSTR.ENGINEERING.Labor",
+        "budgetAmount": 3196191.36,
+        "actualCost": 3296980.33,
+        "commitments": 3051298.66,
+        "variance": 100788.97,
+        "percentComplete": 62.9,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-02-580.OVH",
+        "description": "1000 - TAMPA MEDICAL CENTER-CONSTR.ELECTRICAL & COMMUNICATION STR.Overhead",
+        "budgetAmount": 3160072.17,
+        "actualCost": 3149924.46,
+        "commitments": 3114561.68,
+        "variance": -10147.71,
+        "percentComplete": 62.6,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-01-870.MAT",
+        "description": "1000 - TAMPA MEDICAL CENTER-CONSTR.PHOTOGRAPHS.Materials",
+        "budgetAmount": 3168335.47,
+        "actualCost": 3047909.67,
+        "commitments": 3198298.47,
+        "variance": -120425.8,
+        "percentComplete": 86.4,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-02-231.MAT",
+        "description": "1000 - TAMPA MEDICAL CENTER-CONSTR.CLEARING & GRUBBING.Materials",
+        "budgetAmount": 3236002.8,
+        "actualCost": 3221212.11,
+        "commitments": 3131454.28,
+        "variance": -14790.69,
+        "percentComplete": 85.2,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-107.MAT",
+        "description": "1000 - TAMPA MEDICAL CENTER-CONSTR.SUBCONTRACTOR DEFAULT INS.Materials",
+        "budgetAmount": 89023.22,
+        "actualCost": 89587.36,
+        "commitments": 85023.63,
+        "variance": 564.14,
+        "percentComplete": 87.8,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-110.OVH",
+        "description": "1000 - TAMPA MEDICAL CENTER-CONSTR.CONTRACTOR'S FEE.Overhead",
+        "budgetAmount": 8029560.38,
+        "actualCost": 7996957.15,
+        "commitments": 7656510.54,
+        "variance": -32603.23,
+        "percentComplete": 72.2,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-141.MAT",
+        "description": "1000 - TAMPA MEDICAL CENTER-CONSTR.CONTRACTOR'S CONTINGENCY.Materials",
+        "budgetAmount": 2485558.22,
+        "actualCost": 2578242.3,
+        "commitments": 2554789.73,
+        "variance": 92684.08,
+        "percentComplete": 56.7,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      }
+    ]
+  },
+  {
+    "project_id": 2525847,
+    "project_name": "Key West Luxury Villas",
+    "jobCostItems": [
+      {
+        "costCode": "1000.10-01-301.MAT",
+        "description": "1000 - KEY WEST LUXURY VILLAS-CONSTR.PROPERTY MANAGER.Materials",
+        "budgetAmount": 1761690.52,
+        "actualCost": 1751203.06,
+        "commitments": 1754229.22,
+        "variance": -10487.46,
+        "percentComplete": 79.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-317.LAB",
+        "description": "1000 - KEY WEST LUXURY VILLAS-CONSTR.PROJECT COORDINATOR.Labor",
+        "budgetAmount": 1801997.11,
+        "actualCost": 1770511.73,
+        "commitments": 1825481.07,
+        "variance": -31485.38,
+        "percentComplete": 61.6,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-511.MAT",
+        "description": "1000 - KEY WEST LUXURY VILLAS-CONSTR.TEMPORARY ELECTRICITY.Materials",
+        "budgetAmount": 1764164.79,
+        "actualCost": 1725726.82,
+        "commitments": 1696168.21,
+        "variance": -38437.97,
+        "percentComplete": 51.7,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-533.MAT",
+        "description": "1000 - KEY WEST LUXURY VILLAS-CONSTR.COMPUTER HARDWARE.Materials",
+        "budgetAmount": 1767593.88,
+        "actualCost": 1778079.99,
+        "commitments": 1753654.72,
+        "variance": 10486.11,
+        "percentComplete": 80.2,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-520.MAT",
+        "description": "1000 - KEY WEST LUXURY VILLAS-CONSTR.CONSTRUCTION FACILITIES.Materials",
+        "budgetAmount": 1840637.84,
+        "actualCost": 1945975.21,
+        "commitments": 1771619.56,
+        "variance": 105337.37,
+        "percentComplete": 72.6,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-744.LAB",
+        "description": "1000 - KEY WEST LUXURY VILLAS-CONSTR.TRASH REMOVAL.Labor",
+        "budgetAmount": 1645300.02,
+        "actualCost": 1689075.43,
+        "commitments": 1635806.18,
+        "variance": 43775.41,
+        "percentComplete": 80.1,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-556.LAB",
+        "description": "1000 - KEY WEST LUXURY VILLAS-CONSTR.PARKING.Labor",
+        "budgetAmount": 1684614.99,
+        "actualCost": 1628472.95,
+        "commitments": 1655611.17,
+        "variance": -56142.04,
+        "percentComplete": 63.7,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-07-270.LAB",
+        "description": "1000 - KEY WEST LUXURY VILLAS-CONSTR.AIR BARRIERS.Labor",
+        "budgetAmount": 3395896.77,
+        "actualCost": 3459749.8,
+        "commitments": 3448810.54,
+        "variance": 63853.03,
+        "percentComplete": 85.0,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-18-160.MAT",
+        "description": "1000 - KEY WEST LUXURY VILLAS-CONSTR.GENERAL LIABILITY INSURANCE.Materials",
+        "budgetAmount": 3392273.2,
+        "actualCost": 3559284.2,
+        "commitments": 3388727.96,
+        "variance": 167011.0,
+        "percentComplete": 59.1,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-09-970.MAT",
+        "description": "1000 - KEY WEST LUXURY VILLAS-CONSTR.COATINGS FOR STEEL.Materials",
+        "budgetAmount": 3675320.84,
+        "actualCost": 3808262.52,
+        "commitments": 3601027.87,
+        "variance": 132941.68,
+        "percentComplete": 56.6,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-02-458.LAB",
+        "description": "1000 - KEY WEST LUXURY VILLAS-CONSTR.PRECAST CONCRETE PILES.Labor",
+        "budgetAmount": 3936490.68,
+        "actualCost": 4123402.95,
+        "commitments": 3996611.53,
+        "variance": 186912.27,
+        "percentComplete": 77.0,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-06-134.LAB",
+        "description": "1000 - KEY WEST LUXURY VILLAS-CONSTR.EXTERIOR FASCIA.Labor",
+        "budgetAmount": 3419244.7,
+        "actualCost": 3616392.4,
+        "commitments": 3299592.52,
+        "variance": 197147.7,
+        "percentComplete": 57.0,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-02-120.LAB",
+        "description": "1000 - KEY WEST LUXURY VILLAS-CONSTR.OFF-SITE TRANSPORTATION & DISP.Labor",
+        "budgetAmount": 3749309.23,
+        "actualCost": 3889353.22,
+        "commitments": 3796274.25,
+        "variance": 140043.99,
+        "percentComplete": 57.8,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-01-774.MAT",
+        "description": "1000 - KEY WEST LUXURY VILLAS-CONSTR.PROJECT CLOSEOUT.Materials",
+        "budgetAmount": 3833598.48,
+        "actualCost": 3837077.93,
+        "commitments": 3865491.17,
+        "variance": 3479.45,
+        "percentComplete": 80.1,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-08-990.LAB",
+        "description": "1000 - KEY WEST LUXURY VILLAS-CONSTR.GLAZED CURTAIN WALL RESTORATIO.Labor",
+        "budgetAmount": 3375782.37,
+        "actualCost": 3508333.58,
+        "commitments": 3392083.32,
+        "variance": 132551.21,
+        "percentComplete": 71.4,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-07-910.MAT",
+        "description": "1000 - KEY WEST LUXURY VILLAS-CONSTR.PREFORMED JOINT SEALS.Materials",
+        "budgetAmount": 3686225.21,
+        "actualCost": 3833302.78,
+        "commitments": 3559739.12,
+        "variance": 147077.57,
+        "percentComplete": 79.4,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-18-120.MAT",
+        "description": "1000 - KEY WEST LUXURY VILLAS-CONSTR.GENERAL LIABILITY INSURANCE.Materials",
+        "budgetAmount": 3479913.27,
+        "actualCost": 3461262.38,
+        "commitments": 3410775.98,
+        "variance": -18650.89,
+        "percentComplete": 66.1,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-10-312.MAT",
+        "description": "1000 - KEY WEST LUXURY VILLAS-CONSTR.FIRE EXTINGUISHERS.Materials",
+        "budgetAmount": 3570498.65,
+        "actualCost": 3414408.19,
+        "commitments": 3450770.87,
+        "variance": -156090.46,
+        "percentComplete": 76.2,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-04-420.LAB",
+        "description": "1000 - KEY WEST LUXURY VILLAS-CONSTR.COLLECTED STONE.Labor",
+        "budgetAmount": 3453254.81,
+        "actualCost": 3515671.9,
+        "commitments": 3473406.34,
+        "variance": 62417.09,
+        "percentComplete": 87.4,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-06-430.MAT",
+        "description": "1000 - KEY WEST LUXURY VILLAS-CONSTR.WOOD STAIRS & RAILINGS.Materials",
+        "budgetAmount": 3561956.4,
+        "actualCost": 3618529.52,
+        "commitments": 3558862.97,
+        "variance": 56573.12,
+        "percentComplete": 85.5,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-107.MAT",
+        "description": "1000 - KEY WEST LUXURY VILLAS-CONSTR.SUBCONTRACTOR DEFAULT INS.Materials",
+        "budgetAmount": 60275.0,
+        "actualCost": 58690.83,
+        "commitments": 61252.02,
+        "variance": -1584.17,
+        "percentComplete": 56.7,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-110.OVH",
+        "description": "1000 - KEY WEST LUXURY VILLAS-CONSTR.CONTRACTOR'S FEE.Overhead",
+        "budgetAmount": 6098399.38,
+        "actualCost": 6413013.35,
+        "commitments": 5992937.48,
+        "variance": 314613.97,
+        "percentComplete": 55.5,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-141.MAT",
+        "description": "1000 - KEY WEST LUXURY VILLAS-CONSTR.CONTRACTOR'S CONTINGENCY.Materials",
+        "budgetAmount": 1930683.85,
+        "actualCost": 1897026.31,
+        "commitments": 1971121.5,
+        "variance": -33657.54,
+        "percentComplete": 92.6,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      }
+    ]
+  },
+  {
+    "project_id": 2525848,
+    "project_name": "Pensacola Corporate Campus",
+    "jobCostItems": [
+      {
+        "costCode": "1000.10-01-567.SUB",
+        "description": "1000 - PENSACOLA CORPORATE CAMPUS-CONSTR.PROTECTIVE WALKWAYS.Subcontractor",
+        "budgetAmount": 1015143.89,
+        "actualCost": 1040186.89,
+        "commitments": 989779.23,
+        "variance": 25043.0,
+        "percentComplete": 69.1,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-870.LBN",
+        "description": "1000 - PENSACOLA CORPORATE CAMPUS-CONSTR.PHOTOGRAPHS.Labor Burden",
+        "budgetAmount": 829032.19,
+        "actualCost": 796267.53,
+        "commitments": 790449.71,
+        "variance": -32764.66,
+        "percentComplete": 55.2,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-569.MAT",
+        "description": "1000 - PENSACOLA CORPORATE CAMPUS-CONSTR.TREE & PLANT PROTECTION.Materials",
+        "budgetAmount": 980239.95,
+        "actualCost": 938171.58,
+        "commitments": 937078.75,
+        "variance": -42068.37,
+        "percentComplete": 70.6,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-517.LBN",
+        "description": "1000 - PENSACOLA CORPORATE CAMPUS-CONSTR.TEMPORARY TELEPHONE.Labor Burden",
+        "budgetAmount": 921339.77,
+        "actualCost": 951004.67,
+        "commitments": 933676.26,
+        "variance": 29664.9,
+        "percentComplete": 50.7,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-572.LAB",
+        "description": "1000 - PENSACOLA CORPORATE CAMPUS-CONSTR.PEST CONTROL.Labor",
+        "budgetAmount": 852695.01,
+        "actualCost": 881484.79,
+        "commitments": 874278.49,
+        "variance": 28789.78,
+        "percentComplete": 78.5,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-724.LAB",
+        "description": "1000 - PENSACOLA CORPORATE CAMPUS-CONSTR.SURVEYING.Labor",
+        "budgetAmount": 892984.3,
+        "actualCost": 889397.14,
+        "commitments": 869441.41,
+        "variance": -3587.16,
+        "percentComplete": 93.1,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-860.MAT",
+        "description": "1000 - PENSACOLA CORPORATE CAMPUS-CONSTR.SCHEMATIC DESIGN.Materials",
+        "budgetAmount": 899459.9,
+        "actualCost": 953951.84,
+        "commitments": 915474.3,
+        "variance": 54491.94,
+        "percentComplete": 86.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-09-970.LAB",
+        "description": "1000 - PENSACOLA CORPORATE CAMPUS-CONSTR.COATINGS FOR STEEL.Labor",
+        "budgetAmount": 1456374.86,
+        "actualCost": 1510181.87,
+        "commitments": 1389015.24,
+        "variance": 53807.01,
+        "percentComplete": 89.0,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-05-160.LAB",
+        "description": "1000 - PENSACOLA CORPORATE CAMPUS-CONSTR.METAL FRAMING SYSTEM.Labor",
+        "budgetAmount": 1485945.41,
+        "actualCost": 1485688.99,
+        "commitments": 1436858.84,
+        "variance": -256.42,
+        "percentComplete": 46.8,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-06-134.LAB",
+        "description": "1000 - PENSACOLA CORPORATE CAMPUS-CONSTR.EXTERIOR FASCIA.Labor",
+        "budgetAmount": 1643096.12,
+        "actualCost": 1616010.97,
+        "commitments": 1612986.25,
+        "variance": -27085.15,
+        "percentComplete": 65.2,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-09-644.LBN",
+        "description": "1000 - PENSACOLA CORPORATE CAMPUS-CONSTR.WOOD ATHLETIC FLOORING.Labor Burden",
+        "budgetAmount": 1521623.64,
+        "actualCost": 1590748.55,
+        "commitments": 1485589.74,
+        "variance": 69124.91,
+        "percentComplete": 85.6,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-22-000.LAB",
+        "description": "1000 - PENSACOLA CORPORATE CAMPUS-CONSTR.PLUMBING.Labor",
+        "budgetAmount": 1335730.62,
+        "actualCost": 1278390.27,
+        "commitments": 1368842.61,
+        "variance": -57340.35,
+        "percentComplete": 76.2,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-11-460.MAT",
+        "description": "1000 - PENSACOLA CORPORATE CAMPUS-CONSTR.UNIT KITCHENS.Materials",
+        "budgetAmount": 1647214.81,
+        "actualCost": 1604313.63,
+        "commitments": 1600222.09,
+        "variance": -42901.18,
+        "percentComplete": 79.4,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-09-690.MAT",
+        "description": "1000 - PENSACOLA CORPORATE CAMPUS-CONSTR.FLOORING RESTORATION.Materials",
+        "budgetAmount": 1612208.01,
+        "actualCost": 1548014.46,
+        "commitments": 1652796.09,
+        "variance": -64193.55,
+        "percentComplete": 76.1,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-11-090.MAT",
+        "description": "1000 - PENSACOLA CORPORATE CAMPUS-CONSTR.CHECKROOM EQUIPMENT.Materials",
+        "budgetAmount": 1463126.44,
+        "actualCost": 1499055.57,
+        "commitments": 1496492.23,
+        "variance": 35929.13,
+        "percentComplete": 46.9,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-16-100.LAB",
+        "description": "1000 - PENSACOLA CORPORATE CAMPUS-CONSTR.WIRING METHODS.Labor",
+        "budgetAmount": 1416334.23,
+        "actualCost": 1484527.71,
+        "commitments": 1430704.06,
+        "variance": 68193.48,
+        "percentComplete": 70.2,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-02-120.MAT",
+        "description": "1000 - PENSACOLA CORPORATE CAMPUS-CONSTR.OFF-SITE TRANSPORTATION & DISP.Materials",
+        "budgetAmount": 1479863.58,
+        "actualCost": 1476590.95,
+        "commitments": 1427255.2,
+        "variance": -3272.63,
+        "percentComplete": 67.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-03-314.MAT",
+        "description": "1000 - PENSACOLA CORPORATE CAMPUS-CONSTR.PUMPING CONCRETE.Materials",
+        "budgetAmount": 1355646.89,
+        "actualCost": 1379486.86,
+        "commitments": 1309036.09,
+        "variance": 23839.97,
+        "percentComplete": 87.6,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-06-510.LAB",
+        "description": "1000 - PENSACOLA CORPORATE CAMPUS-CONSTR.STRUCTURAL PLASTIC SHAPES & PL.Labor",
+        "budgetAmount": 1670866.82,
+        "actualCost": 1596828.28,
+        "commitments": 1685387.58,
+        "variance": -74038.54,
+        "percentComplete": 86.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-12-500.MAT",
+        "description": "1000 - PENSACOLA CORPORATE CAMPUS-CONSTR.FURNITURE.Materials",
+        "budgetAmount": 1570395.98,
+        "actualCost": 1545256.62,
+        "commitments": 1600204.44,
+        "variance": -25139.36,
+        "percentComplete": 80.2,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-107.MAT",
+        "description": "1000 - PENSACOLA CORPORATE CAMPUS-CONSTR.SUBCONTRACTOR DEFAULT INS.Materials",
+        "budgetAmount": 26449.08,
+        "actualCost": 27285.59,
+        "commitments": 26454.21,
+        "variance": 836.51,
+        "percentComplete": 73.4,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-110.OVH",
+        "description": "1000 - PENSACOLA CORPORATE CAMPUS-CONSTR.CONTRACTOR'S FEE.Overhead",
+        "budgetAmount": 2780972.6,
+        "actualCost": 2747132.71,
+        "commitments": 2730240.33,
+        "variance": -33839.89,
+        "percentComplete": 46.1,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-141.MAT",
+        "description": "1000 - PENSACOLA CORPORATE CAMPUS-CONSTR.CONTRACTOR'S CONTINGENCY.Materials",
+        "budgetAmount": 888316.29,
+        "actualCost": 870025.48,
+        "commitments": 880992.95,
+        "variance": -18290.81,
+        "percentComplete": 56.0,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      }
+    ]
+  },
+  {
+    "project_id": 2525849,
+    "project_name": "Sarasota Cultural Center",
+    "jobCostItems": [
+      {
+        "costCode": "1000.10-01-015.MAT",
+        "description": "1000 - SARASOTA CULTURAL CENTER-CONSTR.RENT & HAUL DUMPSTERS.Materials",
+        "budgetAmount": 6069319.55,
+        "actualCost": 6211435.63,
+        "commitments": 6061370.23,
+        "variance": 142116.08,
+        "percentComplete": 88.8,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-534.LAB",
+        "description": "1000 - SARASOTA CULTURAL CENTER-CONSTR.SITE STORAGE.Labor",
+        "budgetAmount": 5970484.31,
+        "actualCost": 5690427.91,
+        "commitments": 5761715.62,
+        "variance": -280056.4,
+        "percentComplete": 79.1,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-571.LAB",
+        "description": "1000 - SARASOTA CULTURAL CENTER-CONSTR.EROSION & SEDIMENT CONTROL.Labor",
+        "budgetAmount": 6177227.22,
+        "actualCost": 6235771.32,
+        "commitments": 5995333.27,
+        "variance": 58544.1,
+        "percentComplete": 53.5,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-535.MAT",
+        "description": "1000 - SARASOTA CULTURAL CENTER-CONSTR.PARKING.Materials",
+        "budgetAmount": 5727251.49,
+        "actualCost": 5590508.4,
+        "commitments": 5580096.61,
+        "variance": -136743.09,
+        "percentComplete": 99.8,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-18-105.MAT",
+        "description": "1000 - SARASOTA CULTURAL CENTER-CONSTR.GENERAL LIABILITY INSURANCE.Materials",
+        "budgetAmount": 6199951.13,
+        "actualCost": 6119462.78,
+        "commitments": 6272870.29,
+        "variance": -80488.35,
+        "percentComplete": 94.2,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-580.MAT",
+        "description": "1000 - SARASOTA CULTURAL CENTER-CONSTR.PROJECT IDENTIFICATION.Materials",
+        "budgetAmount": 5656299.19,
+        "actualCost": 5493664.43,
+        "commitments": 5587889.26,
+        "variance": -162634.76,
+        "percentComplete": 98.2,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-18-110.LAB",
+        "description": "1000 - SARASOTA CULTURAL CENTER-CONSTR.CONTRACTOR'S FEE.Labor",
+        "budgetAmount": 5707326.09,
+        "actualCost": 5816749.65,
+        "commitments": 5823857.18,
+        "variance": 109423.56,
+        "percentComplete": 67.5,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-12-640.MAT",
+        "description": "1000 - SARASOTA CULTURAL CENTER-CONSTR.BOOTHS & TABLES.Materials",
+        "budgetAmount": 2942145.26,
+        "actualCost": 2992323.01,
+        "commitments": 2856319.61,
+        "variance": 50177.75,
+        "percentComplete": 99.0,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-07-710.LAB",
+        "description": "1000 - SARASOTA CULTURAL CENTER-CONSTR.MANUFACTURED ROOF SPECIALTIES.Labor",
+        "budgetAmount": 2989544.31,
+        "actualCost": 3095833.69,
+        "commitments": 2847382.06,
+        "variance": 106289.38,
+        "percentComplete": 88.0,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-09-680.LAB",
+        "description": "1000 - SARASOTA CULTURAL CENTER-CONSTR.CARPET.Labor",
+        "budgetAmount": 2906763.16,
+        "actualCost": 2867194.05,
+        "commitments": 2807394.14,
+        "variance": -39569.11,
+        "percentComplete": 74.5,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-07-160.LAB",
+        "description": "1000 - SARASOTA CULTURAL CENTER-CONSTR.CEMENTITIOUS & REACTIVE WATERP.Labor",
+        "budgetAmount": 2860130.22,
+        "actualCost": 2803864.43,
+        "commitments": 2908403.47,
+        "variance": -56265.79,
+        "percentComplete": 65.7,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-17-732.MAT",
+        "description": "1000 - SARASOTA CULTURAL CENTER-CONSTR.ROLL DOWN DOOR EQUIP.Materials",
+        "budgetAmount": 3027419.93,
+        "actualCost": 2996647.11,
+        "commitments": 2935817.22,
+        "variance": -30772.82,
+        "percentComplete": 91.5,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-01-723.MAT",
+        "description": "1000 - SARASOTA CULTURAL CENTER-CONSTR.PROTECT ADJACENT CONSTRUCTION.Materials",
+        "budgetAmount": 3017736.37,
+        "actualCost": 3004117.26,
+        "commitments": 2926232.31,
+        "variance": -13619.11,
+        "percentComplete": 84.7,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-12-600.SUB",
+        "description": "1000 - SARASOTA CULTURAL CENTER-CONSTR.MULTIPLE SEATING.Subcontractor",
+        "budgetAmount": 3021383.16,
+        "actualCost": 2888954.27,
+        "commitments": 3000686.28,
+        "variance": -132428.89,
+        "percentComplete": 72.5,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-02-815.LAB",
+        "description": "1000 - SARASOTA CULTURAL CENTER-CONSTR.FOUNTAINS.Labor",
+        "budgetAmount": 2917575.93,
+        "actualCost": 2947449.67,
+        "commitments": 2784118.13,
+        "variance": 29873.74,
+        "percentComplete": 98.6,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-04-600.LAB",
+        "description": "1000 - SARASOTA CULTURAL CENTER-CONSTR.CORROSION-RESISTANT MASONRY.Labor",
+        "budgetAmount": 2840927.52,
+        "actualCost": 2970140.78,
+        "commitments": 2922266.81,
+        "variance": 129213.26,
+        "percentComplete": 45.9,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-09-570.MAT",
+        "description": "1000 - SARASOTA CULTURAL CENTER-CONSTR.LINEAR WOOD CEILINGS.Materials",
+        "budgetAmount": 2937434.9,
+        "actualCost": 2908783.81,
+        "commitments": 2908464.56,
+        "variance": -28651.09,
+        "percentComplete": 72.1,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-10-150.MAT",
+        "description": "1000 - SARASOTA CULTURAL CENTER-CONSTR.COMPARTMENTS & CUBICLES.Materials",
+        "budgetAmount": 2921253.4,
+        "actualCost": 3074333.42,
+        "commitments": 2890592.53,
+        "variance": 153080.02,
+        "percentComplete": 82.1,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-05-160.LAB",
+        "description": "1000 - SARASOTA CULTURAL CENTER-CONSTR.METAL FRAMING SYSTEM.Labor",
+        "budgetAmount": 2968595.42,
+        "actualCost": 2946854.42,
+        "commitments": 3000627.72,
+        "variance": -21741.0,
+        "percentComplete": 45.8,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-08-331.MAT",
+        "description": "1000 - SARASOTA CULTURAL CENTER-CONSTR.COILING COUNTER DOORS.Materials",
+        "budgetAmount": 2821049.46,
+        "actualCost": 2771587.77,
+        "commitments": 2831386.14,
+        "variance": -49461.69,
+        "percentComplete": 56.4,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-107.MAT",
+        "description": "1000 - SARASOTA CULTURAL CENTER-CONSTR.SUBCONTRACTOR DEFAULT INS.Materials",
+        "budgetAmount": 77463.44,
+        "actualCost": 78720.5,
+        "commitments": 75215.86,
+        "variance": 1257.06,
+        "percentComplete": 84.1,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-110.OVH",
+        "description": "1000 - SARASOTA CULTURAL CENTER-CONSTR.CONTRACTOR'S FEE.Overhead",
+        "budgetAmount": 4554457.57,
+        "actualCost": 4687981.89,
+        "commitments": 4595756.42,
+        "variance": 133524.32,
+        "percentComplete": 66.8,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-141.MAT",
+        "description": "1000 - SARASOTA CULTURAL CENTER-CONSTR.CONTRACTOR'S CONTINGENCY.Materials",
+        "budgetAmount": 1802129.7,
+        "actualCost": 1767767.18,
+        "commitments": 1755902.36,
+        "variance": -34362.52,
+        "percentComplete": 93.5,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      }
+    ]
+  },
+  {
+    "project_id": 2525850,
+    "project_name": "Boca Raton Corporate Headquarters",
+    "jobCostItems": [
+      {
+        "costCode": "1000.10-01-536.LAB",
+        "description": "1000 - BOCA RATON CORPORATE HEADQUARTERS-CONSTR.COMPUTER OPERATION & MAINT.Labor",
+        "budgetAmount": 3437752.47,
+        "actualCost": 3275232.59,
+        "commitments": 3271011.88,
+        "variance": -162519.88,
+        "percentComplete": 48.5,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-18-205.MAT",
+        "description": "1000 - BOCA RATON CORPORATE HEADQUARTERS-CONSTR.CONTINGENCY BUYOUT.Materials",
+        "budgetAmount": 3114304.59,
+        "actualCost": 3131140.25,
+        "commitments": 3146583.6,
+        "variance": 16835.66,
+        "percentComplete": 99.8,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-563.MAT",
+        "description": "1000 - BOCA RATON CORPORATE HEADQUARTERS-CONSTR.DUST BARRIERS.Materials",
+        "budgetAmount": 3211676.59,
+        "actualCost": 3113943.68,
+        "commitments": 3171079.17,
+        "variance": -97732.91,
+        "percentComplete": 49.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-723.LAB",
+        "description": "1000 - BOCA RATON CORPORATE HEADQUARTERS-CONSTR.PROTECT ADJACENT CONSTRUCTION.Labor",
+        "budgetAmount": 3303776.77,
+        "actualCost": 3321395.31,
+        "commitments": 3291459.07,
+        "variance": 17618.54,
+        "percentComplete": 74.4,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-500.LAB",
+        "description": "1000 - BOCA RATON CORPORATE HEADQUARTERS-CONSTR.TEMPORARY FACILITIES & CONTROL.Labor",
+        "budgetAmount": 3749902.96,
+        "actualCost": 3599154.51,
+        "commitments": 3698904.69,
+        "variance": -150748.45,
+        "percentComplete": 69.2,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-105.LAB",
+        "description": "1000 - BOCA RATON CORPORATE HEADQUARTERS-CONSTR.PERMITS.Labor",
+        "budgetAmount": 3273862.85,
+        "actualCost": 3371373.15,
+        "commitments": 3268543.41,
+        "variance": 97510.3,
+        "percentComplete": 90.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-312.MAT",
+        "description": "1000 - BOCA RATON CORPORATE HEADQUARTERS-CONSTR.LEED AP.Materials",
+        "budgetAmount": 3826354.22,
+        "actualCost": 3914042.54,
+        "commitments": 3722696.8,
+        "variance": 87688.32,
+        "percentComplete": 59.1,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-18-108.LAB",
+        "description": "1000 - BOCA RATON CORPORATE HEADQUARTERS-CONSTR.CONSTRUCTION MGMT FEE.Labor",
+        "budgetAmount": 5570801.58,
+        "actualCost": 5512757.35,
+        "commitments": 5464073.3,
+        "variance": -58044.23,
+        "percentComplete": 68.5,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-12-300.MAT",
+        "description": "1000 - BOCA RATON CORPORATE HEADQUARTERS-CONSTR.MANUFACTURED CASEWORK.Materials",
+        "budgetAmount": 6377912.24,
+        "actualCost": 6312450.17,
+        "commitments": 6477721.02,
+        "variance": -65462.07,
+        "percentComplete": 82.9,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-03-000.LAB",
+        "description": "1000 - BOCA RATON CORPORATE HEADQUARTERS-CONSTR.CONCRETE.Labor",
+        "budgetAmount": 5564448.67,
+        "actualCost": 5305319.35,
+        "commitments": 5612802.3,
+        "variance": -259129.32,
+        "percentComplete": 73.0,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-02-222.MAT",
+        "description": "1000 - BOCA RATON CORPORATE HEADQUARTERS-CONSTR.MINOR DEMOLITION FOR REMODELIN.Materials",
+        "budgetAmount": 5212339.71,
+        "actualCost": 5422567.11,
+        "commitments": 4951845.87,
+        "variance": 210227.4,
+        "percentComplete": 77.9,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-10-710.LAB",
+        "description": "1000 - BOCA RATON CORPORATE HEADQUARTERS-CONSTR.EXTERIOR SHUTTERS.Labor",
+        "budgetAmount": 5516144.21,
+        "actualCost": 5269054.31,
+        "commitments": 5283691.48,
+        "variance": -247089.9,
+        "percentComplete": 95.1,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-08-500.MAT",
+        "description": "1000 - BOCA RATON CORPORATE HEADQUARTERS-CONSTR.WINDOWS.Materials",
+        "budgetAmount": 5421698.47,
+        "actualCost": 5505600.42,
+        "commitments": 5552345.33,
+        "variance": 83901.95,
+        "percentComplete": 65.0,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-09-722.MAT",
+        "description": "1000 - BOCA RATON CORPORATE HEADQUARTERS-CONSTR.FRP WALL PANELS.Materials",
+        "budgetAmount": 5354400.01,
+        "actualCost": 5386891.02,
+        "commitments": 5355413.23,
+        "variance": 32491.01,
+        "percentComplete": 85.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-07-480.MAT",
+        "description": "1000 - BOCA RATON CORPORATE HEADQUARTERS-CONSTR.EXTERIOR WALL ASSEMBLIES.Materials",
+        "budgetAmount": 5366546.04,
+        "actualCost": 5695966.05,
+        "commitments": 5374387.07,
+        "variance": 329420.01,
+        "percentComplete": 94.4,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-03-380.MAT",
+        "description": "1000 - BOCA RATON CORPORATE HEADQUARTERS-CONSTR.POST-TENSIONED CONCRETE.Materials",
+        "budgetAmount": 5849445.15,
+        "actualCost": 6060758.04,
+        "commitments": 5899128.79,
+        "variance": 211312.89,
+        "percentComplete": 49.1,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-06-250.LAB",
+        "description": "1000 - BOCA RATON CORPORATE HEADQUARTERS-CONSTR.PREFINISHED PANELING.Labor",
+        "budgetAmount": 5890431.49,
+        "actualCost": 6166548.47,
+        "commitments": 5656510.18,
+        "variance": 276116.98,
+        "percentComplete": 81.0,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-07-460.LBN",
+        "description": "1000 - BOCA RATON CORPORATE HEADQUARTERS-CONSTR.SIDING.Labor Burden",
+        "budgetAmount": 5438161.97,
+        "actualCost": 5415755.34,
+        "commitments": 5239139.92,
+        "variance": -22406.63,
+        "percentComplete": 59.2,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-09-640.LAB",
+        "description": "1000 - BOCA RATON CORPORATE HEADQUARTERS-CONSTR.WOOD FLOORING.Labor",
+        "budgetAmount": 6238397.99,
+        "actualCost": 6108611.81,
+        "commitments": 6326459.29,
+        "variance": -129786.18,
+        "percentComplete": 71.1,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-07-310.MAT",
+        "description": "1000 - BOCA RATON CORPORATE HEADQUARTERS-CONSTR.SHINGLES.Materials",
+        "budgetAmount": 5644124.11,
+        "actualCost": 5875088.36,
+        "commitments": 5685409.14,
+        "variance": 230964.25,
+        "percentComplete": 66.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-107.MAT",
+        "description": "1000 - BOCA RATON CORPORATE HEADQUARTERS-CONSTR.SUBCONTRACTOR DEFAULT INS.Materials",
+        "budgetAmount": 92880.47,
+        "actualCost": 90066.01,
+        "commitments": 95369.17,
+        "variance": -2814.46,
+        "percentComplete": 64.1,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-110.OVH",
+        "description": "1000 - BOCA RATON CORPORATE HEADQUARTERS-CONSTR.CONTRACTOR'S FEE.Overhead",
+        "budgetAmount": 6578164.68,
+        "actualCost": 6580451.12,
+        "commitments": 6648216.85,
+        "variance": 2286.44,
+        "percentComplete": 71.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-141.MAT",
+        "description": "1000 - BOCA RATON CORPORATE HEADQUARTERS-CONSTR.CONTRACTOR'S CONTINGENCY.Materials",
+        "budgetAmount": 2928293.86,
+        "actualCost": 2886266.46,
+        "commitments": 2870125.17,
+        "variance": -42027.4,
+        "percentComplete": 64.5,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      }
+    ]
+  },
+  {
+    "project_id": 2525851,
+    "project_name": "Coral Gables Luxury Condominium",
+    "jobCostItems": [
+      {
+        "costCode": "1000.10-01-830.LAB",
+        "description": "1000 - CORAL GABLES LUXURY CONDOMINIUM-CONSTR.SHOP DRAWINGS.Labor",
+        "budgetAmount": 9352223.67,
+        "actualCost": 9788504.55,
+        "commitments": 9141974.39,
+        "variance": 436280.88,
+        "percentComplete": 87.0,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-316.LAB",
+        "description": "1000 - CORAL GABLES LUXURY CONDOMINIUM-CONSTR.PROJECT ADMINISTRATOR.Labor",
+        "budgetAmount": 9966599.45,
+        "actualCost": 9568441.54,
+        "commitments": 10160833.54,
+        "variance": -398157.91,
+        "percentComplete": 66.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-300.SUB",
+        "description": "1000 - CORAL GABLES LUXURY CONDOMINIUM-CONSTR.ADMINISTRATIVE REQUIREMENTS.Subcontractor",
+        "budgetAmount": 9434903.55,
+        "actualCost": 9083593.23,
+        "commitments": 9426704.36,
+        "variance": -351310.32,
+        "percentComplete": 69.6,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-915.LAB",
+        "description": "1000 - CORAL GABLES LUXURY CONDOMINIUM-CONSTR.COMMISSIONING.Labor",
+        "budgetAmount": 9210844.7,
+        "actualCost": 8847007.74,
+        "commitments": 9464027.91,
+        "variance": -363836.96,
+        "percentComplete": 96.4,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-022.MAT",
+        "description": "1000 - CORAL GABLES LUXURY CONDOMINIUM-CONSTR.CONTINGENCY.Materials",
+        "budgetAmount": 9646668.22,
+        "actualCost": 9562354.01,
+        "commitments": 9315162.23,
+        "variance": -84314.21,
+        "percentComplete": 89.9,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-570.LAB",
+        "description": "1000 - CORAL GABLES LUXURY CONDOMINIUM-CONSTR.TEMPORARY CONTROLS.Labor",
+        "budgetAmount": 9781806.67,
+        "actualCost": 10250401.15,
+        "commitments": 9294958.68,
+        "variance": 468594.48,
+        "percentComplete": 82.8,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-105.MAT",
+        "description": "1000 - CORAL GABLES LUXURY CONDOMINIUM-CONSTR.PERMITS.Materials",
+        "budgetAmount": 9500073.4,
+        "actualCost": 9386241.02,
+        "commitments": 9411309.05,
+        "variance": -113832.38,
+        "percentComplete": 83.5,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-11-160.LAB",
+        "description": "1000 - CORAL GABLES LUXURY CONDOMINIUM-CONSTR.LOADING DOCK EQUIPMENT.Labor",
+        "budgetAmount": 4842366.49,
+        "actualCost": 4636092.62,
+        "commitments": 4738141.94,
+        "variance": -206273.87,
+        "percentComplete": 87.5,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-03-600.MAT",
+        "description": "1000 - CORAL GABLES LUXURY CONDOMINIUM-CONSTR.GROUTS.Materials",
+        "budgetAmount": 4876238.9,
+        "actualCost": 4916924.7,
+        "commitments": 4885912.05,
+        "variance": 40685.8,
+        "percentComplete": 98.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-02-495.MAT",
+        "description": "1000 - CORAL GABLES LUXURY CONDOMINIUM-CONSTR.INSTRUMENTATION & MONITORING.Materials",
+        "budgetAmount": 4646247.15,
+        "actualCost": 4603730.39,
+        "commitments": 4619797.02,
+        "variance": -42516.76,
+        "percentComplete": 48.1,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-03-118.LBN",
+        "description": "1000 - CORAL GABLES LUXURY CONDOMINIUM-CONSTR.PAD FOOTINGS.Labor Burden",
+        "budgetAmount": 4827599.81,
+        "actualCost": 5096225.05,
+        "commitments": 4609553.93,
+        "variance": 268625.24,
+        "percentComplete": 52.7,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-12-350.MAT",
+        "description": "1000 - CORAL GABLES LUXURY CONDOMINIUM-CONSTR.SPECIALTY CASEWORK.Materials",
+        "budgetAmount": 4704198.87,
+        "actualCost": 4707164.61,
+        "commitments": 4658250.89,
+        "variance": 2965.74,
+        "percentComplete": 82.8,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-08-610.MAT",
+        "description": "1000 - CORAL GABLES LUXURY CONDOMINIUM-CONSTR.ROOF WINDOWS.Materials",
+        "budgetAmount": 4584198.73,
+        "actualCost": 4825216.21,
+        "commitments": 4554365.1,
+        "variance": 241017.48,
+        "percentComplete": 71.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-08-332.LBN",
+        "description": "1000 - CORAL GABLES LUXURY CONDOMINIUM-CONSTR.COILING COUNTER GRILLES.Labor Burden",
+        "budgetAmount": 4682980.96,
+        "actualCost": 4723119.68,
+        "commitments": 4545756.91,
+        "variance": 40138.72,
+        "percentComplete": 88.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-11-000.SUB",
+        "description": "1000 - CORAL GABLES LUXURY CONDOMINIUM-CONSTR.EQUIPMENT.Subcontractor",
+        "budgetAmount": 4858430.84,
+        "actualCost": 5076901.44,
+        "commitments": 4657560.84,
+        "variance": 218470.6,
+        "percentComplete": 60.7,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-05-820.MAT",
+        "description": "1000 - CORAL GABLES LUXURY CONDOMINIUM-CONSTR.SLIDE BEARINGS.Materials",
+        "budgetAmount": 4869615.11,
+        "actualCost": 4679340.05,
+        "commitments": 4844612.12,
+        "variance": -190275.06,
+        "percentComplete": 67.0,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-04-552.LAB",
+        "description": "1000 - CORAL GABLES LUXURY CONDOMINIUM-CONSTR.PRECAST COLUMNS.Labor",
+        "budgetAmount": 4700572.54,
+        "actualCost": 4606395.92,
+        "commitments": 4793324.79,
+        "variance": -94176.62,
+        "percentComplete": 59.5,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-15-010.MAT",
+        "description": "1000 - CORAL GABLES LUXURY CONDOMINIUM-CONSTR.MISCELLANEOUS PLUMBING.Materials",
+        "budgetAmount": 4724182.62,
+        "actualCost": 4921516.79,
+        "commitments": 4698726.62,
+        "variance": 197334.17,
+        "percentComplete": 66.9,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-18-143.SUB",
+        "description": "1000 - CORAL GABLES LUXURY CONDOMINIUM-CONSTR.CONSTRUCTION CONTINGENCY.Subcontractor",
+        "budgetAmount": 4486516.21,
+        "actualCost": 4432295.97,
+        "commitments": 4619725.81,
+        "variance": -54220.24,
+        "percentComplete": 94.4,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-05-610.SUB",
+        "description": "1000 - CORAL GABLES LUXURY CONDOMINIUM-CONSTR.METAL SIDING.Subcontractor",
+        "budgetAmount": 4831874.97,
+        "actualCost": 4606155.75,
+        "commitments": 4717408.95,
+        "variance": -225719.22,
+        "percentComplete": 82.1,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-107.MAT",
+        "description": "1000 - CORAL GABLES LUXURY CONDOMINIUM-CONSTR.SUBCONTRACTOR DEFAULT INS.Materials",
+        "budgetAmount": 127490.16,
+        "actualCost": 133080.76,
+        "commitments": 122675.01,
+        "variance": 5590.6,
+        "percentComplete": 57.5,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-110.OVH",
+        "description": "1000 - CORAL GABLES LUXURY CONDOMINIUM-CONSTR.CONTRACTOR'S FEE.Overhead",
+        "budgetAmount": 8533797.25,
+        "actualCost": 8305022.27,
+        "commitments": 8234345.98,
+        "variance": -228774.98,
+        "percentComplete": 73.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-141.MAT",
+        "description": "1000 - CORAL GABLES LUXURY CONDOMINIUM-CONSTR.CONTRACTOR'S CONTINGENCY.Materials",
+        "budgetAmount": 4926101.27,
+        "actualCost": 5044275.55,
+        "commitments": 4959124.56,
+        "variance": 118174.28,
+        "percentComplete": 72.7,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      }
+    ]
+  },
+  {
+    "project_id": 2525852,
+    "project_name": "Gainesville University Expansion",
+    "jobCostItems": [
+      {
+        "costCode": "1000.10-01-724.MAT",
+        "description": "1000 - GAINESVILLE UNIVERSITY EXPANSION-CONSTR.SURVEYING.Materials",
+        "budgetAmount": 1108176.26,
+        "actualCost": 1068247.71,
+        "commitments": 1114596.3,
+        "variance": -39928.55,
+        "percentComplete": 77.0,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-314.LAB",
+        "description": "1000 - GAINESVILLE UNIVERSITY EXPANSION-CONSTR.SUPERVISION.Labor",
+        "budgetAmount": 1168221.92,
+        "actualCost": 1205205.95,
+        "commitments": 1152282.03,
+        "variance": 36984.03,
+        "percentComplete": 46.2,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-821.LAB",
+        "description": "1000 - GAINESVILLE UNIVERSITY EXPANSION-CONSTR.LEED CERTIFICATION.Labor",
+        "budgetAmount": 1143792.29,
+        "actualCost": 1196479.74,
+        "commitments": 1123393.4,
+        "variance": 52687.45,
+        "percentComplete": 64.2,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-414.MAT",
+        "description": "1000 - GAINESVILLE UNIVERSITY EXPANSION-CONSTR.DRAFTING.Materials",
+        "budgetAmount": 1138013.01,
+        "actualCost": 1157925.44,
+        "commitments": 1088480.91,
+        "variance": 19912.43,
+        "percentComplete": 94.5,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-720.MAT",
+        "description": "1000 - GAINESVILLE UNIVERSITY EXPANSION-CONSTR.LAYOUT.Materials",
+        "budgetAmount": 1140217.44,
+        "actualCost": 1127798.28,
+        "commitments": 1157043.64,
+        "variance": -12419.16,
+        "percentComplete": 61.4,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-110.MAT",
+        "description": "1000 - GAINESVILLE UNIVERSITY EXPANSION-CONSTR.BUILDING PERMIT.Materials",
+        "budgetAmount": 1138805.17,
+        "actualCost": 1180141.13,
+        "commitments": 1161342.19,
+        "variance": 41335.96,
+        "percentComplete": 86.2,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-569.MAT",
+        "description": "1000 - GAINESVILLE UNIVERSITY EXPANSION-CONSTR.TREE & PLANT PROTECTION.Materials",
+        "budgetAmount": 1198429.92,
+        "actualCost": 1192871.4,
+        "commitments": 1220576.06,
+        "variance": -5558.52,
+        "percentComplete": 69.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-02-634.MAT",
+        "description": "1000 - GAINESVILLE UNIVERSITY EXPANSION-CONSTR.DECKS.Materials",
+        "budgetAmount": 2263191.29,
+        "actualCost": 2314658.84,
+        "commitments": 2247905.97,
+        "variance": 51467.55,
+        "percentComplete": 82.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-09-980.LBN",
+        "description": "1000 - GAINESVILLE UNIVERSITY EXPANSION-CONSTR.COATINGS FOR CONCRETE & MASONR.Labor Burden",
+        "budgetAmount": 2197716.5,
+        "actualCost": 2304187.9,
+        "commitments": 2137135.43,
+        "variance": 106471.4,
+        "percentComplete": 70.4,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-02-790.MAT",
+        "description": "1000 - GAINESVILLE UNIVERSITY EXPANSION-CONSTR.ATHLETIC & RECREATIONAL SURFAC.Materials",
+        "budgetAmount": 2336332.91,
+        "actualCost": 2403608.08,
+        "commitments": 2352860.32,
+        "variance": 67275.17,
+        "percentComplete": 93.1,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-07-160.MAT",
+        "description": "1000 - GAINESVILLE UNIVERSITY EXPANSION-CONSTR.CEMENTITIOUS & REACTIVE WATERP.Materials",
+        "budgetAmount": 2189250.95,
+        "actualCost": 2259064.37,
+        "commitments": 2223879.67,
+        "variance": 69813.42,
+        "percentComplete": 89.9,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-02-227.MAT",
+        "description": "1000 - GAINESVILLE UNIVERSITY EXPANSION-CONSTR.WASTE MATERIAL DISPOSAL.Materials",
+        "budgetAmount": 2275051.4,
+        "actualCost": 2387174.22,
+        "commitments": 2220035.11,
+        "variance": 112122.82,
+        "percentComplete": 54.6,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-13-100.MAT",
+        "description": "1000 - GAINESVILLE UNIVERSITY EXPANSION-CONSTR.LIGHTNING PROTECTION.Materials",
+        "budgetAmount": 2204755.66,
+        "actualCost": 2109523.27,
+        "commitments": 2248830.94,
+        "variance": -95232.39,
+        "percentComplete": 69.9,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-06-102.LBN",
+        "description": "1000 - GAINESVILLE UNIVERSITY EXPANSION-CONSTR.TEMPORARY PROTECTION.Labor Burden",
+        "budgetAmount": 2376975.43,
+        "actualCost": 2516739.29,
+        "commitments": 2345090.48,
+        "variance": 139763.86,
+        "percentComplete": 67.1,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-05-000.MAT",
+        "description": "1000 - GAINESVILLE UNIVERSITY EXPANSION-CONSTR.METALS.Materials",
+        "budgetAmount": 2242582.14,
+        "actualCost": 2244774.65,
+        "commitments": 2250780.32,
+        "variance": 2192.51,
+        "percentComplete": 56.5,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-02-505.MAT",
+        "description": "1000 - GAINESVILLE UNIVERSITY EXPANSION-CONSTR.SITE UTILITIES.Materials",
+        "budgetAmount": 2144610.85,
+        "actualCost": 2142098.3,
+        "commitments": 2186793.48,
+        "variance": -2512.55,
+        "percentComplete": 86.5,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-16-110.MAT",
+        "description": "1000 - GAINESVILLE UNIVERSITY EXPANSION-CONSTR.ELECTRICAL.Materials",
+        "budgetAmount": 2501228.83,
+        "actualCost": 2396131.0,
+        "commitments": 2557267.88,
+        "variance": -105097.83,
+        "percentComplete": 69.9,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-03-114.LAB",
+        "description": "1000 - GAINESVILLE UNIVERSITY EXPANSION-CONSTR.CONSTRUCTION JOINT.Labor",
+        "budgetAmount": 2217810.07,
+        "actualCost": 2258765.91,
+        "commitments": 2158518.49,
+        "variance": 40955.84,
+        "percentComplete": 92.0,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-08-140.LAB",
+        "description": "1000 - GAINESVILLE UNIVERSITY EXPANSION-CONSTR.BRONZE DOORS & FRAMES.Labor",
+        "budgetAmount": 2285661.2,
+        "actualCost": 2410290.44,
+        "commitments": 2199428.0,
+        "variance": 124629.24,
+        "percentComplete": 73.0,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-04-840.LAB",
+        "description": "1000 - GAINESVILLE UNIVERSITY EXPANSION-CONSTR.PREFABRICATED MASONRY PANELS.Labor",
+        "budgetAmount": 2350010.0,
+        "actualCost": 2451070.61,
+        "commitments": 2369596.76,
+        "variance": 101060.61,
+        "percentComplete": 94.9,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-107.MAT",
+        "description": "1000 - GAINESVILLE UNIVERSITY EXPANSION-CONSTR.SUBCONTRACTOR DEFAULT INS.Materials",
+        "budgetAmount": 34921.0,
+        "actualCost": 36098.61,
+        "commitments": 34611.39,
+        "variance": 1177.61,
+        "percentComplete": 61.7,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-110.OVH",
+        "description": "1000 - GAINESVILLE UNIVERSITY EXPANSION-CONSTR.CONTRACTOR'S FEE.Overhead",
+        "budgetAmount": 2676723.55,
+        "actualCost": 2680530.19,
+        "commitments": 2665487.06,
+        "variance": 3806.64,
+        "percentComplete": 75.6,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-141.MAT",
+        "description": "1000 - GAINESVILLE UNIVERSITY EXPANSION-CONSTR.CONTRACTOR'S CONTINGENCY.Materials",
+        "budgetAmount": 840942.72,
+        "actualCost": 809581.0,
+        "commitments": 838364.54,
+        "variance": -31361.72,
+        "percentComplete": 56.2,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      }
+    ]
+  },
+  {
+    "project_id": 2525853,
+    "project_name": "Fort Myers Waterfront Estate",
+    "jobCostItems": [
+      {
+        "costCode": "1000.10-18-205.MAT",
+        "description": "1000 - FORT MYERS WATERFRONT ESTATE-CONSTR.CONTINGENCY BUYOUT.Materials",
+        "budgetAmount": 2702119.76,
+        "actualCost": 2816008.17,
+        "commitments": 2689581.11,
+        "variance": 113888.41,
+        "percentComplete": 88.0,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-740.LAB",
+        "description": "1000 - FORT MYERS WATERFRONT ESTATE-CONSTR.MOLD REMIDIATION.Labor",
+        "budgetAmount": 2689690.4,
+        "actualCost": 2675455.56,
+        "commitments": 2768139.9,
+        "variance": -14234.84,
+        "percentComplete": 84.5,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-518.LBN",
+        "description": "1000 - FORT MYERS WATERFRONT ESTATE-CONSTR.TEMPORARY WATER.Labor Burden",
+        "budgetAmount": 2824906.69,
+        "actualCost": 2905657.12,
+        "commitments": 2847054.81,
+        "variance": 80750.43,
+        "percentComplete": 75.2,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-552.MAT",
+        "description": "1000 - FORT MYERS WATERFRONT ESTATE-CONSTR.JOB SIGN.Materials",
+        "budgetAmount": 2683739.49,
+        "actualCost": 2637444.65,
+        "commitments": 2599124.5,
+        "variance": -46294.84,
+        "percentComplete": 88.2,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-540.LAB",
+        "description": "1000 - FORT MYERS WATERFRONT ESTATE-CONSTR.CONSTRUCTION AIDS.Labor",
+        "budgetAmount": 2573649.29,
+        "actualCost": 2469685.31,
+        "commitments": 2503664.85,
+        "variance": -103963.98,
+        "percentComplete": 77.2,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-745.MAT",
+        "description": "1000 - FORT MYERS WATERFRONT ESTATE-CONSTR.DUMPSTERS.Materials",
+        "budgetAmount": 2754147.51,
+        "actualCost": 2900326.49,
+        "commitments": 2620045.77,
+        "variance": 146178.98,
+        "percentComplete": 79.1,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-581.LBN",
+        "description": "1000 - FORT MYERS WATERFRONT ESTATE-CONSTR.PROJECT SIGNS.Labor Burden",
+        "budgetAmount": 2790604.09,
+        "actualCost": 2893094.63,
+        "commitments": 2791955.24,
+        "variance": 102490.54,
+        "percentComplete": 59.5,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-18-146.LAB",
+        "description": "1000 - FORT MYERS WATERFRONT ESTATE-CONSTR.OWNER ITEMS.Labor",
+        "budgetAmount": 4790095.57,
+        "actualCost": 4932704.77,
+        "commitments": 4790134.79,
+        "variance": 142609.2,
+        "percentComplete": 84.5,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-19-731.LAB",
+        "description": "1000 - FORT MYERS WATERFRONT ESTATE-CONSTR.ISS EQUIPMENT ENCLOSURE.Labor",
+        "budgetAmount": 4827689.6,
+        "actualCost": 4647037.28,
+        "commitments": 4621095.84,
+        "variance": -180652.32,
+        "percentComplete": 69.6,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-09-930.SUB",
+        "description": "1000 - FORT MYERS WATERFRONT ESTATE-CONSTR.STAINS & TRANSPARENT FINISHES.Subcontractor",
+        "budgetAmount": 4274589.9,
+        "actualCost": 4135953.71,
+        "commitments": 4341519.52,
+        "variance": -138636.19,
+        "percentComplete": 96.7,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-02-214.LBN",
+        "description": "1000 - FORT MYERS WATERFRONT ESTATE-CONSTR.SURVEYING.Labor Burden",
+        "budgetAmount": 4564124.23,
+        "actualCost": 4605256.73,
+        "commitments": 4635266.84,
+        "variance": 41132.5,
+        "percentComplete": 85.7,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-10-225.MAT",
+        "description": "1000 - FORT MYERS WATERFRONT ESTATE-CONSTR.DOOR LOUVERS.Materials",
+        "budgetAmount": 4671938.75,
+        "actualCost": 4840172.32,
+        "commitments": 4797449.26,
+        "variance": 168233.57,
+        "percentComplete": 50.6,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-10-000.MAT",
+        "description": "1000 - FORT MYERS WATERFRONT ESTATE-CONSTR.SPECIALTIES.Materials",
+        "budgetAmount": 4544329.05,
+        "actualCost": 4588719.45,
+        "commitments": 4630114.13,
+        "variance": 44390.4,
+        "percentComplete": 49.7,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-06-122.LAB",
+        "description": "1000 - FORT MYERS WATERFRONT ESTATE-CONSTR.EXTERIOR WALL SHEATHING.Labor",
+        "budgetAmount": 4856212.64,
+        "actualCost": 4920941.44,
+        "commitments": 4993341.15,
+        "variance": 64728.8,
+        "percentComplete": 87.0,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-02-216.SUB",
+        "description": "1000 - FORT MYERS WATERFRONT ESTATE-CONSTR.STANDARD PENETRATION TESTING.Subcontractor",
+        "budgetAmount": 5040897.41,
+        "actualCost": 5118123.51,
+        "commitments": 5050252.13,
+        "variance": 77226.1,
+        "percentComplete": 79.2,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-06-119.SUB",
+        "description": "1000 - FORT MYERS WATERFRONT ESTATE-CONSTR.EXTERIOR WOOD PARTITION FRAMIN.Subcontractor",
+        "budgetAmount": 4137749.78,
+        "actualCost": 3972688.01,
+        "commitments": 4158822.47,
+        "variance": -165061.77,
+        "percentComplete": 87.0,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-12-420.LAB",
+        "description": "1000 - FORT MYERS WATERFRONT ESTATE-CONSTR.TABLE ACCESSORIES.Labor",
+        "budgetAmount": 5017229.33,
+        "actualCost": 5064746.08,
+        "commitments": 4816025.08,
+        "variance": 47516.75,
+        "percentComplete": 64.1,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-17-110.MAT",
+        "description": "1000 - FORT MYERS WATERFRONT ESTATE-CONSTR.LABOR BURDEN.Materials",
+        "budgetAmount": 4773279.79,
+        "actualCost": 4920401.65,
+        "commitments": 4812479.41,
+        "variance": 147121.86,
+        "percentComplete": 51.1,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-09-940.LBN",
+        "description": "1000 - FORT MYERS WATERFRONT ESTATE-CONSTR.DECORATIVE FINISHES.Labor Burden",
+        "budgetAmount": 4913207.95,
+        "actualCost": 4929764.48,
+        "commitments": 4816862.53,
+        "variance": 16556.53,
+        "percentComplete": 82.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-02-360.LAB",
+        "description": "1000 - FORT MYERS WATERFRONT ESTATE-CONSTR.SOIL TREATMENT.Labor",
+        "budgetAmount": 5043676.67,
+        "actualCost": 5225494.63,
+        "commitments": 4938258.7,
+        "variance": 181817.96,
+        "percentComplete": 52.4,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-107.MAT",
+        "description": "1000 - FORT MYERS WATERFRONT ESTATE-CONSTR.SUBCONTRACTOR DEFAULT INS.Materials",
+        "budgetAmount": 79916.92,
+        "actualCost": 83882.64,
+        "commitments": 78314.88,
+        "variance": 3965.72,
+        "percentComplete": 93.5,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-110.OVH",
+        "description": "1000 - FORT MYERS WATERFRONT ESTATE-CONSTR.CONTRACTOR'S FEE.Overhead",
+        "budgetAmount": 9757994.27,
+        "actualCost": 9388179.0,
+        "commitments": 9287791.56,
+        "variance": -369815.27,
+        "percentComplete": 80.1,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-141.MAT",
+        "description": "1000 - FORT MYERS WATERFRONT ESTATE-CONSTR.CONTRACTOR'S CONTINGENCY.Materials",
+        "budgetAmount": 2054006.32,
+        "actualCost": 1982976.52,
+        "commitments": 2037160.98,
+        "variance": -71029.8,
+        "percentComplete": 94.7,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      }
+    ]
+  },
+  {
+    "project_id": 2525854,
+    "project_name": "West Palm Beach Mixed-Use Tower",
+    "jobCostItems": [
+      {
+        "costCode": "1000.10-01-400.MAT",
+        "description": "1000 - WEST PALM BEACH MIXED-USE TOWER-CONSTR.QUALITY REQUIREMENTS.Materials",
+        "budgetAmount": 691532.98,
+        "actualCost": 681708.33,
+        "commitments": 699611.49,
+        "variance": -9824.65,
+        "percentComplete": 81.6,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-522.MAT",
+        "description": "1000 - WEST PALM BEACH MIXED-USE TOWER-CONSTR.FIRST AID.Materials",
+        "budgetAmount": 716346.97,
+        "actualCost": 751781.86,
+        "commitments": 708218.26,
+        "variance": 35434.89,
+        "percentComplete": 55.7,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-455.LBN",
+        "description": "1000 - WEST PALM BEACH MIXED-USE TOWER-CONSTR.SPECIAL INSPECTOR.Labor Burden",
+        "budgetAmount": 676874.63,
+        "actualCost": 696603.34,
+        "commitments": 695197.76,
+        "variance": 19728.71,
+        "percentComplete": 80.7,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-830.LBN",
+        "description": "1000 - WEST PALM BEACH MIXED-USE TOWER-CONSTR.SHOP DRAWINGS.Labor Burden",
+        "budgetAmount": 702398.06,
+        "actualCost": 700992.98,
+        "commitments": 681132.1,
+        "variance": -1405.08,
+        "percentComplete": 76.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-025.OVH",
+        "description": "1000 - WEST PALM BEACH MIXED-USE TOWER-CONSTR.PLAN COPY EXPENSE.Overhead",
+        "budgetAmount": 743361.82,
+        "actualCost": 747484.63,
+        "commitments": 707011.89,
+        "variance": 4122.81,
+        "percentComplete": 80.7,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-18-105.MAT",
+        "description": "1000 - WEST PALM BEACH MIXED-USE TOWER-CONSTR.GENERAL LIABILITY INSURANCE.Materials",
+        "budgetAmount": 695059.05,
+        "actualCost": 704002.36,
+        "commitments": 669280.44,
+        "variance": 8943.31,
+        "percentComplete": 76.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-850.MAT",
+        "description": "1000 - WEST PALM BEACH MIXED-USE TOWER-CONSTR.CONSTRUCTION ADMINISTRATION.Materials",
+        "budgetAmount": 760853.03,
+        "actualCost": 799330.32,
+        "commitments": 757143.55,
+        "variance": 38477.29,
+        "percentComplete": 50.1,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-09-940.MAT",
+        "description": "1000 - WEST PALM BEACH MIXED-USE TOWER-CONSTR.DECORATIVE FINISHES.Materials",
+        "budgetAmount": 1467736.33,
+        "actualCost": 1479470.18,
+        "commitments": 1471249.07,
+        "variance": 11733.85,
+        "percentComplete": 46.5,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-16-850.LAB",
+        "description": "1000 - WEST PALM BEACH MIXED-USE TOWER-CONSTR.TELEVISION EQUIPMENT.Labor",
+        "budgetAmount": 1394460.32,
+        "actualCost": 1385592.28,
+        "commitments": 1401958.35,
+        "variance": -8868.04,
+        "percentComplete": 67.9,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-04-000.SUB",
+        "description": "1000 - WEST PALM BEACH MIXED-USE TOWER-CONSTR.MASONRY.Subcontractor",
+        "budgetAmount": 1489101.48,
+        "actualCost": 1464775.03,
+        "commitments": 1525751.83,
+        "variance": -24326.45,
+        "percentComplete": 70.5,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-03-250.SUB",
+        "description": "1000 - WEST PALM BEACH MIXED-USE TOWER-CONSTR.POST-TENSIONING.Subcontractor",
+        "budgetAmount": 1366584.68,
+        "actualCost": 1322501.35,
+        "commitments": 1305220.66,
+        "variance": -44083.33,
+        "percentComplete": 72.4,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-07-714.LBN",
+        "description": "1000 - WEST PALM BEACH MIXED-USE TOWER-CONSTR.GUTTERS & DOWNSPOUTS.Labor Burden",
+        "budgetAmount": 1369650.83,
+        "actualCost": 1408059.84,
+        "commitments": 1336594.25,
+        "variance": 38409.01,
+        "percentComplete": 47.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-09-740.SUB",
+        "description": "1000 - WEST PALM BEACH MIXED-USE TOWER-CONSTR.FLEXIBLE WOOD SHEETS.Subcontractor",
+        "budgetAmount": 1519480.75,
+        "actualCost": 1612110.99,
+        "commitments": 1461275.14,
+        "variance": 92630.24,
+        "percentComplete": 46.1,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-02-550.MAT",
+        "description": "1000 - WEST PALM BEACH MIXED-USE TOWER-CONSTR.SITE UTILITIES.Materials",
+        "budgetAmount": 1333151.57,
+        "actualCost": 1378852.74,
+        "commitments": 1362749.83,
+        "variance": 45701.17,
+        "percentComplete": 86.1,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-04-710.MAT",
+        "description": "1000 - WEST PALM BEACH MIXED-USE TOWER-CONSTR.SIMULATED BRICK.Materials",
+        "budgetAmount": 1336384.1,
+        "actualCost": 1368653.94,
+        "commitments": 1271695.93,
+        "variance": 32269.84,
+        "percentComplete": 45.4,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-01-309.LBN",
+        "description": "1000 - WEST PALM BEACH MIXED-USE TOWER-CONSTR.EXECUTIVE ASSISTANT.Labor Burden",
+        "budgetAmount": 1459950.31,
+        "actualCost": 1420622.88,
+        "commitments": 1469223.02,
+        "variance": -39327.43,
+        "percentComplete": 73.6,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-06-205.LBN",
+        "description": "1000 - WEST PALM BEACH MIXED-USE TOWER-CONSTR.WOOD CASING.Labor Burden",
+        "budgetAmount": 1477604.81,
+        "actualCost": 1419417.42,
+        "commitments": 1473745.41,
+        "variance": -58187.39,
+        "percentComplete": 85.6,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-03-600.MAT",
+        "description": "1000 - WEST PALM BEACH MIXED-USE TOWER-CONSTR.GROUTS.Materials",
+        "budgetAmount": 1373949.74,
+        "actualCost": 1339376.67,
+        "commitments": 1398681.83,
+        "variance": -34573.07,
+        "percentComplete": 58.7,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-26-000.MAT",
+        "description": "1000 - WEST PALM BEACH MIXED-USE TOWER-CONSTR.ELECTRICAL.Materials",
+        "budgetAmount": 1451161.32,
+        "actualCost": 1475356.58,
+        "commitments": 1446632.27,
+        "variance": 24195.26,
+        "percentComplete": 87.7,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-06-417.MAT",
+        "description": "1000 - WEST PALM BEACH MIXED-USE TOWER-CONSTR.OPEN MICA SHELVES.Materials",
+        "budgetAmount": 1376856.01,
+        "actualCost": 1410750.79,
+        "commitments": 1394024.51,
+        "variance": 33894.78,
+        "percentComplete": 51.4,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-107.MAT",
+        "description": "1000 - WEST PALM BEACH MIXED-USE TOWER-CONSTR.SUBCONTRACTOR DEFAULT INS.Materials",
+        "budgetAmount": 22143.04,
+        "actualCost": 23106.74,
+        "commitments": 22572.85,
+        "variance": 963.7,
+        "percentComplete": 94.2,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-110.OVH",
+        "description": "1000 - WEST PALM BEACH MIXED-USE TOWER-CONSTR.CONTRACTOR'S FEE.Overhead",
+        "budgetAmount": 1280428.16,
+        "actualCost": 1331658.35,
+        "commitments": 1241568.33,
+        "variance": 51230.19,
+        "percentComplete": 47.7,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-141.MAT",
+        "description": "1000 - WEST PALM BEACH MIXED-USE TOWER-CONSTR.CONTRACTOR'S CONTINGENCY.Materials",
+        "budgetAmount": 776724.07,
+        "actualCost": 746655.76,
+        "commitments": 761473.76,
+        "variance": -30068.31,
+        "percentComplete": 67.0,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      }
+    ]
+  },
+  {
+    "project_id": 2525855,
+    "project_name": "Aventura Retail Plaza",
+    "jobCostItems": [
+      {
+        "costCode": "1000.10-01-542.MAT",
+        "description": "1000 - AVENTURA RETAIL PLAZA-CONSTR.SCAFFOLDING & PLATFORMS.Materials",
+        "budgetAmount": 2008076.77,
+        "actualCost": 2052592.95,
+        "commitments": 2044867.29,
+        "variance": 44516.18,
+        "percentComplete": 87.6,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-660.LAB",
+        "description": "1000 - AVENTURA RETAIL PLAZA-CONSTR.PRODUCT STORAGE & HANDLING.Labor",
+        "budgetAmount": 1741546.23,
+        "actualCost": 1670345.82,
+        "commitments": 1752768.96,
+        "variance": -71200.41,
+        "percentComplete": 63.6,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-567.LAB",
+        "description": "1000 - AVENTURA RETAIL PLAZA-CONSTR.PROTECTIVE WALKWAYS.Labor",
+        "budgetAmount": 1782044.86,
+        "actualCost": 1747093.1,
+        "commitments": 1755963.47,
+        "variance": -34951.76,
+        "percentComplete": 97.1,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-310.LAB",
+        "description": "1000 - AVENTURA RETAIL PLAZA-CONSTR.ACCOUNTING.Labor",
+        "budgetAmount": 2089489.11,
+        "actualCost": 2136343.8,
+        "commitments": 2146305.62,
+        "variance": 46854.69,
+        "percentComplete": 68.2,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-536.LBN",
+        "description": "1000 - AVENTURA RETAIL PLAZA-CONSTR.COMPUTER OPERATION & MAINT.Labor Burden",
+        "budgetAmount": 2124750.01,
+        "actualCost": 2117783.94,
+        "commitments": 2180194.42,
+        "variance": -6966.07,
+        "percentComplete": 45.5,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-744.LAB",
+        "description": "1000 - AVENTURA RETAIL PLAZA-CONSTR.TRASH REMOVAL.Labor",
+        "budgetAmount": 2098066.9,
+        "actualCost": 2040798.0,
+        "commitments": 2126008.28,
+        "variance": -57268.9,
+        "percentComplete": 85.6,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-405.LAB",
+        "description": "1000 - AVENTURA RETAIL PLAZA-CONSTR.GENERAL ATTORNEY.Labor",
+        "budgetAmount": 1914945.04,
+        "actualCost": 1997990.07,
+        "commitments": 1837920.94,
+        "variance": 83045.03,
+        "percentComplete": 47.4,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-10-660.MAT",
+        "description": "1000 - AVENTURA RETAIL PLAZA-CONSTR.SUNSCREEN.Materials",
+        "budgetAmount": 3121509.13,
+        "actualCost": 3292577.65,
+        "commitments": 3007847.2,
+        "variance": 171068.52,
+        "percentComplete": 93.6,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-12-670.MAT",
+        "description": "1000 - AVENTURA RETAIL PLAZA-CONSTR.PEWS & BENCHES.Materials",
+        "budgetAmount": 2972611.41,
+        "actualCost": 3004359.26,
+        "commitments": 3017702.02,
+        "variance": 31747.85,
+        "percentComplete": 63.4,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-07-321.LAB",
+        "description": "1000 - AVENTURA RETAIL PLAZA-CONSTR.CLAY ROOF TILES.Labor",
+        "budgetAmount": 3263333.16,
+        "actualCost": 3220910.44,
+        "commitments": 3346029.57,
+        "variance": -42422.72,
+        "percentComplete": 61.4,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-05-530.LAB",
+        "description": "1000 - AVENTURA RETAIL PLAZA-CONSTR.GRATINGS.Labor",
+        "budgetAmount": 3291328.92,
+        "actualCost": 3227186.7,
+        "commitments": 3325639.7,
+        "variance": -64142.22,
+        "percentComplete": 58.5,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-07-100.MAT",
+        "description": "1000 - AVENTURA RETAIL PLAZA-CONSTR.WATERPROOFING & DAMPPROOFING.Materials",
+        "budgetAmount": 2962036.97,
+        "actualCost": 2968393.31,
+        "commitments": 3038121.47,
+        "variance": 6356.34,
+        "percentComplete": 60.7,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-90-000.MAT",
+        "description": "1000 - AVENTURA RETAIL PLAZA-CONSTR.NON REIMBURSABLE ITEMS.Materials",
+        "budgetAmount": 2959719.01,
+        "actualCost": 3119426.86,
+        "commitments": 2833669.19,
+        "variance": 159707.85,
+        "percentComplete": 74.7,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-10-200.MAT",
+        "description": "1000 - AVENTURA RETAIL PLAZA-CONSTR.SPECIALTIES.Materials",
+        "budgetAmount": 3055635.91,
+        "actualCost": 3097849.66,
+        "commitments": 3018857.67,
+        "variance": 42213.75,
+        "percentComplete": 49.8,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-03-510.LAB",
+        "description": "1000 - AVENTURA RETAIL PLAZA-CONSTR.CEMENTITIOUS ROOF DECK.Labor",
+        "budgetAmount": 3345118.3,
+        "actualCost": 3208462.17,
+        "commitments": 3282292.42,
+        "variance": -136656.13,
+        "percentComplete": 71.6,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-16-103.MAT",
+        "description": "1000 - AVENTURA RETAIL PLAZA-CONSTR.COORDINATION STUDY.Materials",
+        "budgetAmount": 3287615.67,
+        "actualCost": 3174646.39,
+        "commitments": 3343339.55,
+        "variance": -112969.28,
+        "percentComplete": 91.5,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-01-426.LBN",
+        "description": "1000 - AVENTURA RETAIL PLAZA-CONSTR.SURVEY.Labor Burden",
+        "budgetAmount": 3252253.8,
+        "actualCost": 3135458.86,
+        "commitments": 3176414.03,
+        "variance": -116794.94,
+        "percentComplete": 52.8,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-11-096.LAB",
+        "description": "1000 - AVENTURA RETAIL PLAZA-CONSTR.DUCT ACCESS PANELS.Labor",
+        "budgetAmount": 2953387.74,
+        "actualCost": 3099374.89,
+        "commitments": 2986767.13,
+        "variance": 145987.15,
+        "percentComplete": 92.0,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-01-536.MAT",
+        "description": "1000 - AVENTURA RETAIL PLAZA-CONSTR.COMPUTER OPERATION & MAINT.Materials",
+        "budgetAmount": 3267960.2,
+        "actualCost": 3450409.42,
+        "commitments": 3175600.27,
+        "variance": 182449.22,
+        "percentComplete": 60.8,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-12-580.MAT",
+        "description": "1000 - AVENTURA RETAIL PLAZA-CONSTR.RESIDENTIAL FURNITURE.Materials",
+        "budgetAmount": 3039601.1,
+        "actualCost": 3144345.72,
+        "commitments": 3020409.18,
+        "variance": 104744.62,
+        "percentComplete": 91.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-107.MAT",
+        "description": "1000 - AVENTURA RETAIL PLAZA-CONSTR.SUBCONTRACTOR DEFAULT INS.Materials",
+        "budgetAmount": 57008.43,
+        "actualCost": 60101.43,
+        "commitments": 55609.46,
+        "variance": 3093.0,
+        "percentComplete": 89.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-110.OVH",
+        "description": "1000 - AVENTURA RETAIL PLAZA-CONSTR.CONTRACTOR'S FEE.Overhead",
+        "budgetAmount": 4515924.0,
+        "actualCost": 4400791.99,
+        "commitments": 4607241.25,
+        "variance": -115132.01,
+        "percentComplete": 72.1,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-141.MAT",
+        "description": "1000 - AVENTURA RETAIL PLAZA-CONSTR.CONTRACTOR'S CONTINGENCY.Materials",
+        "budgetAmount": 1739479.35,
+        "actualCost": 1845994.77,
+        "commitments": 1665729.65,
+        "variance": 106515.42,
+        "percentComplete": 74.5,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      }
+    ]
+  },
+  {
+    "project_id": 2525856,
+    "project_name": "Tallahassee Government Complex",
+    "jobCostItems": [
+      {
+        "costCode": "1000.10-01-460.MAT",
+        "description": "1000 - TALLAHASSEE GOVERNMENT COMPLEX-CONSTR.SAFETY.Materials",
+        "budgetAmount": 4941620.94,
+        "actualCost": 4940837.89,
+        "commitments": 5067515.94,
+        "variance": -783.05,
+        "percentComplete": 56.6,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-015.LAB",
+        "description": "1000 - TALLAHASSEE GOVERNMENT COMPLEX-CONSTR.RENT & HAUL DUMPSTERS.Labor",
+        "budgetAmount": 5013993.16,
+        "actualCost": 5104990.88,
+        "commitments": 4776472.26,
+        "variance": 90997.72,
+        "percentComplete": 56.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-505.MAT",
+        "description": "1000 - TALLAHASSEE GOVERNMENT COMPLEX-CONSTR.MISC CONSUMABLES.Materials",
+        "budgetAmount": 4898915.82,
+        "actualCost": 4879396.43,
+        "commitments": 4711520.32,
+        "variance": -19519.39,
+        "percentComplete": 57.5,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-720.MAT",
+        "description": "1000 - TALLAHASSEE GOVERNMENT COMPLEX-CONSTR.LAYOUT.Materials",
+        "budgetAmount": 4988328.91,
+        "actualCost": 5158714.79,
+        "commitments": 5059053.46,
+        "variance": 170385.88,
+        "percentComplete": 81.1,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-650.LBN",
+        "description": "1000 - TALLAHASSEE GOVERNMENT COMPLEX-CONSTR.PRODUCT DELIVERY REQUIREMENTS.Labor Burden",
+        "budgetAmount": 4590193.48,
+        "actualCost": 4769699.98,
+        "commitments": 4392023.78,
+        "variance": 179506.5,
+        "percentComplete": 66.0,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-18-107.LBN",
+        "description": "1000 - TALLAHASSEE GOVERNMENT COMPLEX-CONSTR.SUBCONTRACTOR DEFAULT INS.Labor Burden",
+        "budgetAmount": 4990844.1,
+        "actualCost": 5289239.33,
+        "commitments": 4888672.92,
+        "variance": 298395.23,
+        "percentComplete": 90.9,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-100.MAT",
+        "description": "1000 - TALLAHASSEE GOVERNMENT COMPLEX-CONSTR.PERMIT-BOND INSURANCE.Materials",
+        "budgetAmount": 4848039.04,
+        "actualCost": 5113540.68,
+        "commitments": 4851146.57,
+        "variance": 265501.64,
+        "percentComplete": 75.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-03-510.LBN",
+        "description": "1000 - TALLAHASSEE GOVERNMENT COMPLEX-CONSTR.CEMENTITIOUS ROOF DECK.Labor Burden",
+        "budgetAmount": 2482308.69,
+        "actualCost": 2441747.66,
+        "commitments": 2539299.36,
+        "variance": -40561.03,
+        "percentComplete": 48.6,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-13-150.LAB",
+        "description": "1000 - TALLAHASSEE GOVERNMENT COMPLEX-CONSTR.SWIMMING POOLS.Labor",
+        "budgetAmount": 2472942.79,
+        "actualCost": 2477689.02,
+        "commitments": 2463101.52,
+        "variance": 4746.23,
+        "percentComplete": 71.8,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-03-101.MAT",
+        "description": "1000 - TALLAHASSEE GOVERNMENT COMPLEX-CONSTR.LAYOUT.Materials",
+        "budgetAmount": 2367672.43,
+        "actualCost": 2428612.14,
+        "commitments": 2395954.44,
+        "variance": 60939.71,
+        "percentComplete": 75.7,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-02-220.LBN",
+        "description": "1000 - TALLAHASSEE GOVERNMENT COMPLEX-CONSTR.SITE DEMOLITION.Labor Burden",
+        "budgetAmount": 2529269.34,
+        "actualCost": 2477580.09,
+        "commitments": 2590934.37,
+        "variance": -51689.25,
+        "percentComplete": 65.5,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-11-190.LAB",
+        "description": "1000 - TALLAHASSEE GOVERNMENT COMPLEX-CONSTR.DETENTION EQUIPMENT.Labor",
+        "budgetAmount": 2402361.39,
+        "actualCost": 2354338.41,
+        "commitments": 2370343.92,
+        "variance": -48022.98,
+        "percentComplete": 75.6,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-11-096.LAB",
+        "description": "1000 - TALLAHASSEE GOVERNMENT COMPLEX-CONSTR.DUCT ACCESS PANELS.Labor",
+        "budgetAmount": 2421991.74,
+        "actualCost": 2431469.54,
+        "commitments": 2485686.35,
+        "variance": 9477.8,
+        "percentComplete": 88.2,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-18-130.MAT",
+        "description": "1000 - TALLAHASSEE GOVERNMENT COMPLEX-CONSTR.PERFORMANCE BOND.Materials",
+        "budgetAmount": 2324659.44,
+        "actualCost": 2302540.44,
+        "commitments": 2264198.44,
+        "variance": -22119.0,
+        "percentComplete": 71.1,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-12-670.SUB",
+        "description": "1000 - TALLAHASSEE GOVERNMENT COMPLEX-CONSTR.PEWS & BENCHES.Subcontractor",
+        "budgetAmount": 2414798.13,
+        "actualCost": 2509536.48,
+        "commitments": 2435473.79,
+        "variance": 94738.35,
+        "percentComplete": 95.9,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-31-010.MAT",
+        "description": "1000 - TALLAHASSEE GOVERNMENT COMPLEX-CONSTR.CONCRETE FLAT WORK-SUBBASE.Materials",
+        "budgetAmount": 2477442.53,
+        "actualCost": 2381934.41,
+        "commitments": 2465045.43,
+        "variance": -95508.12,
+        "percentComplete": 51.9,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-14-700.MAT",
+        "description": "1000 - TALLAHASSEE GOVERNMENT COMPLEX-CONSTR.PNEUMATIC TUBE SYSTEM.Materials",
+        "budgetAmount": 2486426.85,
+        "actualCost": 2510384.07,
+        "commitments": 2510053.45,
+        "variance": 23957.22,
+        "percentComplete": 53.8,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-05-419.MAT",
+        "description": "1000 - TALLAHASSEE GOVERNMENT COMPLEX-CONSTR.METAL FRAMING.Materials",
+        "budgetAmount": 2348755.18,
+        "actualCost": 2447292.42,
+        "commitments": 2331989.44,
+        "variance": 98537.24,
+        "percentComplete": 62.7,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-01-533.MAT",
+        "description": "1000 - TALLAHASSEE GOVERNMENT COMPLEX-CONSTR.COMPUTER HARDWARE.Materials",
+        "budgetAmount": 2358978.59,
+        "actualCost": 2365785.61,
+        "commitments": 2264027.22,
+        "variance": 6807.02,
+        "percentComplete": 69.4,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-09-990.MAT",
+        "description": "1000 - TALLAHASSEE GOVERNMENT COMPLEX-CONSTR.PAINT RESTORATION.Materials",
+        "budgetAmount": 2304344.33,
+        "actualCost": 2383808.88,
+        "commitments": 2217536.12,
+        "variance": 79464.55,
+        "percentComplete": 73.1,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-107.MAT",
+        "description": "1000 - TALLAHASSEE GOVERNMENT COMPLEX-CONSTR.SUBCONTRACTOR DEFAULT INS.Materials",
+        "budgetAmount": 68030.26,
+        "actualCost": 72075.16,
+        "commitments": 70003.63,
+        "variance": 4044.9,
+        "percentComplete": 58.8,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-110.OVH",
+        "description": "1000 - TALLAHASSEE GOVERNMENT COMPLEX-CONSTR.CONTRACTOR'S FEE.Overhead",
+        "budgetAmount": 8034682.13,
+        "actualCost": 8329037.29,
+        "commitments": 8081188.71,
+        "variance": 294355.16,
+        "percentComplete": 94.5,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-141.MAT",
+        "description": "1000 - TALLAHASSEE GOVERNMENT COMPLEX-CONSTR.CONTRACTOR'S CONTINGENCY.Materials",
+        "budgetAmount": 2671565.44,
+        "actualCost": 2772967.82,
+        "commitments": 2551104.91,
+        "variance": 101402.38,
+        "percentComplete": 50.7,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      }
+    ]
+  },
+  {
+    "project_id": 2525857,
+    "project_name": "Miami Beach Luxury Hotel",
+    "jobCostItems": [
+      {
+        "costCode": "1000.10-01-743.LAB",
+        "description": "1000 - MIAMI BEACH LUXURY HOTEL-CONSTR.SITE MAINTENANCE.Labor",
+        "budgetAmount": 5926716.28,
+        "actualCost": 5952538.29,
+        "commitments": 5693761.35,
+        "variance": 25822.01,
+        "percentComplete": 74.8,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-17-000.MAT",
+        "description": "1000 - MIAMI BEACH LUXURY HOTEL-CONSTR.LABOR BURDEN.Materials",
+        "budgetAmount": 5679422.63,
+        "actualCost": 5763932.5,
+        "commitments": 5828222.44,
+        "variance": 84509.87,
+        "percentComplete": 74.7,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-610.LAB",
+        "description": "1000 - MIAMI BEACH LUXURY HOTEL-CONSTR.BASIC PRODUCT REQUIREMENTS.Labor",
+        "budgetAmount": 5778978.95,
+        "actualCost": 5608401.95,
+        "commitments": 5605250.93,
+        "variance": -170577.0,
+        "percentComplete": 82.5,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-650.MAT",
+        "description": "1000 - MIAMI BEACH LUXURY HOTEL-CONSTR.PRODUCT DELIVERY REQUIREMENTS.Materials",
+        "budgetAmount": 5388643.41,
+        "actualCost": 5630892.28,
+        "commitments": 5409407.26,
+        "variance": 242248.87,
+        "percentComplete": 52.5,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-820.MAT",
+        "description": "1000 - MIAMI BEACH LUXURY HOTEL-CONSTR.CONSTRUCTION DOCUMENTS.Materials",
+        "budgetAmount": 5628350.29,
+        "actualCost": 5359740.17,
+        "commitments": 5638420.92,
+        "variance": -268610.12,
+        "percentComplete": 50.5,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-554.MAT",
+        "description": "1000 - MIAMI BEACH LUXURY HOTEL-CONSTR.TEMPORARY ROADS.Materials",
+        "budgetAmount": 6013499.04,
+        "actualCost": 5839874.09,
+        "commitments": 6066303.6,
+        "variance": -173624.95,
+        "percentComplete": 63.8,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-000.LAB",
+        "description": "1000 - MIAMI BEACH LUXURY HOTEL-CONSTR.GENERAL CONDITIONS.Labor",
+        "budgetAmount": 6160768.4,
+        "actualCost": 5907243.25,
+        "commitments": 5868676.36,
+        "variance": -253525.15,
+        "percentComplete": 57.9,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-10-400.LAB",
+        "description": "1000 - MIAMI BEACH LUXURY HOTEL-CONSTR.IDENTIFYING DEVICES.Labor",
+        "budgetAmount": 12116318.13,
+        "actualCost": 12727702.9,
+        "commitments": 12193917.68,
+        "variance": 611384.77,
+        "percentComplete": 92.0,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-01-309.SUB",
+        "description": "1000 - MIAMI BEACH LUXURY HOTEL-CONSTR.EXECUTIVE ASSISTANT.Subcontractor",
+        "budgetAmount": 11472779.62,
+        "actualCost": 11095993.98,
+        "commitments": 10928220.59,
+        "variance": -376785.64,
+        "percentComplete": 87.9,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-02-371.LBN",
+        "description": "1000 - MIAMI BEACH LUXURY HOTEL-CONSTR.DUST CONTROL.Labor Burden",
+        "budgetAmount": 11898132.64,
+        "actualCost": 12435782.43,
+        "commitments": 12075653.09,
+        "variance": 537649.79,
+        "percentComplete": 86.4,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-08-530.LBN",
+        "description": "1000 - MIAMI BEACH LUXURY HOTEL-CONSTR.STAINLESS STEEL WINDOWS.Labor Burden",
+        "budgetAmount": 11967153.84,
+        "actualCost": 12534321.82,
+        "commitments": 12228321.61,
+        "variance": 567167.98,
+        "percentComplete": 92.5,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-09-940.LAB",
+        "description": "1000 - MIAMI BEACH LUXURY HOTEL-CONSTR.DECORATIVE FINISHES.Labor",
+        "budgetAmount": 12110523.53,
+        "actualCost": 12291109.05,
+        "commitments": 11836244.02,
+        "variance": 180585.52,
+        "percentComplete": 67.2,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-03-162.MAT",
+        "description": "1000 - MIAMI BEACH LUXURY HOTEL-CONSTR.INTERIOR STEPS ON GRADE.Materials",
+        "budgetAmount": 11157745.75,
+        "actualCost": 11024813.64,
+        "commitments": 11481407.74,
+        "variance": -132932.11,
+        "percentComplete": 99.9,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-08-700.MAT",
+        "description": "1000 - MIAMI BEACH LUXURY HOTEL-CONSTR.HARDWARE.Materials",
+        "budgetAmount": 11001608.78,
+        "actualCost": 11611776.97,
+        "commitments": 10986645.63,
+        "variance": 610168.19,
+        "percentComplete": 87.7,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-04-820.MAT",
+        "description": "1000 - MIAMI BEACH LUXURY HOTEL-CONSTR.REINFORCED UNIT MASONRY ASSEMB.Materials",
+        "budgetAmount": 11871362.32,
+        "actualCost": 12467651.02,
+        "commitments": 12127866.36,
+        "variance": 596288.7,
+        "percentComplete": 72.7,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-10-310.MAT",
+        "description": "1000 - MIAMI BEACH LUXURY HOTEL-CONSTR.FIREPLACE SPECIALTIES & ACCESS.Materials",
+        "budgetAmount": 12373885.86,
+        "actualCost": 12726459.36,
+        "commitments": 11812789.82,
+        "variance": 352573.5,
+        "percentComplete": 91.4,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-08-815.LAB",
+        "description": "1000 - MIAMI BEACH LUXURY HOTEL-CONSTR.LEADED GLASS.Labor",
+        "budgetAmount": 10836143.28,
+        "actualCost": 11368761.07,
+        "commitments": 10603839.86,
+        "variance": 532617.79,
+        "percentComplete": 62.7,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-17-732.LBN",
+        "description": "1000 - MIAMI BEACH LUXURY HOTEL-CONSTR.ROLL DOWN DOOR EQUIP.Labor Burden",
+        "budgetAmount": 12126474.74,
+        "actualCost": 12597824.39,
+        "commitments": 11709135.25,
+        "variance": 471349.65,
+        "percentComplete": 98.6,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-10-710.MAT",
+        "description": "1000 - MIAMI BEACH LUXURY HOTEL-CONSTR.EXTERIOR SHUTTERS.Materials",
+        "budgetAmount": 12056116.42,
+        "actualCost": 12453997.53,
+        "commitments": 12258274.28,
+        "variance": 397881.11,
+        "percentComplete": 95.2,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-01-413.MAT",
+        "description": "1000 - MIAMI BEACH LUXURY HOTEL-CONSTR.ESTIMATING.Materials",
+        "budgetAmount": 11783283.36,
+        "actualCost": 11411301.59,
+        "commitments": 12024704.02,
+        "variance": -371981.77,
+        "percentComplete": 63.7,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-107.MAT",
+        "description": "1000 - MIAMI BEACH LUXURY HOTEL-CONSTR.SUBCONTRACTOR DEFAULT INS.Materials",
+        "budgetAmount": 170980.85,
+        "actualCost": 175990.98,
+        "commitments": 163042.15,
+        "variance": 5010.13,
+        "percentComplete": 47.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-110.OVH",
+        "description": "1000 - MIAMI BEACH LUXURY HOTEL-CONSTR.CONTRACTOR'S FEE.Overhead",
+        "budgetAmount": 9035345.81,
+        "actualCost": 9277092.12,
+        "commitments": 8903601.74,
+        "variance": 241746.31,
+        "percentComplete": 68.2,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-141.MAT",
+        "description": "1000 - MIAMI BEACH LUXURY HOTEL-CONSTR.CONTRACTOR'S CONTINGENCY.Materials",
+        "budgetAmount": 5975735.94,
+        "actualCost": 5780398.62,
+        "commitments": 6046147.71,
+        "variance": -195337.32,
+        "percentComplete": 99.6,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      }
+    ]
+  },
+  {
+    "project_id": 2525858,
+    "project_name": "Cape Coral Residential Community",
+    "jobCostItems": [
+      {
+        "costCode": "1000.10-01-413.LAB",
+        "description": "1000 - CAPE CORAL RESIDENTIAL COMMUNITY-CONSTR.ESTIMATING.Labor",
+        "budgetAmount": 2490272.02,
+        "actualCost": 2375969.61,
+        "commitments": 2402152.14,
+        "variance": -114302.41,
+        "percentComplete": 55.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-530.LAB",
+        "description": "1000 - CAPE CORAL RESIDENTIAL COMMUNITY-CONSTR.TEMPORARY CONSTRUCTION.Labor",
+        "budgetAmount": 2797524.01,
+        "actualCost": 2835664.51,
+        "commitments": 2764083.01,
+        "variance": 38140.5,
+        "percentComplete": 86.9,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-301.MAT",
+        "description": "1000 - CAPE CORAL RESIDENTIAL COMMUNITY-CONSTR.PROPERTY MANAGER.Materials",
+        "budgetAmount": 2632019.49,
+        "actualCost": 2762630.63,
+        "commitments": 2583093.42,
+        "variance": 130611.14,
+        "percentComplete": 67.0,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-525.LAB",
+        "description": "1000 - CAPE CORAL RESIDENTIAL COMMUNITY-CONSTR.GENERATORS & GAS.Labor",
+        "budgetAmount": 2504005.18,
+        "actualCost": 2612873.84,
+        "commitments": 2419985.74,
+        "variance": 108868.66,
+        "percentComplete": 92.7,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-723.MAT",
+        "description": "1000 - CAPE CORAL RESIDENTIAL COMMUNITY-CONSTR.PROTECT ADJACENT CONSTRUCTION.Materials",
+        "budgetAmount": 2750461.81,
+        "actualCost": 2841159.9,
+        "commitments": 2638812.02,
+        "variance": 90698.09,
+        "percentComplete": 90.0,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-562.LAB",
+        "description": "1000 - CAPE CORAL RESIDENTIAL COMMUNITY-CONSTR.BARRICADES.Labor",
+        "budgetAmount": 2846427.46,
+        "actualCost": 2937517.1,
+        "commitments": 2833796.42,
+        "variance": 91089.64,
+        "percentComplete": 71.2,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-760.MAT",
+        "description": "1000 - CAPE CORAL RESIDENTIAL COMMUNITY-CONSTR.PROTECT INSTALLED CONSTRUCTION.Materials",
+        "budgetAmount": 2722065.52,
+        "actualCost": 2831834.72,
+        "commitments": 2667477.15,
+        "variance": 109769.2,
+        "percentComplete": 95.7,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-01-610.MAT",
+        "description": "1000 - CAPE CORAL RESIDENTIAL COMMUNITY-CONSTR.BASIC PRODUCT REQUIREMENTS.Materials",
+        "budgetAmount": 4237100.27,
+        "actualCost": 4084586.41,
+        "commitments": 4194923.3,
+        "variance": -152513.86,
+        "percentComplete": 71.6,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-10-175.MAT",
+        "description": "1000 - CAPE CORAL RESIDENTIAL COMMUNITY-CONSTR.PARTICLEBOARD TOILET COMPARTME.Materials",
+        "budgetAmount": 4297879.02,
+        "actualCost": 4498359.59,
+        "commitments": 4148459.35,
+        "variance": 200480.57,
+        "percentComplete": 46.4,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-02-200.LAB",
+        "description": "1000 - CAPE CORAL RESIDENTIAL COMMUNITY-CONSTR.SITE PREPARATION.Labor",
+        "budgetAmount": 4221342.12,
+        "actualCost": 4181280.96,
+        "commitments": 4172316.45,
+        "variance": -40061.16,
+        "percentComplete": 85.1,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-07-260.MAT",
+        "description": "1000 - CAPE CORAL RESIDENTIAL COMMUNITY-CONSTR.VAPOR RETARDERS.Materials",
+        "budgetAmount": 3841068.21,
+        "actualCost": 3694172.02,
+        "commitments": 3947919.8,
+        "variance": -146896.19,
+        "percentComplete": 75.0,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-02-825.LAB",
+        "description": "1000 - CAPE CORAL RESIDENTIAL COMMUNITY-CONSTR.WOOD FENCES & GATES.Labor",
+        "budgetAmount": 4404763.61,
+        "actualCost": 4348086.97,
+        "commitments": 4320748.28,
+        "variance": -56676.64,
+        "percentComplete": 86.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-01-541.MAT",
+        "description": "1000 - CAPE CORAL RESIDENTIAL COMMUNITY-CONSTR.CONSTR ELEVATORS HOISTS & CRAN.Materials",
+        "budgetAmount": 4466536.49,
+        "actualCost": 4270625.48,
+        "commitments": 4250650.99,
+        "variance": -195911.01,
+        "percentComplete": 47.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-13-110.MAT",
+        "description": "1000 - CAPE CORAL RESIDENTIAL COMMUNITY-CONSTR.LIGHTNING PROTECTION.Materials",
+        "budgetAmount": 4102147.09,
+        "actualCost": 4103342.51,
+        "commitments": 3912639.28,
+        "variance": 1195.42,
+        "percentComplete": 70.5,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-09-230.MAT",
+        "description": "1000 - CAPE CORAL RESIDENTIAL COMMUNITY-CONSTR.PLASTER FABRICATIONS.Materials",
+        "budgetAmount": 4436386.89,
+        "actualCost": 4251996.7,
+        "commitments": 4393857.64,
+        "variance": -184390.19,
+        "percentComplete": 73.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-09-930.MAT",
+        "description": "1000 - CAPE CORAL RESIDENTIAL COMMUNITY-CONSTR.STAINS & TRANSPARENT FINISHES.Materials",
+        "budgetAmount": 4147658.21,
+        "actualCost": 4273465.55,
+        "commitments": 4127992.2,
+        "variance": 125807.34,
+        "percentComplete": 49.0,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-01-450.LAB",
+        "description": "1000 - CAPE CORAL RESIDENTIAL COMMUNITY-CONSTR.QUALITY CONTROL.Labor",
+        "budgetAmount": 4279840.25,
+        "actualCost": 4525667.67,
+        "commitments": 4083418.36,
+        "variance": 245827.42,
+        "percentComplete": 86.5,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-10-520.LBN",
+        "description": "1000 - CAPE CORAL RESIDENTIAL COMMUNITY-CONSTR.FIRE PROTECTION SPECIALTIES.Labor Burden",
+        "budgetAmount": 4498785.75,
+        "actualCost": 4599031.29,
+        "commitments": 4410219.96,
+        "variance": 100245.54,
+        "percentComplete": 47.8,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-09-490.MAT",
+        "description": "1000 - CAPE CORAL RESIDENTIAL COMMUNITY-CONSTR.TERRAZZO RESTORATION.Materials",
+        "budgetAmount": 4278552.46,
+        "actualCost": 4408520.41,
+        "commitments": 4189135.7,
+        "variance": 129967.95,
+        "percentComplete": 49.9,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-01-640.SUB",
+        "description": "1000 - CAPE CORAL RESIDENTIAL COMMUNITY-CONSTR.OWNER-FURNISHED PRODUCTS.Subcontractor",
+        "budgetAmount": 4133196.87,
+        "actualCost": 4001793.18,
+        "commitments": 4072635.94,
+        "variance": -131403.69,
+        "percentComplete": 52.6,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-107.MAT",
+        "description": "1000 - CAPE CORAL RESIDENTIAL COMMUNITY-CONSTR.SUBCONTRACTOR DEFAULT INS.Materials",
+        "budgetAmount": 72051.08,
+        "actualCost": 72978.34,
+        "commitments": 70961.27,
+        "variance": 927.26,
+        "percentComplete": 70.5,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-110.OVH",
+        "description": "1000 - CAPE CORAL RESIDENTIAL COMMUNITY-CONSTR.CONTRACTOR'S FEE.Overhead",
+        "budgetAmount": 5433776.53,
+        "actualCost": 5445031.28,
+        "commitments": 5527511.25,
+        "variance": 11254.75,
+        "percentComplete": 95.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-141.MAT",
+        "description": "1000 - CAPE CORAL RESIDENTIAL COMMUNITY-CONSTR.CONTRACTOR'S CONTINGENCY.Materials",
+        "budgetAmount": 2019654.76,
+        "actualCost": 2006915.56,
+        "commitments": 1956159.47,
+        "variance": -12739.2,
+        "percentComplete": 85.6,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      }
+    ]
+  },
+  {
+    "project_id": 2525859,
+    "project_name": "Hialeah Industrial Park",
+    "jobCostItems": [
+      {
+        "costCode": "1000.10-01-723.MAT",
+        "description": "1000 - HIALEAH INDUSTRIAL PARK-CONSTR.PROTECT ADJACENT CONSTRUCTION.Materials",
+        "budgetAmount": 919266.3,
+        "actualCost": 937331.64,
+        "commitments": 915095.5,
+        "variance": 18065.34,
+        "percentComplete": 74.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-312.MAT",
+        "description": "1000 - HIALEAH INDUSTRIAL PARK-CONSTR.LEED AP.Materials",
+        "budgetAmount": 949375.63,
+        "actualCost": 992882.93,
+        "commitments": 955632.39,
+        "variance": 43507.3,
+        "percentComplete": 65.0,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-302.LAB",
+        "description": "1000 - HIALEAH INDUSTRIAL PARK-CONSTR.VDC DIRECTOR.Labor",
+        "budgetAmount": 938371.61,
+        "actualCost": 909735.54,
+        "commitments": 962862.1,
+        "variance": -28636.07,
+        "percentComplete": 56.1,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-314.MAT",
+        "description": "1000 - HIALEAH INDUSTRIAL PARK-CONSTR.SUPERVISION.Materials",
+        "budgetAmount": 980123.79,
+        "actualCost": 1016639.54,
+        "commitments": 973372.65,
+        "variance": 36515.75,
+        "percentComplete": 60.6,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-510.MAT",
+        "description": "1000 - HIALEAH INDUSTRIAL PARK-CONSTR.TEMPORARY UTILITIES.Materials",
+        "budgetAmount": 986474.54,
+        "actualCost": 960460.27,
+        "commitments": 959842.59,
+        "variance": -26014.27,
+        "percentComplete": 54.1,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-301.MAT",
+        "description": "1000 - HIALEAH INDUSTRIAL PARK-CONSTR.PROPERTY MANAGER.Materials",
+        "budgetAmount": 983075.5,
+        "actualCost": 942514.82,
+        "commitments": 945527.73,
+        "variance": -40560.68,
+        "percentComplete": 55.7,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.10-01-565.LAB",
+        "description": "1000 - HIALEAH INDUSTRIAL PARK-CONSTR.ICE, CUPS & WATER COOLER.Labor",
+        "budgetAmount": 920008.09,
+        "actualCost": 949820.33,
+        "commitments": 898909.93,
+        "variance": 29812.24,
+        "percentComplete": 52.7,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-07-000.LBN",
+        "description": "1000 - HIALEAH INDUSTRIAL PARK-CONSTR.THERMAL/MOISTURE PROT.Labor Burden",
+        "budgetAmount": 1900606.8,
+        "actualCost": 1946116.68,
+        "commitments": 1910213.91,
+        "variance": 45509.88,
+        "percentComplete": 50.9,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-16-270.SUB",
+        "description": "1000 - HIALEAH INDUSTRIAL PARK-CONSTR.TRANSFORMERS.Subcontractor",
+        "budgetAmount": 1746801.48,
+        "actualCost": 1805257.45,
+        "commitments": 1795758.42,
+        "variance": 58455.97,
+        "percentComplete": 97.9,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-08-816.LAB",
+        "description": "1000 - HIALEAH INDUSTRIAL PARK-CONSTR.BEVELED GLASS.Labor",
+        "budgetAmount": 1954300.41,
+        "actualCost": 1884453.26,
+        "commitments": 1860436.4,
+        "variance": -69847.15,
+        "percentComplete": 91.4,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-03-210.MAT",
+        "description": "1000 - HIALEAH INDUSTRIAL PARK-CONSTR.REINFORCING STEEL.Materials",
+        "budgetAmount": 1821853.06,
+        "actualCost": 1803164.82,
+        "commitments": 1737908.35,
+        "variance": -18688.24,
+        "percentComplete": 75.7,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-12-520.MAT",
+        "description": "1000 - HIALEAH INDUSTRIAL PARK-CONSTR.SEATING.Materials",
+        "budgetAmount": 1973160.63,
+        "actualCost": 1910103.86,
+        "commitments": 1876328.11,
+        "variance": -63056.77,
+        "percentComplete": 59.0,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-07-200.LAB",
+        "description": "1000 - HIALEAH INDUSTRIAL PARK-CONSTR.THERMAL PROTECTION.Labor",
+        "budgetAmount": 1717712.82,
+        "actualCost": 1650150.99,
+        "commitments": 1673374.99,
+        "variance": -67561.83,
+        "percentComplete": 53.2,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-04-600.LAB",
+        "description": "1000 - HIALEAH INDUSTRIAL PARK-CONSTR.CORROSION-RESISTANT MASONRY.Labor",
+        "budgetAmount": 1841956.3,
+        "actualCost": 1894105.76,
+        "commitments": 1831683.07,
+        "variance": 52149.46,
+        "percentComplete": 68.1,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-09-600.MAT",
+        "description": "1000 - HIALEAH INDUSTRIAL PARK-CONSTR.FLOORING.Materials",
+        "budgetAmount": 1890366.11,
+        "actualCost": 1930658.49,
+        "commitments": 1935133.31,
+        "variance": 40292.38,
+        "percentComplete": 82.5,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-06-124.LBN",
+        "description": "1000 - HIALEAH INDUSTRIAL PARK-CONSTR.WOOD FURRING.Labor Burden",
+        "budgetAmount": 1879128.43,
+        "actualCost": 1856043.68,
+        "commitments": 1846497.41,
+        "variance": -23084.75,
+        "percentComplete": 59.7,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-08-350.MAT",
+        "description": "1000 - HIALEAH INDUSTRIAL PARK-CONSTR.FOLDING DOORS & GRILLES.Materials",
+        "budgetAmount": 1931885.99,
+        "actualCost": 1916204.04,
+        "commitments": 1951724.36,
+        "variance": -15681.95,
+        "percentComplete": 46.8,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-01-300.LAB",
+        "description": "1000 - HIALEAH INDUSTRIAL PARK-CONSTR.ADMINISTRATIVE REQUIREMENTS.Labor",
+        "budgetAmount": 1865013.11,
+        "actualCost": 1920049.48,
+        "commitments": 1913030.42,
+        "variance": 55036.37,
+        "percentComplete": 59.0,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-01-405.MAT",
+        "description": "1000 - HIALEAH INDUSTRIAL PARK-CONSTR.GENERAL ATTORNEY.Materials",
+        "budgetAmount": 1892272.21,
+        "actualCost": 1939446.62,
+        "commitments": 1804244.32,
+        "variance": 47174.41,
+        "percentComplete": 70.1,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.15-11-480.LAB",
+        "description": "1000 - HIALEAH INDUSTRIAL PARK-CONSTR.ATHLETIC RECREATIONAL & THERAP.Labor",
+        "budgetAmount": 1795431.32,
+        "actualCost": 1901610.22,
+        "commitments": 1731994.88,
+        "variance": 106178.9,
+        "percentComplete": 87.9,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-107.MAT",
+        "description": "1000 - HIALEAH INDUSTRIAL PARK-CONSTR.SUBCONTRACTOR DEFAULT INS.Materials",
+        "budgetAmount": 32631.3,
+        "actualCost": 31718.36,
+        "commitments": 31076.96,
+        "variance": -912.94,
+        "percentComplete": 62.4,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-110.OVH",
+        "description": "1000 - HIALEAH INDUSTRIAL PARK-CONSTR.CONTRACTOR'S FEE.Overhead",
+        "budgetAmount": 3970347.9,
+        "actualCost": 4013180.36,
+        "commitments": 3869939.84,
+        "variance": 42832.46,
+        "percentComplete": 48.7,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      },
+      {
+        "costCode": "1000.20-18-141.MAT",
+        "description": "1000 - HIALEAH INDUSTRIAL PARK-CONSTR.CONTRACTOR'S CONTINGENCY.Materials",
+        "budgetAmount": 930210.27,
+        "actualCost": 947648.03,
+        "commitments": 929190.8,
+        "variance": 17437.76,
+        "percentComplete": 62.3,
+        "lastUpdated": "2025-06-24T14:41:42Z"
+      }
+    ]
+  }
+]

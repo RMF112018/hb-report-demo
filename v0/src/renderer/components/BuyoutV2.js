@@ -1,11 +1,3 @@
-// src/renderer/components/BuyoutV2.js
-// Component for displaying and managing buyout records in HB Report, with improved state management
-// Import this component in App.js to render within the main content area
-// Reference: https://react.dev/reference/react
-// *Additional Reference*: https://redux-toolkit.js.org/rtk-query/overview
-// *Additional Reference*: https://ant.design/components/overview
-// *Additional Reference*: https://www.ag-grid.com/react-data-grid/
-
 import React, { useState, useRef, useEffect, useMemo, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
@@ -19,6 +11,7 @@ import BuyoutForm from './BuyoutForm.js';
 import ComponentHeader from './ComponentHeader.js';
 import '../styles/global.css';
 import '../styles/Components.css';
+import dayjs from 'dayjs';
 
 // Function to calculate business days between two dates
 const calculateBusinessDays = (startDate, endDate) => {
@@ -49,7 +42,45 @@ const debounce = (func, wait) => {
   };
 };
 
-const BuyoutV2 = ({ selectedProject, headerContent }) => {
+// Validate buyout payload before sending to server
+const validateBuyoutPayload = (payload, buyoutData) => {
+  console.log('BuyoutV2.js: Validating payload:', payload);
+  const errors = [];
+  if (!payload.project_id) errors.push('project_id is required');
+  if (!payload.commitment_id) errors.push('commitment_id is required');
+  if (!payload.status) errors.push('status is required');
+  if (!payload.bic) errors.push('bic is required');
+  if (payload.allowances && !Array.isArray(payload.allowances)) {
+    errors.push('allowances must be an array');
+  } else if (payload.allowances) {
+    payload.allowances.forEach((item, index) => {
+      if (!item.item) errors.push(`allowances[${index}].item is required`);
+      if (item.value == null) errors.push(`allowances[${index}].value is required`);
+    });
+  }
+  if (payload.veItems && !Array.isArray(payload.veItems)) {
+    errors.push('veItems must be an array');
+  } else if (payload.veItems) {
+    payload.veItems.forEach((item, index) => {
+      if (!item.description) errors.push(`veItems[${index}].description is required`);
+    });
+  }
+  if (payload.leadTimes && !Array.isArray(payload.leadTimes)) {
+    errors.push('leadTimes must be an array');
+  } else if (payload.leadTimes) {
+    payload.leadTimes.forEach((item, index) => {
+      if (!item.item) errors.push(`leadTimes[${index}].item is required`);
+    });
+  }
+  if (payload.commitment_id) {
+    const commitmentExists = buyoutData.some(row => row.procore_id === payload.commitment_id);
+    if (!commitmentExists) errors.push(`Invalid commitment_id: ${payload.commitment_id} not found in commitments`);
+  }
+  console.log('BuyoutV2.js: Validation errors:', errors);
+  return errors.length > 0 ? errors : null;
+};
+
+const BuyoutV2 = ({ selectedProject, headerContent, userData }) => {
   const dispatch = useDispatch();
   const buyoutData = useSelector((state) => state.buyout.data);
   const changes = useSelector((state) => state.buyout.changes);
@@ -59,8 +90,14 @@ const BuyoutV2 = ({ selectedProject, headerContent }) => {
   const [selectedCommitmentId, setSelectedCommitmentId] = useState(null);
   const [initialFormData, setInitialFormData] = useState(null);
   const [isGridReady, setIsGridReady] = useState(false);
+  const [activeTab, setActiveTab] = useState('buyout-details');
   const gridApiRef = useRef(null);
   const isMountedRef = useRef(true);
+
+  // Log userData prop
+  useEffect(() => {
+    console.log('BuyoutV2.js: Received userData prop:', userData);
+  }, [userData]);
 
   const projectId = selectedProject?.procore_id;
   const [upsertBuyout, { isLoading: isUpserting }] = useUpsertBuyoutMutation();
@@ -78,7 +115,16 @@ const BuyoutV2 = ({ selectedProject, headerContent }) => {
     refetch: refetchBudgetLineItems,
   } = useGetBudgetLineItemsQuery(projectId, { skip: !projectId });
 
-  // Log selectedProject changes for debugging
+  // Define tabs for BuyoutForm.js
+  const tabs = view === 'form' ? [
+    { key: 'buyout-details', label: 'Buyout Details' },
+    { key: 'contract-workflow', label: 'Contract Workflow' },
+    { key: 'subcontract-checklist', label: 'Subcontract Checklist' },
+    { key: 'compliance-waiver', label: 'Compliance Waiver' },
+    { key: 'history', label: 'History' },
+  ] : [];
+
+  // Log selectedProject changes
   useEffect(() => {
     console.log('selectedProject changed:', selectedProject);
   }, [selectedProject]);
@@ -92,7 +138,7 @@ const BuyoutV2 = ({ selectedProject, headerContent }) => {
     };
   }, []);
 
-  // Load initial commitments data into Redux when fetched from backend and clear changes
+  // Load initial commitments data into Redux
   useEffect(() => {
     if (fetchedData) {
       const mutableData = deepClone(fetchedData);
@@ -123,7 +169,7 @@ const BuyoutV2 = ({ selectedProject, headerContent }) => {
     }
   }, [fetchedData, isCommitmentsError, dispatch]);
 
-  // Fetch and store budget line items in Redux when available
+  // Fetch and store budget line items
   useEffect(() => {
     if (budgetLineItemsData && projectId) {
       dispatch(setBudgetLineItems(budgetLineItemsData));
@@ -135,7 +181,7 @@ const BuyoutV2 = ({ selectedProject, headerContent }) => {
     }
   }, [budgetLineItemsData, isBudgetLineItemsError, projectId, dispatch]);
 
-  // Update grid when buyoutData changes and grid is ready
+  // Update grid when buyoutData changes
   useEffect(() => {
     if (!isGridReady || !gridApiRef.current || !buyoutData) {
       console.log('Grid not ready yet or no data, deferring row data update');
@@ -145,7 +191,7 @@ const BuyoutV2 = ({ selectedProject, headerContent }) => {
     gridApiRef.current.setGridOption('rowData', buyoutData);
   }, [buyoutData, isGridReady]);
 
-  // Define valueSetter functions at top level
+  // Define valueSetter functions
   const statusValueSetter = useCallback((params) => {
     if (params.data.number === 'Grand Totals') return false;
     const rowId = params.data.procore_id;
@@ -326,7 +372,7 @@ const BuyoutV2 = ({ selectedProject, headerContent }) => {
     },
   ], [statusValueSetter, bicValueSetter, commentsValueSetter]);
 
-  // Sync changes to backend, debounced to avoid rapid unmount/remount
+  // Sync changes to backend
   const syncChanges = useCallback(
     debounce(async () => {
       if (!isMountedRef.current && Object.keys(changes).length > 0) {
@@ -369,7 +415,7 @@ const BuyoutV2 = ({ selectedProject, headerContent }) => {
           const successfulUpdates = results.filter(result => result !== null);
           if (successfulUpdates.length > 0) {
             dispatch(clearChanges());
-            message.success('Changes saved successfully!');
+            message.success('Changes saved successfully.');
           } else {
             dispatch(clearChanges());
             message.info('No valid changes to sync.');
@@ -385,7 +431,7 @@ const BuyoutV2 = ({ selectedProject, headerContent }) => {
     [changes, buyoutData, projectId, upsertBuyout, dispatch]
   );
 
-  // Trigger sync on component unmount
+  // Trigger sync on unmount
   useEffect(() => {
     return () => {
       syncChanges();
@@ -402,7 +448,7 @@ const BuyoutV2 = ({ selectedProject, headerContent }) => {
       await syncProjectCommitments(projectId).unwrap();
       refetch();
       refetchBudgetLineItems();
-      message.success('Buyout data refreshed successfully!');
+      message.success('Buyout data refreshed successfully.');
     } catch (error) {
       message.error('Failed to refresh buyout data.');
       console.error('Error refreshing buyout data:', error);
@@ -436,6 +482,7 @@ const BuyoutV2 = ({ selectedProject, headerContent }) => {
     setInitialFormData(data);
     setSelectedCommitmentId(data.procore_id);
     setView('form');
+    setActiveTab('buyout-details');
   }, []);
 
   // Handle create new buyout
@@ -443,6 +490,7 @@ const BuyoutV2 = ({ selectedProject, headerContent }) => {
     setInitialFormData(null);
     setSelectedCommitmentId(null);
     setView('form');
+    setActiveTab('buyout-details');
   }, []);
 
   // Handle buyout deletion
@@ -459,42 +507,144 @@ const BuyoutV2 = ({ selectedProject, headerContent }) => {
   }, []);
 
   // Handle create or update buyout
-  const handleCreateOrUpdateBuyout = useCallback(async (values) => {
-    try {
-      const buyoutDataPayload = {
-        project_id: projectId,
-        commitment_id: selectedCommitmentId || values.procore_id,
-        division: values.division_description || '',
-        status: values.status || 'Pending',
-        bic: values.bic || 'HB',
-        comments: values.additional_notes_comments || '',
-        variance_to_budget: parseFloat(values.savings_overage) || 0,
-        own_approve_status: values.owner_approval_status || null,
-        own_approve_date: values.owner_approval_date || null,
-        own_meet_date: values.owner_meeting_date || null,
-        allowance_included: values.allowance_included || false,
-        allowance_total: parseFloat(values.total_contract_allowances) || null,
-        allowance_reconciliation_total: parseFloat(values.allowance_reconciliation_total) || null,
-        allowance_variance: parseFloat(values.allowance_variance) || null,
-        ve_offered: values.ve_offered || false,
-        includes_long_lead: values.long_lead_included || false,
-        budget_item_id: values.link_to_budget_item || null,
-        owner_approval_required: values.owner_approval_required || false,
-        owner_meeting_required: values.owner_meeting_required || false,
-        allowances: values.allowances || [],
-      };
-      console.log('Submitting buyoutDataPayload:', buyoutDataPayload);
-      await upsertBuyout(buyoutDataPayload).unwrap();
-      message.success('Buyout saved successfully!');
-      setView('table');
-      setSelectedCommitmentId(null);
-      setInitialFormData(null);
-      refetch();
-    } catch (error) {
-      message.error('Failed to save buyout.');
-      console.error('Error saving buyout:', error);
-    }
-  }, [projectId, selectedCommitmentId, upsertBuyout, refetch]);
+const handleCreateOrUpdateBuyout = useCallback(async (values) => {
+  console.log('BuyoutV2.js: handleCreateOrUpdateBuyout called with values:', values);
+
+  // Construct payload with only the fields provided in values
+  const buyoutDataPayload = {
+    project_id: Number(values.project_id),
+    commitment_id: Number(values.commitment_id || selectedCommitmentId),
+    ...(values.division && { division: values.division }),
+    ...(values.status && { status: values.status }),
+    ...(values.bic && { bic: values.bic }),
+    ...(values.buyout_days_remaining !== undefined && { buyout_days_remaining: Number(values.buyout_days_remaining) }),
+    ...(values.owner_meeting_date && { own_meet_date: dayjs(values.owner_meeting_date).format('YYYY-MM-DD') }),
+    ...(values.savings_owner !== undefined && { savings_owner: parseFloat(values.savings_owner) }),
+    ...(values.savings_hb !== undefined && { savings_hb: parseFloat(values.savings_hb) }),
+    ...(values.comments && { comments: values.comments }),
+    ...(values.savings_overage !== undefined && { variance_to_budget: parseFloat(values.savings_overage) }),
+    ...(values.owner_approval_status && { own_approve_status: values.owner_approval_status }),
+    ...(values.owner_approval_date && { own_approve_date: dayjs(values.owner_approval_date).format('YYYY-MM-DD') }),
+    ...(values.allowance_included !== undefined && { allowance_included: !!values.allowance_included }),
+    ...(values.total_contract_allowances !== undefined && { allowance_total: parseFloat(values.total_contract_allowances) }),
+    ...(values.allowance_reconciliation_total !== undefined && { allowance_reconciliation_total: parseFloat(values.allowance_reconciliation_total) }),
+    ...(values.allowance_variance !== undefined && { allowance_variance: parseFloat(values.allowance_variance) }),
+    ...(values.ve_offered !== undefined && { ve_offered: !!values.ve_offered }),
+    ...(values.long_lead_included !== undefined && { includes_long_lead: !!values.long_lead_included }),
+    ...(values.long_lead_released !== undefined && { long_lead_released: !!values.long_lead_released }),
+    ...(values.link_to_budget_item && { budget_item_id: Number(values.link_to_budget_item) }),
+    ...(values.owner_approval_required !== undefined && { owner_approval_required: !!values.owner_approval_required }),
+    ...(values.owner_meeting_required !== undefined && { owner_meeting_required: !!values.owner_meeting_required }),
+    ...(values.allowances && {
+      allowances: values.allowances.map(item => ({
+        item: item.item || '',
+        value: item.value ? parseFloat(item.value) : null,
+        reconciled: !!item.reconciled,
+        reconciliation_value: item.reconciliation_value ? parseFloat(item.reconciliation_value) : null,
+        variance: item.variance ? parseFloat(item.variance) : null,
+      }))
+    }),
+    ...(values.veItems && {
+      veItems: values.veItems.map(item => ({
+        description: item.description || '',
+        value: item.value ? parseFloat(item.value) : null,
+        originalScope: item.originalScope ? parseFloat(item.originalScope) : null,
+        savings: item.savings ? parseFloat(item.savings) : null,
+        status: item.status || '',
+      }))
+    }),
+    ...(values.leadTimes && {
+      leadTimes: values.leadTimes.map(item => ({
+        item: item.item || '',
+        time: item.time ? parseInt(item.time) : null,
+        procured: !!item.procured,
+      }))
+    }),
+    ...(values.number && { number: values.number }),
+    ...(values.vendor && { vendor: values.vendor }),
+    ...(values.title && { title: values.title }),
+    ...(values.executed !== undefined && { executed: !!values.executed }),
+    ...(values.retainage_percent !== undefined && { retainage_percent: parseFloat(values.retainage_percent) }),
+    ...(values.contract_start_date && { contract_start_date: dayjs(values.contract_start_date).format('YYYY-MM-DD') }),
+    ...(values.contract_estimated_completion_date && { contract_estimated_completion_date: dayjs(values.contract_estimated_completion_date).format('YYYY-MM-DD') }),
+    ...(values.actual_completion_date && { actual_completion_date: dayjs(values.actual_completion_date).format('YYYY-MM-DD') }),
+    ...(values.contract_date && { contract_date: dayjs(values.contract_date).format('YYYY-MM-DD') }),
+    ...(values.issued_on_date && { issued_on_date: dayjs(values.issued_on_date).format('YYYY-MM-DD') }),
+    ...(values.total_ve_presented !== undefined && { total_ve_presented: parseFloat(values.total_ve_presented) }),
+    ...(values.total_ve_accepted !== undefined && { total_ve_accepted: parseFloat(values.total_ve_accepted) }),
+    ...(values.total_ve_rejected !== undefined && { total_ve_rejected: parseFloat(values.total_ve_rejected) }),
+    ...(values.net_ve_savings !== undefined && { net_ve_savings: parseFloat(values.net_ve_savings) }),
+    ...(values.scope_review_meeting_date && { scope_review_meeting_date: dayjs(values.scope_review_meeting_date).format('YYYY-MM-DD') }),
+    ...(values.spm_review_date && { spm_review_date: dayjs(values.spm_review_date).format('YYYY-MM-DD') }),
+    ...(values.spm_approval_status && { spm_approval_status: values.spm_approval_status }),
+    ...(values.px_review_date && { px_review_date: dayjs(values.px_review_date).format('YYYY-MM-DD') }),
+    ...(values.px_approval_status && { px_approval_status: values.px_approval_status }),
+    ...(values.vp_review_date && { vp_review_date: dayjs(values.vp_review_date).format('YYYY-MM-DD') }),
+    ...(values.vp_approval_status && { vp_approval_status: values.vp_approval_status }),
+    ...(values.loi_sent_date && { loi_sent_date: dayjs(values.loi_sent_date).format('YYYY-MM-DD') }),
+    ...(values.loi_returned_date && { loi_returned_date: dayjs(values.loi_returned_date).format('YYYY-MM-DD') }),
+    ...(values.subcontract_agreement_sent_date && { subcontract_agreement_sent_date: dayjs(values.subcontract_agreement_sent_date).format('YYYY-MM-DD') }),
+    ...(values.fully_executed_sent_date && { fully_executed_sent_date: dayjs(values.fully_executed_sent_date).format('YYYY-MM-DD') }),
+    ...(values.contract_status && { contract_status: values.contract_status }),
+    ...(values.schedule_a_status && { schedule_a_status: values.schedule_a_status }),
+    ...(values.schedule_b_status && { schedule_b_status: values.schedule_b_status }),
+    ...(values.exhibit_a_status && { exhibit_a_status: values.exhibit_a_status }),
+    ...(values.exhibit_b_status && { exhibit_b_status: values.exhibit_b_status }),
+    ...(values.exhibit_i_status && { exhibit_i_status: values.exhibit_i_status }),
+    ...(values.labor_rates_status && { labor_rates_status: values.labor_rates_status }),
+    ...(values.unit_rates_status && { unit_rates_status: values.unit_rates_status }),
+    ...(values.exhibits_status && { exhibits_status: values.exhibits_status }),
+    ...(values.schedule_of_values_status && { schedule_of_values_status: values.schedule_of_values_status }),
+    ...(values.p_and_p_bond_status && { p_and_p_bond_status: values.p_and_p_bond_status }),
+    ...(values.w_9_status && { w_9_status: values.w_9_status }),
+    ...(values.license_status && { license_status: values.license_status }),
+    ...(values.insurance_general_liability_status && { insurance_general_liability_status: values.insurance_general_liability_status }),
+    ...(values.insurance_auto_status && { insurance_auto_status: values.insurance_auto_status }),
+    ...(values.insurance_umbrella_liability_status && { insurance_umbrella_liability_status: values.insurance_umbrella_liability_status }),
+    ...(values.insurance_workers_comp_status && { insurance_workers_comp_status: values.insurance_workers_comp_status }),
+    ...(values.special_requirements_status && { special_requirements_status: values.special_requirements_status }),
+    ...(values.compliance_manager_status && { compliance_manager_status: values.compliance_manager_status }),
+    ...(values.scanned_returned_status && { scanned_returned_status: values.scanned_returned_status }),
+    ...(values.px && { px: values.px }),
+    ...(values.pm && { pm: values.pm }),
+    ...(values.pa && { pa: values.pa }),
+    ...(values.compliance_manager && { compliance_manager: values.compliance_manager }),
+    ...(values.insurance_requirements_to_waive && { insurance_requirements_to_waive: values.insurance_requirements_to_waive }),
+    ...(values.insurance_explanation && { insurance_explanation: values.insurance_explanation }),
+    ...(values.insurance_risk_justification && { insurance_risk_justification: values.insurance_risk_justification }),
+    ...(values.insurance_risk_reduction_actions && { insurance_risk_reduction_actions: values.insurance_risk_reduction_actions }),
+    ...(values.insurance_waiver_level && { insurance_waiver_level: values.insurance_waiver_level }),
+    ...(values.licensing_requirements_to_waive && { licensing_requirements_to_waive: values.licensing_requirements_to_waive }),
+    ...(values.licensing_risk_justification && { licensing_risk_justification: values.licensing_risk_justification }),
+    ...(values.licensing_risk_reduction_actions && { licensing_risk_reduction_actions: values.licensing_risk_reduction_actions }),
+    ...(values.licensing_waiver_level && { licensing_waiver_level: values.licensing_waiver_level }),
+    ...(values.subcontract_scope && { subcontract_scope: values.subcontract_scope }),
+    ...(values.employees_on_site && { employees_on_site: values.employees_on_site }),
+    ...(values.subcontract_value !== undefined && { subcontract_value: parseFloat(values.subcontract_value) }),
+    ...(values.project_executive && { project_executive: values.project_executive }),
+    ...(values.project_executive_date && { project_executive_date: dayjs(values.project_executive_date).format('YYYY-MM-DD') }),
+    ...(values.cfo && { cfo: values.cfo }),
+    ...(values.cfo_date && { cfo_date: dayjs(values.cfo_date).format('YYYY-MM-DD') }),
+  };
+
+  console.log('BuyoutV2.js: Submitting buyoutDataPayload:', buyoutDataPayload);
+
+  try {
+    await upsertBuyout(buyoutDataPayload).unwrap();
+    message.success({ content: 'Buyout Item saved successfully.', key: 'saveBuyout', duration: 2 });
+    refetch(); // Refresh data to display updated values
+  } catch (error) {
+    console.error('BuyoutV2.js: Error saving buyout:', {
+      status: error.status,
+      data: error.data,
+      message: error.message,
+      payload: buyoutDataPayload,
+    });
+    const errorMessage = error.data?.details || error.data?.error || 'Unknown error';
+    message.error(`Failed to save buyout: ${errorMessage}`);
+    throw error; // Re-throw to allow BuyoutForm.js to handle the error
+  }
+}, [projectId, selectedCommitmentId, upsertBuyout, refetch]);
 
   // Handle cell editing stopped
   const handleCellEditingStopped = useCallback((event) => {
@@ -577,17 +727,17 @@ const BuyoutV2 = ({ selectedProject, headerContent }) => {
         Export Excel
       </Button>
       <Button
-        style={{ backgroundColor: 'var(--hb-orange)', borderColor: 'var(--hb-orange)', color: '#fff' }}
+        type="primary"
+        icon={<PlusOutlined />}
         onClick={handleCreate}
-        aria-label="Create new commitment"
-        disabled={view === 'form'}
+        aria-label="Create new buyout"
       >
-        <PlusOutlined /> Create
+        New Buyout
       </Button>
     </Space>
-  ), [handleRefresh, handleExport, isSyncing, isFetching, isUpserting, isLoadingBudgetLineItems, view, handleCreate]);
+  ), [handleRefresh, handleExport, handleCreate, isSyncing, isFetching, isUpserting, isLoadingBudgetLineItems]);
 
-  // Callback to receive the grid API from TableModuleV2
+  // Callback to receive the grid API
   const handleGridApiReady = useCallback(({ api }) => {
     console.log('BuyoutV2: Grid API received:', api);
     if (api) {
@@ -620,9 +770,9 @@ const BuyoutV2 = ({ selectedProject, headerContent }) => {
     },
   }), [handleCellEditingStopped, ActionsCellRenderer]);
 
-  // Render search input conditionally
+  // Render search input
   const searchInput = view === 'table' ? (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '16px' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', padding: '0 16px 0 16px', gap: '8px', marginBottom: '16px' }}>
       <Input
         placeholder="Search commitments"
         prefix={<SearchOutlined />}
@@ -637,7 +787,13 @@ const BuyoutV2 = ({ selectedProject, headerContent }) => {
 
   return (
     <div className="buyout-container" style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
-      <ComponentHeader title={headerContent.title} actions={headerActions} />
+      <ComponentHeader
+        title={headerContent.title}
+        actions={headerActions}
+        tabs={tabs}
+        activeTab={activeTab}
+        onTabChange={setActiveTab}
+      />
       {searchInput}
       <div style={{ width: '100%' }}>
         {view === 'table' ? (
@@ -663,6 +819,10 @@ const BuyoutV2 = ({ selectedProject, headerContent }) => {
             onSubmit={handleCreateOrUpdateBuyout}
             onCancel={handleCancel}
             commitments={buyoutData}
+            activeTab={activeTab}
+            onTabChange={setActiveTab}
+            userData={userData}
+            toolName="BuyoutForm"
           />
         ) : (
           <div>No project selected</div>
@@ -682,6 +842,7 @@ BuyoutV2.propTypes = {
     title: PropTypes.node.isRequired,
     actions: PropTypes.node,
   }).isRequired,
+  userData: PropTypes.object,
 };
 
 export default BuyoutV2;

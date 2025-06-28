@@ -60,6 +60,7 @@ export default {
     alias: {
       'hb-report': path.resolve(__dirname, 'src/renderer'),
       'hb-report/styles': path.resolve(__dirname, 'src/renderer/styles'),
+      'antd': path.resolve(__dirname, 'node_modules/antd'),
     },
   },
   stats: {

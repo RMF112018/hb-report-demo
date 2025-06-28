@@ -107,8 +107,8 @@ export const apiSlice = createApi({
       }),
       invalidatesTags: (result, error, { project_id }) => [
         { type: 'Commitments', id: project_id },
-        { type: 'BuyoutData', id: project_id },
         { type: 'Buyout', id: project_id },
+        // Removed { type: 'BuyoutData', id: project_id } to prevent refetch
       ],
     }),
   }),

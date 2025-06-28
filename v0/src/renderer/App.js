@@ -9,8 +9,8 @@
 import React, { useState, useEffect } from 'react';
 import { LicenseManager } from 'ag-grid-enterprise';
 import '@ant-design/v5-patch-for-react-19';
-import { Layout, Menu, Button, theme, Dropdown, Space, Badge, Avatar, Switch, Typography, Modal, message } from 'antd';
-import { MenuOutlined, CaretRightOutlined, CaretLeftOutlined, BellOutlined, ExclamationCircleOutlined, QuestionCircleOutlined, DownOutlined, HomeOutlined, StarOutlined, PlusOutlined, UserOutlined, LogoutOutlined } from '@ant-design/icons';
+import { Layout, Menu, Button, theme, Dropdown, Space, Badge, Avatar, Switch, Typography, Modal, message, Spin } from 'antd';
+import { MenuOutlined, CaretRightOutlined, CaretLeftOutlined, BellOutlined, ExclamationCircleOutlined, QuestionCircleOutlined, DownOutlined, HomeFilled, StarOutlined, PlusOutlined, UserOutlined, LogoutOutlined } from '@ant-design/icons';
 import HBLogo from './assets/images/HB_Logo_Large.png';
 import Login from './components/Login.js';
 import ErrorBoundary from './components/ErrorBoundary.js';
@@ -38,6 +38,7 @@ import navigationManager from './utils/NavigationManager.js';
 import './styles/Components.css';
 import './styles/global.css';
 import './styles/ProjectToolsMenu.css';
+import './styles/BuyoutForm.css';
 
 const { Header, Sider, Content, Footer } = Layout;
 const { Text } = Typography;
@@ -45,6 +46,7 @@ const { Text } = Typography;
 const App = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [isLoadingProjects, setIsLoadingProjects] = useState(false);
+    const [isLoadingUserData, setIsLoadingUserData] = useState(true); // Start as true to block rendering
     const [procoreUserId, setProcoreUserId] = useState(null);
     const [userEmail, setUserEmail] = useState(null);
     const [userData, setUserData] = useState(null);
@@ -70,20 +72,23 @@ const App = () => {
     // Fetch and set AG Grid Enterprise license key on mount
     useEffect(() => {
         const setLicenseKey = async () => {
-          try {
-            const licenseKey = await window.electronAPI.getAgGridLicense();
-            if (licenseKey) {
-              LicenseManager.setLicenseKey(licenseKey);
-              logger.info('AG Grid Enterprise license set successfully');
-            } else {
-              logger.warn('No AG Grid license key provided; running in Community mode');
+            try {
+                const licenseKey = await window.electronAPI.getAgGridLicense();
+                console.log('App.js: Retrieved AG Grid License Key:', licenseKey ? 'Present' : 'Missing');
+                if (licenseKey) {
+                    LicenseManager.setLicenseKey(licenseKey);
+                    console.log('App.js: AG Grid Enterprise license set successfully');
+                } else {
+                    console.warn('App.js: No AG Grid license key provided; running in Community mode');
+                    message.warning('AG Grid Enterprise license missing. Running in Community mode.');
+                }
+            } catch (error) {
+                console.error('App.js: Failed to set AG Grid license:', error);
+                message.error('Failed to set AG Grid license. Running in Community mode.');
             }
-          } catch (error) {
-            logger.error('Failed to set AG Grid license', { message: error.message, stack: error.stack });
-          }
         };
         setLicenseKey();
-      }, []);
+    }, []);
 
     // Update window width on resize
     useEffect(() => {
@@ -150,6 +155,13 @@ const App = () => {
         };
     }, [historyIndex, navigationHistory, selectedProject, projectToolsVisible, collapsed]);
 
+    // Fetch user data on mount if authenticated
+    useEffect(() => {
+        if (isAuthenticated && procoreUserId) {
+            fetchUserData(procoreUserId);
+        }
+    }, [isAuthenticated, procoreUserId]);
+
     useEffect(() => {
         if (!isAuthenticated || !procoreUserId) {
             console.log('Not fetching projects: isAuthenticated or procoreUserId missing', { isAuthenticated, procoreUserId });
@@ -157,7 +169,7 @@ const App = () => {
         }
     
         const fetchProjects = async () => {
-            setIsLoadingProjects(true); // Assuming loading state from previous fix
+            setIsLoadingProjects(true);
             try {
                 console.log('Fetching projects with procoreUserId:', procoreUserId);
                 const token = await window.electronAPI.getAuthToken();
@@ -185,10 +197,10 @@ const App = () => {
                     }
                     const option = {
                         key: project.procore_id.toString(),
-                        label: `${project.project_number} - ${project.name}`, // Updated to use project_number and name
+                        label: `${project.project_number} - ${project.name}`,
                         procore_id: project.procore_id,
                         name: project.name,
-                        projectNumber: project.project_number // Updated field name
+                        projectNumber: project.project_number
                     };
                     console.log('Mapped Project Option:', option);
                     return option;
@@ -211,8 +223,9 @@ const App = () => {
         setIsAuthenticated(true);
         setProcoreUserId(userId);
         setUserEmail(email);
-        setAuthToken(token); // Store token in state for debugging
-        await fetchUserData(userId);
+        setAuthToken(token);
+        setIsLoadingUserData(true); // Ensure loading state is set
+        await fetchUserData(userId); // Wait for user data to be fetched
         setActiveView('portfolio');
         setNavigationHistory(['portfolio']);
         setHistoryIndex(0);
@@ -224,6 +237,7 @@ const App = () => {
             setIsAuthenticated(true);
             setProcoreUserId(userId);
             setUserEmail(email);
+            setIsLoadingUserData(true);
             fetchUserData(userId);
             setActiveView('portfolio');
             setNavigationHistory(['portfolio']);
@@ -234,21 +248,30 @@ const App = () => {
     };
 
     const fetchUserData = async (userId) => {
+        setIsLoadingUserData(true);
         try {
             const data = await window.electronAPI.getUserProfile(userId);
             setUserData(data);
+            console.log('App.js: Fetched userData:', data);
+            if (!data || !data.first_name || !data.last_name) {
+                console.warn('App.js: userData missing required fields, setting fallback:', data);
+                setUserData({ first_name: 'Guest', last_name: 'User' }); // Fallback
+            }
         } catch (error) {
-            console.error('Failed to fetch user data:', error);
-            message.error('Failed to load user profile. Please try again later.');
+            console.error('App.js: Failed to fetch user data:', error);
+            message.error('Failed to load user profile. Using default user.');
+            setUserData({ first_name: 'Guest', last_name: 'User' }); // Fallback on error
+        } finally {
+            setIsLoadingUserData(false);
         }
     };
 
     const handleTokenExpired = () => {
-        setLogoutModalVisible(true); // Show the logout modal
+        setLogoutModalVisible(true);
     };
 
     const handleLogout = () => {
-        setLogoutModalVisible(true); // Show custom modal
+        setLogoutModalVisible(true);
     };
 
     const confirmLogout = () => {
@@ -275,7 +298,7 @@ const App = () => {
     };
 
     const cancelLogout = () => {
-        setLogoutModalVisible(false); // Trigger animated hide
+        setLogoutModalVisible(false);
         console.log('Logout canceled');
     };
 
@@ -310,7 +333,7 @@ const App = () => {
             return;
         }
         setSelectedProject({
-            projectNumber: selected.projectNumber, // This is now project_number from the database
+            projectNumber: selected.projectNumber,
             name: selected.name,
             procore_id: selected.procore_id
         });
@@ -403,7 +426,6 @@ const App = () => {
 
     const projectPickerMenu = (
         <Menu>
-            {/* Bold "Projects" heading */}
             <Menu.Item
                 key="header"
                 disabled
@@ -419,7 +441,6 @@ const App = () => {
             >
                 Projects
             </Menu.Item>
-            {/* Loading state */}
             {isLoadingProjects ? (
                 <Menu.Item key="loading" disabled>
                     Loading projects...
@@ -463,7 +484,7 @@ const App = () => {
         if (userData && userData.first_name && userData.last_name) {
             return `${userData.first_name.charAt(0)}${userData.last_name.charAt(0)}`.toUpperCase();
         }
-        return 'HB'; // Default fallback until userData is loaded
+        return 'HB';
     };
 
     const userMenu = {
@@ -497,6 +518,14 @@ const App = () => {
             : `${selectedProject.projectNumber} - ${selectedProject.name}`;
 
     const renderContent = () => {
+        if (isLoadingUserData || !userData) {
+            return (
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+                    <Spin tip="Loading user data..." />
+                </div>
+            );
+        }
+
         switch (activeView) {
             case 'portfolio':
                 return (
@@ -514,7 +543,7 @@ const App = () => {
                                 }}
                                 procoreUserId={procoreUserId}
                                 onTokenExpired={handleTokenExpired}
-                                projectsData={projectsData} // Pass full projects data
+                                projectsData={projectsData}
                             />
                         ) : (
                             <Portfolio
@@ -632,7 +661,7 @@ const App = () => {
                     <ErrorBoundary>
                         {useBeta ? (
                             <BuyoutV2
-                                selectedProject={selectedProject} // Pass full selectedProject with procore_id
+                                selectedProject={selectedProject}
                                 headerContent={{
                                     title: (
                                         <h1 style={{ fontSize: '28px', fontWeight: 700, color: 'var(--hb-blue)', marginBottom: 0 }}>
@@ -667,6 +696,7 @@ const App = () => {
                                         </ul>
                                     ),
                                 }}
+                                userData={userData}
                             />
                         ) : (
                             <Buyout
@@ -1157,7 +1187,7 @@ const App = () => {
                     alignItems: 'center',
                     justifyContent: 'space-between',
                     background: 'var(--hb-blue)',
-                    padding: '0 16px',
+                    padding: '0px 16px 0px 0px',
                     height: 52,
                     lineHeight: '52px',
                     position: 'fixed',
@@ -1168,14 +1198,15 @@ const App = () => {
                 <Space size="small">
                     <Button
                         type="text"
-                        icon={<HomeOutlined style={{ color: '#fff', fontSize: 16 }} />}
+                        background='#fa4616'
+                        icon={<HomeFilled style={{ color: '#fff', fontSize: 16 }} />}
                         onClick={() => {
                             setSelectedProject(null);
                             handleViewChange('portfolio');
                         }}
-                        style={{ padding: '0 8px', height: 40, lineHeight: '46.8px' }}
+                        style={{ padding: '0 8px', marginRight: 16, height: 40, lineHeight: '46.8px' }}
                     />
-                    <img src={HBLogo} alt="HB Report Logo" style={{ height: 32, marginRight: 8, verticalAlign: 'middle' }} />
+                    <img src={HBLogo} alt="HB Report Logo" style={{ height: 32, marginRight: 24, verticalAlign: 'middle' }} />
                     <Dropdown
                         overlay={projectPickerMenu}
                         trigger={['click']}
@@ -1269,7 +1300,6 @@ const App = () => {
                     style={{
                         marginRight: hideSidebar ? 0 : (collapsed ? 80 : 250),
                         height: 'calc(100vh - 52px)',
-                        padding: '0 16px 16px',
                         boxSizing: 'border-box',
                     }}
                 >
@@ -1320,7 +1350,7 @@ const App = () => {
                                 width: '100%',
                                 textAlign: 'center',
                                 padding: '8px 0',
-                                borderTop: '1px solid #e8e8e8',
+                                // borderTop: '1px solid #e8e8e8',
                                 background: colorBgContainer,
                             }}
                         >

@@ -21,7 +21,7 @@ import {
     FORECAST_METHODS,
     normalizeForecastMethod,
 } from '../utils/forecastingUtils.js';
-import '../styles/global.css';
+// import '../styles/global.css';
 
 // Determine if in development mode
 const isDevMode = process.env.NODE_ENV === 'development';

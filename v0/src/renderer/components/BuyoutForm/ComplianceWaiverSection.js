@@ -1,438 +1,451 @@
-// src/renderer/components/BuyoutForm/ComplianceWaiverSection.js
-// Compliance Waiver section of the Buyout Form, for requesting waivers of compliance requirements
-// Use within BuyoutForm to render compliance waiver fields
-// Reference: https://ant.design/components/form
+// src/renderer/components/BuyoutForm/ContractWorkflowSection.js
+// Contract Workflow section of the Buyout Form, using a Timeline layout to track workflow
+// Use within BuyoutForm to render contract workflow fields
+// Reference: https://ant.design/components/timeline
 // *Additional Reference*: https://react-hook-form.com/docs
+// *Additional Reference*: https://react.dev/reference/react/memo
 
 import React from 'react';
-import { Row, Col, Form, Divider, Checkbox, Input } from 'antd';
+import { Timeline, Row, Col, Form } from 'antd';
 import { Controller } from 'react-hook-form';
 import PropTypes from 'prop-types';
-import { CheckboxField, TextAreaField, SelectField, CurrencyField, DatePickerField, TextField, WAIVER_LEVELS, EMPLOYEES_ON_SITE_OPTIONS } from 'hb-report';
-import '../../styles/BuyoutForm.css';
+import { DatePickerField, SelectField } from 'hb-report';
 
-const INSURANCE_CHECKBOX_OPTIONS = [
-  { label: 'General Liability', value: 'general_liability' },
-  { label: 'Auto', value: 'auto' },
-  { label: 'Umbrella', value: 'umbrella' },
-  { label: 'Workers Comp', value: 'workers_comp' },
-  { label: 'Professional Liability', value: 'professional_liability' },
+const APPROVAL_STATUS_OPTIONS = [
+  { value: 'Approved', label: 'Approved' },
+  { value: 'Disapproved', label: 'Disapproved' },
 ];
 
-const LICENSING_CHECKBOX_OPTIONS = [
-  { label: 'State', value: 'state' },
-  { label: 'Local', value: 'local' },
-];
+const ContractWorkflowSection = React.memo(({ control }) => (
+  <div id="contract-workflow">
+    <Timeline>
+      {/* Scope Review Meeting */}
+      <Timeline.Item>
+        <div>
+          <h3>Scope Review Meeting</h3>
+          <Row gutter={[16, 8]} align="middle">
+            <Col span={12}>
+              <Row gutter={[16, 0]} align="middle">
+                <Col span={10}>
+                  <span>Scope Review Meeting Date</span>
+                </Col>
+                <Col span={14}>
+                  <Controller
+                    name="scope_review_meeting_date"
+                    control={control}
+                    render={({ field }) => (
+                      <Form.Item>
+                        <DatePickerField
+                          name="scope_review_meeting_date"
+                          control={control}
+                          label={null}
+                          placeholder="mm/dd/yyyy"
+                        />
+                      </Form.Item>
+                    )}
+                  />
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+        </div>
+      </Timeline.Item>
 
-const ComplianceWaiverSection = ({ control }) => (
-  <div id="compliance-waiver" className="sectionCard">
-    {/* Insurance Requirements Waiver */}
-    <div className="sectionCard">
-      <h3 className="sectionTitle">Request for Reduction or Waiver of Insurance Requirements</h3>
-      <Row gutter={[16, 8]} align="middle">
-        <Col span={24}>
-          <Row gutter={[16, 0]} align="middle">
-            <Col span={10}>
-              <span className="fieldLabel">What insurance requirements are to be waived or reduced? (select all that apply)</span>
+      {/* Contract Review and Approval Dates */}
+      <Timeline.Item>
+        <div>
+          <h3>Contract Review and Approval Dates</h3>
+          <Row gutter={[16, 8]} align="middle">
+            <Col span={12}>
+              <Row gutter={[16, 0]} align="middle">
+                <Col span={10}>
+                  <span>SPM Review Date</span>
+                </Col>
+                <Col span={14}>
+                  <Controller
+                    name="spm_review_date"
+                    control={control}
+                    render={({ field }) => (
+                      <Form.Item>
+                        <DatePickerField
+                          name="spm_review_date"
+                          control={control}
+                          label={null}
+                          placeholder="mm/dd/yyyy"
+                        />
+                      </Form.Item>
+                    )}
+                  />
+                </Col>
+              </Row>
+              <Row gutter={[16, 0]} align="middle">
+                <Col span={10}>
+                  <span>SPM Approval Status</span>
+                </Col>
+                <Col span={14}>
+                  <Controller
+                    name="spm_approval_status"
+                    control={control}
+                    render={({ field }) => (
+                      <Form.Item>
+                        <SelectField
+                          id="spm_approval_status"
+                          value={field.value}
+                          onChange={field.onChange}
+                          options={APPROVAL_STATUS_OPTIONS}
+                          placeholder="Undefined"
+                        />
+                      </Form.Item>
+                    )}
+                  />
+                </Col>
+              </Row>
             </Col>
-            <Col span={14}>
-              <Controller
-                name="insurance_requirements_to_waive"
-                control={control}
-                render={({ field }) => (
-                  <Form.Item>
-                    <Checkbox.Group
-                      id="insurance_requirements_to_waive"
-                      {...field}
-                      options={INSURANCE_CHECKBOX_OPTIONS}
-                      className="checkboxGroup"
-                    />
-                  </Form.Item>
-                )}
-              />
+            <Col span={12}>
+              <Row gutter={[16, 0]} align="middle">
+                <Col span={10}>
+                  <span>PX Review Date</span>
+                </Col>
+                <Col span={14}>
+                  <Controller
+                    name="px_review_date"
+                    control={control}
+                    render={({ field }) => (
+                      <Form.Item>
+                        <DatePickerField
+                          name="px_review_date"
+                          control={control}
+                          label={null}
+                          disabled={!control._formValues.spm_review_date}
+                          placeholder="mm/dd/yyyy"
+                        />
+                      </Form.Item>
+                    )}
+                  />
+                </Col>
+              </Row>
+              <Row gutter={[16, 0]} align="middle">
+                <Col span={10}>
+                  <span>PX Approval Status</span>
+                </Col>
+                <Col span={14}>
+                  <Controller
+                    name="px_approval_status"
+                    control={control}
+                    render={({ field }) => (
+                      <Form.Item>
+                        <SelectField
+                          id="px_approval_status"
+                          value={field.value}
+                          onChange={field.onChange}
+                          options={APPROVAL_STATUS_OPTIONS}
+                          placeholder="Undefined"
+                          disabled={!control._formValues.spm_review_date}
+                        />
+                      </Form.Item>
+                    )}
+                  />
+                </Col>
+              </Row>
+              <Row gutter={[16, 0]} align="middle">
+                <Col span={10}>
+                  <span>VP Review Date</span>
+                </Col>
+                <Col span={14}>
+                  <Controller
+                    name="vp_review_date"
+                    control={control}
+                    render={({ field }) => (
+                      <Form.Item>
+                        <DatePickerField
+                          name="vp_review_date"
+                          control={control}
+                          label={null}
+                          disabled={!control._formValues.px_review_date}
+                          placeholder="mm/dd/yyyy"
+                        />
+                      </Form.Item>
+                    )}
+                  />
+                </Col>
+              </Row>
+              <Row gutter={[16, 0]} align="middle">
+                <Col span={10}>
+                  <span>VP Approval Status</span>
+                </Col>
+                <Col span={14}>
+                  <Controller
+                    name="vp_approval_status"
+                    control={control}
+                    render={({ field }) => (
+                      <Form.Item>
+                        <SelectField
+                          id="vp_approval_status"
+                          value={field.value}
+                          onChange={field.onChange}
+                          options={APPROVAL_STATUS_OPTIONS}
+                          placeholder="Undefined"
+                          disabled={!control._formValues.px_review_date}
+                        />
+                      </Form.Item>
+                    )}
+                  />
+                </Col>
+              </Row>
             </Col>
           </Row>
-        </Col>
-        <Col span={24}>
-          <Row gutter={[16, 0]} align="middle">
-            <Col span={10}>
-              <span className="fieldLabel">Explain:</span>
-            </Col>
-            <Col span={14}>
-              <Controller
-                name="insurance_explanation"
-                control={control}
-                render={({ field }) => (
-                  <Form.Item>
-                    <TextAreaField
-                      id="insurance_explanation"
-                      value={field.value}
-                      onChange={field.onChange}
-                      rows={3}
-                    />
-                  </Form.Item>
-                )}
-              />
-            </Col>
-          </Row>
-        </Col>
-        <Col span={24}>
-          <Row gutter={[16, 0]} align="middle">
-            <Col span={10}>
-              <span className="fieldLabel">Why increased risk is justified?</span>
-            </Col>
-            <Col span={14}>
-              <Controller
-                name="insurance_risk_justification"
-                control={control}
-                render={({ field }) => (
-                  <Form.Item>
-                    <TextAreaField
-                      id="insurance_risk_justification"
-                      value={field.value}
-                      onChange={field.onChange}
-                      rows={3}
-                    />
-                  </Form.Item>
-                )}
-              />
-            </Col>
-          </Row>
-        </Col>
-        <Col span={24}>
-          <Row gutter={[16, 0]} align="middle">
-            <Col span={10}>
-              <span className="fieldLabel">What actions will be taken to reduce risk?</span>
-            </Col>
-            <Col span={14}>
-              <Controller
-                name="insurance_risk_reduction_actions"
-                control={control}
-                render={({ field }) => (
-                  <Form.Item>
-                    <TextAreaField
-                      id="insurance_risk_reduction_actions"
-                      value={field.value}
-                      onChange={field.onChange}
-                      rows={3}
-                    />
-                  </Form.Item>
-                )}
-              />
-            </Col>
-          </Row>
-        </Col>
-        <Col span={12}>
-          <Row gutter={[16, 0]} align="middle">
-            <Col span={10}>
-              <span className="fieldLabel">The above waiver is to be addressed at a:</span>
-            </Col>
-            <Col span={14}>
-              <Controller
-                name="insurance_waiver_level"
-                control={control}
-                render={({ field }) => (
-                  <Form.Item>
-                    <SelectField
-                      id="insurance_waiver_level"
-                      value={field.value}
-                      onChange={field.onChange}
-                      options={WAIVER_LEVELS.map(level => ({ value: level, label: level.charAt(0).toUpperCase() + level.slice(1) }))}
-                      placeholder="Select level"
-                    />
-                  </Form.Item>
-                )}
-              />
-            </Col>
-          </Row>
-        </Col>
-      </Row>
-    </div>
+        </div>
+      </Timeline.Item>
 
-    <Divider className="divider" />
+      {/* Contract Execution Dates */}
+      <Timeline.Item>
+        <div>
+          <h3>Contract Execution Dates</h3>
+          <Row gutter={[16, 8]} align="middle">
+            <Col span={12}>
+              <Row gutter={[16, 0]} align="middle">
+                <Col span={10}>
+                  <span>Contract Award Date</span>
+                </Col>
+                <Col span={14}>
+                  <Controller
+                    name="contract_date"
+                    control={control}
+                    render={({ field }) => (
+                      <Form.Item>
+                        <DatePickerField
+                          name="contract_date"
+                          control={control}
+                          label={null}
+                          placeholder="mm/dd/yyyy"
+                        />
+                      </Form.Item>
+                    )}
+                  />
+                </Col>
+              </Row>
+              <Row gutter={[16, 0]} align="middle">
+                <Col span={10}>
+                  <span>LOI Sent</span>
+                </Col>
+                <Col span={14}>
+                  <Controller
+                    name="loi_sent_date"
+                    control={control}
+                    render={({ field }) => (
+                      <Form.Item>
+                        <DatePickerField
+                          name="loi_sent_date"
+                          control={control}
+                          label={null}
+                          disabled={!control._formValues.contract_date}
+                          placeholder="mm/dd/yyyy"
+                        />
+                      </Form.Item>
+                    )}
+                  />
+                </Col>
+              </Row>
+              <Row gutter={[16, 0]} align="middle">
+                <Col span={10}>
+                  <span>LOI Returned</span>
+                </Col>
+                <Col span={14}>
+                  <Controller
+                    name="loi_returned_date"
+                    control={control}
+                    render={({ field }) => (
+                      <Form.Item>
+                        <DatePickerField
+                          name="loi_returned_date"
+                          control={control}
+                          label={null}
+                          disabled={!control._formValues.loi_sent_date}
+                          placeholder="mm/dd/yyyy"
+                        />
+                      </Form.Item>
+                    )}
+                  />
+                </Col>
+              </Row>
+            </Col>
+            <Col span={12}>
+              <Row gutter={[16, 0]} align="middle">
+                <Col span={10}>
+                  <span>Subcontract Agreement Sent</span>
+                </Col>
+                <Col span={14}>
+                  <Controller
+                    name="subcontract_agreement_sent_date"
+                    control={control}
+                    render={({ field }) => (
+                      <Form.Item>
+                        <DatePickerField
+                          name="subcontract_agreement_sent_date"
+                          control={control}
+                          label={null}
+                          disabled={!control._formValues.loi_returned_date}
+                          placeholder="mm/dd/yyyy"
+                        />
+                      </Form.Item>
+                    )}
+                  />
+                </Col>
+              </Row>
+              <Row gutter={[16, 0]} align="middle">
+                <Col span={10}>
+                  <span>Fully Executed by HBC</span>
+                </Col>
+                <Col span={14}>
+                  <Controller
+                    name="signed_contract_received_date"
+                    control={control}
+                    render={({ field }) => (
+                      <Form.Item>
+                        <DatePickerField
+                          name="signed_contract_received_date"
+                          control={control}
+                          label={null}
+                          disabled={!control._formValues.subcontract_agreement_sent_date}
+                          placeholder="mm/dd/yyyy"
+                        />
+                      </Form.Item>
+                    )}
+                  />
+                </Col>
+              </Row>
+              <Row gutter={[16, 0]} align="middle">
+                <Col span={10}>
+                  <span>Fully Executed Sent to Subcontractor</span>
+                </Col>
+                <Col span={14}>
+                  <Controller
+                    name="fully_executed_sent_date"
+                    control={control}
+                    render={({ field }) => (
+                      <Form.Item>
+                        <DatePickerField
+                          name="fully_executed_sent_date"
+                          control={control}
+                          label={null}
+                          disabled={!control._formValues.signed_contract_received_date}
+                          placeholder="mm/dd/yyyy"
+                        />
+                      </Form.Item>
+                    )}
+                  />
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+        </div>
+      </Timeline.Item>
 
-    {/* Licensing Requirements Waiver */}
-    <div className="sectionCard">
-      <h3 className="sectionTitle">Request for Waiver of Licensing Requirements</h3>
-      <Row gutter={[16, 8]} align="middle">
-        <Col span={24}>
-          <Row gutter={[16, 0]} align="middle">
-            <Col span={10}>
-              <span className="fieldLabel">What licensing requirements are to be waived?</span>
+      {/* Project Timeline */}
+      <Timeline.Item>
+        <div>
+          <h3>Project Timeline</h3>
+          <Row gutter={[16, 8]} align="middle">
+            <Col span={12}>
+              <Row gutter={[16, 0]} align="middle">
+                <Col span={10}>
+                  <span>Start Date</span>
+                </Col>
+                <Col span={14}>
+                  <Controller
+                    name="contract_start_date"
+                    control={control}
+                    render={({ field }) => (
+                      <Form.Item>
+                        <DatePickerField
+                          name="contract_start_date"
+                          control={control}
+                          label={null}
+                          placeholder="mm/dd/yyyy"
+                        />
+                      </Form.Item>
+                    )}
+                  />
+                </Col>
+              </Row>
+              <Row gutter={[16, 0]} align="middle">
+                <Col span={10}>
+                  <span>Estimated Completion Date</span>
+                </Col>
+                <Col span={14}>
+                  <Controller
+                    name="contract_estimated_completion_date"
+                    control={control}
+                    render={({ field }) => (
+                      <Form.Item>
+                        <DatePickerField
+                          name="contract_estimated_completion_date"
+                          control={control}
+                          label={null}
+                          disabled={!control._formValues.contract_start_date}
+                          placeholder="mm/dd/yyyy"
+                        />
+                      </Form.Item>
+                    )}
+                  />
+                </Col>
+              </Row>
             </Col>
-            <Col span={14}>
-              <Controller
-                name="licensing_requirements_to_waive"
-                control={control}
-                render={({ field }) => (
-                  <Form.Item>
-                    <Checkbox.Group
-                      id="licensing_requirements_to_waive"
-                      {...field}
-                      options={LICENSING_CHECKBOX_OPTIONS}
-                      className="checkboxGroup"
-                    />
-                    <TextField
-                      id="licensing_requirements_to_waive_county"
-                      value={field.value?.county || ''}
-                      onChange={(value) => field.onChange({ ...field.value, county: value })}
-                      placeholder="County"
-                    />
-                  </Form.Item>
-                )}
-              />
-            </Col>
-          </Row>
-        </Col>
-        <Col span={24}>
-          <Row gutter={[16, 0]} align="middle">
-            <Col span={10}>
-              <span className="fieldLabel">Why increased risk is justified?</span>
-            </Col>
-            <Col span={14}>
-              <Controller
-                name="licensing_risk_justification"
-                control={control}
-                render={({ field }) => (
-                  <Form.Item>
-                    <TextAreaField
-                      id="licensing_risk_justification"
-                      value={field.value}
-                      onChange={field.onChange}
-                      rows={3}
-                    />
-                  </Form.Item>
-                )}
-              />
-            </Col>
-          </Row>
-        </Col>
-        <Col span={24}>
-          <Row gutter={[16, 0]} align="middle">
-            <Col span={10}>
-              <span className="fieldLabel">What actions will be taken to reduce risk?</span>
-            </Col>
-            <Col span={14}>
-              <Controller
-                name="licensing_risk_reduction_actions"
-                control={control}
-                render={({ field }) => (
-                  <Form.Item>
-                    <TextAreaField
-                      id="licensing_risk_reduction_actions"
-                      value={field.value}
-                      onChange={field.onChange}
-                      rows={3}
-                    />
-                  </Form.Item>
-                )}
-              />
-            </Col>
-          </Row>
-        </Col>
-        <Col span={12}>
-          <Row gutter={[16, 0]} align="middle">
-            <Col span={10}>
-              <span className="fieldLabel">The above waiver is to be addressed at a:</span>
-            </Col>
-            <Col span={14}>
-              <Controller
-                name="licensing_waiver_level"
-                control={control}
-                render={({ field }) => (
-                  <Form.Item>
-                    <SelectField
-                      id="licensing_waiver_level"
-                      value={field.value}
-                      onChange={field.onChange}
-                      options={WAIVER_LEVELS.map(level => ({ value: level, label: level.charAt(0).toUpperCase() + level.slice(1) }))}
-                      placeholder="Select level"
-                    />
-                  </Form.Item>
-                )}
-              />
+            <Col span={12}>
+              <Row gutter={[16, 0]} align="middle">
+                <Col span={10}>
+                  <span>Actual Completion Date</span>
+                </Col>
+                <Col span={14}>
+                  <Controller
+                    name="actual_completion_date"
+                    control={control}
+                    render={({ field }) => (
+                      <Form.Item>
+                        <DatePickerField
+                          name="actual_completion_date"
+                          control={control}
+                          label={null}
+                          disabled={!control._formValues.contract_estimated_completion_date}
+                          placeholder="mm/dd/yyyy"
+                        />
+                      </Form.Item>
+                    )}
+                  />
+                </Col>
+              </Row>
+              <Row gutter={[16, 0]} align="middle">
+                <Col span={10}>
+                  <span>Issued On Date</span>
+                </Col>
+                <Col span={14}>
+                  <Controller
+                    name="issued_on_date"
+                    control={control}
+                    render={({ field }) => (
+                      <Form.Item>
+                        <DatePickerField
+                          name="issued_on_date"
+                          control={control}
+                          label={null}
+                          disabled={!control._formValues.actual_completion_date}
+                          placeholder="mm/dd/yyyy"
+                        />
+                      </Form.Item>
+                    )}
+                  />
+                </Col>
+              </Row>
             </Col>
           </Row>
-        </Col>
-      </Row>
-    </div>
-
-    <Divider className="divider" />
-
-    {/* Scope & Value of Subcontract/Purchase Order */}
-    <div className="sectionCard">
-      <h3 className="sectionTitle">Scope & Value of Subcontract/Purchase Order</h3>
-      <Row gutter={[16, 8]} align="middle">
-        <Col span={24}>
-          <Row gutter={[16, 0]} align="middle">
-            <Col span={10}>
-              <span className="fieldLabel">Describe Scope:</span>
-            </Col>
-            <Col span={14}>
-              <Controller
-                name="subcontract_scope"
-                control={control}
-                render={({ field }) => (
-                  <Form.Item>
-                    <TextAreaField
-                      id="subcontract_scope"
-                      value={field.value}
-                      onChange={field.onChange}
-                      rows={3}
-                    />
-                  </Form.Item>
-                )}
-              />
-            </Col>
-          </Row>
-        </Col>
-        <Col span={12}>
-          <Row gutter={[16, 0]} align="middle">
-            <Col span={10}>
-              <span className="fieldLabel">Does company have employees on the project site?</span>
-            </Col>
-            <Col span={14}>
-              <Controller
-                name="employees_on_site"
-                control={control}
-                render={({ field }) => (
-                  <Form.Item>
-                    <SelectField
-                      id="employees_on_site"
-                      value={field.value}
-                      onChange={field.onChange}
-                      options={EMPLOYEES_ON_SITE_OPTIONS.map(option => ({ value: option, label: option.charAt(0).toUpperCase() + option.slice(1) }))}
-                      placeholder="Select option"
-                    />
-                  </Form.Item>
-                )}
-              />
-            </Col>
-          </Row>
-        </Col>
-        <Col span={12}>
-          <Row gutter={[16, 0]} align="middle">
-            <Col span={10}>
-              <span className="fieldLabel">Value of Subcontract/P.O.</span>
-            </Col>
-            <Col span={14}>
-              <Controller
-                name="subcontract_value"
-                control={control}
-                render={({ field }) => (
-                  <Form.Item>
-                    <CurrencyField
-                      id="subcontract_value"
-                      value={field.value}
-                      onValueChange={field.onChange}
-                      allowNegative={false}
-                    />
-                  </Form.Item>
-                )}
-              />
-            </Col>
-          </Row>
-        </Col>
-      </Row>
-    </div>
-
-    <Divider className="divider" />
-
-    {/* Approval */}
-    <div className="sectionCard">
-      <h3 className="sectionTitle">Approval</h3>
-      <Row gutter={[16, 8]} align="middle">
-        <Col span={12}>
-          <Row gutter={[16, 0]} align="middle">
-            <Col span={10}>
-              <span className="fieldLabel">Project Executive</span>
-            </Col>
-            <Col span={14}>
-              <Controller
-                name="project_executive"
-                control={control}
-                render={({ field }) => (
-                  <Form.Item>
-                    <TextField
-                      id="project_executive"
-                      value={field.value}
-                      onChange={field.onChange}
-                    />
-                  </Form.Item>
-                )}
-              />
-            </Col>
-          </Row>
-          <Row gutter={[16, 0]} align="middle">
-            <Col span={10}>
-              <span className="fieldLabel">Date</span>
-            </Col>
-            <Col span={14}>
-              <Controller
-                name="project_executive_date"
-                control={control}
-                render={({ field }) => (
-                  <Form.Item>
-                    <DatePickerField
-                      id="project_executive_date"
-                      value={field.value}
-                      onChange={field.onChange}
-                    />
-                  </Form.Item>
-                )}
-              />
-            </Col>
-          </Row>
-        </Col>
-        <Col span={12}>
-          <Row gutter={[16, 0]} align="middle">
-            <Col span={10}>
-              <span className="fieldLabel">CFO</span>
-            </Col>
-            <Col span={14}>
-              <Controller
-                name="cfo"
-                control={control}
-                render={({ field }) => (
-                  <Form.Item>
-                    <TextField
-                      id="cfo"
-                      value={field.value}
-                      onChange={field.onChange}
-                    />
-                  </Form.Item>
-                )}
-              />
-            </Col>
-          </Row>
-          <Row gutter={[16, 0]} align="middle">
-            <Col span={10}>
-              <span className="fieldLabel">Date</span>
-            </Col>
-            <Col span={14}>
-              <Controller
-                name="cfo_date"
-                control={control}
-                render={({ field }) => (
-                  <Form.Item>
-                    <DatePickerField
-                      id="cfo_date"
-                      value={field.value}
-                      onChange={field.onChange}
-                    />
-                  </Form.Item>
-                )}
-              />
-            </Col>
-          </Row>
-        </Col>
-      </Row>
-    </div>
+        </div>
+      </Timeline.Item>
+    </Timeline>
   </div>
-);
+));
 
-ComplianceWaiverSection.propTypes = {
+ContractWorkflowSection.propTypes = {
   control: PropTypes.object.isRequired,
 };
 
-export default ComplianceWaiverSection;
+export default ContractWorkflowSection;

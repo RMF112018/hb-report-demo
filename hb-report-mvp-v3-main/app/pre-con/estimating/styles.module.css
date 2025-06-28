@@ -1,0 +1,43 @@
+/* Add styles for Pre-Con Estimating feature here */
+.container {
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  background-color: #003087;
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.tab {
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.activeTab {
+  background-color: #eee;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+.table th {
+  background-color: #f0f0f0;
+}

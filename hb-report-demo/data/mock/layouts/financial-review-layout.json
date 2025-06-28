@@ -1,0 +1,88 @@
+{
+  "id": "financial-review",
+  "name": "Financial Review",
+  "description": "Comprehensive financial analysis and review dashboard",
+  "cards": [
+    {
+      "id": "project-overview-1",
+      "type": "project-overview",
+      "title": "Portfolio Overview",
+      "size": "medium",
+      "position": { "x": 0, "y": 0 },
+      "visible": true,
+      "config": {}
+    },
+    {
+      "id": "schedule-performance-1",
+      "type": "schedule-performance",
+      "title": "Schedule Performance",
+      "size": "medium",
+      "position": { "x": 3, "y": 0 },
+      "visible": true,
+      "config": {}
+    },
+    {
+      "id": "financial-status-1",
+      "type": "financial-status",
+      "title": "Financial Status",
+      "size": "medium",
+      "position": { "x": 6, "y": 0 },
+      "visible": true,
+      "config": {}
+    },
+    {
+      "id": "general-conditions-1",
+      "type": "general-conditions",
+      "title": "General Conditions",
+      "size": "medium",
+      "position": { "x": 9, "y": 0 },
+      "visible": true,
+      "config": {}
+    },
+    {
+      "id": "contingency-analysis-1",
+      "type": "contingency-analysis",
+      "title": "Contingency Analysis",
+      "size": "medium",
+      "position": { "x": 0, "y": 1 },
+      "visible": true,
+      "config": {}
+    },
+    {
+      "id": "cash-flow-1",
+      "type": "cash-flow",
+      "title": "Cash Flow Analysis",
+      "size": "medium",
+      "position": { "x": 3, "y": 1 },
+      "visible": true,
+      "config": {}
+    },
+    {
+      "id": "procurement-1",
+      "type": "procurement",
+      "title": "Procurement Management",
+      "size": "medium",
+      "position": { "x": 6, "y": 1 },
+      "visible": true,
+      "config": {}
+    },
+    {
+      "id": "draw-forecast-1",
+      "type": "draw-forecast",
+      "title": "Draw Forecast",
+      "size": "medium",
+      "position": { "x": 9, "y": 1 },
+      "visible": true,
+      "config": {}
+    },
+    {
+      "id": "enhanced-hbi-insights-financial",
+      "type": "enhanced-hbi-insights",
+      "title": "HBI Financial Forecast Insights",
+      "size": "large",
+      "position": { "x": 0, "y": 2 },
+      "visible": true,
+      "config": {}
+    }
+  ]
+} 

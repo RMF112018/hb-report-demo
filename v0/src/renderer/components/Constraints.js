@@ -14,9 +14,9 @@ import { SearchOutlined, DownOutlined, PlusOutlined, CaretDownFilled, CaretRight
 import ComponentHeader from './ComponentHeader.js';
 import TableModule from './TableModule.js';
 import moment from 'moment';
-import '../styles/global.css';
+// import '../styles/global.css';
 import '../styles/TableModule.css';
-import '../styles/Components.css';
+// import '../styles/Components.css';
 
 const { Option } = Select;
 const { TabPane } = Tabs;

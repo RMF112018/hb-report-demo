@@ -1,0 +1,218 @@
+{
+  "dashboardProjectsSummary": [
+    {
+      "id": 401001,
+      "name": "Tropical World Nursery Construction",
+      "financialScore": 85,
+      "scheduleScore": 78,
+      "executionScore": 92,
+      "budget": 12500000,
+      "spent": 8750000,
+      "progress": 70,
+      "phase": "construction",
+      "manager": "Sarah Johnson",
+      "startDate": "2024-01-15",
+      "endDate": "2024-12-30",
+      "status": "active",
+      "city": "Hobe Sound",
+      "contractValue": 12500000
+    },
+    {
+      "id": 401004,
+      "name": "Tech Campus Innovation Hub",
+      "financialScore": 72,
+      "scheduleScore": 85,
+      "executionScore": 88,
+      "budget": 45000000,
+      "spent": 31500000,
+      "progress": 65,
+      "phase": "construction",
+      "manager": "Mike Chen",
+      "startDate": "2023-08-01",
+      "endDate": "2025-06-15",
+      "status": "planning",
+      "city": "Boca Raton",
+      "contractValue": 45000000
+    },
+    {
+      "id": 401002,
+      "name": "Panther Tower South",
+      "financialScore": 90,
+      "scheduleScore": 82,
+      "executionScore": 95,
+      "budget": 78000000,
+      "spent": 46800000,
+      "progress": 60,
+      "phase": "construction",
+      "manager": "David Rodriguez",
+      "startDate": "2024-03-01",
+      "endDate": "2026-02-28",
+      "status": "active",
+      "city": "Miami",
+      "contractValue": 78000000
+    }
+  ],
+  "financialMetrics": [
+    {
+      "id": "fin1",
+      "title": "Cost Performance Index (CPI)",
+      "data": "0.87",
+      "trend": "down",
+      "priority": "high",
+      "icon": "DollarSign"
+    },
+    {
+      "id": "fin2",
+      "title": "Budget Variance",
+      "data": "-$2.1M",
+      "trend": "down",
+      "priority": "high",
+      "icon": "TrendingDown"
+    },
+    {
+      "id": "fin3",
+      "title": "Earned Value (EV)",
+      "data": "$89.2M",
+      "trend": "up",
+      "priority": "medium",
+      "icon": "BarChart3"
+    },
+    {
+      "id": "fin4",
+      "title": "Change Order Impact",
+      "data": "$1.8M",
+      "trend": "up",
+      "priority": "medium",
+      "icon": "FileText"
+    },
+    {
+      "id": "fin5",
+      "title": "Cash Flow Forecast",
+      "data": "Positive",
+      "trend": "up",
+      "priority": "low",
+      "icon": "TrendingUp"
+    }
+  ],
+  "scheduleMetrics": [
+    {
+      "id": "sch1",
+      "title": "Schedule Performance Index (SPI)",
+      "data": "0.94",
+      "trend": "down",
+      "priority": "high",
+      "icon": "Clock"
+    },
+    {
+      "id": "sch2",
+      "title": "Critical Path Delay",
+      "data": "8 days",
+      "trend": "up",
+      "priority": "high",
+      "icon": "AlertTriangle"
+    },
+    {
+      "id": "sch3",
+      "title": "Schedule Compression Index",
+      "data": "1.15",
+      "trend": "up",
+      "priority": "medium",
+      "icon": "BarChart3"
+    },
+    {
+      "id": "sch4",
+      "title": "Milestone Adherence",
+      "data": "78%",
+      "trend": "down",
+      "priority": "medium",
+      "icon": "CheckCircle"
+    },
+    {
+      "id": "sch5",
+      "title": "Weather Impact Days",
+      "data": "12 days",
+      "trend": "up",
+      "priority": "low",
+      "icon": "Calendar"
+    }
+  ],
+  "executionMetrics": [
+    {
+      "id": "exe1",
+      "title": "Manpower Utilization",
+      "data": "87%",
+      "trend": "up",
+      "priority": "medium",
+      "icon": "Users"
+    },
+    {
+      "id": "exe2",
+      "title": "Safety Incidents",
+      "data": "3",
+      "trend": "down",
+      "priority": "high",
+      "icon": "Shield"
+    },
+    {
+      "id": "exe3",
+      "title": "Quality Pass Rate",
+      "data": "94%",
+      "trend": "up",
+      "priority": "medium",
+      "icon": "CheckCircle"
+    },
+    {
+      "id": "exe4",
+      "title": "Document Compliance",
+      "data": "96%",
+      "trend": "up",
+      "priority": "medium",
+      "icon": "FileText"
+    },
+    {
+      "id": "exe5",
+      "title": "RFI Resolution Time",
+      "data": "4.2 days",
+      "trend": "down",
+      "priority": "low",
+      "icon": "Clock"
+    },
+    {
+      "id": "exe6",
+      "title": "Permit Approval Rate",
+      "data": "89%",
+      "trend": "up",
+      "priority": "medium",
+      "icon": "FileText"
+    }
+  ],
+  "hbiInsights": [
+    {
+      "id": "insight1",
+      "type": "forecast",
+      "severity": "high",
+      "title": "Budget Overrun Forecast",
+      "text": "Tropical World Nursery project forecasted to exceed budget by 8% based on current spending patterns and remaining scope.",
+      "action": "Review change orders and optimize resource allocation",
+      "confidence": 85
+    },
+    {
+      "id": "insight2",
+      "type": "risk",
+      "severity": "medium",
+      "title": "Schedule Risk Alert",
+      "text": "Metro Office Complex showing early indicators of potential 2-week delay due to permit processing bottlenecks.",
+      "action": "Expedite permit applications and prepare contingency plans",
+      "confidence": 72
+    },
+    {
+      "id": "insight3",
+      "type": "opportunity",
+      "severity": "low",
+      "title": "Cost Optimization Opportunity",
+      "text": "Panther Tower project showing potential for 3% cost savings through bulk material procurement optimization.",
+      "action": "Coordinate with procurement team for bulk ordering",
+      "confidence": 68
+    }
+  ]
+}

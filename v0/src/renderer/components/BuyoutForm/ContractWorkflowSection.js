@@ -3,31 +3,31 @@
 // Use within BuyoutForm to render contract workflow fields
 // Reference: https://ant.design/components/timeline
 // *Additional Reference*: https://react-hook-form.com/docs
+// *Additional Reference*: https://react.dev/reference/react/memo
 
 import React from 'react';
 import { Timeline, Row, Col, Form } from 'antd';
 import { Controller } from 'react-hook-form';
 import PropTypes from 'prop-types';
 import { DatePickerField, SelectField } from 'hb-report';
-import '../../styles/BuyoutForm.css';
 
 const APPROVAL_STATUS_OPTIONS = [
   { value: 'Approved', label: 'Approved' },
   { value: 'Disapproved', label: 'Disapproved' },
 ];
 
-const ContractWorkflowSection = ({ control }) => (
-  <div id="contract-workflow" className="sectionCard">
+const ContractWorkflowSection = React.memo(({ control }) => (
+  <div id="contract-workflow">
     <Timeline>
       {/* Scope Review Meeting */}
       <Timeline.Item>
-        <div className="sectionCard">
-          <h3 className="sectionTitle">Scope Review Meeting</h3>
+        <div>
+          <h3>Scope Review Meeting</h3>
           <Row gutter={[16, 8]} align="middle">
             <Col span={12}>
               <Row gutter={[16, 0]} align="middle">
                 <Col span={10}>
-                  <span className="fieldLabel">Scope Review Meeting Date</span>
+                  <span>Scope Review Meeting Date</span>
                 </Col>
                 <Col span={14}>
                   <Controller
@@ -36,9 +36,9 @@ const ContractWorkflowSection = ({ control }) => (
                     render={({ field }) => (
                       <Form.Item>
                         <DatePickerField
-                          id="scope_review_meeting_date"
-                          value={field.value}
-                          onChange={field.onChange}
+                          name="scope_review_meeting_date"
+                          control={control}
+                          label={null}
                         />
                       </Form.Item>
                     )}
@@ -52,13 +52,13 @@ const ContractWorkflowSection = ({ control }) => (
 
       {/* Contract Review and Approval Dates */}
       <Timeline.Item>
-        <div className="sectionCard">
-          <h3 className="sectionTitle">Contract Review and Approval Dates</h3>
+        <div>
+          <h3>Contract Review and Approval Dates</h3>
           <Row gutter={[16, 8]} align="middle">
             <Col span={12}>
               <Row gutter={[16, 0]} align="middle">
                 <Col span={10}>
-                  <span className="fieldLabel">SPM Review Date</span>
+                  <span>SPM Review Date</span>
                 </Col>
                 <Col span={14}>
                   <Controller
@@ -67,9 +67,9 @@ const ContractWorkflowSection = ({ control }) => (
                     render={({ field }) => (
                       <Form.Item>
                         <DatePickerField
-                          id="spm_review_date"
-                          value={field.value}
-                          onChange={field.onChange}
+                          name="spm_review_date"
+                          control={control}
+                          label={null}
                         />
                       </Form.Item>
                     )}
@@ -78,7 +78,7 @@ const ContractWorkflowSection = ({ control }) => (
               </Row>
               <Row gutter={[16, 0]} align="middle">
                 <Col span={10}>
-                  <span className="fieldLabel">SPM Approval Status</span>
+                  <span>SPM Approval Status</span>
                 </Col>
                 <Col span={14}>
                   <Controller
@@ -102,7 +102,7 @@ const ContractWorkflowSection = ({ control }) => (
             <Col span={12}>
               <Row gutter={[16, 0]} align="middle">
                 <Col span={10}>
-                  <span className="fieldLabel">PX Review Date</span>
+                  <span>PX Review Date</span>
                 </Col>
                 <Col span={14}>
                   <Controller
@@ -111,9 +111,9 @@ const ContractWorkflowSection = ({ control }) => (
                     render={({ field }) => (
                       <Form.Item>
                         <DatePickerField
-                          id="px_review_date"
-                          value={field.value}
-                          onChange={field.onChange}
+                          name="px_review_date"
+                          control={control}
+                          label={null}
                           disabled={!control._formValues.spm_review_date}
                         />
                       </Form.Item>
@@ -123,7 +123,7 @@ const ContractWorkflowSection = ({ control }) => (
               </Row>
               <Row gutter={[16, 0]} align="middle">
                 <Col span={10}>
-                  <span className="fieldLabel">PX Approval Status</span>
+                  <span>PX Approval Status</span>
                 </Col>
                 <Col span={14}>
                   <Controller
@@ -146,7 +146,7 @@ const ContractWorkflowSection = ({ control }) => (
               </Row>
               <Row gutter={[16, 0]} align="middle">
                 <Col span={10}>
-                  <span className="fieldLabel">VP Review Date</span>
+                  <span>VP Review Date</span>
                 </Col>
                 <Col span={14}>
                   <Controller
@@ -155,9 +155,9 @@ const ContractWorkflowSection = ({ control }) => (
                     render={({ field }) => (
                       <Form.Item>
                         <DatePickerField
-                          id="vp_review_date"
-                          value={field.value}
-                          onChange={field.onChange}
+                          name="vp_review_date"
+                          control={control}
+                          label={null}
                           disabled={!control._formValues.px_review_date}
                         />
                       </Form.Item>
@@ -167,7 +167,7 @@ const ContractWorkflowSection = ({ control }) => (
               </Row>
               <Row gutter={[16, 0]} align="middle">
                 <Col span={10}>
-                  <span className="fieldLabel">VP Approval Status</span>
+                  <span>VP Approval Status</span>
                 </Col>
                 <Col span={14}>
                   <Controller
@@ -195,13 +195,13 @@ const ContractWorkflowSection = ({ control }) => (
 
       {/* Contract Execution Dates */}
       <Timeline.Item>
-        <div className="sectionCard">
-          <h3 className="sectionTitle">Contract Execution Dates</h3>
+        <div>
+          <h3>Contract Execution Dates</h3>
           <Row gutter={[16, 8]} align="middle">
             <Col span={12}>
               <Row gutter={[16, 0]} align="middle">
                 <Col span={10}>
-                  <span className="fieldLabel">Contract Award Date</span>
+                  <span>Contract Award Date</span>
                 </Col>
                 <Col span={14}>
                   <Controller
@@ -210,9 +210,9 @@ const ContractWorkflowSection = ({ control }) => (
                     render={({ field }) => (
                       <Form.Item>
                         <DatePickerField
-                          id="contract_date"
-                          value={field.value}
-                          onChange={field.onChange}
+                          name="contract_date"
+                          control={control}
+                          label={null}
                         />
                       </Form.Item>
                     )}
@@ -221,7 +221,7 @@ const ContractWorkflowSection = ({ control }) => (
               </Row>
               <Row gutter={[16, 0]} align="middle">
                 <Col span={10}>
-                  <span className="fieldLabel">LOI Sent</span>
+                  <span>LOI Sent</span>
                 </Col>
                 <Col span={14}>
                   <Controller
@@ -230,9 +230,9 @@ const ContractWorkflowSection = ({ control }) => (
                     render={({ field }) => (
                       <Form.Item>
                         <DatePickerField
-                          id="loi_sent_date"
-                          value={field.value}
-                          onChange={field.onChange}
+                          name="loi_sent_date"
+                          control={control}
+                          label={null}
                           disabled={!control._formValues.contract_date}
                         />
                       </Form.Item>
@@ -242,7 +242,7 @@ const ContractWorkflowSection = ({ control }) => (
               </Row>
               <Row gutter={[16, 0]} align="middle">
                 <Col span={10}>
-                  <span className="fieldLabel">LOI Returned</span>
+                  <span>LOI Returned</span>
                 </Col>
                 <Col span={14}>
                   <Controller
@@ -251,9 +251,9 @@ const ContractWorkflowSection = ({ control }) => (
                     render={({ field }) => (
                       <Form.Item>
                         <DatePickerField
-                          id="loi_returned_date"
-                          value={field.value}
-                          onChange={field.onChange}
+                          name="loi_returned_date"
+                          control={control}
+                          label={null}
                           disabled={!control._formValues.loi_sent_date}
                         />
                       </Form.Item>
@@ -265,7 +265,7 @@ const ContractWorkflowSection = ({ control }) => (
             <Col span={12}>
               <Row gutter={[16, 0]} align="middle">
                 <Col span={10}>
-                  <span className="fieldLabel">Subcontract Agreement Sent</span>
+                  <span>Subcontract Agreement Sent</span>
                 </Col>
                 <Col span={14}>
                   <Controller
@@ -274,9 +274,9 @@ const ContractWorkflowSection = ({ control }) => (
                     render={({ field }) => (
                       <Form.Item>
                         <DatePickerField
-                          id="subcontract_agreement_sent_date"
-                          value={field.value}
-                          onChange={field.onChange}
+                          name="subcontract_agreement_sent_date"
+                          control={control}
+                          label={null}
                           disabled={!control._formValues.loi_returned_date}
                         />
                       </Form.Item>
@@ -286,7 +286,7 @@ const ContractWorkflowSection = ({ control }) => (
               </Row>
               <Row gutter={[16, 0]} align="middle">
                 <Col span={10}>
-                  <span className="fieldLabel">Fully Executed by HBC</span>
+                  <span>Fully Executed by HBC</span>
                 </Col>
                 <Col span={14}>
                   <Controller
@@ -295,9 +295,9 @@ const ContractWorkflowSection = ({ control }) => (
                     render={({ field }) => (
                       <Form.Item>
                         <DatePickerField
-                          id="signed_contract_received_date"
-                          value={field.value}
-                          onChange={field.onChange}
+                          name="signed_contract_received_date"
+                          control={control}
+                          label={null}
                           disabled={!control._formValues.subcontract_agreement_sent_date}
                         />
                       </Form.Item>
@@ -307,7 +307,7 @@ const ContractWorkflowSection = ({ control }) => (
               </Row>
               <Row gutter={[16, 0]} align="middle">
                 <Col span={10}>
-                  <span className="fieldLabel">Fully Executed Sent to Subcontractor</span>
+                  <span>Fully Executed Sent to Subcontractor</span>
                 </Col>
                 <Col span={14}>
                   <Controller
@@ -316,9 +316,9 @@ const ContractWorkflowSection = ({ control }) => (
                     render={({ field }) => (
                       <Form.Item>
                         <DatePickerField
-                          id="fully_executed_sent_date"
-                          value={field.value}
-                          onChange={field.onChange}
+                          name="fully_executed_sent_date"
+                          control={control}
+                          label={null}
                           disabled={!control._formValues.signed_contract_received_date}
                         />
                       </Form.Item>
@@ -333,13 +333,13 @@ const ContractWorkflowSection = ({ control }) => (
 
       {/* Project Timeline */}
       <Timeline.Item>
-        <div className="sectionCard">
-          <h3 className="sectionTitle">Project Timeline</h3>
+        <div>
+          <h3>Project Timeline</h3>
           <Row gutter={[16, 8]} align="middle">
             <Col span={12}>
               <Row gutter={[16, 0]} align="middle">
                 <Col span={10}>
-                  <span className="fieldLabel">Start Date</span>
+                  <span>Start Date</span>
                 </Col>
                 <Col span={14}>
                   <Controller
@@ -348,9 +348,9 @@ const ContractWorkflowSection = ({ control }) => (
                     render={({ field }) => (
                       <Form.Item>
                         <DatePickerField
-                          id="contract_start_date"
-                          value={field.value}
-                          onChange={field.onChange}
+                          name="contract_start_date"
+                          control={control}
+                          label={null}
                         />
                       </Form.Item>
                     )}
@@ -359,7 +359,7 @@ const ContractWorkflowSection = ({ control }) => (
               </Row>
               <Row gutter={[16, 0]} align="middle">
                 <Col span={10}>
-                  <span className="fieldLabel">Estimated Completion Date</span>
+                  <span>Estimated Completion Date</span>
                 </Col>
                 <Col span={14}>
                   <Controller
@@ -368,9 +368,9 @@ const ContractWorkflowSection = ({ control }) => (
                     render={({ field }) => (
                       <Form.Item>
                         <DatePickerField
-                          id="contract_estimated_completion_date"
-                          value={field.value}
-                          onChange={field.onChange}
+                          name="contract_estimated_completion_date"
+                          control={control}
+                          label={null}
                           disabled={!control._formValues.contract_start_date}
                         />
                       </Form.Item>
@@ -382,7 +382,7 @@ const ContractWorkflowSection = ({ control }) => (
             <Col span={12}>
               <Row gutter={[16, 0]} align="middle">
                 <Col span={10}>
-                  <span className="fieldLabel">Actual Completion Date</span>
+                  <span>Actual Completion Date</span>
                 </Col>
                 <Col span={14}>
                   <Controller
@@ -391,9 +391,9 @@ const ContractWorkflowSection = ({ control }) => (
                     render={({ field }) => (
                       <Form.Item>
                         <DatePickerField
-                          id="actual_completion_date"
-                          value={field.value}
-                          onChange={field.onChange}
+                          name="actual_completion_date"
+                          control={control}
+                          label={null}
                           disabled={!control._formValues.contract_estimated_completion_date}
                         />
                       </Form.Item>
@@ -403,7 +403,7 @@ const ContractWorkflowSection = ({ control }) => (
               </Row>
               <Row gutter={[16, 0]} align="middle">
                 <Col span={10}>
-                  <span className="fieldLabel">Issued On Date</span>
+                  <span>Issued On Date</span>
                 </Col>
                 <Col span={14}>
                   <Controller
@@ -412,9 +412,9 @@ const ContractWorkflowSection = ({ control }) => (
                     render={({ field }) => (
                       <Form.Item>
                         <DatePickerField
-                          id="issued_on_date"
-                          value={field.value}
-                          onChange={field.onChange}
+                          name="issued_on_date"
+                          control={control}
+                          label={null}
                           disabled={!control._formValues.actual_completion_date}
                         />
                       </Form.Item>
@@ -428,7 +428,7 @@ const ContractWorkflowSection = ({ control }) => (
       </Timeline.Item>
     </Timeline>
   </div>
-);
+));
 
 ContractWorkflowSection.propTypes = {
   control: PropTypes.object.isRequired,

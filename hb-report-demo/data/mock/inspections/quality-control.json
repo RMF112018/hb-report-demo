@@ -1,0 +1,4107 @@
+[
+  {
+    "project_id": 2525840,
+    "project_name": "Palm Beach Luxury Estate",
+    "inspection_id": 1,
+    "inspection_type": "QA/QC - Fire Sprinkler",
+    "trade": "Fire Sprinkler",
+    "inspection_date": "2025-03-29",
+    "status": "Open",
+    "location": "Sector 1",
+    "created_by": "Dana Patel",
+    "description": "Quality control inspection for Fire Sprinkler scope.",
+    "attachments": [
+      "QC_0001.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Heads installed per layout?",
+        "response": "Yes"
+      },
+      {
+        "question": "Hydro test completed?",
+        "response": "No"
+      },
+      {
+        "question": "Labeling per code?",
+        "response": "No"
+      }
+    ]
+  },
+  {
+    "project_id": 2525840,
+    "project_name": "Palm Beach Luxury Estate",
+    "inspection_id": 2,
+    "inspection_type": "QA/QC - Fire Sprinkler",
+    "trade": "Fire Sprinkler",
+    "inspection_date": "2025-04-24",
+    "status": "Open",
+    "location": "Building A",
+    "created_by": "Dana Patel",
+    "description": "Quality control inspection for Fire Sprinkler scope.",
+    "attachments": [
+      "QC_0002.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Heads installed per layout?",
+        "response": "Yes"
+      },
+      {
+        "question": "Hydro test completed?",
+        "response": "N/A"
+      },
+      {
+        "question": "Seismic bracing installed?",
+        "response": "Yes"
+      },
+      {
+        "question": "Escutcheons in place?",
+        "response": "No"
+      },
+      {
+        "question": "Labeling per code?",
+        "response": "N/A"
+      }
+    ]
+  },
+  {
+    "project_id": 2525840,
+    "project_name": "Palm Beach Luxury Estate",
+    "inspection_id": 3,
+    "inspection_type": "QA/QC - Windows & Glazing",
+    "trade": "Glazing",
+    "inspection_date": "2025-02-19",
+    "status": "Open",
+    "location": "Staging Area",
+    "created_by": "Dana Patel",
+    "description": "Quality control inspection for Glazing scope.",
+    "attachments": [
+      "QC_0003.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Gaskets installed tight?",
+        "response": "N/A"
+      },
+      {
+        "question": "Sealants compatible and cured?",
+        "response": "N/A"
+      },
+      {
+        "question": "Glass per submittal?",
+        "response": "Yes"
+      }
+    ]
+  },
+  {
+    "project_id": 2525840,
+    "project_name": "Palm Beach Luxury Estate",
+    "inspection_id": 4,
+    "inspection_type": "QA/QC - Waterproofing",
+    "trade": "Waterproofing",
+    "inspection_date": "2024-07-04",
+    "status": "Open",
+    "location": "North Lot",
+    "created_by": "Dana Patel",
+    "description": "Quality control inspection for Waterproofing scope.",
+    "attachments": [
+      "QC_0004.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Drainage properly installed?",
+        "response": "No"
+      },
+      {
+        "question": "SDS sheets on file?",
+        "response": "N/A"
+      },
+      {
+        "question": "Membrane overlaps per spec?",
+        "response": "No"
+      }
+    ]
+  },
+  {
+    "project_id": 2525840,
+    "project_name": "Palm Beach Luxury Estate",
+    "inspection_id": 5,
+    "inspection_type": "QA/QC - Pools",
+    "trade": "Pools",
+    "inspection_date": "2025-02-22",
+    "status": "Closed",
+    "location": "Main Hall",
+    "created_by": "Alfonso Bonilla",
+    "description": "Quality control inspection for Pools scope.",
+    "attachments": [
+      "QC_0005.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Plumbing pressure tested?",
+        "response": "N/A"
+      },
+      {
+        "question": "Pump and filter installed per submittal?",
+        "response": "Yes"
+      },
+      {
+        "question": "Waterproofing of shell verified?",
+        "response": "N/A"
+      }
+    ]
+  },
+  {
+    "project_id": 2525841,
+    "project_name": "Miami Commercial Tower",
+    "inspection_id": 6,
+    "inspection_type": "QA/QC - Windows & Glazing",
+    "trade": "Glazing",
+    "inspection_date": "2025-03-01",
+    "status": "Open",
+    "location": "Sector 2",
+    "created_by": "Alfonso Bonilla",
+    "description": "Quality control inspection for Glazing scope.",
+    "attachments": [
+      "QC_0006.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Shims installed at anchors?",
+        "response": "N/A"
+      },
+      {
+        "question": "Sealants compatible and cured?",
+        "response": "Yes"
+      },
+      {
+        "question": "Gaskets installed tight?",
+        "response": "N/A"
+      },
+      {
+        "question": "Glass per submittal?",
+        "response": "No"
+      }
+    ]
+  },
+  {
+    "project_id": 2525841,
+    "project_name": "Miami Commercial Tower",
+    "inspection_id": 7,
+    "inspection_type": "QA/QC - Electrical",
+    "trade": "Electrical",
+    "inspection_date": "2025-03-07",
+    "status": "Closed",
+    "location": "Building A",
+    "created_by": "Mason Richards",
+    "description": "Quality control inspection for Electrical scope.",
+    "attachments": [
+      "QC_0007.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Grounding per NEC?",
+        "response": "Yes"
+      },
+      {
+        "question": "Conduit bends within tolerance?",
+        "response": "Yes"
+      },
+      {
+        "question": "Panels properly labeled?",
+        "response": "N/A"
+      },
+      {
+        "question": "Wire gauges match plans?",
+        "response": "Yes"
+      },
+      {
+        "question": "Boxes securely mounted?",
+        "response": "N/A"
+      }
+    ]
+  },
+  {
+    "project_id": 2525841,
+    "project_name": "Miami Commercial Tower",
+    "inspection_id": 8,
+    "inspection_type": "QA/QC - HVAC",
+    "trade": "HVAC",
+    "inspection_date": "2025-04-29",
+    "status": "Closed",
+    "location": "Building B",
+    "created_by": "Alfonso Bonilla",
+    "description": "Quality control inspection for HVAC scope.",
+    "attachments": [
+      "QC_0008.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Insulation secure and complete?",
+        "response": "No"
+      },
+      {
+        "question": "Filters installed?",
+        "response": "No"
+      },
+      {
+        "question": "Ductwork sealed and supported?",
+        "response": "N/A"
+      }
+    ]
+  },
+  {
+    "project_id": 2525841,
+    "project_name": "Miami Commercial Tower",
+    "inspection_id": 9,
+    "inspection_type": "QA/QC - Asphalt Paving",
+    "trade": "Asphalt",
+    "inspection_date": "2025-01-11",
+    "status": "Open",
+    "location": "Building B",
+    "created_by": "Chris Velez",
+    "description": "Quality control inspection for Asphalt scope.",
+    "attachments": [
+      "QC_0009.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Subgrade compacted?",
+        "response": "No"
+      },
+      {
+        "question": "Mat thickness verified?",
+        "response": "No"
+      },
+      {
+        "question": "Temperature within spec?",
+        "response": "Yes"
+      }
+    ]
+  },
+  {
+    "project_id": 2525841,
+    "project_name": "Miami Commercial Tower",
+    "inspection_id": 10,
+    "inspection_type": "QA/QC - Waterproofing",
+    "trade": "Waterproofing",
+    "inspection_date": "2025-04-29",
+    "status": "Closed",
+    "location": "Main Hall",
+    "created_by": "Dana Patel",
+    "description": "Quality control inspection for Waterproofing scope.",
+    "attachments": [
+      "QC_0010.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Membrane overlaps per spec?",
+        "response": "N/A"
+      },
+      {
+        "question": "SDS sheets on file?",
+        "response": "N/A"
+      },
+      {
+        "question": "Substrate clean and dry?",
+        "response": "No"
+      },
+      {
+        "question": "Drainage properly installed?",
+        "response": "Yes"
+      },
+      {
+        "question": "Termination bars installed?",
+        "response": "N/A"
+      }
+    ]
+  },
+  {
+    "project_id": 2525841,
+    "project_name": "Miami Commercial Tower",
+    "inspection_id": 11,
+    "inspection_type": "QA/QC - Concrete",
+    "trade": "Concrete",
+    "inspection_date": "2025-05-16",
+    "status": "Open",
+    "location": "North Lot",
+    "created_by": "Jordan Smith",
+    "description": "Quality control inspection for Concrete scope.",
+    "attachments": [
+      "QC_0011.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Post-tension cables stressed?",
+        "response": "No"
+      },
+      {
+        "question": "Formwork braced and aligned?",
+        "response": "N/A"
+      },
+      {
+        "question": "Rebar in place per drawings?",
+        "response": "Yes"
+      },
+      {
+        "question": "Cure method confirmed?",
+        "response": "Yes"
+      },
+      {
+        "question": "Cold joints treated?",
+        "response": "No"
+      }
+    ]
+  },
+  {
+    "project_id": 2525841,
+    "project_name": "Miami Commercial Tower",
+    "inspection_id": 12,
+    "inspection_type": "QA/QC - Pools",
+    "trade": "Pools",
+    "inspection_date": "2025-06-23",
+    "status": "Open",
+    "location": "Building A",
+    "created_by": "Jordan Smith",
+    "description": "Quality control inspection for Pools scope.",
+    "attachments": [
+      "QC_0012.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Waterproofing of shell verified?",
+        "response": "Yes"
+      },
+      {
+        "question": "Electrical bonding complete?",
+        "response": "No"
+      },
+      {
+        "question": "Plumbing pressure tested?",
+        "response": "No"
+      }
+    ]
+  },
+  {
+    "project_id": 2525842,
+    "project_name": "Orlando Retail Complex",
+    "inspection_id": 13,
+    "inspection_type": "QA/QC - Pools",
+    "trade": "Pools",
+    "inspection_date": "2023-10-21",
+    "status": "Closed",
+    "location": "Staging Area",
+    "created_by": "Chris Velez",
+    "description": "Quality control inspection for Pools scope.",
+    "attachments": [
+      "QC_0013.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Electrical bonding complete?",
+        "response": "N/A"
+      },
+      {
+        "question": "Plumbing pressure tested?",
+        "response": "N/A"
+      },
+      {
+        "question": "Tile installed per detail?",
+        "response": "Yes"
+      },
+      {
+        "question": "Pump and filter installed per submittal?",
+        "response": "No"
+      }
+    ]
+  },
+  {
+    "project_id": 2525842,
+    "project_name": "Orlando Retail Complex",
+    "inspection_id": 14,
+    "inspection_type": "QA/QC - Windows & Glazing",
+    "trade": "Glazing",
+    "inspection_date": "2024-02-01",
+    "status": "Open",
+    "location": "Sector 1",
+    "created_by": "Jordan Smith",
+    "description": "Quality control inspection for Glazing scope.",
+    "attachments": [
+      "QC_0014.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Frames plumb and square?",
+        "response": "No"
+      },
+      {
+        "question": "Gaskets installed tight?",
+        "response": "N/A"
+      },
+      {
+        "question": "Sealants compatible and cured?",
+        "response": "N/A"
+      },
+      {
+        "question": "Shims installed at anchors?",
+        "response": "N/A"
+      }
+    ]
+  },
+  {
+    "project_id": 2525842,
+    "project_name": "Orlando Retail Complex",
+    "inspection_id": 15,
+    "inspection_type": "QA/QC - Fire Sprinkler",
+    "trade": "Fire Sprinkler",
+    "inspection_date": "2023-10-28",
+    "status": "Closed",
+    "location": "Building A",
+    "created_by": "Jordan Smith",
+    "description": "Quality control inspection for Fire Sprinkler scope.",
+    "attachments": [
+      "QC_0015.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Escutcheons in place?",
+        "response": "No"
+      },
+      {
+        "question": "Labeling per code?",
+        "response": "N/A"
+      },
+      {
+        "question": "Seismic bracing installed?",
+        "response": "Yes"
+      },
+      {
+        "question": "Hydro test completed?",
+        "response": "Yes"
+      },
+      {
+        "question": "Heads installed per layout?",
+        "response": "Yes"
+      }
+    ]
+  },
+  {
+    "project_id": 2525842,
+    "project_name": "Orlando Retail Complex",
+    "inspection_id": 16,
+    "inspection_type": "QA/QC - Fire Sprinkler",
+    "trade": "Fire Sprinkler",
+    "inspection_date": "2025-05-15",
+    "status": "Closed",
+    "location": "Staging Area",
+    "created_by": "Chris Velez",
+    "description": "Quality control inspection for Fire Sprinkler scope.",
+    "attachments": [
+      "QC_0016.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Heads installed per layout?",
+        "response": "N/A"
+      },
+      {
+        "question": "Hydro test completed?",
+        "response": "No"
+      },
+      {
+        "question": "Seismic bracing installed?",
+        "response": "No"
+      }
+    ]
+  },
+  {
+    "project_id": 2525842,
+    "project_name": "Orlando Retail Complex",
+    "inspection_id": 17,
+    "inspection_type": "QA/QC - Asphalt Paving",
+    "trade": "Asphalt",
+    "inspection_date": "2025-01-29",
+    "status": "Closed",
+    "location": "Sector 2",
+    "created_by": "Chris Velez",
+    "description": "Quality control inspection for Asphalt scope.",
+    "attachments": [
+      "QC_0017.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Temperature within spec?",
+        "response": "N/A"
+      },
+      {
+        "question": "Tack coat applied evenly?",
+        "response": "N/A"
+      },
+      {
+        "question": "Subgrade compacted?",
+        "response": "Yes"
+      },
+      {
+        "question": "Compaction achieved?",
+        "response": "No"
+      },
+      {
+        "question": "Mat thickness verified?",
+        "response": "N/A"
+      }
+    ]
+  },
+  {
+    "project_id": 2525843,
+    "project_name": "Naples Waterfront Condominium",
+    "inspection_id": 18,
+    "inspection_type": "QA/QC - Waterproofing",
+    "trade": "Waterproofing",
+    "inspection_date": "2024-11-30",
+    "status": "Open",
+    "location": "Sector 2",
+    "created_by": "Jordan Smith",
+    "description": "Quality control inspection for Waterproofing scope.",
+    "attachments": [
+      "QC_0018.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Membrane overlaps per spec?",
+        "response": "No"
+      },
+      {
+        "question": "Termination bars installed?",
+        "response": "No"
+      },
+      {
+        "question": "SDS sheets on file?",
+        "response": "Yes"
+      }
+    ]
+  },
+  {
+    "project_id": 2525843,
+    "project_name": "Naples Waterfront Condominium",
+    "inspection_id": 19,
+    "inspection_type": "QA/QC - Fire Sprinkler",
+    "trade": "Fire Sprinkler",
+    "inspection_date": "2025-05-15",
+    "status": "Closed",
+    "location": "Building B",
+    "created_by": "Chris Velez",
+    "description": "Quality control inspection for Fire Sprinkler scope.",
+    "attachments": [
+      "QC_0019.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Escutcheons in place?",
+        "response": "Yes"
+      },
+      {
+        "question": "Hydro test completed?",
+        "response": "N/A"
+      },
+      {
+        "question": "Seismic bracing installed?",
+        "response": "N/A"
+      }
+    ]
+  },
+  {
+    "project_id": 2525843,
+    "project_name": "Naples Waterfront Condominium",
+    "inspection_id": 20,
+    "inspection_type": "QA/QC - Asphalt Paving",
+    "trade": "Asphalt",
+    "inspection_date": "2025-05-08",
+    "status": "Closed",
+    "location": "Main Hall",
+    "created_by": "Jordan Smith",
+    "description": "Quality control inspection for Asphalt scope.",
+    "attachments": [
+      "QC_0020.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Tack coat applied evenly?",
+        "response": "Yes"
+      },
+      {
+        "question": "Temperature within spec?",
+        "response": "No"
+      },
+      {
+        "question": "Compaction achieved?",
+        "response": "No"
+      }
+    ]
+  },
+  {
+    "project_id": 2525843,
+    "project_name": "Naples Waterfront Condominium",
+    "inspection_id": 21,
+    "inspection_type": "QA/QC - Fire Sprinkler",
+    "trade": "Fire Sprinkler",
+    "inspection_date": "2024-11-25",
+    "status": "Closed",
+    "location": "Sector 1",
+    "created_by": "Jordan Smith",
+    "description": "Quality control inspection for Fire Sprinkler scope.",
+    "attachments": [
+      "QC_0021.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Hydro test completed?",
+        "response": "No"
+      },
+      {
+        "question": "Escutcheons in place?",
+        "response": "Yes"
+      },
+      {
+        "question": "Seismic bracing installed?",
+        "response": "Yes"
+      },
+      {
+        "question": "Labeling per code?",
+        "response": "Yes"
+      }
+    ]
+  },
+  {
+    "project_id": 2525843,
+    "project_name": "Naples Waterfront Condominium",
+    "inspection_id": 22,
+    "inspection_type": "QA/QC - Landscaping",
+    "trade": "Landscaping",
+    "inspection_date": "2025-02-07",
+    "status": "Closed",
+    "location": "North Lot",
+    "created_by": "Mason Richards",
+    "description": "Quality control inspection for Landscaping scope.",
+    "attachments": [
+      "QC_0022.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Sod joints tight?",
+        "response": "Yes"
+      },
+      {
+        "question": "Plants per approved plan?",
+        "response": "No"
+      },
+      {
+        "question": "Mulch evenly spread?",
+        "response": "N/A"
+      },
+      {
+        "question": "Irrigation operational?",
+        "response": "N/A"
+      },
+      {
+        "question": "Root balls below grade?",
+        "response": "No"
+      }
+    ]
+  },
+  {
+    "project_id": 2525843,
+    "project_name": "Naples Waterfront Condominium",
+    "inspection_id": 23,
+    "inspection_type": "QA/QC - Fire Sprinkler",
+    "trade": "Fire Sprinkler",
+    "inspection_date": "2024-09-12",
+    "status": "Open",
+    "location": "Staging Area",
+    "created_by": "Chris Velez",
+    "description": "Quality control inspection for Fire Sprinkler scope.",
+    "attachments": [
+      "QC_0023.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Heads installed per layout?",
+        "response": "No"
+      },
+      {
+        "question": "Seismic bracing installed?",
+        "response": "N/A"
+      },
+      {
+        "question": "Hydro test completed?",
+        "response": "Yes"
+      },
+      {
+        "question": "Labeling per code?",
+        "response": "No"
+      }
+    ]
+  },
+  {
+    "project_id": 2525844,
+    "project_name": "Jacksonville Mixed-Use Development",
+    "inspection_id": 24,
+    "inspection_type": "QA/QC - Pools",
+    "trade": "Pools",
+    "inspection_date": "2024-06-29",
+    "status": "Open",
+    "location": "North Lot",
+    "created_by": "Chris Velez",
+    "description": "Quality control inspection for Pools scope.",
+    "attachments": [
+      "QC_0024.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Electrical bonding complete?",
+        "response": "Yes"
+      },
+      {
+        "question": "Tile installed per detail?",
+        "response": "No"
+      },
+      {
+        "question": "Plumbing pressure tested?",
+        "response": "N/A"
+      },
+      {
+        "question": "Pump and filter installed per submittal?",
+        "response": "No"
+      }
+    ]
+  },
+  {
+    "project_id": 2525844,
+    "project_name": "Jacksonville Mixed-Use Development",
+    "inspection_id": 25,
+    "inspection_type": "QA/QC - Landscaping",
+    "trade": "Landscaping",
+    "inspection_date": "2022-02-20",
+    "status": "Open",
+    "location": "North Lot",
+    "created_by": "Mason Richards",
+    "description": "Quality control inspection for Landscaping scope.",
+    "attachments": [
+      "QC_0025.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Plants per approved plan?",
+        "response": "No"
+      },
+      {
+        "question": "Irrigation operational?",
+        "response": "N/A"
+      },
+      {
+        "question": "Root balls below grade?",
+        "response": "N/A"
+      },
+      {
+        "question": "Sod joints tight?",
+        "response": "N/A"
+      }
+    ]
+  },
+  {
+    "project_id": 2525844,
+    "project_name": "Jacksonville Mixed-Use Development",
+    "inspection_id": 26,
+    "inspection_type": "QA/QC - Asphalt Paving",
+    "trade": "Asphalt",
+    "inspection_date": "2023-06-09",
+    "status": "Closed",
+    "location": "Main Hall",
+    "created_by": "Dana Patel",
+    "description": "Quality control inspection for Asphalt scope.",
+    "attachments": [
+      "QC_0026.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Compaction achieved?",
+        "response": "No"
+      },
+      {
+        "question": "Tack coat applied evenly?",
+        "response": "N/A"
+      },
+      {
+        "question": "Mat thickness verified?",
+        "response": "Yes"
+      },
+      {
+        "question": "Subgrade compacted?",
+        "response": "No"
+      }
+    ]
+  },
+  {
+    "project_id": 2525844,
+    "project_name": "Jacksonville Mixed-Use Development",
+    "inspection_id": 27,
+    "inspection_type": "QA/QC - Windows & Glazing",
+    "trade": "Glazing",
+    "inspection_date": "2024-05-27",
+    "status": "Closed",
+    "location": "Main Hall",
+    "created_by": "Alfonso Bonilla",
+    "description": "Quality control inspection for Glazing scope.",
+    "attachments": [
+      "QC_0027.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Sealants compatible and cured?",
+        "response": "No"
+      },
+      {
+        "question": "Glass per submittal?",
+        "response": "Yes"
+      },
+      {
+        "question": "Frames plumb and square?",
+        "response": "Yes"
+      }
+    ]
+  },
+  {
+    "project_id": 2525844,
+    "project_name": "Jacksonville Mixed-Use Development",
+    "inspection_id": 28,
+    "inspection_type": "QA/QC - Landscaping",
+    "trade": "Landscaping",
+    "inspection_date": "2023-10-20",
+    "status": "Closed",
+    "location": "Main Hall",
+    "created_by": "Dana Patel",
+    "description": "Quality control inspection for Landscaping scope.",
+    "attachments": [
+      "QC_0028.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Root balls below grade?",
+        "response": "N/A"
+      },
+      {
+        "question": "Irrigation operational?",
+        "response": "N/A"
+      },
+      {
+        "question": "Mulch evenly spread?",
+        "response": "Yes"
+      },
+      {
+        "question": "Plants per approved plan?",
+        "response": "N/A"
+      },
+      {
+        "question": "Sod joints tight?",
+        "response": "Yes"
+      }
+    ]
+  },
+  {
+    "project_id": 2525844,
+    "project_name": "Jacksonville Mixed-Use Development",
+    "inspection_id": 29,
+    "inspection_type": "QA/QC - Landscaping",
+    "trade": "Landscaping",
+    "inspection_date": "2025-03-15",
+    "status": "Open",
+    "location": "North Lot",
+    "created_by": "Chris Velez",
+    "description": "Quality control inspection for Landscaping scope.",
+    "attachments": [
+      "QC_0029.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Mulch evenly spread?",
+        "response": "No"
+      },
+      {
+        "question": "Plants per approved plan?",
+        "response": "Yes"
+      },
+      {
+        "question": "Root balls below grade?",
+        "response": "Yes"
+      },
+      {
+        "question": "Irrigation operational?",
+        "response": "No"
+      },
+      {
+        "question": "Sod joints tight?",
+        "response": "Yes"
+      }
+    ]
+  },
+  {
+    "project_id": 2525844,
+    "project_name": "Jacksonville Mixed-Use Development",
+    "inspection_id": 30,
+    "inspection_type": "QA/QC - HVAC",
+    "trade": "HVAC",
+    "inspection_date": "2025-01-12",
+    "status": "Open",
+    "location": "Main Hall",
+    "created_by": "Chris Velez",
+    "description": "Quality control inspection for HVAC scope.",
+    "attachments": [
+      "QC_0030.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Condensate lines pitched?",
+        "response": "N/A"
+      },
+      {
+        "question": "Insulation secure and complete?",
+        "response": "N/A"
+      },
+      {
+        "question": "Ductwork sealed and supported?",
+        "response": "No"
+      },
+      {
+        "question": "Filters installed?",
+        "response": "N/A"
+      },
+      {
+        "question": "Units leveled and powered?",
+        "response": "N/A"
+      }
+    ]
+  },
+  {
+    "project_id": 2525844,
+    "project_name": "Jacksonville Mixed-Use Development",
+    "inspection_id": 31,
+    "inspection_type": "QA/QC - HVAC",
+    "trade": "HVAC",
+    "inspection_date": "2024-09-25",
+    "status": "Open",
+    "location": "Staging Area",
+    "created_by": "Chris Velez",
+    "description": "Quality control inspection for HVAC scope.",
+    "attachments": [
+      "QC_0031.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Filters installed?",
+        "response": "Yes"
+      },
+      {
+        "question": "Ductwork sealed and supported?",
+        "response": "No"
+      },
+      {
+        "question": "Condensate lines pitched?",
+        "response": "No"
+      },
+      {
+        "question": "Units leveled and powered?",
+        "response": "Yes"
+      },
+      {
+        "question": "Insulation secure and complete?",
+        "response": "N/A"
+      }
+    ]
+  },
+  {
+    "project_id": 2525845,
+    "project_name": "Fort Lauderdale Hotel Resort",
+    "inspection_id": 32,
+    "inspection_type": "QA/QC - HVAC",
+    "trade": "HVAC",
+    "inspection_date": "2025-05-09",
+    "status": "Open",
+    "location": "North Lot",
+    "created_by": "Jordan Smith",
+    "description": "Quality control inspection for HVAC scope.",
+    "attachments": [
+      "QC_0032.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Insulation secure and complete?",
+        "response": "N/A"
+      },
+      {
+        "question": "Filters installed?",
+        "response": "N/A"
+      },
+      {
+        "question": "Units leveled and powered?",
+        "response": "Yes"
+      },
+      {
+        "question": "Ductwork sealed and supported?",
+        "response": "N/A"
+      },
+      {
+        "question": "Condensate lines pitched?",
+        "response": "No"
+      }
+    ]
+  },
+  {
+    "project_id": 2525845,
+    "project_name": "Fort Lauderdale Hotel Resort",
+    "inspection_id": 33,
+    "inspection_type": "QA/QC - Roofing",
+    "trade": "Roofing",
+    "inspection_date": "2024-11-27",
+    "status": "Open",
+    "location": "Building B",
+    "created_by": "Alfonso Bonilla",
+    "description": "Quality control inspection for Roofing scope.",
+    "attachments": [
+      "QC_0033.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Fasteners per spec?",
+        "response": "No"
+      },
+      {
+        "question": "Penetrations sealed?",
+        "response": "N/A"
+      },
+      {
+        "question": "Cap sheet adhered correctly?",
+        "response": "N/A"
+      }
+    ]
+  },
+  {
+    "project_id": 2525845,
+    "project_name": "Fort Lauderdale Hotel Resort",
+    "inspection_id": 34,
+    "inspection_type": "QA/QC - Pools",
+    "trade": "Pools",
+    "inspection_date": "2025-04-25",
+    "status": "Closed",
+    "location": "Staging Area",
+    "created_by": "Mason Richards",
+    "description": "Quality control inspection for Pools scope.",
+    "attachments": [
+      "QC_0034.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Pump and filter installed per submittal?",
+        "response": "No"
+      },
+      {
+        "question": "Tile installed per detail?",
+        "response": "No"
+      },
+      {
+        "question": "Electrical bonding complete?",
+        "response": "Yes"
+      },
+      {
+        "question": "Waterproofing of shell verified?",
+        "response": "No"
+      }
+    ]
+  },
+  {
+    "project_id": 2525845,
+    "project_name": "Fort Lauderdale Hotel Resort",
+    "inspection_id": 35,
+    "inspection_type": "QA/QC - Landscaping",
+    "trade": "Landscaping",
+    "inspection_date": "2024-12-19",
+    "status": "Open",
+    "location": "Building A",
+    "created_by": "Chris Velez",
+    "description": "Quality control inspection for Landscaping scope.",
+    "attachments": [
+      "QC_0035.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Sod joints tight?",
+        "response": "N/A"
+      },
+      {
+        "question": "Irrigation operational?",
+        "response": "N/A"
+      },
+      {
+        "question": "Root balls below grade?",
+        "response": "N/A"
+      },
+      {
+        "question": "Mulch evenly spread?",
+        "response": "Yes"
+      }
+    ]
+  },
+  {
+    "project_id": 2525845,
+    "project_name": "Fort Lauderdale Hotel Resort",
+    "inspection_id": 36,
+    "inspection_type": "QA/QC - Asphalt Paving",
+    "trade": "Asphalt",
+    "inspection_date": "2025-01-24",
+    "status": "Closed",
+    "location": "Sector 2",
+    "created_by": "Alfonso Bonilla",
+    "description": "Quality control inspection for Asphalt scope.",
+    "attachments": [
+      "QC_0036.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Subgrade compacted?",
+        "response": "No"
+      },
+      {
+        "question": "Temperature within spec?",
+        "response": "No"
+      },
+      {
+        "question": "Mat thickness verified?",
+        "response": "N/A"
+      },
+      {
+        "question": "Compaction achieved?",
+        "response": "No"
+      },
+      {
+        "question": "Tack coat applied evenly?",
+        "response": "Yes"
+      }
+    ]
+  },
+  {
+    "project_id": 2525845,
+    "project_name": "Fort Lauderdale Hotel Resort",
+    "inspection_id": 37,
+    "inspection_type": "QA/QC - Landscaping",
+    "trade": "Landscaping",
+    "inspection_date": "2024-11-16",
+    "status": "Open",
+    "location": "Building A",
+    "created_by": "Alfonso Bonilla",
+    "description": "Quality control inspection for Landscaping scope.",
+    "attachments": [
+      "QC_0037.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Root balls below grade?",
+        "response": "No"
+      },
+      {
+        "question": "Irrigation operational?",
+        "response": "No"
+      },
+      {
+        "question": "Plants per approved plan?",
+        "response": "No"
+      },
+      {
+        "question": "Mulch evenly spread?",
+        "response": "Yes"
+      }
+    ]
+  },
+  {
+    "project_id": 2525846,
+    "project_name": "Tampa Medical Center",
+    "inspection_id": 38,
+    "inspection_type": "QA/QC - Fire Sprinkler",
+    "trade": "Fire Sprinkler",
+    "inspection_date": "2025-05-30",
+    "status": "Open",
+    "location": "Sector 1",
+    "created_by": "Alfonso Bonilla",
+    "description": "Quality control inspection for Fire Sprinkler scope.",
+    "attachments": [
+      "QC_0038.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Seismic bracing installed?",
+        "response": "Yes"
+      },
+      {
+        "question": "Heads installed per layout?",
+        "response": "Yes"
+      },
+      {
+        "question": "Escutcheons in place?",
+        "response": "No"
+      }
+    ]
+  },
+  {
+    "project_id": 2525846,
+    "project_name": "Tampa Medical Center",
+    "inspection_id": 39,
+    "inspection_type": "QA/QC - Concrete",
+    "trade": "Concrete",
+    "inspection_date": "2025-03-29",
+    "status": "Closed",
+    "location": "North Lot",
+    "created_by": "Chris Velez",
+    "description": "Quality control inspection for Concrete scope.",
+    "attachments": [
+      "QC_0039.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Cold joints treated?",
+        "response": "Yes"
+      },
+      {
+        "question": "Cure method confirmed?",
+        "response": "Yes"
+      },
+      {
+        "question": "Post-tension cables stressed?",
+        "response": "Yes"
+      }
+    ]
+  },
+  {
+    "project_id": 2525846,
+    "project_name": "Tampa Medical Center",
+    "inspection_id": 40,
+    "inspection_type": "QA/QC - Windows & Glazing",
+    "trade": "Glazing",
+    "inspection_date": "2025-04-10",
+    "status": "Closed",
+    "location": "Staging Area",
+    "created_by": "Jordan Smith",
+    "description": "Quality control inspection for Glazing scope.",
+    "attachments": [
+      "QC_0040.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Shims installed at anchors?",
+        "response": "No"
+      },
+      {
+        "question": "Gaskets installed tight?",
+        "response": "No"
+      },
+      {
+        "question": "Glass per submittal?",
+        "response": "Yes"
+      },
+      {
+        "question": "Frames plumb and square?",
+        "response": "N/A"
+      }
+    ]
+  },
+  {
+    "project_id": 2525846,
+    "project_name": "Tampa Medical Center",
+    "inspection_id": 41,
+    "inspection_type": "QA/QC - Pools",
+    "trade": "Pools",
+    "inspection_date": "2025-05-13",
+    "status": "Open",
+    "location": "Building A",
+    "created_by": "Mason Richards",
+    "description": "Quality control inspection for Pools scope.",
+    "attachments": [
+      "QC_0041.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Waterproofing of shell verified?",
+        "response": "Yes"
+      },
+      {
+        "question": "Plumbing pressure tested?",
+        "response": "No"
+      },
+      {
+        "question": "Electrical bonding complete?",
+        "response": "Yes"
+      }
+    ]
+  },
+  {
+    "project_id": 2525846,
+    "project_name": "Tampa Medical Center",
+    "inspection_id": 42,
+    "inspection_type": "QA/QC - Roofing",
+    "trade": "Roofing",
+    "inspection_date": "2025-06-07",
+    "status": "Open",
+    "location": "Staging Area",
+    "created_by": "Alfonso Bonilla",
+    "description": "Quality control inspection for Roofing scope.",
+    "attachments": [
+      "QC_0042.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Penetrations sealed?",
+        "response": "N/A"
+      },
+      {
+        "question": "Underlayment lapped properly?",
+        "response": "No"
+      },
+      {
+        "question": "Cap sheet adhered correctly?",
+        "response": "Yes"
+      }
+    ]
+  },
+  {
+    "project_id": 2525846,
+    "project_name": "Tampa Medical Center",
+    "inspection_id": 43,
+    "inspection_type": "QA/QC - Electrical",
+    "trade": "Electrical",
+    "inspection_date": "2025-04-23",
+    "status": "Open",
+    "location": "North Lot",
+    "created_by": "Alfonso Bonilla",
+    "description": "Quality control inspection for Electrical scope.",
+    "attachments": [
+      "QC_0043.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Boxes securely mounted?",
+        "response": "No"
+      },
+      {
+        "question": "Panels properly labeled?",
+        "response": "Yes"
+      },
+      {
+        "question": "Grounding per NEC?",
+        "response": "N/A"
+      },
+      {
+        "question": "Wire gauges match plans?",
+        "response": "Yes"
+      }
+    ]
+  },
+  {
+    "project_id": 2525846,
+    "project_name": "Tampa Medical Center",
+    "inspection_id": 44,
+    "inspection_type": "QA/QC - Pools",
+    "trade": "Pools",
+    "inspection_date": "2025-04-27",
+    "status": "Closed",
+    "location": "Building A",
+    "created_by": "Jordan Smith",
+    "description": "Quality control inspection for Pools scope.",
+    "attachments": [
+      "QC_0044.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Pump and filter installed per submittal?",
+        "response": "No"
+      },
+      {
+        "question": "Tile installed per detail?",
+        "response": "Yes"
+      },
+      {
+        "question": "Electrical bonding complete?",
+        "response": "N/A"
+      }
+    ]
+  },
+  {
+    "project_id": 2525847,
+    "project_name": "Key West Luxury Villas",
+    "inspection_id": 45,
+    "inspection_type": "QA/QC - Landscaping",
+    "trade": "Landscaping",
+    "inspection_date": "2023-08-23",
+    "status": "Open",
+    "location": "Building A",
+    "created_by": "Jordan Smith",
+    "description": "Quality control inspection for Landscaping scope.",
+    "attachments": [
+      "QC_0045.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Irrigation operational?",
+        "response": "No"
+      },
+      {
+        "question": "Root balls below grade?",
+        "response": "No"
+      },
+      {
+        "question": "Mulch evenly spread?",
+        "response": "Yes"
+      },
+      {
+        "question": "Plants per approved plan?",
+        "response": "Yes"
+      }
+    ]
+  },
+  {
+    "project_id": 2525847,
+    "project_name": "Key West Luxury Villas",
+    "inspection_id": 46,
+    "inspection_type": "QA/QC - Landscaping",
+    "trade": "Landscaping",
+    "inspection_date": "2024-03-24",
+    "status": "Open",
+    "location": "Sector 2",
+    "created_by": "Mason Richards",
+    "description": "Quality control inspection for Landscaping scope.",
+    "attachments": [
+      "QC_0046.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Sod joints tight?",
+        "response": "N/A"
+      },
+      {
+        "question": "Irrigation operational?",
+        "response": "Yes"
+      },
+      {
+        "question": "Root balls below grade?",
+        "response": "No"
+      },
+      {
+        "question": "Plants per approved plan?",
+        "response": "N/A"
+      },
+      {
+        "question": "Mulch evenly spread?",
+        "response": "No"
+      }
+    ]
+  },
+  {
+    "project_id": 2525847,
+    "project_name": "Key West Luxury Villas",
+    "inspection_id": 47,
+    "inspection_type": "QA/QC - Waterproofing",
+    "trade": "Waterproofing",
+    "inspection_date": "2023-12-30",
+    "status": "Closed",
+    "location": "Staging Area",
+    "created_by": "Jordan Smith",
+    "description": "Quality control inspection for Waterproofing scope.",
+    "attachments": [
+      "QC_0047.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Drainage properly installed?",
+        "response": "No"
+      },
+      {
+        "question": "Substrate clean and dry?",
+        "response": "Yes"
+      },
+      {
+        "question": "SDS sheets on file?",
+        "response": "N/A"
+      },
+      {
+        "question": "Membrane overlaps per spec?",
+        "response": "Yes"
+      },
+      {
+        "question": "Termination bars installed?",
+        "response": "N/A"
+      }
+    ]
+  },
+  {
+    "project_id": 2525847,
+    "project_name": "Key West Luxury Villas",
+    "inspection_id": 48,
+    "inspection_type": "QA/QC - Electrical",
+    "trade": "Electrical",
+    "inspection_date": "2024-05-02",
+    "status": "Closed",
+    "location": "North Lot",
+    "created_by": "Jordan Smith",
+    "description": "Quality control inspection for Electrical scope.",
+    "attachments": [
+      "QC_0048.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Boxes securely mounted?",
+        "response": "Yes"
+      },
+      {
+        "question": "Grounding per NEC?",
+        "response": "No"
+      },
+      {
+        "question": "Panels properly labeled?",
+        "response": "Yes"
+      },
+      {
+        "question": "Wire gauges match plans?",
+        "response": "No"
+      },
+      {
+        "question": "Conduit bends within tolerance?",
+        "response": "No"
+      }
+    ]
+  },
+  {
+    "project_id": 2525847,
+    "project_name": "Key West Luxury Villas",
+    "inspection_id": 49,
+    "inspection_type": "QA/QC - Waterproofing",
+    "trade": "Waterproofing",
+    "inspection_date": "2024-01-27",
+    "status": "Closed",
+    "location": "Sector 1",
+    "created_by": "Mason Richards",
+    "description": "Quality control inspection for Waterproofing scope.",
+    "attachments": [
+      "QC_0049.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Drainage properly installed?",
+        "response": "No"
+      },
+      {
+        "question": "Termination bars installed?",
+        "response": "N/A"
+      },
+      {
+        "question": "SDS sheets on file?",
+        "response": "N/A"
+      },
+      {
+        "question": "Substrate clean and dry?",
+        "response": "No"
+      }
+    ]
+  },
+  {
+    "project_id": 2525847,
+    "project_name": "Key West Luxury Villas",
+    "inspection_id": 50,
+    "inspection_type": "QA/QC - Asphalt Paving",
+    "trade": "Asphalt",
+    "inspection_date": "2025-01-28",
+    "status": "Closed",
+    "location": "Building B",
+    "created_by": "Chris Velez",
+    "description": "Quality control inspection for Asphalt scope.",
+    "attachments": [
+      "QC_0050.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Compaction achieved?",
+        "response": "Yes"
+      },
+      {
+        "question": "Mat thickness verified?",
+        "response": "Yes"
+      },
+      {
+        "question": "Subgrade compacted?",
+        "response": "N/A"
+      },
+      {
+        "question": "Temperature within spec?",
+        "response": "No"
+      }
+    ]
+  },
+  {
+    "project_id": 2525847,
+    "project_name": "Key West Luxury Villas",
+    "inspection_id": 51,
+    "inspection_type": "QA/QC - HVAC",
+    "trade": "HVAC",
+    "inspection_date": "2024-08-18",
+    "status": "Open",
+    "location": "Main Hall",
+    "created_by": "Chris Velez",
+    "description": "Quality control inspection for HVAC scope.",
+    "attachments": [
+      "QC_0051.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Condensate lines pitched?",
+        "response": "Yes"
+      },
+      {
+        "question": "Ductwork sealed and supported?",
+        "response": "Yes"
+      },
+      {
+        "question": "Units leveled and powered?",
+        "response": "Yes"
+      },
+      {
+        "question": "Filters installed?",
+        "response": "Yes"
+      },
+      {
+        "question": "Insulation secure and complete?",
+        "response": "Yes"
+      }
+    ]
+  },
+  {
+    "project_id": 2525847,
+    "project_name": "Key West Luxury Villas",
+    "inspection_id": 52,
+    "inspection_type": "QA/QC - Concrete",
+    "trade": "Concrete",
+    "inspection_date": "2024-10-20",
+    "status": "Closed",
+    "location": "Sector 1",
+    "created_by": "Alfonso Bonilla",
+    "description": "Quality control inspection for Concrete scope.",
+    "attachments": [
+      "QC_0052.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Cure method confirmed?",
+        "response": "Yes"
+      },
+      {
+        "question": "Cold joints treated?",
+        "response": "Yes"
+      },
+      {
+        "question": "Formwork braced and aligned?",
+        "response": "No"
+      },
+      {
+        "question": "Rebar in place per drawings?",
+        "response": "Yes"
+      },
+      {
+        "question": "Post-tension cables stressed?",
+        "response": "Yes"
+      }
+    ]
+  },
+  {
+    "project_id": 2525848,
+    "project_name": "Pensacola Corporate Campus",
+    "inspection_id": 53,
+    "inspection_type": "QA/QC - Concrete",
+    "trade": "Concrete",
+    "inspection_date": "2024-07-25",
+    "status": "Open",
+    "location": "Sector 1",
+    "created_by": "Mason Richards",
+    "description": "Quality control inspection for Concrete scope.",
+    "attachments": [
+      "QC_0053.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Formwork braced and aligned?",
+        "response": "Yes"
+      },
+      {
+        "question": "Post-tension cables stressed?",
+        "response": "Yes"
+      },
+      {
+        "question": "Cold joints treated?",
+        "response": "No"
+      }
+    ]
+  },
+  {
+    "project_id": 2525848,
+    "project_name": "Pensacola Corporate Campus",
+    "inspection_id": 54,
+    "inspection_type": "QA/QC - Landscaping",
+    "trade": "Landscaping",
+    "inspection_date": "2025-06-17",
+    "status": "Closed",
+    "location": "Building A",
+    "created_by": "Dana Patel",
+    "description": "Quality control inspection for Landscaping scope.",
+    "attachments": [
+      "QC_0054.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Plants per approved plan?",
+        "response": "No"
+      },
+      {
+        "question": "Root balls below grade?",
+        "response": "No"
+      },
+      {
+        "question": "Mulch evenly spread?",
+        "response": "Yes"
+      },
+      {
+        "question": "Sod joints tight?",
+        "response": "Yes"
+      }
+    ]
+  },
+  {
+    "project_id": 2525848,
+    "project_name": "Pensacola Corporate Campus",
+    "inspection_id": 55,
+    "inspection_type": "QA/QC - Roofing",
+    "trade": "Roofing",
+    "inspection_date": "2025-05-23",
+    "status": "Closed",
+    "location": "Sector 1",
+    "created_by": "Chris Velez",
+    "description": "Quality control inspection for Roofing scope.",
+    "attachments": [
+      "QC_0055.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Underlayment lapped properly?",
+        "response": "No"
+      },
+      {
+        "question": "Cap sheet adhered correctly?",
+        "response": "Yes"
+      },
+      {
+        "question": "Flashing installed at all transitions?",
+        "response": "Yes"
+      },
+      {
+        "question": "Penetrations sealed?",
+        "response": "N/A"
+      },
+      {
+        "question": "Fasteners per spec?",
+        "response": "N/A"
+      }
+    ]
+  },
+  {
+    "project_id": 2525848,
+    "project_name": "Pensacola Corporate Campus",
+    "inspection_id": 56,
+    "inspection_type": "QA/QC - Asphalt Paving",
+    "trade": "Asphalt",
+    "inspection_date": "2024-11-04",
+    "status": "Closed",
+    "location": "Building A",
+    "created_by": "Jordan Smith",
+    "description": "Quality control inspection for Asphalt scope.",
+    "attachments": [
+      "QC_0056.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Mat thickness verified?",
+        "response": "Yes"
+      },
+      {
+        "question": "Subgrade compacted?",
+        "response": "Yes"
+      },
+      {
+        "question": "Temperature within spec?",
+        "response": "No"
+      },
+      {
+        "question": "Compaction achieved?",
+        "response": "Yes"
+      }
+    ]
+  },
+  {
+    "project_id": 2525848,
+    "project_name": "Pensacola Corporate Campus",
+    "inspection_id": 57,
+    "inspection_type": "QA/QC - HVAC",
+    "trade": "HVAC",
+    "inspection_date": "2025-01-29",
+    "status": "Closed",
+    "location": "Sector 2",
+    "created_by": "Chris Velez",
+    "description": "Quality control inspection for HVAC scope.",
+    "attachments": [
+      "QC_0057.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Condensate lines pitched?",
+        "response": "No"
+      },
+      {
+        "question": "Insulation secure and complete?",
+        "response": "No"
+      },
+      {
+        "question": "Filters installed?",
+        "response": "N/A"
+      },
+      {
+        "question": "Ductwork sealed and supported?",
+        "response": "No"
+      },
+      {
+        "question": "Units leveled and powered?",
+        "response": "Yes"
+      }
+    ]
+  },
+  {
+    "project_id": 2525849,
+    "project_name": "Sarasota Cultural Center",
+    "inspection_id": 58,
+    "inspection_type": "QA/QC - HVAC",
+    "trade": "HVAC",
+    "inspection_date": "2025-06-23",
+    "status": "Open",
+    "location": "Staging Area",
+    "created_by": "Chris Velez",
+    "description": "Quality control inspection for HVAC scope.",
+    "attachments": [
+      "QC_0058.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Condensate lines pitched?",
+        "response": "No"
+      },
+      {
+        "question": "Units leveled and powered?",
+        "response": "Yes"
+      },
+      {
+        "question": "Ductwork sealed and supported?",
+        "response": "No"
+      },
+      {
+        "question": "Insulation secure and complete?",
+        "response": "No"
+      },
+      {
+        "question": "Filters installed?",
+        "response": "Yes"
+      }
+    ]
+  },
+  {
+    "project_id": 2525849,
+    "project_name": "Sarasota Cultural Center",
+    "inspection_id": 59,
+    "inspection_type": "QA/QC - Concrete",
+    "trade": "Concrete",
+    "inspection_date": "2025-06-12",
+    "status": "Open",
+    "location": "Sector 2",
+    "created_by": "Dana Patel",
+    "description": "Quality control inspection for Concrete scope.",
+    "attachments": [
+      "QC_0059.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Cure method confirmed?",
+        "response": "N/A"
+      },
+      {
+        "question": "Cold joints treated?",
+        "response": "N/A"
+      },
+      {
+        "question": "Rebar in place per drawings?",
+        "response": "Yes"
+      }
+    ]
+  },
+  {
+    "project_id": 2525849,
+    "project_name": "Sarasota Cultural Center",
+    "inspection_id": 60,
+    "inspection_type": "QA/QC - Asphalt Paving",
+    "trade": "Asphalt",
+    "inspection_date": "2025-02-22",
+    "status": "Open",
+    "location": "Main Hall",
+    "created_by": "Dana Patel",
+    "description": "Quality control inspection for Asphalt scope.",
+    "attachments": [
+      "QC_0060.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Temperature within spec?",
+        "response": "Yes"
+      },
+      {
+        "question": "Tack coat applied evenly?",
+        "response": "No"
+      },
+      {
+        "question": "Mat thickness verified?",
+        "response": "N/A"
+      }
+    ]
+  },
+  {
+    "project_id": 2525849,
+    "project_name": "Sarasota Cultural Center",
+    "inspection_id": 61,
+    "inspection_type": "QA/QC - Roofing",
+    "trade": "Roofing",
+    "inspection_date": "2025-04-02",
+    "status": "Closed",
+    "location": "Building A",
+    "created_by": "Mason Richards",
+    "description": "Quality control inspection for Roofing scope.",
+    "attachments": [
+      "QC_0061.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Underlayment lapped properly?",
+        "response": "Yes"
+      },
+      {
+        "question": "Cap sheet adhered correctly?",
+        "response": "N/A"
+      },
+      {
+        "question": "Penetrations sealed?",
+        "response": "No"
+      }
+    ]
+  },
+  {
+    "project_id": 2525849,
+    "project_name": "Sarasota Cultural Center",
+    "inspection_id": 62,
+    "inspection_type": "QA/QC - Roofing",
+    "trade": "Roofing",
+    "inspection_date": "2025-03-31",
+    "status": "Open",
+    "location": "Building A",
+    "created_by": "Mason Richards",
+    "description": "Quality control inspection for Roofing scope.",
+    "attachments": [
+      "QC_0062.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Cap sheet adhered correctly?",
+        "response": "Yes"
+      },
+      {
+        "question": "Fasteners per spec?",
+        "response": "No"
+      },
+      {
+        "question": "Underlayment lapped properly?",
+        "response": "Yes"
+      },
+      {
+        "question": "Penetrations sealed?",
+        "response": "Yes"
+      },
+      {
+        "question": "Flashing installed at all transitions?",
+        "response": "N/A"
+      }
+    ]
+  },
+  {
+    "project_id": 2525849,
+    "project_name": "Sarasota Cultural Center",
+    "inspection_id": 63,
+    "inspection_type": "QA/QC - Waterproofing",
+    "trade": "Waterproofing",
+    "inspection_date": "2025-03-28",
+    "status": "Open",
+    "location": "Building A",
+    "created_by": "Jordan Smith",
+    "description": "Quality control inspection for Waterproofing scope.",
+    "attachments": [
+      "QC_0063.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Termination bars installed?",
+        "response": "No"
+      },
+      {
+        "question": "Substrate clean and dry?",
+        "response": "N/A"
+      },
+      {
+        "question": "SDS sheets on file?",
+        "response": "Yes"
+      }
+    ]
+  },
+  {
+    "project_id": 2525849,
+    "project_name": "Sarasota Cultural Center",
+    "inspection_id": 64,
+    "inspection_type": "QA/QC - Asphalt Paving",
+    "trade": "Asphalt",
+    "inspection_date": "2025-06-24",
+    "status": "Open",
+    "location": "Main Hall",
+    "created_by": "Chris Velez",
+    "description": "Quality control inspection for Asphalt scope.",
+    "attachments": [
+      "QC_0064.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Mat thickness verified?",
+        "response": "No"
+      },
+      {
+        "question": "Tack coat applied evenly?",
+        "response": "N/A"
+      },
+      {
+        "question": "Compaction achieved?",
+        "response": "No"
+      }
+    ]
+  },
+  {
+    "project_id": 2525849,
+    "project_name": "Sarasota Cultural Center",
+    "inspection_id": 65,
+    "inspection_type": "QA/QC - Fire Sprinkler",
+    "trade": "Fire Sprinkler",
+    "inspection_date": "2025-03-28",
+    "status": "Closed",
+    "location": "Staging Area",
+    "created_by": "Dana Patel",
+    "description": "Quality control inspection for Fire Sprinkler scope.",
+    "attachments": [
+      "QC_0065.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Escutcheons in place?",
+        "response": "N/A"
+      },
+      {
+        "question": "Heads installed per layout?",
+        "response": "N/A"
+      },
+      {
+        "question": "Hydro test completed?",
+        "response": "No"
+      },
+      {
+        "question": "Seismic bracing installed?",
+        "response": "Yes"
+      },
+      {
+        "question": "Labeling per code?",
+        "response": "Yes"
+      }
+    ]
+  },
+  {
+    "project_id": 2525850,
+    "project_name": "Boca Raton Corporate Headquarters",
+    "inspection_id": 66,
+    "inspection_type": "QA/QC - Waterproofing",
+    "trade": "Waterproofing",
+    "inspection_date": "2024-09-16",
+    "status": "Open",
+    "location": "Building B",
+    "created_by": "Mason Richards",
+    "description": "Quality control inspection for Waterproofing scope.",
+    "attachments": [
+      "QC_0066.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Substrate clean and dry?",
+        "response": "N/A"
+      },
+      {
+        "question": "Drainage properly installed?",
+        "response": "Yes"
+      },
+      {
+        "question": "Membrane overlaps per spec?",
+        "response": "No"
+      },
+      {
+        "question": "SDS sheets on file?",
+        "response": "N/A"
+      },
+      {
+        "question": "Termination bars installed?",
+        "response": "Yes"
+      }
+    ]
+  },
+  {
+    "project_id": 2525850,
+    "project_name": "Boca Raton Corporate Headquarters",
+    "inspection_id": 67,
+    "inspection_type": "QA/QC - Landscaping",
+    "trade": "Landscaping",
+    "inspection_date": "2025-01-17",
+    "status": "Open",
+    "location": "Building A",
+    "created_by": "Jordan Smith",
+    "description": "Quality control inspection for Landscaping scope.",
+    "attachments": [
+      "QC_0067.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Sod joints tight?",
+        "response": "No"
+      },
+      {
+        "question": "Irrigation operational?",
+        "response": "N/A"
+      },
+      {
+        "question": "Root balls below grade?",
+        "response": "Yes"
+      },
+      {
+        "question": "Plants per approved plan?",
+        "response": "Yes"
+      }
+    ]
+  },
+  {
+    "project_id": 2525850,
+    "project_name": "Boca Raton Corporate Headquarters",
+    "inspection_id": 68,
+    "inspection_type": "QA/QC - Roofing",
+    "trade": "Roofing",
+    "inspection_date": "2024-08-16",
+    "status": "Closed",
+    "location": "Main Hall",
+    "created_by": "Jordan Smith",
+    "description": "Quality control inspection for Roofing scope.",
+    "attachments": [
+      "QC_0068.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Cap sheet adhered correctly?",
+        "response": "N/A"
+      },
+      {
+        "question": "Underlayment lapped properly?",
+        "response": "No"
+      },
+      {
+        "question": "Flashing installed at all transitions?",
+        "response": "N/A"
+      }
+    ]
+  },
+  {
+    "project_id": 2525850,
+    "project_name": "Boca Raton Corporate Headquarters",
+    "inspection_id": 69,
+    "inspection_type": "QA/QC - Concrete",
+    "trade": "Concrete",
+    "inspection_date": "2025-05-26",
+    "status": "Open",
+    "location": "Staging Area",
+    "created_by": "Mason Richards",
+    "description": "Quality control inspection for Concrete scope.",
+    "attachments": [
+      "QC_0069.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Post-tension cables stressed?",
+        "response": "Yes"
+      },
+      {
+        "question": "Rebar in place per drawings?",
+        "response": "N/A"
+      },
+      {
+        "question": "Cure method confirmed?",
+        "response": "Yes"
+      },
+      {
+        "question": "Formwork braced and aligned?",
+        "response": "No"
+      }
+    ]
+  },
+  {
+    "project_id": 2525850,
+    "project_name": "Boca Raton Corporate Headquarters",
+    "inspection_id": 70,
+    "inspection_type": "QA/QC - Windows & Glazing",
+    "trade": "Glazing",
+    "inspection_date": "2024-08-28",
+    "status": "Open",
+    "location": "Main Hall",
+    "created_by": "Jordan Smith",
+    "description": "Quality control inspection for Glazing scope.",
+    "attachments": [
+      "QC_0070.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Sealants compatible and cured?",
+        "response": "Yes"
+      },
+      {
+        "question": "Gaskets installed tight?",
+        "response": "No"
+      },
+      {
+        "question": "Frames plumb and square?",
+        "response": "No"
+      },
+      {
+        "question": "Glass per submittal?",
+        "response": "N/A"
+      },
+      {
+        "question": "Shims installed at anchors?",
+        "response": "Yes"
+      }
+    ]
+  },
+  {
+    "project_id": 2525851,
+    "project_name": "Coral Gables Luxury Condominium",
+    "inspection_id": 71,
+    "inspection_type": "QA/QC - Windows & Glazing",
+    "trade": "Glazing",
+    "inspection_date": "2025-03-18",
+    "status": "Open",
+    "location": "Building B",
+    "created_by": "Mason Richards",
+    "description": "Quality control inspection for Glazing scope.",
+    "attachments": [
+      "QC_0071.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Shims installed at anchors?",
+        "response": "N/A"
+      },
+      {
+        "question": "Sealants compatible and cured?",
+        "response": "No"
+      },
+      {
+        "question": "Glass per submittal?",
+        "response": "No"
+      },
+      {
+        "question": "Gaskets installed tight?",
+        "response": "Yes"
+      }
+    ]
+  },
+  {
+    "project_id": 2525851,
+    "project_name": "Coral Gables Luxury Condominium",
+    "inspection_id": 72,
+    "inspection_type": "QA/QC - Electrical",
+    "trade": "Electrical",
+    "inspection_date": "2025-04-06",
+    "status": "Closed",
+    "location": "Sector 1",
+    "created_by": "Dana Patel",
+    "description": "Quality control inspection for Electrical scope.",
+    "attachments": [
+      "QC_0072.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Grounding per NEC?",
+        "response": "N/A"
+      },
+      {
+        "question": "Wire gauges match plans?",
+        "response": "N/A"
+      },
+      {
+        "question": "Conduit bends within tolerance?",
+        "response": "No"
+      },
+      {
+        "question": "Panels properly labeled?",
+        "response": "Yes"
+      },
+      {
+        "question": "Boxes securely mounted?",
+        "response": "Yes"
+      }
+    ]
+  },
+  {
+    "project_id": 2525851,
+    "project_name": "Coral Gables Luxury Condominium",
+    "inspection_id": 73,
+    "inspection_type": "QA/QC - Fire Sprinkler",
+    "trade": "Fire Sprinkler",
+    "inspection_date": "2025-02-04",
+    "status": "Open",
+    "location": "Sector 2",
+    "created_by": "Chris Velez",
+    "description": "Quality control inspection for Fire Sprinkler scope.",
+    "attachments": [
+      "QC_0073.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Heads installed per layout?",
+        "response": "Yes"
+      },
+      {
+        "question": "Escutcheons in place?",
+        "response": "No"
+      },
+      {
+        "question": "Labeling per code?",
+        "response": "Yes"
+      },
+      {
+        "question": "Seismic bracing installed?",
+        "response": "Yes"
+      }
+    ]
+  },
+  {
+    "project_id": 2525851,
+    "project_name": "Coral Gables Luxury Condominium",
+    "inspection_id": 74,
+    "inspection_type": "QA/QC - Concrete",
+    "trade": "Concrete",
+    "inspection_date": "2025-02-02",
+    "status": "Closed",
+    "location": "Building A",
+    "created_by": "Chris Velez",
+    "description": "Quality control inspection for Concrete scope.",
+    "attachments": [
+      "QC_0074.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Post-tension cables stressed?",
+        "response": "Yes"
+      },
+      {
+        "question": "Formwork braced and aligned?",
+        "response": "N/A"
+      },
+      {
+        "question": "Cure method confirmed?",
+        "response": "No"
+      },
+      {
+        "question": "Rebar in place per drawings?",
+        "response": "N/A"
+      }
+    ]
+  },
+  {
+    "project_id": 2525851,
+    "project_name": "Coral Gables Luxury Condominium",
+    "inspection_id": 75,
+    "inspection_type": "QA/QC - Waterproofing",
+    "trade": "Waterproofing",
+    "inspection_date": "2025-02-12",
+    "status": "Closed",
+    "location": "Sector 1",
+    "created_by": "Jordan Smith",
+    "description": "Quality control inspection for Waterproofing scope.",
+    "attachments": [
+      "QC_0075.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Substrate clean and dry?",
+        "response": "N/A"
+      },
+      {
+        "question": "Membrane overlaps per spec?",
+        "response": "N/A"
+      },
+      {
+        "question": "SDS sheets on file?",
+        "response": "N/A"
+      },
+      {
+        "question": "Drainage properly installed?",
+        "response": "Yes"
+      },
+      {
+        "question": "Termination bars installed?",
+        "response": "Yes"
+      }
+    ]
+  },
+  {
+    "project_id": 2525851,
+    "project_name": "Coral Gables Luxury Condominium",
+    "inspection_id": 76,
+    "inspection_type": "QA/QC - Pools",
+    "trade": "Pools",
+    "inspection_date": "2025-01-14",
+    "status": "Open",
+    "location": "Building A",
+    "created_by": "Mason Richards",
+    "description": "Quality control inspection for Pools scope.",
+    "attachments": [
+      "QC_0076.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Tile installed per detail?",
+        "response": "No"
+      },
+      {
+        "question": "Waterproofing of shell verified?",
+        "response": "N/A"
+      },
+      {
+        "question": "Pump and filter installed per submittal?",
+        "response": "Yes"
+      },
+      {
+        "question": "Electrical bonding complete?",
+        "response": "N/A"
+      }
+    ]
+  },
+  {
+    "project_id": 2525851,
+    "project_name": "Coral Gables Luxury Condominium",
+    "inspection_id": 77,
+    "inspection_type": "QA/QC - Concrete",
+    "trade": "Concrete",
+    "inspection_date": "2025-05-07",
+    "status": "Closed",
+    "location": "Staging Area",
+    "created_by": "Chris Velez",
+    "description": "Quality control inspection for Concrete scope.",
+    "attachments": [
+      "QC_0077.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Cure method confirmed?",
+        "response": "No"
+      },
+      {
+        "question": "Rebar in place per drawings?",
+        "response": "N/A"
+      },
+      {
+        "question": "Cold joints treated?",
+        "response": "No"
+      },
+      {
+        "question": "Post-tension cables stressed?",
+        "response": "N/A"
+      }
+    ]
+  },
+  {
+    "project_id": 2525852,
+    "project_name": "Gainesville University Expansion",
+    "inspection_id": 78,
+    "inspection_type": "QA/QC - Fire Sprinkler",
+    "trade": "Fire Sprinkler",
+    "inspection_date": "2025-02-02",
+    "status": "Open",
+    "location": "Sector 2",
+    "created_by": "Chris Velez",
+    "description": "Quality control inspection for Fire Sprinkler scope.",
+    "attachments": [
+      "QC_0078.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Labeling per code?",
+        "response": "No"
+      },
+      {
+        "question": "Seismic bracing installed?",
+        "response": "N/A"
+      },
+      {
+        "question": "Hydro test completed?",
+        "response": "Yes"
+      }
+    ]
+  },
+  {
+    "project_id": 2525852,
+    "project_name": "Gainesville University Expansion",
+    "inspection_id": 79,
+    "inspection_type": "QA/QC - Concrete",
+    "trade": "Concrete",
+    "inspection_date": "2025-06-23",
+    "status": "Closed",
+    "location": "Building B",
+    "created_by": "Dana Patel",
+    "description": "Quality control inspection for Concrete scope.",
+    "attachments": [
+      "QC_0079.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Cure method confirmed?",
+        "response": "N/A"
+      },
+      {
+        "question": "Post-tension cables stressed?",
+        "response": "No"
+      },
+      {
+        "question": "Rebar in place per drawings?",
+        "response": "N/A"
+      },
+      {
+        "question": "Cold joints treated?",
+        "response": "No"
+      },
+      {
+        "question": "Formwork braced and aligned?",
+        "response": "Yes"
+      }
+    ]
+  },
+  {
+    "project_id": 2525852,
+    "project_name": "Gainesville University Expansion",
+    "inspection_id": 80,
+    "inspection_type": "QA/QC - Windows & Glazing",
+    "trade": "Glazing",
+    "inspection_date": "2024-11-13",
+    "status": "Open",
+    "location": "Sector 2",
+    "created_by": "Mason Richards",
+    "description": "Quality control inspection for Glazing scope.",
+    "attachments": [
+      "QC_0080.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Gaskets installed tight?",
+        "response": "Yes"
+      },
+      {
+        "question": "Shims installed at anchors?",
+        "response": "No"
+      },
+      {
+        "question": "Sealants compatible and cured?",
+        "response": "N/A"
+      },
+      {
+        "question": "Glass per submittal?",
+        "response": "N/A"
+      }
+    ]
+  },
+  {
+    "project_id": 2525852,
+    "project_name": "Gainesville University Expansion",
+    "inspection_id": 81,
+    "inspection_type": "QA/QC - Waterproofing",
+    "trade": "Waterproofing",
+    "inspection_date": "2023-12-16",
+    "status": "Closed",
+    "location": "Staging Area",
+    "created_by": "Jordan Smith",
+    "description": "Quality control inspection for Waterproofing scope.",
+    "attachments": [
+      "QC_0081.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Termination bars installed?",
+        "response": "No"
+      },
+      {
+        "question": "SDS sheets on file?",
+        "response": "Yes"
+      },
+      {
+        "question": "Membrane overlaps per spec?",
+        "response": "N/A"
+      }
+    ]
+  },
+  {
+    "project_id": 2525852,
+    "project_name": "Gainesville University Expansion",
+    "inspection_id": 82,
+    "inspection_type": "QA/QC - Pools",
+    "trade": "Pools",
+    "inspection_date": "2025-02-15",
+    "status": "Open",
+    "location": "Main Hall",
+    "created_by": "Dana Patel",
+    "description": "Quality control inspection for Pools scope.",
+    "attachments": [
+      "QC_0082.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Plumbing pressure tested?",
+        "response": "No"
+      },
+      {
+        "question": "Waterproofing of shell verified?",
+        "response": "N/A"
+      },
+      {
+        "question": "Electrical bonding complete?",
+        "response": "No"
+      }
+    ]
+  },
+  {
+    "project_id": 2525853,
+    "project_name": "Fort Myers Waterfront Estate",
+    "inspection_id": 83,
+    "inspection_type": "QA/QC - HVAC",
+    "trade": "HVAC",
+    "inspection_date": "2025-04-30",
+    "status": "Open",
+    "location": "North Lot",
+    "created_by": "Chris Velez",
+    "description": "Quality control inspection for HVAC scope.",
+    "attachments": [
+      "QC_0083.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Filters installed?",
+        "response": "Yes"
+      },
+      {
+        "question": "Condensate lines pitched?",
+        "response": "N/A"
+      },
+      {
+        "question": "Insulation secure and complete?",
+        "response": "N/A"
+      },
+      {
+        "question": "Units leveled and powered?",
+        "response": "N/A"
+      },
+      {
+        "question": "Ductwork sealed and supported?",
+        "response": "N/A"
+      }
+    ]
+  },
+  {
+    "project_id": 2525853,
+    "project_name": "Fort Myers Waterfront Estate",
+    "inspection_id": 84,
+    "inspection_type": "QA/QC - Waterproofing",
+    "trade": "Waterproofing",
+    "inspection_date": "2024-11-12",
+    "status": "Open",
+    "location": "Building A",
+    "created_by": "Dana Patel",
+    "description": "Quality control inspection for Waterproofing scope.",
+    "attachments": [
+      "QC_0084.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Drainage properly installed?",
+        "response": "No"
+      },
+      {
+        "question": "SDS sheets on file?",
+        "response": "N/A"
+      },
+      {
+        "question": "Substrate clean and dry?",
+        "response": "N/A"
+      },
+      {
+        "question": "Termination bars installed?",
+        "response": "N/A"
+      },
+      {
+        "question": "Membrane overlaps per spec?",
+        "response": "N/A"
+      }
+    ]
+  },
+  {
+    "project_id": 2525853,
+    "project_name": "Fort Myers Waterfront Estate",
+    "inspection_id": 85,
+    "inspection_type": "QA/QC - Windows & Glazing",
+    "trade": "Glazing",
+    "inspection_date": "2025-03-11",
+    "status": "Open",
+    "location": "Main Hall",
+    "created_by": "Dana Patel",
+    "description": "Quality control inspection for Glazing scope.",
+    "attachments": [
+      "QC_0085.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Glass per submittal?",
+        "response": "Yes"
+      },
+      {
+        "question": "Shims installed at anchors?",
+        "response": "N/A"
+      },
+      {
+        "question": "Sealants compatible and cured?",
+        "response": "Yes"
+      }
+    ]
+  },
+  {
+    "project_id": 2525853,
+    "project_name": "Fort Myers Waterfront Estate",
+    "inspection_id": 86,
+    "inspection_type": "QA/QC - Landscaping",
+    "trade": "Landscaping",
+    "inspection_date": "2025-01-13",
+    "status": "Closed",
+    "location": "Building A",
+    "created_by": "Mason Richards",
+    "description": "Quality control inspection for Landscaping scope.",
+    "attachments": [
+      "QC_0086.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Plants per approved plan?",
+        "response": "No"
+      },
+      {
+        "question": "Irrigation operational?",
+        "response": "No"
+      },
+      {
+        "question": "Root balls below grade?",
+        "response": "Yes"
+      },
+      {
+        "question": "Sod joints tight?",
+        "response": "Yes"
+      }
+    ]
+  },
+  {
+    "project_id": 2525853,
+    "project_name": "Fort Myers Waterfront Estate",
+    "inspection_id": 87,
+    "inspection_type": "QA/QC - Waterproofing",
+    "trade": "Waterproofing",
+    "inspection_date": "2025-05-15",
+    "status": "Open",
+    "location": "North Lot",
+    "created_by": "Mason Richards",
+    "description": "Quality control inspection for Waterproofing scope.",
+    "attachments": [
+      "QC_0087.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Substrate clean and dry?",
+        "response": "No"
+      },
+      {
+        "question": "Membrane overlaps per spec?",
+        "response": "Yes"
+      },
+      {
+        "question": "SDS sheets on file?",
+        "response": "N/A"
+      },
+      {
+        "question": "Drainage properly installed?",
+        "response": "No"
+      }
+    ]
+  },
+  {
+    "project_id": 2525853,
+    "project_name": "Fort Myers Waterfront Estate",
+    "inspection_id": 88,
+    "inspection_type": "QA/QC - Electrical",
+    "trade": "Electrical",
+    "inspection_date": "2025-04-30",
+    "status": "Closed",
+    "location": "Staging Area",
+    "created_by": "Alfonso Bonilla",
+    "description": "Quality control inspection for Electrical scope.",
+    "attachments": [
+      "QC_0088.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Conduit bends within tolerance?",
+        "response": "Yes"
+      },
+      {
+        "question": "Panels properly labeled?",
+        "response": "Yes"
+      },
+      {
+        "question": "Grounding per NEC?",
+        "response": "N/A"
+      }
+    ]
+  },
+  {
+    "project_id": 2525854,
+    "project_name": "West Palm Beach Mixed-Use Tower",
+    "inspection_id": 89,
+    "inspection_type": "QA/QC - HVAC",
+    "trade": "HVAC",
+    "inspection_date": "2022-03-18",
+    "status": "Closed",
+    "location": "Building B",
+    "created_by": "Dana Patel",
+    "description": "Quality control inspection for HVAC scope.",
+    "attachments": [
+      "QC_0089.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Ductwork sealed and supported?",
+        "response": "Yes"
+      },
+      {
+        "question": "Filters installed?",
+        "response": "No"
+      },
+      {
+        "question": "Condensate lines pitched?",
+        "response": "N/A"
+      },
+      {
+        "question": "Units leveled and powered?",
+        "response": "No"
+      }
+    ]
+  },
+  {
+    "project_id": 2525854,
+    "project_name": "West Palm Beach Mixed-Use Tower",
+    "inspection_id": 90,
+    "inspection_type": "QA/QC - Roofing",
+    "trade": "Roofing",
+    "inspection_date": "2024-01-07",
+    "status": "Closed",
+    "location": "North Lot",
+    "created_by": "Chris Velez",
+    "description": "Quality control inspection for Roofing scope.",
+    "attachments": [
+      "QC_0090.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Penetrations sealed?",
+        "response": "Yes"
+      },
+      {
+        "question": "Cap sheet adhered correctly?",
+        "response": "No"
+      },
+      {
+        "question": "Flashing installed at all transitions?",
+        "response": "Yes"
+      },
+      {
+        "question": "Underlayment lapped properly?",
+        "response": "Yes"
+      }
+    ]
+  },
+  {
+    "project_id": 2525854,
+    "project_name": "West Palm Beach Mixed-Use Tower",
+    "inspection_id": 91,
+    "inspection_type": "QA/QC - Waterproofing",
+    "trade": "Waterproofing",
+    "inspection_date": "2024-06-07",
+    "status": "Closed",
+    "location": "Sector 2",
+    "created_by": "Dana Patel",
+    "description": "Quality control inspection for Waterproofing scope.",
+    "attachments": [
+      "QC_0091.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "SDS sheets on file?",
+        "response": "Yes"
+      },
+      {
+        "question": "Membrane overlaps per spec?",
+        "response": "N/A"
+      },
+      {
+        "question": "Termination bars installed?",
+        "response": "N/A"
+      },
+      {
+        "question": "Substrate clean and dry?",
+        "response": "N/A"
+      }
+    ]
+  },
+  {
+    "project_id": 2525854,
+    "project_name": "West Palm Beach Mixed-Use Tower",
+    "inspection_id": 92,
+    "inspection_type": "QA/QC - Concrete",
+    "trade": "Concrete",
+    "inspection_date": "2022-05-25",
+    "status": "Closed",
+    "location": "Sector 2",
+    "created_by": "Mason Richards",
+    "description": "Quality control inspection for Concrete scope.",
+    "attachments": [
+      "QC_0092.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Post-tension cables stressed?",
+        "response": "No"
+      },
+      {
+        "question": "Rebar in place per drawings?",
+        "response": "No"
+      },
+      {
+        "question": "Cold joints treated?",
+        "response": "No"
+      },
+      {
+        "question": "Formwork braced and aligned?",
+        "response": "N/A"
+      }
+    ]
+  },
+  {
+    "project_id": 2525854,
+    "project_name": "West Palm Beach Mixed-Use Tower",
+    "inspection_id": 93,
+    "inspection_type": "QA/QC - Windows & Glazing",
+    "trade": "Glazing",
+    "inspection_date": "2023-11-06",
+    "status": "Open",
+    "location": "Sector 1",
+    "created_by": "Chris Velez",
+    "description": "Quality control inspection for Glazing scope.",
+    "attachments": [
+      "QC_0093.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Glass per submittal?",
+        "response": "N/A"
+      },
+      {
+        "question": "Gaskets installed tight?",
+        "response": "No"
+      },
+      {
+        "question": "Shims installed at anchors?",
+        "response": "N/A"
+      },
+      {
+        "question": "Sealants compatible and cured?",
+        "response": "Yes"
+      },
+      {
+        "question": "Frames plumb and square?",
+        "response": "No"
+      }
+    ]
+  },
+  {
+    "project_id": 2525854,
+    "project_name": "West Palm Beach Mixed-Use Tower",
+    "inspection_id": 94,
+    "inspection_type": "QA/QC - Windows & Glazing",
+    "trade": "Glazing",
+    "inspection_date": "2023-08-18",
+    "status": "Open",
+    "location": "Building B",
+    "created_by": "Chris Velez",
+    "description": "Quality control inspection for Glazing scope.",
+    "attachments": [
+      "QC_0094.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Shims installed at anchors?",
+        "response": "No"
+      },
+      {
+        "question": "Sealants compatible and cured?",
+        "response": "N/A"
+      },
+      {
+        "question": "Frames plumb and square?",
+        "response": "No"
+      },
+      {
+        "question": "Gaskets installed tight?",
+        "response": "Yes"
+      }
+    ]
+  },
+  {
+    "project_id": 2525854,
+    "project_name": "West Palm Beach Mixed-Use Tower",
+    "inspection_id": 95,
+    "inspection_type": "QA/QC - Concrete",
+    "trade": "Concrete",
+    "inspection_date": "2023-04-19",
+    "status": "Open",
+    "location": "North Lot",
+    "created_by": "Mason Richards",
+    "description": "Quality control inspection for Concrete scope.",
+    "attachments": [
+      "QC_0095.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Post-tension cables stressed?",
+        "response": "No"
+      },
+      {
+        "question": "Cure method confirmed?",
+        "response": "No"
+      },
+      {
+        "question": "Formwork braced and aligned?",
+        "response": "No"
+      },
+      {
+        "question": "Cold joints treated?",
+        "response": "N/A"
+      }
+    ]
+  },
+  {
+    "project_id": 2525854,
+    "project_name": "West Palm Beach Mixed-Use Tower",
+    "inspection_id": 96,
+    "inspection_type": "QA/QC - Electrical",
+    "trade": "Electrical",
+    "inspection_date": "2024-09-29",
+    "status": "Closed",
+    "location": "Staging Area",
+    "created_by": "Jordan Smith",
+    "description": "Quality control inspection for Electrical scope.",
+    "attachments": [
+      "QC_0096.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Panels properly labeled?",
+        "response": "Yes"
+      },
+      {
+        "question": "Wire gauges match plans?",
+        "response": "No"
+      },
+      {
+        "question": "Boxes securely mounted?",
+        "response": "Yes"
+      }
+    ]
+  },
+  {
+    "project_id": 2525855,
+    "project_name": "Aventura Retail Plaza",
+    "inspection_id": 97,
+    "inspection_type": "QA/QC - Waterproofing",
+    "trade": "Waterproofing",
+    "inspection_date": "2025-05-28",
+    "status": "Closed",
+    "location": "Main Hall",
+    "created_by": "Chris Velez",
+    "description": "Quality control inspection for Waterproofing scope.",
+    "attachments": [
+      "QC_0097.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Termination bars installed?",
+        "response": "N/A"
+      },
+      {
+        "question": "Membrane overlaps per spec?",
+        "response": "Yes"
+      },
+      {
+        "question": "Drainage properly installed?",
+        "response": "N/A"
+      },
+      {
+        "question": "SDS sheets on file?",
+        "response": "N/A"
+      },
+      {
+        "question": "Substrate clean and dry?",
+        "response": "N/A"
+      }
+    ]
+  },
+  {
+    "project_id": 2525855,
+    "project_name": "Aventura Retail Plaza",
+    "inspection_id": 98,
+    "inspection_type": "QA/QC - Landscaping",
+    "trade": "Landscaping",
+    "inspection_date": "2025-06-09",
+    "status": "Closed",
+    "location": "North Lot",
+    "created_by": "Jordan Smith",
+    "description": "Quality control inspection for Landscaping scope.",
+    "attachments": [
+      "QC_0098.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Plants per approved plan?",
+        "response": "No"
+      },
+      {
+        "question": "Mulch evenly spread?",
+        "response": "No"
+      },
+      {
+        "question": "Root balls below grade?",
+        "response": "No"
+      }
+    ]
+  },
+  {
+    "project_id": 2525855,
+    "project_name": "Aventura Retail Plaza",
+    "inspection_id": 99,
+    "inspection_type": "QA/QC - Waterproofing",
+    "trade": "Waterproofing",
+    "inspection_date": "2025-05-28",
+    "status": "Open",
+    "location": "Building B",
+    "created_by": "Mason Richards",
+    "description": "Quality control inspection for Waterproofing scope.",
+    "attachments": [
+      "QC_0099.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Substrate clean and dry?",
+        "response": "No"
+      },
+      {
+        "question": "Termination bars installed?",
+        "response": "N/A"
+      },
+      {
+        "question": "SDS sheets on file?",
+        "response": "N/A"
+      }
+    ]
+  },
+  {
+    "project_id": 2525855,
+    "project_name": "Aventura Retail Plaza",
+    "inspection_id": 100,
+    "inspection_type": "QA/QC - Windows & Glazing",
+    "trade": "Glazing",
+    "inspection_date": "2025-04-29",
+    "status": "Open",
+    "location": "North Lot",
+    "created_by": "Chris Velez",
+    "description": "Quality control inspection for Glazing scope.",
+    "attachments": [
+      "QC_0100.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Frames plumb and square?",
+        "response": "No"
+      },
+      {
+        "question": "Gaskets installed tight?",
+        "response": "N/A"
+      },
+      {
+        "question": "Glass per submittal?",
+        "response": "No"
+      },
+      {
+        "question": "Sealants compatible and cured?",
+        "response": "N/A"
+      },
+      {
+        "question": "Shims installed at anchors?",
+        "response": "No"
+      }
+    ]
+  },
+  {
+    "project_id": 2525855,
+    "project_name": "Aventura Retail Plaza",
+    "inspection_id": 101,
+    "inspection_type": "QA/QC - Concrete",
+    "trade": "Concrete",
+    "inspection_date": "2025-06-13",
+    "status": "Open",
+    "location": "Sector 1",
+    "created_by": "Dana Patel",
+    "description": "Quality control inspection for Concrete scope.",
+    "attachments": [
+      "QC_0101.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Post-tension cables stressed?",
+        "response": "No"
+      },
+      {
+        "question": "Cure method confirmed?",
+        "response": "No"
+      },
+      {
+        "question": "Rebar in place per drawings?",
+        "response": "N/A"
+      },
+      {
+        "question": "Cold joints treated?",
+        "response": "No"
+      }
+    ]
+  },
+  {
+    "project_id": 2525856,
+    "project_name": "Tallahassee Government Complex",
+    "inspection_id": 102,
+    "inspection_type": "QA/QC - HVAC",
+    "trade": "HVAC",
+    "inspection_date": "2025-06-24",
+    "status": "Closed",
+    "location": "Building A",
+    "created_by": "Alfonso Bonilla",
+    "description": "Quality control inspection for HVAC scope.",
+    "attachments": [
+      "QC_0102.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Units leveled and powered?",
+        "response": "N/A"
+      },
+      {
+        "question": "Condensate lines pitched?",
+        "response": "Yes"
+      },
+      {
+        "question": "Ductwork sealed and supported?",
+        "response": "Yes"
+      },
+      {
+        "question": "Insulation secure and complete?",
+        "response": "No"
+      }
+    ]
+  },
+  {
+    "project_id": 2525856,
+    "project_name": "Tallahassee Government Complex",
+    "inspection_id": 103,
+    "inspection_type": "QA/QC - Roofing",
+    "trade": "Roofing",
+    "inspection_date": "2025-06-13",
+    "status": "Open",
+    "location": "Building B",
+    "created_by": "Alfonso Bonilla",
+    "description": "Quality control inspection for Roofing scope.",
+    "attachments": [
+      "QC_0103.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Flashing installed at all transitions?",
+        "response": "No"
+      },
+      {
+        "question": "Penetrations sealed?",
+        "response": "No"
+      },
+      {
+        "question": "Fasteners per spec?",
+        "response": "No"
+      }
+    ]
+  },
+  {
+    "project_id": 2525856,
+    "project_name": "Tallahassee Government Complex",
+    "inspection_id": 104,
+    "inspection_type": "QA/QC - Landscaping",
+    "trade": "Landscaping",
+    "inspection_date": "2025-05-21",
+    "status": "Open",
+    "location": "Staging Area",
+    "created_by": "Mason Richards",
+    "description": "Quality control inspection for Landscaping scope.",
+    "attachments": [
+      "QC_0104.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Root balls below grade?",
+        "response": "No"
+      },
+      {
+        "question": "Plants per approved plan?",
+        "response": "N/A"
+      },
+      {
+        "question": "Irrigation operational?",
+        "response": "Yes"
+      },
+      {
+        "question": "Mulch evenly spread?",
+        "response": "No"
+      },
+      {
+        "question": "Sod joints tight?",
+        "response": "N/A"
+      }
+    ]
+  },
+  {
+    "project_id": 2525856,
+    "project_name": "Tallahassee Government Complex",
+    "inspection_id": 105,
+    "inspection_type": "QA/QC - Concrete",
+    "trade": "Concrete",
+    "inspection_date": "2025-04-11",
+    "status": "Open",
+    "location": "Sector 1",
+    "created_by": "Chris Velez",
+    "description": "Quality control inspection for Concrete scope.",
+    "attachments": [
+      "QC_0105.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Post-tension cables stressed?",
+        "response": "Yes"
+      },
+      {
+        "question": "Cure method confirmed?",
+        "response": "No"
+      },
+      {
+        "question": "Rebar in place per drawings?",
+        "response": "No"
+      },
+      {
+        "question": "Formwork braced and aligned?",
+        "response": "No"
+      }
+    ]
+  },
+  {
+    "project_id": 2525856,
+    "project_name": "Tallahassee Government Complex",
+    "inspection_id": 106,
+    "inspection_type": "QA/QC - Landscaping",
+    "trade": "Landscaping",
+    "inspection_date": "2025-06-21",
+    "status": "Closed",
+    "location": "Main Hall",
+    "created_by": "Dana Patel",
+    "description": "Quality control inspection for Landscaping scope.",
+    "attachments": [
+      "QC_0106.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Mulch evenly spread?",
+        "response": "Yes"
+      },
+      {
+        "question": "Sod joints tight?",
+        "response": "Yes"
+      },
+      {
+        "question": "Irrigation operational?",
+        "response": "Yes"
+      },
+      {
+        "question": "Root balls below grade?",
+        "response": "Yes"
+      }
+    ]
+  },
+  {
+    "project_id": 2525857,
+    "project_name": "Miami Beach Luxury Hotel",
+    "inspection_id": 107,
+    "inspection_type": "QA/QC - HVAC",
+    "trade": "HVAC",
+    "inspection_date": "2024-07-21",
+    "status": "Open",
+    "location": "Sector 2",
+    "created_by": "Chris Velez",
+    "description": "Quality control inspection for HVAC scope.",
+    "attachments": [
+      "QC_0107.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Units leveled and powered?",
+        "response": "Yes"
+      },
+      {
+        "question": "Filters installed?",
+        "response": "Yes"
+      },
+      {
+        "question": "Insulation secure and complete?",
+        "response": "Yes"
+      },
+      {
+        "question": "Ductwork sealed and supported?",
+        "response": "No"
+      }
+    ]
+  },
+  {
+    "project_id": 2525857,
+    "project_name": "Miami Beach Luxury Hotel",
+    "inspection_id": 108,
+    "inspection_type": "QA/QC - Electrical",
+    "trade": "Electrical",
+    "inspection_date": "2025-03-08",
+    "status": "Open",
+    "location": "North Lot",
+    "created_by": "Alfonso Bonilla",
+    "description": "Quality control inspection for Electrical scope.",
+    "attachments": [
+      "QC_0108.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Panels properly labeled?",
+        "response": "N/A"
+      },
+      {
+        "question": "Boxes securely mounted?",
+        "response": "No"
+      },
+      {
+        "question": "Wire gauges match plans?",
+        "response": "N/A"
+      },
+      {
+        "question": "Grounding per NEC?",
+        "response": "Yes"
+      },
+      {
+        "question": "Conduit bends within tolerance?",
+        "response": "N/A"
+      }
+    ]
+  },
+  {
+    "project_id": 2525857,
+    "project_name": "Miami Beach Luxury Hotel",
+    "inspection_id": 109,
+    "inspection_type": "QA/QC - Waterproofing",
+    "trade": "Waterproofing",
+    "inspection_date": "2024-09-28",
+    "status": "Open",
+    "location": "Building B",
+    "created_by": "Alfonso Bonilla",
+    "description": "Quality control inspection for Waterproofing scope.",
+    "attachments": [
+      "QC_0109.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Drainage properly installed?",
+        "response": "N/A"
+      },
+      {
+        "question": "Membrane overlaps per spec?",
+        "response": "Yes"
+      },
+      {
+        "question": "SDS sheets on file?",
+        "response": "Yes"
+      }
+    ]
+  },
+  {
+    "project_id": 2525857,
+    "project_name": "Miami Beach Luxury Hotel",
+    "inspection_id": 110,
+    "inspection_type": "QA/QC - Windows & Glazing",
+    "trade": "Glazing",
+    "inspection_date": "2024-04-07",
+    "status": "Open",
+    "location": "Building B",
+    "created_by": "Jordan Smith",
+    "description": "Quality control inspection for Glazing scope.",
+    "attachments": [
+      "QC_0110.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Shims installed at anchors?",
+        "response": "Yes"
+      },
+      {
+        "question": "Gaskets installed tight?",
+        "response": "N/A"
+      },
+      {
+        "question": "Glass per submittal?",
+        "response": "Yes"
+      },
+      {
+        "question": "Sealants compatible and cured?",
+        "response": "Yes"
+      }
+    ]
+  },
+  {
+    "project_id": 2525857,
+    "project_name": "Miami Beach Luxury Hotel",
+    "inspection_id": 111,
+    "inspection_type": "QA/QC - Pools",
+    "trade": "Pools",
+    "inspection_date": "2024-12-11",
+    "status": "Closed",
+    "location": "Building B",
+    "created_by": "Alfonso Bonilla",
+    "description": "Quality control inspection for Pools scope.",
+    "attachments": [
+      "QC_0111.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Electrical bonding complete?",
+        "response": "No"
+      },
+      {
+        "question": "Waterproofing of shell verified?",
+        "response": "No"
+      },
+      {
+        "question": "Tile installed per detail?",
+        "response": "Yes"
+      },
+      {
+        "question": "Plumbing pressure tested?",
+        "response": "N/A"
+      }
+    ]
+  },
+  {
+    "project_id": 2525857,
+    "project_name": "Miami Beach Luxury Hotel",
+    "inspection_id": 112,
+    "inspection_type": "QA/QC - Asphalt Paving",
+    "trade": "Asphalt",
+    "inspection_date": "2024-09-03",
+    "status": "Closed",
+    "location": "Building A",
+    "created_by": "Alfonso Bonilla",
+    "description": "Quality control inspection for Asphalt scope.",
+    "attachments": [
+      "QC_0112.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Compaction achieved?",
+        "response": "Yes"
+      },
+      {
+        "question": "Subgrade compacted?",
+        "response": "Yes"
+      },
+      {
+        "question": "Tack coat applied evenly?",
+        "response": "N/A"
+      },
+      {
+        "question": "Temperature within spec?",
+        "response": "No"
+      }
+    ]
+  },
+  {
+    "project_id": 2525857,
+    "project_name": "Miami Beach Luxury Hotel",
+    "inspection_id": 113,
+    "inspection_type": "QA/QC - Landscaping",
+    "trade": "Landscaping",
+    "inspection_date": "2023-10-08",
+    "status": "Closed",
+    "location": "Sector 2",
+    "created_by": "Mason Richards",
+    "description": "Quality control inspection for Landscaping scope.",
+    "attachments": [
+      "QC_0113.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Mulch evenly spread?",
+        "response": "Yes"
+      },
+      {
+        "question": "Root balls below grade?",
+        "response": "No"
+      },
+      {
+        "question": "Irrigation operational?",
+        "response": "Yes"
+      }
+    ]
+  },
+  {
+    "project_id": 2525857,
+    "project_name": "Miami Beach Luxury Hotel",
+    "inspection_id": 114,
+    "inspection_type": "QA/QC - HVAC",
+    "trade": "HVAC",
+    "inspection_date": "2023-07-24",
+    "status": "Open",
+    "location": "Main Hall",
+    "created_by": "Chris Velez",
+    "description": "Quality control inspection for HVAC scope.",
+    "attachments": [
+      "QC_0114.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Condensate lines pitched?",
+        "response": "Yes"
+      },
+      {
+        "question": "Filters installed?",
+        "response": "Yes"
+      },
+      {
+        "question": "Insulation secure and complete?",
+        "response": "Yes"
+      },
+      {
+        "question": "Ductwork sealed and supported?",
+        "response": "N/A"
+      },
+      {
+        "question": "Units leveled and powered?",
+        "response": "N/A"
+      }
+    ]
+  },
+  {
+    "project_id": 2525858,
+    "project_name": "Cape Coral Residential Community",
+    "inspection_id": 115,
+    "inspection_type": "QA/QC - HVAC",
+    "trade": "HVAC",
+    "inspection_date": "2025-04-15",
+    "status": "Open",
+    "location": "Building A",
+    "created_by": "Chris Velez",
+    "description": "Quality control inspection for HVAC scope.",
+    "attachments": [
+      "QC_0115.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Units leveled and powered?",
+        "response": "Yes"
+      },
+      {
+        "question": "Insulation secure and complete?",
+        "response": "Yes"
+      },
+      {
+        "question": "Filters installed?",
+        "response": "Yes"
+      },
+      {
+        "question": "Ductwork sealed and supported?",
+        "response": "Yes"
+      },
+      {
+        "question": "Condensate lines pitched?",
+        "response": "No"
+      }
+    ]
+  },
+  {
+    "project_id": 2525858,
+    "project_name": "Cape Coral Residential Community",
+    "inspection_id": 116,
+    "inspection_type": "QA/QC - Concrete",
+    "trade": "Concrete",
+    "inspection_date": "2024-10-04",
+    "status": "Closed",
+    "location": "Staging Area",
+    "created_by": "Jordan Smith",
+    "description": "Quality control inspection for Concrete scope.",
+    "attachments": [
+      "QC_0116.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Cold joints treated?",
+        "response": "Yes"
+      },
+      {
+        "question": "Cure method confirmed?",
+        "response": "Yes"
+      },
+      {
+        "question": "Rebar in place per drawings?",
+        "response": "N/A"
+      }
+    ]
+  },
+  {
+    "project_id": 2525858,
+    "project_name": "Cape Coral Residential Community",
+    "inspection_id": 117,
+    "inspection_type": "QA/QC - Landscaping",
+    "trade": "Landscaping",
+    "inspection_date": "2025-03-04",
+    "status": "Open",
+    "location": "Main Hall",
+    "created_by": "Jordan Smith",
+    "description": "Quality control inspection for Landscaping scope.",
+    "attachments": [
+      "QC_0117.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Root balls below grade?",
+        "response": "No"
+      },
+      {
+        "question": "Sod joints tight?",
+        "response": "No"
+      },
+      {
+        "question": "Mulch evenly spread?",
+        "response": "N/A"
+      }
+    ]
+  },
+  {
+    "project_id": 2525858,
+    "project_name": "Cape Coral Residential Community",
+    "inspection_id": 118,
+    "inspection_type": "QA/QC - Asphalt Paving",
+    "trade": "Asphalt",
+    "inspection_date": "2025-01-17",
+    "status": "Closed",
+    "location": "Staging Area",
+    "created_by": "Chris Velez",
+    "description": "Quality control inspection for Asphalt scope.",
+    "attachments": [
+      "QC_0118.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Subgrade compacted?",
+        "response": "N/A"
+      },
+      {
+        "question": "Tack coat applied evenly?",
+        "response": "N/A"
+      },
+      {
+        "question": "Compaction achieved?",
+        "response": "Yes"
+      }
+    ]
+  },
+  {
+    "project_id": 2525858,
+    "project_name": "Cape Coral Residential Community",
+    "inspection_id": 119,
+    "inspection_type": "QA/QC - Windows & Glazing",
+    "trade": "Glazing",
+    "inspection_date": "2024-10-25",
+    "status": "Open",
+    "location": "Main Hall",
+    "created_by": "Jordan Smith",
+    "description": "Quality control inspection for Glazing scope.",
+    "attachments": [
+      "QC_0119.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Shims installed at anchors?",
+        "response": "N/A"
+      },
+      {
+        "question": "Frames plumb and square?",
+        "response": "N/A"
+      },
+      {
+        "question": "Gaskets installed tight?",
+        "response": "No"
+      }
+    ]
+  },
+  {
+    "project_id": 2525858,
+    "project_name": "Cape Coral Residential Community",
+    "inspection_id": 120,
+    "inspection_type": "QA/QC - Windows & Glazing",
+    "trade": "Glazing",
+    "inspection_date": "2024-11-03",
+    "status": "Open",
+    "location": "Main Hall",
+    "created_by": "Jordan Smith",
+    "description": "Quality control inspection for Glazing scope.",
+    "attachments": [
+      "QC_0120.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Sealants compatible and cured?",
+        "response": "Yes"
+      },
+      {
+        "question": "Frames plumb and square?",
+        "response": "N/A"
+      },
+      {
+        "question": "Shims installed at anchors?",
+        "response": "N/A"
+      },
+      {
+        "question": "Glass per submittal?",
+        "response": "N/A"
+      }
+    ]
+  },
+  {
+    "project_id": 2525859,
+    "project_name": "Hialeah Industrial Park",
+    "inspection_id": 121,
+    "inspection_type": "QA/QC - Roofing",
+    "trade": "Roofing",
+    "inspection_date": "2022-06-19",
+    "status": "Closed",
+    "location": "Staging Area",
+    "created_by": "Jordan Smith",
+    "description": "Quality control inspection for Roofing scope.",
+    "attachments": [
+      "QC_0121.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Cap sheet adhered correctly?",
+        "response": "Yes"
+      },
+      {
+        "question": "Fasteners per spec?",
+        "response": "Yes"
+      },
+      {
+        "question": "Flashing installed at all transitions?",
+        "response": "No"
+      },
+      {
+        "question": "Penetrations sealed?",
+        "response": "No"
+      }
+    ]
+  },
+  {
+    "project_id": 2525859,
+    "project_name": "Hialeah Industrial Park",
+    "inspection_id": 122,
+    "inspection_type": "QA/QC - Roofing",
+    "trade": "Roofing",
+    "inspection_date": "2024-08-24",
+    "status": "Closed",
+    "location": "Staging Area",
+    "created_by": "Jordan Smith",
+    "description": "Quality control inspection for Roofing scope.",
+    "attachments": [
+      "QC_0122.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Cap sheet adhered correctly?",
+        "response": "Yes"
+      },
+      {
+        "question": "Fasteners per spec?",
+        "response": "N/A"
+      },
+      {
+        "question": "Flashing installed at all transitions?",
+        "response": "No"
+      },
+      {
+        "question": "Underlayment lapped properly?",
+        "response": "No"
+      },
+      {
+        "question": "Penetrations sealed?",
+        "response": "N/A"
+      }
+    ]
+  },
+  {
+    "project_id": 2525859,
+    "project_name": "Hialeah Industrial Park",
+    "inspection_id": 123,
+    "inspection_type": "QA/QC - HVAC",
+    "trade": "HVAC",
+    "inspection_date": "2023-09-27",
+    "status": "Open",
+    "location": "Main Hall",
+    "created_by": "Dana Patel",
+    "description": "Quality control inspection for HVAC scope.",
+    "attachments": [
+      "QC_0123.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Ductwork sealed and supported?",
+        "response": "Yes"
+      },
+      {
+        "question": "Condensate lines pitched?",
+        "response": "No"
+      },
+      {
+        "question": "Insulation secure and complete?",
+        "response": "N/A"
+      }
+    ]
+  },
+  {
+    "project_id": 2525859,
+    "project_name": "Hialeah Industrial Park",
+    "inspection_id": 124,
+    "inspection_type": "QA/QC - Pools",
+    "trade": "Pools",
+    "inspection_date": "2025-06-23",
+    "status": "Closed",
+    "location": "Sector 1",
+    "created_by": "Mason Richards",
+    "description": "Quality control inspection for Pools scope.",
+    "attachments": [
+      "QC_0124.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Plumbing pressure tested?",
+        "response": "Yes"
+      },
+      {
+        "question": "Tile installed per detail?",
+        "response": "No"
+      },
+      {
+        "question": "Electrical bonding complete?",
+        "response": "Yes"
+      }
+    ]
+  },
+  {
+    "project_id": 2525859,
+    "project_name": "Hialeah Industrial Park",
+    "inspection_id": 125,
+    "inspection_type": "QA/QC - Asphalt Paving",
+    "trade": "Asphalt",
+    "inspection_date": "2022-04-20",
+    "status": "Open",
+    "location": "North Lot",
+    "created_by": "Dana Patel",
+    "description": "Quality control inspection for Asphalt scope.",
+    "attachments": [
+      "QC_0125.jpg"
+    ],
+    "checklist": [
+      {
+        "question": "Subgrade compacted?",
+        "response": "No"
+      },
+      {
+        "question": "Temperature within spec?",
+        "response": "No"
+      },
+      {
+        "question": "Compaction achieved?",
+        "response": "Yes"
+      }
+    ]
+  }
+]

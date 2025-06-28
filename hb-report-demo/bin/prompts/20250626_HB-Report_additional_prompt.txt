@@ -1,0 +1,6 @@
+When you have completed your review and are prepared to proceed, respond with the single word "Ready".
+
+File: lib/auth-context.tsx
+Error: Could not read file - ENOENT: no such file or directory, open '/Users/bobbyfetting/Projects/hb-report/hb-report-demo/lib/auth-context.tsx'
+
+Please await further instruction.

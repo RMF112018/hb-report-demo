@@ -3,23 +3,23 @@
 // Use within BuyoutForm to render subcontract checklist fields
 // Reference: https://ant.design/components/form
 // *Additional Reference*: https://react-hook-form.com/docs
+// *Additional Reference*: https://react.dev/reference/react/memo
 
 import React from 'react';
 import { Row, Col, Form, Divider } from 'antd';
 import { Controller } from 'react-hook-form';
 import PropTypes from 'prop-types';
 import { SelectField, TextField, TextAreaField, CHECKLIST_STATUSES } from 'hb-report';
-import '../../styles/BuyoutForm.css';
 
-const SubcontractChecklistSection = ({ control }) => (
-  <div id="subcontract-checklist" className="sectionCard">
-    <div className="sectionCard">
-      <h3 className="sectionTitle">Subcontract Checklist</h3>
+const SubcontractChecklistSection = React.memo(({ control }) => (
+  <div id="subcontract-checklist">
+    <div>
+      <h3>Subcontract Checklist</h3>
       <Row gutter={[16, 8]} align="middle">
         <Col span={12}>
           <Row gutter={[16, 0]} align="middle">
             <Col span={10}>
-              <span className="fieldLabel">Contract</span>
+              <span>Contract</span>
             </Col>
             <Col span={14}>
               <Controller
@@ -32,7 +32,7 @@ const SubcontractChecklistSection = ({ control }) => (
                       value={field.value}
                       onChange={field.onChange}
                       options={CHECKLIST_STATUSES}
-                      placeholder="Select status"
+                      placeholder="Undefined"
                     />
                   </Form.Item>
                 )}
@@ -41,7 +41,7 @@ const SubcontractChecklistSection = ({ control }) => (
           </Row>
           <Row gutter={[16, 0]} align="middle">
             <Col span={10}>
-              <span className="fieldLabel">Schedule A (General Conditions)</span>
+              <span>Schedule A (General Conditions)</span>
             </Col>
             <Col span={14}>
               <Controller
@@ -54,7 +54,7 @@ const SubcontractChecklistSection = ({ control }) => (
                       value={field.value}
                       onChange={field.onChange}
                       options={CHECKLIST_STATUSES}
-                      placeholder="Select status"
+                      placeholder="Undefined"
                     />
                   </Form.Item>
                 )}
@@ -63,7 +63,7 @@ const SubcontractChecklistSection = ({ control }) => (
           </Row>
           <Row gutter={[16, 0]} align="middle">
             <Col span={10}>
-              <span className="fieldLabel">Schedule B (Scope of Work)</span>
+              <span>Schedule B (Scope of Work)</span>
             </Col>
             <Col span={14}>
               <Controller
@@ -76,7 +76,7 @@ const SubcontractChecklistSection = ({ control }) => (
                       value={field.value}
                       onChange={field.onChange}
                       options={CHECKLIST_STATUSES}
-                      placeholder="Select status"
+                      placeholder="Undefined"
                     />
                   </Form.Item>
                 )}
@@ -85,7 +85,7 @@ const SubcontractChecklistSection = ({ control }) => (
           </Row>
           <Row gutter={[16, 0]} align="middle">
             <Col span={10}>
-              <span className="fieldLabel">Exhibit A (Drawings)</span>
+              <span>Exhibit A (Drawings)</span>
             </Col>
             <Col span={14}>
               <Controller
@@ -98,7 +98,7 @@ const SubcontractChecklistSection = ({ control }) => (
                       value={field.value}
                       onChange={field.onChange}
                       options={CHECKLIST_STATUSES}
-                      placeholder="Select status"
+                      placeholder="Undefined"
                     />
                   </Form.Item>
                 )}
@@ -107,7 +107,7 @@ const SubcontractChecklistSection = ({ control }) => (
           </Row>
           <Row gutter={[16, 0]} align="middle">
             <Col span={10}>
-              <span className="fieldLabel">Exhibit B (Project Schedule)</span>
+              <span>Exhibit B (Project Schedule)</span>
             </Col>
             <Col span={14}>
               <Controller
@@ -120,7 +120,7 @@ const SubcontractChecklistSection = ({ control }) => (
                       value={field.value}
                       onChange={field.onChange}
                       options={CHECKLIST_STATUSES}
-                      placeholder="Select status"
+                      placeholder="Undefined"
                     />
                   </Form.Item>
                 )}
@@ -129,7 +129,7 @@ const SubcontractChecklistSection = ({ control }) => (
           </Row>
           <Row gutter={[16, 0]} align="middle">
             <Col span={10}>
-              <span className="fieldLabel">Exhibit I (OCIP Addendum)</span>
+              <span>Exhibit I (OCIP Addendum)</span>
             </Col>
             <Col span={14}>
               <Controller
@@ -142,7 +142,7 @@ const SubcontractChecklistSection = ({ control }) => (
                       value={field.value}
                       onChange={field.onChange}
                       options={CHECKLIST_STATUSES}
-                      placeholder="Select status"
+                      placeholder="Undefined"
                     />
                   </Form.Item>
                 )}
@@ -151,7 +151,7 @@ const SubcontractChecklistSection = ({ control }) => (
           </Row>
           <Row gutter={[16, 0]} align="middle">
             <Col span={10}>
-              <span className="fieldLabel">Labor Rates</span>
+              <span>Labor Rates</span>
             </Col>
             <Col span={14}>
               <Controller
@@ -164,7 +164,7 @@ const SubcontractChecklistSection = ({ control }) => (
                       value={field.value}
                       onChange={field.onChange}
                       options={CHECKLIST_STATUSES}
-                      placeholder="Select status"
+                      placeholder="Undefined"
                     />
                   </Form.Item>
                 )}
@@ -173,7 +173,7 @@ const SubcontractChecklistSection = ({ control }) => (
           </Row>
           <Row gutter={[16, 0]} align="middle">
             <Col span={10}>
-              <span className="fieldLabel">Unit Rates</span>
+              <span>Unit Rates</span>
             </Col>
             <Col span={14}>
               <Controller
@@ -186,7 +186,7 @@ const SubcontractChecklistSection = ({ control }) => (
                       value={field.value}
                       onChange={field.onChange}
                       options={CHECKLIST_STATUSES}
-                      placeholder="Select status"
+                      placeholder="Undefined"
                     />
                   </Form.Item>
                 )}
@@ -195,7 +195,7 @@ const SubcontractChecklistSection = ({ control }) => (
           </Row>
           <Row gutter={[16, 0]} align="middle">
             <Col span={10}>
-              <span className="fieldLabel">Exhibits</span>
+              <span>Exhibits</span>
             </Col>
             <Col span={14}>
               <Controller
@@ -208,7 +208,7 @@ const SubcontractChecklistSection = ({ control }) => (
                       value={field.value}
                       onChange={field.onChange}
                       options={CHECKLIST_STATUSES}
-                      placeholder="Select status"
+                      placeholder="Undefined"
                     />
                   </Form.Item>
                 )}
@@ -217,7 +217,7 @@ const SubcontractChecklistSection = ({ control }) => (
           </Row>
           <Row gutter={[16, 0]} align="middle">
             <Col span={10}>
-              <span className="fieldLabel">Schedule of Values</span>
+              <span>Schedule of Values</span>
             </Col>
             <Col span={14}>
               <Controller
@@ -230,7 +230,7 @@ const SubcontractChecklistSection = ({ control }) => (
                       value={field.value}
                       onChange={field.onChange}
                       options={CHECKLIST_STATUSES}
-                      placeholder="Select status"
+                      placeholder="Undefined"
                     />
                   </Form.Item>
                 )}
@@ -241,7 +241,7 @@ const SubcontractChecklistSection = ({ control }) => (
         <Col span={12}>
           <Row gutter={[16, 0]} align="middle">
             <Col span={10}>
-              <span className="fieldLabel">P&P Bond</span>
+              <span>P&P Bond</span>
             </Col>
             <Col span={14}>
               <Controller
@@ -254,7 +254,7 @@ const SubcontractChecklistSection = ({ control }) => (
                       value={field.value}
                       onChange={field.onChange}
                       options={CHECKLIST_STATUSES}
-                      placeholder="Select status"
+                      placeholder="Undefined"
                     />
                   </Form.Item>
                 )}
@@ -263,7 +263,7 @@ const SubcontractChecklistSection = ({ control }) => (
           </Row>
           <Row gutter={[16, 0]} align="middle">
             <Col span={10}>
-              <span className="fieldLabel">W-9</span>
+              <span>W-9</span>
             </Col>
             <Col span={14}>
               <Controller
@@ -276,7 +276,7 @@ const SubcontractChecklistSection = ({ control }) => (
                       value={field.value}
                       onChange={field.onChange}
                       options={CHECKLIST_STATUSES}
-                      placeholder="Select status"
+                      placeholder="Undefined"
                     />
                   </Form.Item>
                 )}
@@ -285,7 +285,7 @@ const SubcontractChecklistSection = ({ control }) => (
           </Row>
           <Row gutter={[16, 0]} align="middle">
             <Col span={10}>
-              <span className="fieldLabel">License</span>
+              <span>License</span>
             </Col>
             <Col span={14}>
               <Controller
@@ -298,7 +298,7 @@ const SubcontractChecklistSection = ({ control }) => (
                       value={field.value}
                       onChange={field.onChange}
                       options={CHECKLIST_STATUSES}
-                      placeholder="Select status"
+                      placeholder="Undefined"
                     />
                   </Form.Item>
                 )}
@@ -307,7 +307,7 @@ const SubcontractChecklistSection = ({ control }) => (
           </Row>
           <Row gutter={[16, 0]} align="middle">
             <Col span={10}>
-              <span className="fieldLabel">Insurance - General Liability</span>
+              <span>Insurance - General Liability</span>
             </Col>
             <Col span={14}>
               <Controller
@@ -320,7 +320,7 @@ const SubcontractChecklistSection = ({ control }) => (
                       value={field.value}
                       onChange={field.onChange}
                       options={CHECKLIST_STATUSES}
-                      placeholder="Select status"
+                      placeholder="Undefined"
                     />
                   </Form.Item>
                 )}
@@ -329,7 +329,7 @@ const SubcontractChecklistSection = ({ control }) => (
           </Row>
           <Row gutter={[16, 0]} align="middle">
             <Col span={10}>
-              <span className="fieldLabel">Insurance - Auto</span>
+              <span>Insurance - Auto</span>
             </Col>
             <Col span={14}>
               <Controller
@@ -342,7 +342,7 @@ const SubcontractChecklistSection = ({ control }) => (
                       value={field.value}
                       onChange={field.onChange}
                       options={CHECKLIST_STATUSES}
-                      placeholder="Select status"
+                      placeholder="Undefined"
                     />
                   </Form.Item>
                 )}
@@ -351,7 +351,7 @@ const SubcontractChecklistSection = ({ control }) => (
           </Row>
           <Row gutter={[16, 0]} align="middle">
             <Col span={10}>
-              <span className="fieldLabel">Insurance - Umbrella Liability</span>
+              <span>Insurance - Umbrella Liability</span>
             </Col>
             <Col span={14}>
               <Controller
@@ -364,7 +364,7 @@ const SubcontractChecklistSection = ({ control }) => (
                       value={field.value}
                       onChange={field.onChange}
                       options={CHECKLIST_STATUSES}
-                      placeholder="Select status"
+                      placeholder="Undefined"
                     />
                   </Form.Item>
                 )}
@@ -373,7 +373,7 @@ const SubcontractChecklistSection = ({ control }) => (
           </Row>
           <Row gutter={[16, 0]} align="middle">
             <Col span={10}>
-              <span className="fieldLabel">Insurance - Workers Comp</span>
+              <span>Insurance - Workers Comp</span>
             </Col>
             <Col span={14}>
               <Controller
@@ -386,7 +386,7 @@ const SubcontractChecklistSection = ({ control }) => (
                       value={field.value}
                       onChange={field.onChange}
                       options={CHECKLIST_STATUSES}
-                      placeholder="Select status"
+                      placeholder="Undefined"
                     />
                   </Form.Item>
                 )}
@@ -395,7 +395,7 @@ const SubcontractChecklistSection = ({ control }) => (
           </Row>
           <Row gutter={[16, 0]} align="middle">
             <Col span={10}>
-              <span className="fieldLabel">Special Requirements (See Reverse)</span>
+              <span>Special Requirements (See Reverse)</span>
             </Col>
             <Col span={14}>
               <Controller
@@ -408,7 +408,7 @@ const SubcontractChecklistSection = ({ control }) => (
                       value={field.value}
                       onChange={field.onChange}
                       options={CHECKLIST_STATUSES}
-                      placeholder="Select status"
+                      placeholder="Undefined"
                     />
                   </Form.Item>
                 )}
@@ -417,7 +417,7 @@ const SubcontractChecklistSection = ({ control }) => (
           </Row>
           <Row gutter={[16, 0]} align="middle">
             <Col span={10}>
-              <span className="fieldLabel">Compliance Manager (approved compliance)</span>
+              <span>Compliance Manager (approved compliance)</span>
             </Col>
             <Col span={14}>
               <Controller
@@ -430,7 +430,7 @@ const SubcontractChecklistSection = ({ control }) => (
                       value={field.value}
                       onChange={field.onChange}
                       options={CHECKLIST_STATUSES}
-                      placeholder="Select status"
+                      placeholder="Undefined"
                     />
                   </Form.Item>
                 )}
@@ -439,7 +439,7 @@ const SubcontractChecklistSection = ({ control }) => (
           </Row>
           <Row gutter={[16, 0]} align="middle">
             <Col span={10}>
-              <span className="fieldLabel">Scanned & Returned to Sub</span>
+              <span>Scanned & Returned to Sub</span>
             </Col>
             <Col span={14}>
               <Controller
@@ -452,7 +452,7 @@ const SubcontractChecklistSection = ({ control }) => (
                       value={field.value}
                       onChange={field.onChange}
                       options={CHECKLIST_STATUSES}
-                      placeholder="Select status"
+                      placeholder="Undefined"
                     />
                   </Form.Item>
                 )}
@@ -461,12 +461,12 @@ const SubcontractChecklistSection = ({ control }) => (
           </Row>
         </Col>
       </Row>
-      <Divider className="divider" />
+      <Divider />
       <Row gutter={[16, 8]} align="middle">
         <Col span={12}>
           <Row gutter={[16, 0]} align="middle">
             <Col span={10}>
-              <span className="fieldLabel">PX</span>
+              <span>PX</span>
             </Col>
             <Col span={14}>
               <Controller
@@ -478,6 +478,7 @@ const SubcontractChecklistSection = ({ control }) => (
                       id="px"
                       value={field.value}
                       onChange={field.onChange}
+                      placeholder="Undefined"
                     />
                   </Form.Item>
                 )}
@@ -486,7 +487,7 @@ const SubcontractChecklistSection = ({ control }) => (
           </Row>
           <Row gutter={[16, 0]} align="middle">
             <Col span={10}>
-              <span className="fieldLabel">PM</span>
+              <span>PM</span>
             </Col>
             <Col span={14}>
               <Controller
@@ -498,6 +499,7 @@ const SubcontractChecklistSection = ({ control }) => (
                       id="pm"
                       value={field.value}
                       onChange={field.onChange}
+                      placeholder="Undefined"
                     />
                   </Form.Item>
                 )}
@@ -506,7 +508,7 @@ const SubcontractChecklistSection = ({ control }) => (
           </Row>
           <Row gutter={[16, 0]} align="middle">
             <Col span={10}>
-              <span className="fieldLabel">PA</span>
+              <span>PA</span>
             </Col>
             <Col span={14}>
               <Controller
@@ -518,6 +520,7 @@ const SubcontractChecklistSection = ({ control }) => (
                       id="pa"
                       value={field.value}
                       onChange={field.onChange}
+                      placeholder="Undefined"
                     />
                   </Form.Item>
                 )}
@@ -528,7 +531,7 @@ const SubcontractChecklistSection = ({ control }) => (
         <Col span={12}>
           <Row gutter={[16, 0]} align="middle">
             <Col span={10}>
-              <span className="fieldLabel">Compliance Manager</span>
+              <span>Compliance Manager</span>
             </Col>
             <Col span={14}>
               <Controller
@@ -540,6 +543,7 @@ const SubcontractChecklistSection = ({ control }) => (
                       id="compliance_manager"
                       value={field.value}
                       onChange={field.onChange}
+                      placeholder="Undefined"
                     />
                   </Form.Item>
                 )}
@@ -548,12 +552,12 @@ const SubcontractChecklistSection = ({ control }) => (
           </Row>
         </Col>
       </Row>
-      <Divider className="divider" />
+      <Divider />
       <Row gutter={[16, 8]} align="middle">
         <Col span={24}>
           <Row gutter={[16, 0]} align="middle">
             <Col span={5}>
-              <span className="fieldLabel">Additional Notes / Comments</span>
+              <span>Additional Notes / Comments</span>
             </Col>
             <Col span={19}>
               <Controller
@@ -566,6 +570,7 @@ const SubcontractChecklistSection = ({ control }) => (
                       value={field.value}
                       onChange={field.onChange}
                       rows={4}
+                      placeholder="Undefined"
                     />
                   </Form.Item>
                 )}
@@ -576,7 +581,7 @@ const SubcontractChecklistSection = ({ control }) => (
       </Row>
     </div>
   </div>
-);
+));
 
 SubcontractChecklistSection.propTypes = {
   control: PropTypes.object.isRequired,
