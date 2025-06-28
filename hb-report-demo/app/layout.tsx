@@ -59,6 +59,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <AppLayoutShell showHeader={false}>
                 {children}
               </AppLayoutShell>
+              <Toaster />
             </ThemeProvider>
           </ProjectProvider>
         </AuthProvider>

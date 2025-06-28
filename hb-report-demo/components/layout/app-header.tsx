@@ -11,6 +11,7 @@ import { useAuth } from "@/context/auth-context"
 import { useRouter } from "next/navigation"
 import { useTheme } from "next-themes"
 import { useProjectContext } from "@/context/project-context"
+import { useToast } from "@/components/ui/use-toast"
 import projectsData from "@/data/mock/projects.json"
 
 /**
@@ -28,6 +29,7 @@ export const AppHeader = () => {
   const { user, logout } = useAuth()
   const { theme, setTheme } = useTheme()
   const router = useRouter()
+  const { toast } = useToast()
 
   // State management
   const [notifications] = useState(3)
@@ -329,12 +331,42 @@ export const AppHeader = () => {
         localStorage.setItem("selectedProject", projectId)
       }
 
-      // Navigate to project-specific view if not "all"
-      if (projectId !== "all") {
-        const targetPath = `/dashboard/project/${projectId}`
-        console.log("Navigating to:", targetPath)
-        router.push(targetPath)
+      // Show informative toast instead of navigating
+      const getProjectDisplayInfo = () => {
+        if (projectId === "all") {
+          return {
+            title: "All Projects Selected",
+            description: "You are now viewing data from all projects across your portfolio."
+          }
+        }
+        
+        if (projectId.startsWith('all-')) {
+          const stageName = projectId.replace('all-', '').replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())
+          return {
+            title: `${stageName} Projects Selected`,
+            description: `You are now viewing data filtered to all projects in the ${stageName.toLowerCase()} stage.`
+          }
+        }
+        
+        const selectedProject = projects.find((p) => p.id === projectId)
+        return {
+          title: `Project Filter Applied`,
+          description: `You are now viewing data filtered to "${selectedProject?.name || 'Selected Project'}". All dashboard data will reflect only this project.`
+        }
       }
+
+      const { title, description } = getProjectDisplayInfo()
+      
+      toast({
+        title,
+        description,
+        duration: 8000, // 8 seconds for auto-dismiss, but with manual dismiss option
+        action: {
+          altText: "Dismiss",
+          onClick: () => {},
+          children: "Got it"
+        }
+      })
 
       // Dispatch event with enhanced details
       if (typeof window !== "undefined") {
@@ -349,7 +381,7 @@ export const AppHeader = () => {
         )
       }
     },
-    [projects, router, setProjectId]
+    [projects, setProjectId, toast]
   )
 
   const handleToolNavigation = useCallback(
