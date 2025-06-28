@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation"
 import { useTheme } from "next-themes"
 import { useProjectContext } from "@/context/project-context"
 import { useToast } from "@/components/ui/use-toast"
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import projectsData from "@/data/mock/projects.json"
 
 /**
@@ -41,6 +42,11 @@ export const AppHeader = () => {
   const [showToolMenu, setShowToolMenu] = useState(false)
   const [showUserMenu, setShowUserMenu] = useState(false)
   const [mounted, setMounted] = useState(false)
+  const [showProjectModal, setShowProjectModal] = useState(false)
+  const [projectModalContent, setProjectModalContent] = useState({
+    title: "",
+    description: ""
+  })
 
   // Refs for click outside detection
   const headerRef = useRef<HTMLElement>(null)
@@ -331,12 +337,12 @@ export const AppHeader = () => {
         localStorage.setItem("selectedProject", projectId)
       }
 
-      // Show informative toast instead of navigating
+      // Show informative modal with demo explanation
       const getProjectDisplayInfo = () => {
         if (projectId === "all") {
           return {
             title: "All Projects Selected",
-            description: "You are now viewing data from all projects across your portfolio."
+            description: "In the final production version of this application, selecting this option would display data from all projects across your portfolio. The current demo shows sample data that is not filtered by project selection."
           }
         }
         
@@ -344,29 +350,22 @@ export const AppHeader = () => {
           const stageName = projectId.replace('all-', '').replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())
           return {
             title: `${stageName} Projects Selected`,
-            description: `You are now viewing data filtered to all projects in the ${stageName.toLowerCase()} stage.`
+            description: `In the final production version of this application, selecting this option would filter all dashboard data to show only projects in the ${stageName.toLowerCase()} stage. This filter would persist as you navigate to other pages in the application until you change the project selection or log out. The current demo shows sample data that is not filtered by project selection.`
           }
         }
         
         const selectedProject = projects.find((p) => p.id === projectId)
         return {
           title: `Project Filter Applied`,
-          description: `You are now viewing data filtered to "${selectedProject?.name || 'Selected Project'}". All dashboard data will reflect only this project.`
+          description: `In the final production version of this application, selecting "${selectedProject?.name || 'this project'}" would filter all dashboard data to show only information related to this specific project. This filter would persist as you navigate to other pages in the application until you change the project selection or log out. The current demo shows sample data that is not filtered by project selection.`
         }
       }
 
       const { title, description } = getProjectDisplayInfo()
       
-      toast({
-        title,
-        description,
-        duration: 8000, // 8 seconds for auto-dismiss, but with manual dismiss option
-        action: {
-          altText: "Dismiss",
-          onClick: () => {},
-          children: "Got it"
-        }
-      })
+      // Show modal instead of toast
+      setProjectModalContent({ title, description })
+      setShowProjectModal(true)
 
       // Dispatch event with enhanced details
       if (typeof window !== "undefined") {
@@ -462,15 +461,15 @@ export const AppHeader = () => {
     }
   }, [showDepartmentMenu, showProjectMenu, showToolMenu, showUserMenu])
 
-  // Load saved project on mount
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const savedProject = localStorage.getItem("selectedProject")
-      if (savedProject) {
-        setSelectedProject(savedProject)
-      }
-    }
-  }, [])
+  // Don't load saved project - always start with "Projects" default
+  // useEffect(() => {
+  //   if (typeof window !== "undefined") {
+  //     const savedProject = localStorage.getItem("selectedProject")
+  //     if (savedProject) {
+  //       setSelectedProject(savedProject)
+  //     }
+  //   }
+  // }, [])
 
   return (
     <>
@@ -544,7 +543,10 @@ export const AppHeader = () => {
                     const stageName = selectedProject.replace('all-', '').replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
                     return `All ${stageName} Projects`;
                   }
-                  return projects.find((p) => p.id === selectedProject)?.name || "All Projects";
+                  if (selectedProject === "all") {
+                    return "Projects";
+                  }
+                  return projects.find((p) => p.id === selectedProject)?.name || "Projects";
                 })()}
               </span>
                               {selectedProject !== "all" && (
@@ -1205,6 +1207,26 @@ export const AppHeader = () => {
           </div>
         </>
       )}
+
+      {/* Project Selection Modal */}
+      <Dialog open={showProjectModal} onOpenChange={setShowProjectModal}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <Building className="h-5 w-5 text-blue-600" />
+              {projectModalContent.title}
+            </DialogTitle>
+            <DialogDescription className="text-base leading-relaxed pt-2">
+              {projectModalContent.description}
+            </DialogDescription>
+          </DialogHeader>
+          <div className="flex justify-end pt-4">
+            <Button onClick={() => setShowProjectModal(false)} className="bg-blue-600 hover:bg-blue-700">
+              Got it
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </>
   )
 }
