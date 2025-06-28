@@ -19,6 +19,10 @@ const config: Config = {
       },
     },
     extend: {
+      screens: {
+        '3xl': '1920px',   // Ultra-wide screens
+        '4xl': '2560px',   // 4K and larger displays
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

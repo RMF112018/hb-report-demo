@@ -202,9 +202,19 @@ export function DashboardGrid({
       onDragEnd={handleDragEnd}
     >
       <SortableContext items={items.map(item => item.id)} strategy={rectSortingStrategy}>
-        <div className={cn("columns-1 lg:columns-2 xl:columns-3", spacingClass)}>
+        {/* Responsive Grid Layout */}
+        <div className={cn(
+          "grid gap-4 sm:gap-6",
+          "grid-cols-1",                    // Mobile: 1 column
+          "sm:grid-cols-2",                 // Small tablet: 2 columns  
+          "lg:grid-cols-3",                 // Large tablet/small desktop: 3 columns
+          "xl:grid-cols-4",                 // Desktop: 4 columns
+          "2xl:grid-cols-5",                // Large desktop: 5 columns
+          "3xl:grid-cols-6",                // Ultra-wide: 6 columns
+          spacingClass
+        )}>
           {items.map((card) => (
-            <div key={card.id} className="break-inside-avoid mb-6">
+            <div key={card.id} className="w-full">
               <SortableCard
                 card={card}
                 isEditing={isEditing}
@@ -269,7 +279,10 @@ function SortableCard({
       ref={setNodeRef}
       style={style}
       className={cn(
-        "bg-card rounded-lg border border-border shadow-sm hover:shadow-md transition-all duration-200 flex flex-col relative group overflow-hidden",
+        "bg-card rounded-lg border border-border shadow-sm hover:shadow-md transition-all duration-200 flex flex-col relative group",
+        "min-h-[300px] sm:min-h-[350px] lg:min-h-[400px]", // Responsive minimum heights
+        "max-h-[90vh] sm:max-h-[80vh] lg:max-h-none",      // Prevent overflow on small screens
+        "overflow-hidden",
         isDragging && "shadow-xl ring-2 ring-blue-400",
         isEditing && "ring-1 ring-blue-200"
       )}
@@ -306,9 +319,9 @@ function SortableCard({
       )}
 
       {/* Card Header */}
-      <div className="px-4 py-3 border-b border-gray-100 flex-shrink-0">
+      <div className="px-3 sm:px-4 py-2 sm:py-3 border-b border-gray-100 dark:border-gray-700 flex-shrink-0">
         <div className="flex items-center justify-between">
-          <h3 className="font-semibold text-foreground">{card.title}</h3>
+          <h3 className="font-semibold text-foreground text-sm sm:text-base truncate pr-2">{card.title}</h3>
           <div className="flex items-center">
             {card.type === "portfolio-overview" && <Briefcase className="h-5 w-5 text-blue-600 dark:text-blue-400" />}
             {card.type === "enhanced-hbi-insights" && <Brain className="h-5 w-5 text-purple-600" />}
@@ -341,8 +354,10 @@ function SortableCard({
       </div>
 
       {/* Card Content */}
-      <div className="flex-1 min-h-0">
-        <CardContent card={card} isCompact={isCompact} userRole={userRole} />
+      <div className="flex-1 min-h-0 overflow-y-auto">
+        <div className="p-2 sm:p-3 lg:p-4 h-full">
+          <CardContent card={card} isCompact={isCompact} userRole={userRole} />
+        </div>
       </div>
     </div>
   );

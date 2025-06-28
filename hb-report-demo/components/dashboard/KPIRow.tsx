@@ -58,6 +58,18 @@ const getPerformanceLevel = (value: string | number, type: string, trend?: strin
 }
 
 export function KPIRow({ userRole }: KPIRowProps) {
+  // Get responsive KPI count based on screen size
+  const getResponsiveKPICount = (kpis: any[]) => {
+    // For mobile: show top 2-3 most important KPIs
+    // For tablet: show 4-5 KPIs
+    // For desktop: show all KPIs
+    return {
+      mobile: kpis.slice(0, 2),      // Show 2 on mobile
+      tablet: kpis.slice(0, 4),      // Show 4 on tablet
+      desktop: kpis                  // Show all on desktop
+    }
+  }
+
   // KPI configurations by role
   const getKPIsForRole = () => {
     switch (userRole) {
@@ -284,13 +296,49 @@ export function KPIRow({ userRole }: KPIRowProps) {
     }
   }
 
-  const kpis = getKPIsForRole()
+  const allKpis = getKPIsForRole()
+  const responsiveKpis = getResponsiveKPICount(allKpis)
 
   return (
-    <div className="bg-card border-b border-border px-6 py-3 mb-4">
-      <div className="flex items-center gap-2 sm:gap-3 md:gap-4 lg:gap-6 overflow-x-auto">
-        {kpis.map((kpi, index) => (
-          <div key={index} className="flex-1 min-w-[120px] sm:min-w-[140px] md:min-w-[160px]">
+    <div className="bg-card border-b border-border px-4 sm:px-6 py-3 mb-4">
+      {/* Mobile Layout - 2 KPIs per row */}
+      <div className="grid grid-cols-2 gap-2 sm:hidden">
+        {responsiveKpis.mobile.map((kpi, index) => (
+          <KPIWidget
+            key={index}
+            icon={kpi.icon}
+            label={kpi.label}
+            value={kpi.value}
+            unit={kpi.unit}
+            trend={kpi.trend}
+            caption={kpi.caption}
+            compact={true}
+            performance={kpi.performance}
+          />
+        ))}
+      </div>
+
+      {/* Tablet Layout - 4 KPIs in a row */}
+      <div className="hidden sm:grid lg:hidden grid-cols-4 gap-3">
+        {responsiveKpis.tablet.map((kpi, index) => (
+          <KPIWidget
+            key={index}
+            icon={kpi.icon}
+            label={kpi.label}
+            value={kpi.value}
+            unit={kpi.unit}
+            trend={kpi.trend}
+            caption={kpi.caption}
+            compact={true}
+            performance={kpi.performance}
+          />
+        ))}
+      </div>
+
+      {/* Desktop Layout - All KPIs with scrollable overflow */}
+      <div className="hidden lg:flex items-center gap-4 xl:gap-6 overflow-x-auto pb-2">
+        {responsiveKpis.desktop.map((kpi, index) => (
+          <div key={index} className="flex-shrink-0 min-w-[140px] xl:min-w-[160px]">
             <KPIWidget
               icon={kpi.icon}
               label={kpi.label}

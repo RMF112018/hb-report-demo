@@ -56,9 +56,10 @@ export function DashboardLayout({
       {/* KPI Row */}
       <KPIRow userRole={userRole} />
       
-      {/* Dashboard Content - Full Width */}
-      <div className="w-full">
-        <DashboardGrid 
+      {/* Dashboard Content - Responsive Container */}
+      <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
+        <div className="mx-auto max-w-[1920px]"> {/* Max width for ultra-wide screens */}
+          <DashboardGrid 
           cards={cards}
           onLayoutChange={onLayoutChange}
           onCardRemove={onCardRemove}
@@ -71,6 +72,7 @@ export function DashboardLayout({
           spacingClass={getSpacingClass()}
           userRole={userRole}
         />
+        </div>
       </div>
 
       {/* Edit Mode Indicator */}

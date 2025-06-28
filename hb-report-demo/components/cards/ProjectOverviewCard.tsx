@@ -104,21 +104,21 @@ export default function ProjectOverviewCard({ config, span, isCompact, userRole 
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Header Stats */}
-      <div className="flex-shrink-0 p-4 bg-white/80 dark:bg-black/80 backdrop-blur-sm border-b border-blue-200 dark:border-blue-800">
-        <div className="grid grid-cols-2 gap-4">
+      <div className="flex-shrink-0 p-2 sm:p-3 lg:p-4 bg-white/80 dark:bg-black/80 backdrop-blur-sm border-b border-blue-200 dark:border-blue-800">
+        <div className="grid grid-cols-2 gap-2 sm:gap-4">
           <div className="text-center">
-            <div className="text-2xl font-bold text-blue-700">{data.totalProjects}</div>
-            <div className="text-xs text-blue-600 dark:text-blue-400">Total Projects</div>
+            <div className="text-lg sm:text-xl lg:text-2xl font-bold text-blue-700">{data.totalProjects}</div>
+            <div className="text-[10px] sm:text-xs text-blue-600 dark:text-blue-400">Total Projects</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl font-bold text-green-700">{data.activeProjects}</div>
-            <div className="text-xs text-green-600 dark:text-green-400">Active</div>
+            <div className="text-lg sm:text-xl lg:text-2xl font-bold text-green-700">{data.activeProjects}</div>
+            <div className="text-[10px] sm:text-xs text-green-600 dark:text-green-400">Active</div>
           </div>
         </div>
       </div>
 
       {/* Content */}
-      <div className="flex-1 p-4 space-y-4 overflow-y-auto">
+      <div className="flex-1 p-2 sm:p-3 lg:p-4 space-y-2 sm:space-y-3 lg:space-y-4 overflow-y-auto">
         {/* Contract Value Summary */}
         <div className="bg-white/60 dark:bg-black/60 rounded-lg p-3 border border-blue-200 dark:border-blue-800">
           <div className="flex items-center gap-2 mb-2">
