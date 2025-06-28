@@ -451,6 +451,7 @@ export default function PermitLogPage() {
       <div
         className="sticky z-40 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-slate-900 dark:to-slate-800 border-b border-blue-200 dark:border-slate-700 shadow-sm"
         style={{ top: `${headerHeight}px` }}
+        data-tour="permit-log-page-header"
       >
         <div className="px-6 py-4">
           <div className="flex items-center justify-between">
@@ -462,7 +463,7 @@ export default function PermitLogPage() {
                 Comprehensive permit management and inspection tracking system
               </p>
             </div>
-            <div className="flex items-center space-x-3">
+                        <div className="flex items-center space-x-3" data-tour="permit-log-scope-badges">
               <Button
                 variant="outline"
                 size="sm"
@@ -592,18 +593,18 @@ export default function PermitLogPage() {
           ) : (
             <>
               {/* Analytics Section */}
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6" data-tour="permit-log-quick-stats">
                 <div className="lg:col-span-2">
                   <PermitAnalytics permits={filteredPermits} />
                 </div>
-                <div>
+                <div data-tour="overview-hbi-insights">
                   <EnhancedHBIInsights config={generatePermitInsights()} cardId="permit-insights" />
                 </div>
               </div>
 
               {/* Filters Section */}
               {showFilters && (
-                <Card>
+                <Card data-tour="permits-filters">
                   <CardContent className="p-6">
                     <PermitFilters
                       filters={filters}
@@ -661,10 +662,11 @@ export default function PermitLogPage() {
               <Card>
                 <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
                   <div className="border-b">
-                    <TabsList className="grid w-full grid-cols-6 bg-white dark:bg-slate-900 border-b border-gray-200 dark:border-slate-700">
+                    <TabsList className="grid w-full grid-cols-6 bg-white dark:bg-slate-900 border-b border-gray-200 dark:border-slate-700" data-tour="permit-log-tabs">
                       <TabsTrigger
                         value="overview"
                         className="data-[state=active]:bg-[#003087] data-[state=active]:text-white dark:data-[state=active]:bg-blue-600"
+                        data-tour="overview-tab"
                       >
                         <BarChart3 className="h-4 w-4 mr-2" />
                         Overview
@@ -672,6 +674,7 @@ export default function PermitLogPage() {
                       <TabsTrigger
                         value="permits"
                         className="data-[state=active]:bg-[#003087] data-[state=active]:text-white dark:data-[state=active]:bg-blue-600"
+                        data-tour="permits-tab"
                       >
                         <FileText className="h-4 w-4 mr-2" />
                         Permits ({metrics.totalPermits})
@@ -679,6 +682,7 @@ export default function PermitLogPage() {
                       <TabsTrigger
                         value="inspections"
                         className="data-[state=active]:bg-[#003087] data-[state=active]:text-white dark:data-[state=active]:bg-blue-600"
+                        data-tour="inspections-tab"
                       >
                         <Users className="h-4 w-4 mr-2" />
                         Inspections ({metrics.totalInspections})
@@ -686,6 +690,7 @@ export default function PermitLogPage() {
                       <TabsTrigger
                         value="calendar"
                         className="data-[state=active]:bg-[#003087] data-[state=active]:text-white dark:data-[state=active]:bg-blue-600"
+                        data-tour="calendar-tab"
                       >
                         <CalendarDays className="h-4 w-4 mr-2" />
                         Calendar
@@ -693,6 +698,7 @@ export default function PermitLogPage() {
                       <TabsTrigger
                         value="analytics"
                         className="data-[state=active]:bg-[#003087] data-[state=active]:text-white dark:data-[state=active]:bg-blue-600"
+                        data-tour="analytics-tab"
                       >
                         <BarChart3 className="h-4 w-4 mr-2" />
                         Analytics
@@ -700,6 +706,7 @@ export default function PermitLogPage() {
                       <TabsTrigger
                         value="reports"
                         className="data-[state=active]:bg-[#003087] data-[state=active]:text-white dark:data-[state=active]:bg-blue-600"
+                        data-tour="reports-tab"
                       >
                         <Download className="h-4 w-4 mr-2" />
                         Reports
@@ -711,7 +718,7 @@ export default function PermitLogPage() {
                   <TabsContent value="overview" className="mt-0">
                     <div className="p-6 space-y-6">
                       {/* Summary Cards */}
-                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" data-tour="overview-key-metrics">
                         <Card>
                           <CardHeader className="pb-3">
                             <CardTitle className="text-sm font-medium text-muted-foreground">Approval Rate</CardTitle>
@@ -821,13 +828,15 @@ export default function PermitLogPage() {
                           </div>
                         </div>
                       </div>
-                      <PermitTable
-                        permits={filteredPermits}
-                        onEdit={handleEditPermit}
-                        onView={handleViewPermit}
-                        onExport={handleExportPermit}
-                        userRole={user?.role}
-                      />
+                      <div data-tour="permits-table">
+                        <PermitTable
+                          permits={filteredPermits}
+                          onEdit={handleEditPermit}
+                          onView={handleViewPermit}
+                          onExport={handleExportPermit}
+                          userRole={user?.role}
+                        />
+                      </div>
                     </CardContent>
                   </TabsContent>
 
@@ -857,14 +866,16 @@ export default function PermitLogPage() {
                           </div>
                         </div>
                       </div>
-                      <PermitTable
-                        permits={filteredPermits}
-                        onEdit={handleEditPermit}
-                        onView={handleViewPermit}
-                        onExport={handleExportPermit}
-                        userRole={user?.role}
-                        showInspections={true}
-                      />
+                      <div data-tour="inspections-scheduling">
+                        <PermitTable
+                          permits={filteredPermits}
+                          onEdit={handleEditPermit}
+                          onView={handleViewPermit}
+                          onExport={handleExportPermit}
+                          userRole={user?.role}
+                          showInspections={true}
+                        />
+                      </div>
                     </CardContent>
                   </TabsContent>
 
@@ -875,20 +886,24 @@ export default function PermitLogPage() {
                         <h2 className="text-xl font-semibold text-[#003087] dark:text-blue-400">Permit & Inspection Calendar</h2>
                         <p className="text-sm text-muted-foreground mt-1">Visual timeline of permits and inspections</p>
                       </div>
-                      <PermitCalendar
-                        permits={filteredPermits}
-                        onEditPermit={handleEditPermit}
-                        onViewPermit={handleViewPermit}
-                        onCreatePermit={handleCreatePermit}
-                        userRole={user?.role}
-                      />
+                      <div data-tour="calendar-events">
+                        <PermitCalendar
+                          permits={filteredPermits}
+                          onEditPermit={handleEditPermit}
+                          onViewPermit={handleViewPermit}
+                          onCreatePermit={handleCreatePermit}
+                          userRole={user?.role}
+                        />
+                      </div>
                     </CardContent>
                   </TabsContent>
 
                   {/* Analytics Tab */}
                   <TabsContent value="analytics" className="mt-0">
                     <CardContent className="p-6">
-                      <PermitAnalytics permits={filteredPermits} detailed={true} />
+                      <div data-tour="analytics-charts">
+                        <PermitAnalytics permits={filteredPermits} detailed={true} />
+                      </div>
                     </CardContent>
                   </TabsContent>
 
@@ -899,7 +914,7 @@ export default function PermitLogPage() {
                         <h2 className="text-xl font-semibold text-[#003087] dark:text-blue-400">Export Reports</h2>
                         <p className="text-sm text-muted-foreground mt-1">Generate comprehensive permit and inspection reports</p>
                       </div>
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4" data-tour="reports-templates">
                         <Button
                           variant="outline"
                           className="h-24 flex flex-col items-center justify-center space-y-2"

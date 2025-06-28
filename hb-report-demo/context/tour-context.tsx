@@ -592,6 +592,448 @@ const TOUR_DEFINITIONS: TourDefinition[] = [
         nextButton: 'Complete Tour'
       }
     ]
+  },
+  {
+    id: 'permit-log-comprehensive',
+    name: 'Permit Log Complete Tour',
+    description: 'Comprehensive guide to permit tracking, compliance management, and inspection workflows',
+    page: 'permit-log',
+    steps: [
+      {
+        id: 'permit-log-welcome',
+        title: 'Welcome to the Permit Log!',
+        content: 'Your comprehensive permit tracking and compliance management system. This tour will guide you through all six modules for managing construction permits, inspections, and regulatory compliance efficiently.',
+        target: '[data-tour="permit-log-page-header"]',
+        placement: 'center',
+        nextButton: 'Begin Tour',
+        showSkip: true
+      },
+      {
+        id: 'permit-log-scope-badges',
+        title: 'Project Scope & Compliance Overview',
+        content: 'These badges show your current view scope and real-time permit compliance status:<br/><br/><strong>📊 View Scope</strong> - Single project, portfolio, or enterprise view<br/><strong>✅ Compliance Score</strong> - AI-calculated permit compliance indicator<br/><br/>The compliance score updates based on permit status, inspection results, and regulatory requirements.',
+        target: '[data-tour="permit-log-scope-badges"]',
+        placement: 'bottom',
+        nextButton: 'Continue'
+      },
+      {
+        id: 'permit-log-quick-stats',
+        title: 'Permit Quick Stats Dashboard',
+        content: 'Monitor key permit metrics at a glance:<br/><br/><strong>📋 Total Permits</strong> - All tracked permits<br/><strong>⏰ Pending Applications</strong> - Awaiting authority approval<br/><strong>✅ Active Permits</strong> - Currently valid permits<br/><strong>🔍 Inspections Due</strong> - Upcoming inspections required<br/><strong>⚠️ Expiring Soon</strong> - Permits nearing expiration<br/><br/>These metrics automatically adjust based on your role and project scope.',
+        target: '[data-tour="permit-log-quick-stats"]',
+        placement: 'bottom',
+        nextButton: 'Next'
+      },
+      {
+        id: 'permit-log-tabs-overview',
+        title: 'Six Comprehensive Permit Management Modules',
+        content: 'The Permit Log includes six specialized modules for complete permit lifecycle management:<br/><br/><strong>📊 Overview</strong> - Analytics & compliance insights<br/><strong>📋 Permits</strong> - Application tracking & management<br/><strong>🔍 Inspections</strong> - Inspection scheduling & results<br/><strong>📅 Calendar</strong> - Timeline view & scheduling<br/><strong>📈 Analytics</strong> - Performance metrics & trends<br/><strong>📄 Reports</strong> - Compliance reporting & documentation<br/><br/>Each module supports specific permit management workflows.',
+        target: '[data-tour="permit-log-tabs"]',
+        placement: 'bottom',
+        nextButton: 'Explore Modules'
+      },
+      {
+        id: 'overview-module-intro',
+        title: 'Overview Module - Permit Analytics Dashboard',
+        content: 'The Overview module provides comprehensive permit analytics and compliance insights. Start here to understand overall permit performance, identify issues, and get HBI recommendations for process improvements.',
+        target: '[data-tour="overview-tab"]',
+        placement: 'bottom',
+        nextButton: 'See Features',
+        onNext: () => {
+          const overviewTab = document.querySelector('[data-tour="overview-tab"]') as HTMLButtonElement;
+          if (overviewTab && !overviewTab.getAttribute('data-state')?.includes('active')) {
+            overviewTab.click();
+          }
+        }
+      },
+      {
+        id: 'overview-key-metrics',
+        title: 'Key Permit Performance Metrics',
+        content: 'Track critical permit indicators with visual progress tracking:<br/><br/><strong>📈 Approval Rate</strong> - Percentage of successful applications<br/><strong>⏱️ Processing Time</strong> - Average approval duration<br/><strong>✅ Compliance Score</strong> - Overall regulatory compliance<br/><strong>🔄 Renewal Rate</strong> - On-time permit renewals<br/><br/>Each metric includes trend indicators and benchmark comparisons.',
+        target: '[data-tour="overview-key-metrics"]',
+        placement: 'bottom',
+        nextButton: 'Continue'
+      },
+      {
+        id: 'overview-hbi-insights',
+        title: 'HB Intelligence Permit Insights',
+        content: 'AI-powered permit analysis provides:<br/><br/><strong>🚨 Compliance Alerts</strong> - Regulatory requirement warnings<br/><strong>💡 Process Optimization</strong> - Application improvement suggestions<br/><strong>🔍 Risk Assessment</strong> - Delay and rejection risk analysis<br/><strong>📊 Authority Intelligence</strong> - Historical approval patterns<br/><br/>Each insight includes confidence scores and actionable recommendations.',
+        target: '[data-tour="overview-hbi-insights"]',
+        placement: 'left',
+        nextButton: 'Next Module'
+      },
+      {
+        id: 'permits-module-intro',
+        title: 'Permits Module - Application Management',
+        content: 'The Permits module handles the complete permit application lifecycle from submission to approval. Manage applications, track status, and maintain comprehensive permit records.',
+        target: '[data-tour="permits-tab"]',
+        placement: 'bottom',
+        nextButton: 'Explore Permits',
+        onNext: () => {
+          const permitsTab = document.querySelector('[data-tour="permits-tab"]') as HTMLButtonElement;
+          if (permitsTab && !permitsTab.getAttribute('data-state')?.includes('active')) {
+            permitsTab.click();
+          }
+        }
+      },
+      {
+        id: 'permits-filters-panel',
+        title: 'Advanced Permit Filtering System',
+        content: 'Powerful filtering tools to find specific permits quickly:<br/><br/><strong>🏷️ Status Filtering</strong> - Filter by application/approval status<br/><strong>📅 Date Ranges</strong> - Application, approval, and expiration dates<br/><strong>🏛️ Authority Selection</strong> - Filter by issuing authority<br/><strong>🔍 Text Search</strong> - Search permit numbers, descriptions<br/><br/>Combine multiple filters for precise permit selection.',
+        target: '[data-tour="permits-filters"]',
+        placement: 'right',
+        nextButton: 'Continue'
+      },
+      {
+        id: 'permits-table-management',
+        title: 'Permit Table Management',
+        content: 'Comprehensive permit data management:<br/><br/><strong>📊 Sortable Columns</strong> - Sort by any field for analysis<br/><strong>📝 Quick Actions</strong> - Edit, view, or duplicate permits<br/><strong>🚨 Status Indicators</strong> - Visual permit status badges<br/><strong>📤 Bulk Operations</strong> - Export or manage multiple permits<br/><br/>Role-based permissions control available actions.',
+        target: '[data-tour="permits-table"]',
+        placement: 'left',
+        nextButton: 'Next Module'
+      },
+      {
+        id: 'inspections-module-intro',
+        title: 'Inspections Module - Quality Control',
+        content: 'The Inspections module manages all permit-related inspections from scheduling to results. Track inspector assignments, document findings, and ensure compliance with all requirements.',
+        target: '[data-tour="inspections-tab"]',
+        placement: 'bottom',
+        nextButton: 'Explore Inspections',
+        onNext: () => {
+          const inspectionsTab = document.querySelector('[data-tour="inspections-tab"]') as HTMLButtonElement;
+          if (inspectionsTab && !inspectionsTab.getAttribute('data-state')?.includes('active')) {
+            inspectionsTab.click();
+          }
+        }
+      },
+      {
+        id: 'inspections-scheduling',
+        title: 'Inspection Scheduling & Management',
+        content: 'Comprehensive inspection workflow management:<br/><br/><strong>📅 Schedule Inspections</strong> - Book inspector appointments<br/><strong>👥 Inspector Assignment</strong> - Track assigned inspectors<br/><strong>📋 Checklist Management</strong> - Standardized inspection criteria<br/><strong>📸 Photo Documentation</strong> - Visual inspection records<br/><br/>Integration with authority systems for seamless scheduling.',
+        target: '[data-tour="inspections-scheduling"]',
+        placement: 'right',
+        nextButton: 'Continue'
+      },
+      {
+        id: 'inspections-results-tracking',
+        title: 'Inspection Results & Follow-up',
+        content: 'Complete inspection results management:<br/><br/><strong>✅ Pass/Fail Tracking</strong> - Inspection outcome documentation<br/><strong>⚠️ Issue Management</strong> - Track deficiencies and corrections<br/><strong>🔄 Re-inspection Scheduling</strong> - Follow-up inspection management<br/><strong>📊 Compliance Scoring</strong> - Overall inspection performance<br/><br/>Automated follow-up notifications and compliance tracking.',
+        target: '[data-tour="inspections-results"]',
+        placement: 'left',
+        nextButton: 'Next Module'
+      },
+      {
+        id: 'calendar-module-intro',
+        title: 'Calendar Module - Timeline Visualization',
+        content: 'The Calendar module provides visual timeline management for all permit-related activities. View applications, inspections, and deadlines in an intuitive calendar interface.',
+        target: '[data-tour="calendar-tab"]',
+        placement: 'bottom',
+        nextButton: 'Explore Calendar',
+        onNext: () => {
+          const calendarTab = document.querySelector('[data-tour="calendar-tab"]') as HTMLButtonElement;
+          if (calendarTab && !calendarTab.getAttribute('data-state')?.includes('active')) {
+            calendarTab.click();
+          }
+        }
+      },
+      {
+        id: 'calendar-event-types',
+        title: 'Permit Calendar Event Types',
+        content: 'Color-coded events for different permit activities:<br/><br/><strong>🟦 Application Submissions</strong> - Permit application deadlines<br/><strong>🟩 Approvals Received</strong> - Permit approval dates<br/><strong>🟨 Inspections Scheduled</strong> - Upcoming inspections<br/><strong>🟧 Permit Expirations</strong> - Renewal requirements<br/><br/>Each event type uses distinct colors for easy identification.',
+        target: '[data-tour="calendar-events"]',
+        placement: 'right',
+        nextButton: 'Continue'
+      },
+      {
+        id: 'calendar-navigation',
+        title: 'Calendar Navigation & Views',
+        content: 'Flexible calendar viewing options:<br/><br/><strong>📅 Month View</strong> - Overview of monthly activities<br/><strong>📆 Week View</strong> - Detailed weekly scheduling<br/><strong>🔍 Event Details</strong> - Click events for full information<br/><strong>🏷️ Filter Events</strong> - Show/hide specific event types<br/><br/>Navigate easily between dates and view levels.',
+        target: '[data-tour="calendar-navigation"]',
+        placement: 'left',
+        nextButton: 'Next Module'
+      },
+      {
+        id: 'analytics-module-intro',
+        title: 'Analytics Module - Performance Intelligence',
+        content: 'The Analytics module provides deep insights into permit performance with trend analysis, authority benchmarking, and predictive modeling for process optimization.',
+        target: '[data-tour="analytics-tab"]',
+        placement: 'bottom',
+        nextButton: 'Explore Analytics',
+        onNext: () => {
+          const analyticsTab = document.querySelector('[data-tour="analytics-tab"]') as HTMLButtonElement;
+          if (analyticsTab && !analyticsTab.getAttribute('data-state')?.includes('active')) {
+            analyticsTab.click();
+          }
+        }
+      },
+      {
+        id: 'analytics-performance-charts',
+        title: 'Permit Performance Analytics',
+        content: 'Interactive charts and visualizations:<br/><br/><strong>📊 Approval Trends</strong> - Historical approval rate analysis<br/><strong>⏱️ Processing Time Charts</strong> - Authority performance comparison<br/><strong>🎯 Success Rate Analysis</strong> - Application success patterns<br/><strong>📈 Volume Forecasting</strong> - Predicted permit requirements<br/><br/>All charts support drill-down analysis and export capabilities.',
+        target: '[data-tour="analytics-charts"]',
+        placement: 'right',
+        nextButton: 'Continue'
+      },
+      {
+        id: 'analytics-authority-comparison',
+        title: 'Authority Performance Benchmarking',
+        content: 'Compare performance across different regulatory authorities:<br/><br/><strong>🏛️ Authority Profiles</strong> - Individual authority performance<br/><strong>⚖️ Comparative Analysis</strong> - Side-by-side authority comparison<br/><strong>📊 Historical Trends</strong> - Authority performance over time<br/><strong>💡 Best Practices</strong> - Optimization recommendations<br/><br/>Use this data to optimize application strategies by authority.',
+        target: '[data-tour="analytics-authority-comparison"]',
+        placement: 'left',
+        nextButton: 'Final Module'
+      },
+      {
+        id: 'reports-module-intro',
+        title: 'Reports Module - Compliance Documentation',
+        content: 'The Reports module generates comprehensive compliance reports for internal review, audits, and regulatory submissions with automated formatting and distribution.',
+        target: '[data-tour="reports-tab"]',
+        placement: 'bottom',
+        nextButton: 'Explore Reports',
+        onNext: () => {
+          const reportsTab = document.querySelector('[data-tour="reports-tab"]') as HTMLButtonElement;
+          if (reportsTab && !reportsTab.getAttribute('data-state')?.includes('active')) {
+            reportsTab.click();
+          }
+        }
+      },
+      {
+        id: 'reports-templates',
+        title: 'Report Templates & Customization',
+        content: 'Pre-configured report templates for common needs:<br/><br/><strong>📋 Compliance Summary</strong> - Overall permit compliance status<br/><strong>📊 Performance Reports</strong> - Detailed performance analytics<br/><strong>🔍 Audit Reports</strong> - Regulatory audit preparation<br/><strong>📈 Executive Dashboard</strong> - High-level management summary<br/><br/>All templates support customization and branding.',
+        target: '[data-tour="reports-templates"]',
+        placement: 'right',
+        nextButton: 'Continue'
+      },
+      {
+        id: 'reports-distribution',
+        title: 'Automated Report Distribution',
+        content: 'Efficient report sharing and distribution:<br/><br/><strong>📧 Email Distribution</strong> - Automated stakeholder notifications<br/><strong>📤 Export Options</strong> - PDF, Excel, and CSV formats<br/><strong>📅 Scheduled Reports</strong> - Recurring report generation<br/><strong>🔒 Access Control</strong> - Role-based report access<br/><br/>Set up automated workflows to keep stakeholders informed.',
+        target: '[data-tour="reports-distribution"]',
+        placement: 'left',
+        nextButton: 'Complete Tour'
+      },
+      {
+        id: 'permit-log-workflow-tips',
+        title: 'Permit Log Workflow Best Practices',
+        content: 'For optimal permit management:<br/><br/>📊 Start with Overview for compliance assessment<br/>📋 Use Permits tab for application management<br/>🔍 Track Inspections proactively<br/>📅 Monitor Calendar for deadlines<br/>📈 Review Analytics for process improvement<br/>📄 Generate Reports for stakeholder communication',
+        target: '[data-tour="permit-log-tabs"]',
+        placement: 'top'
+      },
+      {
+        id: 'permit-log-tour-complete',
+        title: 'Permit Log Tour Complete!',
+        content: 'You\'re now equipped to manage permits effectively using all six modules. Remember that proactive permit management prevents delays and ensures regulatory compliance. Use the HBI insights to continuously optimize your permit processes!',
+        target: '[data-tour="permit-log-page-header"]',
+        placement: 'center',
+        nextButton: 'Complete Tour'
+      }
+    ]
+  },
+  {
+    id: 'constraints-log-comprehensive',
+    name: 'Constraints Log Complete Tour',
+    description: 'Comprehensive guide to constraint management, scheduling optimization, and project coordination',
+    page: 'constraints-log',
+    steps: [
+      {
+        id: 'constraints-log-welcome',
+        title: 'Welcome to the Constraints Log!',
+        content: 'Your comprehensive constraint management and schedule optimization system. This tour will guide you through all modules for identifying, tracking, and resolving project constraints that impact schedule performance.',
+        target: '[data-tour="constraints-log-page-header"]',
+        placement: 'center',
+        nextButton: 'Begin Tour',
+        showSkip: true
+      },
+      {
+        id: 'constraints-log-scope-badges',
+        title: 'Project Scope & Constraint Health',
+        content: 'These badges show your current view scope and real-time constraint management status:<br/><br/><strong>📊 View Scope</strong> - Single project, portfolio, or enterprise view<br/><strong>⚠️ Constraint Score</strong> - AI-calculated constraint impact indicator<br/><br/>The constraint score reflects overall project health based on active constraints and resolution progress.',
+        target: '[data-tour="constraints-log-scope-badges"]',
+        placement: 'bottom',
+        nextButton: 'Continue'
+      },
+      {
+        id: 'constraints-log-quick-stats',
+        title: 'Constraint Quick Stats Dashboard',
+        content: 'Monitor key constraint metrics at a glance:<br/><br/><strong>⚠️ Active Constraints</strong> - Currently impacting project<br/><strong>🔴 Critical Constraints</strong> - High priority issues<br/><strong>📅 Overdue Actions</strong> - Past due resolution activities<br/><strong>🎯 Resolution Rate</strong> - Successfully resolved this month<br/><strong>📊 Impact Days</strong> - Total schedule impact<br/><br/>These metrics help prioritize constraint management efforts.',
+        target: '[data-tour="constraints-log-quick-stats"]',
+        placement: 'bottom',
+        nextButton: 'Next'
+      },
+      {
+        id: 'constraints-log-tabs-overview',
+        title: 'Comprehensive Constraint Management Modules',
+        content: 'The Constraints Log includes specialized modules for complete constraint lifecycle management:<br/><br/><strong>📊 Overview</strong> - Analytics & impact assessment<br/><strong>📋 Constraints</strong> - Constraint tracking & management<br/><strong>📈 Gantt View</strong> - Schedule impact visualization<br/><strong>🔍 Analysis</strong> - Root cause & trend analysis<br/><strong>📄 Reports</strong> - Constraint reporting & documentation<br/><br/>Each module supports specific constraint management workflows.',
+        target: '[data-tour="constraints-log-tabs"]',
+        placement: 'bottom',
+        nextButton: 'Explore Modules'
+      },
+      {
+        id: 'overview-module-intro',
+        title: 'Overview Module - Constraint Analytics Dashboard',
+        content: 'The Overview module provides comprehensive constraint analytics and impact assessment. Start here to understand overall constraint impact, identify patterns, and get HBI recommendations for resolution.',
+        target: '[data-tour="overview-tab"]',
+        placement: 'bottom',
+        nextButton: 'See Features',
+        onNext: () => {
+          const overviewTab = document.querySelector('[data-tour="overview-tab"]') as HTMLButtonElement;
+          if (overviewTab && !overviewTab.getAttribute('data-state')?.includes('active')) {
+            overviewTab.click();
+          }
+        }
+      },
+      {
+        id: 'overview-key-metrics',
+        title: 'Key Constraint Performance Metrics',
+        content: 'Track critical constraint indicators with visual impact analysis:<br/><br/><strong>📈 Resolution Rate</strong> - Percentage of constraints resolved<br/><strong>⏱️ Average Resolution Time</strong> - Time to constraint closure<br/><strong>🎯 Schedule Impact</strong> - Total days of schedule delay<br/><strong>🔄 Recurrence Analysis</strong> - Repeat constraint patterns<br/><br/>Each metric includes trend indicators and performance benchmarks.',
+        target: '[data-tour="overview-key-metrics"]',
+        placement: 'bottom',
+        nextButton: 'Continue'
+      },
+      {
+        id: 'overview-hbi-insights',
+        title: 'HB Intelligence Constraint Insights',
+        content: 'AI-powered constraint analysis provides:<br/><br/><strong>🚨 Critical Path Impact</strong> - Schedule disruption warnings<br/><strong>💡 Resolution Strategies</strong> - Proven resolution approaches<br/><strong>🔍 Pattern Recognition</strong> - Recurring constraint identification<br/><strong>📊 Predictive Modeling</strong> - Future constraint forecasting<br/><br/>Each insight includes confidence scores and implementation guidance.',
+        target: '[data-tour="overview-hbi-insights"]',
+        placement: 'left',
+        nextButton: 'Next Module'
+      },
+      {
+        id: 'constraints-module-intro',
+        title: 'Constraints Module - Issue Management',
+        content: 'The Constraints module handles the complete constraint lifecycle from identification to resolution. Log new constraints, assign ownership, and track progress to closure.',
+        target: '[data-tour="constraints-tab"]',
+        placement: 'bottom',
+        nextButton: 'Explore Constraints',
+        onNext: () => {
+          const constraintsTab = document.querySelector('[data-tour="constraints-tab"]') as HTMLButtonElement;
+          if (constraintsTab && !constraintsTab.getAttribute('data-state')?.includes('active')) {
+            constraintsTab.click();
+          }
+        }
+      },
+      {
+        id: 'constraints-filters-panel',
+        title: 'Advanced Constraint Filtering System',
+        content: 'Powerful filtering tools to manage constraint data effectively:<br/><br/><strong>🏷️ Status Filtering</strong> - Filter by constraint status<br/><strong>📅 Date Ranges</strong> - Creation, due, and resolution dates<br/><strong>👥 Assignment Filter</strong> - Filter by responsible party<br/><strong>🔍 Category Search</strong> - Filter by constraint type<br/><br/>Combine multiple filters for precise constraint analysis.',
+        target: '[data-tour="constraints-filters"]',
+        placement: 'right',
+        nextButton: 'Continue'
+      },
+      {
+        id: 'constraints-table-management',
+        title: 'Constraint Table Management',
+        content: 'Comprehensive constraint data management:<br/><br/><strong>📊 Priority Sorting</strong> - Sort by impact and urgency<br/><strong>📝 Quick Actions</strong> - Edit, update, or close constraints<br/><strong>🚨 Status Indicators</strong> - Visual constraint status badges<br/><strong>📤 Bulk Operations</strong> - Export or update multiple constraints<br/><br/>Role-based permissions control available actions.',
+        target: '[data-tour="constraints-table"]',
+        placement: 'left',
+        nextButton: 'Next Module'
+      },
+      {
+        id: 'gantt-module-intro',
+        title: 'Gantt View Module - Schedule Impact Visualization',
+        content: 'The Gantt View module provides visual representation of constraint impacts on project schedules. See how constraints affect critical path and activity dependencies.',
+        target: '[data-tour="gantt-tab"]',
+        placement: 'bottom',
+        nextButton: 'Explore Gantt View',
+        onNext: () => {
+          const ganttTab = document.querySelector('[data-tour="gantt-tab"]') as HTMLButtonElement;
+          if (ganttTab && !ganttTab.getAttribute('data-state')?.includes('active')) {
+            ganttTab.click();
+          }
+        }
+      },
+      {
+        id: 'gantt-schedule-visualization',
+        title: 'Schedule Impact Visualization',
+        content: 'Interactive Gantt chart showing constraint impacts:<br/><br/><strong>📊 Activity Timeline</strong> - Visual schedule representation<br/><strong>🔗 Dependency Links</strong> - Activity relationship mapping<br/><strong>⚠️ Constraint Overlays</strong> - Visual constraint impact indicators<br/><strong>🎯 Critical Path</strong> - Highlighted critical activities<br/><br/>Color coding indicates constraint severity and impact.',
+        target: '[data-tour="gantt-visualization"]',
+        placement: 'right',
+        nextButton: 'Continue'
+      },
+      {
+        id: 'gantt-interactive-features',
+        title: 'Interactive Gantt Features',
+        content: 'Advanced Gantt chart interaction capabilities:<br/><br/><strong>🔍 Zoom & Pan</strong> - Navigate large schedules easily<br/><strong>📅 Timeline Filtering</strong> - Focus on specific date ranges<br/><strong>🏷️ Activity Details</strong> - Click for constraint information<br/><strong>📊 Progress Tracking</strong> - Visual completion indicators<br/><br/>Interactive features help analyze complex constraint relationships.',
+        target: '[data-tour="gantt-controls"]',
+        placement: 'left',
+        nextButton: 'Next Module'
+      },
+      {
+        id: 'analysis-module-intro',
+        title: 'Analysis Module - Deep Constraint Intelligence',
+        content: 'The Analysis module provides advanced constraint analytics including root cause analysis, trend identification, and predictive modeling for proactive constraint management.',
+        target: '[data-tour="analysis-tab"]',
+        placement: 'bottom',
+        nextButton: 'Explore Analysis',
+        onNext: () => {
+          const analysisTab = document.querySelector('[data-tour="analysis-tab"]') as HTMLButtonElement;
+          if (analysisTab && !analysisTab.getAttribute('data-state')?.includes('active')) {
+            analysisTab.click();
+          }
+        }
+      },
+      {
+        id: 'analysis-root-cause',
+        title: 'Root Cause Analysis Tools',
+        content: 'Identify underlying causes of project constraints:<br/><br/><strong>🔍 Pattern Analysis</strong> - Recurring constraint identification<br/><strong>📊 Correlation Mapping</strong> - Related constraint clustering<br/><strong>🎯 Impact Assessment</strong> - Quantified constraint effects<br/><strong>💡 Prevention Strategies</strong> - Proactive constraint avoidance<br/><br/>Use these tools to address systemic constraint issues.',
+        target: '[data-tour="analysis-root-cause"]',
+        placement: 'right',
+        nextButton: 'Continue'
+      },
+      {
+        id: 'analysis-predictive-modeling',
+        title: 'Predictive Constraint Modeling',
+        content: 'Forecast future constraints using AI analysis:<br/><br/><strong>🔮 Constraint Forecasting</strong> - Predict likely future constraints<br/><strong>📈 Trend Analysis</strong> - Historical pattern recognition<br/><strong>⚖️ Risk Assessment</strong> - Probability-based constraint modeling<br/><strong>🎯 Prevention Planning</strong> - Proactive mitigation strategies<br/><br/>Predictive modeling helps prevent constraints before they occur.',
+        target: '[data-tour="analysis-predictive"]',
+        placement: 'left',
+        nextButton: 'Final Module'
+      },
+      {
+        id: 'reports-module-intro',
+        title: 'Reports Module - Constraint Documentation',
+        content: 'The Reports module generates comprehensive constraint reports for stakeholder communication, performance tracking, and management review with automated formatting.',
+        target: '[data-tour="reports-tab"]',
+        placement: 'bottom',
+        nextButton: 'Explore Reports',
+        onNext: () => {
+          const reportsTab = document.querySelector('[data-tour="reports-tab"]') as HTMLButtonElement;
+          if (reportsTab && !reportsTab.getAttribute('data-state')?.includes('active')) {
+            reportsTab.click();
+          }
+        }
+      },
+      {
+        id: 'reports-templates',
+        title: 'Constraint Report Templates',
+        content: 'Pre-configured report templates for various stakeholders:<br/><br/><strong>📋 Executive Summary</strong> - High-level constraint overview<br/><strong>📊 Detailed Analysis</strong> - Comprehensive constraint reporting<br/><strong>🎯 Action Plans</strong> - Resolution strategy documentation<br/><strong>📈 Performance Tracking</strong> - Constraint management metrics<br/><br/>All templates support customization and automated generation.',
+        target: '[data-tour="reports-templates"]',
+        placement: 'right',
+        nextButton: 'Continue'
+      },
+      {
+        id: 'reports-distribution',
+        title: 'Automated Report Distribution',
+        content: 'Efficient constraint report sharing:<br/><br/><strong>📧 Stakeholder Notifications</strong> - Automated report distribution<br/><strong>📤 Multiple Formats</strong> - PDF, Excel, and dashboard views<br/><strong>📅 Scheduled Reporting</strong> - Regular constraint updates<br/><strong>🔒 Access Control</strong> - Role-based report permissions<br/><br/>Keep all stakeholders informed of constraint status automatically.',
+        target: '[data-tour="reports-distribution"]',
+        placement: 'left',
+        nextButton: 'Complete Tour'
+      },
+      {
+        id: 'constraints-log-workflow-tips',
+        title: 'Constraint Management Best Practices',
+        content: 'For effective constraint management:<br/><br/>📊 Start with Overview for impact assessment<br/>📋 Log constraints immediately when identified<br/>📈 Use Gantt View for schedule impact analysis<br/>🔍 Perform regular Analysis for pattern recognition<br/>📄 Generate Reports for stakeholder communication<br/>🎯 Focus on prevention through predictive modeling',
+        target: '[data-tour="constraints-log-tabs"]',
+        placement: 'top'
+      },
+      {
+        id: 'constraints-log-tour-complete',
+        title: 'Constraints Log Tour Complete!',
+        content: 'You\'re now equipped to manage project constraints effectively using advanced analytics and AI insights. Remember that proactive constraint management is key to project success. Use the predictive tools to prevent constraints before they impact your schedule!',
+        target: '[data-tour="constraints-log-page-header"]',
+        placement: 'center',
+        nextButton: 'Complete Tour'
+      }
+    ]
   }
 ]
 

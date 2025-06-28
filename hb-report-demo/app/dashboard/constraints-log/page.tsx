@@ -350,45 +350,49 @@ export default function ConstraintsLogPage() {
       </CardHeader>
       <CardContent className={isFullScreen ? "h-[calc(100vh-80px)] overflow-y-auto" : ""}>
         <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="open" className="flex items-center gap-2">
+          <TabsList className="grid w-full grid-cols-2" data-tour="constraints-log-tabs">
+            <TabsTrigger value="open" className="flex items-center gap-2" data-tour="constraints-tab">
               <Clock className="h-4 w-4" />
               Open Constraints ({stats.open})
             </TabsTrigger>
-            <TabsTrigger value="closed" className="flex items-center gap-2">
+            <TabsTrigger value="closed" className="flex items-center gap-2" data-tour="overview-tab">
               <CheckCircle className="h-4 w-4" />
               Closed Constraints ({stats.closed})
             </TabsTrigger>
           </TabsList>
 
           <TabsContent value="open" className="mt-6">
-            <EnhancedConstraintTable
-              constraints={filteredConstraints}
-              onEdit={setEditingConstraint}
-              onDelete={setDeleteConstraint}
-              onBulkAction={handleBulkAction}
-              showClosed={false}
-              groupByCategory={true}
-              filters={filters}
-              onFiltersChange={setFilters}
-              categories={categories}
-              assignees={assignees}
-            />
+            <div data-tour="constraints-table">
+              <EnhancedConstraintTable
+                constraints={filteredConstraints}
+                onEdit={setEditingConstraint}
+                onDelete={setDeleteConstraint}
+                onBulkAction={handleBulkAction}
+                showClosed={false}
+                groupByCategory={true}
+                filters={filters}
+                onFiltersChange={setFilters}
+                categories={categories}
+                assignees={assignees}
+              />
+            </div>
           </TabsContent>
 
           <TabsContent value="closed" className="mt-6">
-            <EnhancedConstraintTable
-              constraints={filteredConstraints}
-              onEdit={setEditingConstraint}
-              onDelete={setDeleteConstraint}
-              onBulkAction={handleBulkAction}
-              showClosed={true}
-              groupByCategory={true}
-              filters={filters}
-              onFiltersChange={setFilters}
-              categories={categories}
-              assignees={assignees}
-            />
+            <div data-tour="overview-key-metrics">
+              <EnhancedConstraintTable
+                constraints={filteredConstraints}
+                onEdit={setEditingConstraint}
+                onDelete={setDeleteConstraint}
+                onBulkAction={handleBulkAction}
+                showClosed={true}
+                groupByCategory={true}
+                filters={filters}
+                onFiltersChange={setFilters}
+                categories={categories}
+                assignees={assignees}
+              />
+            </div>
           </TabsContent>
         </Tabs>
       </CardContent>
@@ -418,12 +422,12 @@ export default function ConstraintsLogPage() {
             </Breadcrumb>
 
             {/* Header Section */}
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-4" data-tour="constraints-log-page-header">
               <div className="flex items-center justify-between">
                 <div>
                   <h1 className="text-3xl font-bold text-foreground">Constraints Log</h1>
                   <p className="text-muted-foreground mt-1">Track and manage project constraints and resolutions</p>
-                  <div className="flex items-center gap-4 mt-2">
+                  <div className="flex items-center gap-4 mt-2" data-tour="constraints-log-scope-badges">
                     <Badge variant="outline" className="px-3 py-1">
                       {projectScope.description}
                     </Badge>
@@ -463,14 +467,20 @@ export default function ConstraintsLogPage() {
               </div>
 
               {/* Statistics Widgets */}
-              <ConstraintWidgets stats={stats} />
+              <div data-tour="constraints-log-quick-stats">
+                <ConstraintWidgets stats={stats} />
+              </div>
             </div>
 
             {/* HBI Insights Panel */}
-            <HbiInsightsPanel constraints={allConstraints} />
+            <div data-tour="overview-hbi-insights">
+              <HbiInsightsPanel constraints={allConstraints} />
+            </div>
 
             {/* Gantt Chart */}
-            <GanttChart constraints={allConstraints} />
+            <div data-tour="gantt-visualization">
+              <GanttChart constraints={allConstraints} />
+            </div>
           </>
         )}
 
@@ -514,12 +524,14 @@ export default function ConstraintsLogPage() {
           </AlertDialogContent>
         </AlertDialog>
 
-        <ExportModal
-          open={isExportModalOpen}
-          onOpenChange={setIsExportModalOpen}
-          onExport={handleExportSubmit}
-          defaultFileName="ConstraintsLog"
-        />
+        <div data-tour="reports-distribution">
+          <ExportModal
+            open={isExportModalOpen}
+            onOpenChange={setIsExportModalOpen}
+            onExport={handleExportSubmit}
+            defaultFileName="ConstraintsLog"
+          />
+        </div>
       </div>
     </>
   )
