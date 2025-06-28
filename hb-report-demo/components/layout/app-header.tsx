@@ -205,9 +205,12 @@ export const AppHeader = () => {
       // Removed: Quality Control
 
       // Compliance
-      // Removed: Document Compliance
-      // Removed: Prime Contracts
-      // Removed: Commitments
+      {
+        name: "Contract Documents",
+        href: "/dashboard/contract-documents",
+        category: "Compliance",
+        description: "Contract document management and compliance tracking",
+      },
 
       // Pre-Construction (filtered by department)
       {
