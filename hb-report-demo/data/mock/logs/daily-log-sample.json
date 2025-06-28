@@ -1,0 +1,100 @@
+[
+  {
+    "project_id": 2525840,
+    "project_name": "Palm Beach Luxury Estate",
+    "date": "2024-06-05",
+    "weather_report": {
+      "temperature": {
+        "low": "75\u00b0F",
+        "high": "85\u00b0F",
+        "avg": "80\u00b0F"
+      },
+      "precipitation_since": {
+        "midnight": "0.23 in.",
+        "2_days_ago": "0.08 in.",
+        "3_days_ago": "0.08 in."
+      },
+      "humidity": {
+        "low": "60%",
+        "avg": "70%",
+        "high": "80%"
+      },
+      "windspeed": {
+        "dew": "64\u00b0F",
+        "avg": "10.4 mph",
+        "gust": "20.0 mph"
+      }
+    },
+    "daily_snapshot": [
+      {
+        "time": "06:00 AM",
+        "condition": "Partly Cloudy",
+        "temperature": "79\u00b0F"
+      },
+      {
+        "time": "09:00 AM",
+        "condition": "Clear",
+        "temperature": "80\u00b0F"
+      },
+      {
+        "time": "12:00 PM",
+        "condition": "Partly Cloudy",
+        "temperature": "78\u00b0F"
+      },
+      {
+        "time": "03:00 PM",
+        "condition": "Partly Cloudy",
+        "temperature": "85\u00b0F"
+      },
+      {
+        "time": "06:00 PM",
+        "condition": "Partly Cloudy",
+        "temperature": "79\u00b0F"
+      },
+      {
+        "time": "09:00 PM",
+        "condition": "Partly Cloudy",
+        "temperature": "76\u00b0F"
+      }
+    ],
+    "observed_weather_conditions": [
+      {
+        "no": 1,
+        "time_observed": "06:10 AM",
+        "weather_delay": "No",
+        "sky": "Heavy Rain",
+        "temp": "85\u00b0F",
+        "average": "",
+        "precipitation": "0.07 in.",
+        "wind": "10.8 mph",
+        "ground_sea": "",
+        "calamity": "",
+        "comments": ""
+      }
+    ],
+    "manpower_log": {
+      "total_workers": 43,
+      "total_hours": 344,
+      "entries": [
+        {
+          "no": 1,
+          "contact_company": "The City of West Palm Beach",
+          "cost_code": "",
+          "workers": 15,
+          "hours": 8,
+          "total_hours": 120,
+          "location": "East Lot",
+          "comments": "Work related to Subcontract scope"
+        },
+        {
+          "no": 2,
+          "contact_company": "AMERICAN LEAK DETECTION",
+          "cost_code": "",
+          "workers": 4,
+          "hours": 8,
+          "total_hours": 32,
+          "location": "Sector 1",
+          "comments": "Work related to Subcontract scope"
+        },
+        {
+          "no": 3,

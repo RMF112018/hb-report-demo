@@ -27,3 +27,10 @@ yarn-error.log*
 next-env.d.ts
 
 .config/
+
+# Large data files
+data/mock/logs/daily-log.json
+*.zip
+
+# macOS
+.DS_Store
