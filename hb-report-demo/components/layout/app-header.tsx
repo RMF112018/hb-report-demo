@@ -169,9 +169,9 @@ export const AppHeader = () => {
       },
       {
         name: "Procurement",
-        href: "/dashboard/buyout-schedule",
+        href: "/dashboard/procurement",
         category: "Financial Management",
-        description: "Subcontract buyout and material procurement management",
+        description: "Subcontractor buyout and material procurement management",
       },
       // Removed: Change Management
 
