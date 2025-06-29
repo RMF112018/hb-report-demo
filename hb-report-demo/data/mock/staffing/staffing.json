@@ -1,0 +1,3522 @@
+[
+  {
+    "id": "db65e365-4b6b-418e-adf7-fc97e281e48a",
+    "name": "Morgan Martinez",
+    "position": "Project Executive",
+    "laborRate": 78.75,
+    "billableRate": 191.99,
+    "experience": 4,
+    "strengths": [
+      "Problem Solving",
+      "Client Communication",
+      "Contract Negotiation"
+    ],
+    "weaknesses": [
+      "Impatience",
+      "Delegation"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525844,
+        "role": "PE",
+        "startDate": "2022-05-27T00:00:00Z",
+        "endDate": "2024-02-09T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "e40971cb-24e6-47cd-8ee6-dac88d322722",
+    "name": "Alex Gonzalez",
+    "position": "Project Executive",
+    "laborRate": 67.06,
+    "billableRate": 115.39,
+    "experience": 16,
+    "strengths": [
+      "Problem Solving",
+      "Vendor Coordination",
+      "Contract Negotiation",
+      "Scheduling"
+    ],
+    "weaknesses": [
+      "Delegation",
+      "Conflict Resolution"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525846,
+        "role": "PE",
+        "startDate": "2025-03-05T00:00:00Z",
+        "endDate": "2026-06-09T23:59:59Z"
+      },
+      {
+        "project_id": 2525855,
+        "role": "PE",
+        "startDate": "2025-03-17T00:00:00Z",
+        "endDate": "2026-03-24T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "c3620b5f-022f-4874-b0cf-5e19d8e69edf",
+    "name": "Casey Singh",
+    "position": "Project Executive",
+    "laborRate": 60.6,
+    "billableRate": 153.0,
+    "experience": 12,
+    "strengths": [
+      "Contract Negotiation",
+      "Technical Writing"
+    ],
+    "weaknesses": [
+      "Overcommunication",
+      "Delegation"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525850,
+        "role": "PE",
+        "startDate": "2024-11-01T00:00:00Z",
+        "endDate": "2026-01-21T23:59:59Z"
+      },
+      {
+        "project_id": 2525859,
+        "role": "PE",
+        "startDate": "2022-04-16T00:00:00Z",
+        "endDate": "2024-07-24T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "338e9b89-5b23-41ec-baff-ee2796a557ed",
+    "name": "Alex Ali",
+    "position": "Project Executive",
+    "laborRate": 64.04,
+    "billableRate": 192.69,
+    "experience": 8,
+    "strengths": [
+      "Risk Management",
+      "Scheduling",
+      "Budgeting",
+      "Problem Solving"
+    ],
+    "weaknesses": [
+      "Public Speaking"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525842,
+        "role": "PE",
+        "startDate": "2023-03-23T00:00:00Z",
+        "endDate": "2024-08-06T23:59:59Z"
+      },
+      {
+        "project_id": 2525852,
+        "role": "PE",
+        "startDate": "2023-12-07T00:00:00Z",
+        "endDate": "2025-02-17T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "bc22291b-c9de-483e-bc48-473725276124",
+    "name": "Jamie Singh",
+    "position": "Project Executive",
+    "laborRate": 85.13,
+    "billableRate": 176.36,
+    "experience": 7,
+    "strengths": [
+      "Risk Management",
+      "Contract Negotiation",
+      "Client Communication",
+      "Budgeting"
+    ],
+    "weaknesses": [
+      "Paperwork",
+      "Technology Adoption"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525853,
+        "role": "PE",
+        "startDate": "2024-11-14T00:00:00Z",
+        "endDate": "2026-04-01T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "016df437-44a2-42d0-8659-ece08dda0a98",
+    "name": "Morgan Brown",
+    "position": "Project Executive",
+    "laborRate": 85.7,
+    "billableRate": 173.57,
+    "experience": 7,
+    "strengths": [
+      "Risk Management",
+      "Technical Writing"
+    ],
+    "weaknesses": [
+      "Time Management",
+      "Public Speaking"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525854,
+        "role": "PE",
+        "startDate": "2022-03-02T00:00:00Z",
+        "endDate": "2024-06-16T23:59:59Z"
+      },
+      {
+        "project_id": 2525856,
+        "role": "PE",
+        "startDate": "2025-05-28T00:00:00Z",
+        "endDate": "2027-09-20T23:59:59Z"
+      },
+      {
+        "project_id": 2525857,
+        "role": "PE",
+        "startDate": "2023-10-25T00:00:00Z",
+        "endDate": "2025-05-19T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "05a80db3-9572-4ce3-b79a-6857db3ff475",
+    "name": "Chris Patel",
+    "position": "Project Executive",
+    "laborRate": 73.91,
+    "billableRate": 189.19,
+    "experience": 7,
+    "strengths": [
+      "Risk Management",
+      "Problem Solving"
+    ],
+    "weaknesses": [
+      "Delegation",
+      "Conflict Resolution"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525848,
+        "role": "PE",
+        "startDate": "2024-07-22T00:00:00Z",
+        "endDate": "2025-09-02T23:59:59Z"
+      },
+      {
+        "project_id": 2525849,
+        "role": "PE",
+        "startDate": "2025-05-27T00:00:00Z",
+        "endDate": "2027-04-09T23:59:59Z"
+      },
+      {
+        "project_id": 2525851,
+        "role": "PE",
+        "startDate": "2025-05-22T00:00:00Z",
+        "endDate": "2027-01-23T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "568a13fe-10ff-4805-a6bd-07c503638fc2",
+    "name": "Michael Smith",
+    "position": "Project Executive",
+    "laborRate": 49.67,
+    "billableRate": 132.86,
+    "experience": 9,
+    "strengths": [
+      "Contract Negotiation",
+      "Problem Solving"
+    ],
+    "weaknesses": [
+      "Overcommunication",
+      "Conflict Resolution"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525847,
+        "role": "PE",
+        "startDate": "2023-06-03T00:00:00Z",
+        "endDate": "2025-03-15T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "4d8b2a7e-b04b-4372-a7a3-d9b7ff7628a7",
+    "name": "Chris Ali",
+    "position": "Project Executive",
+    "laborRate": 63.77,
+    "billableRate": 184.66,
+    "experience": 17,
+    "strengths": [
+      "Team Leadership",
+      "Scheduling",
+      "Quality Control",
+      "Risk Management"
+    ],
+    "weaknesses": [
+      "Conflict Resolution"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525845,
+        "role": "PE",
+        "startDate": "2025-04-09T00:00:00Z",
+        "endDate": "2026-09-16T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "bf374ea9-456a-44de-a99b-5a183ddfe61f",
+    "name": "Jordan Hernandez",
+    "position": "Project Executive",
+    "laborRate": 54.71,
+    "billableRate": 114.58,
+    "experience": 24,
+    "strengths": [
+      "Problem Solving",
+      "Team Leadership",
+      "Scheduling"
+    ],
+    "weaknesses": [
+      "Overcommunication",
+      "Paperwork"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525840,
+        "role": "PE",
+        "startDate": "2024-08-28T00:00:00Z",
+        "endDate": "2026-07-26T23:59:59Z"
+      },
+      {
+        "project_id": 2525843,
+        "role": "PE",
+        "startDate": "2024-12-13T00:00:00Z",
+        "endDate": "2025-12-31T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "ca468525-637d-468b-acae-f50a1e09a88c",
+    "name": "Alex Hernandez",
+    "position": "Project Executive",
+    "laborRate": 73.58,
+    "billableRate": 143.56,
+    "experience": 4,
+    "strengths": [
+      "Budgeting",
+      "Risk Management",
+      "Scheduling",
+      "Contract Negotiation"
+    ],
+    "weaknesses": [
+      "Delegation",
+      "Overcommunication"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525841,
+        "role": "PE",
+        "startDate": "2025-05-04T00:00:00Z",
+        "endDate": "2027-04-11T23:59:59Z"
+      },
+      {
+        "project_id": 2525858,
+        "role": "PE",
+        "startDate": "2024-12-06T00:00:00Z",
+        "endDate": "2026-03-25T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "bcf234be-8af6-4740-8aaf-49138b1a506a",
+    "name": "Robin Hernandez",
+    "position": "Senior Project Manager",
+    "laborRate": 69.37,
+    "billableRate": 164.11,
+    "experience": 19,
+    "strengths": [
+      "Risk Management",
+      "Budgeting"
+    ],
+    "weaknesses": [
+      "Delegation"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525841,
+        "role": "PM",
+        "startDate": "2025-06-27T00:00:00Z",
+        "endDate": "2027-06-18T23:59:59Z"
+      },
+      {
+        "project_id": 2525851,
+        "role": "PM",
+        "startDate": "2025-03-26T00:00:00Z",
+        "endDate": "2027-03-15T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "6d08e753-2e52-419f-b5b6-2b4700b21222",
+    "name": "Michael Ali",
+    "position": "Senior Project Manager",
+    "laborRate": 77.17,
+    "billableRate": 132.47,
+    "experience": 21,
+    "strengths": [
+      "Vendor Coordination",
+      "Client Communication",
+      "Scheduling",
+      "Technical Writing"
+    ],
+    "weaknesses": [
+      "Conflict Resolution",
+      "Paperwork"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525843,
+        "role": "PM",
+        "startDate": "2024-09-08T00:00:00Z",
+        "endDate": "2025-12-17T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "18aa819e-7e92-4df9-b632-60d963551fd7",
+    "name": "Robin Hernandez",
+    "position": "Senior Project Manager",
+    "laborRate": 81.21,
+    "billableRate": 123.3,
+    "experience": 11,
+    "strengths": [
+      "Problem Solving",
+      "Risk Management",
+      "Scheduling"
+    ],
+    "weaknesses": [
+      "Delegation",
+      "Time Management"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525857,
+        "role": "PM",
+        "startDate": "2023-10-06T00:00:00Z",
+        "endDate": "2025-07-13T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "2243107b-8d5d-4742-9ff2-efb9ac82f2ae",
+    "name": "Cameron Carter",
+    "position": "Senior Project Manager",
+    "laborRate": 89.44,
+    "billableRate": 116.3,
+    "experience": 3,
+    "strengths": [
+      "Contract Negotiation",
+      "Quality Control",
+      "Team Leadership"
+    ],
+    "weaknesses": [
+      "Impatience",
+      "Technology Adoption"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525845,
+        "role": "PM",
+        "startDate": "2024-12-14T00:00:00Z",
+        "endDate": "2027-01-18T23:59:59Z"
+      },
+      {
+        "project_id": 2525852,
+        "role": "PM",
+        "startDate": "2023-11-25T00:00:00Z",
+        "endDate": "2024-12-09T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "0d23c054-5faf-4296-b639-5a2ff0b37f0f",
+    "name": "Samantha Carter",
+    "position": "Senior Project Manager",
+    "laborRate": 51.3,
+    "billableRate": 123.52,
+    "experience": 8,
+    "strengths": [
+      "Risk Management",
+      "Contract Negotiation"
+    ],
+    "weaknesses": [
+      "Delegation"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525844,
+        "role": "PM",
+        "startDate": "2022-04-29T00:00:00Z",
+        "endDate": "2024-02-11T23:59:59Z"
+      },
+      {
+        "project_id": 2525856,
+        "role": "PM",
+        "startDate": "2025-07-09T00:00:00Z",
+        "endDate": "2027-05-22T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "b227660c-f41f-4ced-a9e0-8f1632f4faca",
+    "name": "Michael Gonzalez",
+    "position": "Senior Project Manager",
+    "laborRate": 65.76,
+    "billableRate": 171.77,
+    "experience": 13,
+    "strengths": [
+      "Risk Management",
+      "Budgeting",
+      "Vendor Coordination",
+      "Team Leadership"
+    ],
+    "weaknesses": [
+      "Delegation",
+      "Technology Adoption"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525855,
+        "role": "PM",
+        "startDate": "2024-12-16T00:00:00Z",
+        "endDate": "2026-03-10T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "683dd59a-1e6e-4839-a5fa-c825cadceb53",
+    "name": "Jordan Carter",
+    "position": "Project Manager III",
+    "laborRate": 61.36,
+    "billableRate": 148.83,
+    "experience": 18,
+    "strengths": [
+      "Risk Management",
+      "Team Leadership",
+      "Technical Writing",
+      "Budgeting"
+    ],
+    "weaknesses": [
+      "Overcommunication"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525852,
+        "role": "PM",
+        "startDate": "2023-11-29T00:00:00Z",
+        "endDate": "2025-02-17T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "42d4fc22-3eed-4e41-9f6c-f384e9ac7410",
+    "name": "Taylor Ali",
+    "position": "Project Manager III",
+    "laborRate": 52.94,
+    "billableRate": 142.25,
+    "experience": 7,
+    "strengths": [
+      "Team Leadership",
+      "Problem Solving"
+    ],
+    "weaknesses": [
+      "Public Speaking",
+      "Impatience"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525840,
+        "role": "PM",
+        "startDate": "2024-10-05T00:00:00Z",
+        "endDate": "2026-06-29T23:59:59Z"
+      },
+      {
+        "project_id": 2525843,
+        "role": "PM",
+        "startDate": "2024-09-13T00:00:00Z",
+        "endDate": "2025-12-13T23:59:59Z"
+      },
+      {
+        "project_id": 2525857,
+        "role": "PM",
+        "startDate": "2023-08-05T00:00:00Z",
+        "endDate": "2025-03-20T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "d1e80a7d-78a1-43fa-86e6-7df56b2689a9",
+    "name": "Casey Gonzalez",
+    "position": "Project Manager III",
+    "laborRate": 44.05,
+    "billableRate": 181.73,
+    "experience": 18,
+    "strengths": [
+      "Vendor Coordination",
+      "Quality Control",
+      "Budgeting",
+      "Team Leadership"
+    ],
+    "weaknesses": [
+      "Overcommunication",
+      "Impatience"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525845,
+        "role": "PM",
+        "startDate": "2024-12-20T00:00:00Z",
+        "endDate": "2027-01-27T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "a3b7b1a0-c889-474d-8725-aca982b723fa",
+    "name": "Michael Singh",
+    "position": "Project Manager III",
+    "laborRate": 64.12,
+    "billableRate": 181.62,
+    "experience": 10,
+    "strengths": [
+      "Problem Solving",
+      "Vendor Coordination",
+      "Technical Writing"
+    ],
+    "weaknesses": [
+      "Overcommunication"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525849,
+        "role": "PM",
+        "startDate": "2025-06-27T00:00:00Z",
+        "endDate": "2027-04-23T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "25caeacd-0e39-44c3-9745-965568eb3898",
+    "name": "Robin Hernandez",
+    "position": "Project Manager III",
+    "laborRate": 43.84,
+    "billableRate": 169.22,
+    "experience": 22,
+    "strengths": [
+      "Team Leadership",
+      "Client Communication"
+    ],
+    "weaknesses": [
+      "Conflict Resolution"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525854,
+        "role": "PM",
+        "startDate": "2022-07-18T00:00:00Z",
+        "endDate": "2024-08-07T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "dde1876b-a29b-4f66-8a0e-b3a9deed7d7e",
+    "name": "Chris Murphy",
+    "position": "Project Manager III",
+    "laborRate": 44.89,
+    "billableRate": 131.86,
+    "experience": 24,
+    "strengths": [
+      "Scheduling",
+      "Vendor Coordination",
+      "Budgeting"
+    ],
+    "weaknesses": [
+      "Public Speaking"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525850,
+        "role": "PM",
+        "startDate": "2024-11-13T00:00:00Z",
+        "endDate": "2026-03-31T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "e8b8ce45-e45e-42ea-9479-4ec69bc81f71",
+    "name": "Dana Singh",
+    "position": "Project Manager III",
+    "laborRate": 63.88,
+    "billableRate": 156.19,
+    "experience": 20,
+    "strengths": [
+      "Scheduling",
+      "Vendor Coordination"
+    ],
+    "weaknesses": [
+      "Impatience",
+      "Public Speaking"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525859,
+        "role": "PM",
+        "startDate": "2022-06-04T00:00:00Z",
+        "endDate": "2024-07-14T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "d2a32ece-bec6-415a-a86b-6fa3f7d15075",
+    "name": "Jamie Gonzalez",
+    "position": "Project Manager III",
+    "laborRate": 73.66,
+    "billableRate": 174.63,
+    "experience": 23,
+    "strengths": [
+      "Vendor Coordination",
+      "Risk Management",
+      "Technical Writing"
+    ],
+    "weaknesses": [
+      "Overcommunication"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525853,
+        "role": "PM",
+        "startDate": "2024-12-12T00:00:00Z",
+        "endDate": "2026-02-22T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "9bcfcec5-eb35-48a0-b4ec-2f0097d92a6e",
+    "name": "Casey Hernandez",
+    "position": "Project Manager II",
+    "laborRate": 57.62,
+    "billableRate": 188.49,
+    "experience": 9,
+    "strengths": [
+      "Technical Writing",
+      "Problem Solving",
+      "Contract Negotiation"
+    ],
+    "weaknesses": [
+      "Impatience",
+      "Delegation"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525848,
+        "role": "PM",
+        "startDate": "2024-07-22T00:00:00Z",
+        "endDate": "2025-09-12T23:59:59Z"
+      },
+      {
+        "project_id": 2525853,
+        "role": "PM",
+        "startDate": "2025-01-08T00:00:00Z",
+        "endDate": "2026-02-13T23:59:59Z"
+      },
+      {
+        "project_id": 2525855,
+        "role": "PM",
+        "startDate": "2025-01-01T00:00:00Z",
+        "endDate": "2026-03-13T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "84012b56-10fd-4607-9766-eceb89fea3b2",
+    "name": "Robin Patel",
+    "position": "Project Manager II",
+    "laborRate": 61.08,
+    "billableRate": 163.72,
+    "experience": 16,
+    "strengths": [
+      "Budgeting",
+      "Vendor Coordination",
+      "Client Communication"
+    ],
+    "weaknesses": [
+      "Time Management"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525858,
+        "role": "PM",
+        "startDate": "2024-11-14T00:00:00Z",
+        "endDate": "2026-02-19T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "82135c83-ccbe-4fcb-b3bd-2d5757ba5c79",
+    "name": "Casey Nguyen",
+    "position": "Project Manager II",
+    "laborRate": 81.67,
+    "billableRate": 148.2,
+    "experience": 4,
+    "strengths": [
+      "Problem Solving",
+      "Risk Management",
+      "Team Leadership"
+    ],
+    "weaknesses": [
+      "Time Management",
+      "Overcommunication"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525856,
+        "role": "PM",
+        "startDate": "2025-05-05T00:00:00Z",
+        "endDate": "2027-10-10T23:59:59Z"
+      },
+      {
+        "project_id": 2525859,
+        "role": "PM",
+        "startDate": "2022-05-30T00:00:00Z",
+        "endDate": "2024-07-10T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "85f1e987-59f5-41ea-953e-771b38dd6e25",
+    "name": "Cameron Carter",
+    "position": "Project Manager II",
+    "laborRate": 69.15,
+    "billableRate": 173.9,
+    "experience": 3,
+    "strengths": [
+      "Vendor Coordination",
+      "Client Communication"
+    ],
+    "weaknesses": [
+      "Public Speaking"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525840,
+        "role": "PM",
+        "startDate": "2024-06-10T00:00:00Z",
+        "endDate": "2026-07-19T23:59:59Z"
+      },
+      {
+        "project_id": 2525844,
+        "role": "PM",
+        "startDate": "2022-04-07T00:00:00Z",
+        "endDate": "2024-01-12T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "c70259b8-7700-42c4-a38f-71c4fc137910",
+    "name": "Jamie Ali",
+    "position": "Project Manager II",
+    "laborRate": 82.55,
+    "billableRate": 144.54,
+    "experience": 20,
+    "strengths": [
+      "Risk Management",
+      "Team Leadership"
+    ],
+    "weaknesses": [
+      "Overcommunication"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525851,
+        "role": "PM",
+        "startDate": "2025-06-07T00:00:00Z",
+        "endDate": "2026-11-20T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "12cd9512-e1be-4436-9b80-241eebabf89e",
+    "name": "Casey Carter",
+    "position": "Project Manager II",
+    "laborRate": 96.99,
+    "billableRate": 163.35,
+    "experience": 24,
+    "strengths": [
+      "Scheduling",
+      "Risk Management"
+    ],
+    "weaknesses": [
+      "Conflict Resolution",
+      "Paperwork"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525857,
+        "role": "PM",
+        "startDate": "2023-10-15T00:00:00Z",
+        "endDate": "2025-03-20T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "9b3b094c-b2e1-4a48-927a-236103135656",
+    "name": "Jamie Smith",
+    "position": "Project Manager II",
+    "laborRate": 48.64,
+    "billableRate": 204.42,
+    "experience": 8,
+    "strengths": [
+      "Risk Management",
+      "Client Communication",
+      "Budgeting",
+      "Quality Control"
+    ],
+    "weaknesses": [
+      "Overcommunication"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525845,
+        "role": "PM",
+        "startDate": "2024-12-31T00:00:00Z",
+        "endDate": "2026-12-20T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "0d17f174-0624-4e35-9aff-47b136f1d139",
+    "name": "Dana Ali",
+    "position": "Project Manager I",
+    "laborRate": 76.52,
+    "billableRate": 145.47,
+    "experience": 25,
+    "strengths": [
+      "Risk Management",
+      "Scheduling",
+      "Quality Control"
+    ],
+    "weaknesses": [
+      "Time Management",
+      "Delegation"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525854,
+        "role": "PM",
+        "startDate": "2022-08-07T00:00:00Z",
+        "endDate": "2024-06-09T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "cd9314bc-d1ed-4960-aace-5c7589b27490",
+    "name": "Morgan Nguyen",
+    "position": "Project Manager I",
+    "laborRate": 78.62,
+    "billableRate": 149.78,
+    "experience": 10,
+    "strengths": [
+      "Problem Solving",
+      "Contract Negotiation",
+      "Team Leadership"
+    ],
+    "weaknesses": [
+      "Impatience"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525847,
+        "role": "PM",
+        "startDate": "2023-06-30T00:00:00Z",
+        "endDate": "2025-03-21T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "cba053a0-f9d1-4c52-9516-b2806b51de0f",
+    "name": "Jessie Ali",
+    "position": "Project Manager I",
+    "laborRate": 53.57,
+    "billableRate": 210.75,
+    "experience": 20,
+    "strengths": [
+      "Contract Negotiation",
+      "Scheduling",
+      "Risk Management"
+    ],
+    "weaknesses": [
+      "Impatience",
+      "Conflict Resolution"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525848,
+        "role": "PM",
+        "startDate": "2024-06-30T00:00:00Z",
+        "endDate": "2025-10-08T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "0e20b7c7-439e-42b3-a615-a86c374086fe",
+    "name": "Taylor Lee",
+    "position": "Project Manager I",
+    "laborRate": 96.49,
+    "billableRate": 147.38,
+    "experience": 15,
+    "strengths": [
+      "Scheduling",
+      "Technical Writing",
+      "Problem Solving"
+    ],
+    "weaknesses": [
+      "Public Speaking"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525852,
+        "role": "PM",
+        "startDate": "2023-10-30T00:00:00Z",
+        "endDate": "2024-12-19T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "5958bd3d-27fd-46b1-a638-4eb3642fbe6e",
+    "name": "Casey Ali",
+    "position": "Project Manager I",
+    "laborRate": 85.76,
+    "billableRate": 152.19,
+    "experience": 23,
+    "strengths": [
+      "Scheduling",
+      "Budgeting",
+      "Vendor Coordination",
+      "Contract Negotiation"
+    ],
+    "weaknesses": [
+      "Delegation"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525851,
+        "role": "PM",
+        "startDate": "2025-01-20T00:00:00Z",
+        "endDate": "2027-02-22T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "539c3057-82f8-4590-9c25-10d413dd2835",
+    "name": "Chris Martinez",
+    "position": "Project Manager I",
+    "laborRate": 92.42,
+    "billableRate": 147.19,
+    "experience": 5,
+    "strengths": [
+      "Client Communication",
+      "Technical Writing",
+      "Contract Negotiation",
+      "Team Leadership"
+    ],
+    "weaknesses": [
+      "Impatience"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525850,
+        "role": "PM",
+        "startDate": "2024-08-06T00:00:00Z",
+        "endDate": "2026-03-21T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "4cb5b13f-6187-4bbf-87e5-6ae5c463af71",
+    "name": "Robin Smith",
+    "position": "Project Manager I",
+    "laborRate": 76.26,
+    "billableRate": 173.04,
+    "experience": 10,
+    "strengths": [
+      "Scheduling",
+      "Team Leadership",
+      "Budgeting"
+    ],
+    "weaknesses": [
+      "Overcommunication"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525846,
+        "role": "PM",
+        "startDate": "2025-03-12T00:00:00Z",
+        "endDate": "2026-07-05T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "0e154552-0bbf-40d1-8670-fac94df37718",
+    "name": "Jessie Brown",
+    "position": "Project Manager I",
+    "laborRate": 77.58,
+    "billableRate": 160.6,
+    "experience": 22,
+    "strengths": [
+      "Team Leadership",
+      "Risk Management"
+    ],
+    "weaknesses": [
+      "Conflict Resolution",
+      "Paperwork"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525842,
+        "role": "PM",
+        "startDate": "2023-03-18T00:00:00Z",
+        "endDate": "2024-07-30T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "896d2154-9f55-4a08-9b4d-dd707246ed90",
+    "name": "Alex Gonzalez",
+    "position": "Assistant Project Manager",
+    "laborRate": 62.15,
+    "billableRate": 146.01,
+    "experience": 14,
+    "strengths": [
+      "Contract Negotiation",
+      "Risk Management"
+    ],
+    "weaknesses": [
+      "Public Speaking",
+      "Paperwork"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525857,
+        "role": "APM",
+        "startDate": "2023-07-04T00:00:00Z",
+        "endDate": "2025-06-04T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "67c2283d-f864-4fb6-9655-5b61b9a23b37",
+    "name": "Cameron Smith",
+    "position": "Assistant Project Manager",
+    "laborRate": 67.38,
+    "billableRate": 117.4,
+    "experience": 4,
+    "strengths": [
+      "Vendor Coordination",
+      "Technical Writing"
+    ],
+    "weaknesses": [
+      "Paperwork"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525843,
+        "role": "APM",
+        "startDate": "2024-09-25T00:00:00Z",
+        "endDate": "2026-02-27T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "94c2796e-b0d6-4460-8c98-219cb9c936e9",
+    "name": "Morgan Singh",
+    "position": "Assistant Project Manager",
+    "laborRate": 90.4,
+    "billableRate": 184.27,
+    "experience": 16,
+    "strengths": [
+      "Contract Negotiation",
+      "Risk Management"
+    ],
+    "weaknesses": [
+      "Time Management"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525846,
+        "role": "APM",
+        "startDate": "2025-05-15T00:00:00Z",
+        "endDate": "2026-08-05T23:59:59Z"
+      },
+      {
+        "project_id": 2525850,
+        "role": "APM",
+        "startDate": "2024-08-09T00:00:00Z",
+        "endDate": "2026-01-27T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "abc6c5bd-36e7-41d9-9742-981ce63eda05",
+    "name": "Jessie Chen",
+    "position": "Assistant Project Manager",
+    "laborRate": 65.38,
+    "billableRate": 115.43,
+    "experience": 19,
+    "strengths": [
+      "Problem Solving",
+      "Client Communication"
+    ],
+    "weaknesses": [
+      "Overcommunication"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525847,
+        "role": "APM",
+        "startDate": "2023-10-09T00:00:00Z",
+        "endDate": "2025-02-13T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "923efd2d-8c81-4af5-a658-87f7108beeba",
+    "name": "Casey Martinez",
+    "position": "Assistant Project Manager",
+    "laborRate": 82.84,
+    "billableRate": 185.77,
+    "experience": 16,
+    "strengths": [
+      "Problem Solving",
+      "Technical Writing"
+    ],
+    "weaknesses": [
+      "Time Management",
+      "Conflict Resolution"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525840,
+        "role": "APM",
+        "startDate": "2024-09-08T00:00:00Z",
+        "endDate": "2026-09-10T23:59:59Z"
+      },
+      {
+        "project_id": 2525849,
+        "role": "APM",
+        "startDate": "2025-04-20T00:00:00Z",
+        "endDate": "2027-02-25T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "7429350d-ae40-4d9f-a378-16ae341eb6e7",
+    "name": "Jordan Chen",
+    "position": "Assistant Project Manager",
+    "laborRate": 70.18,
+    "billableRate": 165.01,
+    "experience": 15,
+    "strengths": [
+      "Quality Control",
+      "Contract Negotiation"
+    ],
+    "weaknesses": [
+      "Public Speaking"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525842,
+        "role": "APM",
+        "startDate": "2023-04-19T00:00:00Z",
+        "endDate": "2024-08-23T23:59:59Z"
+      },
+      {
+        "project_id": 2525859,
+        "role": "APM",
+        "startDate": "2022-06-23T00:00:00Z",
+        "endDate": "2024-07-18T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "1ffba9d9-6fe8-4c76-a802-ffc9dfd4ae0f",
+    "name": "Chris Smith",
+    "position": "Assistant Project Manager",
+    "laborRate": 70.79,
+    "billableRate": 142.19,
+    "experience": 12,
+    "strengths": [
+      "Client Communication",
+      "Vendor Coordination",
+      "Technical Writing"
+    ],
+    "weaknesses": [
+      "Conflict Resolution",
+      "Impatience"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525852,
+        "role": "APM",
+        "startDate": "2023-09-20T00:00:00Z",
+        "endDate": "2025-02-28T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "b7dc2041-0b5e-4dea-af4b-c03eeb1dcc52",
+    "name": "Casey Chen",
+    "position": "Assistant Project Manager",
+    "laborRate": 79.7,
+    "billableRate": 113.74,
+    "experience": 16,
+    "strengths": [
+      "Client Communication",
+      "Scheduling",
+      "Risk Management",
+      "Budgeting"
+    ],
+    "weaknesses": [
+      "Delegation"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525854,
+        "role": "APM",
+        "startDate": "2022-04-05T00:00:00Z",
+        "endDate": "2024-06-26T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "a76da0d7-4566-4afa-9272-77f6b1f35555",
+    "name": "Jamie Murphy",
+    "position": "Project Administrator",
+    "laborRate": 48.4,
+    "billableRate": 116.84,
+    "experience": 11,
+    "strengths": [
+      "Risk Management",
+      "Quality Control",
+      "Vendor Coordination"
+    ],
+    "weaknesses": [
+      "Time Management",
+      "Impatience"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525848,
+        "role": "PA",
+        "startDate": "2024-04-21T00:00:00Z",
+        "endDate": "2025-10-15T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "3e45383f-6fb7-4604-8b15-2919dfd2b97f",
+    "name": "Jordan Patel",
+    "position": "Project Administrator",
+    "laborRate": 57.22,
+    "billableRate": 169.66,
+    "experience": 17,
+    "strengths": [
+      "Technical Writing",
+      "Risk Management"
+    ],
+    "weaknesses": [
+      "Delegation",
+      "Conflict Resolution"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525841,
+        "role": "PA",
+        "startDate": "2025-03-05T00:00:00Z",
+        "endDate": "2027-01-30T23:59:59Z"
+      },
+      {
+        "project_id": 2525856,
+        "role": "PA",
+        "startDate": "2025-08-12T00:00:00Z",
+        "endDate": "2027-10-08T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "767545a1-656e-4663-819a-39fc759078c6",
+    "name": "Alex Martinez",
+    "position": "Project Administrator",
+    "laborRate": 74.92,
+    "billableRate": 188.42,
+    "experience": 20,
+    "strengths": [
+      "Budgeting",
+      "Problem Solving",
+      "Technical Writing"
+    ],
+    "weaknesses": [
+      "Technology Adoption",
+      "Overcommunication"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525853,
+        "role": "PA",
+        "startDate": "2024-11-26T00:00:00Z",
+        "endDate": "2026-04-18T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "2fcf2660-aaec-46bf-af01-37f8a9bc26c7",
+    "name": "Jamie Singh",
+    "position": "Project Administrator",
+    "laborRate": 65.69,
+    "billableRate": 195.56,
+    "experience": 21,
+    "strengths": [
+      "Contract Negotiation",
+      "Quality Control",
+      "Scheduling"
+    ],
+    "weaknesses": [
+      "Overcommunication"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525858,
+        "role": "PA",
+        "startDate": "2024-11-08T00:00:00Z",
+        "endDate": "2025-12-12T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "15aacf2e-18a4-46e1-b58d-3b171d0758ff",
+    "name": "Michael Singh",
+    "position": "Project Administrator",
+    "laborRate": 53.56,
+    "billableRate": 120.16,
+    "experience": 18,
+    "strengths": [
+      "Budgeting",
+      "Contract Negotiation"
+    ],
+    "weaknesses": [
+      "Public Speaking"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525844,
+        "role": "PA",
+        "startDate": "2022-03-14T00:00:00Z",
+        "endDate": "2024-05-19T23:59:59Z"
+      },
+      {
+        "project_id": 2525845,
+        "role": "PA",
+        "startDate": "2025-04-03T00:00:00Z",
+        "endDate": "2026-12-08T23:59:59Z"
+      },
+      {
+        "project_id": 2525851,
+        "role": "PA",
+        "startDate": "2025-03-02T00:00:00Z",
+        "endDate": "2026-10-30T23:59:59Z"
+      },
+      {
+        "project_id": 2525855,
+        "role": "PA",
+        "startDate": "2025-02-22T00:00:00Z",
+        "endDate": "2026-03-30T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "88715881-cf7f-4737-817f-bcde26875cac",
+    "name": "Taylor Smith",
+    "position": "Project Accountant",
+    "laborRate": 55.51,
+    "billableRate": 194.83,
+    "experience": 8,
+    "strengths": [
+      "Quality Control",
+      "Client Communication",
+      "Vendor Coordination",
+      "Team Leadership"
+    ],
+    "weaknesses": [
+      "Time Management"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525854,
+        "role": "PAcct",
+        "startDate": "2022-04-10T00:00:00Z",
+        "endDate": "2024-04-23T23:59:59Z"
+      },
+      {
+        "project_id": 2525855,
+        "role": "PAcct",
+        "startDate": "2025-01-23T00:00:00Z",
+        "endDate": "2026-04-30T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "0caff911-8d7c-47fe-8366-7a8eb594b718",
+    "name": "Taylor Lee",
+    "position": "Project Accountant",
+    "laborRate": 65.56,
+    "billableRate": 116.38,
+    "experience": 11,
+    "strengths": [
+      "Vendor Coordination",
+      "Scheduling"
+    ],
+    "weaknesses": [
+      "Technology Adoption"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525843,
+        "role": "PAcct",
+        "startDate": "2024-11-03T00:00:00Z",
+        "endDate": "2025-12-09T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "e5f78783-2aa5-42a9-9527-a37e7d943c85",
+    "name": "Morgan Singh",
+    "position": "Project Accountant",
+    "laborRate": 44.76,
+    "billableRate": 214.46,
+    "experience": 10,
+    "strengths": [
+      "Technical Writing",
+      "Budgeting"
+    ],
+    "weaknesses": [
+      "Technology Adoption"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525853,
+        "role": "PAcct",
+        "startDate": "2024-11-25T00:00:00Z",
+        "endDate": "2026-04-27T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "fe06c46f-cb86-47d8-90cc-3a4509fae706",
+    "name": "Morgan Ali",
+    "position": "Project Accountant",
+    "laborRate": 55.52,
+    "billableRate": 174.77,
+    "experience": 11,
+    "strengths": [
+      "Scheduling",
+      "Vendor Coordination"
+    ],
+    "weaknesses": [
+      "Time Management",
+      "Overcommunication"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525846,
+        "role": "PAcct",
+        "startDate": "2025-05-28T00:00:00Z",
+        "endDate": "2026-08-10T23:59:59Z"
+      },
+      {
+        "project_id": 2525852,
+        "role": "PAcct",
+        "startDate": "2023-11-15T00:00:00Z",
+        "endDate": "2025-01-29T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "db88d2c2-1c8d-472c-af00-67491b605eb2",
+    "name": "Jessie Lee",
+    "position": "Project Accountant",
+    "laborRate": 44.93,
+    "billableRate": 125.81,
+    "experience": 19,
+    "strengths": [
+      "Quality Control",
+      "Scheduling",
+      "Problem Solving",
+      "Contract Negotiation"
+    ],
+    "weaknesses": [
+      "Overcommunication"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525858,
+        "role": "PAcct",
+        "startDate": "2024-09-18T00:00:00Z",
+        "endDate": "2026-03-04T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "c13ac6b3-e107-444d-962f-fd8d09faca9f",
+    "name": "Taylor Smith",
+    "position": "Project Accountant",
+    "laborRate": 51.01,
+    "billableRate": 156.02,
+    "experience": 15,
+    "strengths": [
+      "Risk Management",
+      "Client Communication",
+      "Team Leadership",
+      "Vendor Coordination"
+    ],
+    "weaknesses": [
+      "Delegation"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525842,
+        "role": "PAcct",
+        "startDate": "2023-03-29T00:00:00Z",
+        "endDate": "2024-09-05T23:59:59Z"
+      },
+      {
+        "project_id": 2525857,
+        "role": "PAcct",
+        "startDate": "2023-08-20T00:00:00Z",
+        "endDate": "2025-04-10T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "9b161b41-fa66-4b68-88d7-70e3f8b9dfda",
+    "name": "Alex Hernandez",
+    "position": "Project Accountant",
+    "laborRate": 66.33,
+    "billableRate": 128.91,
+    "experience": 4,
+    "strengths": [
+      "Team Leadership",
+      "Technical Writing",
+      "Client Communication"
+    ],
+    "weaknesses": [
+      "Technology Adoption"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525844,
+        "role": "PAcct",
+        "startDate": "2022-05-19T00:00:00Z",
+        "endDate": "2024-04-04T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "d05798d9-24e4-498f-872f-fb75af2e1320",
+    "name": "Cameron Ali",
+    "position": "Project Accountant",
+    "laborRate": 97.85,
+    "billableRate": 191.8,
+    "experience": 10,
+    "strengths": [
+      "Problem Solving",
+      "Risk Management",
+      "Scheduling",
+      "Budgeting"
+    ],
+    "weaknesses": [
+      "Paperwork",
+      "Time Management"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525840,
+        "role": "PAcct",
+        "startDate": "2024-10-25T00:00:00Z",
+        "endDate": "2026-09-06T23:59:59Z"
+      },
+      {
+        "project_id": 2525859,
+        "role": "PAcct",
+        "startDate": "2022-05-06T00:00:00Z",
+        "endDate": "2024-06-25T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "fbcf84e3-a0ec-4509-abe3-7d70a3ba4c68",
+    "name": "Alex Brown",
+    "position": "Project Accountant",
+    "laborRate": 65.39,
+    "billableRate": 185.14,
+    "experience": 6,
+    "strengths": [
+      "Contract Negotiation",
+      "Budgeting",
+      "Vendor Coordination",
+      "Risk Management"
+    ],
+    "weaknesses": [
+      "Delegation",
+      "Conflict Resolution"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525847,
+        "role": "PAcct",
+        "startDate": "2023-06-17T00:00:00Z",
+        "endDate": "2025-05-18T23:59:59Z"
+      },
+      {
+        "project_id": 2525849,
+        "role": "PAcct",
+        "startDate": "2025-03-21T00:00:00Z",
+        "endDate": "2027-04-17T23:59:59Z"
+      },
+      {
+        "project_id": 2525851,
+        "role": "PAcct",
+        "startDate": "2025-06-03T00:00:00Z",
+        "endDate": "2026-11-10T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "fae4088b-3eb9-46cc-8709-1d4d6cfb6698",
+    "name": "Jessie Brown",
+    "position": "Project Accountant",
+    "laborRate": 54.89,
+    "billableRate": 155.81,
+    "experience": 19,
+    "strengths": [
+      "Quality Control",
+      "Technical Writing"
+    ],
+    "weaknesses": [
+      "Technology Adoption"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525841,
+        "role": "PAcct",
+        "startDate": "2025-05-30T00:00:00Z",
+        "endDate": "2027-04-10T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "9abb97d7-bbc4-4b92-b5a2-bc61f30336a5",
+    "name": "Morgan Chen",
+    "position": "Project Accountant",
+    "laborRate": 68.14,
+    "billableRate": 167.79,
+    "experience": 25,
+    "strengths": [
+      "Contract Negotiation",
+      "Technical Writing",
+      "Quality Control"
+    ],
+    "weaknesses": [
+      "Paperwork"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525845,
+        "role": "PAcct",
+        "startDate": "2024-11-15T00:00:00Z",
+        "endDate": "2026-11-26T23:59:59Z"
+      },
+      {
+        "project_id": 2525848,
+        "role": "PAcct",
+        "startDate": "2024-05-31T00:00:00Z",
+        "endDate": "2025-11-07T23:59:59Z"
+      },
+      {
+        "project_id": 2525850,
+        "role": "PAcct",
+        "startDate": "2024-09-18T00:00:00Z",
+        "endDate": "2026-02-10T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "f8fb3047-6050-4808-a093-5c200cf9c80d",
+    "name": "Michael Murphy",
+    "position": "Project Accountant",
+    "laborRate": 82.86,
+    "billableRate": 140.89,
+    "experience": 13,
+    "strengths": [
+      "Technical Writing",
+      "Budgeting"
+    ],
+    "weaknesses": [
+      "Overcommunication"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525856,
+        "role": "PAcct",
+        "startDate": "2025-06-22T00:00:00Z",
+        "endDate": "2027-09-02T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "390b31d1-6f5c-46a6-ab84-c037ec798d69",
+    "name": "Robin Smith",
+    "position": "General Superintendent",
+    "laborRate": 83.93,
+    "billableRate": 172.41,
+    "experience": 16,
+    "strengths": [
+      "Risk Management",
+      "Contract Negotiation"
+    ],
+    "weaknesses": [
+      "Delegation",
+      "Impatience"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525844,
+        "role": "GS",
+        "startDate": "2022-05-15T00:00:00Z",
+        "endDate": "2024-05-22T23:59:59Z"
+      },
+      {
+        "project_id": 2525849,
+        "role": "GS",
+        "startDate": "2025-06-06T00:00:00Z",
+        "endDate": "2027-06-23T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "bc86e77e-c6b1-4f27-9c6c-1b1707aacdba",
+    "name": "Robin Chen",
+    "position": "General Superintendent",
+    "laborRate": 59.03,
+    "billableRate": 202.36,
+    "experience": 14,
+    "strengths": [
+      "Technical Writing",
+      "Risk Management",
+      "Quality Control",
+      "Scheduling"
+    ],
+    "weaknesses": [
+      "Impatience"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525848,
+        "role": "GS",
+        "startDate": "2024-05-06T00:00:00Z",
+        "endDate": "2025-12-29T23:59:59Z"
+      },
+      {
+        "project_id": 2525857,
+        "role": "GS",
+        "startDate": "2023-09-30T00:00:00Z",
+        "endDate": "2025-07-13T23:59:59Z"
+      },
+      {
+        "project_id": 2525859,
+        "role": "GS",
+        "startDate": "2022-03-30T00:00:00Z",
+        "endDate": "2024-02-23T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "c66a167a-1c31-41ba-930f-a7811963021d",
+    "name": "Michael Chen",
+    "position": "General Superintendent",
+    "laborRate": 94.34,
+    "billableRate": 184.99,
+    "experience": 10,
+    "strengths": [
+      "Contract Negotiation",
+      "Team Leadership",
+      "Quality Control"
+    ],
+    "weaknesses": [
+      "Overcommunication"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525853,
+        "role": "GS",
+        "startDate": "2024-11-08T00:00:00Z",
+        "endDate": "2026-03-01T23:59:59Z"
+      },
+      {
+        "project_id": 2525855,
+        "role": "GS",
+        "startDate": "2024-12-21T00:00:00Z",
+        "endDate": "2026-06-18T23:59:59Z"
+      },
+      {
+        "project_id": 2525856,
+        "role": "GS",
+        "startDate": "2025-06-10T00:00:00Z",
+        "endDate": "2027-07-08T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "619b01c7-9f94-4f3a-ac0d-dd19956427e1",
+    "name": "Cameron Patel",
+    "position": "General Superintendent",
+    "laborRate": 47.89,
+    "billableRate": 135.43,
+    "experience": 20,
+    "strengths": [
+      "Scheduling",
+      "Budgeting"
+    ],
+    "weaknesses": [
+      "Overcommunication",
+      "Conflict Resolution"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525846,
+        "role": "GS",
+        "startDate": "2025-05-29T00:00:00Z",
+        "endDate": "2026-06-20T23:59:59Z"
+      },
+      {
+        "project_id": 2525850,
+        "role": "GS",
+        "startDate": "2024-12-02T00:00:00Z",
+        "endDate": "2026-02-02T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "2e4c05a8-6cd7-46bf-aa6b-fdb4a2761c23",
+    "name": "Taylor Carter",
+    "position": "General Superintendent",
+    "laborRate": 50.17,
+    "billableRate": 206.27,
+    "experience": 16,
+    "strengths": [
+      "Contract Negotiation",
+      "Technical Writing"
+    ],
+    "weaknesses": [
+      "Conflict Resolution"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525854,
+        "role": "GS",
+        "startDate": "2022-06-15T00:00:00Z",
+        "endDate": "2024-04-08T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "ca97f0cc-ad45-4489-a099-b2a5761b3a3f",
+    "name": "Jessie Singh",
+    "position": "General Superintendent",
+    "laborRate": 93.13,
+    "billableRate": 121.35,
+    "experience": 9,
+    "strengths": [
+      "Risk Management",
+      "Problem Solving",
+      "Vendor Coordination",
+      "Budgeting"
+    ],
+    "weaknesses": [
+      "Time Management",
+      "Paperwork"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525843,
+        "role": "GS",
+        "startDate": "2024-10-29T00:00:00Z",
+        "endDate": "2025-12-16T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "ee2699f6-256f-4029-94f5-aff51c37dff7",
+    "name": "Morgan Chen",
+    "position": "General Superintendent",
+    "laborRate": 77.3,
+    "billableRate": 133.43,
+    "experience": 11,
+    "strengths": [
+      "Budgeting",
+      "Quality Control",
+      "Vendor Coordination",
+      "Team Leadership"
+    ],
+    "weaknesses": [
+      "Public Speaking"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525847,
+        "role": "GS",
+        "startDate": "2023-06-26T00:00:00Z",
+        "endDate": "2025-06-05T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "ea28b2b1-2da1-407a-a9ba-26d921fa302b",
+    "name": "Samantha Gonzalez",
+    "position": "Superintendent III",
+    "laborRate": 91.57,
+    "billableRate": 182.79,
+    "experience": 13,
+    "strengths": [
+      "Vendor Coordination",
+      "Problem Solving",
+      "Client Communication"
+    ],
+    "weaknesses": [
+      "Time Management",
+      "Public Speaking"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525840,
+        "role": "Super",
+        "startDate": "2024-10-23T00:00:00Z",
+        "endDate": "2026-10-08T23:59:59Z"
+      },
+      {
+        "project_id": 2525842,
+        "role": "Super",
+        "startDate": "2023-05-04T00:00:00Z",
+        "endDate": "2024-08-16T23:59:59Z"
+      },
+      {
+        "project_id": 2525856,
+        "role": "Super",
+        "startDate": "2025-07-21T00:00:00Z",
+        "endDate": "2027-08-10T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "42ef0f50-1dd5-46d7-9fe4-eb19fb87e871",
+    "name": "Alex Carter",
+    "position": "Superintendent III",
+    "laborRate": 78.79,
+    "billableRate": 193.03,
+    "experience": 25,
+    "strengths": [
+      "Vendor Coordination",
+      "Problem Solving",
+      "Risk Management"
+    ],
+    "weaknesses": [
+      "Paperwork"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525843,
+        "role": "Super",
+        "startDate": "2024-09-24T00:00:00Z",
+        "endDate": "2026-02-01T23:59:59Z"
+      },
+      {
+        "project_id": 2525850,
+        "role": "Super",
+        "startDate": "2024-09-08T00:00:00Z",
+        "endDate": "2026-03-20T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "10fcd16d-150d-43ab-9ef3-86d75f8d6544",
+    "name": "Alex Chen",
+    "position": "Superintendent III",
+    "laborRate": 67.33,
+    "billableRate": 144.4,
+    "experience": 21,
+    "strengths": [
+      "Problem Solving",
+      "Vendor Coordination",
+      "Client Communication",
+      "Quality Control"
+    ],
+    "weaknesses": [
+      "Conflict Resolution",
+      "Paperwork"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525840,
+        "role": "Super",
+        "startDate": "2024-07-31T00:00:00Z",
+        "endDate": "2026-12-27T23:59:59Z"
+      },
+      {
+        "project_id": 2525851,
+        "role": "Super",
+        "startDate": "2025-04-06T00:00:00Z",
+        "endDate": "2027-01-06T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "320d3c01-59c2-4824-bc99-087f9502303e",
+    "name": "Taylor Gonzalez",
+    "position": "Superintendent III",
+    "laborRate": 74.58,
+    "billableRate": 139.95,
+    "experience": 9,
+    "strengths": [
+      "Vendor Coordination",
+      "Client Communication",
+      "Quality Control",
+      "Technical Writing"
+    ],
+    "weaknesses": [
+      "Overcommunication",
+      "Paperwork"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525844,
+        "role": "Super",
+        "startDate": "2022-03-30T00:00:00Z",
+        "endDate": "2024-02-09T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "179b3537-0937-4fbb-87b0-dfe894316b10",
+    "name": "Chris Chen",
+    "position": "Superintendent III",
+    "laborRate": 92.08,
+    "billableRate": 199.26,
+    "experience": 8,
+    "strengths": [
+      "Technical Writing",
+      "Contract Negotiation"
+    ],
+    "weaknesses": [
+      "Conflict Resolution",
+      "Delegation"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525858,
+        "role": "Super",
+        "startDate": "2024-11-19T00:00:00Z",
+        "endDate": "2026-03-27T23:59:59Z"
+      },
+      {
+        "project_id": 2525858,
+        "role": "Super",
+        "startDate": "2024-11-10T00:00:00Z",
+        "endDate": "2026-03-02T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "4eeaf080-9f99-41f7-8799-43f55b6982ff",
+    "name": "Jamie Lee",
+    "position": "Superintendent III",
+    "laborRate": 48.57,
+    "billableRate": 178.72,
+    "experience": 13,
+    "strengths": [
+      "Team Leadership",
+      "Quality Control"
+    ],
+    "weaknesses": [
+      "Conflict Resolution"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525856,
+        "role": "Super",
+        "startDate": "2025-08-10T00:00:00Z",
+        "endDate": "2027-05-15T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "87dab02b-395f-4a71-9d47-17eb167b2d89",
+    "name": "Alex Smith",
+    "position": "Superintendent III",
+    "laborRate": 63.08,
+    "billableRate": 182.06,
+    "experience": 20,
+    "strengths": [
+      "Team Leadership",
+      "Quality Control",
+      "Problem Solving"
+    ],
+    "weaknesses": [
+      "Impatience",
+      "Paperwork"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525847,
+        "role": "Super",
+        "startDate": "2023-09-20T00:00:00Z",
+        "endDate": "2025-05-18T23:59:59Z"
+      },
+      {
+        "project_id": 2525857,
+        "role": "Super",
+        "startDate": "2023-11-19T00:00:00Z",
+        "endDate": "2025-06-10T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "da9963f9-b6e8-42a1-b16f-a5ebdfbd341a",
+    "name": "Robin Singh",
+    "position": "Superintendent III",
+    "laborRate": 96.3,
+    "billableRate": 182.32,
+    "experience": 23,
+    "strengths": [
+      "Quality Control",
+      "Vendor Coordination"
+    ],
+    "weaknesses": [
+      "Delegation",
+      "Overcommunication"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525840,
+        "role": "Super",
+        "startDate": "2024-07-16T00:00:00Z",
+        "endDate": "2026-08-25T23:59:59Z"
+      },
+      {
+        "project_id": 2525843,
+        "role": "Super",
+        "startDate": "2024-11-05T00:00:00Z",
+        "endDate": "2026-01-01T23:59:59Z"
+      },
+      {
+        "project_id": 2525847,
+        "role": "Super",
+        "startDate": "2023-10-29T00:00:00Z",
+        "endDate": "2025-06-25T23:59:59Z"
+      },
+      {
+        "project_id": 2525853,
+        "role": "Super",
+        "startDate": "2024-12-06T00:00:00Z",
+        "endDate": "2026-04-26T23:59:59Z"
+      },
+      {
+        "project_id": 2525854,
+        "role": "Super",
+        "startDate": "2022-03-01T00:00:00Z",
+        "endDate": "2024-05-06T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "14e2d72d-0980-4295-aabc-370aeaef4b1f",
+    "name": "Taylor Patel",
+    "position": "Superintendent II",
+    "laborRate": 75.56,
+    "billableRate": 116.75,
+    "experience": 23,
+    "strengths": [
+      "Client Communication",
+      "Problem Solving",
+      "Team Leadership"
+    ],
+    "weaknesses": [
+      "Overcommunication"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525847,
+        "role": "Super",
+        "startDate": "2023-09-23T00:00:00Z",
+        "endDate": "2025-04-17T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "785419e7-3fa3-45d8-9c28-6a64a9b51d56",
+    "name": "Jessie Martinez",
+    "position": "Superintendent II",
+    "laborRate": 45.41,
+    "billableRate": 113.53,
+    "experience": 9,
+    "strengths": [
+      "Risk Management",
+      "Quality Control",
+      "Client Communication"
+    ],
+    "weaknesses": [
+      "Technology Adoption"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525857,
+        "role": "Super",
+        "startDate": "2023-10-31T00:00:00Z",
+        "endDate": "2025-03-03T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "5a27eb98-4996-48ca-bf50-891d1449e2e0",
+    "name": "Jordan Singh",
+    "position": "Superintendent II",
+    "laborRate": 67.69,
+    "billableRate": 207.44,
+    "experience": 17,
+    "strengths": [
+      "Vendor Coordination",
+      "Client Communication"
+    ],
+    "weaknesses": [
+      "Technology Adoption",
+      "Overcommunication"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525855,
+        "role": "Super",
+        "startDate": "2024-12-07T00:00:00Z",
+        "endDate": "2026-04-04T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "1ad2f31e-ec65-462d-a50c-7e3e74bb95a2",
+    "name": "Robin Gonzalez",
+    "position": "Superintendent II",
+    "laborRate": 75.48,
+    "billableRate": 206.02,
+    "experience": 12,
+    "strengths": [
+      "Contract Negotiation",
+      "Risk Management"
+    ],
+    "weaknesses": [
+      "Delegation"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525840,
+        "role": "Super",
+        "startDate": "2024-11-02T00:00:00Z",
+        "endDate": "2026-07-20T23:59:59Z"
+      },
+      {
+        "project_id": 2525850,
+        "role": "Super",
+        "startDate": "2024-12-02T00:00:00Z",
+        "endDate": "2026-03-25T23:59:59Z"
+      },
+      {
+        "project_id": 2525853,
+        "role": "Super",
+        "startDate": "2025-01-21T00:00:00Z",
+        "endDate": "2026-04-25T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "64a5d555-4c60-4f50-a1c9-a8e9e0d68622",
+    "name": "Morgan Martinez",
+    "position": "Superintendent II",
+    "laborRate": 67.66,
+    "billableRate": 126.34,
+    "experience": 13,
+    "strengths": [
+      "Contract Negotiation",
+      "Scheduling",
+      "Client Communication"
+    ],
+    "weaknesses": [
+      "Technology Adoption",
+      "Paperwork"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525858,
+        "role": "Super",
+        "startDate": "2024-11-07T00:00:00Z",
+        "endDate": "2026-02-12T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "461144f9-9e7e-46b0-b69d-bce36cf71677",
+    "name": "Casey Brown",
+    "position": "Superintendent II",
+    "laborRate": 64.73,
+    "billableRate": 212.98,
+    "experience": 7,
+    "strengths": [
+      "Quality Control",
+      "Team Leadership",
+      "Technical Writing"
+    ],
+    "weaknesses": [
+      "Public Speaking",
+      "Paperwork"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525851,
+        "role": "Super",
+        "startDate": "2025-02-18T00:00:00Z",
+        "endDate": "2026-11-11T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "9cd68603-ed87-41d2-980b-639f1d3a0acf",
+    "name": "Morgan Smith",
+    "position": "Superintendent II",
+    "laborRate": 72.11,
+    "billableRate": 204.59,
+    "experience": 17,
+    "strengths": [
+      "Vendor Coordination",
+      "Problem Solving",
+      "Technical Writing",
+      "Budgeting"
+    ],
+    "weaknesses": [
+      "Time Management"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525856,
+        "role": "Super",
+        "startDate": "2025-05-14T00:00:00Z",
+        "endDate": "2027-10-31T23:59:59Z"
+      },
+      {
+        "project_id": 2525857,
+        "role": "Super",
+        "startDate": "2023-07-24T00:00:00Z",
+        "endDate": "2025-05-13T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "81441f12-1c5b-4dd4-8f51-6b0d2bea9d5b",
+    "name": "Casey Patel",
+    "position": "Superintendent II",
+    "laborRate": 86.44,
+    "billableRate": 195.67,
+    "experience": 10,
+    "strengths": [
+      "Scheduling",
+      "Problem Solving",
+      "Vendor Coordination"
+    ],
+    "weaknesses": [
+      "Technology Adoption"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525849,
+        "role": "Super",
+        "startDate": "2025-07-18T00:00:00Z",
+        "endDate": "2027-05-24T23:59:59Z"
+      },
+      {
+        "project_id": 2525858,
+        "role": "Super",
+        "startDate": "2024-11-14T00:00:00Z",
+        "endDate": "2025-12-26T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "09cdb2d3-1ab6-4ef7-a99f-f944adc69cb1",
+    "name": "Jordan Carter",
+    "position": "Superintendent II",
+    "laborRate": 65.04,
+    "billableRate": 126.81,
+    "experience": 25,
+    "strengths": [
+      "Client Communication",
+      "Budgeting"
+    ],
+    "weaknesses": [
+      "Public Speaking",
+      "Paperwork"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525840,
+        "role": "Super",
+        "startDate": "2024-09-30T00:00:00Z",
+        "endDate": "2026-10-08T23:59:59Z"
+      },
+      {
+        "project_id": 2525841,
+        "role": "Super",
+        "startDate": "2025-04-18T00:00:00Z",
+        "endDate": "2027-01-08T23:59:59Z"
+      },
+      {
+        "project_id": 2525850,
+        "role": "Super",
+        "startDate": "2024-11-27T00:00:00Z",
+        "endDate": "2026-02-14T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "d4a13d1e-9c55-4715-a724-715ed90d6eb8",
+    "name": "Morgan Lee",
+    "position": "Superintendent II",
+    "laborRate": 52.17,
+    "billableRate": 207.53,
+    "experience": 5,
+    "strengths": [
+      "Problem Solving",
+      "Risk Management",
+      "Vendor Coordination"
+    ],
+    "weaknesses": [
+      "Delegation",
+      "Technology Adoption"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525851,
+        "role": "Super",
+        "startDate": "2025-04-15T00:00:00Z",
+        "endDate": "2027-01-09T23:59:59Z"
+      },
+      {
+        "project_id": 2525852,
+        "role": "Super",
+        "startDate": "2023-11-07T00:00:00Z",
+        "endDate": "2025-02-01T23:59:59Z"
+      },
+      {
+        "project_id": 2525858,
+        "role": "Super",
+        "startDate": "2024-11-17T00:00:00Z",
+        "endDate": "2026-01-03T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "37cc7d54-f292-45b8-a496-6d1271a1c5ef",
+    "name": "Chris Patel",
+    "position": "Superintendent II",
+    "laborRate": 84.4,
+    "billableRate": 131.56,
+    "experience": 7,
+    "strengths": [
+      "Scheduling",
+      "Quality Control"
+    ],
+    "weaknesses": [
+      "Overcommunication"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525844,
+        "role": "Super",
+        "startDate": "2022-04-19T00:00:00Z",
+        "endDate": "2023-12-31T23:59:59Z"
+      },
+      {
+        "project_id": 2525845,
+        "role": "Super",
+        "startDate": "2024-12-29T00:00:00Z",
+        "endDate": "2026-11-09T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "9903ef82-c086-4906-b2aa-3fc38bffbe98",
+    "name": "Michael Gonzalez",
+    "position": "Superintendent II",
+    "laborRate": 71.19,
+    "billableRate": 130.56,
+    "experience": 3,
+    "strengths": [
+      "Client Communication",
+      "Scheduling",
+      "Technical Writing"
+    ],
+    "weaknesses": [
+      "Delegation",
+      "Impatience"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525844,
+        "role": "Super",
+        "startDate": "2022-01-12T00:00:00Z",
+        "endDate": "2024-01-14T23:59:59Z"
+      },
+      {
+        "project_id": 2525849,
+        "role": "Super",
+        "startDate": "2025-08-06T00:00:00Z",
+        "endDate": "2027-08-21T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "7c0852ee-d4bb-41a7-954e-a2775cc600d8",
+    "name": "Jordan Singh",
+    "position": "Superintendent II",
+    "laborRate": 78.05,
+    "billableRate": 129.99,
+    "experience": 10,
+    "strengths": [
+      "Technical Writing",
+      "Contract Negotiation",
+      "Team Leadership",
+      "Problem Solving"
+    ],
+    "weaknesses": [
+      "Paperwork",
+      "Overcommunication"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525849,
+        "role": "Super",
+        "startDate": "2025-03-06T00:00:00Z",
+        "endDate": "2027-08-13T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "ed517c3d-2fd9-453f-9eb7-dbf9460fd608",
+    "name": "Robin Ali",
+    "position": "Superintendent I",
+    "laborRate": 71.1,
+    "billableRate": 194.24,
+    "experience": 15,
+    "strengths": [
+      "Budgeting",
+      "Vendor Coordination"
+    ],
+    "weaknesses": [
+      "Public Speaking",
+      "Impatience"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525846,
+        "role": "Super",
+        "startDate": "2025-04-22T00:00:00Z",
+        "endDate": "2026-08-12T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "e66d7c9b-2f4e-42f8-b4af-be3179e447b7",
+    "name": "Jordan Murphy",
+    "position": "Superintendent I",
+    "laborRate": 64.18,
+    "billableRate": 213.95,
+    "experience": 18,
+    "strengths": [
+      "Client Communication",
+      "Technical Writing",
+      "Scheduling"
+    ],
+    "weaknesses": [
+      "Public Speaking"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525859,
+        "role": "Super",
+        "startDate": "2022-07-24T00:00:00Z",
+        "endDate": "2024-02-25T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "28c6639d-f96a-42db-bfe8-95cd0040cf1c",
+    "name": "Samantha Ali",
+    "position": "Superintendent I",
+    "laborRate": 77.75,
+    "billableRate": 148.2,
+    "experience": 21,
+    "strengths": [
+      "Team Leadership",
+      "Technical Writing",
+      "Quality Control",
+      "Scheduling"
+    ],
+    "weaknesses": [
+      "Delegation",
+      "Conflict Resolution"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525842,
+        "role": "Super",
+        "startDate": "2023-05-03T00:00:00Z",
+        "endDate": "2024-09-21T23:59:59Z"
+      },
+      {
+        "project_id": 2525851,
+        "role": "Super",
+        "startDate": "2025-03-07T00:00:00Z",
+        "endDate": "2026-10-22T23:59:59Z"
+      },
+      {
+        "project_id": 2525855,
+        "role": "Super",
+        "startDate": "2025-01-23T00:00:00Z",
+        "endDate": "2026-06-01T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "9998c0b9-61a6-4ebe-819b-25f75087d5d9",
+    "name": "Michael Chen",
+    "position": "Superintendent I",
+    "laborRate": 97.47,
+    "billableRate": 172.44,
+    "experience": 22,
+    "strengths": [
+      "Technical Writing",
+      "Quality Control"
+    ],
+    "weaknesses": [
+      "Paperwork",
+      "Time Management"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525850,
+        "role": "Super",
+        "startDate": "2024-08-30T00:00:00Z",
+        "endDate": "2026-04-30T23:59:59Z"
+      },
+      {
+        "project_id": 2525853,
+        "role": "Super",
+        "startDate": "2024-11-24T00:00:00Z",
+        "endDate": "2026-02-28T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "506a450f-cab2-4615-b1c3-2d30e46b3e31",
+    "name": "Jamie Ali",
+    "position": "Superintendent I",
+    "laborRate": 50.57,
+    "billableRate": 179.16,
+    "experience": 18,
+    "strengths": [
+      "Quality Control",
+      "Budgeting"
+    ],
+    "weaknesses": [
+      "Technology Adoption",
+      "Impatience"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525856,
+        "role": "Super",
+        "startDate": "2025-05-22T00:00:00Z",
+        "endDate": "2027-10-28T23:59:59Z"
+      },
+      {
+        "project_id": 2525859,
+        "role": "Super",
+        "startDate": "2022-08-02T00:00:00Z",
+        "endDate": "2024-02-04T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "c6df9fbc-a95e-4379-bbd6-e8cda31eac70",
+    "name": "Cameron Brown",
+    "position": "Superintendent I",
+    "laborRate": 65.87,
+    "billableRate": 153.54,
+    "experience": 8,
+    "strengths": [
+      "Contract Negotiation",
+      "Team Leadership",
+      "Vendor Coordination",
+      "Technical Writing"
+    ],
+    "weaknesses": [
+      "Paperwork",
+      "Public Speaking"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525845,
+        "role": "Super",
+        "startDate": "2024-12-12T00:00:00Z",
+        "endDate": "2026-09-24T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "bcc4e5b2-8a7b-4cdf-bba2-b2571eb10eb3",
+    "name": "Robin Smith",
+    "position": "Superintendent I",
+    "laborRate": 66.17,
+    "billableRate": 112.86,
+    "experience": 10,
+    "strengths": [
+      "Team Leadership",
+      "Risk Management",
+      "Client Communication"
+    ],
+    "weaknesses": [
+      "Time Management",
+      "Conflict Resolution"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525849,
+        "role": "Super",
+        "startDate": "2025-08-02T00:00:00Z",
+        "endDate": "2027-04-06T23:59:59Z"
+      },
+      {
+        "project_id": 2525856,
+        "role": "Super",
+        "startDate": "2025-10-04T00:00:00Z",
+        "endDate": "2027-05-16T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "38d9774d-eaa2-4785-ad4e-16de8297b04f",
+    "name": "Casey Lee",
+    "position": "Superintendent I",
+    "laborRate": 86.4,
+    "billableRate": 189.53,
+    "experience": 8,
+    "strengths": [
+      "Technical Writing",
+      "Contract Negotiation",
+      "Client Communication",
+      "Team Leadership"
+    ],
+    "weaknesses": [
+      "Public Speaking",
+      "Delegation"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525853,
+        "role": "Super",
+        "startDate": "2024-10-13T00:00:00Z",
+        "endDate": "2026-02-21T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "cd707731-dfc0-497e-ac35-965fd8385e32",
+    "name": "Chris Nguyen",
+    "position": "Superintendent I",
+    "laborRate": 63.85,
+    "billableRate": 201.31,
+    "experience": 6,
+    "strengths": [
+      "Risk Management",
+      "Team Leadership"
+    ],
+    "weaknesses": [
+      "Time Management",
+      "Technology Adoption"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525853,
+        "role": "Super",
+        "startDate": "2025-01-18T00:00:00Z",
+        "endDate": "2026-01-17T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "653c6448-3d71-4630-8427-e704df62c9f6",
+    "name": "Michael Carter",
+    "position": "Superintendent I",
+    "laborRate": 81.46,
+    "billableRate": 139.86,
+    "experience": 13,
+    "strengths": [
+      "Problem Solving",
+      "Quality Control",
+      "Team Leadership",
+      "Scheduling"
+    ],
+    "weaknesses": [
+      "Public Speaking"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525848,
+        "role": "Super",
+        "startDate": "2024-05-15T00:00:00Z",
+        "endDate": "2025-11-08T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "a1abf6b6-a082-4f39-85f5-b82ebf50999d",
+    "name": "Dana Martinez",
+    "position": "Assistant Superintendent",
+    "laborRate": 95.46,
+    "billableRate": 164.83,
+    "experience": 13,
+    "strengths": [
+      "Client Communication",
+      "Team Leadership",
+      "Scheduling"
+    ],
+    "weaknesses": [
+      "Paperwork",
+      "Delegation"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525840,
+        "role": "ASuper",
+        "startDate": "2024-07-02T00:00:00Z",
+        "endDate": "2026-07-30T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "bb734ca1-f2e8-4d0c-ae24-1fa3e71e8464",
+    "name": "Robin Murphy",
+    "position": "Assistant Superintendent",
+    "laborRate": 56.69,
+    "billableRate": 143.3,
+    "experience": 13,
+    "strengths": [
+      "Team Leadership",
+      "Quality Control",
+      "Budgeting",
+      "Client Communication"
+    ],
+    "weaknesses": [
+      "Delegation"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525854,
+        "role": "ASuper",
+        "startDate": "2022-04-10T00:00:00Z",
+        "endDate": "2024-05-20T23:59:59Z"
+      },
+      {
+        "project_id": 2525854,
+        "role": "ASuper",
+        "startDate": "2022-06-13T00:00:00Z",
+        "endDate": "2024-05-04T23:59:59Z"
+      },
+      {
+        "project_id": 2525855,
+        "role": "ASuper",
+        "startDate": "2025-02-28T00:00:00Z",
+        "endDate": "2026-05-19T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "4bc704d7-9e74-4a8f-a943-45cb883e4e1e",
+    "name": "Dana Patel",
+    "position": "Assistant Superintendent",
+    "laborRate": 47.81,
+    "billableRate": 180.59,
+    "experience": 4,
+    "strengths": [
+      "Contract Negotiation",
+      "Team Leadership",
+      "Scheduling"
+    ],
+    "weaknesses": [
+      "Time Management",
+      "Impatience"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525840,
+        "role": "ASuper",
+        "startDate": "2024-07-09T00:00:00Z",
+        "endDate": "2026-07-13T23:59:59Z"
+      },
+      {
+        "project_id": 2525841,
+        "role": "ASuper",
+        "startDate": "2025-02-11T00:00:00Z",
+        "endDate": "2027-03-24T23:59:59Z"
+      },
+      {
+        "project_id": 2525843,
+        "role": "ASuper",
+        "startDate": "2024-12-05T00:00:00Z",
+        "endDate": "2025-12-27T23:59:59Z"
+      },
+      {
+        "project_id": 2525848,
+        "role": "ASuper",
+        "startDate": "2024-07-04T00:00:00Z",
+        "endDate": "2025-12-04T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "71d356a6-0620-472e-925a-963a1fb8b036",
+    "name": "Morgan Singh",
+    "position": "Assistant Superintendent",
+    "laborRate": 83.41,
+    "billableRate": 205.67,
+    "experience": 4,
+    "strengths": [
+      "Contract Negotiation",
+      "Scheduling",
+      "Problem Solving",
+      "Client Communication"
+    ],
+    "weaknesses": [
+      "Paperwork",
+      "Delegation"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525847,
+        "role": "ASuper",
+        "startDate": "2023-07-07T00:00:00Z",
+        "endDate": "2025-06-27T23:59:59Z"
+      },
+      {
+        "project_id": 2525849,
+        "role": "ASuper",
+        "startDate": "2025-08-07T00:00:00Z",
+        "endDate": "2027-05-18T23:59:59Z"
+      },
+      {
+        "project_id": 2525859,
+        "role": "ASuper",
+        "startDate": "2022-04-13T00:00:00Z",
+        "endDate": "2024-03-04T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "c52fe8fa-5cc2-4bda-8bd8-4e7a7e6a425e",
+    "name": "Jamie Chen",
+    "position": "Assistant Superintendent",
+    "laborRate": 49.86,
+    "billableRate": 110.82,
+    "experience": 23,
+    "strengths": [
+      "Vendor Coordination",
+      "Technical Writing",
+      "Contract Negotiation",
+      "Problem Solving"
+    ],
+    "weaknesses": [
+      "Technology Adoption",
+      "Conflict Resolution"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525847,
+        "role": "ASuper",
+        "startDate": "2023-07-08T00:00:00Z",
+        "endDate": "2025-03-07T23:59:59Z"
+      },
+      {
+        "project_id": 2525847,
+        "role": "ASuper",
+        "startDate": "2023-09-28T00:00:00Z",
+        "endDate": "2025-03-01T23:59:59Z"
+      },
+      {
+        "project_id": 2525848,
+        "role": "ASuper",
+        "startDate": "2024-04-06T00:00:00Z",
+        "endDate": "2025-10-12T23:59:59Z"
+      },
+      {
+        "project_id": 2525853,
+        "role": "ASuper",
+        "startDate": "2024-10-26T00:00:00Z",
+        "endDate": "2026-03-30T23:59:59Z"
+      },
+      {
+        "project_id": 2525854,
+        "role": "ASuper",
+        "startDate": "2022-04-15T00:00:00Z",
+        "endDate": "2024-05-08T23:59:59Z"
+      },
+      {
+        "project_id": 2525856,
+        "role": "ASuper",
+        "startDate": "2025-08-01T00:00:00Z",
+        "endDate": "2027-08-10T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "468ae728-c93c-42b6-8633-a979f2ee5cc4",
+    "name": "Chris Patel",
+    "position": "Assistant Superintendent",
+    "laborRate": 43.67,
+    "billableRate": 141.86,
+    "experience": 20,
+    "strengths": [
+      "Quality Control",
+      "Vendor Coordination",
+      "Team Leadership"
+    ],
+    "weaknesses": [
+      "Technology Adoption"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525848,
+        "role": "ASuper",
+        "startDate": "2024-05-20T00:00:00Z",
+        "endDate": "2025-09-12T23:59:59Z"
+      },
+      {
+        "project_id": 2525852,
+        "role": "ASuper",
+        "startDate": "2023-11-12T00:00:00Z",
+        "endDate": "2024-12-30T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "580dc190-b291-4b72-b56e-12de3f1f6c5f",
+    "name": "Taylor Gonzalez",
+    "position": "Assistant Superintendent",
+    "laborRate": 71.4,
+    "billableRate": 171.46,
+    "experience": 11,
+    "strengths": [
+      "Vendor Coordination",
+      "Team Leadership",
+      "Technical Writing"
+    ],
+    "weaknesses": [
+      "Time Management"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525842,
+        "role": "ASuper",
+        "startDate": "2023-03-16T00:00:00Z",
+        "endDate": "2024-08-14T23:59:59Z"
+      },
+      {
+        "project_id": 2525846,
+        "role": "ASuper",
+        "startDate": "2025-03-18T00:00:00Z",
+        "endDate": "2026-08-01T23:59:59Z"
+      },
+      {
+        "project_id": 2525853,
+        "role": "ASuper",
+        "startDate": "2024-11-24T00:00:00Z",
+        "endDate": "2026-03-08T23:59:59Z"
+      },
+      {
+        "project_id": 2525856,
+        "role": "ASuper",
+        "startDate": "2025-08-25T00:00:00Z",
+        "endDate": "2027-09-15T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "473cec37-c128-4ff7-b394-e6b3f1beb2f3",
+    "name": "Jordan Hernandez",
+    "position": "Assistant Superintendent",
+    "laborRate": 76.17,
+    "billableRate": 151.45,
+    "experience": 17,
+    "strengths": [
+      "Scheduling",
+      "Client Communication",
+      "Technical Writing",
+      "Quality Control"
+    ],
+    "weaknesses": [
+      "Conflict Resolution"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525845,
+        "role": "ASuper",
+        "startDate": "2025-03-27T00:00:00Z",
+        "endDate": "2026-11-15T23:59:59Z"
+      },
+      {
+        "project_id": 2525857,
+        "role": "ASuper",
+        "startDate": "2023-08-08T00:00:00Z",
+        "endDate": "2025-06-05T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "046d143e-79bb-4518-952a-0e52acfd2430",
+    "name": "Dana Nguyen",
+    "position": "Assistant Superintendent",
+    "laborRate": 80.67,
+    "billableRate": 116.1,
+    "experience": 21,
+    "strengths": [
+      "Contract Negotiation",
+      "Budgeting"
+    ],
+    "weaknesses": [
+      "Delegation"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525844,
+        "role": "ASuper",
+        "startDate": "2022-04-24T00:00:00Z",
+        "endDate": "2024-01-18T23:59:59Z"
+      },
+      {
+        "project_id": 2525844,
+        "role": "ASuper",
+        "startDate": "2022-06-17T00:00:00Z",
+        "endDate": "2024-01-30T23:59:59Z"
+      },
+      {
+        "project_id": 2525850,
+        "role": "ASuper",
+        "startDate": "2024-08-23T00:00:00Z",
+        "endDate": "2026-03-19T23:59:59Z"
+      },
+      {
+        "project_id": 2525857,
+        "role": "ASuper",
+        "startDate": "2023-11-02T00:00:00Z",
+        "endDate": "2025-03-31T23:59:59Z"
+      },
+      {
+        "project_id": 2525858,
+        "role": "ASuper",
+        "startDate": "2024-09-11T00:00:00Z",
+        "endDate": "2026-01-22T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "96645361-59be-4dcd-9a42-af58dcbdf887",
+    "name": "Casey Chen",
+    "position": "Assistant Superintendent",
+    "laborRate": 81.45,
+    "billableRate": 184.24,
+    "experience": 14,
+    "strengths": [
+      "Team Leadership",
+      "Scheduling",
+      "Vendor Coordination",
+      "Contract Negotiation"
+    ],
+    "weaknesses": [
+      "Technology Adoption"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525846,
+        "role": "ASuper",
+        "startDate": "2025-04-05T00:00:00Z",
+        "endDate": "2026-08-04T23:59:59Z"
+      },
+      {
+        "project_id": 2525849,
+        "role": "ASuper",
+        "startDate": "2025-08-06T00:00:00Z",
+        "endDate": "2027-03-05T23:59:59Z"
+      },
+      {
+        "project_id": 2525850,
+        "role": "ASuper",
+        "startDate": "2024-10-02T00:00:00Z",
+        "endDate": "2026-04-28T23:59:59Z"
+      },
+      {
+        "project_id": 2525858,
+        "role": "ASuper",
+        "startDate": "2024-10-06T00:00:00Z",
+        "endDate": "2025-12-09T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "a19cb345-bdcb-420a-989f-ae68f3574e86",
+    "name": "Dana Martinez",
+    "position": "Assistant Superintendent",
+    "laborRate": 51.0,
+    "billableRate": 158.93,
+    "experience": 9,
+    "strengths": [
+      "Scheduling",
+      "Team Leadership"
+    ],
+    "weaknesses": [
+      "Technology Adoption",
+      "Paperwork"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525842,
+        "role": "ASuper",
+        "startDate": "2023-04-10T00:00:00Z",
+        "endDate": "2024-06-15T23:59:59Z"
+      },
+      {
+        "project_id": 2525853,
+        "role": "ASuper",
+        "startDate": "2024-10-09T00:00:00Z",
+        "endDate": "2026-02-17T23:59:59Z"
+      },
+      {
+        "project_id": 2525856,
+        "role": "ASuper",
+        "startDate": "2025-07-01T00:00:00Z",
+        "endDate": "2027-07-06T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "afc04f70-ad1e-4e72-88a0-9fca1bee60fd",
+    "name": "Jessie Murphy",
+    "position": "Assistant Superintendent",
+    "laborRate": 45.86,
+    "billableRate": 125.95,
+    "experience": 9,
+    "strengths": [
+      "Vendor Coordination",
+      "Problem Solving",
+      "Scheduling",
+      "Contract Negotiation"
+    ],
+    "weaknesses": [
+      "Delegation"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525845,
+        "role": "ASuper",
+        "startDate": "2025-04-02T00:00:00Z",
+        "endDate": "2027-01-25T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "d5cf1301-e561-4c23-b2b0-34fd907d79ad",
+    "name": "Jordan Smith",
+    "position": "Assistant Superintendent",
+    "laborRate": 42.36,
+    "billableRate": 116.45,
+    "experience": 11,
+    "strengths": [
+      "Risk Management",
+      "Technical Writing",
+      "Vendor Coordination"
+    ],
+    "weaknesses": [
+      "Conflict Resolution",
+      "Paperwork"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525844,
+        "role": "ASuper",
+        "startDate": "2022-01-23T00:00:00Z",
+        "endDate": "2024-04-30T23:59:59Z"
+      },
+      {
+        "project_id": 2525849,
+        "role": "ASuper",
+        "startDate": "2025-04-20T00:00:00Z",
+        "endDate": "2027-06-11T23:59:59Z"
+      },
+      {
+        "project_id": 2525852,
+        "role": "ASuper",
+        "startDate": "2023-11-18T00:00:00Z",
+        "endDate": "2024-12-16T23:59:59Z"
+      },
+      {
+        "project_id": 2525858,
+        "role": "ASuper",
+        "startDate": "2024-11-10T00:00:00Z",
+        "endDate": "2025-12-24T23:59:59Z"
+      },
+      {
+        "project_id": 2525859,
+        "role": "ASuper",
+        "startDate": "2022-05-06T00:00:00Z",
+        "endDate": "2024-04-26T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "3431dad4-3b6a-47b3-89c9-c5bab8a9684a",
+    "name": "Taylor Brown",
+    "position": "Assistant Superintendent",
+    "laborRate": 67.63,
+    "billableRate": 167.06,
+    "experience": 15,
+    "strengths": [
+      "Quality Control",
+      "Technical Writing"
+    ],
+    "weaknesses": [
+      "Delegation"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525850,
+        "role": "ASuper",
+        "startDate": "2024-10-04T00:00:00Z",
+        "endDate": "2026-03-22T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "315b1851-abf8-4b1d-a0d6-ed5179442c18",
+    "name": "Jessie Murphy",
+    "position": "Assistant Superintendent",
+    "laborRate": 51.12,
+    "billableRate": 121.29,
+    "experience": 10,
+    "strengths": [
+      "Risk Management",
+      "Budgeting"
+    ],
+    "weaknesses": [
+      "Impatience"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525843,
+        "role": "ASuper",
+        "startDate": "2024-09-25T00:00:00Z",
+        "endDate": "2025-12-11T23:59:59Z"
+      },
+      {
+        "project_id": 2525851,
+        "role": "ASuper",
+        "startDate": "2025-04-06T00:00:00Z",
+        "endDate": "2026-10-24T23:59:59Z"
+      },
+      {
+        "project_id": 2525855,
+        "role": "ASuper",
+        "startDate": "2025-01-14T00:00:00Z",
+        "endDate": "2026-05-19T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "cc482311-e56d-48d8-9df2-0cec72b92cf5",
+    "name": "Robin Nguyen",
+    "position": "Assistant Superintendent",
+    "laborRate": 97.47,
+    "billableRate": 184.87,
+    "experience": 15,
+    "strengths": [
+      "Client Communication",
+      "Contract Negotiation"
+    ],
+    "weaknesses": [
+      "Delegation"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525855,
+        "role": "ASuper",
+        "startDate": "2024-12-13T00:00:00Z",
+        "endDate": "2026-05-27T23:59:59Z"
+      }
+    ]
+  },
+  {
+    "id": "3f6a7875-7e5f-46a2-9892-67085cdb240c",
+    "name": "Alex Martinez",
+    "position": "Assistant Superintendent",
+    "laborRate": 69.51,
+    "billableRate": 193.14,
+    "experience": 21,
+    "strengths": [
+      "Vendor Coordination",
+      "Problem Solving",
+      "Team Leadership",
+      "Budgeting"
+    ],
+    "weaknesses": [
+      "Public Speaking"
+    ],
+    "assignments": [
+      {
+        "project_id": 2525841,
+        "role": "ASuper",
+        "startDate": "2025-02-11T00:00:00Z",
+        "endDate": "2027-05-21T23:59:59Z"
+      },
+      {
+        "project_id": 2525842,
+        "role": "ASuper",
+        "startDate": "2023-06-21T00:00:00Z",
+        "endDate": "2024-06-28T23:59:59Z"
+      },
+      {
+        "project_id": 2525851,
+        "role": "ASuper",
+        "startDate": "2025-01-21T00:00:00Z",
+        "endDate": "2027-03-20T23:59:59Z"
+      }
+    ]
+  }
+]

@@ -1,0 +1,72 @@
+[
+  {
+    "id": "permit-001",
+    "projectId": 401001,
+    "permitType": "Building Permit",
+    "status": "Approved",
+    "issueDate": "2024-01-20",
+    "expirationDate": "2025-01-20",
+    "agency": "City of Hobe Sound",
+    "notes": "Main building permit for nursery construction.",
+    "documents": ["permit-doc-001.pdf"],
+    "fees": 15000,
+    "inspector": "Michael Scott",
+    "lastUpdated": "2024-01-20T10:00:00Z"
+  },
+  {
+    "id": "permit-002",
+    "projectId": 401002,
+    "permitType": "Foundation Permit",
+    "status": "Pending",
+    "issueDate": "2024-02-01",
+    "expirationDate": "2024-08-01",
+    "agency": "City of Miami",
+    "notes": "Awaiting final structural review for tower foundation.",
+    "documents": ["foundation-plans.pdf"],
+    "fees": 8000,
+    "inspector": "Dwight Schrute",
+    "lastUpdated": "2024-05-10T14:00:00Z"
+  },
+  {
+    "id": "permit-003",
+    "projectId": 401003,
+    "permitType": "Environmental Permit",
+    "status": "Approved",
+    "issueDate": "2024-03-05",
+    "expirationDate": "2026-03-05",
+    "agency": "Florida DEP",
+    "notes": "Required for waterfront construction activities.",
+    "documents": ["dep-approval.pdf"],
+    "fees": 12000,
+    "inspector": "Pam Beesly",
+    "lastUpdated": "2024-03-05T11:00:00Z"
+  },
+  {
+    "id": "permit-004",
+    "projectId": 501002,
+    "permitType": "Medical Facility License",
+    "status": "Pending",
+    "issueDate": "2025-01-01",
+    "expirationDate": "2026-01-01",
+    "agency": "State Health Department",
+    "notes": "Application submitted for new medical center.",
+    "documents": ["license-app.pdf"],
+    "fees": 25000,
+    "inspector": "Jim Halpert",
+    "lastUpdated": "2025-01-05T09:00:00Z"
+  },
+  {
+    "id": "permit-005",
+    "projectId": 401004,
+    "permitType": "Occupancy Permit",
+    "status": "Expired",
+    "issueDate": "2023-12-01",
+    "expirationDate": "2024-06-01",
+    "agency": "City of Boca Raton",
+    "notes": "Temporary occupancy permit expired. Needs renewal.",
+    "documents": ["occupancy-temp.pdf"],
+    "fees": 500,
+    "inspector": "Andy Bernard",
+    "lastUpdated": "2024-06-02T16:00:00Z"
+  }
+]

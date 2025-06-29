@@ -1,0 +1,134 @@
+{
+    "id": "project-manager-layout",
+    "name": "Project Manager Dashboard",
+    "description": "Project progress, cost tracking, and safety metrics",
+    "role": "project-manager",
+    "cards": [
+      {
+        "id": "hbi-project-insights",
+        "type": "enhanced-hbi-insights",
+        "title": "HBI Project Insights",
+        "size": "large",
+        "position": { "x": 0, "y": 0 },
+        "visible": true,
+        "config": {
+          "projectMode": true,
+          "projectCount": 1,
+          "projectName": "Tropical World",
+          "projectFocus": true
+        }
+      },
+      {
+        "id": "project-health",
+        "type": "health",
+        "title": "Project Health",
+        "size": "medium",
+        "position": { "x": 6, "y": 0 },
+        "visible": true
+      },
+      {
+        "id": "project-startup",
+        "type": "startup",
+        "title": "Project Startup",
+        "size": "medium",
+        "position": { "x": 9, "y": 0 },
+        "visible": true
+      },
+      {
+        "id": "schedule-monitor",
+        "type": "schedule-monitor",
+        "title": "Schedule Monitor",
+        "size": "medium",
+        "position": { "x": 0, "y": 1 },
+        "visible": true
+      },
+      {
+        "id": "change-order-analysis",
+        "type": "change-order-analysis",
+        "title": "Change Order Analysis",
+        "size": "medium",
+        "position": { "x": 6, "y": 1 },
+        "visible": true
+      },
+      {
+        "id": "critical-dates",
+        "type": "critical-dates",
+        "title": "Critical Dates",
+        "size": "medium",
+        "position": { "x": 9, "y": 1 },
+        "visible": true
+      },
+      {
+        "id": "field-reports",
+        "type": "field-reports",
+        "title": "Field Reports",
+        "size": "medium",
+        "position": { "x": 0, "y": 2 },
+        "visible": true
+      },
+      {
+        "id": "safety-management",
+        "type": "safety",
+        "title": "Safety",
+        "size": "medium",
+        "position": { "x": 6, "y": 2 },
+        "visible": true,
+        "config": {
+          "projectFilter": "single",
+          "projectCount": 1,
+          "projectName": "Tropical World"
+        }
+      },
+      {
+        "id": "quality-control",
+        "type": "quality-control",
+        "title": "Quality Control",
+        "size": "medium",
+        "position": { "x": 9, "y": 2 },
+        "visible": true,
+        "config": {
+          "projectFilter": "single",
+          "projectCount": 1,
+          "projectName": "Tropical World"
+        }
+      },
+      {
+        "id": "rfi-management",
+        "type": "rfi",
+        "title": "RFI Management",
+        "size": "medium",
+        "position": { "x": 0, "y": 3 },
+        "visible": true
+      },
+      {
+        "id": "submittal-management",
+        "type": "submittal",
+        "title": "Submittal Management",
+        "size": "medium",
+        "position": { "x": 6, "y": 3 },
+        "visible": true
+      },
+      {
+        "id": "project-closeout",
+        "type": "closeout",
+        "title": "Project Closeout",
+        "size": "medium",
+        "position": { "x": 9, "y": 3 },
+        "visible": true
+      },
+      {
+        "id": "market-intelligence",
+        "type": "market-intelligence",
+        "title": "Market Intelligence",
+        "size": "large",
+        "position": { "x": 0, "y": 4 },
+        "visible": true,
+        "config": {
+          "showTrends": true,
+          "showLocalMarkets": true,
+          "detailLevel": "operational"
+        }
+      }
+    ]
+  }
+  

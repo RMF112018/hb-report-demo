@@ -1,0 +1,89 @@
+[
+  {
+    "id": "comm-001",
+    "projectId": 401001,
+    "vendorName": "Steel Fabricators Inc.",
+    "trade": "Structural Steel",
+    "contractAmount": 1500000,
+    "committedAmount": 1450000,
+    "status": "Executed",
+    "issueDate": "2024-02-01",
+    "dueDate": "2024-08-30",
+    "description": "Fabrication and erection of structural steel for main building.",
+    "paymentTerms": "Net 30",
+    "changeOrders": [
+      {
+        "id": "co-001",
+        "description": "Additional bracing for roof structure",
+        "amount": 25000,
+        "status": "Approved"
+      }
+    ],
+    "invoices": [
+      {
+        "id": "inv-001",
+        "amount": 500000,
+        "status": "Paid",
+        "date": "2024-03-15"
+      },
+      {
+        "id": "inv-002",
+        "amount": 450000,
+        "status": "Pending",
+        "date": "2024-05-01"
+      }
+    ]
+  },
+  {
+    "id": "comm-002",
+    "projectId": 401002,
+    "vendorName": "Elite Concrete Services",
+    "trade": "Concrete",
+    "contractAmount": 2200000,
+    "committedAmount": 2100000,
+    "status": "Executed",
+    "issueDate": "2024-01-10",
+    "dueDate": "2024-10-15",
+    "description": "Foundation and slab work for tower.",
+    "paymentTerms": "Net 45",
+    "changeOrders": [],
+    "invoices": [
+      {
+        "id": "inv-003",
+        "amount": 700000,
+        "status": "Paid",
+        "date": "2024-02-20"
+      }
+    ]
+  },
+  {
+    "id": "comm-003",
+    "projectId": 401003,
+    "vendorName": "GreenScape Landscaping",
+    "trade": "Landscaping",
+    "contractAmount": 350000,
+    "committedAmount": 0,
+    "status": "Pending",
+    "issueDate": "2024-04-01",
+    "dueDate": "2024-09-30",
+    "description": "Site landscaping and irrigation system installation.",
+    "paymentTerms": "Net 30",
+    "changeOrders": [],
+    "invoices": []
+  },
+  {
+    "id": "comm-004",
+    "projectId": 501001,
+    "vendorName": "AquaMarine Solutions",
+    "trade": "Marine",
+    "contractAmount": 800000,
+    "committedAmount": 0,
+    "status": "Draft",
+    "issueDate": "2025-01-01",
+    "dueDate": "2025-06-30",
+    "description": "Marine piling and dock construction for club core.",
+    "paymentTerms": "Net 60",
+    "changeOrders": [],
+    "invoices": []
+  }
+]

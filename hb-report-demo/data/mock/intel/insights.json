@@ -1,0 +1,244 @@
+{
+    "insights": [
+      {
+        "id": "insight-001",
+        "projectId": "401001",
+        "type": "staffing-need",
+        "description": "Project schedule analysis indicates need for additional Project Manager II support during MEP coordination phase (June-August 2024) to maintain critical path timeline.",
+        "confidence": 0.87,
+        "suggestedEmployees": ["emp-026", "emp-047", "emp-068"]
+      },
+      {
+        "id": "insight-002",
+        "projectId": "401002",
+        "type": "overlap",
+        "description": "Superintendent I (emp-012) has overlapping assignments with Project 401003 during July-September 2024. Consider reassignment or additional support.",
+        "confidence": 0.92,
+        "suggestedEmployees": ["emp-033", "emp-054", "emp-075"]
+      },
+      {
+        "id": "insight-003",
+        "projectId": "401003",
+        "type": "employee-suggestion",
+        "description": "VDC Manager with data center experience recommended for complex infrastructure coordination. Current assignment may need specialized support.",
+        "confidence": 0.78,
+        "suggestedEmployees": ["emp-017", "emp-038", "emp-059"]
+      },
+      {
+        "id": "insight-004",
+        "projectId": "401004",
+        "type": "staffing-need",
+        "description": "Residential tower project requires additional Quality Control Manager during facade installation phase to ensure weather sealing compliance.",
+        "confidence": 0.85,
+        "suggestedEmployees": ["emp-018", "emp-039", "emp-060"]
+      },
+      {
+        "id": "insight-005",
+        "projectId": "401005",
+        "type": "overlap",
+        "description": "Safety Manager (emp-019) schedule conflict identified with Project 401009 during renovation phases. Recommend dedicated safety support.",
+        "confidence": 0.89,
+        "suggestedEmployees": ["emp-040", "emp-061", "emp-082"]
+      },
+      {
+        "id": "insight-006",
+        "projectId": "401006",
+        "type": "staffing-need",
+        "description": "Medical center expansion requires specialized Project Administrator familiar with healthcare regulations and documentation requirements.",
+        "confidence": 0.91,
+        "suggestedEmployees": ["emp-009", "emp-030", "emp-051"]
+      },
+      {
+        "id": "insight-007",
+        "projectId": "401007",
+        "type": "employee-suggestion",
+        "description": "Industrial warehouse project would benefit from General Superintendent with pre-engineered building experience for efficient erection coordination.",
+        "confidence": 0.83,
+        "suggestedEmployees": ["emp-032", "emp-053", "emp-074"]
+      },
+      {
+        "id": "insight-008",
+        "projectId": "401008",
+        "type": "staffing-need",
+        "description": "University science building laboratory fit-out requires additional Construction Manager support for specialized systems coordination.",
+        "confidence": 0.86,
+        "suggestedEmployees": ["emp-007", "emp-028", "emp-049"]
+      },
+      {
+        "id": "insight-009",
+        "projectId": "401009",
+        "type": "overlap",
+        "description": "Project Manager III (emp-069) has potential scheduling conflict with Project 401010 during Q4 2024. Consider workload redistribution.",
+        "confidence": 0.79,
+        "suggestedEmployees": ["emp-027", "emp-048", "emp-090"]
+      },
+      {
+        "id": "insight-010",
+        "projectId": "401010",
+        "type": "staffing-need",
+        "description": "Corporate headquarters technology infrastructure phase requires dedicated VDC Manager for complex systems integration and coordination.",
+        "confidence": 0.94,
+        "suggestedEmployees": ["emp-017", "emp-038", "emp-080"]
+      },
+      {
+        "id": "insight-011",
+        "projectId": "401001",
+        "type": "employee-suggestion",
+        "description": "Tropical World Nursery specialized HVAC systems would benefit from Superintendent II with healthcare/controlled environment experience.",
+        "confidence": 0.81,
+        "suggestedEmployees": ["emp-013", "emp-034", "emp-055"]
+      },
+      {
+        "id": "insight-012",
+        "projectId": "401002",
+        "type": "staffing-need",
+        "description": "Downtown office complex tenant improvement phase requires additional Assistant Project Manager for multiple concurrent fit-outs.",
+        "confidence": 0.88,
+        "suggestedEmployees": ["emp-008", "emp-029", "emp-050"]
+      },
+      {
+        "id": "insight-013",
+        "projectId": "401003",
+        "type": "overlap",
+        "description": "Chief Estimator (emp-083) workload analysis shows potential overallocation during Q3 2024. Consider delegating to Senior Estimator.",
+        "confidence": 0.76,
+        "suggestedEmployees": ["emp-021", "emp-042", "emp-063"]
+      },
+      {
+        "id": "insight-014",
+        "projectId": "401004",
+        "type": "staffing-need",
+        "description": "Residential tower common areas require Project Administrator with residential experience for HOA coordination and documentation.",
+        "confidence": 0.84,
+        "suggestedEmployees": ["emp-030", "emp-072", "emp-093"]
+      },
+      {
+        "id": "insight-015",
+        "projectId": "401005",
+        "type": "employee-suggestion",
+        "description": "Shopping center renovation would benefit from Foreman with retail/occupied building experience for phased construction coordination.",
+        "confidence": 0.87,
+        "suggestedEmployees": ["emp-016", "emp-037", "emp-058"]
+      },
+      {
+        "id": "insight-016",
+        "projectId": "401006",
+        "type": "staffing-need",
+        "description": "Medical center clean room certification requires additional Quality Control Manager with pharmaceutical/medical facility experience.",
+        "confidence": 0.93,
+        "suggestedEmployees": ["emp-018", "emp-060", "emp-081"]
+      },
+      {
+        "id": "insight-017",
+        "projectId": "401007",
+        "type": "overlap",
+        "description": "Project Accountant (emp-094) schedule shows potential conflict with Project 401004 during final billing phases. Consider additional support.",
+        "confidence": 0.82,
+        "suggestedEmployees": ["emp-010", "emp-031", "emp-052"]
+      },
+      {
+        "id": "insight-018",
+        "projectId": "401008",
+        "type": "staffing-need",
+        "description": "University science building LEED certification process requires dedicated Project Manager with green building experience.",
+        "confidence": 0.89,
+        "suggestedEmployees": ["emp-003", "emp-006", "emp-048"]
+      },
+      {
+        "id": "insight-019",
+        "projectId": "401009",
+        "type": "employee-suggestion",
+        "description": "Luxury hotel renovation requires Assistant Superintendent with hospitality/occupied building renovation experience for guest impact minimization.",
+        "confidence": 0.85,
+        "suggestedEmployees": ["emp-015", "emp-036", "emp-078"]
+      },
+      {
+        "id": "insight-020",
+        "projectId": "401010",
+        "type": "staffing-need",
+        "description": "Corporate headquarters move-in coordination requires additional Project Administrator for furniture, fixtures, and equipment coordination.",
+        "confidence": 0.91,
+        "suggestedEmployees": ["emp-009", "emp-051", "emp-072"]
+      },
+      {
+        "id": "insight-021",
+        "projectId": "401001",
+        "type": "overlap",
+        "description": "Estimator III (emp-024) shows workload concentration during Q2 2024. Consider redistributing estimates to junior estimators with oversight.",
+        "confidence": 0.77,
+        "suggestedEmployees": ["emp-022", "emp-043", "emp-064"]
+      },
+      {
+        "id": "insight-022",
+        "projectId": "401002",
+        "type": "staffing-need",
+        "description": "Downtown office complex fire protection systems require Safety Manager with high-rise building experience for code compliance oversight.",
+        "confidence": 0.86,
+        "suggestedEmployees": ["emp-019", "emp-061", "emp-082"]
+      },
+      {
+        "id": "insight-023",
+        "projectId": "401003",
+        "type": "employee-suggestion",
+        "description": "Tech campus data center requires Project Accountant with technology project experience for specialized equipment and systems billing.",
+        "confidence": 0.88,
+        "suggestedEmployees": ["emp-010", "emp-052", "emp-073"]
+      },
+      {
+        "id": "insight-024",
+        "projectId": "401004",
+        "type": "staffing-need",
+        "description": "Residential tower elevator installation requires Construction Manager with vertical transportation experience for coordination and scheduling.",
+        "confidence": 0.84,
+        "suggestedEmployees": ["emp-007", "emp-049", "emp-070"]
+      },
+      {
+        "id": "insight-025",
+        "projectId": "401005",
+        "type": "overlap",
+        "description": "VDC Manager workload analysis shows potential overallocation across Projects 401005 and 401015. Consider additional VDC support or scheduling adjustment.",
+        "confidence": 0.79,
+        "suggestedEmployees": ["emp-017", "emp-059", "emp-080"]
+      },
+      {
+        "id": "insight-026",
+        "projectId": "401006",
+        "type": "staffing-need",
+        "description": "Medical center commissioning phase requires Senior Project Manager with healthcare facility experience for systems validation and startup.",
+        "confidence": 0.92,
+        "suggestedEmployees": ["emp-003", "emp-006", "emp-027"]
+      },
+      {
+        "id": "insight-027",
+        "projectId": "401007",
+        "type": "employee-suggestion",
+        "description": "Industrial warehouse fire protection systems would benefit from Safety Manager with industrial/warehouse experience for specialized requirements.",
+        "confidence": 0.83,
+        "suggestedEmployees": ["emp-040", "emp-061", "emp-082"]
+      },
+      {
+        "id": "insight-028",
+        "projectId": "401008",
+        "type": "staffing-need",
+        "description": "University science building research equipment installation requires additional Foreman with laboratory/specialized equipment experience.",
+        "confidence": 0.87,
+        "suggestedEmployees": ["emp-037", "emp-058", "emp-079"]
+      },
+      {
+        "id": "insight-029",
+        "projectId": "401009",
+        "type": "overlap",
+        "description": "Project Executive (emp-009) schedule shows high utilization during Q3-Q4 2024. Consider delegating some responsibilities to Senior Project Manager.",
+        "confidence": 0.81,
+        "suggestedEmployees": ["emp-003", "emp-006", "emp-027"]
+      },
+      {
+        "id": "insight-030",
+        "projectId": "401010",
+        "type": "staffing-need",
+        "description": "Corporate headquarters final phase requires Chief Estimator support for change order evaluation and final cost reconciliation.",
+        "confidence": 0.89,
+        "suggestedEmployees": ["emp-020", "emp-041", "emp-062"]
+      }
+    ]
+  }

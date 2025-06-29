@@ -1,0 +1,303 @@
+.
+├── .gitignore
+├── app
+│   ├── client-layout.tsx
+│   ├── dashboard
+│   │   ├── buyout-schedule
+│   │   │   ├── loading.tsx
+│   │   │   └── page.tsx
+│   │   ├── constraints-log
+│   │   │   ├── loading.tsx
+│   │   │   └── page.tsx
+│   │   ├── dashboard-grid.css
+│   │   ├── document-compliance
+│   │   │   ├── loading.tsx
+│   │   │   └── page.tsx
+│   │   ├── financial-forecasting
+│   │   │   ├── loading.tsx
+│   │   │   └── page.tsx
+│   │   ├── layout.tsx
+│   │   ├── loading.tsx
+│   │   ├── manpower-tracking
+│   │   │   ├── loading.tsx
+│   │   │   └── page.tsx
+│   │   ├── page.tsx
+│   │   ├── permit-log
+│   │   │   ├── loading.tsx
+│   │   │   └── page.tsx
+│   │   ├── px-dashboard
+│   │   │   ├── loading.tsx
+│   │   │   └── page.tsx
+│   │   ├── px-dashboard-content.tsx
+│   │   ├── report-generation
+│   │   │   └── page.tsx
+│   │   ├── responsibility-matrix
+│   │   │   ├── loading.tsx
+│   │   │   └── page.tsx
+│   │   ├── schedule-monitor
+│   │   │   ├── loading.tsx
+│   │   │   └── page.tsx
+│   │   └── staffing-schedule
+│   │       ├── loading.tsx
+│   │       └── page.tsx
+│   ├── globals.css
+│   ├── layout.tsx
+│   ├── login
+│   │   └── page.tsx
+│   ├── operations
+│   │   └── staffing
+│   │       └── page.tsx
+│   ├── page.tsx
+│   ├── pre-con
+│   │   ├── estimating
+│   │   │   ├── page.tsx
+│   │   │   └── styles.module.css
+│   │   ├── layout.tsx
+│   │   └── page.tsx
+│   ├── project-reports
+│   │   ├── customize
+│   │   │   └── page.tsx
+│   │   └── page.tsx
+│   ├── signup
+│   │   └── page.tsx
+│   └── tools
+│       └── coming-soon
+│           └── page.tsx
+├── components
+│   ├── buyout
+│   │   ├── ai-buyout-insights.tsx
+│   │   ├── buyout-dashboard.tsx
+│   │   ├── buyout-form.tsx
+│   │   ├── buyout-table.tsx
+│   │   └── enhanced-buyout-form.tsx
+│   ├── compliance
+│   │   ├── compliance-playbook.tsx
+│   │   ├── document-compliance-dashboard.tsx
+│   │   ├── document-review-interface.tsx
+│   │   ├── document-upload-manager.tsx
+│   │   ├── document-viewer.tsx
+│   │   └── risk-assessment-tool.tsx
+│   ├── constraints
+│   │   ├── constraint-form.tsx
+│   │   └── constraint-table.tsx
+│   ├── dashboard
+│   │   ├── advanced-analytics.tsx
+│   │   ├── ai-insights-card.tsx
+│   │   ├── ai-insights-panel.tsx
+│   │   ├── analytics-charts.tsx
+│   │   ├── dashboard-card-grid.tsx
+│   │   ├── dashboard-card.tsx
+│   │   ├── dashboard-charts.tsx
+│   │   ├── dashboard-grid.tsx
+│   │   ├── dashboard-metrics.tsx
+│   │   ├── filter-dropdown.tsx
+│   │   ├── guided-tour.tsx
+│   │   ├── layout-manager.tsx
+│   │   ├── project-filters.tsx
+│   │   ├── project-health-dashboard.tsx
+│   │   ├── project-health-metrics.tsx
+│   │   ├── project-table.tsx
+│   │   ├── reports-manager.tsx
+│   │   ├── reports-section.tsx
+│   │   └── share-dialog.tsx
+│   ├── dashboards
+│   │   ├── admin-dashboard.tsx
+│   │   ├── c-suite-dashboard.tsx
+│   │   └── pm-dashboard.tsx
+│   ├── estimating
+│   │   ├── allowances.tsx
+│   │   ├── bid-invitation.tsx
+│   │   ├── bid-leveling-content.tsx
+│   │   ├── bid-leveling.tsx
+│   │   ├── bid-tabulation.tsx
+│   │   ├── clarifications-assumptions.tsx
+│   │   ├── cost-summary-content.tsx
+│   │   ├── cost-summary.tsx
+│   │   ├── document-log.tsx
+│   │   ├── enhanced-bid-tab-tool.tsx
+│   │   ├── enhanced-bid-tab.tsx
+│   │   ├── enhanced-gcs-grs-form.tsx
+│   │   ├── estimate-input.tsx
+│   │   ├── estimating-context.tsx
+│   │   ├── estimating-tabs.tsx
+│   │   ├── estimating-workflow.tsx
+│   │   ├── gc-and-gr.tsx
+│   │   ├── gcs-grs-form.tsx
+│   │   ├── project-setup.tsx
+│   │   ├── quantity-takeoff.tsx
+│   │   ├── rfi.tsx
+│   │   ├── rfp-management.tsx
+│   │   └── value-analysis.tsx
+│   ├── forecasting
+│   │   ├── advanced-forecast-table.tsx
+│   │   └── ai-forecast-insights.tsx
+│   ├── guided-tour
+│   │   └── guided-tour.tsx
+│   ├── layout
+│   │   ├── app-header.tsx
+│   │   ├── app-sidebar.tsx
+│   │   └── contextual-sidebar.tsx
+│   ├── messaging
+│   │   ├── context-menu.tsx
+│   │   ├── floating-button.tsx
+│   │   └── messaging-panel.tsx
+│   ├── operations
+│   │   └── staffing
+│   │       ├── admin-interface.tsx
+│   │       ├── c-suite-interface.tsx
+│   │       ├── operations-staff-interface.tsx
+│   │       ├── project-executive-interface.tsx
+│   │       └── project-manager-interface.tsx
+│   ├── permits
+│   │   ├── permit-analytics.tsx
+│   │   ├── permit-calendar.tsx
+│   │   ├── permit-filters.tsx
+│   │   ├── permit-form.tsx
+│   │   ├── permit-metrics.tsx
+│   │   └── permit-table.tsx
+│   ├── precon
+│   │   ├── active-projects.tsx
+│   │   ├── precon-dashboard.tsx
+│   │   ├── precon-metrics.tsx
+│   │   ├── trade-participation.tsx
+│   │   └── upcoming-deadlines.tsx
+│   ├── reports
+│   │   ├── digital-report-viewer.tsx
+│   │   ├── enhanced-project-reports-hub.tsx
+│   │   ├── enhanced-report-customizer.tsx
+│   │   ├── project-reports-hub.tsx
+│   │   ├── report-approval-workflow.tsx
+│   │   ├── report-customizer.tsx
+│   │   ├── report-history.tsx
+│   │   ├── report-preview.tsx
+│   │   └── report-templates.tsx
+│   ├── responsibility
+│   │   ├── hbi-insights-panel.tsx
+│   │   ├── interactive-assignment-cell.tsx
+│   │   ├── responsibility-form.tsx
+│   │   ├── responsibility-matrix.tsx
+│   │   └── responsibility-settings.tsx
+│   ├── sidebars
+│   │   ├── compliance-sidebar.tsx
+│   │   ├── constraints-sidebar.tsx
+│   │   ├── dashboard-sidebar.tsx
+│   │   ├── permits-sidebar.tsx
+│   │   ├── precon-sidebar.tsx
+│   │   └── schedule-monitor-sidebar.tsx
+│   ├── staffing
+│   │   └── staffing-gantt.tsx
+│   ├── theme-provider.tsx
+│   ├── tools
+│   │   └── coming-soon-page.tsx
+│   └── ui
+│       ├── alert-dialog.tsx
+│       ├── alert.tsx
+│       ├── avatar.tsx
+│       ├── badge.tsx
+│       ├── button.tsx
+│       ├── calendar.tsx
+│       ├── card.tsx
+│       ├── chart.tsx
+│       ├── checkbox.tsx
+│       ├── collapsible.tsx
+│       ├── context-menu.tsx
+│       ├── dialog.tsx
+│       ├── dropdown-menu.tsx
+│       ├── input.tsx
+│       ├── label.tsx
+│       ├── popover.tsx
+│       ├── progress.tsx
+│       ├── scroll-area.tsx
+│       ├── select.tsx
+│       ├── separator.tsx
+│       ├── skeleton.tsx
+│       ├── switch.tsx
+│       ├── table.tsx
+│       ├── tabs.tsx
+│       ├── textarea.tsx
+│       ├── toast.tsx
+│       ├── toaster.tsx
+│       └── tooltip.tsx
+├── components.json
+├── data
+│   ├── admin-dashboard-data.json
+│   ├── c-suite-dashboard-data.json
+│   ├── enhanced-buildingconnected-api.ts
+│   ├── enhanced-estimating-data.json
+│   ├── enhanced-report-data.ts
+│   ├── estimateTestData.json
+│   ├── general-dashboard-data.json
+│   ├── mock-buildingconnected.ts
+│   ├── mock-commitments.json
+│   ├── mock-issues.json
+│   ├── mock-permits.json
+│   ├── mock-permits.ts
+│   ├── mock-precon.ts
+│   ├── mock-projects.ts
+│   ├── mock-report-data.ts
+│   ├── mock-responsibility.ts
+│   ├── mock-users.ts
+│   ├── pm-dashboard-data.json
+│   ├── px-dashboard-data.json
+│   ├── reportTestData.json
+│   └── staffingTestData.json
+├── directory_tree.txt
+├── HB-Report-MVP-v2-main
+│   └── HB-Report-MVP-main
+│       └── public
+│           └── images
+│               ├── portfolio-screenshot.png
+│               ├── procore-reference.png
+│               └── smartpm-reference.png
+├── hooks
+│   ├── use-dashboard.ts
+│   ├── use-debounce.ts
+│   ├── use-media-query.ts
+│   ├── use-project-filter.ts
+│   └── use-toast.ts
+├── lib
+│   ├── auth-context.tsx
+│   ├── dashboard-templates.ts
+│   ├── email-service.ts
+│   ├── forecast-data.ts
+│   ├── mock-insights.ts
+│   └── utils.ts
+├── next-env.d.ts
+├── next.config.mjs
+├── package-lock.json
+├── package.json
+├── pnpm-lock.yaml
+├── postcss.config.mjs
+├── public
+│   ├── placeholder-logo.png
+│   ├── placeholder-logo.svg
+│   ├── placeholder-user.jpg
+│   ├── placeholder.jpg
+│   └── placeholder.svg
+├── README-AppHeader-MegaMenu.md
+├── README-AppHeader.md
+├── README-EstimatingWorkflow-ClarificationsRFIs.md
+├── README-EstimatingWorkflow-QuantityTakeoff-Enhanced.md
+├── README-EstimatingWorkflow-Separated-Steps.md
+├── README-EstimatingWorkflow.md
+├── README-GuidedTour.md
+├── README-PreConDashboard-Enhanced.md
+├── README-PreConDashboard-Performance.md
+├── README-PreConDashboard.md
+├── README-ProjectReports.md
+├── README-ResponsibilityMatrix.md
+├── README.md
+├── styles
+│   └── globals.css
+├── tailwind.config.ts
+├── tsconfig.json
+└── types
+    ├── dashboard.ts
+    ├── enhanced-reports.ts
+    ├── estimating.ts
+    ├── index.ts
+    ├── precon.ts
+    ├── reports.ts
+    └── responsibility.ts
+
+55 directories, 246 files

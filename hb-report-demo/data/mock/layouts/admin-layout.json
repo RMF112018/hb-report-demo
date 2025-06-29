@@ -1,0 +1,25 @@
+{
+    "id": "admin-layout",
+    "name": "Admin Dashboard",
+    "description": "Admin layout for system settings and monitoring",
+    "role": "admin",
+    "cards": [
+      {
+        "id": "user-access-summary",
+        "type": "user-access-summary",
+        "title": "User Access Summary",
+        "size": "medium",
+        "position": { "x": 0, "y": 0 },
+        "visible": true
+      },
+      {
+        "id": "system-logs",
+        "type": "system-logs",
+        "title": "System Logs",
+        "size": "large",
+        "position": { "x": 3, "y": 0 },
+        "visible": true
+      }
+    ]
+  }
+  

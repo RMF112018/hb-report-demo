@@ -1,0 +1,552 @@
+
+  HB Report is a frontend-only web application built with Next.js (version 14.2.16) and React, designed as a demonstration UI for surveying company employees in the construction industry. It is developed on a macOS environment using a MacBook Pro with an Apple M2 Pro chip (12 cores: 8 performance, 4 efficiency) and 16 GB of memory. The application is deployed and tested on the Vercel platform, focusing on showcasing a modern, responsive UI powered by Tailwind CSS, Radix UI, and other dependencies listed in package.json. Unlike its previous iterations, this version does not integrate with any backend servers, APIs (e.g., Procore APIs), or databases (e.g., SQLite), and it operates solely as a client-side demonstration for user feedback collection.
+  
+  Key features include:
+  - A modular dashboard interface (app/dashboard/*) with components like buyout-schedule, document-compliance, and financial-forecasting, using mock data from the data/ directory (e.g., mock-buyout.json, mock-projects.json).
+  - Pre-construction (pre-con) and estimating tools (app/pre-con/*) with UI components for bid leveling, cost summaries, and quantity takeoffs, styled with Tailwind CSS and custom CSS modules.
+  - Project reports customization (app/project-reports/*) with a report customizer and digital report viewer, relying on mock data for demonstration.
+  - A responsive layout with client-side routing, leveraging Next.js App Router (app/layout.tsx, app/client-layout.tsx) and Radix UI components for accessibility.
+  - Interactive UI elements (components/ui/*) such as tables, dialogs, and dropdowns, ensuring a consistent user experience across devices.
+  
+  Your role is to assist in enhancing HB Report with clean, organized, and well-documented code that prioritizes usability, accessibility, and maintainability for a demo application. Focus on the following:
+  
+  - **Component Development**: Ensure components (e.g., components/dashboard/*, components/estimating/*) are reusable, encapsulated, and use PropTypes or TypeScript interfaces (defined in types/*) for clear props documentation. Use React Context or hooks (hooks/*) for state management instead of Redux, as no backend sync is needed.
+  - **Mock Data Usage**: All mock data must be stored in appropriately named JSON files in the data/ directory (e.g., data/mock-buyout.json, data/mock-constraints.json) and imported into relevant components for rendering. Components should gracefully handle edge cases (e.g., empty datasets, missing fields) and use TypeScript types (types/*) to enforce data structure. Suggest improvements to mock data structure for consistency and completeness if needed.
+  - **Styling**: Adhere to Tailwind CSS conventions (tailwind.config.ts) and scoped CSS modules (e.g., app/pre-con/estimating/styles.module.css) for maintainable styling. Ensure responsive design for desktop and mobile views.
+  - **Performance**: Optimize for Vercel deployment, minimizing bundle size (e.g., lazy loading with Next.js dynamic imports) and ensuring fast page loads on macOS with Apple M2 Pro.
+  - **Accessibility**: Use Radix UI primitives (components/ui/*) and ARIA attributes to meet WCAG 2.1 standards, especially for interactive elements like dialogs and tables.
+  - **Documentation**: For any code provided, include a comment block with the following items atop the script as well as robust documentation within the code for future management and maintenance:
+  // {relative file path}
+  // {brief description of code and its function}
+  // {instructions for use of code}
+  // Reference: {link to latest available documentation for packages used in code}
+  
+  Utilize up-to-date documentation for Next.js (https://nextjs.org/docs), React (https://react.dev/reference), Tailwind CSS (https://tailwindcss.com/docs), Radix UI (https://www.radix-ui.com/docs), and other dependencies in package.json. Provide actionable guidance with step-by-step instructions and trade-off explanations, tailored for a frontend-only demo app. Anticipate challenges like mock data inconsistencies, Vercel deployment limits, or accessibility issues, and offer proactive solutions.
+  
+  When ready to proceed, respond with the single word, "Ready".
+      
+
+### Directory Tree
+hb-report-demo/
+├── app/
+├── ├── dashboard/
+├── ├── login/
+├── ├── └── login.tsx
+├── ├── operations/
+├── ├── └── page.tsx
+├── ├── pre-con/
+├── └── warranty/
+├── components/
+├── └── layout/
+├── └── └── app-header.tsx
+├── components.json
+├── context/
+├── data/
+├── └── mock/
+├── └── ├── contracts/
+├── └── ├── ├── commitments.json
+├── └── ├── └── prime-contracts.json
+├── └── ├── financial/
+├── └── ├── ├── budget.json
+├── └── ├── ├── cash-flow.json
+├── └── ├── ├── forecast_data.json
+├── └── ├── ├── jchr.json
+├── └── ├── ├── prime-contract-payments.json
+├── └── ├── ├── procurement/
+├── └── ├── ├── ├── allowances.json
+├── └── ├── ├── ├── long-lead.json
+├── └── ├── ├── ├── procurement.json
+├── └── ├── ├── └── value-engineering.json
+├── └── ├── └── vendor-payments.json
+├── └── ├── inspections/
+├── └── ├── ├── quality-control.json
+├── └── ├── └── safety.json
+├── └── ├── intel/
+├── └── ├── └── marketIntel.json
+├── └── ├── logs/
+├── └── ├── ├── constraints.json
+├── └── ├── ├── daily-log.json
+├── └── ├── └── permits.json
+├── └── ├── precon/
+├── └── ├── └── pipeline.json
+├── └── ├── projects.json
+├── └── ├── responsibility.json
+├── └── ├── schedule/
+├── └── ├── ├── schedule_history.json
+├── └── ├── └── schedule.json
+├── └── └── staffing/
+├── └── └── ├── spcr.json
+├── └── └── └── staffing.json
+├── lib/
+├── package.json
+├── pnpm-lock.yaml
+├── postcss.config.mjs
+├── README.md
+├── scipts/
+├── stories/
+├── ├── buyout/
+├── ├── ├── bid-comparison-tool.stories.tsx
+├── ├── ├── buyout-analytics.stories.tsx
+├── ├── ├── buyout-distribution-modal.stories.tsx
+├── ├── ├── buyout-schedule.stories.tsx
+├── ├── ├── enhanced-buyout-form.stories.tsx
+├── ├── ├── hbi-buyout-insights.stories.tsx
+├── ├── └── material-procurement-table.stories.tsx
+├── ├── field/
+├── ├── ├── field-analytics.stories.tsx
+├── ├── ├── field-export-modal.stories.tsx
+├── ├── ├── field-reports-page.stories.tsx
+├── ├── ├── field-table.stories.tsx
+├── ├── ├── hbi-field-insights.stories.tsx
+├── ├── ├── mock-data.ts
+├── ├── └── README.md
+├── ├── permits/
+├── ├── ├── hbi-permit-insights.stories.tsx
+├── ├── ├── permit-analytics.stories.tsx
+├── ├── ├── permit-calendar.stories.tsx
+├── ├── ├── permit-export-modal.stories.tsx
+├── ├── ├── permit-filters.stories.tsx
+├── ├── ├── permit-form.stories.tsx
+├── ├── ├── permit-log.stories.tsx
+├── ├── ├── permit-table.stories.tsx
+├── ├── └── README.md
+├── ├── reports/
+├── ├── ├── enhanced-report-customizer.stories.tsx
+├── ├── ├── report-approval-workflow.stories.tsx
+├── ├── ├── report-dashboard.stories.tsx
+├── ├── ├── report-distribution.stories.tsx
+├── ├── └── report-history.stories.tsx
+├── ├── responsibility/
+├── ├── ├── hbi-responsibility-insights.stories.tsx
+├── ├── ├── mock-data.ts
+├── ├── ├── responsibility-analytics.stories.tsx
+├── ├── ├── responsibility-export-modal.stories.tsx
+├── ├── ├── responsibility-form.stories.tsx
+├── ├── ├── responsibility-matrix-page.stories.tsx
+├── ├── ├── responsibility-matrix.stories.tsx
+├── ├── └── responsibility-settings.stories.tsx
+├── └── staff/
+├── └── ├── approval-workflow.stories.tsx
+├── └── ├── hbi-staffing-insights.stories.tsx
+├── └── ├── spcr-form.stories.tsx
+├── └── ├── spcr-list.stories.tsx
+├── └── ├── staff-analytics.stories.tsx
+├── └── ├── staff-planning.stories.tsx
+├── └── └── staff-table.stories.tsx
+├── styles/
+├── └── globals.css
+├── tailwind.config.ts
+├── tsconfig.json
+├── types/
+├── ├── aia-pay-application.ts
+├── ├── cash-flow.ts
+├── ├── constraint.ts
+├── ├── dashboard.ts
+├── ├── field-reports.ts
+├── ├── financial-hub.ts
+├── ├── gc-gr-forecast.ts
+├── ├── index.ts
+├── ├── iot.ts
+├── ├── permit-log.ts
+├── ├── procurement.ts
+├── ├── project.ts
+├── ├── report-types.ts
+├── ├── reporting.ts
+├── ├── responsibility.ts
+├── ├── scheduler.ts
+├── └── staff-planning.ts
+└── vercel.json
+
+
+File: .eslintrc.json
+Error: Could not read file - ENOENT: no such file or directory, open '/Users/bobbyfetting/Projects/hb-report/hb-report-demo/.eslintrc.json'
+
+File: components.json
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "default",
+  "rsc": true,
+  "tsx": true,
+  "tailwind": {
+    "config": "tailwind.config.ts",
+    "css": "app/globals.css",
+    "baseColor": "neutral",
+    "cssVariables": true,
+    "prefix": ""
+  },
+  "aliases": {
+    "components": "@/components",
+    "utils": "@/lib/utils",
+    "ui": "@/components/ui",
+    "lib": "@/lib",
+    "hooks": "@/hooks"
+  },
+  "iconLibrary": "lucide"
+}
+
+
+File: next-env.d.ts
+Error: Could not read file - ENOENT: no such file or directory, open '/Users/bobbyfetting/Projects/hb-report/hb-report-demo/next-env.d.ts'
+
+File: next.config.mjs
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  images: {
+    unoptimized: true,
+  },
+  // Ensure static files are served correctly
+  async rewrites() {
+    return [
+      {
+        source: '/data/:path*',
+        destination: '/public/data/:path*',
+      },
+    ]
+  },
+  // Add headers for JSON files
+  async headers() {
+    return [
+      {
+        source: '/public/data/:path*.json',
+        headers: [
+          {
+            key: 'Content-Type',
+            value: 'application/json',
+          },
+        ],
+      },
+    ]
+  },
+}
+
+export default nextConfig
+
+
+File: package.json
+{
+  "name": "my-v0-project",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "next build",
+    "dev": "next dev",
+    "lint": "next lint",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@apollo/client": "latest",
+    "@dnd-kit/core": "latest",
+    "@dnd-kit/sortable": "latest",
+    "@dnd-kit/utilities": "latest",
+    "@emotion/react": "latest",
+    "@emotion/styled": "latest",
+    "@hello-pangea/dnd": "latest",
+    "@hookform/resolvers": "latest",
+    "@mui/material": "latest",
+    "@mui/material-pigment-css": "latest",
+    "@mui/system": "latest",
+    "@mui/x-data-grid": "latest",
+    "@radix-ui/react-accordion": "latest",
+    "@radix-ui/react-alert-dialog": "latest",
+    "@radix-ui/react-aspect-ratio": "latest",
+    "@radix-ui/react-avatar": "latest",
+    "@radix-ui/react-checkbox": "latest",
+    "@radix-ui/react-collapsible": "latest",
+    "@radix-ui/react-context-menu": "latest",
+    "@radix-ui/react-dialog": "latest",
+    "@radix-ui/react-dropdown-menu": "latest",
+    "@radix-ui/react-hover-card": "latest",
+    "@radix-ui/react-label": "latest",
+    "@radix-ui/react-menubar": "latest",
+    "@radix-ui/react-navigation-menu": "latest",
+    "@radix-ui/react-popover": "latest",
+    "@radix-ui/react-progress": "latest",
+    "@radix-ui/react-radio-group": "latest",
+    "@radix-ui/react-scroll-area": "latest",
+    "@radix-ui/react-select": "latest",
+    "@radix-ui/react-separator": "latest",
+    "@radix-ui/react-slider": "latest",
+    "@radix-ui/react-slot": "latest",
+    "@radix-ui/react-switch": "latest",
+    "@radix-ui/react-tabs": "latest",
+    "@radix-ui/react-toast": "latest",
+    "@radix-ui/react-toggle": "latest",
+    "@radix-ui/react-toggle-group": "latest",
+    "@radix-ui/react-tooltip": "latest",
+    "@storybook/react": "latest",
+    "@storybook/test": "latest",
+    "autoprefixer": "^10.4.20",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "cmdk": "latest",
+    "date-fns": "latest",
+    "dree": "^5.1.5",
+    "embla-carousel-react": "latest",
+    "framer-motion": "^12.19.1",
+    "graphql": "latest",
+    "graphql-ws": "latest",
+    "input-otp": "latest",
+    "jspdf": "latest",
+    "jspdf-autotable": "latest",
+    "lucide-react": "^0.454.0",
+    "next": "15.2.4",
+    "next-themes": "latest",
+    "react": "^19",
+    "react-beautiful-dnd": "latest",
+    "react-day-picker": "latest",
+    "react-dom": "^19",
+    "react-grid-layout": "^1.5.1",
+    "react-hook-form": "latest",
+    "react-resizable": "^3.0.5",
+    "react-resizable-panels": "latest",
+    "react-router-dom": "latest",
+    "recharts": "latest",
+    "sonner": "latest",
+    "storybook": "latest",
+    "subscriptions-transport-ws": "latest",
+    "tailwind-merge": "^2.5.5",
+    "tailwindcss-animate": "^1.0.7",
+    "vaul": "latest",
+    "xlsx": "latest",
+    "zod": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "^22",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@types/react-grid-layout": "^1.3.5",
+    "postcss": "^8.5",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5"
+  }
+}
+
+File: postcss.config.mjs
+/** @type {import('postcss-load-config').Config} */
+const config = {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+}
+
+export default config
+
+
+File: tailwind.config.ts
+import type { Config } from "tailwindcss"
+
+const config: Config = {
+  darkMode: ["class"],
+  content: [
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+    "*.{js,ts,jsx,tsx,mdx}",
+  ],
+  prefix: "",
+  theme: {
+    container: {
+      center: true,
+      padding: "2rem",
+      screens: {
+        "2xl": "1400px",
+      },
+    },
+    extend: {
+      colors: {
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
+        // Enhanced HB Brand Colors with theme support
+        "hb-blue": {
+          DEFAULT: "#003087",
+          50: "#f0f4ff",
+          100: "#e0e7ff",
+          200: "#c7d2fe",
+          300: "#a5b4fc",
+          400: "#818cf8",
+          500: "#6366f1",
+          600: "#4f46e5",
+          700: "#4338ca",
+          800: "#3730a3",
+          900: "#003087",
+          950: "#1e1b4b",
+          light: "#003087",
+          dark: "#1e40af",
+        },
+        "hb-orange": {
+          DEFAULT: "#ff6b35",
+          50: "#fff7ed",
+          100: "#ffedd5",
+          200: "#fed7aa",
+          300: "#fdba74",
+          400: "#fb923c",
+          500: "#ff6b35",
+          600: "#ea580c",
+          700: "#c2410c",
+          800: "#9a3412",
+          900: "#7c2d12",
+          950: "#431407",
+          light: "#ff6b35",
+          dark: "#f97316",
+        },
+        "hb-gray": {
+          DEFAULT: "#f5f5f5",
+          50: "#fafafa",
+          100: "#f5f5f5",
+          200: "#e5e5e5",
+          300: "#d4d4d4",
+          400: "#a3a3a3",
+          500: "#737373",
+          600: "#525252",
+          700: "#404040",
+          800: "#262626",
+          900: "#171717",
+          950: "#0a0a0a",
+          light: "#f5f5f5",
+          dark: "#1f2937",
+        },
+      },
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
+      },
+      keyframes: {
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+        "fade-in": {
+          from: { opacity: "0" },
+          to: { opacity: "1" },
+        },
+        "slide-in": {
+          from: { transform: "translateY(10px)", opacity: "0" },
+          to: { transform: "translateY(0)", opacity: "1" },
+        },
+        "scale-in": {
+          from: { transform: "scale(0.95)", opacity: "0" },
+          to: { transform: "scale(1)", opacity: "1" },
+        },
+        shimmer: {
+          from: { backgroundPosition: "-200% 0" },
+          to: { backgroundPosition: "200% 0" },
+        },
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+        "fade-in": "fade-in 0.3s ease-out",
+        "slide-in": "slide-in 0.3s ease-out",
+        "scale-in": "scale-in 0.2s ease-out",
+        shimmer: "shimmer 2s linear infinite",
+      },
+      backgroundImage: {
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+        "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "shimmer-gradient": "linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent)",
+      },
+    },
+  },
+  plugins: [require("tailwindcss-animate")],
+} satisfies Config
+
+export default config
+
+
+File: tsconfig.json
+{
+  "compilerOptions": {
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "target": "ES6",
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": [
+        "./*"
+      ]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
+
+
+File: app/globals.css
+Error: Could not read file - ENOENT: no such file or directory, open '/Users/bobbyfetting/Projects/hb-report/hb-report-demo/app/globals.css'
+
+File: app/layout.tsx
+Error: Could not read file - ENOENT: no such file or directory, open '/Users/bobbyfetting/Projects/hb-report/hb-report-demo/app/layout.tsx'
+
+File: app/page.tsx
+Error: Could not read file - ENOENT: no such file or directory, open '/Users/bobbyfetting/Projects/hb-report/hb-report-demo/app/page.tsx'
+
+Please await further instruction.

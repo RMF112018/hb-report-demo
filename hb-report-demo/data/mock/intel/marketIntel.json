@@ -1,0 +1,1424 @@
+[
+  {
+    "id": "market-intelligence-1",
+    "type": "market-intelligence",
+    "title": "Lakeland Luxury Residential Market",
+    "size": "small",
+    "config": {
+      "marketGrowth": 3.8,
+      "competitorCount": 4,
+      "marketShare": 21.9,
+      "avgBidSuccess": 50,
+      "hotMarkets": [
+        {
+          "location": "Lakeland CBD",
+          "growth": 7.3,
+          "opportunity": "High-End Single-Family"
+        },
+        {
+          "location": "Lakeland Beach",
+          "growth": 7.8,
+          "opportunity": "High-End Single-Family"
+        },
+        {
+          "location": "Lakeland Beach",
+          "growth": 6.4,
+          "opportunity": "High-End Single-Family"
+        },
+        {
+          "location": "Lakeland Downtown",
+          "growth": 6.4,
+          "opportunity": "High-End Single-Family"
+        },
+        {
+          "location": "Lakeland CBD",
+          "growth": 6.4,
+          "opportunity": "High-End Single-Family"
+        }
+      ],
+      "trends": [
+        {
+          "category": "International Buyers",
+          "trend": "up",
+          "impact": "medium"
+        },
+        {
+          "category": "Second Home Demand",
+          "trend": "up",
+          "impact": "high"
+        },
+        {
+          "category": "Climate Resilience",
+          "trend": "up",
+          "impact": "high"
+        },
+        {
+          "category": "Smart Home Technology",
+          "trend": "up",
+          "impact": "high"
+        },
+        {
+          "category": "Price Stabilization",
+          "trend": "stable",
+          "impact": "medium"
+        }
+      ]
+    }
+  },
+  {
+    "id": "market-intelligence-2",
+    "type": "market-intelligence",
+    "title": "Clearwater Commercial Market",
+    "size": "medium",
+    "config": {
+      "marketGrowth": 6.6,
+      "competitorCount": 13,
+      "marketShare": 7.1,
+      "avgBidSuccess": 25,
+      "hotMarkets": [
+        {
+          "location": "Clearwater Downtown",
+          "growth": 4.3,
+          "opportunity": "Office Space"
+        },
+        {
+          "location": "Clearwater Beach",
+          "growth": 4.5,
+          "opportunity": "Office Space"
+        },
+        {
+          "location": "Clearwater Suburbs",
+          "growth": 4.9,
+          "opportunity": "Office Space"
+        }
+      ],
+      "trends": [
+        {
+          "category": "Remote Work Impact",
+          "trend": "down",
+          "impact": "medium"
+        },
+        {
+          "category": "Foreign Investment",
+          "trend": "up",
+          "impact": "high"
+        },
+        {
+          "category": "Adaptive Reuse",
+          "trend": "up",
+          "impact": "medium"
+        }
+      ]
+    }
+  },
+  {
+    "id": "market-intelligence-3",
+    "type": "market-intelligence",
+    "title": "Jacksonville Residential Market",
+    "size": "medium",
+    "config": {
+      "marketGrowth": 3.8,
+      "competitorCount": 14,
+      "marketShare": 15.3,
+      "avgBidSuccess": 44,
+      "hotMarkets": [
+        {
+          "location": "Jacksonville Downtown",
+          "growth": 5.3,
+          "opportunity": "Single-Family Homes"
+        },
+        {
+          "location": "Jacksonville Beach",
+          "growth": 4.3,
+          "opportunity": "Single-Family Homes"
+        },
+        {
+          "location": "Jacksonville Beach",
+          "growth": 8.0,
+          "opportunity": "Single-Family Homes"
+        }
+      ],
+      "trends": [
+        {
+          "category": "Inventory Increase",
+          "trend": "up",
+          "impact": "medium"
+        },
+        {
+          "category": "New Construction Incentives",
+          "trend": "up",
+          "impact": "medium"
+        },
+        {
+          "category": "Population Growth",
+          "trend": "up",
+          "impact": "high"
+        }
+      ]
+    }
+  },
+  {
+    "id": "market-intelligence-4",
+    "type": "market-intelligence",
+    "title": "Orlando Luxury Residential Market",
+    "size": "small",
+    "config": {
+      "marketGrowth": 3.2,
+      "competitorCount": 8,
+      "marketShare": 22.5,
+      "avgBidSuccess": 55,
+      "hotMarkets": [
+        {
+          "location": "Orlando Island",
+          "growth": 5.4,
+          "opportunity": "High-End Single-Family"
+        },
+        {
+          "location": "Orlando Suburbs",
+          "growth": 4.1,
+          "opportunity": "High-End Single-Family"
+        }
+      ],
+      "trends": [
+        {
+          "category": "Second Home Demand",
+          "trend": "up",
+          "impact": "high"
+        },
+        {
+          "category": "Climate Resilience",
+          "trend": "up",
+          "impact": "high"
+        },
+        {
+          "category": "International Buyers",
+          "trend": "up",
+          "impact": "medium"
+        },
+        {
+          "category": "Price Stabilization",
+          "trend": "stable",
+          "impact": "medium"
+        }
+      ]
+    }
+  },
+  {
+    "id": "market-intelligence-5",
+    "type": "market-intelligence",
+    "title": "Coral Gables Commercial Market",
+    "size": "medium",
+    "config": {
+      "marketGrowth": 5.2,
+      "competitorCount": 14,
+      "marketShare": 17.5,
+      "avgBidSuccess": 27,
+      "hotMarkets": [
+        {
+          "location": "Coral Gables Suburbs",
+          "growth": 7.0,
+          "opportunity": "Office Space"
+        },
+        {
+          "location": "Coral Gables Beach",
+          "growth": 6.1,
+          "opportunity": "Office Space"
+        },
+        {
+          "location": "Coral Gables CBD",
+          "growth": 6.5,
+          "opportunity": "Office Space"
+        }
+      ],
+      "trends": [
+        {
+          "category": "Adaptive Reuse",
+          "trend": "up",
+          "impact": "medium"
+        },
+        {
+          "category": "Foreign Investment",
+          "trend": "up",
+          "impact": "high"
+        },
+        {
+          "category": "Smart Building Tech",
+          "trend": "up",
+          "impact": "medium"
+        },
+        {
+          "category": "Remote Work Impact",
+          "trend": "down",
+          "impact": "medium"
+        },
+        {
+          "category": "Mixed-Use Developments",
+          "trend": "up",
+          "impact": "high"
+        }
+      ]
+    }
+  },
+  {
+    "id": "market-intelligence-6",
+    "type": "market-intelligence",
+    "title": "Daytona Beach Commercial Market",
+    "size": "medium",
+    "config": {
+      "marketGrowth": 5.6,
+      "competitorCount": 8,
+      "marketShare": 13.7,
+      "avgBidSuccess": 26,
+      "hotMarkets": [
+        {
+          "location": "Daytona Beach Suburbs",
+          "growth": 7.1,
+          "opportunity": "Office Space"
+        },
+        {
+          "location": "Daytona Beach Suburbs",
+          "growth": 6.0,
+          "opportunity": "Office Space"
+        },
+        {
+          "location": "Daytona Beach Suburbs",
+          "growth": 6.8,
+          "opportunity": "Office Space"
+        }
+      ],
+      "trends": [
+        {
+          "category": "Mixed-Use Developments",
+          "trend": "up",
+          "impact": "high"
+        },
+        {
+          "category": "Adaptive Reuse",
+          "trend": "up",
+          "impact": "medium"
+        },
+        {
+          "category": "Remote Work Impact",
+          "trend": "down",
+          "impact": "medium"
+        }
+      ]
+    }
+  },
+  {
+    "id": "market-intelligence-7",
+    "type": "market-intelligence",
+    "title": "West Palm Beach Construction Market",
+    "size": "large",
+    "config": {
+      "marketGrowth": 4.1,
+      "competitorCount": 29,
+      "marketShare": 6.2,
+      "avgBidSuccess": 43,
+      "hotMarkets": [
+        {
+          "location": "West Palm Beach Beach",
+          "growth": 3.6,
+          "opportunity": "Commercial"
+        },
+        {
+          "location": "West Palm Beach Beach",
+          "growth": 3.7,
+          "opportunity": "Commercial"
+        },
+        {
+          "location": "West Palm Beach Island",
+          "growth": 4.6,
+          "opportunity": "Commercial"
+        },
+        {
+          "location": "West Palm Beach CBD",
+          "growth": 7.5,
+          "opportunity": "Commercial"
+        }
+      ],
+      "trends": [
+        {
+          "category": "Material Prices",
+          "trend": "stable",
+          "impact": "medium"
+        },
+        {
+          "category": "Technology Adoption",
+          "trend": "up",
+          "impact": "medium"
+        },
+        {
+          "category": "Sustainable Construction",
+          "trend": "up",
+          "impact": "high"
+        },
+        {
+          "category": "Labor Shortages",
+          "trend": "up",
+          "impact": "high"
+        },
+        {
+          "category": "Hurricane-Resilient Codes",
+          "trend": "new",
+          "impact": "high"
+        }
+      ]
+    }
+  },
+  {
+    "id": "market-intelligence-8",
+    "type": "market-intelligence",
+    "title": "West Palm Beach Construction Market",
+    "size": "large",
+    "config": {
+      "marketGrowth": 5.4,
+      "competitorCount": 25,
+      "marketShare": 8.5,
+      "avgBidSuccess": 29,
+      "hotMarkets": [
+        {
+          "location": "West Palm Beach Downtown",
+          "growth": 3.3,
+          "opportunity": "Commercial"
+        },
+        {
+          "location": "West Palm Beach Beach",
+          "growth": 4.0,
+          "opportunity": "Commercial"
+        },
+        {
+          "location": "West Palm Beach Downtown",
+          "growth": 5.7,
+          "opportunity": "Commercial"
+        },
+        {
+          "location": "West Palm Beach Suburbs",
+          "growth": 6.9,
+          "opportunity": "Commercial"
+        }
+      ],
+      "trends": [
+        {
+          "category": "Technology Adoption",
+          "trend": "up",
+          "impact": "medium"
+        },
+        {
+          "category": "Hurricane-Resilient Codes",
+          "trend": "new",
+          "impact": "high"
+        },
+        {
+          "category": "Labor Shortages",
+          "trend": "up",
+          "impact": "high"
+        },
+        {
+          "category": "Sustainable Construction",
+          "trend": "up",
+          "impact": "high"
+        }
+      ]
+    }
+  },
+  {
+    "id": "market-intelligence-9",
+    "type": "market-intelligence",
+    "title": "Key West Construction Market",
+    "size": "large",
+    "config": {
+      "marketGrowth": 4.1,
+      "competitorCount": 20,
+      "marketShare": 5.1,
+      "avgBidSuccess": 27,
+      "hotMarkets": [
+        {
+          "location": "Key West Beach",
+          "growth": 6.2,
+          "opportunity": "Commercial"
+        },
+        {
+          "location": "Key West Beach",
+          "growth": 6.2,
+          "opportunity": "Commercial"
+        },
+        {
+          "location": "Key West Beach",
+          "growth": 8.0,
+          "opportunity": "Commercial"
+        },
+        {
+          "location": "Key West Beach",
+          "growth": 7.1,
+          "opportunity": "Commercial"
+        }
+      ],
+      "trends": [
+        {
+          "category": "Sustainable Construction",
+          "trend": "up",
+          "impact": "high"
+        },
+        {
+          "category": "Technology Adoption",
+          "trend": "up",
+          "impact": "medium"
+        },
+        {
+          "category": "Labor Shortages",
+          "trend": "up",
+          "impact": "high"
+        }
+      ]
+    }
+  },
+  {
+    "id": "market-intelligence-10",
+    "type": "market-intelligence",
+    "title": "Winter Haven Luxury Residential Market",
+    "size": "small",
+    "config": {
+      "marketGrowth": 4.6,
+      "competitorCount": 3,
+      "marketShare": 18.8,
+      "avgBidSuccess": 44,
+      "hotMarkets": [
+        {
+          "location": "Winter Haven CBD",
+          "growth": 3.5,
+          "opportunity": "High-End Single-Family"
+        },
+        {
+          "location": "Winter Haven CBD",
+          "growth": 5.4,
+          "opportunity": "High-End Single-Family"
+        },
+        {
+          "location": "Winter Haven Downtown",
+          "growth": 3.6,
+          "opportunity": "High-End Single-Family"
+        },
+        {
+          "location": "Winter Haven Downtown",
+          "growth": 7.4,
+          "opportunity": "High-End Single-Family"
+        },
+        {
+          "location": "Winter Haven Suburbs",
+          "growth": 4.9,
+          "opportunity": "High-End Single-Family"
+        }
+      ],
+      "trends": [
+        {
+          "category": "Second Home Demand",
+          "trend": "up",
+          "impact": "high"
+        },
+        {
+          "category": "Smart Home Technology",
+          "trend": "up",
+          "impact": "high"
+        },
+        {
+          "category": "Climate Resilience",
+          "trend": "up",
+          "impact": "high"
+        }
+      ]
+    }
+  },
+  {
+    "id": "market-intelligence-11",
+    "type": "market-intelligence",
+    "title": "St. Augustine Construction Market",
+    "size": "large",
+    "config": {
+      "marketGrowth": 4.7,
+      "competitorCount": 23,
+      "marketShare": 9.0,
+      "avgBidSuccess": 37,
+      "hotMarkets": [
+        {
+          "location": "St. Augustine Island",
+          "growth": 5.4,
+          "opportunity": "Commercial"
+        },
+        {
+          "location": "St. Augustine Downtown",
+          "growth": 6.5,
+          "opportunity": "Commercial"
+        },
+        {
+          "location": "St. Augustine Suburbs",
+          "growth": 5.1,
+          "opportunity": "Commercial"
+        },
+        {
+          "location": "St. Augustine Downtown",
+          "growth": 3.7,
+          "opportunity": "Commercial"
+        }
+      ],
+      "trends": [
+        {
+          "category": "Hurricane-Resilient Codes",
+          "trend": "new",
+          "impact": "high"
+        },
+        {
+          "category": "Technology Adoption",
+          "trend": "up",
+          "impact": "medium"
+        },
+        {
+          "category": "Sustainable Construction",
+          "trend": "up",
+          "impact": "high"
+        }
+      ]
+    }
+  },
+  {
+    "id": "market-intelligence-12",
+    "type": "market-intelligence",
+    "title": "Jacksonville Commercial Market",
+    "size": "medium",
+    "config": {
+      "marketGrowth": 5.3,
+      "competitorCount": 15,
+      "marketShare": 8.4,
+      "avgBidSuccess": 40,
+      "hotMarkets": [
+        {
+          "location": "Jacksonville Island",
+          "growth": 5.8,
+          "opportunity": "Office Space"
+        },
+        {
+          "location": "Jacksonville CBD",
+          "growth": 6.3,
+          "opportunity": "Office Space"
+        },
+        {
+          "location": "Jacksonville Island",
+          "growth": 4.3,
+          "opportunity": "Office Space"
+        }
+      ],
+      "trends": [
+        {
+          "category": "Mixed-Use Developments",
+          "trend": "up",
+          "impact": "high"
+        },
+        {
+          "category": "Smart Building Tech",
+          "trend": "up",
+          "impact": "medium"
+        },
+        {
+          "category": "Foreign Investment",
+          "trend": "up",
+          "impact": "high"
+        },
+        {
+          "category": "Remote Work Impact",
+          "trend": "down",
+          "impact": "medium"
+        }
+      ]
+    }
+  },
+  {
+    "id": "market-intelligence-13",
+    "type": "market-intelligence",
+    "title": "West Palm Beach Commercial Market",
+    "size": "medium",
+    "config": {
+      "marketGrowth": 4.7,
+      "competitorCount": 14,
+      "marketShare": 10.7,
+      "avgBidSuccess": 40,
+      "hotMarkets": [
+        {
+          "location": "West Palm Beach Beach",
+          "growth": 4.5,
+          "opportunity": "Office Space"
+        },
+        {
+          "location": "West Palm Beach Island",
+          "growth": 6.9,
+          "opportunity": "Office Space"
+        },
+        {
+          "location": "West Palm Beach Beach",
+          "growth": 3.7,
+          "opportunity": "Office Space"
+        },
+        {
+          "location": "West Palm Beach Island",
+          "growth": 7.1,
+          "opportunity": "Office Space"
+        }
+      ],
+      "trends": [
+        {
+          "category": "Smart Building Tech",
+          "trend": "up",
+          "impact": "medium"
+        },
+        {
+          "category": "Foreign Investment",
+          "trend": "up",
+          "impact": "high"
+        },
+        {
+          "category": "Remote Work Impact",
+          "trend": "down",
+          "impact": "medium"
+        }
+      ]
+    }
+  },
+  {
+    "id": "market-intelligence-14",
+    "type": "market-intelligence",
+    "title": "Panama City Construction Market",
+    "size": "large",
+    "config": {
+      "marketGrowth": 5.1,
+      "competitorCount": 30,
+      "marketShare": 19.5,
+      "avgBidSuccess": 20,
+      "hotMarkets": [
+        {
+          "location": "Panama City Suburbs",
+          "growth": 5.4,
+          "opportunity": "Commercial"
+        },
+        {
+          "location": "Panama City Beach",
+          "growth": 5.2,
+          "opportunity": "Commercial"
+        },
+        {
+          "location": "Panama City Suburbs",
+          "growth": 5.0,
+          "opportunity": "Commercial"
+        }
+      ],
+      "trends": [
+        {
+          "category": "Technology Adoption",
+          "trend": "up",
+          "impact": "medium"
+        },
+        {
+          "category": "Sustainable Construction",
+          "trend": "up",
+          "impact": "high"
+        },
+        {
+          "category": "Labor Shortages",
+          "trend": "up",
+          "impact": "high"
+        },
+        {
+          "category": "Material Prices",
+          "trend": "stable",
+          "impact": "medium"
+        },
+        {
+          "category": "Hurricane-Resilient Codes",
+          "trend": "new",
+          "impact": "high"
+        }
+      ]
+    }
+  },
+  {
+    "id": "market-intelligence-15",
+    "type": "market-intelligence",
+    "title": "Delray Beach Residential Market",
+    "size": "medium",
+    "config": {
+      "marketGrowth": 6.9,
+      "competitorCount": 6,
+      "marketShare": 19.3,
+      "avgBidSuccess": 36,
+      "hotMarkets": [
+        {
+          "location": "Delray Beach Suburbs",
+          "growth": 4.2,
+          "opportunity": "Single-Family Homes"
+        },
+        {
+          "location": "Delray Beach Beach",
+          "growth": 5.7,
+          "opportunity": "Single-Family Homes"
+        },
+        {
+          "location": "Delray Beach Island",
+          "growth": 6.3,
+          "opportunity": "Single-Family Homes"
+        },
+        {
+          "location": "Delray Beach Beach",
+          "growth": 3.2,
+          "opportunity": "Single-Family Homes"
+        }
+      ],
+      "trends": [
+        {
+          "category": "Population Growth",
+          "trend": "up",
+          "impact": "high"
+        },
+        {
+          "category": "New Construction Incentives",
+          "trend": "up",
+          "impact": "medium"
+        },
+        {
+          "category": "Inventory Increase",
+          "trend": "up",
+          "impact": "medium"
+        },
+        {
+          "category": "Interest Rate Stabilization",
+          "trend": "stable",
+          "impact": "medium"
+        },
+        {
+          "category": "Affordability Challenges",
+          "trend": "up",
+          "impact": "high"
+        }
+      ]
+    }
+  },
+  {
+    "id": "market-intelligence-16",
+    "type": "market-intelligence",
+    "title": "Miami Luxury Residential Market",
+    "size": "small",
+    "config": {
+      "marketGrowth": 3.2,
+      "competitorCount": 3,
+      "marketShare": 14.4,
+      "avgBidSuccess": 54,
+      "hotMarkets": [
+        {
+          "location": "Miami Beach",
+          "growth": 3.9,
+          "opportunity": "High-End Single-Family"
+        },
+        {
+          "location": "Miami Beach",
+          "growth": 6.3,
+          "opportunity": "High-End Single-Family"
+        },
+        {
+          "location": "Miami Beach",
+          "growth": 5.7,
+          "opportunity": "High-End Single-Family"
+        },
+        {
+          "location": "Miami Island",
+          "growth": 5.0,
+          "opportunity": "High-End Single-Family"
+        }
+      ],
+      "trends": [
+        {
+          "category": "Price Stabilization",
+          "trend": "stable",
+          "impact": "medium"
+        },
+        {
+          "category": "Climate Resilience",
+          "trend": "up",
+          "impact": "high"
+        },
+        {
+          "category": "International Buyers",
+          "trend": "up",
+          "impact": "medium"
+        },
+        {
+          "category": "Second Home Demand",
+          "trend": "up",
+          "impact": "high"
+        }
+      ]
+    }
+  },
+  {
+    "id": "market-intelligence-17",
+    "type": "market-intelligence",
+    "title": "Delray Beach Construction Market",
+    "size": "large",
+    "config": {
+      "marketGrowth": 5.7,
+      "competitorCount": 27,
+      "marketShare": 5.5,
+      "avgBidSuccess": 22,
+      "hotMarkets": [
+        {
+          "location": "Delray Beach Suburbs",
+          "growth": 5.4,
+          "opportunity": "Commercial"
+        },
+        {
+          "location": "Delray Beach Downtown",
+          "growth": 7.4,
+          "opportunity": "Commercial"
+        },
+        {
+          "location": "Delray Beach CBD",
+          "growth": 5.2,
+          "opportunity": "Commercial"
+        }
+      ],
+      "trends": [
+        {
+          "category": "Material Prices",
+          "trend": "stable",
+          "impact": "medium"
+        },
+        {
+          "category": "Hurricane-Resilient Codes",
+          "trend": "new",
+          "impact": "high"
+        },
+        {
+          "category": "Labor Shortages",
+          "trend": "up",
+          "impact": "high"
+        },
+        {
+          "category": "Sustainable Construction",
+          "trend": "up",
+          "impact": "high"
+        },
+        {
+          "category": "Technology Adoption",
+          "trend": "up",
+          "impact": "medium"
+        }
+      ]
+    }
+  },
+  {
+    "id": "market-intelligence-18",
+    "type": "market-intelligence",
+    "title": "Naples Residential Market",
+    "size": "medium",
+    "config": {
+      "marketGrowth": 3.4,
+      "competitorCount": 10,
+      "marketShare": 6.7,
+      "avgBidSuccess": 40,
+      "hotMarkets": [
+        {
+          "location": "Naples Suburbs",
+          "growth": 3.9,
+          "opportunity": "Single-Family Homes"
+        },
+        {
+          "location": "Naples Suburbs",
+          "growth": 4.5,
+          "opportunity": "Single-Family Homes"
+        },
+        {
+          "location": "Naples Beach",
+          "growth": 3.4,
+          "opportunity": "Single-Family Homes"
+        }
+      ],
+      "trends": [
+        {
+          "category": "Interest Rate Stabilization",
+          "trend": "stable",
+          "impact": "medium"
+        },
+        {
+          "category": "Affordability Challenges",
+          "trend": "up",
+          "impact": "high"
+        },
+        {
+          "category": "Population Growth",
+          "trend": "up",
+          "impact": "high"
+        },
+        {
+          "category": "Inventory Increase",
+          "trend": "up",
+          "impact": "medium"
+        }
+      ]
+    }
+  },
+  {
+    "id": "market-intelligence-19",
+    "type": "market-intelligence",
+    "title": "Fort Lauderdale Construction Market",
+    "size": "large",
+    "config": {
+      "marketGrowth": 4.6,
+      "competitorCount": 16,
+      "marketShare": 17.2,
+      "avgBidSuccess": 33,
+      "hotMarkets": [
+        {
+          "location": "Fort Lauderdale Island",
+          "growth": 6.8,
+          "opportunity": "Commercial"
+        },
+        {
+          "location": "Fort Lauderdale CBD",
+          "growth": 5.4,
+          "opportunity": "Commercial"
+        },
+        {
+          "location": "Fort Lauderdale CBD",
+          "growth": 7.6,
+          "opportunity": "Commercial"
+        }
+      ],
+      "trends": [
+        {
+          "category": "Labor Shortages",
+          "trend": "up",
+          "impact": "high"
+        },
+        {
+          "category": "Technology Adoption",
+          "trend": "up",
+          "impact": "medium"
+        },
+        {
+          "category": "Material Prices",
+          "trend": "stable",
+          "impact": "medium"
+        }
+      ]
+    }
+  },
+  {
+    "id": "market-intelligence-20",
+    "type": "market-intelligence",
+    "title": "Pensacola Luxury Residential Market",
+    "size": "small",
+    "config": {
+      "marketGrowth": 4.4,
+      "competitorCount": 8,
+      "marketShare": 21.3,
+      "avgBidSuccess": 51,
+      "hotMarkets": [
+        {
+          "location": "Pensacola Downtown",
+          "growth": 6.6,
+          "opportunity": "High-End Single-Family"
+        },
+        {
+          "location": "Pensacola Island",
+          "growth": 5.5,
+          "opportunity": "High-End Single-Family"
+        }
+      ],
+      "trends": [
+        {
+          "category": "Climate Resilience",
+          "trend": "up",
+          "impact": "high"
+        },
+        {
+          "category": "Second Home Demand",
+          "trend": "up",
+          "impact": "high"
+        },
+        {
+          "category": "Price Stabilization",
+          "trend": "stable",
+          "impact": "medium"
+        }
+      ]
+    }
+  },
+  {
+    "id": "market-intelligence-21",
+    "type": "market-intelligence",
+    "title": "Clearwater Commercial Market",
+    "size": "medium",
+    "config": {
+      "marketGrowth": 4.4,
+      "competitorCount": 10,
+      "marketShare": 16.3,
+      "avgBidSuccess": 33,
+      "hotMarkets": [
+        {
+          "location": "Clearwater Beach",
+          "growth": 4.8,
+          "opportunity": "Office Space"
+        },
+        {
+          "location": "Clearwater Island",
+          "growth": 3.9,
+          "opportunity": "Office Space"
+        },
+        {
+          "location": "Clearwater CBD",
+          "growth": 6.3,
+          "opportunity": "Office Space"
+        }
+      ],
+      "trends": [
+        {
+          "category": "Mixed-Use Developments",
+          "trend": "up",
+          "impact": "high"
+        },
+        {
+          "category": "Smart Building Tech",
+          "trend": "up",
+          "impact": "medium"
+        },
+        {
+          "category": "Adaptive Reuse",
+          "trend": "up",
+          "impact": "medium"
+        },
+        {
+          "category": "Remote Work Impact",
+          "trend": "down",
+          "impact": "medium"
+        },
+        {
+          "category": "Foreign Investment",
+          "trend": "up",
+          "impact": "high"
+        }
+      ]
+    }
+  },
+  {
+    "id": "market-intelligence-22",
+    "type": "market-intelligence",
+    "title": "Clearwater Construction Market",
+    "size": "large",
+    "config": {
+      "marketGrowth": 4.8,
+      "competitorCount": 24,
+      "marketShare": 16.7,
+      "avgBidSuccess": 36,
+      "hotMarkets": [
+        {
+          "location": "Clearwater CBD",
+          "growth": 4.2,
+          "opportunity": "Commercial"
+        },
+        {
+          "location": "Clearwater Downtown",
+          "growth": 7.2,
+          "opportunity": "Commercial"
+        },
+        {
+          "location": "Clearwater Downtown",
+          "growth": 4.3,
+          "opportunity": "Commercial"
+        },
+        {
+          "location": "Clearwater Downtown",
+          "growth": 3.9,
+          "opportunity": "Commercial"
+        }
+      ],
+      "trends": [
+        {
+          "category": "Hurricane-Resilient Codes",
+          "trend": "new",
+          "impact": "high"
+        },
+        {
+          "category": "Technology Adoption",
+          "trend": "up",
+          "impact": "medium"
+        },
+        {
+          "category": "Material Prices",
+          "trend": "stable",
+          "impact": "medium"
+        },
+        {
+          "category": "Labor Shortages",
+          "trend": "up",
+          "impact": "high"
+        }
+      ]
+    }
+  },
+  {
+    "id": "market-intelligence-23",
+    "type": "market-intelligence",
+    "title": "Miami Residential Market",
+    "size": "medium",
+    "config": {
+      "marketGrowth": 6.3,
+      "competitorCount": 6,
+      "marketShare": 12.1,
+      "avgBidSuccess": 34,
+      "hotMarkets": [
+        {
+          "location": "Miami Beach",
+          "growth": 3.5,
+          "opportunity": "Single-Family Homes"
+        },
+        {
+          "location": "Miami Downtown",
+          "growth": 3.1,
+          "opportunity": "Single-Family Homes"
+        }
+      ],
+      "trends": [
+        {
+          "category": "New Construction Incentives",
+          "trend": "up",
+          "impact": "medium"
+        },
+        {
+          "category": "Population Growth",
+          "trend": "up",
+          "impact": "high"
+        },
+        {
+          "category": "Affordability Challenges",
+          "trend": "up",
+          "impact": "high"
+        },
+        {
+          "category": "Inventory Increase",
+          "trend": "up",
+          "impact": "medium"
+        },
+        {
+          "category": "Interest Rate Stabilization",
+          "trend": "stable",
+          "impact": "medium"
+        }
+      ]
+    }
+  },
+  {
+    "id": "market-intelligence-24",
+    "type": "market-intelligence",
+    "title": "Miami Construction Market",
+    "size": "large",
+    "config": {
+      "marketGrowth": 4.8,
+      "competitorCount": 19,
+      "marketShare": 17.8,
+      "avgBidSuccess": 26,
+      "hotMarkets": [
+        {
+          "location": "Miami Downtown",
+          "growth": 3.6,
+          "opportunity": "Commercial"
+        },
+        {
+          "location": "Miami Island",
+          "growth": 4.7,
+          "opportunity": "Commercial"
+        }
+      ],
+      "trends": [
+        {
+          "category": "Material Prices",
+          "trend": "stable",
+          "impact": "medium"
+        },
+        {
+          "category": "Hurricane-Resilient Codes",
+          "trend": "new",
+          "impact": "high"
+        },
+        {
+          "category": "Sustainable Construction",
+          "trend": "up",
+          "impact": "high"
+        },
+        {
+          "category": "Technology Adoption",
+          "trend": "up",
+          "impact": "medium"
+        }
+      ]
+    }
+  },
+  {
+    "id": "market-intelligence-25",
+    "type": "market-intelligence",
+    "title": "Ocala Construction Market",
+    "size": "large",
+    "config": {
+      "marketGrowth": 4.8,
+      "competitorCount": 30,
+      "marketShare": 5.7,
+      "avgBidSuccess": 27,
+      "hotMarkets": [
+        {
+          "location": "Ocala Downtown",
+          "growth": 3.9,
+          "opportunity": "Commercial"
+        },
+        {
+          "location": "Ocala Suburbs",
+          "growth": 7.6,
+          "opportunity": "Commercial"
+        }
+      ],
+      "trends": [
+        {
+          "category": "Material Prices",
+          "trend": "stable",
+          "impact": "medium"
+        },
+        {
+          "category": "Technology Adoption",
+          "trend": "up",
+          "impact": "medium"
+        },
+        {
+          "category": "Hurricane-Resilient Codes",
+          "trend": "new",
+          "impact": "high"
+        },
+        {
+          "category": "Sustainable Construction",
+          "trend": "up",
+          "impact": "high"
+        },
+        {
+          "category": "Labor Shortages",
+          "trend": "up",
+          "impact": "high"
+        }
+      ]
+    }
+  },
+  {
+    "id": "market-intelligence-26",
+    "type": "market-intelligence",
+    "title": "Fernandina Beach Residential Market",
+    "size": "medium",
+    "config": {
+      "marketGrowth": 4.0,
+      "competitorCount": 11,
+      "marketShare": 13.4,
+      "avgBidSuccess": 41,
+      "hotMarkets": [
+        {
+          "location": "Fernandina Beach Beach",
+          "growth": 5.2,
+          "opportunity": "Single-Family Homes"
+        },
+        {
+          "location": "Fernandina Beach CBD",
+          "growth": 7.3,
+          "opportunity": "Single-Family Homes"
+        }
+      ],
+      "trends": [
+        {
+          "category": "Affordability Challenges",
+          "trend": "up",
+          "impact": "high"
+        },
+        {
+          "category": "Inventory Increase",
+          "trend": "up",
+          "impact": "medium"
+        },
+        {
+          "category": "Population Growth",
+          "trend": "up",
+          "impact": "high"
+        },
+        {
+          "category": "Interest Rate Stabilization",
+          "trend": "stable",
+          "impact": "medium"
+        }
+      ]
+    }
+  },
+  {
+    "id": "market-intelligence-27",
+    "type": "market-intelligence",
+    "title": "Clearwater Construction Market",
+    "size": "large",
+    "config": {
+      "marketGrowth": 4.8,
+      "competitorCount": 30,
+      "marketShare": 5.4,
+      "avgBidSuccess": 22,
+      "hotMarkets": [
+        {
+          "location": "Clearwater Island",
+          "growth": 4.9,
+          "opportunity": "Commercial"
+        },
+        {
+          "location": "Clearwater Downtown",
+          "growth": 6.9,
+          "opportunity": "Commercial"
+        },
+        {
+          "location": "Clearwater Downtown",
+          "growth": 5.8,
+          "opportunity": "Commercial"
+        },
+        {
+          "location": "Clearwater Suburbs",
+          "growth": 4.0,
+          "opportunity": "Commercial"
+        },
+        {
+          "location": "Clearwater Downtown",
+          "growth": 7.4,
+          "opportunity": "Commercial"
+        }
+      ],
+      "trends": [
+        {
+          "category": "Hurricane-Resilient Codes",
+          "trend": "new",
+          "impact": "high"
+        },
+        {
+          "category": "Technology Adoption",
+          "trend": "up",
+          "impact": "medium"
+        },
+        {
+          "category": "Labor Shortages",
+          "trend": "up",
+          "impact": "high"
+        },
+        {
+          "category": "Material Prices",
+          "trend": "stable",
+          "impact": "medium"
+        },
+        {
+          "category": "Sustainable Construction",
+          "trend": "up",
+          "impact": "high"
+        }
+      ]
+    }
+  }
+]

@@ -1,0 +1,38 @@
+{
+    "id": "estimator-layout",
+    "name": "Estimator Dashboard",
+    "description": "Bid management and cost analysis tools",
+    "role": "estimator",
+    "cards": [
+      {
+        "id": "bid-tracker",
+        "type": "bid-tracker",
+        "title": "Active Bids",
+        "size": "large",
+        "position": { "x": 0, "y": 0 },
+        "visible": true
+      },
+      {
+        "id": "market-intelligence",
+        "type": "market-intelligence",
+        "title": "Market Intelligence",
+        "size": "large",
+        "position": { "x": 0, "y": 1 },
+        "visible": true,
+        "config": {
+          "showTrends": true,
+          "showBidSuccess": true,
+          "detailLevel": "tactical"
+        }
+      },
+      {
+        "id": "cost-analysis",
+        "type": "cost-analysis",
+        "title": "Cost Analysis",
+        "size": "medium",
+        "position": { "x": 6, "y": 0 },
+        "visible": true
+      }
+    ]
+  }
+  

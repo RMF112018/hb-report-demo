@@ -7,18 +7,73 @@
 import moment from 'moment';
 
 /**
- * Fetches forecasting test data from Electron's IPC for a given tab.
- * @param {string} activeTab - The active tab key (e.g., 'gc-gr', 'owner-billing')
- * @returns {Promise<Array>} - Array of forecast data or empty array on error
+ * Fetches forecast data from budget_details, forecast_values, and forecast_periods tables
+ * @param {string} activeTab - The active tab key ('gc-gr' or 'owner-billing')
+ * @param {string|number} projectId - The Procore project ID from App.js
+ * @returns {Promise<Array>} - Array of forecast data formatted for ForecastingV2
  */
-export const fetchForecastData = async (activeTab) => {
+export const fetchForecastData = async (activeTab, projectId) => {
   try {
-    console.log('Fetching data for activeTab:', activeTab);
-    const forecastData = await window.electronAPI.getForecastingTestData(activeTab);
-    console.log('Fetched forecast data for tab', activeTab, ':', forecastData);
-    return forecastData || [];
+    if (!projectId) {
+      throw new Error('projectId is required to fetch budget details');
+    }
+    console.log('Fetching data for activeTab:', activeTab, 'projectId:', projectId);
+    const budgetDetails = await window.electronAPI.getBudgetDetails(projectId, activeTab);
+    console.log('Fetched budget details:', budgetDetails);
+
+    // Group by cost_code to consolidate periods
+    const dataByCostCode = budgetDetails.reduce((acc, detail) => {
+      const costCode = detail.cost_code || `TEMP-${Date.now()}`;
+      if (!acc[costCode]) {
+        acc[costCode] = {
+          costCode,
+          description: detail.description || '',
+          originalBudget: detail.originalBudget || 0,
+          approvedCOs: detail.approvedCOs || 0,
+          startDate: detail.startDate || '',
+          endDate: detail.endDate || '',
+          projectedBudget: detail.projectedBudget || 0,
+          projectedCosts: detail.projectedCosts || 0,
+          estimatedCostAtCompletion: detail.estimatedCostAtCompletion || 0,
+          jobToDateCosts: detail.jobToDateCosts || 0,
+          projectedCostToComplete: (detail.projectedCosts || 0) - (detail.jobToDateCosts || 0),
+          projectedOverUnder: detail.estimatedCostAtCompletion - detail.originalBudget || 0,
+          forecastRemainder: 'N/A',
+          currentMethod: detail.currentMethod || 'manual',
+          originalStartDate: detail.startDate || '',
+          originalEndDate: detail.endDate || '',
+          originalForecastToComplete: detail.projectedCosts || 0, // Adjust as needed
+          originalEstimatedCostAtCompletion: detail.estimatedCostAtCompletion || 0,
+          currentStartDate: detail.startDate || '',
+          currentEndDate: detail.endDate || '',
+          currentForecastToComplete: detail.projectedCosts || 0, // Adjust as needed
+          currentEstimatedCostAtCompletion: detail.estimatedCostAtCompletion || 0,
+          periods: {},
+        };
+      }
+
+      if (detail.periodLabel) {
+        const monthKey = moment(detail.periodStart).format('MMMMYYYY').toLowerCase();
+        acc[costCode].periods[monthKey] = {
+          actualCost: detail.actualCost || 0,
+          originalForecast: detail.originalForecast || 0,
+          currentForecast: detail.currentForecast || 0,
+        };
+      }
+
+      return acc;
+    }, {});
+
+    // Convert to array and merge period data
+    const forecastData = Object.values(dataByCostCode).map(row => ({
+      ...row,
+      ...row.periods,
+    }));
+
+    console.log('Processed forecast data for tab', activeTab, ':', forecastData);
+    return forecastData;
   } catch (err) {
-    console.error('Error fetching forecasting test data:', err);
+    console.error('Error fetching forecast data:', err);
     throw new Error('Failed to load forecasting data. Please try again.');
   }
 };

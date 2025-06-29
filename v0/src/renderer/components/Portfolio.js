@@ -14,7 +14,7 @@ import { SearchOutlined, PlusOutlined, EditOutlined, DeleteOutlined } from '@ant
 import TableModule from './TableModule.js';
 import ComponentHeader from './ComponentHeader.js';
 import logger from '../utils/logger.js';
-import '../styles/Components.css';
+// import '../styles/Components.css';
 
 const { Option } = Select;
 

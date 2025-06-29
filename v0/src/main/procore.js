@@ -1,424 +1,272 @@
 // src/main/procore.js
-// Handles Procore API integration using Authorization Code Grant and Refresh Token flows with Procore JS SDK
-// Import in main.js to initialize Procore integration; ensure @procore/js-sdk is updated to latest version
-// Reference: https://developers.procore.com/documentation/tutorial-signup-signin
-// *Additional Reference*: https://github.com/procore-oss/js-sdk
-// *Additional Reference*: https://www.npmjs.com/package/@procore/js-sdk (Update to latest version, e.g., 4.2.1)
+// Handles Procore API integration with Authorization Code flow using redirectless redirect_uri
+// Import in main.js or sync.js to initialize Procore integration
+// Reference: https://developers.procore.com/reference/rest/v1.3/company-users#list-company-users
 
-import { BrowserWindow } from 'electron';
-import { URL } from 'url';
-import sdk from '@procore/js-sdk';
+import fetch from 'node-fetch';
 import config from './config.js';
 import logger from './logger.js';
-import { upsertEntity, batchUpsert, db } from './db.js';
+import { upsertEntity, batchUpsert, getTokenByUserId } from './db.js';
+import readline from 'readline';
 
-const { clientId, clientSecret, baseUrl, oauthUrl, redirectUri, companyId } = config.procore;
+// Procore configuration from config.js
+const {
+  clientId,
+  clientSecret,
+  baseUrl = 'https://api-sandbox.procore.com',
+  oauthUrl = 'https://login-sandbox.procore.com',
+  redirectUri = 'urn:ietf:wg:oauth:2.0:oob', // Redirectless URI
+  companyId,
+} = config.procore;
+
+// Token readiness promise
+let tokenReadyPromise = null;
+let tokenReadyResolver = null;
 
 logger.info('Procore config loaded:', {
-    clientId: clientId ? '[redacted]' : 'undefined',
-    clientSecret: clientSecret ? '[redacted]' : 'undefined',
-    baseUrl,
-    oauthUrl,
-    redirectUri,
-    companyId: companyId ? String(companyId) : 'undefined',
+  clientId: clientId ? '[redacted]' : 'undefined',
+  clientSecret: clientSecret ? '[redacted]' : 'undefined',
+  baseUrl,
+  oauthUrl,
+  redirectUri,
+  companyId,
 });
 
-// Validate configuration at startup
+/**
+ * Validates Procore configuration
+ * @throws {Error} If configuration is incomplete or invalid
+ */
 function validateProcoreConfig() {
-    if (!clientId || !clientSecret || !redirectUri || !companyId) {
-        throw new Error('Procore configuration incomplete: clientId, clientSecret, redirectUri, and companyId are required');
-    }
-    if (!baseUrl.startsWith('https://') || !oauthUrl.startsWith('https://')) {
-        throw new Error('Procore baseUrl and oauthUrl must use HTTPS');
-    }
+  if (!clientId || !clientSecret || !companyId) {
+    throw new Error('Procore configuration incomplete: clientId, clientSecret, and companyId are required');
+  }
+  if (!baseUrl.startsWith('https://') || !oauthUrl.startsWith('https://')) {
+    throw new Error('Procore baseUrl and oauthUrl must use HTTPS');
+  }
 }
+
 validateProcoreConfig();
 
-// Custom authorizer for Procore JS SDK
-class TokenAuthorizer {
-    constructor(accessToken) {
-        this.accessToken = accessToken;
-    }
-
-    authorize() {
-        return {
-            headers: {
-                'Authorization': `Bearer ${this.accessToken}`,
-            },
-        };
-    }
-
-    setAccessToken(newToken) {
-        this.accessToken = newToken;
-    }
+/**
+ * Initializes the token readiness promise
+ */
+function initializeTokenPromise() {
+  tokenReadyPromise = new Promise((resolve) => {
+    tokenReadyResolver = resolve;
+  });
 }
+initializeTokenPromise();
 
 /**
- * Initiates Authorization Code Grant authentication by opening a Procore login window and syncs projects
- * @returns {Promise<void>}
+ * Prompts the user to manually retrieve the authorization code
+ * @returns {Promise<string>} Authorization code
  */
-async function initiateAuth() {
-    return new Promise((resolve, reject) => {
-        logger.info('Starting Procore Authorization Code Grant authentication');
+async function getAuthorizationCode() {
+  const authorizeUrl = `${oauthUrl}/oauth/authorize?response_type=code&client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}`;
+  logger.info(`Please open this URL in your browser to authorize: ${authorizeUrl}`);
+  logger.info('After authorization, copy the code displayed in the browser and paste it here.');
 
-        const authUrl = new URL(`${oauthUrl}/oauth/authorize`);
-        authUrl.searchParams.append('client_id', clientId);
-        authUrl.searchParams.append('response_type', 'code');
-        authUrl.searchParams.append('redirect_uri', redirectUri);
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
 
-        logger.info('Opening auth window with URL:', authUrl.toString().replace(/client_id=[^&]+/, 'client_id=[redacted]'));
-
-        const authWindow = new BrowserWindow({
-            width: 500,
-            height: 800,
-            webPreferences: {
-                nodeIntegration: false,
-                contextIsolation: true,
-            },
-        });
-
-        let isResolved = false;
-
-        authWindow.loadURL(authUrl.toString());
-        authWindow.on('closed', () => {
-            if (!isResolved) {
-                logger.warn('Authentication window closed before completion');
-                reject(new Error('Authentication window closed by user'));
-            }
-        });
-
-        authWindow.webContents.on('will-redirect', (event, url) => {
-            logger.debug('will-redirect event triggered', { url });
-            handleCallback(url, authWindow, resolve, reject).then(() => {
-                isResolved = true;
-            }).catch(err => {
-                logger.debug('Redirect handling failed, continuing auth flow', { error: err.message });
-            });
-        });
-
-        authWindow.webContents.on('did-navigate', (event, url) => {
-            logger.debug('did-navigate event triggered', { url });
-            handleCallback(url, authWindow, resolve, reject).then(() => {
-                isResolved = true;
-            }).catch(err => {
-                logger.debug('Navigation handling failed, continuing auth flow', { error: err.message });
-            });
-        });
-    }).then(async () => {
-        logger.info('Authentication completed, syncing projects');
-        await syncProjects();
+  return new Promise((resolve) => {
+    rl.question('Enter the authorization code: ', (code) => {
+      rl.close();
+      resolve(code.trim());
     });
+  });
 }
 
 /**
- * Handles the redirect callback, exchanges code for tokens, and stores them
- * @param {string} url - The redirected URL
- * @param {BrowserWindow} authWindow - The authentication window
- * @param {Function} resolve - Promise resolve function
- * @param {Function} reject - Promise reject function
- * @returns {Promise<void>}
- */
-async function handleCallback(url, authWindow, resolve, reject) {
-    const parsedUrl = new URL(url);
-    if (!parsedUrl.pathname.startsWith(new URL(redirectUri).pathname)) {
-        logger.debug('Skipping redirect, not a callback', { url });
-        return;
-    }
-
-    const code = parsedUrl.searchParams.get('code');
-    const error = parsedUrl.searchParams.get('error');
-
-    if (error) {
-        logger.error(`Authorization error: ${error}`, { description: parsedUrl.searchParams.get('error_description') });
-        authWindow.destroy();
-        throw new Error(`OAuth error: ${error}`);
-    }
-
-    if (!code) {
-        logger.warn('No authorization code found in redirect URL', { url });
-        authWindow.destroy();
-        throw new Error('No authorization code received');
-    }
-
-    logger.info('Authorization code received', { code: '[redacted]' });
-
-    try {
-        const params = new URLSearchParams();
-        params.append('grant_type', 'authorization_code');
-        params.append('client_id', clientId);
-        params.append('client_secret', clientSecret);
-        params.append('code', code);
-        params.append('redirect_uri', redirectUri);
-
-        const response = await fetch(`${oauthUrl}/oauth/token`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: params,
-        });
-
-        if (!response.ok) {
-            const errorText = await response.text();
-            logger.error('Token exchange failed', { status: response.status, body: errorText });
-            throw new Error(`Token exchange failed: ${response.status} - ${errorText}`);
-        }
-
-        const tokens = await response.json();
-        logger.info('Tokens received from Procore', {
-            access_token: '[redacted]',
-            refresh_token: '[redacted]',
-            expires_in: tokens.expires_in,
-        });
-
-        const tokenData = {
-            id: 1,
-            access_token: tokens.access_token,
-            refresh_token: tokens.refresh_token,
-            expires_at: Math.floor(Date.now() / 1000) + tokens.expires_in,
-        };
-
-        if (!db) {
-            throw new Error('Database connection not initialized');
-        }
-
-        logger.debug('Upserting token data', { tokenData: { ...tokenData, access_token: '[redacted]', refresh_token: '[redacted]' } });
-        await upsertEntity('tokens', tokenData);
-        logger.info('Token upsert completed successfully');
-
-        const row = await new Promise((resolveQuery, rejectQuery) => {
-            db.get('SELECT * FROM tokens WHERE id = 1', (err, row) => {
-                if (err) rejectQuery(err);
-                else resolveQuery(row);
-            });
-        });
-
-        if (!row || row.access_token !== tokens.access_token) {
-            throw new Error('Token not correctly stored in database');
-        }
-
-        authWindow.destroy();
-        resolve();
-    } catch (err) {
-        logger.error(`Token exchange or storage error: ${err.message}`, { stack: err.stack });
-        authWindow.destroy();
-        throw err;
-    }
-}
-
-/**
- * Refreshes the access token using the stored refresh token
- * @param {string} refreshToken - The refresh token to use
- * @returns {Promise<Object>} New token data
- */
-async function refreshToken(refreshToken) {
-    try {
-        logger.info('Attempting to refresh access token');
-        const params = new URLSearchParams();
-        params.append('grant_type', 'refresh_token');
-        params.append('client_id', clientId);
-        params.append('client_secret', clientSecret);
-        params.append('refresh_token', refreshToken);
-
-        const response = await fetch(`${oauthUrl}/oauth/token`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: params,
-        });
-
-        if (!response.ok) {
-            const errorText = await response.text();
-            logger.error('Token refresh failed', { status: response.status, body: errorText });
-            throw new Error(`Token refresh failed: ${response.status} - ${errorText}`);
-        }
-
-        const tokens = await response.json();
-        logger.info('New tokens received from Procore', {
-            access_token: '[redacted]',
-            refresh_token: '[redacted]',
-            expires_in: tokens.expires_in,
-        });
-
-        const tokenData = {
-            id: 1,
-            access_token: tokens.access_token,
-            refresh_token: tokens.refresh_token,
-            expires_at: Math.floor(Date.now() / 1000) + tokens.expires_in,
-        };
-
-        await upsertEntity('tokens', tokenData);
-        logger.info('Refreshed token upserted successfully');
-        return tokenData;
-    } catch (err) {
-        logger.error(`Token refresh error: ${err.message}`, { stack: err.stack });
-        throw err;
-    }
-}
-
-/**
- * Fetches and syncs projects from Procore API using the SDK, with retry on 401
- * @returns {Promise<void>}
- */
-async function syncProjects() {
-    let tokenData = await getStoredToken();
-    const authorizer = new TokenAuthorizer(tokenData.access_token);
-    const client = sdk.client(authorizer, undefined, {
-        apiHostname: baseUrl.replace('https://', ''),
-        defaultCompanyId: companyId,
-        defaultVersion: 'v1.0',
-    });
-    let attempts = 0;
-    const maxAttempts = 2;
-
-    while (attempts < maxAttempts) {
-        try {
-            logger.debug('Fetching projects from Procore', {
-                attempt: attempts + 1,
-                access_token: '[redacted]',
-                expires_at: tokenData.expires_at,
-                timeLeft: tokenData.expires_at - Math.floor(Date.now() / 1000),
-                baseUrl,
-                companyId,
-            });
-
-            const response = await client.get(
-                { base: '/projects', qs: { company_id: companyId } },
-                { companyId } // Added for alignment with SDK example
-            );
-
-            // Check HTTP status via response.response
-            if (!response.response.ok) {
-                const status = response.response.status;
-                const errorBody = response.body || 'No body returned';
-                logger.error('Procore API request failed', {
-                    status,
-                    statusText: response.response.statusText,
-                    headers: Object.fromEntries(response.response.headers.entries()),
-                    body: JSON.stringify(errorBody, null, 2),
-                });
-                throw new Error(`Procore API returned ${status}: ${response.response.statusText}`);
-            }
-
-            // Handle cases where body might be null or undefined
-            if (!response.body) {
-                logger.warn('No projects returned from Procore API', { response: JSON.stringify(response, null, 2) });
-                const projectEntities = [];
-                await batchUpsert('projects', projectEntities);
-                logger.info('Synced 0 projects from Procore (empty response)');
-                return;
-            }
-
-            // Ensure body is an array
-            if (!Array.isArray(response.body)) {
-                logger.error('Expected response.body to be an array', {
-                    type: typeof response.body,
-                    value: JSON.stringify(response.body, null, 2),
-                    fullResponse: JSON.stringify(response, null, 2),
-                });
-                throw new Error('Invalid response format from Procore API: body is not an array');
-            }
-
-            const projects = response.body;
-
-            logger.debug('Projects fetched successfully', {
-                status: response.response.status,
-                totalRecords: response.response.headers.get('Total') || 'Not provided',
-                projectCount: projects.length,
-                sample: JSON.stringify(projects.slice(0, 2), null, 2), // First 2 for brevity
-            });
-
-            const projectEntities = projects.map(project => ({
-                procore_id: project.id,
-                name: project.name,
-                number: project.project_number,
-                street_address: project.address,
-                city: project.city,
-                state: project.state_code,
-                zip: project.zip,
-                start_date: project.start_date,
-                original_completion_date: project.completion_date,
-            }));
-
-            await batchUpsert('projects', projectEntities);
-            logger.info(`Synced ${projects.length} projects from Procore`);
-            return;
-        } catch (error) {
-            const status = error.response && error.response.status ? error.response.status : 'unknown';
-            logger.error('Sync attempt failed', {
-                message: error.message,
-                status,
-                stack: error.stack,
-                response: error.response ? JSON.stringify(error.response, null, 2) : 'none',
-            });
-
-            if (status === 401 && attempts < maxAttempts - 1) {
-                logger.warn('Received 401, forcing token refresh');
-                const tokenParts = tokenData.access_token.split('.');
-                const payload = JSON.parse(Buffer.from(tokenParts[1], 'base64').toString());
-                logger.debug('Current token payload', { payload });
-                tokenData = await refreshToken(tokenData.refresh_token);
-                authorizer.setAccessToken(tokenData.access_token);
-                attempts++;
-                continue;
-            } else if (status === 403) {
-                throw new Error('Permission denied: User lacks access to projects for the specified company');
-            } else if (status === 404) {
-                throw new Error('Company ID not found or invalid');
-            }
-            throw error; // Re-throw other errors after logging
-        }
-    } // Added closing brace for while loop
-}
-
-/**
- * Retrieves the stored token, refreshing it if near expiry
+ * Exchanges authorization code for access and refresh tokens
+ * @param {string} code - Authorization code
  * @returns {Promise<Object>} Token data
  */
-async function getStoredToken() {
-    return new Promise((resolve, reject) => {
-        if (!db) {
-            logger.error('Database connection not initialized in getStoredToken');
-            return reject(new Error('Database connection not initialized'));
+async function exchangeCodeForTokens(code) {
+  const params = new URLSearchParams();
+  params.append('grant_type', 'authorization_code');
+  params.append('code', code);
+  params.append('client_id', clientId);
+  params.append('client_secret', clientSecret);
+  params.append('redirect_uri', redirectUri);
+
+  const response = await fetch(`${oauthUrl}/oauth/token`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: params,
+  });
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`Token exchange failed: ${response.status} - ${errorText}`);
+  }
+
+  const tokens = await response.json();
+  const tokenData = {
+    user_id: 'admin',
+    access_token: tokens.access_token,
+    refresh_token: tokens.refresh_token,
+    expires_at: Math.floor(Date.now() / 1000) + tokens.expires_in,
+  };
+
+  await upsertEntity('tokens', tokenData);
+  logger.info('Obtained and stored new admin token', { expires_at: tokenData.expires_at });
+  return tokenData;
+}
+
+/**
+ * Initializes the admin token, prompting for code if not present
+ * @returns {Promise<Object>} Token data
+ */
+async function initializeAdminToken() {
+  try {
+    logger.debug('Starting admin token initialization');
+    let token = await getTokenByUserId('admin');
+    if (!token) {
+      logger.info('No admin token found, initiating manual OAuth flow');
+      const code = await getAuthorizationCode();
+      token = await exchangeCodeForTokens(code);
+    }
+    tokenReadyResolver(token);
+    return token;
+  } catch (error) {
+    logger.error('Failed to initialize admin token', { message: error.message, stack: error.stack });
+    tokenReadyResolver(null);
+    throw error;
+  }
+}
+
+/**
+ * Refreshes the admin token using the refresh token
+ * @param {string} refreshToken - The refresh token
+ * @returns {Promise<Object>} New token data
+ */
+async function refreshAdminToken(refreshToken) {
+  const params = new URLSearchParams();
+  params.append('grant_type', 'refresh_token');
+  params.append('refresh_token', refreshToken);
+  params.append('client_id', clientId);
+  params.append('client_secret', clientSecret);
+
+  const response = await fetch(`${oauthUrl}/oauth/token`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: params,
+  });
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`Token refresh failed: ${response.status} - ${errorText}`);
+  }
+
+  const tokens = await response.json();
+  const tokenData = {
+    user_id: 'admin',
+    access_token: tokens.access_token,
+    refresh_token: tokens.refresh_token || refreshToken,
+    expires_at: Math.floor(Date.now() / 1000) + tokens.expires_in,
+  };
+
+  await upsertEntity('tokens', tokenData);
+  logger.info('Admin token refreshed', { expires_at: tokenData.expires_at });
+  return tokenData;
+}
+
+/**
+ * Gets a valid admin token, refreshing if necessary
+ * @returns {Promise<Object>} Valid token data
+ */
+async function getValidToken() {
+  await tokenReadyPromise;
+  let token = await getTokenByUserId('admin');
+  const currentTime = Math.floor(Date.now() / 1000);
+  const buffer = 300; // 5-minute buffer
+
+  if (!token || token.expires_at <= currentTime) {
+    logger.info('No valid admin token found or token expired, refreshing');
+    token = await refreshAdminToken(token?.refresh_token);
+  } else if (token.expires_at <= currentTime + buffer) {
+    logger.info('Admin token near expiry, refreshing proactively');
+    token = await refreshAdminToken(token.refresh_token);
+  }
+
+  logger.debug('Using valid admin token', { expires_at: token.expires_at });
+  return token;
+}
+
+/**
+ * Schedules the next token refresh
+ */
+let refreshTimeouts = {};
+function scheduleNextRefresh() {
+  getValidToken()
+    .then((token) => {
+      const currentTime = Math.floor(Date.now() / 1000);
+      const timeUntilExpiration = token.expires_at - currentTime;
+      const buffer = 300;
+      const refreshIn = Math.max(timeUntilExpiration - buffer, 0);
+
+      if (refreshTimeouts['admin']) clearTimeout(refreshTimeouts['admin']);
+      refreshTimeouts['admin'] = setTimeout(async () => {
+        try {
+          await refreshAdminToken(token.refresh_token);
+          logger.info('Admin token refreshed in background');
+          scheduleNextRefresh();
+        } catch (error) {
+          logger.error('Scheduled refresh failed', { error: error.message });
         }
-        db.get('SELECT * FROM tokens WHERE id = 1', (err, row) => {
-            if (err) {
-                logger.error(`Database query error: ${err.message}`, { stack: err.stack });
-                return reject(err);
-            }
-            if (!row) {
-                logger.info('No token found, initiating authentication');
-                return initiateAuth().then(() => {
-                    db.get('SELECT * FROM tokens WHERE id = 1', (err, newRow) => {
-                        if (err) reject(err);
-                        else resolve(newRow);
-                    });
-                }).catch(reject);
-            }
-            const currentTime = Math.floor(Date.now() / 1000);
-            const buffer = 300; // 5-minute buffer
-            if (currentTime >= row.expires_at - buffer) {
-                logger.info('Access token near expiry, refreshing proactively', {
-                    currentTime,
-                    expires_at: row.expires_at,
-                    timeLeft: row.expires_at - currentTime,
-                });
-                return refreshToken(row.refresh_token).then(newTokenData => {
-                    resolve(newTokenData);
-                }).catch(err => {
-                    logger.warn('Refresh failed, falling back to full re-authentication');
-                    initiateAuth().then(() => {
-                        db.get('SELECT * FROM tokens WHERE id = 1', (err, newRow) => {
-                            if (err) reject(err);
-                            else resolve(newRow);
-                        });
-                    }).catch(reject);
-                });
-            }
-            logger.debug('Using existing valid token', {
-                expires_at: row.expires_at,
-                timeLeft: row.expires_at - currentTime,
-            });
-            resolve(row);
-        });
+      }, refreshIn * 1000);
+
+      logger.info('Scheduled next admin token refresh', { refreshInSeconds: refreshIn });
+    })
+    .catch((error) => {
+      logger.error('Failed to schedule admin token refresh', { error: error.message });
     });
 }
 
-export { initiateAuth, syncProjects };
+/**
+ * Fetches and syncs company users from Procore API
+ * @returns {Promise<Array>} Synced users
+ */
+async function syncCompanyUsers(options = {}) {
+  const tokenData = await getValidToken();
+  const response = await fetch(`${baseUrl}/rest/v1.3/companies/${companyId}/users`, {
+    headers: { Authorization: `Bearer ${tokenData.access_token}` },
+  });
+
+  if (!response.ok) throw new Error(`Procore API error: ${await response.text()}`);
+  const users = await response.json();
+  const userEntities = users
+    .map((user) => ({
+      procore_user_id: user.id,
+      email: user.email_address,
+      first_name: user.first_name,
+      last_name: user.last_name,
+      is_employee: user.is_employee || 0,
+    }))
+    .filter((user) => user.procore_user_id);
+
+  await batchUpsert('users', userEntities, options);
+  logger.info(`Synced ${userEntities.length} users`);
+  return userEntities;
+}
+
+/**
+ * Schedules periodic sync of company users
+ */
+function scheduleUserSync() {
+  setInterval(() => {
+    syncCompanyUsers().catch((err) => logger.error('Scheduled user sync failed:', err.message));
+  }, 24 * 60 * 60 * 1000); // Every 24 hours
+  logger.info('Scheduled periodic user sync every 24 hours');
+}
+
+export {
+  initializeAdminToken,
+  getValidToken,
+  scheduleNextRefresh,
+  syncCompanyUsers,
+  scheduleUserSync,
+};

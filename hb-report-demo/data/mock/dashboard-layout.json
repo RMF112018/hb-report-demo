@@ -1,0 +1,43 @@
+{
+  "id": "executive-layout",
+  "name": "Executive Dashboard Layout",
+  "description": "Layout for executive-level users",
+  "role": "executive",
+  "cards": [
+    {
+      "id": "portfolio-overview",
+      "type": "portfolio-overview",
+      "title": "Portfolio Overview",
+      "size": "large",
+      "position": { "x": 0, "y": 0 },
+      "visible": true,
+      "config": {
+        "totalProjects": 24,
+        "activeProjects": 7,
+        "completedThisYear": 5,
+        "averageDuration": 214,
+        "averageContractValue": 3100000,
+        "totalSqFt": 880000,
+        "totalValue": 75000000,
+        "netCashFlow": 12500000,
+        "averageWorkingCapital": 4200000
+      }
+    },    
+    {
+      "id": "revenue-forecast",
+      "type": "revenue-forecast",
+      "title": "Revenue Forecast",
+      "size": "medium",
+      "position": { "x": 6, "y": 0 },
+      "visible": true
+    },
+    {
+      "id": "market-intel",
+      "type": "market-intel",
+      "title": "Market Intelligence",
+      "size": "medium",
+      "position": { "x": 0, "y": 2 },
+      "visible": true
+    }
+  ]
+}

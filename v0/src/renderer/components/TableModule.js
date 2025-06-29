@@ -250,7 +250,7 @@ const TableModule = ({
   }, []);
 
   return (
-    <div ref={containerRef} className={`table-container ${className}`.trim()} style={{ width: '100%', position: 'relative' }}>
+    <div ref={containerRef} className={`table-container ${className}`.trim()} style={{ width: '100%', position: 'relative', padding: '0 16px 0 16px' }}>
       {enableFontSizeAdjustment && (
         <div style={{ position: 'absolute', top: '10px', left: '10px', zIndex: 1001 }}>
           <Dropdown overlay={fontSizeMenu} trigger={['click']}>

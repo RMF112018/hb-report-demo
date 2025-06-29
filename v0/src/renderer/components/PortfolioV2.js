@@ -1,58 +1,46 @@
 // src/renderer/components/PortfolioV2.js
-// Enhanced Portfolio component for HB Report with configurable table and card views
+// Enhanced Portfolio component fetching projects from hb-report-sync using JWT
 // Import this component in src/renderer/App.js to render within the main content area
 // Reference: https://ant.design/components/tabs
-// *Additional Reference*: https://ant.design/components/card
-// *Additional Reference*: https://www.ag-grid.com/react-data-grid/
-// *Additional Reference*: https://react.dev/reference/react/useState
-// *Additional Reference*: https://www.electronjs.org/docs/latest/api/ipc-renderer
+// *Additional Reference*: https://redux-toolkit.js.org/rtk-query/usage/queries
 
 import React, { useState, useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { Tabs, Button, Input, Select, message, Modal, Card, Space, Row, Col } from 'antd';
 import { SearchOutlined, PlusOutlined, EditOutlined, DeleteOutlined, TableOutlined, AppstoreOutlined } from '@ant-design/icons';
+import { useGetProjectsQuery } from '../apiSlice.js';
 import TableModuleV2 from './TableModuleV2.js';
 import ComponentHeader from './ComponentHeader.js';
 import logger from '../utils/logger.js';
 import '../styles/Components.css';
 
 const { Option } = Select;
-const { TabPane } = Tabs;
 
-/**
- * PortfolioV2 component for displaying and managing a project portfolio with table and card views
- * @param {Object} props - Component props
- * @param {Function} props.onProjectSelect - Callback to handle project selection
- * @param {Object} props.headerContent - Header content passed from App.js
- * @returns {JSX.Element} Portfolio component with configurable views
- */
-const PortfolioV2 = ({ onProjectSelect, headerContent }) => {
+const PortfolioV2 = ({ onProjectSelect, headerContent, procoreUserId, onTokenExpired }) => {
   const [groupBy, setGroupBy] = useState('None');
   const [statusFilter, setStatusFilter] = useState('Active');
-  const [tableData, setTableData] = useState([]);
   const [quickFilterText, setQuickFilterText] = useState('');
-  const [loading, setLoading] = useState(false);
 
-  // Fetch portfolio data via IPC
-  const fetchPortfolioData = async () => {
-    setLoading(true);
-    try {
-      const data = await window.electronAPI.getPortfolioTestData();
-      logger.info('Portfolio data fetched successfully', { count: data.length });
-      setTableData(data);
-    } catch (err) {
-      logger.error('Failed to fetch portfolio data', { message: err.message, stack: err.stack });
-      message.error('Failed to load portfolio data. Please try again.');
-    } finally {
-      setLoading(false);
-    }
-  };
+  // Fetch projects using JWT (procoreUserId derived from token)
+  const { data: projectsData, isLoading, isError, error } = useGetProjectsQuery();
 
+  // Log errors and handle token expiration
   useEffect(() => {
-    fetchPortfolioData();
-  }, []);
+    if (isError) {
+      logger.error('Failed to fetch projects:', error);
+      if (error?.status === 401 || error?.message?.includes('No authentication token')) {
+        message.error('Session expired. Please log in again.');
+        onTokenExpired?.();
+      } else {
+        message.error('Failed to load projects. Please try again.');
+      }
+    } else if (projectsData) {
+      logger.debug(`Fetched ${projectsData.length} projects for procoreUserId: ${procoreUserId}`);
+    }
+  }, [isError, error, projectsData, procoreUserId, onTokenExpired]);
 
-  // Filtered data using useMemo
+  const tableData = useMemo(() => projectsData || [], [projectsData]);
+
   const filteredData = useMemo(() => {
     let result = [...tableData];
     if (statusFilter !== 'All') {
@@ -63,64 +51,55 @@ const PortfolioV2 = ({ onProjectSelect, headerContent }) => {
     return result;
   }, [tableData, statusFilter]);
 
-  // Table column definitions with dynamic grouping
   const columns = useMemo(() => [
-    { field: 'number', headerName: 'Project Number', width: 130 },
+    { field: 'procore_id', headerName: 'Project ID', width: 130 },
     { field: 'name', headerName: 'Name', width: 300 },
-    { field: 'leadPM', headerName: 'Lead PM', width: 300 },
     {
       field: 'active',
       headerName: 'Status',
       width: 100,
       valueFormatter: (params) => (params.value ? 'Active' : 'Inactive'),
     },
-    { field: 'rev_budget', headerName: 'Current Budget', width: 200 },
-    { field: 'current_completion', headerName: 'Contract End Date', width: 200 },
-    { field: 'forecast_completion', headerName: 'Current End Date', width: 200 },
     { field: 'street_address', headerName: 'Street Address', width: 200 },
     { field: 'city', headerName: 'City', width: 150 },
-    { 
-      field: 'state', 
-      headerName: 'State', 
-      width: 80, 
+    {
+      field: 'state',
+      headerName: 'State',
+      width: 80,
       rowGroup: groupBy === 'state'
     },
     { field: 'zip', headerName: 'Zip', width: 100 },
+    { field: 'start_date', headerName: 'Start Date', width: 200 },
+    { field: 'approved_completion_date', headerName: 'Contract End Date', width: 200 },
+    { field: 'contract_value', headerName: 'Contract Value', width: 200 },
   ], [groupBy]);
 
-  // Handle row click for project selection
   const handleRowClick = (event) => {
     const data = event.data;
-    logger.info('Row clicked', { project: data.number });
-    onProjectSelect({ projectNumber: data.number, name: data.name });
+    onProjectSelect(data.procore_id.toString());
   };
 
-  // Handle edit project (placeholder)
   const handleEditProject = (data) => {
     console.log('Edit project:', data);
   };
 
-  // Handle delete project
   const handleDeleteProject = (data) => {
     Modal.confirm({
       title: 'Confirm Deletion',
-      content: `Are you sure you want to delete project ${data.number}?`,
+      content: `Are you sure you want to delete project ${data.procore_id}?`,
       okText: 'Delete',
       okType: 'danger',
       onOk: async () => {
         try {
-          const updatedData = await window.electronAPI.deletePortfolio(data.id);
-          setTableData(updatedData);
-          message.success('Project deleted successfully!');
+          message.success('Project deletion not yet implemented.');
         } catch (error) {
           message.error('Failed to delete project.');
-          console.error('Error deleting project:', error);
+          logger.error('Error deleting project:', error);
         }
       },
     });
   };
 
-  // Header actions
   const headerActions = (
     <div style={{ display: 'flex', gap: '8px' }}>
       <Button
@@ -134,13 +113,12 @@ const PortfolioV2 = ({ onProjectSelect, headerContent }) => {
     </div>
   );
 
-  // Render card view
   const renderCardView = () => (
     <Row gutter={[16, 16]} style={{ padding: '16px' }}>
       {filteredData.map((project) => (
-        <Col xs={24} sm={12} md={8} lg={6} key={project.id}>
+        <Col xs={24} sm={12} md={8} lg={6} key={project.procore_id}>
           <Card
-            title={`${project.number} - ${project.name}`}
+            title={`${project.procore_id} - ${project.name}`}
             bordered={false}
             style={{ boxShadow: '0 4px 8px rgba(0,0,0,0.1)', borderRadius: '8px' }}
             hoverable
@@ -148,13 +126,11 @@ const PortfolioV2 = ({ onProjectSelect, headerContent }) => {
               <EditOutlined key="edit" onClick={() => handleEditProject(project)} />,
               <DeleteOutlined key="delete" onClick={() => handleDeleteProject(project)} />,
             ]}
-            onClick={() => onProjectSelect({ projectNumber: project.number, name: project.name })}
+            onClick={() => onProjectSelect(project.procore_id.toString())}
           >
-            <p><strong>Lead PM:</strong> {project.leadPM}</p>
             <p><strong>Status:</strong> {project.active ? 'Active' : 'Inactive'}</p>
-            <p><strong>Current Budget:</strong> {project.rev_budget}</p>
-            <p><strong>Contract End Date:</strong> {project.current_completion}</p>
-            <p><strong>Current End Date:</strong> {project.forecast_completion}</p>
+            <p><strong>Contract Value:</strong> {project.contract_value || 'N/A'}</p>
+            <p><strong>Contract End Date:</strong> {project.approved_completion_date || 'N/A'}</p>
             <p><strong>Address:</strong> {project.street_address}, {project.city}, {project.state} {project.zip}</p>
           </Card>
         </Col>
@@ -162,8 +138,45 @@ const PortfolioV2 = ({ onProjectSelect, headerContent }) => {
     </Row>
   );
 
+  const tabItems = [
+    {
+      key: 'table',
+      label: (
+        <span>
+          <TableOutlined /> Table
+        </span>
+      ),
+      children: (
+        <TableModuleV2
+          data={filteredData}
+          columns={columns}
+          autoSizeOnLoad={true}
+          selectionMode="single"
+          globalFilter={quickFilterText}
+          enableFiltering={true}
+          agGridProps={{
+            onRowClicked: handleRowClick,
+            groupDisplayType: groupBy !== 'None' ? 'groupRows' : 'singleColumn',
+            groupDefaultExpanded: 0,
+            loading: isLoading,
+            domLayout: 'autoHeight',
+          }}
+        />
+      ),
+    },
+    {
+      key: 'cards',
+      label: (
+        <span>
+          <AppstoreOutlined /> Cards
+        </span>
+      ),
+      children: isLoading ? <span>Loading projects...</span> : renderCardView(),
+    },
+  ];
+
   return (
-    <div className="portfolio-container" style={{ padding: '16px', display: 'flex', flexDirection: 'column', flex: 1 }}>
+    <div className="portfolio-container" style={{ /*padding: '16px',*/ display: 'flex', flexDirection: 'column', flex: 1 }}>
       <ComponentHeader title={headerContent.title} actions={headerActions} />
       <div style={{ display: 'flex', alignItems: 'center', marginBottom: '16px', flexWrap: 'wrap', gap: '10px' }}>
         <Input
@@ -212,41 +225,14 @@ const PortfolioV2 = ({ onProjectSelect, headerContent }) => {
           Clear All
         </Button>
       </div>
-      <div style={{ flex: 1, overflow: 'auto' }}>
+      <div style={{ flex: 1, padding: '0 16px 16px 16px', overflow: 'auto' }}>
         <Tabs
           defaultActiveKey="table"
           tabPosition="top"
           style={{ height: 'auto' }}
           tabBarStyle={{ textAlign: 'right' }}
-        >
-          <TabPane
-            tab={<span><TableOutlined /> Table</span>}
-            key="table"
-            style={{ height: 'auto' }}
-          >
-            <TableModuleV2
-              data={filteredData}
-              columns={columns}
-              autoSizeOnLoad={true}
-              globalFilter={quickFilterText} // Updated to use globalFilter prop
-              enableFiltering={true} // Enable filtering with sidebar
-              agGridProps={{
-                onRowClicked: handleRowClick,
-                groupDisplayType: groupBy !== 'None' ? 'groupRows' : 'singleColumn',
-                groupDefaultExpanded: 0,
-                loadingOverlayComponent: () => <span>Loading...</span>,
-                domLayout: 'autoHeight', // Ensure grid grows dynamically
-              }}
-            />
-          </TabPane>
-          <TabPane
-            tab={<span><AppstoreOutlined /> Cards</span>}
-            key="cards"
-            style={{ height: 'auto', overflowY: 'auto' }}
-          >
-            {renderCardView()}
-          </TabPane>
-        </Tabs>
+          items={tabItems}
+        />
       </div>
     </div>
   );
@@ -258,6 +244,12 @@ PortfolioV2.propTypes = {
     title: PropTypes.node.isRequired,
     actions: PropTypes.node,
   }).isRequired,
+  procoreUserId: PropTypes.number.isRequired,
+  onTokenExpired: PropTypes.func,
+};
+
+PortfolioV2.defaultProps = {
+  onTokenExpired: null,
 };
 
 export default PortfolioV2;

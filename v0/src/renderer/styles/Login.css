@@ -124,25 +124,21 @@
   color: #ffffff;
 }
 
+.ant-card {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.ant-btn {
+  height: 40px;
+}
+
 @media (max-width: 768px) {
-  .login-container {
-    flex-direction: column;
-  }
-
-  .left-pane,
   .right-pane {
-    flex: none;
-    max-width: 100%;
+    display: none;
+  }
+  .left-pane {
+    max-width: none;
     width: 100%;
-    min-height: 50vh;
-  }
-
-  .logo {
-    margin-bottom: 20px;
-  }
-
-  .right-pane-content {
-    position: static; /* Remove absolute positioning on smaller screens */
-    margin: 20px; /* Add margin for spacing */
   }
 }

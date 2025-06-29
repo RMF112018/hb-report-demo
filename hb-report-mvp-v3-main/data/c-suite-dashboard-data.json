@@ -1,0 +1,165 @@
+{
+  "businessDevelopment": {
+    "pursuits": {
+      "total": 47,
+      "active": 23,
+      "won": 12,
+      "lost": 8,
+      "pending": 4,
+      "winRate": 60,
+      "totalValue": 125000000,
+      "avgProjectSize": 2659574
+    },
+    "pipeline": [
+      { "month": "Jan", "value": 15000000, "count": 8 },
+      { "month": "Feb", "value": 22000000, "count": 12 },
+      { "month": "Mar", "value": 18000000, "count": 9 },
+      { "month": "Apr", "value": 31000000, "count": 15 },
+      { "month": "May", "value": 28000000, "count": 13 },
+      { "month": "Jun", "value": 35000000, "count": 18 }
+    ],
+    "recentWins": [
+      { "name": "Metro Office Complex Phase 2", "value": 45000000, "probability": 95 },
+      { "name": "Riverside Medical Center", "value": 32000000, "probability": 85 },
+      { "name": "Tech Campus Building C", "value": 28000000, "probability": 90 }
+    ]
+  },
+  "estimating": {
+    "proposals": {
+      "submitted": 34,
+      "won": 18,
+      "lost": 12,
+      "pending": 4,
+      "successRate": 53,
+      "avgTurnaround": 12.5
+    },
+    "monthlyData": [
+      { "month": "Jan", "submitted": 5, "won": 3, "successRate": 60 },
+      { "month": "Feb", "submitted": 7, "won": 4, "successRate": 57 },
+      { "month": "Mar", "submitted": 6, "won": 2, "successRate": 33 },
+      { "month": "Apr", "submitted": 8, "won": 5, "successRate": 63 },
+      { "month": "May", "submitted": 4, "won": 2, "successRate": 50 },
+      { "month": "Jun", "submitted": 4, "won": 2, "successRate": 50 }
+    ],
+    "recentProposals": [
+      { "name": "Downtown Retail Complex", "status": "won", "value": 15000000, "submittedDays": 8 },
+      { "name": "University Science Building", "status": "pending", "value": 22000000, "submittedDays": 3 },
+      { "name": "Corporate Headquarters", "status": "lost", "value": 18000000, "submittedDays": 15 }
+    ]
+  },
+  "vdcBIM": {
+    "projects": {
+      "total": 28,
+      "withBIM": 24,
+      "modelAccuracy": 94,
+      "clashDetection": 87,
+      "coordinationIssues": 23,
+      "resolvedIssues": 20
+    },
+    "modelStatus": [
+      { "category": "Design", "completion": 95, "issues": 2 },
+      { "category": "Structural", "completion": 88, "issues": 5 },
+      { "category": "MEP", "completion": 92, "issues": 8 },
+      { "category": "Architectural", "completion": 97, "issues": 1 }
+    ],
+    "recentModels": [
+      { "name": "Panther Tower", "accuracy": 96, "lastUpdate": "2 hours ago", "issues": 3 },
+      { "name": "Metro Office Complex", "accuracy": 92, "lastUpdate": "1 day ago", "issues": 7 },
+      { "name": "Tropical World Nursery", "accuracy": 98, "lastUpdate": "3 hours ago", "issues": 1 }
+    ]
+  },
+  "staffing": {
+    "headcount": {
+      "total": 247,
+      "executives": 8,
+      "projectManagers": 23,
+      "estimators": 12,
+      "fieldStaff": 156,
+      "support": 48
+    },
+    "turnover": {
+      "rate": 8.2,
+      "newHires": 15,
+      "departures": 7,
+      "openPositions": 12
+    },
+    "departmentData": [
+      { "department": "Field Operations", "headcount": 156, "turnover": 6.5 },
+      { "department": "Project Management", "headcount": 23, "turnover": 4.3 },
+      { "department": "Estimating", "headcount": 12, "turnover": 8.3 },
+      { "department": "Support", "headcount": 48, "turnover": 12.5 },
+      { "department": "Executive", "headcount": 8, "turnover": 0 }
+    ]
+  },
+  "finances": {
+    "fiscalYear": {
+      "revenue": 285000000,
+      "profit": 22800000,
+      "margin": 8.0,
+      "target": 320000000,
+      "ytdProgress": 89.1
+    },
+    "monthlyRevenue": [
+      { "month": "Jul", "revenue": 18500000, "profit": 1480000 },
+      { "month": "Aug", "revenue": 22300000, "profit": 1784000 },
+      { "month": "Sep", "revenue": 25100000, "profit": 2008000 },
+      { "month": "Oct", "revenue": 28900000, "profit": 2312000 },
+      { "month": "Nov", "revenue": 31200000, "profit": 2496000 },
+      { "month": "Dec", "revenue": 29800000, "profit": 2384000 },
+      { "month": "Jan", "revenue": 26700000, "profit": 2136000 },
+      { "month": "Feb", "revenue": 24900000, "profit": 1992000 },
+      { "month": "Mar", "revenue": 27600000, "profit": 2208000 },
+      { "month": "Apr", "revenue": 32100000, "profit": 2568000 },
+      { "month": "May", "revenue": 35200000, "profit": 2816000 },
+      { "month": "Jun", "revenue": 33000000, "profit": 2640000 }
+    ]
+  },
+  "projects": {
+    "active": 18,
+    "totalValue": 425000000,
+    "avgHealth": 87,
+    "onTime": 14,
+    "onBudget": 15,
+    "healthDistribution": [
+      { "range": "90-100", "count": 8, "color": "#22c55e" },
+      { "range": "80-89", "count": 6, "color": "#eab308" },
+      { "range": "70-79", "count": 3, "color": "#f97316" },
+      { "range": "60-69", "count": 1, "color": "#ef4444" }
+    ],
+    "recentProjects": [
+      { "name": "Panther Tower", "health": 94, "budget": 78000000, "completion": 65 },
+      { "name": "Metro Office Complex", "health": 82, "budget": 45000000, "completion": 78 },
+      { "name": "Tropical World Nursery", "health": 91, "budget": 12500000, "completion": 85 },
+      { "name": "Tech Campus Phase 1", "health": 76, "budget": 32000000, "completion": 42 }
+    ]
+  },
+  "hbiInsights": [
+    {
+      "id": "revenue-forecast",
+      "type": "forecast",
+      "title": "Q4 Revenue Acceleration",
+      "description": "Based on current pipeline and historical patterns, Q4 revenue is projected to exceed target by 12%, reaching $38.2M vs. $34.1M target.",
+      "confidence": 87,
+      "impact": "high",
+      "recommendation": "Consider accelerating resource allocation for Q4 projects to maximize opportunity."
+    },
+    {
+      "id": "risk-alert",
+      "type": "alert",
+      "title": "Estimating Capacity Risk",
+      "description": "Current proposal volume (34 active) approaching team capacity limits. Risk of quality degradation or missed opportunities.",
+      "confidence": 92,
+      "impact": "medium",
+      "recommendation": "Evaluate temporary estimating support or proposal prioritization strategy."
+    },
+    {
+      "id": "opportunity",
+      "type": "opportunity",
+      "title": "VDC/BIM Competitive Advantage",
+      "description": "94% model accuracy rate significantly exceeds industry average (78%). Strong differentiator for complex projects.",
+      "confidence": 95,
+      "impact": "high",
+      "recommendation": "Leverage VDC capabilities in marketing materials and pursuit strategies."
+    }
+  ]
+}

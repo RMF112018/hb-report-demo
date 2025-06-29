@@ -16,11 +16,17 @@ import GridLayout from 'react-grid-layout';
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
 import { AgCharts } from 'ag-charts-react';
-import 'ag-charts-enterprise';
+import { AgChartsEnterpriseModule } from 'ag-charts-enterprise';
+import { AllEnterpriseModule,} from 'ag-grid-enterprise';
+import { ModuleRegistry } from 'ag-grid-community';
 import 'chartjs-adapter-moment';
 import { BarChartOutlined, CalendarOutlined, DollarOutlined, TeamOutlined, FileTextOutlined, ReloadOutlined } from '@ant-design/icons';
 import ComponentHeader from './ComponentHeader.js';
 import '../styles/global.css';
+
+ModuleRegistry.registerModules([
+  AllEnterpriseModule.with(AgChartsEnterpriseModule),
+]);
 
 // Utility function to format currency
 const formatCurrency = (value) => {

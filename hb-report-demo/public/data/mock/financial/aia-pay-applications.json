@@ -1,0 +1,475 @@
+{
+  "applications": [
+    {
+      "id": "aia_001",
+      "applicationNumber": 3,
+      "projectId": "proj_001",
+      "projectName": "Downtown Mixed-Use Development",
+      "contractorName": "Summit Construction LLC",
+      "architectName": "Richardson Architecture Group",
+      "ownerName": "Metro Development Partners",
+      
+      "contractSum": 18500000,
+      "changeOrdersApproved": 425000,
+      "revisedContractSum": 18925000,
+      
+      "periodStartDate": "2024-11-01",
+      "periodEndDate": "2024-11-30",
+      "applicationDate": "2024-12-01",
+      
+      "workCompletedToDate": 9462500,
+      "workCompletedThisPeriod": 1275000,
+      "materialsStoredToDate": 235000,
+      "totalEarned": 9697500,
+      "retentionPercentage": 5.0,
+      "retentionAmount": 484875,
+      "previousPayments": 7850000,
+      "currentPaymentDue": 1362625,
+      "netAmountDue": 1362625,
+      "balanceToFinish": 9227500,
+      
+      "status": "px_approved",
+      "submittedBy": "john.doe@summit.com",
+      "submittedDate": "2024-12-01T10:30:00Z",
+      
+      "approvals": [
+        {
+          "id": "appr_001",
+          "applicationId": "aia_001",
+          "approverRole": "PM",
+          "approverId": "pm_001",
+          "approverName": "Sarah Johnson",
+          "status": "approved",
+          "comments": "All line items verified against field progress. Recommend approval.",
+          "approvalDate": "2024-12-01T14:15:00Z"
+        },
+        {
+          "id": "appr_002",
+          "applicationId": "aia_001",
+          "approverRole": "PX",
+          "approverId": "px_001",
+          "approverName": "Michael Chen",
+          "status": "approved",
+          "comments": "Approved with conditions. Steel delivery must be confirmed before next application.",
+          "approvalDate": "2024-12-02T09:45:00Z",
+          "conditions": ["Confirm steel delivery schedule", "Submit updated safety report"]
+        }
+      ],
+      
+      "lineItems": [
+        {
+          "id": "li_001",
+          "costCode": "03100",
+          "description": "Cast-in-Place Concrete - Foundations",
+          "scheduledValue": 2450000,
+          "workCompletedPrevious": 2450000,
+          "workCompletedThisPeriod": 0,
+          "workCompletedToDate": 2450000,
+          "materialsStoredPrevious": 0,
+          "materialsStoredThisPeriod": 0,
+          "materialsStoredToDate": 0,
+          "totalCompleted": 2450000,
+          "percentComplete": 100.0,
+          "balanceToFinish": 0,
+          "retentionAmount": 122500,
+          "procoreData": {
+            "budgetCode": "03100",
+            "committedCost": 2450000,
+            "lastSync": "2024-12-01T08:00:00Z"
+          },
+          "annotations": [],
+          "hasDiscrepancy": false
+        },
+        {
+          "id": "li_002",
+          "costCode": "05120",
+          "description": "Structural Steel - Building Frame",
+          "scheduledValue": 3850000,
+          "workCompletedPrevious": 2695000,
+          "workCompletedThisPeriod": 770000,
+          "workCompletedToDate": 3465000,
+          "materialsStoredPrevious": 150000,
+          "materialsStoredThisPeriod": 75000,
+          "materialsStoredToDate": 225000,
+          "totalCompleted": 3690000,
+          "percentComplete": 95.8,
+          "balanceToFinish": 160000,
+          "retentionAmount": 184500,
+          "procoreData": {
+            "budgetCode": "05120",
+            "committedCost": 3675000,
+            "lastSync": "2024-12-01T08:00:00Z"
+          },
+          "sageData": {
+            "jobCostCode": "05120",
+            "actualCost": 3680000,
+            "lastSync": "2024-12-01T07:30:00Z"
+          },
+          "annotations": [
+            {
+              "id": "ann_001",
+              "applicationId": "aia_001",
+              "lineItemId": "li_002",
+              "section": "line_item",
+              "annotationType": "note",
+              "content": "Steel erection ahead of schedule. Weather conditions favorable.",
+              "authorId": "pm_001",
+              "authorName": "Sarah Johnson",
+              "authorRole": "PM",
+              "createdDate": "2024-11-28T16:20:00Z",
+              "isResolved": false,
+              "visibleToRoles": ["PM", "PX", "Executive"]
+            }
+          ],
+          "hasDiscrepancy": true,
+          "discrepancyDetails": ["Minor variance between Procore and Sage data (0.14%)"]
+        },
+        {
+          "id": "li_003",
+          "costCode": "06100",
+          "description": "Rough Carpentry - Wood Framing",
+          "scheduledValue": 1850000,
+          "workCompletedPrevious": 925000,
+          "workCompletedThisPeriod": 370000,
+          "workCompletedToDate": 1295000,
+          "materialsStoredPrevious": 0,
+          "materialsStoredThisPeriod": 10000,
+          "materialsStoredToDate": 10000,
+          "totalCompleted": 1305000,
+          "percentComplete": 70.5,
+          "balanceToFinish": 545000,
+          "retentionAmount": 65250,
+          "procoreData": {
+            "budgetCode": "06100",
+            "committedCost": 1290000,
+            "lastSync": "2024-12-01T08:00:00Z"
+          },
+          "annotations": [],
+          "hasDiscrepancy": false
+        },
+        {
+          "id": "li_004",
+          "costCode": "07200",
+          "description": "Thermal Protection - Insulation",
+          "scheduledValue": 850000,
+          "workCompletedPrevious": 212500,
+          "workCompletedThisPeriod": 135000,
+          "workCompletedToDate": 347500,
+          "materialsStoredPrevious": 0,
+          "materialsStoredThisPeriod": 0,
+          "materialsStoredToDate": 0,
+          "totalCompleted": 347500,
+          "percentComplete": 40.9,
+          "balanceToFinish": 502500,
+          "retentionAmount": 17375,
+          "procoreData": {
+            "budgetCode": "07200",
+            "committedCost": 340000,
+            "lastSync": "2024-12-01T08:00:00Z"
+          },
+          "annotations": [],
+          "hasDiscrepancy": false
+        },
+        {
+          "id": "li_005",
+          "costCode": "09200",
+          "description": "Plaster and Gypsum Board",
+          "scheduledValue": 1200000,
+          "workCompletedPrevious": 0,
+          "workCompletedThisPeriod": 0,
+          "workCompletedToDate": 0,
+          "materialsStoredPrevious": 0,
+          "materialsStoredThisPeriod": 0,
+          "materialsStoredToDate": 0,
+          "totalCompleted": 0,
+          "percentComplete": 0.0,
+          "balanceToFinish": 1200000,
+          "retentionAmount": 0,
+          "procoreData": {
+            "budgetCode": "09200",
+            "committedCost": 0,
+            "lastSync": "2024-12-01T08:00:00Z"
+          },
+          "annotations": [],
+          "hasDiscrepancy": false
+        }
+      ],
+      
+      "annotations": [
+        {
+          "id": "ann_gen_001",
+          "applicationId": "aia_001",
+          "section": "general",
+          "annotationType": "approval_note",
+          "content": "Application reflects accurate progress as observed during site visit on 11/29. All supporting documentation reviewed and verified.",
+          "authorId": "px_001",
+          "authorName": "Michael Chen",
+          "authorRole": "PX",
+          "createdDate": "2024-12-02T09:30:00Z",
+          "isResolved": false,
+          "visibleToRoles": ["PM", "PX", "Executive"]
+        }
+      ],
+      
+      "distributionList": [
+        {
+          "id": "dist_001",
+          "name": "Metro Development Partners",
+          "email": "payments@metrodev.com",
+          "role": "Owner",
+          "receivesPdf": true,
+          "receivesNotifications": true,
+          "isRequired": true
+        },
+        {
+          "id": "dist_002",
+          "name": "Richardson Architecture Group",
+          "email": "admin@richardsonarch.com",
+          "role": "Architect",
+          "receivesPdf": true,
+          "receivesNotifications": true,
+          "isRequired": true
+        }
+      ],
+      
+      "distributionHistory": [],
+      
+      "createdBy": "john.doe@summit.com",
+      "createdDate": "2024-11-30T16:00:00Z",
+      "lastModifiedBy": "michael.chen@summit.com",
+      "lastModifiedDate": "2024-12-02T09:45:00Z",
+      "version": 3,
+      
+      "aiInsights": [
+        {
+          "id": "insight_001",
+          "applicationId": "aia_001",
+          "type": "opportunity",
+          "severity": "medium",
+          "title": "Steel Work Ahead of Schedule",
+          "description": "Structural steel work is progressing 2 weeks ahead of schedule, providing opportunity to accelerate subsequent trades.",
+          "recommendation": "Consider expediting rough carpentry and MEP rough-in to maintain accelerated timeline.",
+          "affectedLineItems": ["li_002", "li_003"],
+          "isResolved": false
+        }
+      ],
+      
+      "attachments": [
+        {
+          "id": "att_001",
+          "applicationId": "aia_001",
+          "fileName": "Progress_Photos_Nov_2024.pdf",
+          "fileSize": 15728640,
+          "fileType": "application/pdf",
+          "uploadedBy": "sarah.johnson@summit.com",
+          "uploadedDate": "2024-11-30T17:30:00Z",
+          "description": "November progress photography",
+          "url": "/attachments/aia_001/Progress_Photos_Nov_2024.pdf"
+        }
+      ]
+    },
+    {
+      "id": "aia_002",
+      "applicationNumber": 2,
+      "projectId": "proj_001",
+      "projectName": "Downtown Mixed-Use Development",
+      "contractorName": "Summit Construction LLC",
+      "architectName": "Richardson Architecture Group",
+      "ownerName": "Metro Development Partners",
+      
+      "contractSum": 18500000,
+      "changeOrdersApproved": 325000,
+      "revisedContractSum": 18825000,
+      
+      "periodStartDate": "2024-10-01",
+      "periodEndDate": "2024-10-31",
+      "applicationDate": "2024-11-01",
+      
+      "workCompletedToDate": 8187500,
+      "workCompletedThisPeriod": 1125000,
+      "materialsStoredToDate": 160000,
+      "totalEarned": 8347500,
+      "retentionPercentage": 5.0,
+      "retentionAmount": 417375,
+      "previousPayments": 6562500,
+      "currentPaymentDue": 1367625,
+      "netAmountDue": 1367625,
+      "balanceToFinish": 10477500,
+      
+      "status": "paid",
+      "submittedBy": "john.doe@summit.com",
+      "submittedDate": "2024-11-01T10:30:00Z",
+      
+      "approvals": [
+        {
+          "id": "appr_003",
+          "applicationId": "aia_002",
+          "approverRole": "PM",
+          "approverId": "pm_001",
+          "approverName": "Sarah Johnson",
+          "status": "approved",
+          "comments": "October progress on track. Foundation work completed.",
+          "approvalDate": "2024-11-01T14:15:00Z"
+        },
+        {
+          "id": "appr_004",
+          "applicationId": "aia_002",
+          "approverRole": "PX",
+          "approverId": "px_001",
+          "approverName": "Michael Chen",
+          "status": "approved",
+          "comments": "Approved for payment.",
+          "approvalDate": "2024-11-02T10:20:00Z"
+        }
+      ],
+      
+      "lineItems": [
+        {
+          "id": "li_006",
+          "costCode": "03100",
+          "description": "Cast-in-Place Concrete - Foundations",
+          "scheduledValue": 2450000,
+          "workCompletedPrevious": 1960000,
+          "workCompletedThisPeriod": 490000,
+          "workCompletedToDate": 2450000,
+          "materialsStoredPrevious": 0,
+          "materialsStoredThisPeriod": 0,
+          "materialsStoredToDate": 0,
+          "totalCompleted": 2450000,
+          "percentComplete": 100.0,
+          "balanceToFinish": 0,
+          "retentionAmount": 122500,
+          "procoreData": {
+            "budgetCode": "03100",
+            "committedCost": 2450000,
+            "lastSync": "2024-11-01T08:00:00Z"
+          },
+          "annotations": [],
+          "hasDiscrepancy": false
+        }
+      ],
+      
+      "annotations": [],
+      "distributionList": [],
+      "distributionHistory": [],
+      
+      "createdBy": "john.doe@summit.com",
+      "createdDate": "2024-10-31T16:00:00Z",
+      "lastModifiedBy": "michael.chen@summit.com",
+      "lastModifiedDate": "2024-11-02T10:20:00Z",
+      "version": 2,
+      
+      "aiInsights": [],
+      "attachments": []
+    },
+    {
+      "id": "aia_003",
+      "applicationNumber": 4,
+      "projectId": "proj_001",
+      "projectName": "Downtown Mixed-Use Development",
+      "contractorName": "Summit Construction LLC",
+      "architectName": "Richardson Architecture Group",
+      "ownerName": "Metro Development Partners",
+      
+      "contractSum": 18500000,
+      "changeOrdersApproved": 425000,
+      "revisedContractSum": 18925000,
+      
+      "periodStartDate": "2024-12-01",
+      "periodEndDate": "2024-12-31",
+      "applicationDate": "2025-01-01",
+      
+      "workCompletedToDate": 0,
+      "workCompletedThisPeriod": 0,
+      "materialsStoredToDate": 0,
+      "totalEarned": 0,
+      "retentionPercentage": 5.0,
+      "retentionAmount": 0,
+      "previousPayments": 9212625,
+      "currentPaymentDue": 0,
+      "netAmountDue": 0,
+      "balanceToFinish": 0,
+      
+      "status": "draft",
+      "submittedBy": "",
+      "submittedDate": null,
+      
+      "approvals": [],
+      "lineItems": [],
+      "annotations": [],
+      "distributionList": [],
+      "distributionHistory": [],
+      
+      "createdBy": "john.doe@summit.com",
+      "createdDate": "2024-12-15T10:00:00Z",
+      "lastModifiedBy": "john.doe@summit.com",
+      "lastModifiedDate": "2024-12-15T10:00:00Z",
+      "version": 1,
+      
+      "aiInsights": [],
+      "attachments": []
+    }
+  ],
+  "projectConfig": {
+    "projectId": "proj_001",
+    "retentionPercentage": 5.0,
+    "paymentTerms": "Net 30 days",
+    
+    "procoreIntegration": {
+      "enabled": true,
+      "budgetCodeMapping": {
+        "03100": "Concrete Work",
+        "05120": "Structural Steel",
+        "06100": "Rough Carpentry",
+        "07200": "Insulation",
+        "09200": "Drywall"
+      },
+      "lastSyncDate": "2024-12-01T08:00:00Z"
+    },
+    
+    "sageIntegration": {
+      "enabled": true,
+      "costCodeMapping": {
+        "03100": "03-100",
+        "05120": "05-120",
+        "06100": "06-100",
+        "07200": "07-200",
+        "09200": "09-200"
+      },
+      "lastSyncDate": "2024-12-01T07:30:00Z"
+    },
+    
+    "approvalWorkflow": {
+      "requiresPmApproval": true,
+      "requiresPxApproval": true,
+      "requiresExecutiveApproval": false,
+      "autoSubmitThreshold": 50000
+    },
+    
+    "defaultRecipients": [
+      {
+        "id": "default_001",
+        "name": "Metro Development Partners",
+        "email": "payments@metrodev.com",
+        "role": "Owner",
+        "receivesPdf": true,
+        "receivesNotifications": true,
+        "isRequired": true
+      }
+    ],
+    
+    "emailTemplates": [
+      {
+        "id": "template_001",
+        "name": "Standard Submission",
+        "subject": "AIA Pay Application #{applicationNumber} - {projectName}",
+        "body": "Please find attached AIA Pay Application #{applicationNumber} for {projectName} in the amount of {netAmountDue}.",
+        "variables": ["applicationNumber", "projectName", "netAmountDue", "periodEndDate"],
+        "isDefault": true,
+        "applicableStatuses": ["submitted", "px_approved"]
+      }
+    ],
+    
+    "customValidationRules": []
+  }
+} 

@@ -9,8 +9,8 @@
 
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import { Spin, Button, Select } from 'antd';
-import { EditOutlined, CheckOutlined, CloseOutlined } from '@ant-design/icons';
+import { Spin, Button, Select, Space, message } from 'antd';
+import { EditOutlined, CheckOutlined, CloseOutlined, SyncOutlined } from '@ant-design/icons';
 import ComponentHeader from './ComponentHeader.js';
 import TableModuleV2 from './TableModuleV2.js';
 import { NumericCellRenderer } from '../utils/CustomCellRenderer.js';
@@ -21,7 +21,7 @@ import {
     FORECAST_METHODS,
     normalizeForecastMethod,
 } from '../utils/forecastingUtils.js';
-import '../styles/global.css';
+// import '../styles/global.css';
 
 // Determine if in development mode
 const isDevMode = process.env.NODE_ENV === 'development';
@@ -29,7 +29,7 @@ const isDevMode = process.env.NODE_ENV === 'development';
 // Currency formatter for USD formatting with type checking
 const currencyFormatter = (params) => {
     const value = params.value;
-    if (value === undefined || value === null) return ''; // Fixed typo: value === undefined || value === undefined
+    if (value === undefined || value === null) return '';
     if (value === 'N/A' || value === '') return value;
     if (typeof value === 'number' || (typeof value === 'string' && !isNaN(Number(value)))) {
         return Number(value).toLocaleString('en-US', {
@@ -42,23 +42,21 @@ const currencyFormatter = (params) => {
     return '';
 };
 
-const formatDateToMMDDYYYY = (date) => {
-    if (!(date instanceof Date) || isNaN(date)) return '';
-    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-based, so +1
-    const day = String(date.getDate()).padStart(2, '0');
-    const year = date.getFullYear();
-    return `${month}/${day}/${year}`;
-};
-
 const ForecastingV2 = ({ selectedProject, headerContent, activeTab, onTabChange }) => {
     const [rowData, setRowData] = useState([]);
     const [grandTotals, setGrandTotals] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+    const [isRefreshing, setIsRefreshing] = useState(false); // New state for refresh loading
     const [error, setError] = useState(null);
     const [dynamicColumns, setDynamicColumns] = useState([]);
     const [dataCache, setDataCache] = useState({});
     const [isAnyRowEditing, setIsAnyRowEditing] = useState(false);
     const [editingRowNode, setEditingRowNode] = useState(null);
+
+    // Log selectedProject for debugging
+    useEffect(() => {
+        console.log('ForecastingV2 selectedProject:', selectedProject);
+    }, [selectedProject]);
 
     // Calculate grand totals for pinned rows
     const calculateGrandTotals = useCallback((treeData) => {
@@ -83,11 +81,11 @@ const ForecastingV2 = ({ selectedProject, headerContent, activeTab, onTabChange 
                 estimatedCostAtCompletion: categoryRows.reduce((sum, row) => sum + (row.estimatedCostAtCompletion || row.currentEstimatedCostAtCompletion || row.originalEstimatedCostAtCompletion || 0), 0),
                 jobToDateCosts: categoryRows.reduce((sum, row) => sum + (row.jobToDateCosts || 0), 0),
                 projectedCostToComplete: categoryRows.reduce((sum, row) => sum + (row.projectedCostToComplete || 0), 0),
-                forecastToComplete: 0, // Will be computed dynamically
+                forecastToComplete: 0,
                 projectedOverUnder: categoryRows.reduce((sum, row) => sum + (row.projectedOverUnder || 0), 0),
                 forecastRemainder: 'N/A',
             };
-    
+
             dynamicColumns.forEach((col) => {
                 totalRow[col.field] = {
                     actualCost: forecast === 'Actual Cost' ? categoryRows.reduce((sum, row) => sum + (row[col.field]?.actualCost || 0), 0) : 0,
@@ -95,7 +93,7 @@ const ForecastingV2 = ({ selectedProject, headerContent, activeTab, onTabChange 
                     currentForecast: forecast === 'Current Forecast' ? categoryRows.reduce((sum, row) => sum + (row[col.field]?.currentForecast || 0), 0) : 0,
                 };
             });
-    
+
             const total = dynamicColumns.reduce((sum, col) => {
                 if (forecast === 'Actual Cost') return sum + (totalRow[col.field].actualCost || 0);
                 if (forecast === 'Original Forecast') return sum + (totalRow[col.field].originalForecast || 0);
@@ -107,8 +105,15 @@ const ForecastingV2 = ({ selectedProject, headerContent, activeTab, onTabChange 
         });
     }, [dynamicColumns]);
 
+    // Initial data load
     useEffect(() => {
         const loadData = async () => {
+            if (!selectedProject?.procore_id) {
+                setError('No project selected to fetch budget details.');
+                setRowData([]);
+                setIsLoading(false);
+                return;
+            }
             if (dataCache[activeTab]) {
                 const result = dataCache[activeTab];
                 setRowData(result.treeData);
@@ -120,7 +125,7 @@ const ForecastingV2 = ({ selectedProject, headerContent, activeTab, onTabChange 
             setIsLoading(true);
             setError(null);
             try {
-                const rawData = await fetchForecastData(activeTab);
+                const rawData = await fetchForecastData(activeTab, selectedProject.procore_id);
                 const result = processGroupedData(rawData);
                 setRowData(result.treeData);
                 setDynamicColumns(result.dateColumns);
@@ -133,7 +138,31 @@ const ForecastingV2 = ({ selectedProject, headerContent, activeTab, onTabChange 
             }
         };
         loadData();
-    }, [activeTab, dataCache, calculateGrandTotals]);
+    }, [activeTab, dataCache, calculateGrandTotals, selectedProject?.procore_id]);
+
+    // Handle refresh of project-specific budget details
+    const handleRefresh = async () => {
+        if (!selectedProject?.procore_id) {
+          message.error('No project selected to refresh.');
+          return;
+        }
+        try {
+            setIsRefreshing(true);
+            await window.electronAPI.syncProjectBudget(selectedProject.procore_id);
+            const updatedData = await fetchForecastData(activeTab, selectedProject.procore_id);
+            const result = processGroupedData(updatedData);
+            setRowData(result.treeData);
+            setDynamicColumns(result.dateColumns);
+            setGrandTotals(calculateGrandTotals(result.treeData));
+            setDataCache((prev) => ({ ...prev, [activeTab]: result }));
+            message.success('Budget details refreshed successfully!');
+        } catch (error) {
+            message.error('Failed to refresh budget details.');
+            console.error('Error refreshing budget details:', error);
+        } finally {
+            setIsRefreshing(false);
+        }
+    };
 
     const handleConfirmEdit = useCallback(async (updatedRow, api) => {
         try {
@@ -150,9 +179,7 @@ const ForecastingV2 = ({ selectedProject, headerContent, activeTab, onTabChange 
             });
             setRowData((prev) => {
                 const newTreeData = prev.map((row) =>
-                    row.costCode === updatedRow.costCode && row.forecast === updatedRow.forecast
-                        ? { ...row, ...updatedRow }
-                        : row
+                    getRowId({ data: row }) === getRowId({ data: updatedRow }) ? updatedRow : row
                 );
                 setGrandTotals(calculateGrandTotals(newTreeData));
                 return newTreeData;
@@ -160,7 +187,7 @@ const ForecastingV2 = ({ selectedProject, headerContent, activeTab, onTabChange 
             setIsAnyRowEditing(false);
             setEditingRowNode(null);
             api.stopEditing(false);
-            api.refreshCells({ force: true }); // Refresh all cells to update aggregations
+            api.refreshCells({ force: true });
         } catch (error) {
             console.error('Failed to update forecast data:', error);
             setError('Failed to save changes. Please try again.');
@@ -174,7 +201,7 @@ const ForecastingV2 = ({ selectedProject, headerContent, activeTab, onTabChange 
                 getRowId({ data: row }) === getRowId({ data: updatedRow }) ? updatedRow : row
             );
             setGrandTotals(calculateGrandTotals(newTreeData));
-            params.api.refreshCells({ force: true }); // Refresh to update valueGetters
+            params.api.refreshCells({ force: true });
             return newTreeData;
         });
     }, [getRowId, calculateGrandTotals]);
@@ -186,154 +213,129 @@ const ForecastingV2 = ({ selectedProject, headerContent, activeTab, onTabChange 
             return isoDateRegex.test(dateStr) ? dateStr : '';
         };
 
-        const dateColumns = generateDateColumns(forecastData) || [];
-        if (dateColumns.length === 0) {
-            console.warn('No dynamic date columns generated.');
-        }
+        const dateColumns = generateDateColumns(forecastData);
         const treeData = [];
 
-        const costCodes = new Set();
         forecastData.forEach((row) => {
-            if (row.costCode && row.costCode !== 'Grand Totals') {
-                costCodes.add(row.costCode);
-            }
-        });
-
-        costCodes.forEach((costCode) => {
-            const groupNode = { path: [costCode], costCode: costCode };
+            const costCode = row.costCode;
+            const groupNode = { path: [costCode], costCode };
             treeData.push(groupNode);
 
-            const costCodeRows = forecastData.filter((row) => row.costCode === costCode);
+            const actualCostRow = {
+                path: [costCode, 'Actual Cost'],
+                costCode,
+                description: row.description || '',
+                forecast: 'Actual Cost',
+                originalBudget: row.originalBudget || 0,
+                approvedCOs: row.approvedCOs || 0,
+                startDate: validDate(row.startDate),
+                endDate: validDate(row.endDate),
+                projectedBudget: row.projectedBudget || 0,
+                projectedCosts: row.projectedCosts || 0,
+                estimatedCostAtCompletion: row.estimatedCostAtCompletion || 0,
+                jobToDateCosts: row.jobToDateCosts || 0,
+                projectedCostToComplete: row.projectedCostToComplete || 0,
+                projectedOverUnder: row.projectedOverUnder || 0,
+                forecastRemainder: row.forecastRemainder || 'N/A',
+            };
 
-            costCodeRows.forEach((row) => {
-                const actualCostRow = {
-                    path: [costCode, 'Actual Cost'],
-                    costCode: costCode,
-                    description: row.description || '',
-                    forecast: 'Actual Cost',
-                    originalBudget: row.originalBudget || 0,
-                    approvedCOs: row.approvedCOs || 0,
-                    startDate: validDate(row.startDate),
-                    endDate: validDate(row.endDate),
-                    projectedBudget: row.projectedBudget || 0,
-                    projectedCosts: row.projectedCosts || 0,
-                    estimatedCostAtCompletion: row.estimatedCostAtCompletion || 0,
-                    jobToDateCosts: row.jobToDateCosts || 0,
-                    projectedCostToComplete: row.projectedCostToComplete || 0,
-                    projectedOverUnder: row.projectedOverUnder || 0,
-                    forecastRemainder: row.forecastRemainder || 'N/A',
+            const guidanceRow = {
+                path: [costCode, 'Forecast Guidance'],
+                costCode,
+                description: 'Computed Guidance',
+                forecast: 'Forecast Guidance',
+                method: row.currentMethod || 'manual',
+                originalBudget: '',
+                approvedCOs: '',
+                revisedBudget: '',
+                startDate: '',
+                endDate: '',
+            };
+
+            const originalForecastRow = {
+                path: [costCode, 'Original Forecast'],
+                costCode,
+                description: '',
+                forecast: 'Original Forecast',
+                originalBudget: row.originalBudget || 0,
+                approvedCOs: row.approvedCOs || 0,
+                originalStartDate: validDate(row.originalStartDate),
+                originalEndDate: validDate(row.originalEndDate),
+                forecastToComplete: row.originalForecastToComplete || 0,
+                originalEstimatedCostAtCompletion: row.originalEstimatedCostAtCompletion || 0,
+            };
+
+            const originalVarianceRow = {
+                path: [costCode, 'Original Forecast', 'Variance to Actual'],
+                costCode,
+                description: '',
+                forecast: 'Variance',
+                varianceLabel: 'Variance to Actual',
+                originalBudget: row.originalBudget || 0,
+                approvedCOs: row.approvedCOs || 0,
+            };
+
+            const currentForecastRow = {
+                path: [costCode, 'Current Forecast'],
+                costCode,
+                description: '',
+                forecast: 'Current Forecast',
+                originalBudget: row.originalBudget || 0,
+                approvedCOs: row.approvedCOs || 0,
+                currentStartDate: validDate(row.currentStartDate),
+                currentEndDate: validDate(row.currentEndDate),
+                forecastToComplete: row.currentForecastToComplete || 0,
+                currentEstimatedCostAtCompletion: row.currentEstimatedCostAtCompletion || 0,
+            };
+
+            const currentVarianceRow = {
+                path: [costCode, 'Current Forecast', 'Variance to Actual'],
+                costCode,
+                description: '',
+                forecast: 'Variance',
+                varianceLabel: 'Variance to Actual',
+                originalBudget: row.originalBudget || 0,
+                approvedCOs: row.approvedCOs || 0,
+            };
+
+            dateColumns.forEach((col) => {
+                const fieldData = row[col.field] || {};
+                actualCostRow[col.field] = {
+                    actualCost: fieldData.actualCost || 0,
+                    originalForecast: 0,
+                    currentForecast: 0,
                 };
-
-                const guidanceRow = {
-                    path: [costCode, 'Forecast Guidance'],
-                    costCode: costCode,
-                    description: 'Computed Guidance',
-                    forecast: 'Forecast Guidance',
-                    method: row.currentMethod ? normalizeForecastMethod(row.currentMethod) : 'manual',
-                    originalBudget: '',
-                    approvedCOs: '',
-                    revisedBudget: '',
-                    startDate: '',
-                    endDate: '',
+                guidanceRow[col.field] = {
+                    actualCost: 0,
+                    originalForecast: 0,
+                    currentForecast: generateForecast(
+                        `${row.originalBudget + row.approvedCOs}`,
+                        row.currentStartDate,
+                        row.currentEndDate,
+                        row.currentMethod,
+                        dateColumns
+                    )[col.field]?.currentForecast || 0,
                 };
-
-                const originalForecastRow = {
-                    path: [costCode, 'Original Forecast'],
-                    costCode: costCode,
-                    description: '',
-                    forecast: 'Original Forecast',
-                    originalBudget: row.originalBudget || 0,
-                    approvedCOs: row.approvedCOs || 0,
-                    originalStartDate: validDate(row.originalStartDate),
-                    originalEndDate: validDate(row.originalEndDate),
-                    forecastToComplete: row.originalForecastToComplete || 0,
-                    originalEstimatedCostAtCompletion: row.originalEstimatedCostAtCompletion || 0,
+                originalForecastRow[col.field] = {
+                    actualCost: 0,
+                    originalForecast: fieldData.originalForecast || 0,
+                    currentForecast: 0,
                 };
-
-                const originalVarianceRow = {
-                    path: [costCode, 'Original Forecast', 'Variance to Actual'],
-                    costCode: costCode,
-                    description: '',
-                    forecast: 'Variance',
-                    varianceLabel: 'Variance to Actual',
-                    originalBudget: row.originalBudget || 0,
-                    approvedCOs: row.approvedCOs || 0,
+                originalVarianceRow[col.field] = (fieldData.actualCost || 0) - (fieldData.originalForecast || 0);
+                currentForecastRow[col.field] = {
+                    actualCost: 0,
+                    originalForecast: 0,
+                    currentForecast: fieldData.currentForecast || 0,
                 };
-
-                const currentForecastRow = {
-                    path: [costCode, 'Current Forecast'],
-                    costCode: costCode,
-                    description: '',
-                    forecast: 'Current Forecast',
-                    originalBudget: row.originalBudget || 0,
-                    approvedCOs: row.approvedCOs || 0,
-                    currentStartDate: validDate(row.currentStartDate),
-                    currentEndDate: validDate(row.currentEndDate),
-                    forecastToComplete: row.currentForecastToComplete || 0,
-                    currentEstimatedCostAtCompletion: row.currentEstimatedCostAtCompletion || 0,
-                };
-
-                const currentVarianceRow = {
-                    path: [costCode, 'Current Forecast', 'Variance to Actual'],
-                    costCode: costCode,
-                    description: '',
-                    forecast: 'Variance',
-                    varianceLabel: 'Variance to Actual',
-                    originalBudget: row.originalBudget || 0,
-                    approvedCOs: row.approvedCOs || 0,
-                };
-
-                const actualCosts = {};
-                dateColumns.forEach((col) => {
-                    actualCosts[col.field] = row[col.field]?.actualCost || 0;
-                });
-
-                const forecastValues = generateForecast(
-                    `${(currentForecastRow.originalBudget || 0) + (currentForecastRow.approvedCOs || 0)}.00`,
-                    currentForecastRow.currentStartDate,
-                    currentForecastRow.currentEndDate,
-                    guidanceRow.method,
-                    dateColumns, // Use dateColumns here since dynamicColumns is set later
-                    actualCosts
-                );
-
-                dateColumns.forEach((col) => {
-                    const fieldData = row[col.field] || {};
-                    const actualCost = Number(fieldData.actualCost) || 0;
-                    const originalForecastValue = Number(fieldData.originalForecast?.originalForecast) || 0;
-                    const currentForecastValue = Number(fieldData.currentForecast?.currentForecast) || 0;
-
-                    actualCostRow[col.field] = {
-                        actualCost: actualCost,
-                        originalForecast: 0,
-                        currentForecast: 0,
-                    };
-                    guidanceRow[col.field] = {
-                        actualCost: 0,
-                        originalForecast: 0, // Keep as 0
-                        currentForecast: forecastValues[col.field]?.currentForecast || 0, // Use computed value
-                    };
-                    originalForecastRow[col.field] = {
-                        actualCost: 0,
-                        originalForecast: originalForecastValue,
-                        currentForecast: 0,
-                    };
-                    originalVarianceRow[col.field] = actualCost - originalForecastValue;
-                    currentForecastRow[col.field] = {
-                        actualCost: 0,
-                        originalForecast: 0,
-                        currentForecast: currentForecastValue,
-                    };
-                    currentVarianceRow[col.field] = actualCost - currentForecastValue;
-                });
-
-                treeData.push(actualCostRow);
-                treeData.push(guidanceRow);
-                treeData.push(originalForecastRow);
-                treeData.push(originalVarianceRow);
-                treeData.push(currentForecastRow);
-                treeData.push(currentVarianceRow);
+                currentVarianceRow[col.field] = (fieldData.actualCost || 0) - (fieldData.currentForecast || 0);
             });
+
+            treeData.push(actualCostRow);
+            treeData.push(guidanceRow);
+            treeData.push(originalForecastRow);
+            treeData.push(originalVarianceRow);
+            treeData.push(currentForecastRow);
+            treeData.push(currentVarianceRow);
         });
 
         return { treeData, dateColumns };
@@ -394,7 +396,7 @@ const ForecastingV2 = ({ selectedProject, headerContent, activeTab, onTabChange 
                 return originalBudget + approvedCOs;
             },
             valueFormatter: currencyFormatter,
-            editable: false, // Computed value
+            editable: false,
         },
         {
             headerName: 'Start Date',
@@ -629,8 +631,6 @@ const ForecastingV2 = ({ selectedProject, headerContent, activeTab, onTabChange 
             valueGetter: (params) => {
                 if (params.node.level === 0 && params.data.costCode !== 'Grand Totals') return undefined;
                 if (!params.data) return 0;
-
-                // For Forecast Guidance, get originalBudget and approvedCOs from the sibling Current Forecast row
                 let originalBudget = params.data.originalBudget || 0;
                 let approvedCOs = params.data.approvedCOs || 0;
                 if (params.data.forecast === 'Forecast Guidance') {
@@ -711,13 +711,11 @@ const ForecastingV2 = ({ selectedProject, headerContent, activeTab, onTabChange 
                 innerRenderer: (params) => {
                     const { node, api, data } = params;
 
-                    // Handle pinned bottom rows (total rows)
                     if (node.rowPinned === 'bottom') {
                         const label = `${data.forecast} Total`;
                         return <span>{label}</span>;
                     }
 
-                    // Existing logic for regular tree data rows
                     const isEditableRow = data && (
                         ['Original Forecast', 'Current Forecast', 'Forecast Guidance'].includes(data.forecast) ||
                         (data.forecast === 'Actual Cost' && isDevMode)
@@ -863,8 +861,8 @@ const ForecastingV2 = ({ selectedProject, headerContent, activeTab, onTabChange 
             editable: false,
         },
         singleClickEdit: isAnyRowEditing,
-        suppressMultiRangeSelection: true,
-        enableRangeSelection: true,
+        suppressMultiRanges: true,
+        cellSelection: true,
         groupDefaultExpanded: 1,
         pinnedBottomRowData: grandTotals,
         suppressStickyTotalRow: false,
@@ -877,10 +875,25 @@ const ForecastingV2 = ({ selectedProject, headerContent, activeTab, onTabChange 
         },
         onCellValueChanged: onCellValueChanged,
         rowClassRules: {
-            'cost-code-row': (params) => params.node.level === 0, // For cost code rows, slightly lighter background
-            'guidance-variance-row': (params) => ['Forecast Guidance', 'Variance'].includes(params.data.forecast), // For lighter text
+            'cost-code-row': (params) => params.node.level === 0,
+            'guidance-variance-row': (params) => ['Forecast Guidance', 'Variance'].includes(params.data.forecast),
         },
     }), [getDataPath, getRowId, autoGroupColumnDef, isAnyRowEditing, grandTotals, onCellValueChanged]);
+
+    // Updated header actions with Refresh button
+    const headerActions = (
+        <Space>
+            <Button
+                onClick={handleRefresh}
+                loading={isRefreshing}
+                icon={<SyncOutlined />}
+                aria-label="Refresh budget details"
+            >
+                {isRefreshing ? 'Refreshing...' : 'Refresh Data'}
+            </Button>
+            {headerContent.actions}
+        </Space>
+    );
 
     const headerHeight = 48;
     const totalFixedHeight = headerHeight;
@@ -908,7 +921,7 @@ const ForecastingV2 = ({ selectedProject, headerContent, activeTab, onTabChange 
                     tabs={headerContent.tabs}
                     activeTab={activeTab}
                     onTabChange={onTabChange}
-                    actions={headerContent.actions}
+                    actions={headerActions}
                 />
             </div>
             {isLoading ? (
@@ -965,7 +978,8 @@ ForecastingV2.propTypes = {
     selectedProject: PropTypes.shape({
         projectNumber: PropTypes.string,
         name: PropTypes.string,
-    }),
+        procore_id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    }).isRequired, // Make selectedProject required
     headerContent: PropTypes.shape({
         title: PropTypes.node.isRequired,
         tabs: PropTypes.arrayOf(

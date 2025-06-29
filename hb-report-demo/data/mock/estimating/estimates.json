@@ -1,0 +1,584 @@
+[
+  {
+    "id": "est-001",
+    "projectId": "PROJECT-001",
+    "projectName": "Atlantic Fields Club Expansion",
+    "client": "Atlantic Fields Development LLC",
+    "estimator": "Sarah Johnson",
+    "status": "in-progress",
+    "phase": "pre-construction",
+    "dateCreated": "2024-12-15",
+    "lastModified": "2025-01-23",
+    "dueDate": "2025-02-15",
+    "priority": "high",
+    "totalEstimatedValue": 15750000,
+    "actualCost": null,
+    "confidence": 85,
+    "accuracy": null,
+    "grossSF": 85000,
+    "costPerSF": 185.29,
+    "trades": [
+      {
+        "name": "Site Work",
+        "estimatedCost": 890000,
+        "status": "complete"
+      },
+      {
+        "name": "Concrete",
+        "estimatedCost": 2450000,
+        "status": "in-progress"
+      },
+      {
+        "name": "Masonry",
+        "estimatedCost": 780000,
+        "status": "pending"
+      },
+      {
+        "name": "Steel",
+        "estimatedCost": 1950000,
+        "status": "in-progress"
+      },
+      {
+        "name": "Carpentry",
+        "estimatedCost": 1120000,
+        "status": "pending"
+      },
+      {
+        "name": "Roofing",
+        "estimatedCost": 650000,
+        "status": "pending"
+      }
+    ],
+    "milestones": [
+      {
+        "name": "Quantity Takeoff",
+        "status": "complete",
+        "completedDate": "2024-12-20"
+      },
+      {
+        "name": "Trade Pricing",
+        "status": "in-progress",
+        "dueDate": "2025-01-30"
+      },
+      {
+        "name": "Cost Summary",
+        "status": "pending",
+        "dueDate": "2025-02-10"
+      }
+    ],
+    "riskFactors": ["Weather delays", "Material pricing volatility"],
+    "contingency": 5.5,
+    "overhead": 8.2,
+    "profit": 12.0
+  },
+  {
+    "id": "est-002",
+    "projectId": "PROJECT-015",
+    "projectName": "Downtown Medical Center",
+    "client": "Healthcare Partners Group",
+    "estimator": "Michael Chen",
+    "status": "review",
+    "phase": "bidding",
+    "dateCreated": "2024-11-28",
+    "lastModified": "2025-01-20",
+    "dueDate": "2025-01-28",
+    "priority": "urgent",
+    "totalEstimatedValue": 28500000,
+    "actualCost": null,
+    "confidence": 92,
+    "accuracy": null,
+    "grossSF": 125000,
+    "costPerSF": 228.00,
+    "trades": [
+      {
+        "name": "Site Work",
+        "estimatedCost": 1250000,
+        "status": "complete"
+      },
+      {
+        "name": "Concrete",
+        "estimatedCost": 3800000,
+        "status": "complete"
+      },
+      {
+        "name": "Steel",
+        "estimatedCost": 4200000,
+        "status": "complete"
+      },
+      {
+        "name": "MEP",
+        "estimatedCost": 8900000,
+        "status": "complete"
+      },
+      {
+        "name": "Medical Equipment",
+        "estimatedCost": 6500000,
+        "status": "complete"
+      }
+    ],
+    "milestones": [
+      {
+        "name": "Quantity Takeoff",
+        "status": "complete",
+        "completedDate": "2024-12-05"
+      },
+      {
+        "name": "Trade Pricing",
+        "status": "complete",
+        "completedDate": "2025-01-15"
+      },
+      {
+        "name": "Cost Summary",
+        "status": "complete",
+        "completedDate": "2025-01-20"
+      },
+      {
+        "name": "Final Review",
+        "status": "in-progress",
+        "dueDate": "2025-01-28"
+      }
+    ],
+    "riskFactors": ["Complex MEP systems", "Specialized medical requirements"],
+    "contingency": 7.0,
+    "overhead": 9.5,
+    "profit": 10.5
+  },
+  {
+    "id": "est-003",
+    "projectId": "PROJECT-022",
+    "projectName": "Riverside Office Complex",
+    "client": "Riverside Development Corp",
+    "estimator": "Jennifer Lopez",
+    "status": "submitted",
+    "phase": "bidding",
+    "dateCreated": "2024-10-15",
+    "lastModified": "2024-12-18",
+    "dueDate": "2024-12-20",
+    "priority": "medium",
+    "totalEstimatedValue": 42000000,
+    "actualCost": null,
+    "confidence": 88,
+    "accuracy": null,
+    "grossSF": 180000,
+    "costPerSF": 233.33,
+    "trades": [
+      {
+        "name": "Site Work",
+        "estimatedCost": 2100000,
+        "status": "complete"
+      },
+      {
+        "name": "Concrete",
+        "estimatedCost": 6800000,
+        "status": "complete"
+      },
+      {
+        "name": "Steel",
+        "estimatedCost": 8500000,
+        "status": "complete"
+      },
+      {
+        "name": "Curtain Wall",
+        "estimatedCost": 7200000,
+        "status": "complete"
+      },
+      {
+        "name": "MEP",
+        "estimatedCost": 12400000,
+        "status": "complete"
+      }
+    ],
+    "milestones": [
+      {
+        "name": "Quantity Takeoff",
+        "status": "complete",
+        "completedDate": "2024-11-01"
+      },
+      {
+        "name": "Trade Pricing",
+        "status": "complete",
+        "completedDate": "2024-12-05"
+      },
+      {
+        "name": "Cost Summary",
+        "status": "complete",
+        "completedDate": "2024-12-15"
+      },
+      {
+        "name": "Bid Submission",
+        "status": "complete",
+        "completedDate": "2024-12-18"
+      }
+    ],
+    "riskFactors": ["Curtain wall complexity", "Downtown logistics"],
+    "contingency": 6.5,
+    "overhead": 8.8,
+    "profit": 11.2
+  },
+  {
+    "id": "est-004",
+    "projectId": "PROJECT-008",
+    "projectName": "Tech Campus Phase II",
+    "client": "Innovation Tech Solutions",
+    "estimator": "Robert Kim",
+    "status": "awarded",
+    "phase": "construction",
+    "dateCreated": "2024-08-12",
+    "lastModified": "2024-11-30",
+    "dueDate": "2024-09-30",
+    "priority": "high",
+    "totalEstimatedValue": 68000000,
+    "actualCost": 71500000,
+    "confidence": 90,
+    "accuracy": 94.9,
+    "grossSF": 275000,
+    "costPerSF": 247.27,
+    "trades": [
+      {
+        "name": "Site Work",
+        "estimatedCost": 3400000,
+        "status": "complete"
+      },
+      {
+        "name": "Concrete",
+        "estimatedCost": 11200000,
+        "status": "complete"
+      },
+      {
+        "name": "Steel",
+        "estimatedCost": 14500000,
+        "status": "complete"
+      },
+      {
+        "name": "Tech Infrastructure",
+        "estimatedCost": 18900000,
+        "status": "complete"
+      },
+      {
+        "name": "MEP",
+        "estimatedCost": 15000000,
+        "status": "complete"
+      }
+    ],
+    "milestones": [
+      {
+        "name": "Quantity Takeoff",
+        "status": "complete",
+        "completedDate": "2024-08-25"
+      },
+      {
+        "name": "Trade Pricing",
+        "status": "complete",
+        "completedDate": "2024-09-15"
+      },
+      {
+        "name": "Cost Summary",
+        "status": "complete",
+        "completedDate": "2024-09-25"
+      },
+      {
+        "name": "Bid Submission",
+        "status": "complete",
+        "completedDate": "2024-09-30"
+      },
+      {
+        "name": "Award Notification",
+        "status": "complete",
+        "completedDate": "2024-10-15"
+      }
+    ],
+    "riskFactors": ["Advanced tech requirements", "Tight schedule"],
+    "contingency": 8.0,
+    "overhead": 9.2,
+    "profit": 12.5
+  },
+  {
+    "id": "est-005",
+    "projectId": "PROJECT-033",
+    "projectName": "Luxury Hotel Resort",
+    "client": "Coastal Hospitality Group",
+    "estimator": "David Park",
+    "status": "lost",
+    "phase": "bidding-complete",
+    "dateCreated": "2024-07-10",
+    "lastModified": "2024-10-22",
+    "dueDate": "2024-09-15",
+    "priority": "medium",
+    "totalEstimatedValue": 95000000,
+    "actualCost": null,
+    "confidence": 82,
+    "accuracy": null,
+    "grossSF": 420000,
+    "costPerSF": 226.19,
+    "trades": [
+      {
+        "name": "Site Work",
+        "estimatedCost": 4200000,
+        "status": "complete"
+      },
+      {
+        "name": "Concrete",
+        "estimatedCost": 14800000,
+        "status": "complete"
+      },
+      {
+        "name": "Steel",
+        "estimatedCost": 18500000,
+        "status": "complete"
+      },
+      {
+        "name": "Hospitality Finishes",
+        "estimatedCost": 28000000,
+        "status": "complete"
+      },
+      {
+        "name": "MEP",
+        "estimatedCost": 22500000,
+        "status": "complete"
+      }
+    ],
+    "milestones": [
+      {
+        "name": "Quantity Takeoff",
+        "status": "complete",
+        "completedDate": "2024-07-25"
+      },
+      {
+        "name": "Trade Pricing",
+        "status": "complete",
+        "completedDate": "2024-08-20"
+      },
+      {
+        "name": "Cost Summary",
+        "status": "complete",
+        "completedDate": "2024-09-10"
+      },
+      {
+        "name": "Bid Submission",
+        "status": "complete",
+        "completedDate": "2024-09-15"
+      },
+      {
+        "name": "Award Decision",
+        "status": "complete",
+        "completedDate": "2024-10-22"
+      }
+    ],
+    "riskFactors": ["Luxury finish complexity", "Coastal construction challenges"],
+    "contingency": 9.5,
+    "overhead": 10.0,
+    "profit": 8.5,
+    "lossReason": "Price - competitor was 8% lower"
+  },
+  {
+    "id": "est-006",
+    "projectId": "PROJECT-041",
+    "projectName": "Industrial Manufacturing Plant",
+    "client": "Advanced Manufacturing Inc",
+    "estimator": "Lisa Rodriguez",
+    "status": "draft",
+    "phase": "pre-construction",
+    "dateCreated": "2025-01-10",
+    "lastModified": "2025-01-23",
+    "dueDate": "2025-03-15",
+    "priority": "medium",
+    "totalEstimatedValue": 55000000,
+    "actualCost": null,
+    "confidence": 65,
+    "accuracy": null,
+    "grossSF": 185000,
+    "costPerSF": 297.30,
+    "trades": [
+      {
+        "name": "Site Work",
+        "estimatedCost": 2800000,
+        "status": "in-progress"
+      },
+      {
+        "name": "Concrete",
+        "estimatedCost": 8500000,
+        "status": "pending"
+      },
+      {
+        "name": "Steel",
+        "estimatedCost": 12200000,
+        "status": "pending"
+      },
+      {
+        "name": "Process Equipment",
+        "estimatedCost": 18500000,
+        "status": "pending"
+      },
+      {
+        "name": "MEP",
+        "estimatedCost": 9800000,
+        "status": "pending"
+      }
+    ],
+    "milestones": [
+      {
+        "name": "Quantity Takeoff",
+        "status": "in-progress",
+        "dueDate": "2025-02-05"
+      },
+      {
+        "name": "Trade Pricing",
+        "status": "pending",
+        "dueDate": "2025-02-28"
+      },
+      {
+        "name": "Cost Summary",
+        "status": "pending",
+        "dueDate": "2025-03-10"
+      }
+    ],
+    "riskFactors": ["Specialized equipment", "Environmental compliance"],
+    "contingency": 12.0,
+    "overhead": 8.5,
+    "profit": 10.0
+  },
+  {
+    "id": "est-007",
+    "projectId": "PROJECT-018",
+    "projectName": "Education Center Renovation",
+    "client": "State University System",
+    "estimator": "Thomas Wright",
+    "status": "approved",
+    "phase": "pre-construction",
+    "dateCreated": "2024-09-20",
+    "lastModified": "2024-12-15",
+    "dueDate": "2024-11-30",
+    "priority": "low",
+    "totalEstimatedValue": 22000000,
+    "actualCost": 21800000,
+    "confidence": 94,
+    "accuracy": 99.1,
+    "grossSF": 95000,
+    "costPerSF": 231.58,
+    "trades": [
+      {
+        "name": "Demolition",
+        "estimatedCost": 850000,
+        "status": "complete"
+      },
+      {
+        "name": "Structural",
+        "estimatedCost": 3200000,
+        "status": "complete"
+      },
+      {
+        "name": "MEP Upgrade",
+        "estimatedCost": 7800000,
+        "status": "complete"
+      },
+      {
+        "name": "Finishes",
+        "estimatedCost": 6500000,
+        "status": "complete"
+      },
+      {
+        "name": "Technology",
+        "estimatedCost": 2850000,
+        "status": "complete"
+      }
+    ],
+    "milestones": [
+      {
+        "name": "Quantity Takeoff",
+        "status": "complete",
+        "completedDate": "2024-10-05"
+      },
+      {
+        "name": "Trade Pricing",
+        "status": "complete",
+        "completedDate": "2024-11-10"
+      },
+      {
+        "name": "Cost Summary",
+        "status": "complete",
+        "completedDate": "2024-11-25"
+      },
+      {
+        "name": "Final Approval",
+        "status": "complete",
+        "completedDate": "2024-12-15"
+      }
+    ],
+    "riskFactors": ["Occupied building", "Asbestos remediation"],
+    "contingency": 8.5,
+    "overhead": 7.8,
+    "profit": 9.5
+  },
+  {
+    "id": "est-008",
+    "projectId": "PROJECT-029",
+    "projectName": "Mixed-Use Development",
+    "client": "Urban Development Partners",
+    "estimator": "Amanda Foster",
+    "status": "in-progress",
+    "phase": "bidding",
+    "dateCreated": "2024-12-01",
+    "lastModified": "2025-01-22",
+    "dueDate": "2025-02-28",
+    "priority": "high",
+    "totalEstimatedValue": 78000000,
+    "actualCost": null,
+    "confidence": 78,
+    "accuracy": null,
+    "grossSF": 325000,
+    "costPerSF": 240.00,
+    "trades": [
+      {
+        "name": "Site Work",
+        "estimatedCost": 4500000,
+        "status": "complete"
+      },
+      {
+        "name": "Concrete",
+        "estimatedCost": 15200000,
+        "status": "in-progress"
+      },
+      {
+        "name": "Steel",
+        "estimatedCost": 18800000,
+        "status": "pending"
+      },
+      {
+        "name": "Retail Finishes",
+        "estimatedCost": 12500000,
+        "status": "pending"
+      },
+      {
+        "name": "Residential Finishes",
+        "estimatedCost": 16200000,
+        "status": "pending"
+      },
+      {
+        "name": "MEP",
+        "estimatedCost": 8800000,
+        "status": "pending"
+      }
+    ],
+    "milestones": [
+      {
+        "name": "Quantity Takeoff",
+        "status": "complete",
+        "completedDate": "2024-12-20"
+      },
+      {
+        "name": "Trade Pricing",
+        "status": "in-progress",
+        "dueDate": "2025-02-15"
+      },
+      {
+        "name": "Cost Summary",
+        "status": "pending",
+        "dueDate": "2025-02-25"
+      }
+    ],
+    "riskFactors": ["Mixed-use complexity", "Urban site constraints"],
+    "contingency": 7.5,
+    "overhead": 9.0,
+    "profit": 11.5
+  }
+] 

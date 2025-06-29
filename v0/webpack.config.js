@@ -1,9 +1,3 @@
-// webpack.config.js
-// Webpack configuration for HB Report, bundling renderer scripts with CSS module support
-// Use this file as the main Webpack config by running `webpack --config webpack.config.js`
-// Reference: https://webpack.js.org/configuration/
-// *Additional Reference*: https://www.electronjs.org/docs/latest/tutorial/tutorial-2#bundling-your-app-with-webpack
-
 import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import webpack from 'webpack';
@@ -63,6 +57,11 @@ export default {
   resolve: {
     extensions: ['.js', '.jsx', '.json'],
     modules: [path.resolve(__dirname, 'src/renderer'), 'node_modules'],
+    alias: {
+      'hb-report': path.resolve(__dirname, 'src/renderer'),
+      'hb-report/styles': path.resolve(__dirname, 'src/renderer/styles'),
+      'antd': path.resolve(__dirname, 'node_modules/antd'),
+    },
   },
   stats: {
     modules: true,

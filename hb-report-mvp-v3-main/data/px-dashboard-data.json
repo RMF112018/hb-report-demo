@@ -1,0 +1,111 @@
+{
+  "pxMetrics": [
+    {
+      "id": "px1",
+      "title": "Portfolio Value",
+      "data": "$1.2B",
+      "trend": "up",
+      "priority": "low",
+      "icon": "DollarSign",
+      "projects": [
+        { "id": 401001, "name": "Tropical World Nursery Construction", "value": "$12.5M", "status": "good" },
+        { "id": 401004, "name": "Tech Campus Innovation Hub", "value": "$45M", "status": "good" },
+        { "id": 401002, "name": "Panther Tower South", "value": "$78M", "status": "good" }
+      ]
+    },
+    {
+      "id": "px2",
+      "title": "Avg. Project Health",
+      "data": "88%",
+      "trend": "stable",
+      "priority": "low",
+      "icon": "HeartPulse",
+      "projects": [
+        { "id": 401001, "name": "Tropical World Nursery Construction", "value": "92%", "status": "good" },
+        { "id": 401004, "name": "Tech Campus Innovation Hub", "value": "85%", "status": "warning" },
+        { "id": 401002, "name": "Panther Tower South", "value": "95%", "status": "good" }
+      ]
+    },
+    {
+      "id": "px3",
+      "title": "Projects On Track",
+      "data": "85%",
+      "trend": "up",
+      "priority": "low",
+      "icon": "CheckCircle",
+      "projects": [
+        { "id": 401001, "name": "Tropical World Nursery Construction", "value": "On Track", "status": "good" },
+        { "id": 401004, "name": "Tech Campus Innovation Hub", "value": "At Risk", "status": "warning" },
+        { "id": 401002, "name": "Panther Tower South", "value": "On Track", "status": "good" }
+      ]
+    },
+    {
+      "id": "px4",
+      "title": "Upcoming Milestones",
+      "data": "12",
+      "trend": "stable",
+      "priority": "medium",
+      "icon": "CalendarCheck",
+      "projects": [
+        { "id": 401001, "name": "Tropical World Nursery Construction", "value": "2", "status": "good" },
+        { "id": 401004, "name": "Tech Campus Innovation Hub", "value": "5", "status": "warning" },
+        { "id": 401002, "name": "Panther Tower South", "value": "3", "status": "good" }
+      ]
+    },
+    {
+      "id": "px5",
+      "title": "Open RFIs",
+      "data": "28",
+      "trend": "up",
+      "priority": "high",
+      "icon": "MessageSquareWarning",
+      "projects": [
+        { "id": 401001, "name": "Tropical World Nursery Construction", "value": "5", "status": "good" },
+        { "id": 401004, "name": "Tech Campus Innovation Hub", "value": "15", "status": "critical" },
+        { "id": 401002, "name": "Panther Tower South", "value": "8", "status": "warning" }
+      ]
+    },
+    {
+      "id": "px6",
+      "title": "Safety Incidents (YTD)",
+      "data": "3",
+      "trend": "down",
+      "priority": "low",
+      "icon": "ShieldAlert",
+      "projects": [
+        { "id": 401001, "name": "Tropical World Nursery Construction", "value": "0", "status": "good" },
+        { "id": 401004, "name": "Tech Campus Innovation Hub", "value": "2", "status": "warning" },
+        { "id": 401002, "name": "Panther Tower South", "value": "1", "status": "good" }
+      ]
+    }
+  ],
+  "pxInsights": [
+    {
+      "id": "px_insight1",
+      "type": "forecast",
+      "severity": "high",
+      "title": "Portfolio Profitability Forecast",
+      "text": "Overall portfolio profit margin projected to increase by 1.5% in Q3 due to strong performance in key projects.",
+      "action": "Identify and replicate best practices from high-performing projects across the portfolio.",
+      "confidence": 90
+    },
+    {
+      "id": "px_insight2",
+      "type": "risk",
+      "severity": "medium",
+      "title": "Resource Allocation Imbalance",
+      "text": "Analysis indicates potential over-allocation of senior PMs to smaller projects, impacting larger project oversight.",
+      "action": "Review current staffing assignments and rebalance resources to optimize project outcomes.",
+      "confidence": 82
+    },
+    {
+      "id": "px_insight3",
+      "type": "opportunity",
+      "severity": "low",
+      "title": "New Market Expansion Opportunity",
+      "text": "Demand analysis suggests high potential for new commercial projects in the Orlando region.",
+      "action": "Initiate market research and business development efforts for Orlando expansion.",
+      "confidence": 75
+    }
+  ]
+}
