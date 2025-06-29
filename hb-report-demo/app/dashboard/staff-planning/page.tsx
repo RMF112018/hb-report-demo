@@ -15,7 +15,7 @@ import { ProjectManagerStaffingView } from '@/components/staffing/ProjectManager
 // Import shared components
 import { StaffingOverview } from '@/components/staffing/StaffingOverview'
 import { SpcrManagement } from '@/components/staffing/SpcrManagement'
-import { ResponsibilityMatrixIntegration } from '@/components/staffing/ResponsibilityMatrixIntegration'
+
 
 export default function StaffPlanningPage() {
   const { user } = useAuth()
@@ -124,10 +124,9 @@ export default function StaffPlanningPage() {
       case 'project-manager':
         return (
           <Tabs defaultValue="team" className="space-y-6">
-            <TabsList className="grid w-full grid-cols-4">
+            <TabsList className="grid w-full grid-cols-3">
               <TabsTrigger value="team">Team Management</TabsTrigger>
               <TabsTrigger value="performance">Performance</TabsTrigger>
-              <TabsTrigger value="responsibilities">Responsibilities</TabsTrigger>
               <TabsTrigger value="spcr">SPCRs</TabsTrigger>
             </TabsList>
 
@@ -140,10 +139,6 @@ export default function StaffPlanningPage() {
 
             <TabsContent value="performance">
               <ProjectManagerStaffingView />
-            </TabsContent>
-
-            <TabsContent value="responsibilities">
-              <ResponsibilityMatrixIntegration />
             </TabsContent>
 
             <TabsContent value="spcr">
@@ -184,7 +179,7 @@ export default function StaffPlanningPage() {
           <div className="flex items-center justify-between">
             <div>
               <div className="flex items-center gap-3 mb-2">
-                <h1 className="text-3xl font-bold tracking-tight">{getPageTitle()}</h1>
+                <h1 className="text-3xl font-bold text-foreground">{getPageTitle()}</h1>
                 {getRoleBadge()}
               </div>
               <p className="text-muted-foreground text-lg">{getPageDescription()}</p>

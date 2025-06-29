@@ -328,7 +328,7 @@ export default function ConstraintsLogPage() {
   const projectScope = getProjectScope()
 
   const ConstraintsTableCard = () => (
-    <Card className={isFullScreen ? "fixed inset-0 z-50 rounded-none" : ""}>
+    <Card className={isFullScreen ? "fixed inset-0 z-[130] rounded-none" : ""}>
       <CardHeader className="flex flex-row items-center justify-between">
         <CardTitle className="flex items-center gap-2">
           <FileText className="h-5 w-5 text-blue-600 dark:text-blue-400" />

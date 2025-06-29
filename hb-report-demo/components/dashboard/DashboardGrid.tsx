@@ -25,6 +25,7 @@ import { cn } from "@/lib/utils";
 import { GripVertical, X, Settings2, Briefcase, Brain, BarChart3, Target, TrendingUp, Building2, Calendar, DollarSign, Wrench, Shield, Droplets, Package, Eye, AlertTriangle as AlertTriangleIcon, Users, FileText, ClipboardCheck, Play, CalendarDays, MessageSquare, Heart, PieChart, Activity, Coins, Zap, Maximize2, Minimize2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { DashboardCardWrapper } from "./DashboardCardWrapper";
 
 // Modern card components
 import PortfolioOverview from "@/components/cards/PortfolioOverview";
@@ -141,6 +142,17 @@ const getCardHeight = (card: DashboardCard, isCompact: boolean): number | "auto"
   }
 };
 
+// Define card widths - some cards span multiple columns
+const getCardColSpan = (card: DashboardCard): string => {
+  switch (card.type) {
+    case "enhanced-hbi-insights":
+    case "market-intelligence":
+      return "sm:col-span-2 lg:col-span-2 xl:col-span-2 2xl:col-span-2"; // These cards are 2x width on larger screens
+    default:
+      return "col-span-1"; // Standard single column width
+  }
+};
+
 export function DashboardGrid({
   cards,
   onLayoutChange,
@@ -212,19 +224,23 @@ export function DashboardGrid({
       onDragEnd={handleDragEnd}
     >
       <SortableContext items={items.map(item => item.id)} strategy={rectSortingStrategy}>
-        {/* Responsive Grid Layout */}
+        {/* Enhanced Responsive Grid Layout with consistent spacing */}
         <div className={cn(
-          "grid gap-4 sm:gap-6",
+          // Enhanced background with subtle pattern
+          "relative",
+          // Improved grid structure with consistent row sizing
+          "grid auto-rows-max",
+          // Better responsive breakpoints - original structure
           "grid-cols-1",                    // Mobile: 1 column
           "sm:grid-cols-2",                 // Small tablet: 2 columns  
           "lg:grid-cols-3",                 // Large tablet/small desktop: 3 columns
           "xl:grid-cols-4",                 // Desktop: 4 columns
           "2xl:grid-cols-5",                // Large desktop: 5 columns
-          "3xl:grid-cols-6",                // Ultra-wide: 6 columns
+          // Consistent spacing - same horizontal and vertical
           spacingClass
         )}>
           {items.map((card) => (
-            <div key={card.id} className="w-full">
+            <div key={card.id} className={cn("w-full", getCardColSpan(card))}>
               <SortableCard
                 card={card}
                 isEditing={isEditing}
@@ -241,8 +257,11 @@ export function DashboardGrid({
       </SortableContext>
       <DragOverlay>
         {activeCard ? (
-          <div className="bg-card rounded-lg shadow-lg border-2 border-blue-400 opacity-90 w-80">
-            <CardContent card={activeCard} isCompact={isCompact} />
+          <div className="bg-card/95 backdrop-blur-sm rounded-xl shadow-2xl opacity-90 transform rotate-2 scale-105 border-2 border-primary/20 w-80">
+            <div className="p-4 sm:p-5">
+              <h3 className="font-semibold text-lg text-foreground">{activeCard.title}</h3>
+              <p className="text-sm text-muted-foreground mt-1">Moving card...</p>
+            </div>
           </div>
         ) : null}
       </DragOverlay>
@@ -351,97 +370,85 @@ function SortableCard({
     <div
       ref={setNodeRef}
       style={style}
+      {...attributes}
+      {...(isEditing ? listeners : {})}
       className={cn(
-        "bg-card rounded-lg border border-border shadow-sm hover:shadow-md transition-all duration-200 flex flex-col relative group",
-        "min-h-[300px] sm:min-h-[350px] lg:min-h-[400px]", // Responsive minimum heights
-        "max-h-[90vh] sm:max-h-[80vh] lg:max-h-none",      // Prevent overflow on small screens
-        "overflow-hidden",
-        isDragging && "shadow-xl ring-2 ring-blue-400",
-        isEditing && "ring-1 ring-blue-200"
+        "cursor-grab active:cursor-grabbing",
+        isDragging && "opacity-60 scale-105 shadow-2xl z-50",
+        typeof height === "number" && `h-[${height}px]`,
+        height === "auto" && "min-h-[320px]"
       )}
+      onClick={() => onCardFocus?.(card)}
     >
-      {/* Edit Controls */}
-      {isEditing && (
-        <>
-          <div
-            {...attributes}
-            {...listeners}
-            className="absolute top-1 left-1 p-0.5 bg-muted rounded cursor-move opacity-0 group-hover:opacity-100 transition-opacity z-10"
-          >
-            <GripVertical className="h-3 w-3 text-muted-foreground" />
+      {/* Use enhanced DashboardCardWrapper */}
+      <DashboardCardWrapper
+        card={card}
+        onRemove={onCardRemove}
+        onConfigure={onCardConfigure}
+        isEditing={isEditing}
+        isCompact={isCompact}
+        dragHandleClass="h-full"
+      >
+        <div className="h-full">
+          {/* Enhanced card header with better typography and spacing */}
+          <div className="px-4 sm:px-5 lg:px-6 py-3 sm:py-4 border-b border-border/30 bg-muted/20 backdrop-blur-sm">
+            <div className="flex items-center justify-between">
+              <h3 className="font-semibold text-foreground text-sm sm:text-base lg:text-lg truncate pr-2">
+                {card.title}
+              </h3>
+              <div className="flex items-center gap-2 flex-shrink-0">
+                {/* Focus/Expand Button */}
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onCardFocus?.(card);
+                  }}
+                  className="h-6 w-6 p-0 opacity-0 group-hover:opacity-100 transition-opacity hover:bg-accent/60"
+                  title="Focus card"
+                >
+                  <Maximize2 className="h-3 w-3 text-muted-foreground" />
+                </Button>
+                {/* Card type icon with better sizing */}
+                {card.type === "portfolio-overview" && <Briefcase className="h-4 w-4 text-blue-600 dark:text-blue-400" />}
+                {card.type === "enhanced-hbi-insights" && <Brain className="h-4 w-4 text-purple-600" />}
+                {card.type === "financial-review-panel" && <BarChart3 className="h-4 w-4 text-blue-600 dark:text-blue-400" />}
+                {card.type === "pipeline-analytics" && <Target className="h-4 w-4 text-orange-600" />}
+                {card.type === "market-intelligence" && <TrendingUp className="h-4 w-4 text-green-600 dark:text-green-400" />}
+                {card.type === "project-overview" && <Building2 className="h-4 w-4 text-blue-600 dark:text-blue-400" />}
+                {card.type === "schedule-performance" && <Calendar className="h-4 w-4 text-orange-600" />}
+                {card.type === "financial-status" && <DollarSign className="h-4 w-4 text-green-600 dark:text-green-400" />}
+                {card.type === "general-conditions" && <Wrench className="h-4 w-4 text-blue-600 dark:text-blue-400" />}
+                {card.type === "contingency-analysis" && <Shield className="h-4 w-4 text-purple-600" />}
+                {card.type === "cash-flow" && <Droplets className="h-4 w-4 text-cyan-600 dark:text-cyan-400" />}
+                {card.type === "procurement" && <Package className="h-4 w-4 text-amber-600 dark:text-amber-400" />}
+                {card.type === "draw-forecast" && <BarChart3 className="h-4 w-4 text-indigo-600 dark:text-indigo-400" />}
+                {card.type === "quality-control" && <Eye className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />}
+                {card.type === "safety" && <AlertTriangleIcon className="h-4 w-4 text-red-600 dark:text-red-400" />}
+                {card.type === "staffing-distribution" && <Users className="h-4 w-4 text-orange-600" />}
+                {card.type === "change-order-analysis" && <FileText className="h-4 w-4 text-orange-600" />}
+                {card.type === "closeout" && <ClipboardCheck className="h-4 w-4 text-indigo-600 dark:text-indigo-400" />}
+                {card.type === "startup" && <Play className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />}
+                {card.type === "critical-dates" && <CalendarDays className="h-4 w-4 text-blue-600 dark:text-blue-400" />}
+                {card.type === "field-reports" && <FileText className="h-4 w-4 text-green-600 dark:text-green-400" />}
+                {card.type === "rfi" && <MessageSquare className="h-4 w-4 text-orange-600" />}
+                {card.type === "submittal" && <FileText className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />}
+                {card.type === "health" && <Heart className="h-4 w-4 text-cyan-600 dark:text-cyan-400" />}
+                {card.type === "schedule-monitor" && <Calendar className="h-4 w-4 text-blue-600 dark:text-blue-400" />}
+                {card.type === "bd-opportunities" && <Building2 className="h-4 w-4 text-blue-600 dark:text-blue-400" />}
+              </div>
+            </div>
           </div>
-          <div className="absolute top-1 right-1 flex gap-0.5 opacity-0 group-hover:opacity-100 transition-opacity z-10">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => onCardConfigure?.(card.id)}
-              className="h-5 w-5 p-0 bg-white/80 dark:bg-black/80 hover:bg-card"
-            >
-              <Settings2 className="h-2.5 w-2.5" />
-            </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => onCardRemove?.(card.id)}
-              className="h-5 w-5 p-0 bg-white/80 dark:bg-black/80 hover:bg-red-50 dark:hover:bg-red-950/30 hover:text-red-600 dark:text-red-400"
-            >
-              <X className="h-2.5 w-2.5" />
-            </Button>
-          </div>
-        </>
-      )}
 
-      {/* Card Header */}
-      <div className="px-2 sm:px-3 py-1.5 sm:py-2 border-b border-gray-100 dark:border-gray-700 flex-shrink-0">
-        <div className="flex items-center justify-between">
-          <h3 className="font-medium text-foreground text-xs sm:text-sm lg:text-base truncate pr-1">{card.title}</h3>
-          <div className="flex items-center gap-2">
-            {/* Focus/Expand Button */}
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => onCardFocus?.(card)}
-              className="h-5 w-5 p-0 opacity-0 group-hover:opacity-100 transition-opacity hover:bg-blue-50 dark:hover:bg-blue-950/50"
-              title="Focus card"
-            >
-              <Maximize2 className="h-2.5 w-2.5 text-blue-600 dark:text-blue-400" />
-            </Button>
-            {card.type === "portfolio-overview" && <Briefcase className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-blue-600 dark:text-blue-400" />}
-            {card.type === "enhanced-hbi-insights" && <Brain className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-purple-600" />}
-            {card.type === "financial-review-panel" && <BarChart3 className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-blue-600 dark:text-blue-400" />}
-            {card.type === "pipeline-analytics" && <Target className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-orange-600" />}
-            {card.type === "market-intelligence" && <TrendingUp className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-green-600 dark:text-green-400" />}
-            {card.type === "project-overview" && <Building2 className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-blue-600 dark:text-blue-400" />}
-            {card.type === "schedule-performance" && <Calendar className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-orange-600" />}
-            {card.type === "financial-status" && <DollarSign className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-green-600 dark:text-green-400" />}
-            {card.type === "general-conditions" && <Wrench className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-blue-600 dark:text-blue-400" />}
-            {card.type === "contingency-analysis" && <Shield className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-purple-600" />}
-            {card.type === "cash-flow" && <Droplets className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-cyan-600 dark:text-cyan-400" />}
-            {card.type === "procurement" && <Package className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-amber-600 dark:text-amber-400" />}
-            {card.type === "draw-forecast" && <BarChart3 className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-indigo-600 dark:text-indigo-400" />}
-            {card.type === "quality-control" && <Eye className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-emerald-600 dark:text-emerald-400" />}
-            {card.type === "safety" && <AlertTriangleIcon className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-red-600 dark:text-red-400" />}
-            {card.type === "staffing-distribution" && <Users className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-orange-600" />}
-            {card.type === "change-order-analysis" && <FileText className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-orange-600" />}
-            {card.type === "closeout" && <ClipboardCheck className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-indigo-600 dark:text-indigo-400" />}
-            {card.type === "startup" && <Play className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-emerald-600 dark:text-emerald-400" />}
-            {card.type === "critical-dates" && <CalendarDays className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-blue-600 dark:text-blue-400" />}
-            {card.type === "field-reports" && <FileText className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-green-600 dark:text-green-400" />}
-            {card.type === "rfi" && <MessageSquare className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-orange-600" />}
-            {card.type === "submittal" && <FileText className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-emerald-600 dark:text-emerald-400" />}
-            {card.type === "health" && <Heart className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-cyan-600 dark:text-cyan-400" />}
-            {card.type === "schedule-monitor" && <Calendar className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-blue-600 dark:text-blue-400" />}
-            {card.type === "bd-opportunities" && <Building2 className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-blue-600 dark:text-blue-400" />}
+          {/* Enhanced card content area */}
+          <div className="flex-1 min-h-0 overflow-y-auto">
+            <div className="p-2 sm:p-3 lg:p-4 h-full">
+              <CardContent card={card} isCompact={isCompact} userRole={userRole} />
+            </div>
           </div>
         </div>
-      </div>
-
-      {/* Card Content */}
-      <div className="flex-1 min-h-0 overflow-y-auto">
-        <div className="p-1 sm:p-2 lg:p-3 h-full">
-          <CardContent card={card} isCompact={isCompact} userRole={userRole} />
-        </div>
-      </div>
+      </DashboardCardWrapper>
     </div>
   );
 }

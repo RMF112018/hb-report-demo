@@ -247,7 +247,7 @@ export default function ProcurementPage() {
                 <div className="p-2 bg-gradient-to-br from-[#FF6B35] to-[#E55A2B] rounded-lg shadow-lg">
                   <Package className="h-6 w-6 text-white" />
                 </div>
-                <h1 className="text-3xl font-bold bg-gradient-to-r from-gray-900 via-gray-800 to-gray-700 bg-clip-text text-transparent">
+                <h1 className="text-3xl font-bold text-foreground">
                   Procurement Management
                 </h1>
               </div>

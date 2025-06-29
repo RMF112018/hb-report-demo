@@ -93,14 +93,17 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       throw new Error('Invalid credentials')
     }
 
-    const redirectTo = '/dashboard'
-      /* match.role === 'estimator'
+    const redirectTo = match.role === 'estimator'
         ? '/pre-con'
         : match.role === 'project-executive'
         ? '/dashboard'
         : match.role === 'project-manager'
         ? '/dashboard'
-        : `/dashboard/${match.role}` */
+        : match.role === 'executive'
+        ? '/dashboard'
+        : match.role === 'admin'
+        ? '/dashboard'
+        : '/dashboard'
 
     localStorage.setItem('hb-demo-user', JSON.stringify(match))
     setUser(match)

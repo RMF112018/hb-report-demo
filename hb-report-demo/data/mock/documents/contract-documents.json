@@ -1,0 +1,378 @@
+[
+  {
+    "id": "doc-001",
+    "name": "Prime Contract - Wilshire Tower",
+    "type": "Prime Contract",
+    "status": "Under Review",
+    "uploadDate": "2024-01-15T08:30:00Z",
+    "reviewedDate": null,
+    "reviewer": "Sarah Chen",
+    "priority": "High",
+    "complianceScore": 85,
+    "riskLevel": "Medium",
+    "aiAnalysisStatus": "Complete",
+    "tags": ["Contract", "High Value", "Risk Assessment", "Commercial"],
+    "size": "2.3 MB",
+    "pages": 47,
+    "documentVersion": "v2.1",
+    "project": {
+      "id": "proj-001",
+      "name": "Wilshire Tower Construction",
+      "projectNumber": "WT-2024-001"
+    },
+    "keyRisks": [
+      {
+        "category": "Payment Terms",
+        "description": "Complex milestone payment schedule with ambiguous completion criteria",
+        "severity": "High",
+        "recommendation": "Define specific measurable completion criteria for each milestone",
+        "clauseReference": "Section 12.3"
+      },
+      {
+        "category": "Change Order Process",
+        "description": "Lengthy approval process may delay project timeline",
+        "severity": "Medium",
+        "recommendation": "Negotiate expedited approval for changes under $50K",
+        "clauseReference": "Section 8.2"
+      },
+      {
+        "category": "Liquidated Damages",
+        "description": "High penalty rate for schedule delays",
+        "severity": "High",
+        "recommendation": "Seek reduction or cap on liquidated damages",
+        "clauseReference": "Section 15.1"
+      }
+    ],
+    "opportunities": [
+      {
+        "category": "Early Completion Bonus",
+        "description": "Substantial bonus for early project completion",
+        "value": "$125,000",
+        "probability": "High",
+        "clauseReference": "Section 14.2"
+      },
+      {
+        "category": "Material Escalation",
+        "description": "Favorable escalation clause for material cost increases",
+        "value": "Cost-plus adjustment",
+        "probability": "Medium",
+        "clauseReference": "Section 11.4"
+      }
+    ],
+    "complianceChecks": {
+      "buildingCodes": {
+        "status": "Compliant",
+        "lastChecked": "2024-01-15T10:00:00Z",
+        "nextReview": "2024-04-15T10:00:00Z"
+      },
+      "safetyStandards": {
+        "status": "Compliant",
+        "lastChecked": "2024-01-15T10:00:00Z",
+        "nextReview": "2024-04-15T10:00:00Z"
+      },
+      "environmentalRegs": {
+        "status": "Requires Review",
+        "lastChecked": "2024-01-10T10:00:00Z",
+        "nextReview": "2024-02-15T10:00:00Z"
+      }
+    },
+    "aiInsights": {
+      "overallRisk": "Medium",
+      "costSavingsPotential": 45000,
+      "recommendedActions": [
+        "Renegotiate payment milestone criteria",
+        "Review liquidated damages clause",
+        "Leverage early completion incentive"
+      ],
+      "similarContracts": 3,
+      "industryBenchmark": {
+        "riskScore": "15% lower than industry average",
+        "complianceScore": "8% higher than industry average"
+      }
+    },
+    "attachments": [
+      "Architectural Plans - Rev C.pdf",
+      "Technical Specifications.pdf",
+      "Insurance Certificates.pdf"
+    ]
+  },
+  {
+    "id": "doc-002",
+    "name": "Electrical Subcontract Agreement",
+    "type": "Subcontract",
+    "status": "Approved",
+    "uploadDate": "2024-01-12T14:20:00Z",
+    "reviewedDate": "2024-01-14T16:45:00Z",
+    "reviewer": "Mike Johnson",
+    "priority": "Medium",
+    "complianceScore": 92,
+    "riskLevel": "Low",
+    "aiAnalysisStatus": "Complete",
+    "tags": ["Subcontract", "Electrical", "Approved", "Union"],
+    "size": "1.8 MB",
+    "pages": 32,
+    "documentVersion": "v1.3",
+    "project": {
+      "id": "proj-002",
+      "name": "Downtown Office Complex",
+      "projectNumber": "DOC-2024-005"
+    },
+    "keyRisks": [
+      {
+        "category": "Performance Bond",
+        "description": "Required performance bond may impact subcontractor cash flow",
+        "severity": "Low",
+        "recommendation": "Verify bond capacity before project start",
+        "clauseReference": "Section 6.1"
+      },
+      {
+        "category": "Insurance Requirements",
+        "description": "Higher than standard insurance coverage requirements",
+        "severity": "Low",
+        "recommendation": "Confirm coverage availability and cost impact",
+        "clauseReference": "Section 9.3"
+      }
+    ],
+    "opportunities": [
+      {
+        "category": "Volume Discount",
+        "description": "Additional discount for material orders over $100K",
+        "value": "3% discount",
+        "probability": "High",
+        "clauseReference": "Section 4.5"
+      },
+      {
+        "category": "Extended Warranty",
+        "description": "Extended warranty period for premium equipment",
+        "value": "2-year extended warranty",
+        "probability": "Medium",
+        "clauseReference": "Section 13.2"
+      }
+    ],
+    "complianceChecks": {
+      "buildingCodes": {
+        "status": "Compliant",
+        "lastChecked": "2024-01-12T15:00:00Z",
+        "nextReview": "2024-04-12T15:00:00Z"
+      },
+      "safetyStandards": {
+        "status": "Compliant",
+        "lastChecked": "2024-01-12T15:00:00Z",
+        "nextReview": "2024-04-12T15:00:00Z"
+      },
+      "laborLaws": {
+        "status": "Compliant",
+        "lastChecked": "2024-01-12T15:00:00Z",
+        "nextReview": "2024-04-12T15:00:00Z"
+      }
+    },
+    "aiInsights": {
+      "overallRisk": "Low",
+      "costSavingsPotential": 15000,
+      "recommendedActions": [
+        "Execute volume discount opportunities",
+        "Verify performance bond capacity",
+        "Finalize extended warranty terms"
+      ],
+      "similarContracts": 12,
+      "industryBenchmark": {
+        "riskScore": "25% lower than industry average",
+        "complianceScore": "12% higher than industry average"
+      }
+    },
+    "attachments": [
+      "Electrical Drawings - Sheet E1-E15.pdf",
+      "Equipment Specifications.pdf",
+      "Union Agreement References.pdf"
+    ]
+  },
+  {
+    "id": "doc-003",
+    "name": "Building Code Updates - 2024",
+    "type": "Regulatory",
+    "status": "Action Required",
+    "uploadDate": "2024-01-10T09:15:00Z",
+    "reviewedDate": null,
+    "reviewer": "Alex Rodriguez",
+    "priority": "High",
+    "complianceScore": 78,
+    "riskLevel": "High",
+    "aiAnalysisStatus": "In Progress",
+    "tags": ["Building Code", "Regulatory", "Compliance", "2024 Updates"],
+    "size": "5.2 MB",
+    "pages": 156,
+    "documentVersion": "2024.1",
+    "project": {
+      "id": "proj-multiple",
+      "name": "Multiple Projects",
+      "projectNumber": "ALL-2024"
+    },
+    "keyRisks": [
+      {
+        "category": "Code Compliance",
+        "description": "New energy efficiency standards affect multiple active projects",
+        "severity": "High",
+        "recommendation": "Immediate review of all projects for compliance gaps",
+        "clauseReference": "Chapter 11 - Energy Efficiency"
+      },
+      {
+        "category": "Retrofit Requirements",
+        "description": "Existing buildings may require upgrades to meet new standards",
+        "severity": "High",
+        "recommendation": "Assess retrofit costs and timeline impact",
+        "clauseReference": "Chapter 34 - Existing Buildings"
+      },
+      {
+        "category": "Timeline Impact",
+        "description": "Additional permitting time for new compliance requirements",
+        "severity": "Medium",
+        "recommendation": "Update project schedules for extended permit review",
+        "clauseReference": "Chapter 1 - Administration"
+      }
+    ],
+    "opportunities": [
+      {
+        "category": "Energy Efficiency Credits",
+        "description": "New tax credits for exceeding energy efficiency standards",
+        "value": "Up to $50,000 per project",
+        "probability": "High",
+        "clauseReference": "Chapter 11.5 - Incentives"
+      },
+      {
+        "category": "Tax Incentives",
+        "description": "Enhanced depreciation for green building materials",
+        "value": "15% additional depreciation",
+        "probability": "Medium",
+        "clauseReference": "Appendix C - Green Materials"
+      }
+    ],
+    "complianceChecks": {
+      "buildingCodes": {
+        "status": "Requires Update",
+        "lastChecked": "2024-01-10T10:00:00Z",
+        "nextReview": "2024-01-20T10:00:00Z"
+      },
+      "safetyStandards": {
+        "status": "Under Review",
+        "lastChecked": "2024-01-10T10:00:00Z",
+        "nextReview": "2024-01-25T10:00:00Z"
+      },
+      "environmentalRegs": {
+        "status": "Requires Update",
+        "lastChecked": "2024-01-10T10:00:00Z",
+        "nextReview": "2024-01-30T10:00:00Z"
+      }
+    },
+    "aiInsights": {
+      "overallRisk": "High",
+      "costSavingsPotential": 125000,
+      "recommendedActions": [
+        "Prioritize immediate compliance review",
+        "Calculate retrofit costs for existing projects",
+        "Explore energy efficiency credit opportunities",
+        "Update all project timelines for extended permitting"
+      ],
+      "similarContracts": 0,
+      "industryBenchmark": {
+        "riskScore": "New regulations - no benchmark available",
+        "complianceScore": "Industry-wide compliance pending"
+      },
+      "impactedProjects": [
+        "Wilshire Tower Construction",
+        "Downtown Office Complex",
+        "Riverside Medical Center",
+        "Metro Transit Hub",
+        "University Science Building"
+      ]
+    },
+    "attachments": [
+      "2024 Building Code - Full Document.pdf",
+      "Energy Efficiency Standards.pdf",
+      "Compliance Checklist.pdf",
+      "Implementation Timeline.pdf"
+    ]
+  },
+  {
+    "id": "doc-004",
+    "name": "HVAC Subcontract - Medical Center",
+    "type": "Subcontract",
+    "status": "Under Review",
+    "uploadDate": "2024-01-18T11:30:00Z",
+    "reviewedDate": null,
+    "reviewer": "Jennifer Lee",
+    "priority": "High",
+    "complianceScore": 88,
+    "riskLevel": "Medium",
+    "aiAnalysisStatus": "Complete",
+    "tags": ["Subcontract", "HVAC", "Medical", "Specialized"],
+    "size": "3.1 MB",
+    "pages": 68,
+    "documentVersion": "v1.0",
+    "project": {
+      "id": "proj-003",
+      "name": "Riverside Medical Center",
+      "projectNumber": "RMC-2024-002"
+    },
+    "keyRisks": [
+      {
+        "category": "Specialized Equipment",
+        "description": "Medical-grade HVAC systems have long lead times",
+        "severity": "High",
+        "recommendation": "Confirm equipment availability and delivery schedule",
+        "clauseReference": "Section 3.2"
+      },
+      {
+        "category": "Regulatory Compliance",
+        "description": "Healthcare facility requirements exceed standard building codes",
+        "severity": "Medium",
+        "recommendation": "Verify compliance with healthcare facility standards",
+        "clauseReference": "Section 7.1"
+      }
+    ],
+    "opportunities": [
+      {
+        "category": "Energy Rebates",
+        "description": "Utility rebates for high-efficiency medical HVAC systems",
+        "value": "$35,000",
+        "probability": "High",
+        "clauseReference": "Section 12.4"
+      }
+    ],
+    "complianceChecks": {
+      "buildingCodes": {
+        "status": "Compliant",
+        "lastChecked": "2024-01-18T12:00:00Z",
+        "nextReview": "2024-04-18T12:00:00Z"
+      },
+      "healthcareCodes": {
+        "status": "Under Review",
+        "lastChecked": "2024-01-18T12:00:00Z",
+        "nextReview": "2024-02-01T12:00:00Z"
+      },
+      "safetyStandards": {
+        "status": "Compliant",
+        "lastChecked": "2024-01-18T12:00:00Z",
+        "nextReview": "2024-04-18T12:00:00Z"
+      }
+    },
+    "aiInsights": {
+      "overallRisk": "Medium",
+      "costSavingsPotential": 35000,
+      "recommendedActions": [
+        "Secure equipment delivery commitments",
+        "Verify healthcare compliance requirements",
+        "Apply for energy efficiency rebates"
+      ],
+      "similarContracts": 2,
+      "industoryBenchmark": {
+        "riskScore": "10% higher than medical facility average",
+        "complianceScore": "5% higher than medical facility average"
+      }
+    },
+    "attachments": [
+      "HVAC Drawings - Medical Grade.pdf",
+      "Equipment Specifications - Medical.pdf",
+      "Healthcare Compliance Checklist.pdf"
+    ]
+  }
+] 

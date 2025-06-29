@@ -40,6 +40,11 @@ export const AppHeader = () => {
   const [showMobileSearch, setShowMobileSearch] = useState(false)
   const [selectedProject, setSelectedProject] = useState<string>("all")
   const [selectedDepartment, setSelectedDepartment] = useState<string>("operations")
+
+  // Debug selected department changes
+  useEffect(() => {
+    console.log("AppHeader: selectedDepartment changed to:", selectedDepartment)
+  }, [selectedDepartment])
   const [showDepartmentMenu, setShowDepartmentMenu] = useState(false)
   const [showProjectMenu, setShowProjectMenu] = useState(false)
   const [showToolMenu, setShowToolMenu] = useState(false)
@@ -50,6 +55,49 @@ export const AppHeader = () => {
     title: "",
     description: ""
   })
+
+  // Initialize department based on current URL
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const currentPath = window.location.pathname
+      console.log("AppHeader: Initializing department based on path:", currentPath)
+      if (currentPath.startsWith("/pre-con")) {
+        console.log("AppHeader: Setting department to pre-construction")
+        setSelectedDepartment("pre-construction")
+      } else if (currentPath.startsWith("/archive")) {
+        console.log("AppHeader: Setting department to archive")
+        setSelectedDepartment("archive")
+      } else {
+        console.log("AppHeader: Setting department to operations")
+        setSelectedDepartment("operations")
+      }
+    }
+  }, [])
+
+  // Listen for route changes to update department
+  useEffect(() => {
+    const handleRouteChange = () => {
+      const currentPath = window.location.pathname
+      console.log("AppHeader: Route changed, current path:", currentPath)
+      if (currentPath.startsWith("/pre-con")) {
+        console.log("AppHeader: Updating department to pre-construction")
+        setSelectedDepartment("pre-construction")
+      } else if (currentPath.startsWith("/archive")) {
+        console.log("AppHeader: Updating department to archive")
+        setSelectedDepartment("archive")
+      } else {
+        console.log("AppHeader: Updating department to operations")
+        setSelectedDepartment("operations")
+      }
+    }
+
+    // Listen for popstate events (back/forward buttons)
+    window.addEventListener('popstate', handleRouteChange)
+    
+    return () => {
+      window.removeEventListener('popstate', handleRouteChange)
+    }
+  }, [])
 
   // Refs for click outside detection
   const headerRef = useRef<HTMLElement>(null)
@@ -155,7 +203,7 @@ export const AppHeader = () => {
       },
       {
         name: "Responsibility Matrix",
-        href: "/dashboard/responsibility-matrix",
+        href: "/responsibility-matrix",
         category: "Core Tools",
         description: "Role assignments and accountability",
       },
@@ -205,34 +253,43 @@ export const AppHeader = () => {
       // Removed: Quality Control
 
       // Compliance
-      // Removed: Document Compliance
-      // Removed: Prime Contracts
-      // Removed: Commitments
+      {
+        name: "Contract Documents",
+        href: "/dashboard/contract-documents",
+        category: "Compliance",
+        description: "Contract document management and compliance tracking",
+      },
+      {
+        name: "Trade Partners Database",
+        href: "/dashboard/trade-partners",
+        category: "Compliance",
+        description: "Comprehensive subcontractor and vendor management system",
+      },
 
       // Pre-Construction (filtered by department)
       {
-        name: "Business Development",
-        href: "/tools/coming-soon",
-        category: "Pre-Construction",
-        description: "Lead generation and pursuit",
-      },
-      {
         name: "Estimating",
-        href: "/pre-con/estimating",
+        href: "/estimating",
         category: "Pre-Construction",
-        description: "Cost estimation tools",
+        description: "Cost estimation and analysis tools",
       },
       {
-        name: "VDC",
-        href: "/tools/coming-soon",
+        name: "Business Development",
+        href: "/pre-con#business-dev",
         category: "Pre-Construction",
-        description: "Virtual design and construction",
+        description: "Lead generation and pursuit management",
       },
       {
-        name: "Pre-Con Dashboard",
+        name: "Preconstruction",
         href: "/pre-con",
         category: "Pre-Construction",
-        description: "Pre-construction overview",
+        description: "Pre-construction command center and pipeline overview",
+      },
+      {
+        name: "Innovation & Digital Services",
+        href: "/tools/coming-soon",
+        category: "Pre-Construction",
+        description: "BIM, VDC, and digital construction technologies",
       },
     ],
     [getDashboardPath], // Add getDashboardPath to dependencies
@@ -283,7 +340,9 @@ export const AppHeader = () => {
   // Enhanced filtered tools with department-based and role-based filtering
   const filteredTools = useMemo(() => {
     const userRole = user?.role // Get current user's role
-    return tools.filter((tool) => {
+    console.log("Filtering tools for department:", selectedDepartment, "user role:", userRole)
+    
+    const filtered = tools.filter((tool) => {
       // Filter by department (if applicable)
       const isDepartmentMatch =
         selectedDepartment === "pre-construction"
@@ -293,8 +352,16 @@ export const AppHeader = () => {
       // Filter by role visibility
       const isRoleVisible = !tool.visibleRoles || (userRole && tool.visibleRoles.includes(userRole))
 
-      return isDepartmentMatch && isRoleVisible
+      const shouldInclude = isDepartmentMatch && isRoleVisible
+      if (selectedDepartment === "pre-construction") {
+        console.log("Tool:", tool.name, "Category:", tool.category, "Matches dept:", isDepartmentMatch, "Role visible:", isRoleVisible, "Include:", shouldInclude)
+      }
+
+      return shouldInclude
     })
+    
+    console.log("Filtered tools count:", filtered.length, "for department:", selectedDepartment)
+    return filtered
   }, [selectedDepartment, tools, user]) // Add user to dependencies
 
   // Utility functions
@@ -947,7 +1014,7 @@ export const AppHeader = () => {
                             </div>
                             {project.id !== "all" && (
                               <div className="space-y-1 text-xs text-gray-500 dark:text-gray-400">
-                                <div>Project #{project.project_number || project.id}</div>
+                                <div>Project #{(project as any).project_number || project.id}</div>
                                 <div className="flex justify-between">
                                   <span>Budget: {project.budget}</span>
                                   <span>{project.completion}% Complete</span>
@@ -974,8 +1041,15 @@ export const AppHeader = () => {
           <div className="mx-auto max-w-7xl px-8 py-8">
             <div className="mb-4 flex items-center justify-between">
               <div>
-                <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">Construction Tools</h2>
-                <p className="mt-1 text-xs text-gray-600 dark:text-gray-400">Access your project management suite</p>
+                <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+                  {selectedDepartment === "pre-construction" ? "Pre-Construction Tools" : 
+                   selectedDepartment === "archive" ? "Archive Tools" : "Construction Tools"}
+                </h2>
+                <p className="mt-1 text-xs text-gray-600 dark:text-gray-400">
+                  {selectedDepartment === "pre-construction" ? "Pre-construction pipeline and business development suite" :
+                   selectedDepartment === "archive" ? "Access completed project tools and documentation" :
+                   "Access your project management suite"}
+                </p>
               </div>
               {selectedDepartment === "pre-construction" && (
                 <Badge variant="secondary" className="text-xs text-blue-800 dark:text-blue-200 bg-blue-100 dark:bg-blue-950/30 px-2 py-1">
