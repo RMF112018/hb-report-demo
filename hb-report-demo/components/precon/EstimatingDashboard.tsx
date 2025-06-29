@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Progress } from "@/components/ui/progress"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import EstimatingTracker from "@/components/estimating/EstimatingTracker"
 import { 
   Calculator, 
   TrendingUp, 
@@ -61,6 +62,8 @@ interface EstimatingDashboardProps {
   preconProjects: any[]
   pipelineData: any[]
   userRole: string
+  showNewOpportunityForm?: boolean
+  onNewOpportunityFormChange?: (show: boolean) => void
 }
 
 const COLORS = {
@@ -72,7 +75,7 @@ const COLORS = {
   cyan: "#06b6d4"
 }
 
-export function EstimatingDashboard({ preconProjects, pipelineData, userRole }: EstimatingDashboardProps) {
+export function EstimatingDashboard({ preconProjects, pipelineData, userRole, showNewOpportunityForm, onNewOpportunityFormChange }: EstimatingDashboardProps) {
   const [selectedTimeframe, setSelectedTimeframe] = useState("6months")
   const [selectedView, setSelectedView] = useState("workload")
 
@@ -205,8 +208,14 @@ export function EstimatingDashboard({ preconProjects, pipelineData, userRole }: 
   }
 
   return (
-    <div className="space-y-6">
-      {/* Enhanced Performance Overview */}
+    <Tabs defaultValue={showNewOpportunityForm ? "tracker" : "dashboard"} className="space-y-6">
+      <TabsList className="grid w-full grid-cols-2">
+        <TabsTrigger value="dashboard">Dashboard</TabsTrigger>
+        <TabsTrigger value="tracker">Project Tracker</TabsTrigger>
+      </TabsList>
+
+      <TabsContent value="dashboard" className="space-y-6">
+        {/* Enhanced Performance Overview */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950 dark:to-blue-900 border-blue-200 dark:border-blue-800">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -642,6 +651,14 @@ export function EstimatingDashboard({ preconProjects, pipelineData, userRole }: 
           </div>
         </CardContent>
       </Card>
-    </div>
+      </TabsContent>
+
+      <TabsContent value="tracker" className="space-y-6">
+        <EstimatingTracker 
+          showNewOpportunityForm={showNewOpportunityForm}
+          onNewOpportunityFormChange={onNewOpportunityFormChange}
+        />
+      </TabsContent>
+    </Tabs>
   )
 } 
