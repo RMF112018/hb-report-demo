@@ -15,4 +15,14 @@ node_modules/.cache
 .idea
 
 # Ignore storybook build
-storybook-static 
+storybook-static
+
+**/node_modules
+.git
+.env
+.env.*
+!.env.example
+.vercel
+.next
+**/package.json
+!package.json 
