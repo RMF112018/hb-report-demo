@@ -116,7 +116,7 @@ export default function LoginPage() {
       label: "Estimator",
       email: "john.doe@hedrickbrothers.com",
       icon: Zap,
-      redirectTo: "/pre-con", // or your precon landing
+      redirectTo: "/pre-con",
     },
     {
       key: "admin",

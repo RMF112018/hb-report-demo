@@ -269,7 +269,7 @@ export const AppHeader = () => {
       // Pre-Construction (filtered by department)
       {
         name: "Estimating",
-        href: "/pre-con#estimating",
+        href: "/estimating",
         category: "Pre-Construction",
         description: "Cost estimation and analysis tools",
       },
