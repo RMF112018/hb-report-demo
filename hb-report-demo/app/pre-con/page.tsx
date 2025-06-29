@@ -65,6 +65,7 @@ export default function PreConstructionPage() {
   const [activeTab, setActiveTab] = useState("overview")
   const [selectedTimeframe, setSelectedTimeframe] = useState("12months")
   const [isLoading, setIsLoading] = useState(false)
+  const [showNewOpportunityForm, setShowNewOpportunityForm] = useState(false)
 
   // Handle URL hash navigation
   useEffect(() => {
@@ -217,6 +218,20 @@ export default function PreConstructionPage() {
     }, 1500)
   }
 
+  // Handle New Opportunity button click
+  const handleNewOpportunity = () => {
+    if (activeTab === 'estimating') {
+      // If we're on the estimating tab, trigger the form directly
+      setShowNewOpportunityForm(true)
+    } else {
+      // Switch to estimating tab and then show form
+      setActiveTab('estimating')
+      setTimeout(() => {
+        setShowNewOpportunityForm(true)
+      }, 100)
+    }
+  }
+
   return (
     <>
       <AppHeader />
@@ -225,9 +240,9 @@ export default function PreConstructionPage() {
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>
-              <BreadcrumbLink href="/dashboard" className="flex items-center gap-1">
+              <BreadcrumbLink href="/" className="flex items-center gap-1">
                 <Home className="h-3 w-3" />
-                Operations
+                Hedrick Brothers
               </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
@@ -278,7 +293,10 @@ export default function PreConstructionPage() {
                 <Download className="h-4 w-4 mr-2" />
                 Export
               </Button>
-              <Button className="bg-gradient-to-r from-[#FF6B35] to-[#E55A2B] hover:from-[#E55A2B] hover:to-[#D04A1F] text-white">
+              <Button 
+                className="bg-gradient-to-r from-[#FF6B35] to-[#E55A2B] hover:from-[#E55A2B] hover:to-[#D04A1F] text-white"
+                onClick={handleNewOpportunity}
+              >
                 <Plus className="h-4 w-4 mr-2" />
                 New Opportunity
               </Button>
@@ -433,6 +451,8 @@ export default function PreConstructionPage() {
               preconProjects={preconProjects}
               pipelineData={pipelineData}
               userRole={user?.role || "viewer"}
+              showNewOpportunityForm={showNewOpportunityForm}
+              onNewOpportunityFormChange={setShowNewOpportunityForm}
             />
           </TabsContent>
 

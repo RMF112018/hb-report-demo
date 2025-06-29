@@ -34,8 +34,7 @@ import {
   Percent,
   Star,
   ArrowUp,
-  ArrowDown,
-  TrendingRight
+  ArrowDown
 } from "lucide-react"
 import {
   ResponsiveContainer,
