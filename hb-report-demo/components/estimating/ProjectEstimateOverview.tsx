@@ -93,18 +93,105 @@ interface SummaryStats {
 }
 
 interface ProjectEstimateOverviewProps {
-  estimatingData: EstimateData[]
-  projectsData: ProjectData[]
-  summaryStats: SummaryStats
-  userRole: string
+  estimatingData?: EstimateData[]
+  projectsData?: ProjectData[]
+  summaryStats?: SummaryStats
+  userRole?: string
   viewMode?: 'overview' | 'projects'
 }
 
+// Default mock data
+const defaultEstimatingData: EstimateData[] = [
+  {
+    id: 'est-001',
+    projectId: '2525841',
+    projectName: 'Miami Commercial Tower',
+    client: 'Meridian Development',
+    estimator: 'John Smith',
+    status: 'in-progress',
+    phase: 'Bidding',
+    dateCreated: '2024-01-15',
+    lastModified: '2024-01-22',
+    dueDate: '2024-02-15',
+    priority: 'high',
+    totalEstimatedValue: 250000000,
+    actualCost: null,
+    confidence: 85,
+    accuracy: null,
+    grossSF: 500000,
+    costPerSF: 500,
+    trades: [
+      { name: 'Structural', estimatedCost: 45000000, status: 'complete' },
+      { name: 'Mechanical', estimatedCost: 35000000, status: 'in-progress' },
+      { name: 'Electrical', estimatedCost: 28000000, status: 'pending' },
+      { name: 'Plumbing', estimatedCost: 22000000, status: 'pending' },
+      { name: 'Fire Protection', estimatedCost: 15000000, status: 'pending' }
+    ],
+    milestones: [
+      { name: 'Initial Estimate', status: 'complete', completedDate: '2024-01-20' },
+      { name: 'Trade Pricing', status: 'in-progress', dueDate: '2024-02-10' },
+      { name: 'Final Review', status: 'pending', dueDate: '2024-02-15' }
+    ],
+    riskFactors: ['Weather delays', 'Material price volatility', 'Permit timeline uncertainty'],
+    contingency: 12500000,
+    overhead: 15000000,
+    profit: 18750000
+  },
+  {
+    id: 'est-002',
+    projectId: '2525840',
+    projectName: 'Palm Beach Luxury Estate',
+    client: 'Private Owner',
+    estimator: 'Sarah Johnson',
+    status: 'review',
+    phase: 'Pre-Construction',
+    dateCreated: '2024-01-10',
+    lastModified: '2024-01-25',
+    dueDate: '2024-02-05',
+    priority: 'medium',
+    totalEstimatedValue: 75000000,
+    actualCost: null,
+    confidence: 92,
+    accuracy: null,
+    grossSF: 25000,
+    costPerSF: 3000,
+    trades: [
+      { name: 'General Construction', estimatedCost: 35000000, status: 'complete' },
+      { name: 'Finishes', estimatedCost: 25000000, status: 'complete' },
+      { name: 'Landscaping', estimatedCost: 8000000, status: 'in-progress' }
+    ],
+    milestones: [
+      { name: 'Conceptual Estimate', status: 'complete', completedDate: '2024-01-15' },
+      { name: 'Detailed Takeoff', status: 'complete', completedDate: '2024-01-22' },
+      { name: 'Final Approval', status: 'in-progress', dueDate: '2024-02-05' }
+    ],
+    riskFactors: ['High-end finishes availability', 'Site access challenges'],
+    contingency: 3750000,
+    overhead: 4500000,
+    profit: 5625000
+  }
+]
+
+const defaultSummaryStats: SummaryStats = {
+  totalEstimates: 2,
+  activeEstimates: 2,
+  completedEstimates: 0,
+  totalEstimateValue: 325000000,
+  averageProjectValue: 162500000,
+  winRate: 85,
+  averageAccuracy: 89,
+  avgTimeToComplete: 21,
+  projectsInPipeline: 8,
+  estimatorWorkload: 75,
+  pendingReviews: 1,
+  urgentDeadlines: 1
+}
+
 export function ProjectEstimateOverview({
-  estimatingData,
-  projectsData,
-  summaryStats,
-  userRole,
+  estimatingData = defaultEstimatingData,
+  projectsData = [],
+  summaryStats = defaultSummaryStats,
+  userRole = 'estimator',
   viewMode = 'overview'
 }: ProjectEstimateOverviewProps) {
   const [searchTerm, setSearchTerm] = useState('')

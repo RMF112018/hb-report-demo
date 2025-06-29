@@ -203,7 +203,7 @@ export const AppHeader = () => {
       },
       {
         name: "Responsibility Matrix",
-        href: "/dashboard/responsibility-matrix",
+        href: "/responsibility-matrix",
         category: "Core Tools",
         description: "Role assignments and accountability",
       },

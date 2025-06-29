@@ -63,6 +63,7 @@ interface EstimatingDashboardProps {
   userRole: string
   showNewOpportunityForm?: boolean
   onNewOpportunityFormChange?: (show: boolean) => void
+  onProjectSelect?: (projectId: string) => void
 }
 
 const COLORS = {
@@ -74,7 +75,7 @@ const COLORS = {
   cyan: "#06b6d4"
 }
 
-export function EstimatingDashboard({ preconProjects, pipelineData, userRole, showNewOpportunityForm, onNewOpportunityFormChange }: EstimatingDashboardProps) {
+export function EstimatingDashboard({ preconProjects, pipelineData, userRole, showNewOpportunityForm, onNewOpportunityFormChange, onProjectSelect }: EstimatingDashboardProps) {
   const [selectedTimeframe, setSelectedTimeframe] = useState("6months")
   const [selectedView, setSelectedView] = useState("workload")
 
@@ -608,10 +609,14 @@ export function EstimatingDashboard({ preconProjects, pipelineData, userRole, sh
         <CardContent>
           <div className="space-y-3">
             {activeProjects.map((project, index) => (
-              <div key={project.project_id} className="flex items-center justify-between p-4 bg-muted/30 rounded-lg hover:bg-muted/50 transition-colors">
+              <div 
+                key={project.project_id} 
+                className="flex items-center justify-between p-4 bg-muted/30 rounded-lg hover:bg-muted/50 transition-colors cursor-pointer group"
+                onClick={() => onProjectSelect && onProjectSelect(project.project_id)}
+              >
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
-                    <div className="font-medium">{project.name}</div>
+                    <div className="font-medium group-hover:text-blue-600 transition-colors">{project.name}</div>
                     <Badge className={getStatusColor(project.estimateStatus)}>
                       {project.estimateStatus}
                     </Badge>
@@ -645,6 +650,9 @@ export function EstimatingDashboard({ preconProjects, pipelineData, userRole, sh
                     <Progress value={project.estimateProgress} className="h-1" />
                   </div>
                 </div>
+                <div className="flex items-center ml-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <Eye className="h-4 w-4 text-blue-600" />
+                </div>
               </div>
             ))}
           </div>
@@ -656,6 +664,7 @@ export function EstimatingDashboard({ preconProjects, pipelineData, userRole, sh
         <EstimatingTracker 
           showNewOpportunityForm={showNewOpportunityForm}
           onNewOpportunityFormChange={onNewOpportunityFormChange}
+          onProjectSelect={onProjectSelect}
         />
       </TabsContent>
     </Tabs>

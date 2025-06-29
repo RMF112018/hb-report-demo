@@ -10,6 +10,15 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+  
+  /* Z-Index Hierarchy - Standardized layering system */
+  .z-app-header { z-index: 100; }        /* AppHeader and navigation */
+  .z-mega-menu { z-index: 105; }         /* Mega menu dropdowns */
+  .z-modal-overlay { z-index: 110; }     /* Modal overlays */
+  .z-modal-content { z-index: 120; }     /* Modal content */
+  .z-fullscreen { z-index: 130; }       /* Fullscreen components */
+  .z-tour { z-index: 140; }             /* Tour tooltips */
+  .z-toast { z-index: 150; }            /* Toast notifications */
 }
 
 @layer base {

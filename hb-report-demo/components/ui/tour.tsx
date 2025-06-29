@@ -133,7 +133,7 @@ const TourOverlay: React.FC<TourOverlayProps> = ({ target, placement, onClose })
       width: '100vw',
       height: '100vh',
       backgroundColor: overlayColor,
-      zIndex: skipOverlay ? 9990 : 9998, // Lower z-index for dropdown interaction
+      zIndex: skipOverlay ? 9990 : 130, // Lower z-index for dropdown interaction
       pointerEvents: skipOverlay ? 'none' : 'auto', // Allow clicks through for dropdown
     }
 
@@ -173,7 +173,7 @@ const TourOverlay: React.FC<TourOverlayProps> = ({ target, placement, onClose })
 
     let tooltipStyle: React.CSSProperties = {
       position: 'fixed',
-      zIndex: skipOverlay ? 10000 : 9999, // Higher z-index when dropdown is involved
+      zIndex: skipOverlay ? 10000 : 140, // Higher z-index when dropdown is involved
       maxWidth: `${tooltipWidth}px`,
       minWidth: Math.min(300, viewportWidth - 40) + 'px',
       height: `${tooltipHeight}px`, // Fixed height to ensure buttons are visible

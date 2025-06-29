@@ -8,11 +8,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { 
-  Building2, 
-  TrendingUp, 
-  DollarSign, 
-  Users, 
+import {
+  Building2,
+  TrendingUp,
+  DollarSign,
+  Users,
   Calendar,
   Target,
   BarChart3,
@@ -36,7 +36,8 @@ import {
   Download,
   Activity,
   Eye,
-  Percent
+  Percent,
+  ArrowLeft
 } from "lucide-react"
 import {
   Breadcrumb,
@@ -58,6 +59,7 @@ import { EstimatingDashboard } from "@/components/precon/EstimatingDashboard"
 import { BusinessDevelopment } from "@/components/precon/BusinessDevelopment"
 import { PreconAnalytics } from "@/components/precon/PreconAnalytics"
 import { ProjectInsights } from "@/components/precon/ProjectInsights"
+import { ProjectSpecificDashboard } from "@/components/estimating/ProjectSpecificDashboard"
 
 export default function PreConstructionPage() {
   const { user } = useAuth()
@@ -66,11 +68,12 @@ export default function PreConstructionPage() {
   const [selectedTimeframe, setSelectedTimeframe] = useState("12months")
   const [isLoading, setIsLoading] = useState(false)
   const [showNewOpportunityForm, setShowNewOpportunityForm] = useState(false)
+  const [selectedProjectId, setSelectedProjectId] = useState<string | null>(null)
 
   // Handle URL hash navigation
   useEffect(() => {
     const hash = window.location.hash.replace('#', '')
-    if (hash && ['overview', 'estimating', 'business-dev', 'analytics', 'projects'].includes(hash)) {
+    if (hash && ['overview', 'business-dev', 'analytics', 'projects'].includes(hash)) {
       setActiveTab(hash)
     }
   }, [])
@@ -230,6 +233,18 @@ export default function PreConstructionPage() {
         setShowNewOpportunityForm(true)
       }, 100)
     }
+  }
+
+  // Handle project selection
+  const handleProjectSelect = (projectId: string) => {
+    setSelectedProjectId(projectId)
+    setActiveTab('project-dashboard')
+  }
+
+  // Handle back to estimating
+  const handleBackToEstimating = () => {
+    setSelectedProjectId(null)
+    setActiveTab('estimating')
   }
 
   return (
@@ -397,45 +412,103 @@ export default function PreConstructionPage() {
           </Card>
         </div>
 
+        {/* Quick Actions */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <Card className="group hover:shadow-lg transition-all duration-200 cursor-pointer border-2 border-transparent hover:border-primary/20"
+                onClick={() => window.location.href = '/projects'}>
+            <CardContent className="p-6 text-center">
+              <div className="flex flex-col items-center space-y-3">
+                <div className="p-3 rounded-full bg-primary/10 group-hover:bg-primary group-hover:text-white transition-all">
+                  <Calculator className="h-6 w-6" />
+                </div>
+                <div>
+                  <h3 className="font-semibold group-hover:text-primary transition-colors">Project Estimates</h3>
+                  <p className="text-sm text-muted-foreground">View and manage project estimates</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="group hover:shadow-lg transition-all duration-200 cursor-pointer border-2 border-transparent hover:border-primary/20"
+                onClick={() => setActiveTab('business-dev')}>
+            <CardContent className="p-6 text-center">
+              <div className="flex flex-col items-center space-y-3">
+                <div className="p-3 rounded-full bg-primary/10 group-hover:bg-primary group-hover:text-white transition-all">
+                  <Briefcase className="h-6 w-6" />
+                </div>
+                <div>
+                  <h3 className="font-semibold group-hover:text-primary transition-colors">Business Development</h3>
+                  <p className="text-sm text-muted-foreground">Pipeline and opportunities</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="group hover:shadow-lg transition-all duration-200 cursor-pointer border-2 border-transparent hover:border-primary/20"
+                onClick={() => setActiveTab('analytics')}>
+            <CardContent className="p-6 text-center">
+              <div className="flex flex-col items-center space-y-3">
+                <div className="p-3 rounded-full bg-primary/10 group-hover:bg-primary group-hover:text-white transition-all">
+                  <BarChart3 className="h-6 w-6" />
+                </div>
+                <div>
+                  <h3 className="font-semibold group-hover:text-primary transition-colors">Analytics</h3>
+                  <p className="text-sm text-muted-foreground">Performance insights</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="group hover:shadow-lg transition-all duration-200 cursor-pointer border-2 border-transparent hover:border-primary/20"
+                onClick={() => setActiveTab('projects')}>
+            <CardContent className="p-6 text-center">
+              <div className="flex flex-col items-center space-y-3">
+                <div className="p-3 rounded-full bg-primary/10 group-hover:bg-primary group-hover:text-white transition-all">
+                  <Building2 className="h-6 w-6" />
+                </div>
+                <div>
+                  <h3 className="font-semibold group-hover:text-primary transition-colors">Project Insights</h3>
+                  <p className="text-sm text-muted-foreground">Project portfolio overview</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
         {/* Main Content Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-5 h-12 bg-muted border-border">
-            <TabsTrigger
-              value="overview"
-              className="flex items-center gap-2 text-sm font-medium px-4 py-2 data-[state=active]:bg-background data-[state=active]:text-foreground"
-            >
-              <PieChart className="h-4 w-4" />
-              <span className="hidden sm:inline">Pipeline Overview</span>
-            </TabsTrigger>
-            <TabsTrigger
-              value="estimating"
-              className="flex items-center gap-2 text-sm font-medium px-4 py-2 data-[state=active]:bg-background data-[state=active]:text-foreground"
-            >
-              <Calculator className="h-4 w-4" />
-              <span className="hidden sm:inline">Estimating</span>
-            </TabsTrigger>
-            <TabsTrigger
-              value="business-dev"
-              className="flex items-center gap-2 text-sm font-medium px-4 py-2 data-[state=active]:bg-background data-[state=active]:text-foreground"
-            >
-              <Briefcase className="h-4 w-4" />
-              <span className="hidden sm:inline">Business Development</span>
-            </TabsTrigger>
-            <TabsTrigger
-              value="analytics"
-              className="flex items-center gap-2 text-sm font-medium px-4 py-2 data-[state=active]:bg-background data-[state=active]:text-foreground"
-            >
-              <BarChart3 className="h-4 w-4" />
-              <span className="hidden sm:inline">Analytics</span>
-            </TabsTrigger>
-            <TabsTrigger
-              value="projects"
-              className="flex items-center gap-2 text-sm font-medium px-4 py-2 data-[state=active]:bg-background data-[state=active]:text-foreground"
-            >
-              <Building2 className="h-4 w-4" />
-              <span className="hidden sm:inline">Projects</span>
-            </TabsTrigger>
-          </TabsList>
+          {activeTab !== 'project-dashboard' && (
+            <TabsList className="grid w-full grid-cols-4 h-12 bg-muted border-border">
+              <TabsTrigger
+                value="overview"
+                className="flex items-center gap-2 text-sm font-medium px-4 py-2 data-[state=active]:bg-background data-[state=active]:text-foreground"
+              >
+                <PieChart className="h-4 w-4" />
+                <span className="hidden sm:inline">Pipeline Overview</span>
+              </TabsTrigger>
+              <TabsTrigger
+                value="business-dev"
+                className="flex items-center gap-2 text-sm font-medium px-4 py-2 data-[state=active]:bg-background data-[state=active]:text-foreground"
+              >
+                <Briefcase className="h-4 w-4" />
+                <span className="hidden sm:inline">Business Development</span>
+              </TabsTrigger>
+              <TabsTrigger
+                value="analytics"
+                className="flex items-center gap-2 text-sm font-medium px-4 py-2 data-[state=active]:bg-background data-[state=active]:text-foreground"
+              >
+                <BarChart3 className="h-4 w-4" />
+                <span className="hidden sm:inline">Analytics</span>
+              </TabsTrigger>
+              <TabsTrigger
+                value="projects"
+                className="flex items-center gap-2 text-sm font-medium px-4 py-2 data-[state=active]:bg-background data-[state=active]:text-foreground"
+              >
+                <Building2 className="h-4 w-4" />
+                <span className="hidden sm:inline">Projects</span>
+              </TabsTrigger>
+            </TabsList>
+          )}
 
           {/* Tab Content */}
           <TabsContent value="overview" className="space-y-6">
@@ -446,14 +519,33 @@ export default function PreConstructionPage() {
             />
           </TabsContent>
 
-          <TabsContent value="estimating" className="space-y-6">
-            <EstimatingDashboard 
-              preconProjects={preconProjects}
-              pipelineData={pipelineData}
-              userRole={user?.role || "viewer"}
-              showNewOpportunityForm={showNewOpportunityForm}
-              onNewOpportunityFormChange={setShowNewOpportunityForm}
-            />
+
+
+          <TabsContent value="project-dashboard" className="space-y-6">
+            {selectedProjectId && (
+              <div className="space-y-4">
+                <div className="flex items-center gap-3">
+                  <Button 
+                    variant="outline" 
+                    onClick={handleBackToEstimating}
+                    className="flex items-center gap-2"
+                  >
+                    <ArrowLeft className="h-4 w-4" />
+                    Back to Estimating
+                  </Button>
+                  <div className="h-4 w-px bg-border" />
+                  <h2 className="text-lg font-semibold">Project Dashboard</h2>
+                </div>
+                <ProjectSpecificDashboard 
+                  projectId={selectedProjectId}
+                  onNavigateToTracker={handleBackToEstimating}
+                  onNavigateToResponsibility={() => {
+                    // In a full implementation, this would navigate to responsibility matrix
+                    console.log('Navigate to responsibility matrix for project:', selectedProjectId)
+                  }}
+                />
+              </div>
+            )}
           </TabsContent>
 
           <TabsContent value="business-dev" className="space-y-6">
@@ -478,6 +570,7 @@ export default function PreConstructionPage() {
               projects={preconProjects}
               pipelineData={pipelineData}
               userRole={user?.role || "viewer"}
+              onProjectSelect={handleProjectSelect}
             />
           </TabsContent>
         </Tabs>

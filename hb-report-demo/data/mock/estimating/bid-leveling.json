@@ -1,0 +1,497 @@
+{
+  "notes": "Bid leveling for Palm Beach Luxury Estate project. All bids received and under review for award recommendation. Focus on balancing cost, quality, and schedule reliability.",
+  "comparisons": [],
+  "tradeBids": [
+    {
+      "tradeId": "concrete",
+      "tradeName": "Concrete",
+      "csiDivision": "03 30 00",
+      "riskLevel": "low",
+      "variance": 12.5,
+      "averageBid": 490000,
+      "lowestBid": 465000,
+      "highestBid": 520000,
+      "bidDueDate": "2025-01-20",
+      "scopeDescription": "Cast-in-place concrete including foundations, slabs, walls, and architectural features",
+      "biddingStatus": "awarded",
+      "aiRecommendation": "ABC Concrete offers the best value with proven track record and comprehensive scope",
+      "selectedBid": "b1",
+      "createdAt": "2025-01-10T09:00:00Z",
+      "updatedAt": "2025-01-20T15:30:00Z",
+      "bids": [
+        {
+          "id": "b1",
+          "vendor": "ABC Concrete",
+          "amount": 485000,
+          "status": "selected",
+          "confidence": 95,
+          "notes": "Strong reputation, on-time delivery record, competitive pricing",
+          "inclusions": ["Materials", "Labor", "Equipment", "Cleanup", "Finishing"],
+          "exclusions": ["Permits", "Site preparation", "Reinforcement steel"],
+          "submittedAt": "2025-01-15T14:30:00Z",
+          "reviewedAt": "2025-01-18T10:15:00Z",
+          "reviewedBy": "John Smith",
+          "schedule": {
+            "startDate": "2025-03-01",
+            "duration": 45,
+            "milestones": ["Foundation pour", "Slab completion", "Wall completion"]
+          },
+          "qualifications": {
+            "bondCapacity": 2000000,
+            "insurance": true,
+            "references": ["Downtown Tower", "Marina Plaza", "Executive Center"],
+            "experience": 15
+          }
+        },
+        {
+          "id": "b2",
+          "vendor": "XYZ Construction",
+          "amount": 520000,
+          "status": "reviewed",
+          "confidence": 88,
+          "notes": "Higher cost but includes additional finishing work",
+          "inclusions": ["Materials", "Labor", "Basic cleanup", "Architectural features"],
+          "exclusions": ["Permits", "Site preparation", "Equipment rental", "Specialized forms"],
+          "submittedAt": "2025-01-16T11:45:00Z",
+          "reviewedAt": "2025-01-19T09:30:00Z",
+          "reviewedBy": "Sarah Johnson",
+          "schedule": {
+            "startDate": "2025-03-15",
+            "duration": 50,
+            "milestones": ["Foundation", "Structural", "Finish work"]
+          },
+          "qualifications": {
+            "bondCapacity": 1500000,
+            "insurance": true,
+            "references": ["City Hall", "Shopping Center"],
+            "experience": 12
+          }
+        },
+        {
+          "id": "b3",
+          "vendor": "Premier Concrete",
+          "amount": 465000,
+          "status": "reviewed",
+          "confidence": 78,
+          "notes": "Lowest bid but limited availability and scope exclusions",
+          "inclusions": ["Materials", "Labor"],
+          "exclusions": ["Permits", "Site preparation", "Equipment", "Cleanup", "Architectural features"],
+          "submittedAt": "2025-01-17T16:20:00Z",
+          "reviewedAt": "2025-01-19T14:00:00Z",
+          "reviewedBy": "Mike Davis",
+          "schedule": {
+            "startDate": "2025-04-01",
+            "duration": 40,
+            "milestones": ["Basic concrete work only"]
+          },
+          "qualifications": {
+            "bondCapacity": 1000000,
+            "insurance": true,
+            "references": ["Small Office Building"],
+            "experience": 8
+          }
+        }
+      ]
+    },
+    {
+      "tradeId": "plumbing",
+      "tradeName": "Plumbing",
+      "csiDivision": "22 00 00",
+      "riskLevel": "medium",
+      "variance": 28.3,
+      "averageBid": 302500,
+      "lowestBid": 285000,
+      "highestBid": 320000,
+      "bidDueDate": "2025-01-25",
+      "scopeDescription": "Complete plumbing system including rough-in, fixtures, and testing",
+      "biddingStatus": "awarded",
+      "aiRecommendation": "Pro Plumbing recommended despite higher cost due to schedule reliability and comprehensive warranty",
+      "selectedBid": "p1",
+      "createdAt": "2025-01-12T10:00:00Z",
+      "updatedAt": "2025-01-22T16:45:00Z",
+      "bids": [
+        {
+          "id": "p1",
+          "vendor": "Pro Plumbing",
+          "amount": 320000,
+          "status": "selected",
+          "confidence": 92,
+          "notes": "Premium service provider with excellent warranty coverage",
+          "inclusions": ["Materials", "Labor", "Permits", "Testing", "Warranty", "Premium fixtures"],
+          "exclusions": ["Fixtures above standard grade", "Specialty finishes"],
+          "submittedAt": "2025-01-14T13:15:00Z",
+          "reviewedAt": "2025-01-20T11:30:00Z",
+          "reviewedBy": "Lisa Chen",
+          "schedule": {
+            "startDate": "2025-03-15",
+            "duration": 60,
+            "milestones": ["Rough-in", "Pressure testing", "Fixture installation", "Final testing"]
+          },
+          "qualifications": {
+            "bondCapacity": 1800000,
+            "insurance": true,
+            "references": ["Luxury Resort", "High-end Condominiums", "Corporate Headquarters"],
+            "experience": 20
+          }
+        },
+        {
+          "id": "p2",
+          "vendor": "Budget Plumbing",
+          "amount": 285000,
+          "status": "reviewed",
+          "confidence": 65,
+          "notes": "Significant exclusions noted, limited warranty coverage",
+          "inclusions": ["Basic materials", "Labor"],
+          "exclusions": ["Permits", "Testing", "Premium fixtures", "Warranty", "Specialty connections"],
+          "submittedAt": "2025-01-18T10:00:00Z",
+          "reviewedAt": "2025-01-21T15:20:00Z",
+          "reviewedBy": "Tom Wilson",
+          "schedule": {
+            "startDate": "2025-04-01",
+            "duration": 45,
+            "milestones": ["Basic rough-in", "Standard fixtures"]
+          },
+          "qualifications": {
+            "bondCapacity": 500000,
+            "insurance": true,
+            "references": ["Residential projects"],
+            "experience": 5
+          }
+        }
+      ]
+    },
+    {
+      "tradeId": "electrical",
+      "tradeName": "Electrical",
+      "csiDivision": "26 00 00",
+      "riskLevel": "high",
+      "variance": 45.2,
+      "averageBid": 451667,
+      "lowestBid": 380000,
+      "highestBid": 550000,
+      "bidDueDate": "2025-01-30",
+      "scopeDescription": "Complete electrical system including power distribution, lighting, and smart home integration",
+      "biddingStatus": "open",
+      "aiRecommendation": "Elite Electrical provides most comprehensive scope but at premium pricing. Voltage Solutions has concerning exclusions.",
+      "createdAt": "2025-01-15T11:00:00Z",
+      "updatedAt": "2025-01-25T09:30:00Z",
+      "bids": [
+        {
+          "id": "e1",
+          "vendor": "Spark Electric",
+          "amount": 425000,
+          "status": "received",
+          "confidence": 85,
+          "notes": "Mid-range option with good reputation for commercial work",
+          "inclusions": ["Materials", "Labor", "Basic testing", "Standard panels"],
+          "exclusions": ["Permits", "Specialty lighting", "Smart home integration"],
+          "submittedAt": "2025-01-19T14:45:00Z",
+          "schedule": {
+            "startDate": "2025-03-20",
+            "duration": 55,
+            "milestones": ["Rough-in", "Panel installation", "Device installation"]
+          },
+          "qualifications": {
+            "bondCapacity": 1200000,
+            "insurance": true,
+            "references": ["Office Complex", "Retail Center"],
+            "experience": 18
+          }
+        },
+        {
+          "id": "e2",
+          "vendor": "Voltage Solutions",
+          "amount": 380000,
+          "status": "received",
+          "confidence": 70,
+          "notes": "Lowest bid but extensive exclusions raise concerns about scope coverage",
+          "inclusions": ["Materials", "Labor"],
+          "exclusions": ["Permits", "Testing", "Conduit", "Panel upgrades", "Specialty fixtures"],
+          "submittedAt": "2025-01-20T16:30:00Z",
+          "schedule": {
+            "startDate": "2025-04-15",
+            "duration": 35,
+            "milestones": ["Basic wiring only"]
+          },
+          "qualifications": {
+            "bondCapacity": 800000,
+            "insurance": true,
+            "references": ["Small commercial projects"],
+            "experience": 10
+          }
+        },
+        {
+          "id": "e3",
+          "vendor": "Elite Electrical",
+          "amount": 550000,
+          "status": "received",
+          "confidence": 98,
+          "notes": "Premium provider with comprehensive scope and latest technology",
+          "inclusions": ["All materials", "Labor", "Permits", "Testing", "Warranty", "Specialty work", "Smart home system"],
+          "exclusions": [],
+          "submittedAt": "2025-01-21T12:00:00Z",
+          "schedule": {
+            "startDate": "2025-03-10",
+            "duration": 65,
+            "milestones": ["Rough-in", "Panels", "Smart systems", "Testing", "Commissioning"]
+          },
+          "qualifications": {
+            "bondCapacity": 3000000,
+            "insurance": true,
+            "references": ["Luxury Hotels", "High-tech Buildings", "Premium Residences"],
+            "experience": 25
+          }
+        }
+      ]
+    },
+    {
+      "tradeId": "hvac",
+      "tradeName": "HVAC",
+      "csiDivision": "23 00 00",
+      "riskLevel": "medium",
+      "variance": 22.8,
+      "averageBid": 675000,
+      "lowestBid": 625000,
+      "highestBid": 725000,
+      "bidDueDate": "2025-02-05",
+      "scopeDescription": "Complete HVAC system with zoned climate control and energy recovery",
+      "biddingStatus": "open",
+      "createdAt": "2025-01-18T14:00:00Z",
+      "updatedAt": "2025-01-26T11:15:00Z",
+      "bids": [
+        {
+          "id": "h1",
+          "vendor": "Climate Control Pro",
+          "amount": 675000,
+          "status": "received",
+          "confidence": 90,
+          "notes": "Industry leader with energy-efficient solutions",
+          "inclusions": ["Equipment", "Labor", "Ductwork", "Controls", "Commissioning"],
+          "exclusions": ["Permits", "Electrical connections"],
+          "submittedAt": "2025-01-22T10:30:00Z",
+          "schedule": {
+            "startDate": "2025-04-01",
+            "duration": 70,
+            "milestones": ["Equipment delivery", "Installation", "Testing", "Commissioning"]
+          },
+          "qualifications": {
+            "bondCapacity": 2500000,
+            "insurance": true,
+            "references": ["Luxury Resorts", "Commercial Buildings"],
+            "experience": 22
+          }
+        },
+        {
+          "id": "h2",
+          "vendor": "Air Systems Inc",
+          "amount": 625000,
+          "status": "received",
+          "confidence": 82,
+          "notes": "Competitive pricing with standard equipment package",
+          "inclusions": ["Equipment", "Labor", "Basic controls"],
+          "exclusions": ["Permits", "Electrical", "Advanced controls", "Commissioning"],
+          "submittedAt": "2025-01-24T15:20:00Z",
+          "schedule": {
+            "startDate": "2025-04-15",
+            "duration": 50,
+            "milestones": ["Installation", "Basic testing"]
+          },
+          "qualifications": {
+            "bondCapacity": 1500000,
+            "insurance": true,
+            "references": ["Office buildings"],
+            "experience": 15
+          }
+        },
+        {
+          "id": "h3",
+          "vendor": "Premium Climate Solutions",
+          "amount": 725000,
+          "status": "received",
+          "confidence": 95,
+          "notes": "High-end solution with smart controls and energy management",
+          "inclusions": ["Premium equipment", "Labor", "Smart controls", "Energy management", "Full commissioning"],
+          "exclusions": ["Permits only"],
+          "submittedAt": "2025-01-25T11:45:00Z",
+          "schedule": {
+            "startDate": "2025-03-25",
+            "duration": 75,
+            "milestones": ["Equipment", "Installation", "Controls", "Commissioning", "Training"]
+          },
+          "qualifications": {
+            "bondCapacity": 3500000,
+            "insurance": true,
+            "references": ["High-end Residences", "Smart Buildings"],
+            "experience": 28
+          }
+        }
+      ]
+    },
+    {
+      "tradeId": "roofing",
+      "tradeName": "Roofing",
+      "csiDivision": "07 00 00",
+      "riskLevel": "low",
+      "variance": 18.5,
+      "averageBid": 385000,
+      "lowestBid": 350000,
+      "highestBid": 420000,
+      "bidDueDate": "2025-02-10",
+      "scopeDescription": "Complete roofing system including membrane, insulation, and drainage",
+      "biddingStatus": "pending",
+      "createdAt": "2025-01-20T16:30:00Z",
+      "updatedAt": "2025-01-28T13:45:00Z",
+      "bids": [
+        {
+          "id": "r1",
+          "vendor": "Superior Roofing",
+          "amount": 385000,
+          "status": "received",
+          "confidence": 88,
+          "notes": "Reliable contractor with good warranty terms",
+          "inclusions": ["Materials", "Labor", "Warranty", "Drainage"],
+          "exclusions": ["Permits", "Structural repairs"],
+          "submittedAt": "2025-01-26T09:15:00Z",
+          "schedule": {
+            "startDate": "2025-05-01",
+            "duration": 30,
+            "milestones": ["Prep work", "Membrane installation", "Final inspection"]
+          },
+          "qualifications": {
+            "bondCapacity": 2000000,
+            "insurance": true,
+            "references": ["Commercial buildings", "Residential projects"],
+            "experience": 20
+          }
+        },
+        {
+          "id": "r2",
+          "vendor": "Budget Roofing Co",
+          "amount": 350000,
+          "status": "received",
+          "confidence": 75,
+          "notes": "Lowest bid but limited warranty coverage",
+          "inclusions": ["Basic materials", "Labor"],
+          "exclusions": ["Permits", "Insulation upgrade", "Extended warranty"],
+          "submittedAt": "2025-01-27T14:30:00Z",
+          "schedule": {
+            "startDate": "2025-05-15",
+            "duration": 25,
+            "milestones": ["Installation only"]
+          },
+          "qualifications": {
+            "bondCapacity": 1000000,
+            "insurance": true,
+            "references": ["Residential work"],
+            "experience": 12
+          }
+        },
+        {
+          "id": "r3",
+          "vendor": "Premium Roofing Systems",
+          "amount": 420000,
+          "status": "received",
+          "confidence": 92,
+          "notes": "High-quality materials with extended warranty",
+          "inclusions": ["Premium materials", "Labor", "Extended warranty", "Insulation upgrade"],
+          "exclusions": ["Permits only"],
+          "submittedAt": "2025-01-28T11:00:00Z",
+          "schedule": {
+            "startDate": "2025-04-20",
+            "duration": 35,
+            "milestones": ["Prep", "Installation", "Quality testing", "Warranty setup"]
+          },
+          "qualifications": {
+            "bondCapacity": 2500000,
+            "insurance": true,
+            "references": ["High-end projects", "Commercial buildings"],
+            "experience": 25
+          }
+        }
+      ]
+    },
+    {
+      "tradeId": "flooring",
+      "tradeName": "Flooring",
+      "csiDivision": "09 00 00",
+      "riskLevel": "low",
+      "variance": 15.2,
+      "averageBid": 295000,
+      "lowestBid": 275000,
+      "highestBid": 315000,
+      "bidDueDate": "2025-02-15",
+      "scopeDescription": "Complete flooring installation including hardwood, tile, and carpeting",
+      "biddingStatus": "pending",
+      "createdAt": "2025-01-22T10:00:00Z",
+      "updatedAt": "2025-01-29T15:30:00Z",
+      "bids": [
+        {
+          "id": "f1",
+          "vendor": "Elegant Floors",
+          "amount": 295000,
+          "status": "received",
+          "confidence": 89,
+          "notes": "Specialized in luxury flooring with excellent craftsmanship",
+          "inclusions": ["Materials", "Labor", "Underlayment", "Trim work"],
+          "exclusions": ["Permits", "Subfloor preparation"],
+          "submittedAt": "2025-01-28T13:20:00Z",
+          "schedule": {
+            "startDate": "2025-06-01",
+            "duration": 40,
+            "milestones": ["Hardwood installation", "Tile work", "Carpet installation"]
+          },
+          "qualifications": {
+            "bondCapacity": 1500000,
+            "insurance": true,
+            "references": ["Luxury homes", "High-end commercial"],
+            "experience": 18
+          }
+        },
+        {
+          "id": "f2",
+          "vendor": "Value Flooring",
+          "amount": 275000,
+          "status": "received",
+          "confidence": 76,
+          "notes": "Cost-effective option with standard materials",
+          "inclusions": ["Standard materials", "Labor"],
+          "exclusions": ["Permits", "Premium materials", "Trim work"],
+          "submittedAt": "2025-01-29T10:45:00Z",
+          "schedule": {
+            "startDate": "2025-06-15",
+            "duration": 30,
+            "milestones": ["Basic installation"]
+          },
+          "qualifications": {
+            "bondCapacity": 800000,
+            "insurance": true,
+            "references": ["Residential projects"],
+            "experience": 10
+          }
+        },
+        {
+          "id": "f3",
+          "vendor": "Designer Flooring Co",
+          "amount": 315000,
+          "status": "received",
+          "confidence": 94,
+          "notes": "Premium materials with custom design work",
+          "inclusions": ["Premium materials", "Labor", "Custom work", "Design services"],
+          "exclusions": ["Permits only"],
+          "submittedAt": "2025-01-29T16:15:00Z",
+          "schedule": {
+            "startDate": "2025-05-20",
+            "duration": 45,
+            "milestones": ["Design", "Material selection", "Installation", "Finishing"]
+          },
+          "qualifications": {
+            "bondCapacity": 2000000,
+            "insurance": true,
+            "references": ["Designer homes", "Luxury projects"],
+            "experience": 22
+          }
+        }
+      ]
+    }
+  ]
+} 

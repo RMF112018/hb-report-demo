@@ -199,7 +199,7 @@ export default function ContractDocumentsPage() {
           {/* Header Section */}
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h1 className="text-3xl font-bold text-[#003087] dark:text-white">
+              <h1 className="text-3xl font-bold text-foreground">
                 Contract Documents
               </h1>
               <p className="text-muted-foreground mt-1">
@@ -379,14 +379,14 @@ export default function ContractDocumentsPage() {
                 <CardContent>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div className="text-center">
-                      <div className="text-3xl font-bold text-[#003087] dark:text-white mb-2">
+                      <div className="text-3xl font-bold text-foreground mb-2">
                         ${(mockAnalytics.costSavingsIdentified / 1000).toFixed(0)}K
                       </div>
                       <p className="text-sm text-muted-foreground">Cost Savings Identified</p>
                       <Progress value={75} className="mt-2" />
                     </div>
                     <div className="text-center">
-                      <div className="text-3xl font-bold text-[#FF6B35] mb-2">
+                      <div className="text-3xl font-bold text-orange-600 dark:text-orange-400 mb-2">
                         {mockAnalytics.aiInsightsGenerated}
                       </div>
                       <p className="text-sm text-muted-foreground">AI Insights Generated</p>

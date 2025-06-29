@@ -25,11 +25,13 @@ import {
   CheckCircle2,
   AlertCircle,
   XCircle,
-  Eye
+  Eye,
+  Edit
 } from 'lucide-react';
 import { format } from 'date-fns';
 import { EstimatingProject, EstimatingTrackingSummary, EstimatingFilters } from '@/types/estimating-tracker';
 import ProjectForm from './ProjectForm';
+import { ProjectSpecificDashboard } from './ProjectSpecificDashboard';
 
 // Mock data import - in real app this would come from API
 import estimatingData from '@/data/mock/estimating/estimating-tracking.json';
@@ -39,6 +41,7 @@ interface EstimatingTrackerProps {
   onCreateProject?: () => void;
   showNewOpportunityForm?: boolean;
   onNewOpportunityFormChange?: (show: boolean) => void;
+  onProjectSelect?: (projectId: string) => void;
 }
 
 const getStatusColor = (status: string) => {
@@ -98,7 +101,7 @@ const ChecklistIndicator = ({ checklist }: { checklist: any }) => {
   );
 };
 
-export default function EstimatingTracker({ className, onCreateProject, showNewOpportunityForm, onNewOpportunityFormChange }: EstimatingTrackerProps) {
+export default function EstimatingTracker({ className, onCreateProject, showNewOpportunityForm, onNewOpportunityFormChange, onProjectSelect }: EstimatingTrackerProps) {
   const [activeTab, setActiveTab] = useState('pursuits');
   const [searchTerm, setSearchTerm] = useState('');
   const [filters, setFilters] = useState<EstimatingFilters>({});
@@ -177,6 +180,17 @@ export default function EstimatingTracker({ className, onCreateProject, showNewO
     setFormMode('edit');
     setEditingProject(project);
     setShowProjectForm(true);
+  };
+
+  // Handle viewing project details
+  const handleViewProject = (project: EstimatingProject) => {
+    // Try to find matching project from projects data
+    // In production, this would use proper project ID mapping
+    if (onProjectSelect) {
+      // For demo purposes, use the first part of project number or a default ID
+      const projectId = project.projectNumber.split('-')[0] || '2525840';
+      onProjectSelect(projectId);
+    }
   };
 
   // Handle saving a project (create or update)
@@ -451,8 +465,11 @@ export default function EstimatingTracker({ className, onCreateProject, showNewO
                         </TableCell>
                         <TableCell className="min-w-[140px]">
                           <div className="flex items-center gap-1">
-                            <Button variant="ghost" size="sm" onClick={() => handleEditProject(project)}>
+                            <Button variant="ghost" size="sm" onClick={() => handleViewProject(project)} title="View Project Dashboard">
                               <Eye className="h-4 w-4" />
+                            </Button>
+                            <Button variant="ghost" size="sm" onClick={() => handleEditProject(project)} title="Edit Project">
+                              <Edit className="h-4 w-4" />
                             </Button>
                           </div>
                         </TableCell>
@@ -527,8 +544,11 @@ export default function EstimatingTracker({ className, onCreateProject, showNewO
                         </TableCell>
                         <TableCell>
                           <div className="flex items-center gap-2">
-                            <Button variant="ghost" size="sm" onClick={() => handleEditProject(project)}>
+                            <Button variant="ghost" size="sm" onClick={() => handleViewProject(project)} title="View Project Dashboard">
                               <Eye className="h-4 w-4" />
+                            </Button>
+                            <Button variant="ghost" size="sm" onClick={() => handleEditProject(project)} title="Edit Project">
+                              <Edit className="h-4 w-4" />
                             </Button>
                           </div>
                         </TableCell>
@@ -617,8 +637,11 @@ export default function EstimatingTracker({ className, onCreateProject, showNewO
                         </TableCell>
                         <TableCell>
                           <div className="flex items-center gap-2">
-                            <Button variant="ghost" size="sm" onClick={() => handleEditProject(project)}>
+                            <Button variant="ghost" size="sm" onClick={() => handleViewProject(project)} title="View Project Dashboard">
                               <Eye className="h-4 w-4" />
+                            </Button>
+                            <Button variant="ghost" size="sm" onClick={() => handleEditProject(project)} title="Edit Project">
+                              <Edit className="h-4 w-4" />
                             </Button>
                           </div>
                         </TableCell>

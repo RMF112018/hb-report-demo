@@ -1124,7 +1124,7 @@ export default function Forecasting({ userRole, projectData }: ForecastingProps)
       </Card>
 
       {/* Interactive Forecast Table */}
-      <Card className={isFullscreen ? 'fixed inset-4 z-50 overflow-auto' : ''}>
+      <Card className={isFullscreen ? 'fixed inset-4 z-[130] overflow-auto' : ''}>
         <CardHeader>
           <CardTitle className="flex items-center justify-between">
             <div className="flex items-center gap-2">

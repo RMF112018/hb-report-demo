@@ -34,7 +34,7 @@ const AssignmentSparkline = ({ data, height = 48 }: { data: number[]; height?: n
 
   return (
     <div className="w-24 h-12 flex items-center">
-      <svg width="100%" height={height} className="text-blue-500">
+      <svg width="100%" height={height} className="text-blue-500 dark:text-blue-400">
         <polyline fill="none" stroke="currentColor" strokeWidth="2" points={points} vectorEffect="non-scaling-stroke" />
         <defs>
           <linearGradient id="sparklineGradient" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -56,7 +56,17 @@ export function ResponsibilityMatrixIntegration({
   const [selectedCategory, setSelectedCategory] = useState<string>("all")
   const [selectedRole, setSelectedRole] = useState<string>("all")
   const [selectedTasks, setSelectedTasks] = useState<string[]>([])
-  const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set())
+  const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set([
+    "Contract Management",
+    "Financial Management", 
+    "Documentation & Permits",
+    "Project Coordination",
+    "Quality & Safety",
+    "Design & Submittals",
+    "Procurement & Buyout",
+    "Reporting & Administration",
+    "General Project Tasks"
+  ]))
   const [expandedAnnotations, setExpandedAnnotations] = useState<Set<string>>(new Set())
   const [bulkAssignmentRole, setBulkAssignmentRole] = useState<string>("")
   const [bulkAssignmentType, setBulkAssignmentType] = useState<"Approve" | "Primary" | "Support" | "None">("None")
@@ -79,6 +89,39 @@ export function ResponsibilityMatrixIntegration({
     S: "#722ed1", // purple
   }
 
+  // Helper function to categorize tasks by type instead of role
+  const getTaskTypeCategory = (task: string, originalRole: string) => {
+    const taskLower = task.toLowerCase()
+    
+    if (taskLower.includes("contract") || taskLower.includes("sign") || taskLower.includes("agreement")) {
+      return "Contract Management"
+    } else if (taskLower.includes("payment") || taskLower.includes("invoice") || taskLower.includes("financial") || 
+               taskLower.includes("budget") || taskLower.includes("wire") || taskLower.includes("funds") ||
+               taskLower.includes("expense") || taskLower.includes("card") || taskLower.includes("payroll")) {
+      return "Financial Management"
+    } else if (taskLower.includes("permit") || taskLower.includes("drawing") || taskLower.includes("document") ||
+               taskLower.includes("paperwork") || taskLower.includes("log") || taskLower.includes("binder")) {
+      return "Documentation & Permits"
+    } else if (taskLower.includes("schedule") || taskLower.includes("meeting") || taskLower.includes("coordination") ||
+               taskLower.includes("huddle") || taskLower.includes("look-ahead")) {
+      return "Project Coordination"
+    } else if (taskLower.includes("safety") || taskLower.includes("quality") || taskLower.includes("inspection") ||
+               taskLower.includes("threshold") || taskLower.includes("waterproofing")) {
+      return "Quality & Safety"
+    } else if (taskLower.includes("submittal") || taskLower.includes("rfi") || taskLower.includes("bim") ||
+               taskLower.includes("coordination") || taskLower.includes("design")) {
+      return "Design & Submittals"
+    } else if (taskLower.includes("procurement") || taskLower.includes("buy") || taskLower.includes("subcontract") ||
+               taskLower.includes("allocation") || taskLower.includes("allowance") || taskLower.includes("award")) {
+      return "Procurement & Buyout"
+    } else if (taskLower.includes("report") || taskLower.includes("due") || taskLower.includes("monthly") ||
+               taskLower.includes("weekly") || taskLower.includes("daily")) {
+      return "Reporting & Administration"
+    } else {
+      return "General Project Tasks"
+    }
+  }
+
   // Transform raw data into ResponsibilityTask format
   const transformedTasks: ResponsibilityTask[] = useMemo(() => {
     return responsibilityRawData
@@ -86,10 +129,12 @@ export function ResponsibilityMatrixIntegration({
       .map((item, index) => {
         const randomAssignments: { [key: string]: "Approve" | "Primary" | "Support" | "None" } = {}
         
-        // Create some realistic assignments based on category
-        const category = item["Task Category"] || "General"
+        // Create some realistic assignments based on original role category
+        const originalRole = item["Task Category"] || "General"
+        const taskTypeCategory = getTaskTypeCategory(item["Tasks/Role"] || "", originalRole)
+        
         Object.keys(roleColors).forEach(role => {
-          if (role === category) {
+          if (role === originalRole) {
             randomAssignments[role] = Math.random() > 0.3 ? "Primary" : "Support"
           } else if (["PX", "SPM"].includes(role)) {
             randomAssignments[role] = Math.random() > 0.7 ? "Approve" : "None"
@@ -102,11 +147,11 @@ export function ResponsibilityMatrixIntegration({
           id: `task-${index}`,
           projectId: "palm-beach-luxury",
           type: currentMatrixType,
-          category: category,
+          category: taskTypeCategory, // Use task type category instead of role
           task: item["Tasks/Role"] || "",
           page: Math.random() > 0.5 ? `${Math.floor(Math.random() * 50) + 1}` : "",
           article: Math.random() > 0.5 ? `${Math.floor(Math.random() * 10) + 1}.${Math.floor(Math.random() * 20) + 1}` : "",
-          responsible: category === "PX" ? "PX" : category === "SPM" ? "SPM" : Object.keys(randomAssignments).find(role => randomAssignments[role] === "Primary") || "",
+          responsible: originalRole === "PX" ? "PX" : originalRole === "SPM" ? "SPM" : Object.keys(randomAssignments).find(role => randomAssignments[role] === "Primary") || "",
           assignments: randomAssignments,
           status: ["active", "pending", "completed"][Math.floor(Math.random() * 3)] as "active" | "pending" | "completed",
           createdAt: new Date(Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000).toISOString(),
@@ -166,7 +211,7 @@ export function ResponsibilityMatrixIntegration({
       category,
       tasks: categoryTasks,
       isExpanded: expandedCategories.has(category),
-    }))
+    })).sort((a, b) => a.category.localeCompare(b.category))
   }, [transformedTasks, searchTerm, selectedCategory, selectedRole, expandedCategories])
 
   // Get unique categories
@@ -245,24 +290,24 @@ export function ResponsibilityMatrixIntegration({
     switch (status) {
       case "completed":
         return (
-          <Badge variant="default" className="bg-green-100 text-green-800 border-green-200">
+          <Badge variant="default" className="bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 border-green-200 dark:border-green-800">
             Completed
           </Badge>
         )
       case "pending":
         return (
-          <Badge variant="secondary" className="bg-yellow-100 text-yellow-800 border-yellow-200">
+          <Badge variant="secondary" className="bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-300 border-yellow-200 dark:border-yellow-800">
             Pending
           </Badge>
         )
       case "active":
         return (
-          <Badge variant="outline" className="bg-blue-100 text-blue-800 border-blue-200">
+          <Badge variant="outline" className="bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 border-blue-200 dark:border-blue-800">
             Active
           </Badge>
         )
       default:
-        return <Badge variant="outline">Unknown</Badge>
+        return <Badge variant="outline" className="text-gray-600 dark:text-gray-400">Unknown</Badge>
     }
   }
 
@@ -356,8 +401,8 @@ export function ResponsibilityMatrixIntegration({
 
           {/* Bulk Assignment Controls */}
           {selectedTasks.length > 0 && (
-            <div className="flex items-center gap-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
-              <span className="text-sm font-medium">
+            <div className="flex items-center gap-4 p-3 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
+              <span className="text-sm font-medium text-gray-900 dark:text-gray-100">
                 {selectedTasks.length} task{selectedTasks.length !== 1 ? 's' : ''} selected
               </span>
               <Select value={bulkAssignmentRole} onValueChange={setBulkAssignmentRole}>
@@ -395,13 +440,14 @@ export function ResponsibilityMatrixIntegration({
 
         {/* Matrix Content */}
         <div className="flex-1 overflow-hidden">
-          <div className="h-full overflow-auto border rounded-lg">
+          <div className="h-full overflow-auto border border-gray-200 dark:border-gray-700 rounded-lg">
             {/* Table Header */}
-            <div className="sticky top-0 z-10 bg-white border-b border-gray-200">
-              <div className="grid gap-2 p-3 text-sm font-medium text-[#003087]" style={{
-                gridTemplateColumns: `auto 1fr repeat(${enabledRoles.length}, 48px) auto auto auto auto`
+            <div className="sticky top-0 z-10 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+              <div className="grid p-3 text-sm font-medium text-gray-900 dark:text-gray-100" style={{
+                gridTemplateColumns: `40px 2fr repeat(${enabledRoles.length}, 50px) 80px 90px 50px 80px`,
+                gap: '8px'
               }}>
-                <div className="flex items-center">
+                <div className="flex items-center justify-center">
                   <Checkbox
                     checked={
                       selectedTasks.length === groupedTasks.flatMap(g => g.tasks).length &&
@@ -410,38 +456,38 @@ export function ResponsibilityMatrixIntegration({
                     onCheckedChange={handleSelectAll}
                   />
                 </div>
-                <div>Task</div>
+                <div className="flex items-center">Task</div>
                 {enabledRoles.map((role) => (
-                  <div key={role.key} className="text-center">
+                  <div key={role.key} className="flex flex-col items-center justify-center">
                     <div className="flex flex-col items-center space-y-1">
                       <div className="w-6 h-6 rounded-full" style={{ backgroundColor: getRoleColor(role.key) }} />
                       <span className="text-xs">{role.key}</span>
                     </div>
                   </div>
                 ))}
-                <div className="text-center">Status</div>
-                <div className="text-center">Trends</div>
-                <div className="text-center">Page</div>
-                <div className="text-center">Actions</div>
+                <div className="flex items-center justify-center">Status</div>
+                <div className="flex items-center justify-center">Trends</div>
+                <div className="flex items-center justify-center">Page</div>
+                <div className="flex items-center justify-center">Actions</div>
               </div>
             </div>
 
             {/* Table Body */}
-            <div className="divide-y divide-gray-200">
+            <div className="divide-y divide-gray-200 dark:divide-gray-700">
               {groupedTasks.map((group) => (
                 <div key={group.category}>
                   {/* Category Header */}
                   <div
-                    className="bg-gradient-to-r from-gray-50 to-blue-50 p-3 cursor-pointer hover:bg-gray-100 transition-colors"
+                    className="bg-gradient-to-r from-gray-50 to-blue-50 dark:from-gray-800 dark:to-blue-900/20 p-3 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                     onClick={() => toggleCategoryExpansion(group.category)}
                   >
                     <div className="flex items-center space-x-2">
                       {group.isExpanded ? (
-                        <ChevronDown className="w-4 h-4 text-gray-600" />
+                        <ChevronDown className="w-4 h-4 text-gray-600 dark:text-gray-400" />
                       ) : (
-                        <ChevronRight className="w-4 h-4 text-gray-600" />
+                        <ChevronRight className="w-4 h-4 text-gray-600 dark:text-gray-400" />
                       )}
-                      <span className="font-semibold text-[#003087]">{group.category}</span>
+                      <span className="font-semibold text-blue-900 dark:text-blue-100">{group.category}</span>
                       <Badge variant="outline" className="ml-2">
                         {group.tasks.length}
                       </Badge>
@@ -450,31 +496,32 @@ export function ResponsibilityMatrixIntegration({
 
                   {/* Category Tasks */}
                   {group.isExpanded && (
-                    <div className="divide-y divide-gray-100">
+                    <div className="divide-y divide-gray-100 dark:divide-gray-700">
                       {group.tasks.map((task, index) => (
                         <div key={task.id}>
                           <div
-                            className={`grid gap-2 p-3 hover:bg-gray-50 transition-colors ${
-                              index % 2 === 0 ? "bg-white" : "bg-gray-25"
+                            className={`grid p-3 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors ${
+                              index % 2 === 0 ? "bg-white dark:bg-gray-800" : "bg-gray-50 dark:bg-gray-800/50"
                             }`}
                             style={{
-                              gridTemplateColumns: `auto 1fr repeat(${enabledRoles.length}, 48px) auto auto auto auto`
+                              gridTemplateColumns: `40px 2fr repeat(${enabledRoles.length}, 50px) 80px 90px 50px 80px`,
+                              gap: '8px'
                             }}
                           >
-                            <div className="flex items-center">
+                            <div className="flex items-center justify-center">
                               <Checkbox
                                 checked={selectedTasks.includes(task.id)}
                                 onCheckedChange={(checked) => handleSelectTask(task.id, checked as boolean)}
                               />
                             </div>
 
-                            <div className="space-y-1">
-                              <div className="font-medium text-gray-900 text-sm">{task.task}</div>
+                            <div className="space-y-1 flex flex-col justify-center">
+                              <div className="font-medium text-gray-900 dark:text-gray-100 text-sm">{task.task}</div>
                               {task.annotations.length > 0 && (
                                 <Button
                                   variant="ghost"
                                   size="sm"
-                                  className="h-6 px-2 text-xs text-gray-500 hover:text-gray-700"
+                                  className="h-6 px-2 text-xs text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 w-fit"
                                   onClick={() => toggleAnnotations(task.id)}
                                 >
                                   <MessageSquare className="w-3 h-3 mr-1" />
@@ -495,13 +542,15 @@ export function ResponsibilityMatrixIntegration({
                               </div>
                             ))}
 
-                            <div className="flex items-center justify-center">{getStatusBadge(task.status)}</div>
+                            <div className="flex items-center justify-center">
+                              {getStatusBadge(task.status)}
+                            </div>
 
                             <div className="flex items-center justify-center">
                               <AssignmentSparkline data={generateSparklineData()} />
                             </div>
 
-                            <div className="text-sm text-gray-600 flex items-center justify-center">
+                            <div className="text-sm text-gray-600 dark:text-gray-400 flex items-center justify-center">
                               {task.page || "-"}
                             </div>
 
@@ -510,14 +559,14 @@ export function ResponsibilityMatrixIntegration({
                                 <Button
                                   variant="ghost"
                                   size="sm"
-                                  className="w-8 h-8 p-0 hover:bg-blue-50"
+                                  className="w-8 h-8 p-0 hover:bg-blue-50 dark:hover:bg-blue-900/20"
                                 >
                                   <Edit className="w-4 h-4" />
                                 </Button>
                                 <Button
                                   variant="ghost"
                                   size="sm"
-                                  className="w-8 h-8 p-0 text-red-600 hover:text-red-700 hover:bg-red-50"
+                                  className="w-8 h-8 p-0 text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 hover:bg-red-50 dark:hover:bg-red-900/20"
                                 >
                                   <Trash2 className="w-4 h-4" />
                                 </Button>
@@ -527,18 +576,18 @@ export function ResponsibilityMatrixIntegration({
 
                           {/* Annotations Panel */}
                           {expandedAnnotations.has(task.id) && task.annotations.length > 0 && (
-                            <div className="bg-gray-50 border-t border-gray-200 p-4">
+                            <div className="bg-gray-50 dark:bg-gray-800/50 border-t border-gray-200 dark:border-gray-700 p-4">
                               <div className="space-y-3">
-                                <h4 className="text-sm font-medium text-gray-900">Annotations</h4>
+                                <h4 className="text-sm font-medium text-gray-900 dark:text-gray-100">Annotations</h4>
                                 {task.annotations.map((annotation) => (
-                                  <div key={annotation.id} className="bg-white rounded-lg p-3 border border-gray-200">
+                                  <div key={annotation.id} className="bg-white dark:bg-gray-700 rounded-lg p-3 border border-gray-200 dark:border-gray-600">
                                     <div className="flex items-center justify-between mb-2">
-                                      <span className="text-sm font-medium text-gray-900">{annotation.user}</span>
-                                      <span className="text-xs text-gray-500">
+                                      <span className="text-sm font-medium text-gray-900 dark:text-gray-100">{annotation.user}</span>
+                                      <span className="text-xs text-gray-500 dark:text-gray-400">
                                         {new Date(annotation.timestamp).toLocaleDateString()}
                                       </span>
                                     </div>
-                                    <p className="text-sm text-gray-700">{annotation.comment}</p>
+                                    <p className="text-sm text-gray-700 dark:text-gray-300">{annotation.comment}</p>
                                   </div>
                                 ))}
                               </div>
@@ -554,8 +603,8 @@ export function ResponsibilityMatrixIntegration({
 
             {groupedTasks.length === 0 && (
               <div className="text-center py-12">
-                <div className="text-gray-500 text-lg mb-2">No tasks found</div>
-                <div className="text-gray-400 text-sm">
+                <div className="text-gray-500 dark:text-gray-400 text-lg mb-2">No tasks found</div>
+                <div className="text-gray-400 dark:text-gray-500 text-sm">
                   {searchTerm || selectedCategory !== "all" || selectedRole !== "all"
                     ? "Try adjusting your filters"
                     : "Create your first task to get started"}

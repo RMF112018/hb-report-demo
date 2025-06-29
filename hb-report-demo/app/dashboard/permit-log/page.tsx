@@ -427,7 +427,7 @@ export default function PermitLogPage() {
 
   if (isFullScreen) {
     return (
-      <div className="fixed inset-0 z-50 bg-background">
+      <div className="fixed inset-0 z-[130] bg-background">
         <div className="h-full flex flex-col">
           <div className="flex-shrink-0 p-4 border-b">
             <Button onClick={() => setIsFullScreen(false)}>
@@ -456,7 +456,7 @@ export default function PermitLogPage() {
         <div className="px-6 py-4">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold text-[#003087] dark:text-blue-400 mb-2">
+              <h1 className="text-3xl font-bold text-foreground mb-2">
                 Permit Log & Tracking
               </h1>
               <p className="text-lg text-blue-700 dark:text-blue-300">

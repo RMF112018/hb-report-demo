@@ -719,7 +719,7 @@ export default function ProjectForm({ open, onOpenChange, project, onSave, mode 
 
     {/* Pre-Construction Responsibility Matrix */}
     {showResponsibilityMatrix && (
-      <div className="fixed inset-0 z-[150] bg-background">
+      <div className="fixed inset-0 z-[130] bg-background">
         <PreConstructionResponsibilityMatrix
           project={{
             ...formData,

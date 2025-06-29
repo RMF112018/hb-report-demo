@@ -48,9 +48,10 @@ interface ProjectInsightsProps {
   projects: any[]
   pipelineData: any[]
   userRole: string
+  onProjectSelect?: (projectId: string) => void
 }
 
-export function ProjectInsights({ projects, pipelineData, userRole }: ProjectInsightsProps) {
+export function ProjectInsights({ projects, pipelineData, userRole, onProjectSelect }: ProjectInsightsProps) {
   const [searchTerm, setSearchTerm] = useState("")
   const [statusFilter, setStatusFilter] = useState("all")
   const [typeFilter, setTypeFilter] = useState("all")
@@ -333,14 +334,25 @@ export function ProjectInsights({ projects, pipelineData, userRole }: ProjectIns
                       </div>
                     </TableCell>
                     <TableCell>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => setSelectedProject(project)}
-                      >
-                        <Eye className="h-3 w-3 mr-1" />
-                        View
-                      </Button>
+                      <div className="flex items-center gap-2">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => onProjectSelect && onProjectSelect(project.project_id)}
+                          title="View Project Dashboard"
+                        >
+                          <Eye className="h-3 w-3 mr-1" />
+                          Dashboard
+                        </Button>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => setSelectedProject(project)}
+                          title="View Details"
+                        >
+                          <FileText className="h-3 w-3" />
+                        </Button>
+                      </div>
                     </TableCell>
                   </TableRow>
                 ))}

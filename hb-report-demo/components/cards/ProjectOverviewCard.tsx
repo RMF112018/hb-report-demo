@@ -99,28 +99,28 @@ export default function ProjectOverviewCard({ config, span, isCompact, userRole 
 
   return (
     <div 
-      className="h-full flex flex-col bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/30 dark:to-indigo-950/30 overflow-hidden relative transition-all duration-300"
+      className="h-full flex flex-col bg-gradient-to-br from-blue-50/80 to-indigo-50/80 dark:from-blue-950/40 dark:to-indigo-950/40 overflow-hidden relative transition-all duration-300 backdrop-blur-sm"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Header Stats */}
-      <div className="flex-shrink-0 p-2 sm:p-1.5 sm:p-2 lg:p-2.5 lg:p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 bg-white/80 dark:bg-black/80 backdrop-blur-sm border-b border-blue-200 dark:border-blue-800">
-        <div className="grid grid-cols-2 gap-2 sm:gap-1.5 sm:gap-2 lg:gap-1 sm:gap-1.5 lg:gap-2">
-          <div className="text-center">
-            <div className="text-lg sm:text-xl lg:text-lg sm:text-xl lg:text-lg sm:text-xl lg:text-2xl font-medium text-blue-700">{data.totalProjects}</div>
-            <div className="text-[10px] sm:text-xs text-blue-600 dark:text-blue-400">Total Projects</div>
+      {/* Enhanced Header Stats with better hierarchy */}
+      <div className="flex-shrink-0 p-3 sm:p-4 lg:p-5 bg-white/90 dark:bg-black/90 backdrop-blur-md border-b border-blue-200/60 dark:border-blue-800/60 shadow-sm">
+        <div className="grid grid-cols-2 gap-4 sm:gap-6">
+          <div className="text-center p-2 rounded-lg bg-blue-50/80 dark:bg-blue-950/40 border border-blue-200/40 dark:border-blue-800/40">
+            <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-blue-700 dark:text-blue-400">{data.totalProjects}</div>
+            <div className="text-xs sm:text-sm font-medium text-blue-600 dark:text-blue-300 mt-1">Total Projects</div>
           </div>
-          <div className="text-center">
-            <div className="text-lg sm:text-xl lg:text-lg sm:text-xl lg:text-lg sm:text-xl lg:text-2xl font-medium text-green-700">{data.activeProjects}</div>
-            <div className="text-[10px] sm:text-xs text-green-600 dark:text-green-400">Active</div>
+          <div className="text-center p-2 rounded-lg bg-green-50/80 dark:bg-green-950/40 border border-green-200/40 dark:border-green-800/40">
+            <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-green-700 dark:text-green-400">{data.activeProjects}</div>
+            <div className="text-xs sm:text-sm font-medium text-green-600 dark:text-green-300 mt-1">Active</div>
           </div>
         </div>
       </div>
 
-      {/* Content */}
-      <div className="flex-1 p-2 sm:p-1.5 sm:p-2 lg:p-2.5 lg:p-2 sm:p-2.5 lg:p-1.5 sm:p-2 lg:p-2.5 space-y-2 sm:space-y-3 lg:space-y-4 overflow-y-auto">
-        {/* Contract Value Summary */}
-        <div className="bg-white/60 dark:bg-black/60 rounded-lg p-1.5 sm:p-2 lg:p-2.5 border border-blue-200 dark:border-blue-800">
+      {/* Enhanced Content with better spacing */}
+      <div className="flex-1 p-3 sm:p-4 lg:p-5 space-y-3 sm:space-y-4 lg:space-y-5 overflow-y-auto">
+        {/* Contract Value Summary with enhanced styling */}
+        <div className="bg-white/80 dark:bg-black/80 rounded-xl p-3 sm:p-4 border border-blue-200/60 dark:border-blue-800/60 shadow-sm backdrop-blur-sm">
           <div className="flex items-center gap-2 mb-2">
             <DollarSign className="h-4 w-4 text-blue-600 dark:text-blue-400" />
             <span className="text-sm font-medium text-foreground">Portfolio Value</span>
